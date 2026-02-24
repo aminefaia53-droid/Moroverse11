@@ -63,6 +63,10 @@ export default function MoroVerseAssistant() {
                         setMessage(`شخصية عظيمة! ${payload} ترك بصمة خالدة في تاريخ أمتنا.`);
                     }
                     break;
+                case 'image_loaded': // New case for Auto-Fetch hook
+                    setEmotion('happy');
+                    setMessage(`أرى أن الصورة التراثية لـ ${payload} قد اكتملت الآن، الجمال المغربي لا يُضاهى.`);
+                    break;
             }
 
             // Auto-hide after 6 seconds
@@ -74,9 +78,22 @@ export default function MoroVerseAssistant() {
 
         window.addEventListener('moroverse-action', handleAction);
 
+        // Listen to the specific image loaded event from the hook
+        const handleImageLoaded = (e: Event) => {
+            const customEvent = e as CustomEvent;
+            const { entity } = customEvent.detail;
+
+            // Re-use the handleAction logic but with new type
+            handleAction(new CustomEvent('moroverse-action', {
+                detail: { type: 'image_loaded', payload: entity }
+            }) as Event);
+        };
+        window.addEventListener('moroverse-image-loaded', handleImageLoaded);
+
         return () => {
             clearTimeout(timer);
             window.removeEventListener('moroverse-action', handleAction);
+            window.removeEventListener('moroverse-image-loaded', handleImageLoaded);
         };
     }, []);
 

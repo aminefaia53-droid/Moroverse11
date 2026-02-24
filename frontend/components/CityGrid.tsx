@@ -7,6 +7,7 @@ import { moroccoRegions, Location, ZoneType, ClimateType } from '../data/morocco
 import { getArticle } from '../data/moroverse-content';
 import ArticleReader from './ArticleReader';
 import { generateArticleSchema } from '../utils/seo';
+import { useAutoImageFetcher } from '../hooks/useAutoImageFetcher';
 
 const SoulIcon = ({ soul, className }: { soul: string; className?: string }) => {
     switch (soul) {
@@ -129,62 +130,13 @@ export default function CityGrid({ lang }: { lang: 'en' | 'ar' }) {
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                 <AnimatePresence mode='popLayout'>
                     {filteredLocations.slice(0, visibleCount).map((loc, idx) => (
-                        <motion.div
-                            layout
+                        <CityCard
                             key={loc.id}
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            exit={{ opacity: 0, scale: 0.9 }}
-                            transition={{ delay: idx % 10 * 0.05 }}
-                            onClick={() => {
-                                setSelectedLocation(loc);
-                                window.dispatchEvent(new CustomEvent('moroverse-action', {
-                                    detail: { type: 'city_click', payload: loc.name.ar }
-                                }));
-                            }}
-                            className="group cursor-pointer relative"
-                        >
-                            <div className="moro-glass p-6 rounded-3xl border border-primary/10 hover:border-primary/40 transition-all duration-500 hover:shadow-2xl hover:shadow-primary/10 h-full overflow-hidden flex flex-col">
-                                {/* Visual Identity Backdrop */}
-                                <div className="absolute -right-4 -top-4 opacity-[0.03] group-hover:opacity-[0.08] transition-opacity duration-700 pointer-events-none transform group-hover:rotate-12 scale-150">
-                                    <SoulIcon soul={loc.visualSoul} className="w-48 h-48 text-primary" />
-                                </div>
-
-                                <div className="flex justify-between items-start mb-4 relative z-10">
-                                    <div className="p-3 rounded-2xl bg-primary/5 group-hover:bg-primary/10 transition-colors">
-                                        <SoulIcon soul={loc.visualSoul} className="w-6 h-6 text-primary" />
-                                    </div>
-                                    <div className="flex flex-col items-end">
-                                        <span className="text-[8px] font-black uppercase tracking-tighter bg-primary/10 text-primary px-2 py-1 rounded-full">
-                                            {loc.type}
-                                        </span>
-                                        <span className="text-[8px] font-medium text-foreground/30 mt-1 uppercase tracking-widest">
-                                            {loc.climate}
-                                        </span>
-                                    </div>
-                                </div>
-
-                                <div className="relative z-10">
-                                    <h3 className="text-xl font-bold text-foreground/80 mb-1 group-hover:text-primary transition-colors">
-                                        {loc.name[lang]}
-                                    </h3>
-                                    <p className="text-[10px] text-foreground/40 font-medium uppercase tracking-widest mb-4">
-                                        {loc.regionName[lang]}
-                                    </p>
-
-                                    <div className="w-8 h-1 bg-primary/20 mb-4 group-hover:w-full transition-all duration-500" />
-
-                                    <p className="text-xs text-foreground/60 leading-relaxed line-clamp-2 italic mb-6">
-                                        "{loc.history[lang]}"
-                                    </p>
-                                </div>
-
-                                <button className="mt-auto flex items-center gap-2 text-[9px] font-black uppercase tracking-widest text-primary/60 group-hover:text-primary transition-all">
-                                    {lang === 'ar' ? 'عرض دفتر التعريف' : 'View Fact Sheet'}
-                                    <ChevronRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
-                                </button>
-                            </div>
-                        </motion.div>
+                            loc={loc}
+                            idx={idx}
+                            lang={lang}
+                            onClick={setSelectedLocation}
+                        />
                     ))}
                 </AnimatePresence>
             </div>
@@ -320,5 +272,95 @@ export default function CityGrid({ lang }: { lang: 'en' | 'ar' }) {
                 />
             )}
         </div>
+    );
+}
+
+function CityCard({
+    loc,
+    idx,
+    lang,
+    onClick
+}: {
+    loc: ExtendedLocation;
+    idx: number;
+    lang: 'en' | 'ar';
+    onClick: (loc: ExtendedLocation) => void
+}) {
+    const { imageUrl, isLoading } = useAutoImageFetcher({
+        query: loc.name.en,
+        preloadedImageUrl: undefined // Extensibility: can add generic imageUrl to ExtendedLocation if needed
+    });
+
+    return (
+        <motion.div
+            layout
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.9 }}
+            transition={{ delay: idx % 10 * 0.05 }}
+            onClick={() => {
+                onClick(loc);
+                window.dispatchEvent(new CustomEvent('moroverse-action', {
+                    detail: { type: 'city_click', payload: loc.name.ar }
+                }));
+            }}
+            className="group cursor-pointer relative h-[380px]" // Fixed height to maintain HD visual consistency
+        >
+            <div className="moro-glass p-6 rounded-3xl border border-primary/10 hover:border-primary/40 transition-all duration-500 hover:shadow-2xl hover:shadow-primary/10 h-full overflow-hidden flex flex-col justify-between">
+
+                {/* Dynamic HD Background Image */}
+                <div className="absolute inset-0 z-0 overflow-hidden rounded-3xl pointer-events-none">
+                    {imageUrl && (
+                        <div
+                            className={`absolute inset-0 bg-cover bg-center transition-opacity duration-1000 ${isLoading ? 'opacity-0' : 'opacity-10 group-hover:opacity-20'}`}
+                            style={{ backgroundImage: `url(${imageUrl})`, filter: 'grayscale(40%) contrast(110%)' }}
+                        >
+                            <div className="absolute inset-0 bg-gradient-to-t from-white/90 via-white/70 to-white/40" />
+                        </div>
+                    )}
+                </div>
+
+                {/* Visual Identity Backdrop Fallback */}
+                <div className="absolute -right-4 -top-4 opacity-[0.03] group-hover:opacity-[0.08] transition-opacity duration-700 pointer-events-none transform group-hover:rotate-12 scale-150 z-0">
+                    <SoulIcon soul={loc.visualSoul} className="w-48 h-48 text-primary" />
+                </div>
+
+                <div className="flex justify-between items-start mb-4 relative z-10 pointer-events-none">
+                    <div className="p-3 rounded-2xl bg-white/60 backdrop-blur-md border border-primary/10 group-hover:bg-primary transition-colors shadow-sm duration-500">
+                        <SoulIcon soul={loc.visualSoul} className="w-6 h-6 text-primary group-hover:text-white transition-colors duration-500" />
+                    </div>
+                    <div className="flex flex-col items-end gap-1.5">
+                        <span className="text-[8px] font-black uppercase tracking-tighter bg-white/80 backdrop-blur-md border border-primary/10 text-primary px-2 py-1 rounded-full shadow-sm">
+                            {loc.type}
+                        </span>
+                        <span className="text-[8px] font-medium text-slate-500 uppercase tracking-widest bg-white/50 backdrop-blur-sm px-2 py-0.5 rounded-full border border-slate-100">
+                            {loc.climate}
+                        </span>
+                    </div>
+                </div>
+
+                <div className="relative z-10 pointer-events-none flex-grow flex flex-col justify-end pb-4">
+                    <h3 className="text-2xl font-black text-foreground/80 mb-1 group-hover:text-primary transition-colors drop-shadow-sm leading-tight">
+                        {loc.name[lang]}
+                    </h3>
+                    <p className="text-[10px] text-primary/60 font-bold uppercase tracking-widest mb-4">
+                        {loc.regionName[lang]}
+                    </p>
+
+                    <div className="w-8 h-1 bg-gradient-to-r from-primary/40 to-transparent mb-4 group-hover:w-full transition-all duration-700" />
+
+                    <p className="text-xs text-foreground/70 leading-relaxed line-clamp-2 italic font-medium">
+                        "{loc.history[lang]}"
+                    </p>
+                </div>
+
+                <div className="mt-auto flex items-center gap-2 text-[9px] font-black uppercase tracking-widest text-primary/60 group-hover:text-primary transition-all relative z-10">
+                    <div className="w-6 h-6 rounded-full bg-white/50 border border-primary/10 flex items-center justify-center group-hover:bg-primary group-hover:border-primary transition-colors">
+                        <ChevronRight className="w-3 h-3 text-primary group-hover:text-white group-hover:translate-x-0.5 transition-all" />
+                    </div>
+                    <span>{lang === 'ar' ? 'عرض دفتر التعريف' : 'View Fact Sheet'}</span>
+                </div>
+            </div>
+        </motion.div>
     );
 }

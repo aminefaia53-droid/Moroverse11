@@ -5,6 +5,7 @@ export interface HistoricalFigure {
     specialty: { en: string; ar: string };
     shortBio: { en: string; ar: string };
     era: { en: string; ar: string };
+    imageUrl?: string;
 }
 
 export const moroccoFigures: HistoricalFigure[] = [

@@ -4,6 +4,7 @@ import React, { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Building2, Landmark as LandmarkIcon, Crown, History, Mountain, Waves, Shield, X, Compass, Info, MapPin, ChevronRight, TowerControl as Tower, BookOpen } from 'lucide-react';
 import { Landmark, moroccoLandmarks } from '../data/morocco-landmarks';
+import { useAutoImageFetcher } from '../hooks/useAutoImageFetcher';
 import { getArticle } from '../data/moroverse-content';
 import ArticleReader from './ArticleReader';
 import { generateArticleSchema } from '../utils/seo';
@@ -62,45 +63,13 @@ export default function LandmarkGrid({ lang }: { lang: 'en' | 'ar' }) {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <AnimatePresence mode='popLayout'>
                     {filteredLandmarks.map((landmark, idx) => (
-                        <motion.div
-                            layout
+                        <LandmarkCard
                             key={landmark.id}
-                            initial={{ opacity: 0, y: 30 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            exit={{ opacity: 0, scale: 0.9 }}
-                            transition={{ delay: idx * 0.1 }}
-                            viewport={{ once: true }}
-                            onClick={() => {
-                                setSelectedLandmark(landmark);
-                                window.dispatchEvent(new CustomEvent('moroverse-action', {
-                                    detail: { type: 'landmark_click', payload: landmark.name.ar }
-                                }));
-                            }}
-                            className="group cursor-pointer"
-                        >
-                            <div className="moro-glass p-8 rounded-[40px] border border-primary/5 hover:border-primary/30 transition-all duration-700 hover:shadow-2xl relative overflow-hidden bg-white/40 h-80 flex flex-col justify-between">
-                                {/* 3D-ish Icon Background */}
-                                <div className="absolute -right-8 -bottom-8 opacity-[0.05] group-hover:opacity-10 transition-all duration-700 transform group-hover:-translate-y-4 group-hover:scale-110">
-                                    <LandmarkSoulIcon soul={landmark.visualSoul} className="w-64 h-64 text-primary" />
-                                </div>
-
-                                <div className="relative z-10">
-                                    <div className="w-16 h-16 rounded-3xl bg-primary/5 border border-primary/10 flex items-center justify-center mb-6 group-hover:bg-primary transition-all duration-500">
-                                        <LandmarkSoulIcon soul={landmark.visualSoul} className="w-8 h-8 text-primary group-hover:text-white transition-colors duration-500" />
-                                    </div>
-                                    <h3 className="text-2xl font-black text-foreground/80 mb-2">{landmark.name[lang]}</h3>
-                                    <div className="flex items-center gap-2 text-[10px] font-bold text-primary/60 uppercase tracking-widest">
-                                        <MapPin className="w-3 h-3" />
-                                        {landmark.city[lang]}
-                                    </div>
-                                </div>
-
-                                <button className="relative z-10 flex items-center gap-2 text-[9px] font-black uppercase tracking-[0.2em] text-primary/40 group-hover:text-primary transition-all">
-                                    {lang === 'ar' ? 'عرض السجل التاريخي' : 'View Historical Record'}
-                                    <ChevronRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
-                                </button>
-                            </div>
-                        </motion.div>
+                            landmark={landmark}
+                            idx={idx}
+                            lang={lang}
+                            onClick={setSelectedLandmark}
+                        />
                     ))}
                 </AnimatePresence>
             </div>
@@ -219,5 +188,78 @@ export default function LandmarkGrid({ lang }: { lang: 'en' | 'ar' }) {
                 />
             )}
         </div>
+    );
+}
+
+function LandmarkCard({
+    landmark,
+    idx,
+    lang,
+    onClick
+}: {
+    landmark: Landmark;
+    idx: number;
+    lang: 'en' | 'ar';
+    onClick: (landmark: Landmark) => void
+}) {
+    const { imageUrl, isLoading } = useAutoImageFetcher({
+        query: landmark.name.en,
+        preloadedImageUrl: landmark.imageUrl
+    });
+
+    return (
+        <motion.div
+            layout
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.9 }}
+            transition={{ delay: idx * 0.1 }}
+            viewport={{ once: true }}
+            onClick={() => {
+                onClick(landmark);
+                window.dispatchEvent(new CustomEvent('moroverse-action', {
+                    detail: { type: 'landmark_click', payload: landmark.name.ar }
+                }));
+            }}
+            className="group cursor-pointer"
+        >
+            <div className="moro-glass p-8 rounded-[40px] border border-primary/5 hover:border-primary/30 transition-all duration-700 hover:shadow-2xl relative overflow-hidden bg-white/40 h-80 flex flex-col justify-between">
+
+                {/* Dynamic HD Background Image */}
+                <div className="absolute inset-0 z-0 overflow-hidden rounded-[40px]">
+                    {imageUrl && (
+                        <div
+                            className={`absolute inset-0 bg-cover bg-center transition-opacity duration-1000 ${isLoading ? 'opacity-0' : 'opacity-[0.15] group-hover:opacity-30'}`}
+                            style={{ backgroundImage: `url(${imageUrl})`, filter: 'grayscale(30%) contrast(110%)' }}
+                        >
+                            <div className="absolute inset-0 bg-gradient-to-t from-white via-white/60 to-transparent" />
+                        </div>
+                    )}
+                </div>
+
+                {/* 3D-ish Icon Background Fallback */}
+                <div className="absolute -right-8 -bottom-8 opacity-[0.03] group-hover:opacity-[0.08] transition-all duration-700 transform group-hover:-translate-y-4 group-hover:scale-110 z-0">
+                    <LandmarkSoulIcon soul={landmark.visualSoul} className="w-64 h-64 text-primary" />
+                </div>
+
+                <div className="relative z-10 flex flex-col pointer-events-none">
+                    <div className="w-16 h-16 rounded-3xl bg-white/50 backdrop-blur-md border border-primary/10 flex items-center justify-center mb-6 group-hover:bg-primary transition-all duration-500 shadow-sm">
+                        <LandmarkSoulIcon soul={landmark.visualSoul} className="w-8 h-8 text-primary group-hover:text-white transition-colors duration-500" />
+                    </div>
+                    <h3 className="text-2xl font-black text-foreground/80 mb-2 drop-shadow-sm">{landmark.name[lang]}</h3>
+                    <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/80 backdrop-blur-md text-primary text-[10px] font-bold uppercase tracking-widest border border-primary/5 w-fit mt-1">
+                        <MapPin className="w-3 h-3" />
+                        {landmark.city[lang]}
+                    </div>
+                </div>
+
+                <div className="relative z-10 flex items-center gap-2 text-[9px] font-black uppercase tracking-[0.2em] text-primary/60 group-hover:text-primary transition-all">
+                    <div className="w-6 h-6 rounded-full bg-white/50 border border-primary/10 flex items-center justify-center group-hover:bg-primary group-hover:border-primary transition-colors">
+                        <ChevronRight className="w-3 h-3 text-primary group-hover:text-white group-hover:translate-x-0.5 transition-all" />
+                    </div>
+                    <span>{lang === 'ar' ? 'عرض السجل التاريخي' : 'View Historical Record'}</span>
+                </div>
+            </div>
+        </motion.div>
     );
 }
