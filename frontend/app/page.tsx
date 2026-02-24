@@ -10,6 +10,7 @@ import { Globe, Crown, Sparkles, MapPin, Building2, Camera, Music, Palmtree, Wav
 import BattleDashboard from "../components/BattleDashboard";
 import CityGrid from "../components/CityGrid";
 import LandmarkGrid from "../components/LandmarkGrid";
+import HistoricalFiguresGrid from "../components/HistoricalFiguresGrid";
 
 // Utils
 import AudioManager from "../utils/AudioManager";
@@ -42,7 +43,9 @@ export default function Home() {
         battles: "Epochs of Valor",
         battlesDesc: "Where dynastic glory meets the infinite drift.",
         landmarks: "Majestic Landmarks",
-        landmarksDesc: "Exploring the zenith of Moroccan architectural and historical heritage."
+        landmarksDesc: "Exploring the zenith of Moroccan architectural and historical heritage.",
+        figures: "Historical Figures",
+        figuresDesc: "Discover the luminaries who shaped the destiny of the Kingdom across the ages."
       }
     },
     ar: {
@@ -55,7 +58,9 @@ export default function Home() {
         battles: "عصور البسالة",
         battlesDesc: "حيث تلتقي الأمجاد السلالية بالانجراف اللامتناهي.",
         landmarks: "معالم مغربية",
-        landmarksDesc: "استكشاف ذروة التراث المعماري والتاريخي للمملكة المغربية."
+        landmarksDesc: "استكشاف ذروة التراث المعماري والتاريخي للمملكة المغربية.",
+        figures: "شخصيات تاريخية",
+        figuresDesc: "اكتشف الأعلام الذين سطروا أمجاد المملكة عبر العصور."
       }
     }
   }[lang];
@@ -189,6 +194,33 @@ export default function Home() {
           </motion.div>
 
           <LandmarkGrid lang={lang} />
+        </div>
+      </section>
+
+      {/* Historical Figures */}
+      <section className="py-48 px-10 relative z-20">
+        <div className="max-w-7xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, ease: "easeOut" }}
+            viewport={{ once: true }}
+            className="mb-24 text-center space-y-8"
+          >
+            <h3 className="text-7xl font-serif text-primary uppercase tracking-[0.4em] font-black drop-shadow-sm">
+              {lang === 'ar' ? (
+                <span className="font-arabic text-primary/80">{t.sections.figures}</span>
+              ) : (
+                t.sections.figures
+              )}
+            </h3>
+            <p className="text-foreground/40 max-w-4xl mx-auto text-xl font-light tracking-wide leading-relaxed uppercase">
+              {t.sections.figuresDesc}
+            </p>
+            <div className="w-64 h-1.5 bg-primary/20 mx-auto rounded-full" />
+          </motion.div>
+
+          <HistoricalFiguresGrid lang={lang} />
         </div>
       </section>
 
