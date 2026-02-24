@@ -44,7 +44,7 @@ export default function LandmarkGrid({ lang }: { lang: 'en' | 'ar' }) {
             <div className="flex flex-wrap justify-center gap-3">
                 <button
                     onClick={() => setSelectedCity(null)}
-                    className={`px-6 py-2 rounded-2xl border text-[10px] font-black uppercase tracking-widest transition-all ${!selectedCity ? 'bg-primary text-white border-primary shadow-lg shadow-primary/20' : 'bg-white/50 border-primary/10 text-foreground/40 hover:border-primary/30'}`}
+                    className={`px-6 py-2 rounded-2xl border text-[10px] font-black uppercase tracking-widest transition-all ${!selectedCity ? 'bg-primary text-white border-primary shadow-[0_0_15px_rgba(197,160,89,0.4)]' : 'bg-black/30 text-white/50 border-white/5 hover:border-white/20 hover:text-white hover:bg-black/60'}`}
                 >
                     {lang === 'ar' ? 'الكل' : 'All'}
                 </button>
@@ -52,7 +52,7 @@ export default function LandmarkGrid({ lang }: { lang: 'en' | 'ar' }) {
                     <button
                         key={city.en}
                         onClick={() => setSelectedCity(city.en)}
-                        className={`px-6 py-2 rounded-2xl border text-[10px] font-black uppercase tracking-widest transition-all ${selectedCity === city.en ? 'bg-primary text-white border-primary shadow-lg shadow-primary/20' : 'bg-white/50 border-primary/10 text-foreground/40 hover:border-primary/30'}`}
+                        className={`px-6 py-2 rounded-2xl border text-[10px] font-black uppercase tracking-widest transition-all ${selectedCity === city.en ? 'bg-primary text-white border-primary shadow-[0_0_15px_rgba(197,160,89,0.4)]' : 'bg-black/30 text-white/50 border-white/5 hover:border-white/20 hover:text-white hover:bg-black/60'}`}
                     >
                         {city[lang]}
                     </button>
@@ -167,10 +167,10 @@ export default function LandmarkGrid({ lang }: { lang: 'en' | 'ar' }) {
                                     </div>
                                     <button
                                         onClick={() => setShowFullArticle(true)}
-                                        className="w-full py-5 rounded-[32px] bg-primary text-white text-xs font-black uppercase tracking-[0.2em] flex items-center justify-center gap-3 shadow-xl shadow-primary/20 hover:scale-105 hover:shadow-[0_0_20px_rgba(197,160,89,0.8)] transition-all mt-8"
+                                        className="w-full py-5 rounded-[32px] bg-primary text-white text-xs font-black uppercase tracking-[0.2em] flex items-center justify-center gap-3 shadow-[0_10px_20px_rgba(139,0,0,0.3)] hover:scale-105 hover:shadow-[0_0_20px_rgba(197,160,89,0.8)] transition-all mt-8 group"
                                     >
-                                        <BookOpen className="w-5 h-5" />
-                                        {lang === 'ar' ? 'اقرأ السجل التاريخي الكامل' : 'READ FULL HISTORICAL RECORD'}
+                                        <Compass className="w-5 h-5 animate-pulse" />
+                                        {lang === 'ar' ? `سافر إلى عالم ${selectedLandmark.name.ar}` : `Journey back to ${selectedLandmark.name.en}`}
                                     </button>
                                 </div>
                             </div>
@@ -223,7 +223,7 @@ function LandmarkCard({
             }}
             className="group cursor-pointer snap-center min-w-[85vw] md:min-w-0 flex-shrink-0"
         >
-            <div className="moro-glass p-8 rounded-[40px] border border-primary/5 hover:border-primary/30 transition-all duration-700 hover:shadow-2xl relative overflow-hidden bg-white/40 h-80 flex flex-col justify-between">
+            <div className="moro-glass hover:bg-white p-8 rounded-[40px] border border-primary/10 hover:border-primary transition-all duration-700 hover:shadow-[0_0_30px_rgba(197,160,89,0.4)] relative overflow-hidden h-80 flex flex-col justify-between">
 
                 {/* Dynamic HD Background Image */}
                 <div className="absolute inset-0 z-0 overflow-hidden rounded-[40px]">
@@ -232,32 +232,32 @@ function LandmarkCard({
                             className={`absolute inset-0 bg-cover bg-center transition-opacity duration-1000 ${isLoading ? 'opacity-0' : 'opacity-[0.15] group-hover:opacity-30'}`}
                             style={{ backgroundImage: `url(${imageUrl})`, filter: 'grayscale(30%) contrast(110%)' }}
                         >
-                            <div className="absolute inset-0 bg-gradient-to-t from-white via-white/60 to-transparent" />
+                            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 group-hover:from-white group-hover:via-white/60 to-transparent transition-colors duration-700" />
                         </div>
                     )}
                 </div>
 
                 {/* 3D-ish Icon Background Fallback */}
-                <div className="absolute -right-8 -bottom-8 opacity-[0.03] group-hover:opacity-[0.08] transition-all duration-700 transform group-hover:-translate-y-4 group-hover:scale-110 z-0">
-                    <LandmarkSoulIcon soul={landmark.visualSoul} className="w-64 h-64 text-primary" />
+                <div className="absolute -right-8 -bottom-8 opacity-[0.05] group-hover:opacity-[0.08] transition-all duration-700 transform group-hover:-translate-y-4 group-hover:scale-110 z-0">
+                    <LandmarkSoulIcon soul={landmark.visualSoul} className="w-64 h-64 text-white group-hover:text-primary transition-colors duration-700" />
                 </div>
 
                 <div className="relative z-10 flex flex-col pointer-events-none">
-                    <div className="w-16 h-16 rounded-3xl bg-white/50 backdrop-blur-md border border-primary/10 flex items-center justify-center mb-6 group-hover:bg-primary transition-all duration-500 shadow-sm">
-                        <LandmarkSoulIcon soul={landmark.visualSoul} className="w-8 h-8 text-primary group-hover:text-white transition-colors duration-500" />
+                    <div className="w-16 h-16 rounded-3xl bg-black/40 backdrop-blur-md border border-white/10 flex items-center justify-center mb-6 group-hover:bg-primary transition-all duration-500 shadow-sm">
+                        <LandmarkSoulIcon soul={landmark.visualSoul} className="w-8 h-8 text-white transition-colors duration-500" />
                     </div>
-                    <h3 className="text-2xl font-black text-foreground/80 mb-2 drop-shadow-sm">{landmark.name[lang]}</h3>
-                    <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/80 backdrop-blur-md text-primary text-[10px] font-bold uppercase tracking-widest border border-primary/5 w-fit mt-1">
+                    <h3 className="text-2xl font-black text-white group-hover:text-black mb-2 drop-shadow-md group-hover:drop-shadow-none transition-colors">{landmark.name[lang]}</h3>
+                    <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/40 backdrop-blur-md text-white group-hover:text-primary group-hover:bg-black/5 text-[10px] font-bold uppercase tracking-widest border border-white/10 w-fit mt-1 transition-colors">
                         <MapPin className="w-3 h-3" />
                         {landmark.city[lang]}
                     </div>
                 </div>
 
-                <div className="relative z-10 flex items-center gap-2 text-[9px] font-black uppercase tracking-[0.2em] text-primary/60 group-hover:text-primary transition-all">
-                    <div className="w-6 h-6 rounded-full bg-white/50 border border-primary/10 flex items-center justify-center group-hover:bg-primary group-hover:border-primary transition-colors">
-                        <ChevronRight className="w-3 h-3 text-primary group-hover:text-white group-hover:translate-x-0.5 transition-all" />
+                <div className="relative z-10 flex items-center gap-2 text-[9px] font-black uppercase tracking-[0.2em] text-white/60 group-hover:text-black transition-all">
+                    <div className="w-6 h-6 rounded-full bg-black/40 group-hover:bg-primary border border-white/10 group-hover:border-primary flex items-center justify-center transition-colors">
+                        <Compass className="w-3 h-3 text-white transition-all group-hover:animate-pulse" />
                     </div>
-                    <span>{lang === 'ar' ? 'عرض السجل التاريخي' : 'View Historical Record'}</span>
+                    <span>{lang === 'ar' ? `سافر إلى عالم ${landmark.name.ar}` : `Journey back to ${landmark.name.en}`}</span>
                 </div>
             </div>
         </motion.div>

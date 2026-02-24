@@ -48,8 +48,8 @@ export default function HistoricalFiguresGrid({ lang }: { lang: 'en' | 'ar' }) {
                 <button
                     onClick={() => setSelectedCategory(null)}
                     className={`px-6 py-2 rounded-2xl border text-[10px] font-black uppercase tracking-widest transition-all ${!selectedCategory
-                        ? 'bg-primary text-white border-primary shadow-lg shadow-primary/20'
-                        : 'bg-white/50 border-primary/10 text-foreground/40 hover:border-primary/30'
+                        ? 'bg-primary text-white border-primary shadow-[0_0_15px_rgba(197,160,89,0.4)]'
+                        : 'bg-black/30 text-white/50 border-white/5 hover:border-white/20 hover:text-white hover:bg-black/60'
                         }`}
                 >
                     {lang === 'ar' ? 'الكل' : 'All'}
@@ -59,8 +59,8 @@ export default function HistoricalFiguresGrid({ lang }: { lang: 'en' | 'ar' }) {
                         key={cat}
                         onClick={() => setSelectedCategory(cat)}
                         className={`px-6 py-2 rounded-2xl border text-[10px] font-black uppercase tracking-widest transition-all flex items-center gap-2 ${selectedCategory === cat
-                            ? 'bg-primary text-white border-primary shadow-lg shadow-primary/20'
-                            : 'bg-white/50 border-primary/10 text-foreground/40 hover:border-primary/30'
+                            ? 'bg-primary text-white border-primary shadow-[0_0_15px_rgba(197,160,89,0.4)]'
+                            : 'bg-black/30 text-white/50 border-white/5 hover:border-white/20 hover:text-white hover:bg-black/60'
                             }`}
                     >
                         <CategoryIcon category={cat} className="w-3 h-3" />
@@ -101,7 +101,7 @@ function FigureCard({ figure, idx, lang }: { figure: HistoricalFigure; idx: numb
             }}
             className="group cursor-pointer snap-center min-w-[85vw] md:min-w-0 flex-shrink-0"
         >
-            <div className="moro-glass p-8 rounded-[40px] border border-primary/10 hover:border-primary/40 transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 relative overflow-hidden bg-white/60 h-[420px] flex flex-col justify-between">
+            <div className="moro-glass hover:bg-white p-8 rounded-[40px] border border-primary/10 hover:border-primary transition-all duration-500 hover:shadow-[0_0_30px_rgba(197,160,89,0.4)] hover:-translate-y-2 relative overflow-hidden h-[420px] flex flex-col justify-between">
 
                 {/* Dynamic HD Background Image */}
                 <div className="absolute inset-0 z-0 overflow-hidden rounded-[40px]">
@@ -110,33 +110,33 @@ function FigureCard({ figure, idx, lang }: { figure: HistoricalFigure; idx: numb
                             className={`absolute inset-0 bg-cover bg-center transition-opacity duration-1000 ${isLoading ? 'opacity-0' : 'opacity-10 group-hover:opacity-20'}`}
                             style={{ backgroundImage: `url(${imageUrl})`, filter: 'grayscale(50%) contrast(120%)' }}
                         >
-                            <div className="absolute inset-0 bg-gradient-to-t from-white via-white/80 to-transparent" />
+                            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/80 group-hover:from-white group-hover:via-white/80 to-transparent transition-colors duration-700" />
                         </div>
                     )}
                 </div>
 
                 {/* Fallback/Decorative SVG Icon */}
-                <div className="absolute -right-6 -top-6 opacity-[0.03] group-hover:opacity-10 transition-all duration-700 transform group-hover:scale-125 group-hover:rotate-12 z-0">
-                    <CategoryIcon category={figure.category} className="w-48 h-48 text-primary" />
+                <div className="absolute -right-6 -top-6 opacity-[0.04] group-hover:opacity-10 transition-all duration-700 transform group-hover:scale-125 group-hover:rotate-12 z-0">
+                    <CategoryIcon category={figure.category} className="w-48 h-48 text-white group-hover:text-primary transition-colors duration-700" />
                 </div>
 
                 <div className="relative z-10 flex flex-col h-full pointer-events-none">
                     {/* Header Icon & Era */}
                     <div className="flex justify-between items-start mb-6">
-                        <div className="w-14 h-14 rounded-2xl bg-white/50 backdrop-blur-md border border-primary/10 flex items-center justify-center group-hover:bg-primary transition-all duration-500 shadow-sm">
-                            <CategoryIcon category={figure.category} className="w-6 h-6 text-primary group-hover:text-white transition-colors duration-500" />
+                        <div className="w-14 h-14 rounded-2xl bg-black/40 backdrop-blur-md border border-white/10 flex items-center justify-center group-hover:bg-primary transition-all duration-500 shadow-sm">
+                            <CategoryIcon category={figure.category} className="w-6 h-6 text-white transition-colors duration-500" />
                         </div>
-                        <div className="px-3 py-1 rounded-full bg-white/80 backdrop-blur-md border border-slate-200 text-[9px] font-bold text-slate-500 uppercase tracking-wider max-w-[50%] text-center leading-tight">
+                        <div className="px-3 py-1 rounded-full bg-black/40 group-hover:bg-black/5 backdrop-blur-md border border-white/10 group-hover:border-primary/20 text-[9px] font-bold text-white group-hover:text-black uppercase tracking-wider max-w-[50%] text-center leading-tight transition-colors">
                             {figure.era[lang]}
                         </div>
                     </div>
 
                     {/* Name & Specialty */}
                     <div className="mb-4">
-                        <h3 className="text-2xl font-black text-foreground/80 mb-2 leading-tight drop-shadow-sm">
+                        <h3 className="text-2xl font-black text-white group-hover:text-black mb-2 drop-shadow-md group-hover:drop-shadow-none leading-tight transition-colors">
                             {figure.name[lang]}
                         </h3>
-                        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/80 backdrop-blur-md text-primary text-[10px] font-bold uppercase tracking-widest border border-primary/10">
+                        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/40 group-hover:bg-black/5 backdrop-blur-md text-white group-hover:text-primary text-[10px] font-bold uppercase tracking-widest border border-white/10 transition-colors">
                             <Sparkles className="w-3 h-3" />
                             {figure.specialty[lang]}
                         </div>
@@ -144,13 +144,18 @@ function FigureCard({ figure, idx, lang }: { figure: HistoricalFigure; idx: numb
 
                     {/* Bio */}
                     <div className="flex-grow mt-2">
-                        <p className="text-sm text-foreground/80 leading-relaxed tracking-wide max-h-32 overflow-hidden text-ellipsis line-clamp-4 font-medium">
+                        <p className="text-sm text-white/80 group-hover:text-black/80 leading-relaxed tracking-wide max-h-32 overflow-hidden text-ellipsis line-clamp-4 font-medium transition-colors">
                             {figure.shortBio[lang]}
                         </p>
                     </div>
 
-                    {/* Decorative bottom line */}
-                    <div className="w-full h-1 bg-gradient-to-r from-transparent via-primary/40 to-transparent mt-4 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-700" />
+                    {/* Time Compass CTA */}
+                    <div className="mt-auto flex items-center gap-2 text-[9px] font-black uppercase tracking-widest text-primary group-hover:text-black transition-all relative z-10 pt-4">
+                        <div className="w-6 h-6 rounded-full bg-black/40 group-hover:bg-primary border border-white/10 group-hover:border-primary flex items-center justify-center transition-colors">
+                            <Compass className="w-3 h-3 text-white transition-all group-hover:animate-pulse" />
+                        </div>
+                        <span>{lang === 'ar' ? `سافر إلى عالم ${figure.name.ar}` : `Journey back to ${figure.name.en}`}</span>
+                    </div>
                 </div>
             </div>
         </motion.div>

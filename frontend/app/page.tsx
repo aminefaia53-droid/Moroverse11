@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { Globe, Crown, Sparkles, MapPin, Building2, Camera, Music, Palmtree, Waves, Mountain, Tent, Sunset } from "lucide-react";
+import { Globe, Crown, Sparkles, MapPin, Building2, Camera, Music, Palmtree, Waves, Mountain, Tent, Sunset, Compass } from "lucide-react";
 
 // Components
 import BattleDashboard from "../components/BattleDashboard";
@@ -14,6 +14,8 @@ import HistoricalFiguresGrid from "../components/HistoricalFiguresGrid";
 
 // Utils
 import AudioManager from "../utils/AudioManager";
+import ArticleReader from '@/components/ArticleReader';
+import MoroVerseLogo from '@/components/MoroVerseLogo';
 
 export default function Home() {
   const [lang, setLang] = useState<"en" | "ar">("ar");
@@ -119,10 +121,8 @@ export default function Home() {
 
       <header className="fixed top-0 w-full z-50 py-4 px-4 md:py-6 md:px-12 flex justify-between items-center bg-[#1a0404]/90 backdrop-blur-xl border-b border-primary/20 shadow-[0_10px_30px_rgba(0,0,0,0.5)]">
         <div className="flex items-center gap-3 md:gap-4 shrink-0">
-          <div className="p-1.5 md:p-2 bg-gradient-to-br from-primary to-secondary rounded-xl shadow-[0_0_15px_rgba(197,160,89,0.5)] transform -rotate-3">
-            <Globe className="text-white w-4 h-4 md:w-5 md:h-5" />
-          </div>
-          <h1 className="font-display text-sm md:text-xl tracking-[0.4em] text-white font-black uppercase text-glow">MOROVERSE</h1>
+          <MoroVerseLogo className="w-8 h-8 md:w-10 md:h-10" />
+          <h1 className="font-display text-lg md:text-2xl tracking-[0.4em] text-white font-black uppercase text-glow hidden md:block">MOROVERSE</h1>
         </div>
         <div className="flex items-center gap-4 md:gap-8 pr-[70px] md:pr-0">
           <button
@@ -166,28 +166,27 @@ export default function Home() {
           initial={{ opacity: 0, x: -50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 1, ease: "easeOut" }}
-          className="relative z-40 max-w-3xl text-left"
+          className="relative z-40 max-w-3xl text-left pl-4 md:pl-0"
         >
           <div className="inline-flex justify-center gap-4 mb-6 md:mb-10 text-primary bg-black/40 backdrop-blur-md px-6 py-3 rounded-full border border-primary/20 shadow-xl">
             <Crown className="w-5 h-5 md:w-6 md:h-6" />
-            <span className="text-[10px] md:text-xs font-bold tracking-widest uppercase">Royal Archives</span>
+            <span className="text-[10px] md:text-xs font-bold tracking-widest uppercase">The Moroccan Digital Archive</span>
           </div>
-          <h2 className="text-5xl md:text-8xl lg:text-[120px] font-sans mb-4 md:mb-6 text-white uppercase tracking-tighter leading-none font-black text-glow" style={{ textShadow: '0 10px 30px rgba(0,0,0,0.8), 0 0 40px rgba(197,160,89,0.4)' }}>
-            {lang === 'ar' ? 'المغرب' : 'MOROCCO'}
-          </h2>
-          <h3 className="text-3xl md:text-5xl lg:text-7xl font-serif text-white/90 mb-4 md:mb-6 font-bold" style={{ textShadow: '0 5px 20px rgba(0,0,0,0.8)' }}>
-            {lang === 'ar' ? 'جلالة ملكية' : 'Royal Majesty'}
-          </h3>
-          <p className="text-lg md:text-2xl text-primary font-medium mb-10 md:mb-12 tracking-wide leading-relaxed uppercase drop-shadow-md">
-            {lang === 'ar' ? 'تدرجات الذهب الخالص' : 'Matte Gold Gradients'}
-            <br />
-            <span className="text-sm md:text-lg text-white/60 font-light mt-2 block capitalize">
-              {lang === 'ar' ? 'اكتشف عبق التاريخ وروعة المكان' : 'Explore the soul and beauty of the Kingdom'}
-            </span>
+
+          <div className="flex items-center gap-6 mb-4 md:mb-6">
+            <MoroVerseLogo className="w-16 h-16 md:w-28 md:h-28" />
+            <h2 className="text-5xl md:text-8xl lg:text-[100px] font-display text-white uppercase tracking-[0.1em] leading-none font-black text-glow" style={{ textShadow: '0 10px 30px rgba(0,0,0,0.8), 0 0 40px rgba(197,160,89,0.4)' }}>
+              MOROVERSE
+            </h2>
+          </div>
+
+          <p className="text-lg md:text-2xl text-primary font-medium mb-10 md:mb-12 tracking-wide leading-relaxed uppercase drop-shadow-md border-l-4 border-primary pl-6">
+            <span className="text-white font-bold block mb-2">{lang === 'ar' ? 'الذكاء الاصطناعي يلتقي بالأصالة' : 'AI Meets Authenticity'}</span>
+            {lang === 'ar' ? 'اكتشف عبق التاريخ وروعة المكان في بوابة زمنية متطورة' : 'Explore the soul and beauty of the Kingdom through an advanced time portal'}
           </p>
-          <button className="px-12 md:px-16 py-5 md:py-6 bg-gradient-to-r from-[#8b0000] to-[#500000] text-white font-black text-xs md:text-sm tracking-[0.3em] uppercase hover:from-primary hover:to-primary transition-all duration-500 rounded-full shadow-[0_10px_30px_rgba(139,0,0,0.5)] hover:shadow-[0_0_30px_rgba(197,160,89,0.8)] border border-white/10 flex items-center gap-4">
+          <button className="px-12 md:px-16 py-5 md:py-6 bg-gradient-to-r from-[#8b0000] to-[#500000] text-white font-black text-xs md:text-sm tracking-[0.3em] uppercase hover:from-primary hover:to-primary transition-all duration-500 rounded-full shadow-[0_10px_30px_rgba(139,0,0,0.5)] hover:shadow-[0_0_30px_rgba(197,160,89,0.8)] border border-white/10 flex items-center gap-4 group">
+            <Compass className="w-5 h-5 text-primary group-hover:text-white transition-colors animate-pulse" />
             {t.cta}
-            <Sparkles className="w-4 h-4 md:w-5 md:h-5 text-primary" />
           </button>
         </motion.div>
       </section>

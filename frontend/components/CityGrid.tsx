@@ -82,11 +82,11 @@ export default function CityGrid({ lang }: { lang: 'en' | 'ar' }) {
                 <div className="flex flex-col md:flex-row gap-6">
                     {/* Search */}
                     <div className="relative flex-grow">
-                        <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-primary/40" />
+                        <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-white/40" />
                         <input
                             type="text"
                             placeholder={lang === 'ar' ? 'بحث عن مدينة أو دوار...' : 'Search for a city or douar...'}
-                            className="w-full pl-12 pr-6 py-4 rounded-2xl bg-white/50 border border-primary/10 focus:border-primary/40 focus:ring-0 outline-none transition-all text-sm font-medium"
+                            className="w-full pl-12 pr-6 py-4 rounded-2xl bg-black/40 border border-white/10 focus:border-primary focus:bg-black/80 focus:ring-0 outline-none transition-all text-sm font-medium text-white placeholder-white/40"
                             value={searchQuery}
                             onChange={(e) => setSearchQuery(e.target.value)}
                         />
@@ -98,7 +98,7 @@ export default function CityGrid({ lang }: { lang: 'en' | 'ar' }) {
                             <button
                                 key={type}
                                 onClick={() => setSelectedType(type)}
-                                className={`px-6 py-4 rounded-2xl border text-[10px] font-black uppercase tracking-widest whitespace-nowrap transition-all duration-500 ${selectedType === type ? 'bg-primary text-white border-primary shadow-xl shadow-primary/30' : 'bg-white/50 border-primary/10 text-foreground/40 hover:border-primary/30 hover:text-foreground'}`}
+                                className={`px-6 py-4 rounded-2xl border text-[10px] font-black uppercase tracking-widest whitespace-nowrap transition-all duration-500 ${selectedType === type ? 'bg-primary text-white border-primary shadow-[0_0_15px_rgba(197,160,89,0.4)]' : 'bg-black/30 border-white/5 text-white/50 hover:bg-black/60 hover:border-white/20 hover:text-white'}`}
                             >
                                 {type === 'All' ? (lang === 'ar' ? 'الكل' : 'All') : (lang === 'ar' ? (type === 'Major City' ? 'مدينة كبرى' : type === 'Medium City' ? 'مدينة متوسطة' : type === 'Rural Center' ? 'مركز قروي' : 'دوار') : type)}
                             </button>
@@ -110,7 +110,7 @@ export default function CityGrid({ lang }: { lang: 'en' | 'ar' }) {
                 <div className="flex flex-wrap gap-2">
                     <button
                         onClick={() => setSelectedRegion(null)}
-                        className={`px-4 py-2 rounded-xl border text-[9px] font-bold transition-all ${!selectedRegion ? 'bg-primary/10 text-primary border-primary/20' : 'bg-transparent text-foreground/40 border-foreground/5 hover:border-primary/20 hover:text-foreground'}`}
+                        className={`px-4 py-2 rounded-xl border text-[9px] font-bold transition-all ${!selectedRegion ? 'bg-primary/20 text-primary border-primary/50' : 'bg-black/30 text-white/50 border-white/5 hover:border-white/20 hover:text-white hover:bg-black/60'}`}
                     >
                         {lang === 'ar' ? 'كل الجهات' : 'All Regions'}
                     </button>
@@ -118,7 +118,7 @@ export default function CityGrid({ lang }: { lang: 'en' | 'ar' }) {
                         <button
                             key={region.id}
                             onClick={() => setSelectedRegion(region.id)}
-                            className={`px-4 py-2 rounded-xl border text-[9px] font-bold transition-all ${selectedRegion === region.id ? 'bg-primary/10 text-primary border-primary/20' : 'bg-transparent text-foreground/40 border-foreground/5 hover:border-primary/20 hover:text-foreground'}`}
+                            className={`px-4 py-2 rounded-xl border text-[9px] font-bold transition-all ${selectedRegion === region.id ? 'bg-primary/20 text-primary border-primary/50' : 'bg-black/30 text-white/50 border-white/5 hover:border-white/20 hover:text-white hover:bg-black/60'}`}
                         >
                             {region.name[lang]}
                         </button>
@@ -251,10 +251,10 @@ export default function CityGrid({ lang }: { lang: 'en' | 'ar' }) {
 
                                     <button
                                         onClick={() => setShowFullArticle(true)}
-                                        className="w-full py-5 rounded-[32px] bg-primary text-white text-xs font-black uppercase tracking-[0.2em] flex items-center justify-center gap-3 shadow-xl shadow-primary/20 hover:scale-105 hover:shadow-[0_0_20px_rgba(197,160,89,0.8)] transition-all"
+                                        className="w-full py-5 rounded-[32px] bg-primary text-white text-xs font-black uppercase tracking-[0.2em] flex items-center justify-center gap-3 shadow-[0_10px_20px_rgba(139,0,0,0.3)] hover:scale-105 hover:shadow-[0_0_20px_rgba(197,160,89,0.8)] transition-all group"
                                     >
-                                        <BookOpen className="w-5 h-5" />
-                                        {lang === 'ar' ? 'اقرأ المقال الكامل' : 'READ FULL ARTICLE'}
+                                        <Compass className="w-5 h-5 animate-pulse" />
+                                        {lang === 'ar' ? `سافر إلى عالم ${selectedLocation.name.ar}` : `Journey back to ${selectedLocation.name.en}`}
                                     </button>
                                 </div>
                             </div>
@@ -306,7 +306,7 @@ function CityCard({
             }}
             className="group cursor-pointer relative h-[380px] snap-center min-w-[85vw] md:min-w-0 flex-shrink-0" // Fixed height to maintain HD visual consistency
         >
-            <div className="moro-glass p-6 rounded-3xl border border-primary/10 hover:border-primary/40 transition-all duration-500 hover:shadow-2xl hover:shadow-primary/10 h-full overflow-hidden flex flex-col justify-between">
+            <div className="moro-glass hover:bg-white p-6 rounded-3xl border border-primary/10 hover:border-primary transition-all duration-500 hover:shadow-[0_0_30px_rgba(197,160,89,0.4)] h-full overflow-hidden flex flex-col justify-between">
 
                 {/* Dynamic HD Background Image */}
                 <div className="absolute inset-0 z-0 overflow-hidden rounded-3xl pointer-events-none">
@@ -326,39 +326,39 @@ function CityCard({
                 </div>
 
                 <div className="flex justify-between items-start mb-4 relative z-10 pointer-events-none">
-                    <div className="p-3 rounded-2xl bg-white/60 backdrop-blur-md border border-primary/10 group-hover:bg-primary transition-colors shadow-sm duration-500">
-                        <SoulIcon soul={loc.visualSoul} className="w-6 h-6 text-primary group-hover:text-white transition-colors duration-500" />
+                    <div className="p-3 rounded-2xl bg-black/40 backdrop-blur-md border border-white/10 group-hover:bg-primary transition-colors shadow-sm duration-500">
+                        <SoulIcon soul={loc.visualSoul} className="w-6 h-6 text-white transition-colors duration-500" />
                     </div>
                     <div className="flex flex-col items-end gap-1.5">
-                        <span className="text-[8px] font-black uppercase tracking-tighter bg-white/80 backdrop-blur-md border border-primary/10 text-primary px-2 py-1 rounded-full shadow-sm">
+                        <span className="text-[8px] font-black uppercase tracking-tighter bg-black/40 group-hover:bg-black/5 backdrop-blur-md border border-white/10 group-hover:border-primary/20 text-white group-hover:text-black px-2 py-1 rounded-full shadow-sm transition-colors">
                             {loc.type}
                         </span>
-                        <span className="text-[8px] font-medium text-slate-500 uppercase tracking-widest bg-white/50 backdrop-blur-sm px-2 py-0.5 rounded-full border border-slate-100">
+                        <span className="text-[8px] font-medium text-white/50 group-hover:text-black/50 uppercase tracking-widest bg-black/20 group-hover:bg-black/5 backdrop-blur-sm px-2 py-0.5 rounded-full border border-white/5 group-hover:border-primary/10 transition-colors">
                             {loc.climate}
                         </span>
                     </div>
                 </div>
 
                 <div className="relative z-10 pointer-events-none flex-grow flex flex-col justify-end pb-4">
-                    <h3 className="text-2xl font-black text-foreground/80 mb-1 group-hover:text-primary transition-colors drop-shadow-sm leading-tight">
+                    <h3 className="text-2xl font-black text-white group-hover:text-black mb-1 transition-colors drop-shadow-md group-hover:drop-shadow-none leading-tight">
                         {loc.name[lang]}
                     </h3>
-                    <p className="text-[10px] text-primary/60 font-bold uppercase tracking-widest mb-4">
+                    <p className="text-[10px] text-primary group-hover:text-primary/80 font-bold uppercase tracking-widest mb-4">
                         {loc.regionName[lang]}
                     </p>
 
-                    <div className="w-8 h-1 bg-gradient-to-r from-primary/40 to-transparent mb-4 group-hover:w-full transition-all duration-700" />
+                    <div className="w-8 h-1 bg-gradient-to-r from-primary to-transparent mb-4 group-hover:w-full transition-all duration-700 opacity-50 group-hover:opacity-100" />
 
-                    <p className="text-xs text-foreground/70 leading-relaxed tracking-wide line-clamp-2 italic font-medium">
+                    <p className="text-xs text-white/70 group-hover:text-black/80 leading-relaxed tracking-wide line-clamp-2 italic font-medium transition-colors">
                         "{loc.history[lang]}"
                     </p>
                 </div>
 
-                <div className="mt-auto flex items-center gap-2 text-[9px] font-black uppercase tracking-widest text-primary/60 group-hover:text-primary transition-all relative z-10">
-                    <div className="w-6 h-6 rounded-full bg-white/50 border border-primary/10 flex items-center justify-center group-hover:bg-primary group-hover:border-primary transition-colors">
-                        <ChevronRight className="w-3 h-3 text-primary group-hover:text-white group-hover:translate-x-0.5 transition-all" />
+                <div className="mt-auto flex items-center gap-2 text-[9px] font-black uppercase tracking-widest text-primary group-hover:text-black transition-all relative z-10">
+                    <div className="w-6 h-6 rounded-full bg-black/40 group-hover:bg-primary border border-white/10 group-hover:border-primary flex items-center justify-center transition-colors">
+                        <Compass className="w-3 h-3 text-white transition-all group-hover:animate-pulse" />
                     </div>
-                    <span>{lang === 'ar' ? 'عرض دفتر التعريف' : 'View Fact Sheet'}</span>
+                    <span>{lang === 'ar' ? `سافر إلى عالم ${loc.name.ar}` : `Journey to ${loc.name.en}`}</span>
                 </div>
             </div>
         </motion.div>
