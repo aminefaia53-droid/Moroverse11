@@ -136,7 +136,12 @@ export default function CityGrid({ lang }: { lang: 'en' | 'ar' }) {
                             animate={{ opacity: 1, y: 0 }}
                             exit={{ opacity: 0, scale: 0.9 }}
                             transition={{ delay: idx % 10 * 0.05 }}
-                            onClick={() => setSelectedLocation(loc)}
+                            onClick={() => {
+                                setSelectedLocation(loc);
+                                window.dispatchEvent(new CustomEvent('moroverse-action', {
+                                    detail: { type: 'city_click', payload: loc.name.ar }
+                                }));
+                            }}
                             className="group cursor-pointer relative"
                         >
                             <div className="moro-glass p-6 rounded-3xl border border-primary/10 hover:border-primary/40 transition-all duration-500 hover:shadow-2xl hover:shadow-primary/10 h-full overflow-hidden flex flex-col">

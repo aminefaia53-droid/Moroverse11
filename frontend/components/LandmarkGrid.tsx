@@ -70,7 +70,12 @@ export default function LandmarkGrid({ lang }: { lang: 'en' | 'ar' }) {
                             exit={{ opacity: 0, scale: 0.9 }}
                             transition={{ delay: idx * 0.1 }}
                             viewport={{ once: true }}
-                            onClick={() => setSelectedLandmark(landmark)}
+                            onClick={() => {
+                                setSelectedLandmark(landmark);
+                                window.dispatchEvent(new CustomEvent('moroverse-action', {
+                                    detail: { type: 'landmark_click', payload: landmark.name.ar }
+                                }));
+                            }}
                             className="group cursor-pointer"
                         >
                             <div className="moro-glass p-8 rounded-[40px] border border-primary/5 hover:border-primary/30 transition-all duration-700 hover:shadow-2xl relative overflow-hidden bg-white/40 h-80 flex flex-col justify-between">

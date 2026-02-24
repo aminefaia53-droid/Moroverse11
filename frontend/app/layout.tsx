@@ -1,5 +1,6 @@
 import { Outfit, Cinzel, Playfair_Display, Inter, Amiri } from "next/font/google";
 import "./globals.css";
+import MoroVerseAssistant from "../components/MoroVerseAssistant";
 
 const outfit = Outfit({
   variable: "--font-outfit",
@@ -50,6 +51,7 @@ export default function RootLayout({
         className={`${outfit.variable} ${cinzel.variable} ${playfair.variable} ${inter.variable} ${amiri.variable} antialiased selection:bg-gold-royal/30 selection:text-gold-royal`}
       >
         {children}
+        <MoroVerseAssistant />
       </body>
     </html>
   );
