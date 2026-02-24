@@ -1,30 +1,30 @@
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Cinzel:wght@400;700&family=Amiri:wght@400;700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Inter:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Cinzel:wght@400;700&family=Cairo:wght@300..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Inter:wght@100..900&display=swap');
 @import "tailwindcss";
 
 @theme inline {
   --color-emerald-deep: #004d3d;
   --color-emerald-light: #00664f;
   --color-emerald-imperial: #002b21;
-  --color-star-red: #c1272d;
-  --color-gold-royal: #c29d61;
+  --color-star-red: #8b0000;
+  --color-gold-royal: #C5A059;
   --color-gold-sand: #edc9af;
   --color-desert-orange: #d97706;
   --color-atlas-blue: #0369a1;
-  --color-flag-red: #c1272d;
+  --color-flag-red: #8b0000;
   --color-flag-green: #006233;
   --color-ivory: #fdfaf5;
   --color-slate-deep: #002b21;
 
-  --font-sans: var(--font-inter), var(--font-geist-sans), sans-serif;
+  --font-sans: var(--font-inter), var(--font-outfit), sans-serif;
   --font-serif: var(--font-playfair), serif;
   --font-display: 'Cinzel', serif;
-  --font-arabic: 'Amiri', serif;
+  --font-arabic: 'Cairo', sans-serif;
 }
 
 :root {
   --background: #ffffff;
   --foreground: #0f172a;
-  --primary: #c1272d;
+  --primary: #8b0000;
   --secondary: #ffffff;
 }
 
@@ -39,10 +39,10 @@ body {
 
 /* Glassmorphism Elite - Premium White Edition */
 .glass-card-elite {
-  backdrop-filter: blur(20px) saturate(180%);
-  -webkit-backdrop-filter: blur(20px) saturate(180%);
-  background: rgba(255, 255, 255, 0.7);
-  border: 1px solid rgba(193, 39, 45, 0.1);
+  backdrop-filter: blur(25px) saturate(180%);
+  -webkit-backdrop-filter: blur(25px) saturate(180%);
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(139, 0, 0, 0.1);
   border-radius: 40px;
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.08);
 }
@@ -51,13 +51,13 @@ body {
   backdrop-filter: blur(30px) saturate(200%);
   -webkit-backdrop-filter: blur(30px) saturate(200%);
   background: rgba(253, 250, 245, 0.85);
-  border: 1px solid rgba(194, 157, 97, 0.2);
+  border: 1px solid rgba(197, 160, 89, 0.2);
 }
 
 .moro-glass {
-  backdrop-filter: blur(12px) saturate(150%);
-  -webkit-backdrop-filter: blur(12px) saturate(150%);
-  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(15px) saturate(160%);
+  -webkit-backdrop-filter: blur(15px) saturate(160%);
+  background: rgba(255, 255, 255, 0.45);
   border: 1px solid rgba(0, 0, 0, 0.05);
 }
 
@@ -65,10 +65,10 @@ body {
   box-shadow:
     0 30px 60px -12px rgba(0, 0, 0, 0.15),
     0 18px 36px -18px rgba(0, 0, 0, 0.2),
-    inset 0 0 0 1px rgba(194, 157, 97, 0.1);
+    inset 0 0 0 1px rgba(197, 160, 89, 0.2);
 }
 
-/* Flag Fluttering Animation */
+/* Flag Fluttering Animation - Slower, Majestic */
 @keyframes flag-flutter {
   0% {
     transform: scale(1) translate(0, 0) skew(0deg);
@@ -76,15 +76,15 @@ body {
   }
 
   25% {
-    transform: scale(1.02) translate(1%, 0.5%) skew(1deg);
+    transform: scale(1.01) translate(0.5%, 0.2%) skew(0.5deg);
   }
 
   50% {
-    transform: scale(1.05) translate(0, 1%) skew(-1deg);
+    transform: scale(1.03) translate(0, 0.5%) skew(-0.5deg);
   }
 
   75% {
-    transform: scale(1.02) translate(-1%, 0.5%) skew(0.5deg);
+    transform: scale(1.01) translate(-0.5%, 0.2%) skew(0.2deg);
   }
 
   100% {
@@ -93,13 +93,13 @@ body {
 }
 
 .animate-flag-flutter {
-  animation: flag-flutter 10s infinite ease-in-out;
+  animation: flag-flutter 15s infinite ease-in-out;
   transform-origin: center;
 }
 
 /* Flag Watermark Utility - Enhanced Visibility */
 .flag-watermark-enhanced {
-  background: radial-gradient(circle at 50% 50%, rgba(193, 39, 45, 0.05) 0%, transparent 80%);
+  background: radial-gradient(circle at 50% 50%, rgba(139, 0, 0, 0.05) 0%, transparent 80%);
   pointer-events: none;
 }
 
@@ -121,6 +121,26 @@ body {
   font-family: var(--font-arabic);
 }
 
+/* Text Glow Utility */
+.text-glow {
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.8), 0 0 40px rgba(197, 160, 89, 0.3);
+}
+
+/* Camel Parallax Animation */
+@keyframes camel-tread {
+  0% {
+    transform: translateX(100vw);
+  }
+
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.animate-camel-tread {
+  animation: camel-tread 120s linear infinite;
+}
+
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
   width: 6px;
@@ -131,10 +151,10 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #c1272d33;
+  background: rgba(139, 0, 0, 0.2);
   border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #c1272d66;
+  background: rgba(139, 0, 0, 0.4);
 }

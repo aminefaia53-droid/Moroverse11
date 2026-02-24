@@ -73,7 +73,7 @@ export default function Home() {
       {/* FIXED BACKGROUND: PURE WHITE WITH ENHANCED ANIMATED FLAG */}
       <div className="fixed inset-0 z-0 bg-white">
         {/* Animated Large Flag Watermark */}
-        <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-[0.08] animate-flag-flutter">
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-[0.05] animate-flag-flutter">
           <svg viewBox="0 0 900 600" className="w-[85%] max-w-[1200px] h-auto drop-shadow-2xl">
             <rect width="900" height="600" fill="#c1272d" rx="40" />
             <path
@@ -88,14 +88,29 @@ export default function Home() {
         </div>
 
         {/* Dynamic Subtle Landscape Overlay */}
-        <div className="absolute inset-0 landscape-zoom opacity-[0.05] grayscale mix-blend-multiply transition-opacity duration-1000">
+        <div className="absolute inset-x-0 bottom-0 top-1/4 landscape-zoom opacity-[0.03] grayscale mix-blend-multiply transition-opacity duration-1000">
           <Image
             src="/hero-bg.png"
             alt="MoroVerse Landscape"
             fill
-            className="object-cover"
+            className="object-cover object-bottom"
             priority
           />
+        </div>
+
+        {/* Camel Parallax Effect */}
+        <div className="absolute bottom-0 w-[200vw] h-64 pointer-events-none z-10 opacity-10 animate-camel-tread flex items-end">
+          {/* Repeating SVG blocks to simulate infinite marching */}
+          {[...Array(6)].map((_, i) => (
+            <div key={i} className="flex-shrink-0 w-1/6 flex justify-around px-10">
+              <svg viewBox="0 0 100 100" className="w-24 h-24 fill-primary/40">
+                <path d="M70,40 C65,30 55,25 45,35 L40,40 L30,40 C25,40 20,45 20,50 L20,70 L25,70 L25,80 L30,80 L30,70 L40,70 L40,80 L45,80 L45,70 L60,70 C65,70 70,65 70,60 L75,60 C80,60 85,55 85,50 L85,45 C85,40 80,35 75,35 C70,35 65,40 65,45 L60,45 C60,40 65,35 70,40 Z M30,45 C28,45 25,48 25,50 C25,52 28,55 30,55 C32,55 35,52 35,50 C35,48 32,45 30,45 Z" />
+              </svg>
+              <svg viewBox="0 0 100 100" className="w-16 h-16 fill-primary/30 ml-8 transform translate-y-4">
+                <path d="M70,40 C65,30 55,25 45,35 L40,40 L30,40 C25,40 20,45 20,50 L20,70 L25,70 L25,80 L30,80 L30,70 L40,70 L40,80 L45,80 L45,70 L60,70 C65,70 70,65 70,60 L75,60 C80,60 85,55 85,50 L85,45 C85,40 80,35 75,35 C70,35 65,40 65,45 L60,45 C60,40 65,35 70,40 Z" />
+              </svg>
+            </div>
+          ))}
         </div>
       </div>
 
@@ -128,13 +143,13 @@ export default function Home() {
             <Crown className="w-8 h-8" />
             <Sparkles className="w-8 h-8" />
           </div>
-          <h2 className="text-6xl md:text-8xl font-serif mb-8 text-foreground uppercase tracking-tighter leading-none font-black">
+          <h2 className="text-6xl md:text-8xl font-serif mb-8 text-foreground uppercase tracking-tighter leading-none font-black text-glow">
             {t.welcome}
           </h2>
-          <p className="text-xl md:text-2xl text-foreground/50 font-light mb-12 tracking-[0.2em] max-w-4xl mx-auto uppercase">
+          <p className="text-xl md:text-3xl text-foreground/60 font-medium mb-12 tracking-wide leading-relaxed uppercase max-w-4xl mx-auto">
             {t.subtitle}
           </p>
-          <button className="px-20 py-6 bg-primary text-white font-black text-xs tracking-[0.5em] uppercase hover:bg-slate-900 transition-all rounded-full shadow-2xl shadow-primary/30">
+          <button className="px-20 py-6 bg-primary text-white font-black text-xs md:text-sm tracking-[0.5em] uppercase hover:bg-slate-900 hover:shadow-[0_0_20px_rgba(197,160,89,0.8)] transition-all rounded-full shadow-2xl shadow-primary/30">
             {t.cta}
           </button>
         </motion.div>
@@ -180,7 +195,7 @@ export default function Home() {
             viewport={{ once: true }}
             className="mb-24 text-center space-y-8"
           >
-            <h3 className="text-7xl font-serif text-primary uppercase tracking-[0.4em] font-black drop-shadow-sm">
+            <h3 className="text-7xl font-serif text-primary uppercase tracking-wider font-black drop-shadow-sm text-glow">
               {lang === 'ar' ? (
                 <span className="font-arabic text-primary/80">معالم مغربية</span>
               ) : (

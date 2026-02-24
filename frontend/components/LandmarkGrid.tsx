@@ -143,7 +143,7 @@ export default function LandmarkGrid({ lang }: { lang: 'en' | 'ar' }) {
                                             <Info className="w-4 h-4" />
                                             {lang === 'ar' ? 'النبذة المعمارية والسيادية' : 'ARCHITECTURAL BRIEF'}
                                         </h4>
-                                        <p className="text-lg text-foreground/60 leading-relaxed font-serif italic text-justify">
+                                        <p className="text-lg text-foreground/60 leading-relaxed tracking-wide font-serif italic text-justify">
                                             "{selectedLandmark.history[lang]}"
                                         </p>
                                     </div>
@@ -152,7 +152,7 @@ export default function LandmarkGrid({ lang }: { lang: 'en' | 'ar' }) {
                                 <div className="flex flex-col justify-center">
                                     <div className="p-10 rounded-[40px] bg-primary/5 border border-primary/10 relative overflow-hidden">
                                         <LandmarkIcon className="absolute -left-10 -top-10 w-40 h-40 text-primary opacity-[0.03]" />
-                                        <p className="text-[11px] text-primary/60 font-bold leading-loose relative z-10 italic">
+                                        <p className="text-[11px] text-primary/60 font-medium leading-relaxed tracking-wide relative z-10 italic">
                                             {lang === 'ar'
                                                 ? 'تُعد هذه المعلمة جزءاً أصيلاً من الذاكرة الجماعية المغربية. يوثق مشروع MoroVerse إبداع الصانع المغربي وعظمة الدول التي تعاقبت على حكم المملكة، لتبقى منارة للأجيال القادمة.'
                                                 : 'This landmark is an integral part of Moroccan collective memory. The MoroVerse project documents the creativity of Moroccan artisans and the grandeur of the dynasties that ruled the Kingdom.'
@@ -167,7 +167,7 @@ export default function LandmarkGrid({ lang }: { lang: 'en' | 'ar' }) {
                                     </div>
                                     <button
                                         onClick={() => setShowFullArticle(true)}
-                                        className="w-full py-5 rounded-[32px] bg-primary text-white text-xs font-black uppercase tracking-[0.2em] flex items-center justify-center gap-3 shadow-xl shadow-primary/20 hover:scale-105 transition-all mt-8"
+                                        className="w-full py-5 rounded-[32px] bg-primary text-white text-xs font-black uppercase tracking-[0.2em] flex items-center justify-center gap-3 shadow-xl shadow-primary/20 hover:scale-105 hover:shadow-[0_0_20px_rgba(197,160,89,0.8)] transition-all mt-8"
                                     >
                                         <BookOpen className="w-5 h-5" />
                                         {lang === 'ar' ? 'اقرأ السجل التاريخي الكامل' : 'READ FULL HISTORICAL RECORD'}

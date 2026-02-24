@@ -218,7 +218,7 @@ export default function CityGrid({ lang }: { lang: 'en' | 'ar' }) {
                                             <Info className="w-4 h-4" />
                                             {lang === 'ar' ? 'النبذة التاريخية' : 'HISTORICAL BRIEF'}
                                         </h4>
-                                        <p className="text-sm text-foreground/60 leading-relaxed font-serif italic">
+                                        <p className="text-sm text-foreground/60 leading-relaxed tracking-wide font-serif italic text-justify">
                                             "{selectedLocation.history[lang]}"
                                         </p>
                                     </div>
@@ -241,7 +241,7 @@ export default function CityGrid({ lang }: { lang: 'en' | 'ar' }) {
                                     </div>
 
                                     <div className="p-6 rounded-3xl bg-primary/5 border border-primary/10">
-                                        <p className="text-[10px] text-primary/60 font-medium leading-relaxed">
+                                        <p className="text-[10px] text-primary/60 font-medium leading-relaxed tracking-wide">
                                             {lang === 'ar'
                                                 ? 'هذا المدخل جزء من الأرشيف الرقمي لـ MoroVerse. جميع المعلومات موثقة جغرافياً وتاريخياً لتعزيز الوعي بالهوية الوطنية.'
                                                 : 'This entry is part of the MoroVerse digital archive. All information is geographically and historically documented to enhance national identity awareness.'
@@ -251,7 +251,7 @@ export default function CityGrid({ lang }: { lang: 'en' | 'ar' }) {
 
                                     <button
                                         onClick={() => setShowFullArticle(true)}
-                                        className="w-full py-5 rounded-[32px] bg-primary text-white text-xs font-black uppercase tracking-[0.2em] flex items-center justify-center gap-3 shadow-xl shadow-primary/20 hover:scale-105 transition-all"
+                                        className="w-full py-5 rounded-[32px] bg-primary text-white text-xs font-black uppercase tracking-[0.2em] flex items-center justify-center gap-3 shadow-xl shadow-primary/20 hover:scale-105 hover:shadow-[0_0_20px_rgba(197,160,89,0.8)] transition-all"
                                     >
                                         <BookOpen className="w-5 h-5" />
                                         {lang === 'ar' ? 'اقرأ المقال الكامل' : 'READ FULL ARTICLE'}
@@ -349,7 +349,7 @@ function CityCard({
 
                     <div className="w-8 h-1 bg-gradient-to-r from-primary/40 to-transparent mb-4 group-hover:w-full transition-all duration-700" />
 
-                    <p className="text-xs text-foreground/70 leading-relaxed line-clamp-2 italic font-medium">
+                    <p className="text-xs text-foreground/70 leading-relaxed tracking-wide line-clamp-2 italic font-medium">
                         "{loc.history[lang]}"
                     </p>
                 </div>

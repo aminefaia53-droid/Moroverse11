@@ -144,7 +144,7 @@ function FigureCard({ figure, idx, lang }: { figure: HistoricalFigure; idx: numb
 
                     {/* Bio */}
                     <div className="flex-grow mt-2">
-                        <p className="text-sm text-foreground/80 leading-relaxed max-h-32 overflow-hidden text-ellipsis line-clamp-4 font-medium">
+                        <p className="text-sm text-foreground/80 leading-relaxed tracking-wide max-h-32 overflow-hidden text-ellipsis line-clamp-4 font-medium">
                             {figure.shortBio[lang]}
                         </p>
                     </div>

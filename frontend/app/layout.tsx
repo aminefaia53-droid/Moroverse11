@@ -1,4 +1,4 @@
-import { Outfit, Cinzel, Playfair_Display, Inter, Amiri } from "next/font/google";
+import { Outfit, Cinzel, Playfair_Display, Inter, Cairo } from "next/font/google";
 import "./globals.css";
 import MoroVerseAssistant from "../components/MoroVerseAssistant";
 
@@ -22,10 +22,10 @@ const inter = Inter({
   subsets: ["latin"],
 });
 
-const amiri = Amiri({
+const cairo = Cairo({
   variable: "--font-arabic",
-  weight: ["400", "700"],
-  subsets: ["arabic"],
+  weight: ["300", "400", "500", "600", "700", "800", "900"],
+  subsets: ["arabic", "latin"],
 });
 
 export const metadata = {
@@ -48,7 +48,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${outfit.variable} ${cinzel.variable} ${playfair.variable} ${inter.variable} ${amiri.variable} antialiased selection:bg-gold-royal/30 selection:text-gold-royal`}
+        className={`${outfit.variable} ${cinzel.variable} ${playfair.variable} ${inter.variable} ${cairo.variable} antialiased selection:bg-gold-royal/30 selection:text-gold-royal`}
       >
         {children}
         <MoroVerseAssistant />
