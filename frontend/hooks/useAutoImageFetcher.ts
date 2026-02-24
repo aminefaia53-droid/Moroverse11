@@ -49,10 +49,10 @@ export function useAutoImageFetcher({ query, preloadedImageUrl }: UseAutoImageFe
             try {
                 // Formatting query for Wikipedia API
                 const encodedQuery = encodeURIComponent(query);
-                // Wikipedia API endpoint for page images
-                const apiUrl = `https://ar.wikipedia.org/w/api.php?action=query&prop=pageimages&format=json&piprop=original&titles=${encodedQuery}&origin=*`;
+                // Wikimedia Commons API endpoint for page images (as requested by user)
+                const apiUrl = `https://commons.wikimedia.org/w/api.php?action=query&prop=pageimages&format=json&piprop=original&titles=${encodedQuery}&origin=*`;
 
-                // Fallback to English Wikipedia if Arabic fails (will handle in response logic)
+                // Fallback to English Wikipedia if Commons fails
                 const enApiUrl = `https://en.wikipedia.org/w/api.php?action=query&prop=pageimages&format=json&piprop=original&titles=${encodedQuery}&origin=*`;
 
                 let res = await fetch(apiUrl);
@@ -72,8 +72,10 @@ export function useAutoImageFetcher({ query, preloadedImageUrl }: UseAutoImageFe
 
                 if (isMounted) {
                     if (extractedUrl) {
-                        // Standardize Wikipedia URLs to https
-                        const finalUrl = extractedUrl.startsWith('http:') ? extractedUrl.replace('http:', 'https:') : extractedUrl;
+                        // Standardize Wikipedia URLs to https and proxy to prevent CORS/Hotlink issues
+                        const secureUrl = extractedUrl.startsWith('http:') ? extractedUrl.replace('http:', 'https:') : extractedUrl;
+                        // Using wsrv.nl image proxy and optimization service
+                        const finalUrl = `https://wsrv.nl/?url=${encodeURIComponent(secureUrl)}&w=800&h=800&fit=cover&output=webp`;
                         imageCache[query] = finalUrl;
                         setImageUrl(finalUrl);
 

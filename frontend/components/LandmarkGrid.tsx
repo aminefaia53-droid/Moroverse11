@@ -60,7 +60,7 @@ export default function LandmarkGrid({ lang }: { lang: 'en' | 'ar' }) {
             </div>
 
             {/* Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="flex overflow-x-auto pb-8 snap-x snap-mandatory no-scrollbar md:grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <AnimatePresence mode='popLayout'>
                     {filteredLandmarks.map((landmark, idx) => (
                         <LandmarkCard
@@ -221,7 +221,7 @@ function LandmarkCard({
                     detail: { type: 'landmark_click', payload: landmark.name.ar }
                 }));
             }}
-            className="group cursor-pointer"
+            className="group cursor-pointer snap-center min-w-[85vw] md:min-w-0 flex-shrink-0"
         >
             <div className="moro-glass p-8 rounded-[40px] border border-primary/5 hover:border-primary/30 transition-all duration-700 hover:shadow-2xl relative overflow-hidden bg-white/40 h-80 flex flex-col justify-between">
 

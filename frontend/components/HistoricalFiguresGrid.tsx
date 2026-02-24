@@ -70,7 +70,7 @@ export default function HistoricalFiguresGrid({ lang }: { lang: 'en' | 'ar' }) {
             </div>
 
             {/* Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="flex overflow-x-auto pb-8 snap-x snap-mandatory no-scrollbar md:grid md:grid-cols-2 lg:grid-cols-4 gap-6">
                 <AnimatePresence mode='popLayout'>
                     {filteredFigures.map((figure, idx) => (
                         <FigureCard key={figure.id} figure={figure} idx={idx} lang={lang} />
@@ -99,7 +99,7 @@ function FigureCard({ figure, idx, lang }: { figure: HistoricalFigure; idx: numb
                     detail: { type: 'figure_click', payload: figure.name.ar }
                 }));
             }}
-            className="group cursor-pointer"
+            className="group cursor-pointer snap-center min-w-[85vw] md:min-w-0 flex-shrink-0"
         >
             <div className="moro-glass p-8 rounded-[40px] border border-primary/10 hover:border-primary/40 transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 relative overflow-hidden bg-white/60 h-[420px] flex flex-col justify-between">
 

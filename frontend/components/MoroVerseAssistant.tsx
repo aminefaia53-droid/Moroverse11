@@ -9,7 +9,7 @@ type Outfit = 'modern' | 'traditional';
 
 export default function MoroVerseAssistant() {
     // State References
-    const [message, setMessage] = useState<string>("مرحبا معاك محمد أمين العميري مؤسس مدونة MoroVerse، أنا هنا لأرافقك في رحلتك عبر تاريخنا العظيم.");
+    const [message, setMessage] = useState<string>("مرحبا معاك محمد أمين العميري! هل لاحظت التحديث الجديد؟ أصبح بإمكانك الآن تمرير البطاقات أفقياً بكل سلاسة على هاتفك.");
     const [emotion, setEmotion] = useState<Emotion>('happy');
     const [outfit, setOutfit] = useState<Outfit>('modern');
     const [isHovered, setIsHovered] = useState(false);
@@ -35,7 +35,7 @@ export default function MoroVerseAssistant() {
         const timer = setTimeout(() => {
             setShowBubble(false);
             setEmotion('neutral');
-        }, 8000);
+        }, 12000);
 
         // Custom Event Listener for Morocco Actions
         const handleAction = (e: Event) => {
@@ -261,7 +261,7 @@ export default function MoroVerseAssistant() {
                 y: 0
             }}
             transition={{ type: 'spring', stiffness: 300, damping: 25 }}
-            className={`fixed bottom-6 right-6 z-[9999] flex items-end gap-4 origin-bottom-right ${isHovered ? 'pointer-events-none' : 'pointer-events-auto cursor-grab active:cursor-grabbing'}`}
+            className={`fixed top-1.5 right-1 md:top-auto md:bottom-6 md:right-6 z-[9999] flex items-start md:items-end gap-2 md:gap-4 origin-top-right md:origin-bottom-right scale-50 md:scale-100 ${isHovered ? 'pointer-events-none' : 'pointer-events-auto cursor-grab active:cursor-grabbing'}`}
         >
             {/* Speech Bubble */}
             <AnimatePresence>
@@ -270,7 +270,7 @@ export default function MoroVerseAssistant() {
                         initial={{ opacity: 0, scale: 0.8, x: 20 }}
                         animate={{ opacity: 1, scale: 1, x: 0 }}
                         exit={{ opacity: 0, scale: 0.8, x: 20 }}
-                        className="bg-white/90 backdrop-blur-md border border-primary/20 shadow-2xl p-4 rounded-3xl rounded-br-none max-w-xs mb-10 mr-[-20px]"
+                        className="bg-white/90 backdrop-blur-md border border-primary/20 shadow-2xl p-4 rounded-3xl rounded-tr-none md:rounded-tr-3xl md:rounded-br-none max-w-[200px] md:max-w-xs mt-10 md:mt-0 md:mb-10 mr-[-10px] md:mr-[-20px]"
                     >
                         <p className="text-sm font-arabic font-bold text-foreground text-right leading-relaxed" dir="rtl">
                             {message}

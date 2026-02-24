@@ -99,17 +99,17 @@ export default function Home() {
         </div>
       </div>
 
-      <header className="fixed top-0 w-full z-50 py-6 px-12 flex justify-between items-center bg-white/40 backdrop-blur-xl border-b border-secondary/10">
-        <div className="flex items-center gap-4">
-          <div className="p-2 bg-primary rounded-xl shadow-xl transform -rotate-3">
-            <Globe className="text-white w-5 h-5" />
+      <header className="fixed top-0 w-full z-50 py-4 px-4 md:py-6 md:px-12 flex justify-between items-center bg-white/40 backdrop-blur-xl border-b border-secondary/10">
+        <div className="flex items-center gap-3 md:gap-4 shrink-0">
+          <div className="p-1.5 md:p-2 bg-primary rounded-xl shadow-xl transform -rotate-3">
+            <Globe className="text-white w-4 h-4 md:w-5 md:h-5" />
           </div>
-          <h1 className="font-display text-xl tracking-[0.4em] text-foreground font-black uppercase">MOROVERSE</h1>
+          <h1 className="font-display text-sm md:text-xl tracking-[0.2em] md:tracking-[0.4em] text-foreground font-black uppercase">MOROVERSE</h1>
         </div>
-        <div className="flex items-center gap-8">
+        <div className="flex items-center gap-4 md:gap-8 pr-[70px] md:pr-0">
           <button
             onClick={() => setLang(lang === 'en' ? 'ar' : 'en')}
-            className="font-bold text-[10px] tracking-widest text-foreground hover:text-primary transition-all px-8 py-3 rounded-full border border-foreground/10 bg-white/50 backdrop-blur-md"
+            className="font-bold text-[9px] md:text-[10px] tracking-widest text-foreground hover:text-primary transition-all px-4 py-2 md:px-8 md:py-3 rounded-full border border-foreground/10 bg-white/50 backdrop-blur-md whitespace-nowrap"
           >
             {lang === 'en' ? 'العربية' : 'English'}
           </button>

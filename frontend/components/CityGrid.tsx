@@ -127,7 +127,7 @@ export default function CityGrid({ lang }: { lang: 'en' | 'ar' }) {
             </div>
 
             {/* Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            <div className="flex overflow-x-auto pb-8 snap-x snap-mandatory no-scrollbar md:grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                 <AnimatePresence mode='popLayout'>
                     {filteredLocations.slice(0, visibleCount).map((loc, idx) => (
                         <CityCard
@@ -304,7 +304,7 @@ function CityCard({
                     detail: { type: 'city_click', payload: loc.name.ar }
                 }));
             }}
-            className="group cursor-pointer relative h-[380px]" // Fixed height to maintain HD visual consistency
+            className="group cursor-pointer relative h-[380px] snap-center min-w-[85vw] md:min-w-0 flex-shrink-0" // Fixed height to maintain HD visual consistency
         >
             <div className="moro-glass p-6 rounded-3xl border border-primary/10 hover:border-primary/40 transition-all duration-500 hover:shadow-2xl hover:shadow-primary/10 h-full overflow-hidden flex flex-col justify-between">
 
