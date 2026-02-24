@@ -1,0 +1,22 @@
+{
+    "name": "MoroVerse | The Royal Digital Archive",
+    "short_name": "MoroVerse",
+    "description": "Experience the Kingdom of Morocco in a revolutionary digital dimension.",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#006233",
+    "icons": [
+        {
+            "src": "/next.svg",
+            "sizes": "512x512",
+            "type": "image/svg+xml",
+            "purpose": "any maskable"
+        }
+    ],
+    "categories": [
+        "education",
+        "history",
+        "travel"
+    ]
+}
