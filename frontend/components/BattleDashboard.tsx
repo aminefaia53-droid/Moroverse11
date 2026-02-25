@@ -203,6 +203,34 @@ const battles: Battle[] = [
         tactics: { en: 'Cave defense and attrition.', ar: 'الدفاع بالكهوف والاستنزاف.' },
         impact: { en: 'Proved the unbreakable spirit of the Atlas people.', ar: 'أثبتت الروح التي لا تقهر لأهل الأطلس.' }
     },
+    {
+        id: 'sidi-bou-othmane-battle-1912',
+        year: '1912',
+        location: { en: 'Sidi Bou Othmane, Marrakech', ar: 'سيدي بوعثمان، مراكش' },
+        era: 'Modern Resistance',
+        dynasty: 'Southern Resistance',
+        name: { en: 'Battle of Sidi Bou Othmane', ar: 'معركة سيدي بوعثمان' },
+        desc: { en: 'The epic resistance against French colonial entry into the south.', ar: 'الملحمة الخالدة لدخول الاستعمار الفرنسي ومقاومة رجال الجنوب' },
+        combatants: { en: 'Southern Tribes vs France', ar: 'قبائل الجنوب ضد فرنسا' },
+        leaders: { en: 'Ahmed al-Hiba', ar: 'أحمد الهيبة' },
+        outcome: { en: 'Heavy losses but immortalized courage.', ar: 'خسائر فادحة لكن شجاعة خالدة.' },
+        tactics: { en: 'Direct confrontation and massive infantry charges.', ar: 'مواجهة مباشرة وهجوم مشاة ضخم.' },
+        impact: { en: 'Slowed the colonial advance to the south.', ar: 'أبطأت الزحف الاستعماري نحو الجنوب.' }
+    },
+    {
+        id: 'el-hri-battle-1914',
+        year: '1914',
+        location: { en: 'El Hri, Khenifra', ar: 'لهري، خنيفرة' },
+        era: 'Modern Resistance',
+        dynasty: 'Zayani Resistance',
+        name: { en: 'Battle of El Hri', ar: 'معركة لهري' },
+        desc: { en: 'The graveyard of invaders and the legendary victory of Zayani resistance.', ar: 'مقبرة الغزاة وانتصار موحى أوحمو الزياني الأسطوري' },
+        combatants: { en: 'Zayanes vs France', ar: 'قبائل زيان ضد فرنسا' },
+        leaders: { en: 'Moha ou Hammou Zayani', ar: 'موحى أوحمو الزياني' },
+        outcome: { en: 'Crushing victory over French forces.', ar: 'انتصار ساحق على القوات الفرنسية.' },
+        tactics: { en: 'Surprise encirclement and mountain ambushes.', ar: 'تطويق مفاجئ وكمائن جبلية.' },
+        impact: { en: 'One of the greatest defeats of colonial France in Africa.', ar: 'من أعظم هزائم فرنسا الاستعمارية في إفريقيا.' }
+    },
 
     // --- LIBERATION & SAHARA (ECCUVILLON & BEYOND) ---
     {
@@ -321,7 +349,7 @@ export default function BattleDashboard({ lang }: { lang: 'en' | 'ar' }) {
                             exit={{ opacity: 0, scale: 0.95 }}
                             transition={{ duration: 0.5, delay: idx * 0.03 }}
                             onClick={() => setSelectedBattle(b)}
-                            className="group relative h-[480px] rounded-[48px] overflow-hidden glass-card-elite border border-primary/5 hover:border-primary/50 transition-all duration-700 bg-white/90 cursor-pointer shadow-xl hover:shadow-2xl"
+                            className="group relative h-[480px] rounded-[48px] overflow-hidden glass-card-elite border border-primary/5 hover:border-primary/50 transition-all duration-700 bg-black/60 cursor-pointer shadow-xl hover:shadow-2xl"
                         >
                             {/* Visual Layer */}
                             <div className="absolute inset-0 z-0">
@@ -344,22 +372,22 @@ export default function BattleDashboard({ lang }: { lang: 'en' | 'ar' }) {
                                                 {b.year}
                                             </span>
                                             <div className="h-px w-8 bg-primary/10" />
-                                            <span className="text-[9px] font-black text-foreground/20 uppercase tracking-[0.3em]">
+                                            <span className="text-[9px] font-black text-white/60 uppercase tracking-[0.3em]">
                                                 {b.era}
                                             </span>
                                         </div>
                                     </div>
-                                    <h4 className="text-3xl font-serif text-foreground font-black uppercase leading-tight group-hover:text-primary transition-colors">
+                                    <h4 className="text-3xl font-serif text-moro-gold font-black uppercase leading-tight group-hover:text-white transition-colors">
                                         {lang === 'ar' ? b.name.ar : b.name.en}
                                     </h4>
-                                    <div className="flex items-center gap-2 text-gold-royal/60">
+                                    <div className="flex items-center gap-2 text-gold-royal/80">
                                         <MapPin className="w-3.5 h-3.5" />
-                                        <span className="text-[9px] uppercase font-black tracking-widest">{b.location[lang]}</span>
+                                        <span className="text-[9px] uppercase font-black tracking-widest text-white/90">{b.location[lang]}</span>
                                     </div>
                                 </div>
 
                                 <div className="space-y-6">
-                                    <p className="text-sm text-foreground/50 leading-relaxed line-clamp-2 italic">
+                                    <p className="text-sm text-white/80 leading-relaxed line-clamp-2 italic drop-shadow-md">
                                         "{b.desc[lang]}"
                                     </p>
                                     <div className="flex items-center justify-between pt-6 border-t border-foreground/5">
@@ -481,13 +509,24 @@ export default function BattleDashboard({ lang }: { lang: 'en' | 'ar' }) {
                                             </p>
                                         </div>
 
-                                        <button
-                                            onClick={() => setShowFullArticle(true)}
-                                            className="w-full py-5 rounded-[32px] bg-primary text-white text-xs font-black uppercase tracking-[0.2em] flex items-center justify-center gap-3 shadow-xl shadow-primary/20 hover:scale-105 transition-all"
-                                        >
-                                            <BookOpen className="w-5 h-5" />
-                                            {lang === 'ar' ? 'اقرأ المقال الكامل' : 'READ FULL ARTICLE'}
-                                        </button>
+                                        {(() => {
+                                            const isGenerated = ['sidi-bou-othmane-battle-1912', 'el-hri-battle-1914'].includes(selectedBattle.id);
+                                            return (
+                                                <button
+                                                    onClick={() => {
+                                                        if (isGenerated) {
+                                                            window.location.href = '/posts/' + selectedBattle.id;
+                                                        } else {
+                                                            setShowFullArticle(true);
+                                                        }
+                                                    }}
+                                                    className="w-full py-5 rounded-[32px] bg-primary text-white text-xs font-black uppercase tracking-[0.2em] flex items-center justify-center gap-3 shadow-xl shadow-primary/20 hover:scale-105 transition-all"
+                                                >
+                                                    <BookOpen className="w-5 h-5" />
+                                                    {lang === 'ar' ? 'اقرأ المقال الكامل' : 'READ FULL ARTICLE'}
+                                                </button>
+                                            );
+                                        })()}
                                     </div>
                                 </div>
                             </div>

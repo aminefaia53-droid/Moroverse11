@@ -101,16 +101,16 @@ function FigureCard({ figure, idx, lang }: { figure: HistoricalFigure; idx: numb
             }}
             className="group cursor-pointer snap-center min-w-[85vw] md:min-w-0 flex-shrink-0"
         >
-            <div className="moro-glass hover:bg-white p-8 rounded-[40px] border border-primary/10 hover:border-primary transition-all duration-500 hover:shadow-[0_0_30px_rgba(197,160,89,0.4)] hover:-translate-y-2 relative overflow-hidden h-[420px] flex flex-col justify-between">
+            <div className="moro-glass hover:bg-black/80 p-8 rounded-[40px] border border-primary/10 hover:border-primary transition-all duration-500 hover:shadow-[0_0_30px_rgba(197,160,89,0.4)] hover:-translate-y-2 relative overflow-hidden h-[420px] flex flex-col justify-between bg-black/60">
 
                 {/* Dynamic HD Background Image */}
                 <div className="absolute inset-0 z-0 overflow-hidden rounded-[40px]">
                     {imageUrl && (
                         <div
-                            className={`absolute inset-0 bg-cover bg-center transition-opacity duration-1000 ${isLoading ? 'opacity-0' : 'opacity-10 group-hover:opacity-20'}`}
+                            className={`absolute inset-0 bg-cover bg-center transition-opacity duration-1000 ${isLoading ? 'opacity-0' : 'opacity-10 group-hover:opacity-30'}`}
                             style={{ backgroundImage: `url(${imageUrl})`, filter: 'grayscale(50%) contrast(120%)' }}
                         >
-                            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/80 group-hover:from-white group-hover:via-white/80 to-transparent transition-colors duration-700" />
+                            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/80 group-hover:from-black/90 group-hover:via-black/70 to-transparent transition-colors duration-700" />
                         </div>
                     )}
                 </div>
@@ -126,14 +126,14 @@ function FigureCard({ figure, idx, lang }: { figure: HistoricalFigure; idx: numb
                         <div className="w-14 h-14 rounded-2xl bg-black/40 backdrop-blur-md border border-white/10 flex items-center justify-center group-hover:bg-primary transition-all duration-500 shadow-sm">
                             <CategoryIcon category={figure.category} className="w-6 h-6 text-white transition-colors duration-500" />
                         </div>
-                        <div className="px-3 py-1 rounded-full bg-black/40 group-hover:bg-black/5 backdrop-blur-md border border-white/10 group-hover:border-primary/20 text-[9px] font-bold text-white group-hover:text-black uppercase tracking-wider max-w-[50%] text-center leading-tight transition-colors">
+                        <div className="px-3 py-1 rounded-full bg-black/40 group-hover:bg-primary/20 backdrop-blur-md border border-white/10 group-hover:border-primary/50 text-[9px] font-bold text-white uppercase tracking-wider max-w-[50%] text-center leading-tight transition-colors">
                             {figure.era[lang]}
                         </div>
                     </div>
 
                     {/* Name & Specialty */}
                     <div className="mb-4">
-                        <h3 className="text-2xl font-black text-white group-hover:text-black mb-2 drop-shadow-md group-hover:drop-shadow-none leading-tight transition-colors">
+                        <h3 className="text-2xl font-black text-white group-hover:text-primary mb-2 drop-shadow-md leading-tight transition-colors">
                             {figure.name[lang]}
                         </h3>
                         <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/40 group-hover:bg-black/5 backdrop-blur-md text-white group-hover:text-primary text-[10px] font-bold uppercase tracking-widest border border-white/10 transition-colors">
@@ -144,13 +144,13 @@ function FigureCard({ figure, idx, lang }: { figure: HistoricalFigure; idx: numb
 
                     {/* Bio */}
                     <div className="flex-grow mt-2">
-                        <p className="text-sm text-white/80 group-hover:text-black/80 leading-relaxed tracking-wide max-h-32 overflow-hidden text-ellipsis line-clamp-4 font-medium transition-colors">
+                        <p className="text-sm text-white/80 group-hover:text-white leading-relaxed tracking-wide max-h-32 overflow-hidden text-ellipsis line-clamp-4 font-medium transition-colors">
                             {figure.shortBio[lang]}
                         </p>
                     </div>
 
                     {/* Time Compass CTA */}
-                    <div className="mt-auto flex items-center gap-2 text-[9px] font-black uppercase tracking-widest text-primary group-hover:text-black transition-all relative z-10 pt-4">
+                    <div className="mt-auto flex items-center gap-2 text-[9px] font-black uppercase tracking-widest text-primary group-hover:text-primary transition-all relative z-10 pt-4">
                         <div className="w-6 h-6 rounded-full bg-black/40 group-hover:bg-primary border border-white/10 group-hover:border-primary flex items-center justify-center transition-colors">
                             <Compass className="w-3 h-3 text-white transition-all group-hover:animate-pulse" />
                         </div>

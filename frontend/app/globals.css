@@ -97,6 +97,8 @@ body {
 .animate-flag-flutter {
   animation: flag-flutter 12s infinite ease-in-out;
   transform-origin: center;
+  opacity: 0.15;
+  /* Reduced from default to prevent obscuring text */
 }
 
 /* Central Radial Glow for Hero */
@@ -118,8 +120,9 @@ body {
   animation: ken-burns-atlas 60s infinite alternate ease-in-out;
 }
 
-.font-arabic {
-  font-family: var(--font-arabic);
+.font-arabic,
+*:lang(ar) {
+  font-family: var(--font-arabic) !important;
 }
 
 /* Text Glow Utility */

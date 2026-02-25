@@ -249,13 +249,24 @@ export default function CityGrid({ lang }: { lang: 'en' | 'ar' }) {
                                         </p>
                                     </div>
 
-                                    <button
-                                        onClick={() => setShowFullArticle(true)}
-                                        className="w-full py-5 rounded-[32px] bg-primary text-white text-xs font-black uppercase tracking-[0.2em] flex items-center justify-center gap-3 shadow-[0_10px_20px_rgba(139,0,0,0.3)] hover:scale-105 hover:shadow-[0_0_20px_rgba(197,160,89,0.8)] transition-all group"
-                                    >
-                                        <Compass className="w-5 h-5 animate-pulse" />
-                                        {lang === 'ar' ? `سافر إلى عالم ${selectedLocation.name.ar}` : `Journey back to ${selectedLocation.name.en}`}
-                                    </button>
+                                    {(() => {
+                                        const isGenerated = ['tazenakht-forgotten-village', 'agbalou-nkardous-resistence'].includes(selectedLocation.id);
+                                        return (
+                                            <button
+                                                onClick={() => {
+                                                    if (isGenerated) {
+                                                        window.location.href = '/posts/' + selectedLocation.id;
+                                                    } else {
+                                                        setShowFullArticle(true);
+                                                    }
+                                                }}
+                                                className="w-full py-5 rounded-[32px] bg-primary text-white text-xs font-black uppercase tracking-[0.2em] flex items-center justify-center gap-3 shadow-[0_10px_20px_rgba(139,0,0,0.3)] hover:scale-105 hover:shadow-[0_0_20px_rgba(197,160,89,0.8)] transition-all group"
+                                            >
+                                                <Compass className="w-5 h-5 animate-pulse" />
+                                                {lang === 'ar' ? `سافر إلى عالم ${selectedLocation.name.ar}` : `Journey back to ${selectedLocation.name.en}`}
+                                            </button>
+                                        );
+                                    })()}
                                 </div>
                             </div>
                         </motion.div>
@@ -306,16 +317,16 @@ function CityCard({
             }}
             className="group cursor-pointer relative h-[380px] snap-center min-w-[85vw] md:min-w-0 flex-shrink-0" // Fixed height to maintain HD visual consistency
         >
-            <div className="moro-glass hover:bg-white p-6 rounded-3xl border border-primary/10 hover:border-primary transition-all duration-500 hover:shadow-[0_0_30px_rgba(197,160,89,0.4)] h-full overflow-hidden flex flex-col justify-between">
+            <div className="moro-glass hover:bg-black/80 p-6 rounded-3xl border border-primary/10 hover:border-primary transition-all duration-500 hover:shadow-[0_0_30px_rgba(197,160,89,0.4)] h-full overflow-hidden flex flex-col justify-between bg-black/60">
 
                 {/* Dynamic HD Background Image */}
                 <div className="absolute inset-0 z-0 overflow-hidden rounded-3xl pointer-events-none">
                     {imageUrl && (
                         <div
-                            className={`absolute inset-0 bg-cover bg-center transition-opacity duration-1000 ${isLoading ? 'opacity-0' : 'opacity-10 group-hover:opacity-20'}`}
-                            style={{ backgroundImage: `url(${imageUrl})`, filter: 'grayscale(40%) contrast(110%)' }}
+                            className={`absolute inset-0 bg-cover bg-center transition-opacity duration-1000 ${isLoading ? 'opacity-0' : 'opacity-30 group-hover:opacity-40'}`}
+                            style={{ backgroundImage: `url(${imageUrl})`, filter: 'grayscale(20%) contrast(110%)' }}
                         >
-                            <div className="absolute inset-0 bg-gradient-to-t from-white/90 via-white/70 to-white/40" />
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/70 to-black/40" />
                         </div>
                     )}
                 </div>
@@ -330,17 +341,17 @@ function CityCard({
                         <SoulIcon soul={loc.visualSoul} className="w-6 h-6 text-white transition-colors duration-500" />
                     </div>
                     <div className="flex flex-col items-end gap-1.5">
-                        <span className="text-[8px] font-black uppercase tracking-tighter bg-black/40 group-hover:bg-black/5 backdrop-blur-md border border-white/10 group-hover:border-primary/20 text-white group-hover:text-black px-2 py-1 rounded-full shadow-sm transition-colors">
+                        <span className="text-[8px] font-black uppercase tracking-tighter bg-black/40 group-hover:bg-primary/20 backdrop-blur-md border border-white/10 group-hover:border-primary/50 text-white px-2 py-1 rounded-full shadow-sm transition-colors">
                             {loc.type}
                         </span>
-                        <span className="text-[8px] font-medium text-white/50 group-hover:text-black/50 uppercase tracking-widest bg-black/20 group-hover:bg-black/5 backdrop-blur-sm px-2 py-0.5 rounded-full border border-white/5 group-hover:border-primary/10 transition-colors">
+                        <span className="text-[8px] font-medium text-white/70 uppercase tracking-widest bg-black/20 backdrop-blur-sm px-2 py-0.5 rounded-full border border-white/5 transition-colors">
                             {loc.climate}
                         </span>
                     </div>
                 </div>
 
                 <div className="relative z-10 pointer-events-none flex-grow flex flex-col justify-end pb-4">
-                    <h3 className="text-2xl font-black text-white group-hover:text-black mb-1 transition-colors drop-shadow-md group-hover:drop-shadow-none leading-tight">
+                    <h3 className="text-2xl font-black text-white group-hover:text-moro-gold mb-1 transition-colors drop-shadow-md leading-tight">
                         {loc.name[lang]}
                     </h3>
                     <p className="text-[10px] text-primary group-hover:text-primary/80 font-bold uppercase tracking-widest mb-4">
@@ -349,12 +360,12 @@ function CityCard({
 
                     <div className="w-8 h-1 bg-gradient-to-r from-primary to-transparent mb-4 group-hover:w-full transition-all duration-700 opacity-50 group-hover:opacity-100" />
 
-                    <p className="text-xs text-white/70 group-hover:text-black/80 leading-relaxed tracking-wide line-clamp-2 italic font-medium transition-colors">
+                    <p className="text-xs text-white/80 group-hover:text-white leading-relaxed tracking-wide line-clamp-2 italic font-medium transition-colors">
                         "{loc.history[lang]}"
                     </p>
                 </div>
 
-                <div className="mt-auto flex items-center gap-2 text-[9px] font-black uppercase tracking-widest text-primary group-hover:text-black transition-all relative z-10">
+                <div className="mt-auto flex items-center gap-2 text-[9px] font-black uppercase tracking-widest text-primary transition-all relative z-10">
                     <div className="w-6 h-6 rounded-full bg-black/40 group-hover:bg-primary border border-white/10 group-hover:border-primary flex items-center justify-center transition-colors">
                         <Compass className="w-3 h-3 text-white transition-all group-hover:animate-pulse" />
                     </div>

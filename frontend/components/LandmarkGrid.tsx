@@ -223,7 +223,7 @@ function LandmarkCard({
             }}
             className="group cursor-pointer snap-center min-w-[85vw] md:min-w-0 flex-shrink-0"
         >
-            <div className="moro-glass hover:bg-white p-8 rounded-[40px] border border-primary/10 hover:border-primary transition-all duration-700 hover:shadow-[0_0_30px_rgba(197,160,89,0.4)] relative overflow-hidden h-80 flex flex-col justify-between">
+            <div className="moro-glass hover:bg-black/80 p-8 rounded-[40px] border border-primary/10 hover:border-primary transition-all duration-700 hover:shadow-[0_0_30px_rgba(197,160,89,0.4)] relative overflow-hidden h-80 flex flex-col justify-between bg-black/60">
 
                 {/* Dynamic HD Background Image */}
                 <div className="absolute inset-0 z-0 overflow-hidden rounded-[40px]">
@@ -232,7 +232,7 @@ function LandmarkCard({
                             className={`absolute inset-0 bg-cover bg-center transition-opacity duration-1000 ${isLoading ? 'opacity-0' : 'opacity-[0.15] group-hover:opacity-30'}`}
                             style={{ backgroundImage: `url(${imageUrl})`, filter: 'grayscale(30%) contrast(110%)' }}
                         >
-                            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 group-hover:from-white group-hover:via-white/60 to-transparent transition-colors duration-700" />
+                            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 group-hover:from-black/90 group-hover:via-black/60 to-transparent transition-colors duration-700" />
                         </div>
                     )}
                 </div>
@@ -246,14 +246,14 @@ function LandmarkCard({
                     <div className="w-16 h-16 rounded-3xl bg-black/40 backdrop-blur-md border border-white/10 flex items-center justify-center mb-6 group-hover:bg-primary transition-all duration-500 shadow-sm">
                         <LandmarkSoulIcon soul={landmark.visualSoul} className="w-8 h-8 text-white transition-colors duration-500" />
                     </div>
-                    <h3 className="text-2xl font-black text-white group-hover:text-black mb-2 drop-shadow-md group-hover:drop-shadow-none transition-colors">{landmark.name[lang]}</h3>
-                    <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/40 backdrop-blur-md text-white group-hover:text-primary group-hover:bg-black/5 text-[10px] font-bold uppercase tracking-widest border border-white/10 w-fit mt-1 transition-colors">
+                    <h3 className="text-2xl font-black text-white group-hover:text-primary mb-2 drop-shadow-md transition-colors">{landmark.name[lang]}</h3>
+                    <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/40 backdrop-blur-md text-white group-hover:text-primary group-hover:bg-primary/20 text-[10px] font-bold uppercase tracking-widest border border-white/10 w-fit mt-1 transition-colors">
                         <MapPin className="w-3 h-3" />
                         {landmark.city[lang]}
                     </div>
                 </div>
 
-                <div className="relative z-10 flex items-center gap-2 text-[9px] font-black uppercase tracking-[0.2em] text-white/60 group-hover:text-black transition-all">
+                <div className="relative z-10 flex items-center gap-2 text-[9px] font-black uppercase tracking-[0.2em] text-white/60 group-hover:text-primary transition-all">
                     <div className="w-6 h-6 rounded-full bg-black/40 group-hover:bg-primary border border-white/10 group-hover:border-primary flex items-center justify-center transition-colors">
                         <Compass className="w-3 h-3 text-white transition-all group-hover:animate-pulse" />
                     </div>

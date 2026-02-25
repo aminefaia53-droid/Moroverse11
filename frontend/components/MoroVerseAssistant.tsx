@@ -272,7 +272,7 @@ export default function MoroVerseAssistant() {
                         exit={{ opacity: 0, scale: 0.8, x: 20 }}
                         className="bg-white/90 backdrop-blur-md border border-primary/20 shadow-2xl p-4 rounded-3xl rounded-tr-none md:rounded-tr-3xl md:rounded-br-none max-w-[200px] md:max-w-xs mt-10 md:mt-0 md:mb-10 mr-[-10px] md:mr-[-20px]"
                     >
-                        <p className="text-sm font-arabic font-bold text-foreground text-right leading-relaxed" dir="rtl">
+                        <p className="text-sm font-arabic font-bold text-slate-900 text-right leading-relaxed" dir="rtl">
                             {message}
                         </p>
                     </motion.div>
