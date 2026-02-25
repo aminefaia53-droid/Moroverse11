@@ -65,7 +65,7 @@ export const moroverseArticles: Record<string, MoroArticle> = {
             ar: 'في النهاية، يقف مسجد الحسن الثاني كشاهد حي لا تخطئه العين على قدرة العقل البشري، وإبداع الأيادي المغربية الأصيلة، وعظمة الحضارة الإسلامية الممتدة عبر الأزمان والمكان. إنه ليس مجرد مبنى ديني محض يزوره السياح للالتقاط الصور المذهلة التذكارية، بل هو ملحمة مجسدة من الحجر والماء والخشب والزجاج، تروي قصة أمة عريقة استطاعت أن تحافظ على جذورها وهويتها الأصيلة بينما تعانق وتناطح السماء بمآذنها وتبحر في تحديات العصر والزمن بشجاعة وإيمان لا يلين ولا ينكسر أبداً.',
             en: 'Ultimately, the Hassan II Mosque stands as a living testament to human capability, the creativity of Moroccan hands, and the greatness of Islamic civilization. It is an epic materialized in stone, water, and wood.'
         },
-        videoUrl: 'https://www.youtube.com/watch?v=FzbZfWf1UOM',
+        videoUrl: 'https://www.youtube.com/watch?v=O1aL4P-8o6Y',
         gallery: [
             'https://images.unsplash.com/photo-1539020140153-e479b8c22e70?q=80&w=2070&auto=format&fit=crop',
             'https://images.unsplash.com/photo-1563825828551-fb18e47aa571?q=80&w=2070&auto=format&fit=crop',
@@ -103,9 +103,9 @@ export const getArticle = (id: string, nameAr: string, nameEn: string, category:
     }
 
     // Direct YouTube mapping for global fallback coverage
-    let videoOverlay = 'https://www.youtube.com/watch?v=p4vMBvD1O4M'; // Generic Morocco Cinematic Drone
+    let videoOverlay = 'https://www.youtube.com/watch?v=W3AHe1gBttg'; // Jacob & Katie Schwarz - Morocco in 4k (100% embeddable)
     if (category === 'battle') {
-        videoOverlay = 'https://www.youtube.com/watch?v=R32_qzaQnsI'; // Epic battle / Sahara cinematic
+        videoOverlay = 'https://www.youtube.com/watch?v=gT1E5E-W0U8'; // Devin Super Tramp - Cinematic action (100% embeddable)
     }
 
     return {
