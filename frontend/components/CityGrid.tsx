@@ -157,6 +157,7 @@ export default function CityGrid({ lang }: { lang: 'en' | 'ar' }) {
                             initial={{ opacity: 0, scale: 0.92, y: 40 }}
                             animate={{ opacity: 1, scale: 1, y: 0 }}
                             exit={{ opacity: 0, scale: 0.9, y: 40 }}
+                            onClick={(e) => e.stopPropagation()}
                             className="relative w-full max-w-4xl bg-black/95 rounded-[32px] shadow-[0_0_50px_rgba(197,160,89,0.3)] border border-[#c5a059] overflow-y-auto max-h-[90vh]"
                         >
                             {/* Fact Sheet Header */}
