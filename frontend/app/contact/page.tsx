@@ -25,7 +25,7 @@ export default function ContactPage() {
             </nav>
 
             {/* Hero */}
-            <section className="relative py-24 px-8 overflow-hidden bg-slate-50 text-center">
+            <section className="relative py-24 px-8 overflow-hidden bg-black text-center">
                 <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cream-paper.png')] opacity-20" />
                 <div className="relative z-10 max-w-4xl mx-auto">
                     <span className="text-primary text-[10px] font-black uppercase tracking-[0.5em] mb-6 block">Direct Communication</span>
@@ -47,15 +47,15 @@ export default function ContactPage() {
                         <div className="space-y-6">
                             <div className="space-y-2">
                                 <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest mr-4">اسمك الكريم</label>
-                                <input type="text" className="w-full p-4 bg-slate-50 rounded-2xl border border-slate-100 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all" placeholder="محمد المغربي" />
+                                <input type="text" className="w-full p-4 bg-black/40 text-white rounded-2xl border border-[#c5a059]/30 focus:border-[#c5a059] focus:ring-1 focus:ring-[#c5a059] outline-none transition-all placeholder:text-white/30" placeholder="محمد المغربي" />
                             </div>
                             <div className="space-y-2">
                                 <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest mr-4">البريد الإلكتروني</label>
-                                <input type="email" className="w-full p-4 bg-slate-50 rounded-2xl border border-slate-100 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all" placeholder="contact@domain.ma" />
+                                <input type="email" className="w-full p-4 bg-black/40 text-white rounded-2xl border border-[#c5a059]/30 focus:border-[#c5a059] focus:ring-1 focus:ring-[#c5a059] outline-none transition-all placeholder:text-white/30" placeholder="contact@domain.ma" />
                             </div>
                             <div className="space-y-2">
                                 <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest mr-4">موضوع الرسالة</label>
-                                <textarea rows={4} className="w-full p-4 bg-slate-50 rounded-2xl border border-slate-100 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all" placeholder="كيف يمكننا خدمتك؟" />
+                                <textarea rows={4} className="w-full p-4 bg-black/40 text-white rounded-2xl border border-[#c5a059]/30 focus:border-[#c5a059] focus:ring-1 focus:ring-[#c5a059] outline-none transition-all placeholder:text-white/30" placeholder="كيف يمكننا خدمتك؟" />
                             </div>
                             <button className="w-full py-5 bg-primary text-white font-black text-xs uppercase tracking-[0.3em] rounded-2xl hover:bg-slate-900 transition-all shadow-xl shadow-primary/20">
                                 إرسال إلى الأرشيف
@@ -113,7 +113,7 @@ export default function ContactPage() {
             </main>
 
             {/* Footer */}
-            <footer className="py-12 bg-slate-50 text-center border-t border-slate-100 px-8">
+            <footer className="py-12 bg-black text-center border-t border-[#c5a059]/20 px-8">
                 <div className="flex justify-center gap-8 mb-8">
                     <Share2 className="text-slate-300 hover:text-primary transition-colors cursor-pointer" size={20} />
                     <MessageSquare className="text-slate-300 hover:text-primary transition-colors cursor-pointer" size={20} />

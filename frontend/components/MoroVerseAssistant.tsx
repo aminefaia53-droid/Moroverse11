@@ -273,7 +273,7 @@ export default function MoroVerseAssistant() {
                         initial={{ opacity: 0, scale: 0.8, x: 20 }}
                         animate={{ opacity: 1, scale: 1, x: 0 }}
                         exit={{ opacity: 0, scale: 0.8, x: 20 }}
-                        className="bg-white border-2 border-[#c5a059] shadow-[0_0_20px_rgba(197,160,89,0.5)] p-5 rounded-3xl rounded-tr-none md:rounded-tr-3xl md:rounded-br-none max-w-[200px] md:max-w-xs mt-10 md:mt-0 md:mb-10 mr-[-10px] md:mr-[-20px]"
+                        className="assistant-bubble bg-white border-2 border-[#c5a059] shadow-[0_0_20px_rgba(197,160,89,0.5)] p-5 rounded-3xl rounded-tr-none md:rounded-tr-3xl md:rounded-br-none max-w-[200px] md:max-w-xs mt-10 md:mt-0 md:mb-10 mr-[-10px] md:mr-[-20px]"
                     >
                         <p className="text-base font-arabic font-extrabold text-black text-right leading-relaxed" dir="rtl">
                             {message}

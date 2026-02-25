@@ -53,14 +53,14 @@ export default function AboutPage() {
                 </section>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-                    <div className="p-8 rounded-[40px] bg-slate-50 border border-slate-100 space-y-4">
+                    <div className="p-8 rounded-[40px] bg-black/40 border border-[#c5a059]/30 space-y-4">
                         <History className="text-gold-royal w-10 h-10 mb-4" />
                         <h3 className="text-xl font-bold text-slate-900 font-arabic">توثيق البطولات</h3>
                         <p className="text-slate-500 font-arabic leading-relaxed">
                             نؤرخ للمعارك الكبرى التي شكلت سيادة المغرب، من الزلاقة إلى المسيرة الخضراء، بأسلوب سردي رفيع.
                         </p>
                     </div>
-                    <div className="p-8 rounded-[40px] bg-slate-50 border border-slate-100 space-y-4">
+                    <div className="p-8 rounded-[40px] bg-black/40 border border-[#c5a059]/30 space-y-4">
                         <Landmark className="text-gold-royal w-10 h-10 mb-4" />
                         <h3 className="text-xl font-bold text-slate-900 font-arabic">إحياء المعالم</h3>
                         <p className="text-slate-500 font-arabic leading-relaxed">
@@ -84,7 +84,7 @@ export default function AboutPage() {
             </main>
 
             {/* Footer */}
-            <footer className="py-12 bg-slate-50 text-center border-t border-slate-100">
+            <footer className="py-12 bg-black text-center border-t border-[#c5a059]/20">
                 <p className="text-[10px] font-black uppercase tracking-[0.5em] text-slate-400">MoroVerse Royal Infrastructure © 2026</p>
             </footer>
         </div>

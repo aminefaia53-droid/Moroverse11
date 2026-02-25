@@ -8,7 +8,7 @@ import SmartLink from '../../../components/SmartLink';
 
 const ArticleReaderPage = ({ article }: { article: MoroArticle }) => {
     return (
-        <div className="min-h-screen bg-slate-50">
+        <div className="min-h-screen bg-black">
             {/* Navigation */}
             <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-gold-royal/10 px-8 py-4 flex items-center justify-between">
                 <Link

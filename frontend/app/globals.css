@@ -162,3 +162,42 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: rgba(197, 160, 89, 0.5);
 }
+
+/* 
+ * MoroVerse Fatal Fix: Absolute Dark Mode Enforcement
+ * This ensures no white backgrounds remain on the site.
+ */
+* {
+  background-color: black !important;
+  color: white !important;
+}
+
+/* Explicit exclusion for the Assistant Bubble for readability */
+.assistant-bubble {
+  background-color: white !important;
+  color: black !important;
+  border-color: #c5a059 !important;
+}
+
+.assistant-bubble p,
+.assistant-bubble span {
+  background-color: transparent !important;
+  color: black !important;
+}
+
+/* Titles and Gold accents */
+h1,
+h2,
+h3,
+.text-gold-royal,
+.text-\[\#c5a059\],
+.text-\[\#D4AF37\] {
+  color: #D4AF37 !important;
+}
+
+/* Ensure images and SVGs aren't blacked out by background-color: black */
+img,
+svg,
+canvas {
+  background-color: transparent !important;
+}
