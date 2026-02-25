@@ -267,7 +267,6 @@ export default function MoroVerseAssistant() {
             transition={{ type: 'spring', stiffness: 300, damping: 25 }}
             className={`fixed top-1.5 right-1 md:top-auto md:bottom-6 md:right-6 z-[9999] flex items-start md:items-end gap-2 md:gap-4 origin-top-right md:origin-bottom-right scale-50 md:scale-100 ${isHovered ? 'pointer-events-none' : 'pointer-events-auto cursor-grab active:cursor-grabbing'}`}
         >
-            {/* Speech Bubble */}
             <AnimatePresence>
                 {showBubble && !isHovered && (
                     <motion.div
@@ -276,7 +275,7 @@ export default function MoroVerseAssistant() {
                         exit={{ opacity: 0, scale: 0.8, x: 20 }}
                         className="bg-white border-2 border-[#c5a059] shadow-[0_0_20px_rgba(197,160,89,0.5)] p-5 rounded-3xl rounded-tr-none md:rounded-tr-3xl md:rounded-br-none max-w-[200px] md:max-w-xs mt-10 md:mt-0 md:mb-10 mr-[-10px] md:mr-[-20px]"
                     >
-                        <p className="text-base font-arabic font-extrabold text-slate-900 text-right leading-relaxed" dir="rtl">
+                        <p className="text-base font-arabic font-extrabold text-black text-right leading-relaxed" dir="rtl">
                             {message}
                         </p>
                     </motion.div>

@@ -22,8 +22,8 @@
 }
 
 :root {
-  --background: #1a0404;
-  /* Very deep dark red/black for true cinematic depth */
+  --background: #000000;
+  /* Cinematic deep pure black */
   --foreground: #ffffff;
   --primary: #c5a059;
   /* Matte Gold as primary action color */

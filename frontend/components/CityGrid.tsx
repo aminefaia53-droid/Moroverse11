@@ -149,18 +149,17 @@ export default function CityGrid({ lang }: { lang: 'en' | 'ar' }) {
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             exit={{ opacity: 0 }}
-                            onClick={() => setSelectedLocation(null)}
-                            className="absolute inset-0 bg-white/40 backdrop-blur-xl"
+                            className="absolute inset-0 bg-black/80 backdrop-blur-xl"
                         />
 
                         <motion.div
                             initial={{ opacity: 0, scale: 0.9, y: 40 }}
                             animate={{ opacity: 1, scale: 1, y: 0 }}
-                            exit={{ opacity: 0, scale: 0.9, y: 40 }}
-                            className="relative w-full max-w-4xl bg-white rounded-[40px] shadow-2xl border border-primary/10 overflow-hidden"
+                            className="relative w-full max-w-4xl bg-black/90 rounded-[40px] shadow-[0_0_50px_rgba(197,160,89,0.2)] border border-[#c5a059] overflow-hidden"
                         >
                             {/* Fact Sheet Header */}
-                            <div className="relative h-64 bg-slate-50 flex items-center justify-center overflow-hidden">
+                            <div className="relative h-64 bg-black/50 border-b border-[#c5a059]/30 flex items-center justify-center overflow-hidden">
+                                <div className="absolute inset-0 opacity-[0.05] pointer-events-none" style={{ backgroundImage: "url('https://www.transparenttextures.com/patterns/arabesque.png')" }} />
                                 <div className="absolute inset-0 opacity-10 flex items-center justify-center">
                                     <SoulIcon soul={selectedLocation.visualSoul} className="w-96 h-96 text-primary animate-pulse" />
                                 </div>
@@ -172,22 +171,22 @@ export default function CityGrid({ lang }: { lang: 'en' | 'ar' }) {
                                                 dangerouslySetInnerHTML={{ __html: JSON.stringify(generateArticleSchema(getArticle(selectedLocation.id, selectedLocation.name.ar, 'city'))) }}
                                             />
                                         )}
-                                        <div className="p-6 bg-white rounded-full shadow-2xl border border-primary/10">
-                                            <SoulIcon soul={selectedLocation.visualSoul} className="w-12 h-12 text-primary" />
+                                        <div className="p-6 bg-black rounded-full shadow-[0_0_30px_rgba(197,160,89,0.3)] border border-[#c5a059]">
+                                            <SoulIcon soul={selectedLocation.visualSoul} className="w-12 h-12 text-[#c5a059]" />
                                         </div>
                                     </div>
-                                    <h2 className="text-4xl font-black text-foreground">{selectedLocation.name[lang]}</h2>
+                                    <h2 className="text-5xl font-black text-[#c5a059] font-arabic drop-shadow-md">{selectedLocation.name[lang]}</h2>
                                     <div className="flex items-center justify-center gap-4">
-                                        <span className="px-4 py-1.5 rounded-full bg-primary text-white text-[10px] font-black uppercase tracking-widest">{selectedLocation.type}</span>
-                                        <span className="px-4 py-1.5 rounded-full bg-slate-100 text-foreground/40 text-[10px] font-black uppercase tracking-widest flex items-center gap-2">
-                                            <ClimateIcon climate={selectedLocation.climate} className="w-3 h-3" />
+                                        <span className="px-4 py-1.5 rounded-full bg-[#c5a059]/20 text-[#c5a059] border border-[#c5a059]/50 text-[10px] font-black uppercase tracking-widest">{selectedLocation.type}</span>
+                                        <span className="px-4 py-1.5 rounded-full bg-black/40 text-white/80 border border-white/10 text-[10px] font-black uppercase tracking-widest flex items-center gap-2">
+                                            <ClimateIcon climate={selectedLocation.climate} className="w-3 h-3 text-[#c5a059]" />
                                             {selectedLocation.climate}
                                         </span>
                                     </div>
                                 </div>
                                 <button
                                     onClick={() => setSelectedLocation(null)}
-                                    className="absolute top-8 right-8 p-3 rounded-2xl bg-white/80 hover:bg-white transition-all text-foreground/40 hover:text-primary z-20 shadow-lg"
+                                    className="absolute top-8 right-8 p-3 rounded-2xl bg-black/80 border border-[#c5a059] hover:bg-[#c5a059]/20 transition-all text-white/60 hover:text-white z-20 shadow-lg"
                                 >
                                     <X className="w-6 h-6" />
                                 </button>
@@ -197,28 +196,28 @@ export default function CityGrid({ lang }: { lang: 'en' | 'ar' }) {
                             <div className="p-12 grid grid-cols-1 md:grid-cols-2 gap-12">
                                 <div className="space-y-8">
                                     <div>
-                                        <h4 className="flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.2em] text-primary mb-4">
+                                        <h4 className="flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.2em] text-[#c5a059] mb-4">
                                             <Compass className="w-4 h-4" />
                                             {lang === 'ar' ? 'الموقع الجغرافي' : 'GEOGRAPHIC LOCATION'}
                                         </h4>
                                         <div className="space-y-4">
-                                            <div className="flex justify-between items-center py-3 border-b border-primary/5">
-                                                <span className="text-[11px] font-bold text-foreground/30 uppercase">{lang === 'ar' ? 'الجهة' : 'REGION'}</span>
-                                                <span className="text-sm font-bold text-foreground/70">{selectedLocation.regionName[lang]}</span>
+                                            <div className="flex justify-between items-center py-3 border-b border-[#c5a059]/10">
+                                                <span className="text-[11px] font-bold text-white/50 uppercase">{lang === 'ar' ? 'الجهة' : 'REGION'}</span>
+                                                <span className="text-sm font-bold text-white">{selectedLocation.regionName[lang]}</span>
                                             </div>
-                                            <div className="flex justify-between items-center py-3 border-b border-primary/5">
-                                                <span className="text-[11px] font-bold text-foreground/30 uppercase">{lang === 'ar' ? 'الإقليم' : 'PROVINCE'}</span>
-                                                <span className="text-sm font-bold text-foreground/70">{selectedLocation.province || (lang === 'ar' ? 'مركزي' : 'Autonomous')}</span>
+                                            <div className="flex justify-between items-center py-3 border-b border-[#c5a059]/10">
+                                                <span className="text-[11px] font-bold text-white/50 uppercase">{lang === 'ar' ? 'الإقليم' : 'PROVINCE'}</span>
+                                                <span className="text-sm font-bold text-white">{selectedLocation.province || (lang === 'ar' ? 'مركزي' : 'Autonomous')}</span>
                                             </div>
                                         </div>
                                     </div>
 
                                     <div>
-                                        <h4 className="flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.2em] text-primary mb-4">
+                                        <h4 className="flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.2em] text-[#c5a059] mb-4">
                                             <Info className="w-4 h-4" />
                                             {lang === 'ar' ? 'النبذة التاريخية' : 'HISTORICAL BRIEF'}
                                         </h4>
-                                        <p className="text-sm text-foreground/60 leading-relaxed tracking-wide font-serif italic text-justify">
+                                        <p className="text-lg text-white/90 leading-relaxed tracking-wide font-serif italic text-justify">
                                             "{selectedLocation.history[lang]}"
                                         </p>
                                     </div>

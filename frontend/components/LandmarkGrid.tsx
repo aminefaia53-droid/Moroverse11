@@ -83,17 +83,18 @@ export default function LandmarkGrid({ lang }: { lang: 'en' | 'ar' }) {
                             animate={{ opacity: 1 }}
                             exit={{ opacity: 0 }}
                             onClick={() => setSelectedLandmark(null)}
-                            className="absolute inset-0 bg-white/60 backdrop-blur-2xl"
+                            className="absolute inset-0 bg-black/80 backdrop-blur-2xl"
                         />
 
                         <motion.div
                             initial={{ opacity: 0, scale: 0.9, y: 40 }}
                             animate={{ opacity: 1, scale: 1, y: 0 }}
                             exit={{ opacity: 0, scale: 0.9, y: 40 }}
-                            className="relative w-full max-w-4xl bg-white rounded-[50px] shadow-2xl border border-primary/10 overflow-hidden"
+                            className="relative w-full max-w-4xl bg-black/90 rounded-[50px] shadow-[0_0_50px_rgba(197,160,89,0.2)] border border-[#c5a059] overflow-hidden"
                         >
                             {/* Header Visual */}
-                            <div className="h-64 bg-slate-50 flex items-center justify-center relative overflow-hidden">
+                            <div className="h-64 bg-black/50 border-b border-[#c5a059]/30 flex items-center justify-center relative overflow-hidden">
+                                <div className="absolute inset-0 opacity-[0.05] pointer-events-none" style={{ backgroundImage: "url('https://www.transparenttextures.com/patterns/arabesque.png')" }} />
                                 <div className="absolute inset-0 opacity-10 flex items-center justify-center animate-pulse">
                                     <LandmarkSoulIcon soul={selectedLandmark.visualSoul} className="w-[500px] h-[500px] text-primary" />
                                 </div>
@@ -104,15 +105,15 @@ export default function LandmarkGrid({ lang }: { lang: 'en' | 'ar' }) {
                                             dangerouslySetInnerHTML={{ __html: JSON.stringify(generateArticleSchema(getArticle(selectedLandmark.id, selectedLandmark.name.ar, 'landmark'))) }}
                                         />
                                     )}
-                                    <div className="inline-block p-6 rounded-full bg-white shadow-xl border border-primary/10 mb-6">
-                                        <LandmarkSoulIcon soul={selectedLandmark.visualSoul} className="w-12 h-12 text-primary" />
+                                    <div className="inline-block p-6 rounded-full bg-black shadow-[0_0_30px_rgba(197,160,89,0.3)] border border-[#c5a059] mb-6">
+                                        <LandmarkSoulIcon soul={selectedLandmark.visualSoul} className="w-12 h-12 text-[#c5a059]" />
                                     </div>
-                                    <h2 className="text-4xl font-black text-foreground">{selectedLandmark.name[lang]}</h2>
-                                    <p className="text-[11px] font-black text-primary uppercase tracking-[0.3em] mt-2">{selectedLandmark.city[lang]}</p>
+                                    <h2 className="text-5xl font-black text-[#c5a059] font-arabic drop-shadow-md">{selectedLandmark.name[lang]}</h2>
+                                    <p className="text-[11px] font-black text-white/80 uppercase tracking-[0.3em] mt-2">{selectedLandmark.city[lang]}</p>
                                 </div>
                                 <button
                                     onClick={() => setSelectedLandmark(null)}
-                                    className="absolute top-10 right-10 p-3 rounded-2xl bg-white/80 hover:bg-white transition-all text-foreground/40 hover:text-primary z-20 shadow-lg"
+                                    className="absolute top-10 right-10 p-3 rounded-2xl bg-black/80 border border-[#c5a059] hover:bg-[#c5a059]/20 transition-all text-white/60 hover:text-white z-20 shadow-lg"
                                 >
                                     <X className="w-6 h-6" />
                                 </button>
@@ -122,37 +123,37 @@ export default function LandmarkGrid({ lang }: { lang: 'en' | 'ar' }) {
                             <div className="p-12 md:p-16 grid grid-cols-1 md:grid-cols-2 gap-16">
                                 <div className="space-y-10">
                                     <div>
-                                        <h4 className="flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.3em] text-primary/40 mb-6">
+                                        <h4 className="flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.3em] text-[#c5a059] mb-6">
                                             <Compass className="w-4 h-4" />
                                             {lang === 'ar' ? 'التوثيق الزمني' : 'TEMPORAL DOCUMENTATION'}
                                         </h4>
-                                        <div className="p-6 rounded-3xl bg-slate-50 border border-primary/5 space-y-4">
-                                            <div className="flex justify-between items-center pb-4 border-b border-primary/5">
-                                                <span className="text-[11px] font-bold text-foreground/30 uppercase">{lang === 'ar' ? 'تاريخ التأسيس' : 'FOUNDED'}</span>
-                                                <span className="text-sm font-black text-foreground/70">{selectedLandmark.foundation[lang]}</span>
+                                        <div className="p-6 rounded-3xl bg-black/40 border border-[#c5a059]/20 space-y-4">
+                                            <div className="flex justify-between items-center pb-4 border-b border-[#c5a059]/10">
+                                                <span className="text-[11px] font-bold text-white/50 uppercase">{lang === 'ar' ? 'تاريخ التأسيس' : 'FOUNDED'}</span>
+                                                <span className="text-sm font-black text-white">{selectedLandmark.foundation[lang]}</span>
                                             </div>
                                             <div className="flex justify-between items-center pt-2">
-                                                <span className="text-[11px] font-bold text-foreground/30 uppercase">{lang === 'ar' ? 'نمط العمارة' : 'STYLE'}</span>
-                                                <span className="text-sm font-black text-foreground/70">{selectedLandmark.visualSoul}</span>
+                                                <span className="text-[11px] font-bold text-white/50 uppercase">{lang === 'ar' ? 'نمط العمارة' : 'STYLE'}</span>
+                                                <span className="text-sm font-black text-white">{selectedLandmark.visualSoul}</span>
                                             </div>
                                         </div>
                                     </div>
 
                                     <div>
-                                        <h4 className="flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.3em] text-primary/40 mb-6">
+                                        <h4 className="flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.3em] text-[#c5a059] mb-6">
                                             <Info className="w-4 h-4" />
                                             {lang === 'ar' ? 'النبذة المعمارية والسيادية' : 'ARCHITECTURAL BRIEF'}
                                         </h4>
-                                        <p className="text-lg text-foreground/60 leading-relaxed tracking-wide font-serif italic text-justify">
+                                        <p className="text-lg text-white/90 leading-relaxed tracking-wide font-serif italic text-justify">
                                             "{selectedLandmark.history[lang]}"
                                         </p>
                                     </div>
                                 </div>
 
                                 <div className="flex flex-col justify-center">
-                                    <div className="p-10 rounded-[40px] bg-primary/5 border border-primary/10 relative overflow-hidden">
-                                        <LandmarkIcon className="absolute -left-10 -top-10 w-40 h-40 text-primary opacity-[0.03]" />
-                                        <p className="text-[11px] text-primary/60 font-medium leading-relaxed tracking-wide relative z-10 italic">
+                                    <div className="p-10 rounded-[40px] bg-black/40 border border-[#c5a059]/20 relative overflow-hidden">
+                                        <LandmarkIcon className="absolute -left-10 -top-10 w-40 h-40 text-[#c5a059] opacity-[0.05]" />
+                                        <p className="text-[11px] text-[#c5a059] font-medium leading-relaxed tracking-wide relative z-10 italic">
                                             {lang === 'ar'
                                                 ? 'تُعد هذه المعلمة جزءاً أصيلاً من الذاكرة الجماعية المغربية. يوثق مشروع MoroVerse إبداع الصانع المغربي وعظمة الدول التي تعاقبت على حكم المملكة، لتبقى منارة للأجيال القادمة.'
                                                 : 'This landmark is an integral part of Moroccan collective memory. The MoroVerse project documents the creativity of Moroccan artisans and the grandeur of the dynasties that ruled the Kingdom.'
