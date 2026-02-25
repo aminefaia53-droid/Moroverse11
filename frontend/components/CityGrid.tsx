@@ -320,15 +320,18 @@ function CityCard({
         >
             <div className="relative h-full w-full rounded-xl border-2 border-[#c5a059]/20 hover:border-[#c5a059]/80 transition-all duration-700 overflow-hidden shadow-2xl glass-card-elite group-hover:shadow-[0_20px_60px_rgba(197,160,89,0.25)]">
 
-                {/* Cinematic Background Image */}
-                <div className="absolute inset-0 z-0">
+                {/* Image Background */}
+                <div className="absolute inset-0 z-0 bg-black">
                     <img
-                        src={(loc.imageUrl || imageUrl) ?? undefined}
+                        src={loc.imageUrl || imageUrl || undefined}
                         alt={loc.name[lang]}
-                        className={`w-full h-full object-cover transition-all duration-1000 transform group-hover:scale-110 ${isLoading ? 'opacity-0' : 'opacity-90 group-hover:opacity-100'}`}
+                        className={`w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110 ${isLoading ? 'opacity-0' : 'opacity-50 group-hover:opacity-60'}`}
+                        onError={(e) => {
+                            e.currentTarget.src = 'https://images.unsplash.com/photo-1549429440-660c608fba63?q=80&w=2070&auto=format&fit=crop';
+                        }}
                     />
                     {/* Multi-layered Cinematic Gradient */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-80" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent opacity-80" />
                     <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-transparent opacity-40" />
                 </div>
 

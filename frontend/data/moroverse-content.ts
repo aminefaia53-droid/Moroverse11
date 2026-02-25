@@ -4,8 +4,8 @@ export interface ArticleSection {
 }
 
 export interface ArticleFAQ {
-    q: { en: string; ar: string };
-    a: { en: string; ar: string };
+    question: { en: string; ar: string };
+    answer: { en: string; ar: string };
 }
 
 export interface MoroArticle {
@@ -49,23 +49,23 @@ export const moroverseArticles: Record<string, MoroArticle> = {
         ],
         faqs: [
             {
-                q: { ar: "متى تم بناء مسجد الحسن الثاني؟", en: "When was the Hassan II Mosque built?" },
-                a: { ar: "تم الانتهاء من بنائه عام 1993 بعد سنوات من العمل المتواصل بمشاركة آلاف الحرفيين.", en: "Its construction was completed in 1993 after years of continuous work involving thousands of artisans." }
+                question: { ar: "متى تم بناء مسجد الحسن الثاني؟", en: "When was the Hassan II Mosque built?" },
+                answer: { ar: "تم الانتهاء من بنائه عام 1993 بعد سنوات من العمل المتواصل بمشاركة آلاف الحرفيين.", en: "Its construction was completed in 1993 after years of continuous work involving thousands of artisans." }
             },
             {
-                q: { ar: "ما هو ارتفاع مئذنة المسجد؟", en: "What is the height of the mosque's minaret?" },
-                a: { ar: "يبلغ ارتفاع المئذنة 210 أمتار، مما يجعلها من أعلى المآذن في العالم.", en: "The minaret is 210 meters high, making it one of the tallest minarets in the world." }
+                question: { ar: "ما هو ارتفاع مئذنة المسجد؟", en: "What is the height of the mosque's minaret?" },
+                answer: { ar: "يبلغ ارتفاع المئذنة 210 أمتار، مما يجعلها من أعلى المآذن في العالم.", en: "The minaret is 210 meters high, making it one of the tallest minarets in the world." }
             },
             {
-                q: { ar: "هل يمكن لغير المسلمين زيارة المسجد؟", en: "Can non-Muslims visit the mosque?" },
-                a: { ar: "نعم، يعتبر مسجد الحسن الثاني من المساجد القليلة في المغرب التي تفتح أبوابها للزوار غير المسلمين عبر جولات سياحية منظمة ومؤطرة.", en: "Yes, the Hassan II Mosque is one of the few mosques in Morocco open to non-Muslim visitors through guided tours." }
+                question: { ar: "هل يمكن لغير المسلمين زيارة المسجد؟", en: "Can non-Muslims visit the mosque?" },
+                answer: { ar: "نعم، يعتبر مسجد الحسن الثاني من المساجد القليلة في المغرب التي تفتح أبوابها للزوار غير المسلمين عبر جولات سياحية منظمة ومؤطرة.", en: "Yes, the Hassan II Mosque is one of the few mosques in Morocco open to non-Muslim visitors through guided tours." }
             }
         ],
         conclusion: {
             ar: 'في النهاية، يقف مسجد الحسن الثاني كشاهد حي لا تخطئه العين على قدرة العقل البشري، وإبداع الأيادي المغربية الأصيلة، وعظمة الحضارة الإسلامية الممتدة عبر الأزمان والمكان. إنه ليس مجرد مبنى ديني محض يزوره السياح للالتقاط الصور المذهلة التذكارية، بل هو ملحمة مجسدة من الحجر والماء والخشب والزجاج، تروي قصة أمة عريقة استطاعت أن تحافظ على جذورها وهويتها الأصيلة بينما تعانق وتناطح السماء بمآذنها وتبحر في تحديات العصر والزمن بشجاعة وإيمان لا يلين ولا ينكسر أبداً.',
             en: 'Ultimately, the Hassan II Mosque stands as a living testament to human capability, the creativity of Moroccan hands, and the greatness of Islamic civilization. It is an epic materialized in stone, water, and wood.'
         },
-        videoUrl: 'https://cdn.pixabay.com/video/2016/09/21/5361-182312675_large.mp4',
+        videoUrl: 'https://www.youtube.com/watch?v=FzbZfWf1UOM',
         gallery: [
             'https://images.unsplash.com/photo-1539020140153-e479b8c22e70?q=80&w=2070&auto=format&fit=crop',
             'https://images.unsplash.com/photo-1563825828551-fb18e47aa571?q=80&w=2070&auto=format&fit=crop',
@@ -102,10 +102,10 @@ export const getArticle = (id: string, nameAr: string, nameEn: string, category:
         ];
     }
 
-    // Direct MP4 mapping for global fallback coverage
-    let videoOverlay = 'https://cdn.pixabay.com/video/2019/08/08/25854-351855662_large.mp4';
+    // Direct YouTube mapping for global fallback coverage
+    let videoOverlay = 'https://www.youtube.com/watch?v=p4vMBvD1O4M'; // Generic Morocco Cinematic Drone
     if (category === 'battle') {
-        videoOverlay = 'https://cdn.pixabay.com/video/2016/09/21/5361-182312675_large.mp4';
+        videoOverlay = 'https://www.youtube.com/watch?v=R32_qzaQnsI'; // Epic battle / Sahara cinematic
     }
 
     return {
@@ -147,16 +147,16 @@ export const getArticle = (id: string, nameAr: string, nameEn: string, category:
         ],
         faqs: [
             {
-                q: { ar: `لماذا تحظى ${nameAr} بأهمية كبرى في التاريخ المغربي؟`, en: `Why is ${nameEn} so important in Moroccan history?` },
-                a: { ar: `بسبب دورها المحوري القوي في توجيه الأحداث السياسية والثقافية، ومساهمتها العميقة في ترسيخ القيم الوطنية والإسلامية العريقة التي شكلت وجدان الأمة عبر العصور الغابرة.`, en: `Due to its pivotal role in directing political and cultural events, and its contribution to consolidating the ancient national and Islamic values that shaped the conscience of the nation.` }
+                question: { ar: `لماذا تحظى ${nameAr} بأهمية كبرى في التاريخ المغربي؟`, en: `Why is ${nameEn} so important in Moroccan history?` },
+                answer: { ar: `بسبب دورها المحوري القوي في توجيه الأحداث السياسية والثقافية، ومساهمتها العميقة في ترسيخ القيم الوطنية والإسلامية العريقة التي شكلت وجدان الأمة عبر العصور الغابرة.`, en: `Due to its pivotal role in directing political and cultural events, and its contribution to consolidating the ancient national and Islamic values that shaped the conscience of the nation.` }
             },
             {
-                q: { ar: `ما هي أبرز المعالم المعمارية المتبقية لـ ${nameAr} اليوم؟`, en: `What are the most prominent monuments remaining of ${nameEn} today?` },
-                a: { ar: `تتجسد بقوة في المآثر العمرانية، الأسوار العتيقة، النياشين التاريخية والقصص الشعبية المتواترة التي لا تزال تُدرس في المناهج كشاهد ناطق على تلك الحقبة المضيئة.`, en: `It is strongly embodied in the urban monuments, ancient walls, historical medals and recurring folk tales that are still taught in the curricula.` }
+                question: { ar: `ما هي أبرز المعالم المعمارية المتبقية لـ ${nameAr} اليوم؟`, en: `What are the most prominent monuments remaining of ${nameEn} today?` },
+                answer: { ar: `تتجسد بقوة في المآثر العمرانية، الأسوار العتيقة، النياشين التاريخية والقصص الشعبية المتواترة التي لا تزال تُدرس في المناهج كشاهد ناطق على تلك الحقبة المضيئة.`, en: `It is strongly embodied in the urban monuments, ancient walls, historical medals and recurring folk tales that are still taught in the curricula.` }
             },
             {
-                q: { ar: `كيف يمكن للباحثين والزوار التفاعل مع إرث ${nameAr}؟`, en: `How can researchers interact with the legacy of ${nameEn}?` },
-                a: { ar: `عبر الانغماس في أرشيف مورو فيرس الرقمي الشامل، واستكشاف المراجع الأكاديمية والمكتبات الوطنية، والوقوف المباشر في عين المكان لاستشعار عظمة الماضي الممتد إلى الحاضر.`, en: `By diving into the comprehensive MoroVerse digital archive, exploring academic references, and standing directly on site.` }
+                question: { ar: `كيف يمكن للباحثين والزوار التفاعل مع إرث ${nameAr}؟`, en: `How can researchers interact with the legacy of ${nameEn}?` },
+                answer: { ar: `عبر الانغماس في أرشيف مورو فيرس الرقمي الشامل، واستكشاف المراجع الأكاديمية والمكتبات الوطنية، والوقوف المباشر في عين المكان لاستشعار عظمة الماضي الممتد إلى الحاضر.`, en: `By diving into the comprehensive MoroVerse digital archive, exploring academic references, and standing directly on site.` }
             }
         ],
         conclusion: {

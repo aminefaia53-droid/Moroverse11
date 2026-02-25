@@ -242,16 +242,9 @@ const ArticleReader: React.FC<ArticleReaderProps> = ({ article, isOpen, onClose 
                                                 <span className={`w-8 h-[2px] bg-gold-royal/50 group-hover:w-16 group-hover:bg-gold-royal transition-all duration-500 ${!isAr && 'order-2'}`} />
                                                 <span className={!isAr ? 'order-1' : ''}>{isAr ? 'الأسئلة الشائعة (FAQs)' : 'Frequently Asked Questions'}</span>
                                             </h2>
-                                            <div className="space-y-6">
+                                            <div className="space-y-4">
                                                 {article.faqs.map((faq, idx) => (
-                                                    <div key={idx} className="bg-black/30 border border-gold-royal/5 p-6 rounded-xl hover:border-gold-royal/20 transition-all">
-                                                        <h3 className={`text-lg font-bold text-white/90 mb-3 ${isAr ? 'font-arabic' : 'font-serif'}`}>
-                                                            {faq.q[lang]}
-                                                        </h3>
-                                                        <p className={`text-white/70 leading-relaxed ${isAr ? 'font-arabic' : 'font-sans'}`}>
-                                                            {faq.a[lang]}
-                                                        </p>
-                                                    </div>
+                                                    <FaqAccordionItem key={idx} faq={faq} isAr={isAr} lang={lang} />
                                                 ))}
                                             </div>
                                         </div>
@@ -288,5 +281,40 @@ const ArticleReader: React.FC<ArticleReaderProps> = ({ article, isOpen, onClose 
     );
 };
 
-export default ArticleReader;
+const FaqAccordionItem = ({ faq, isAr, lang }: any) => {
+    const [isOpen, setIsOpen] = useState(false);
+    const question = faq.question ? faq.question[lang] : faq.q?.[lang];
+    const answer = faq.answer ? faq.answer[lang] : faq.a?.[lang];
 
+    return (
+        <div className="bg-black/30 border border-gold-royal/10 rounded-xl overflow-hidden hover:border-gold-royal/30 transition-all duration-300">
+            <button
+                onClick={() => setIsOpen(!isOpen)}
+                className={`w-full p-6 flex items-center justify-between transition-colors ${isOpen ? 'bg-gold-royal/5' : ''}`}
+            >
+                <h3 className={`text-lg font-bold text-white/90 text-left ${isAr ? 'font-arabic text-right' : 'font-serif'} ${isAr && 'flex-1'}`}>
+                    {question}
+                </h3>
+                <ChevronRight className={`w-5 h-5 text-gold-royal transition-transform duration-300 shrink-0 ${isOpen ? 'rotate-90' : isAr ? 'rotate-180' : ''}`} />
+            </button>
+            <AnimatePresence>
+                {isOpen && (
+                    <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: 'auto', opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.3 }}
+                        className="px-6 pb-6"
+                    >
+                        <div className="h-px w-full bg-gold-royal/10 mb-4" />
+                        <p className={`text-white/70 leading-relaxed ${isAr ? 'font-arabic text-right' : 'font-sans text-left'}`}>
+                            {answer}
+                        </p>
+                    </motion.div>
+                )}
+            </AnimatePresence>
+        </div>
+    );
+};
+
+export default ArticleReader;

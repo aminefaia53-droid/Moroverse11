@@ -171,6 +171,9 @@ function FigureCard({
                         src={figure.imageUrl || imageUrl || undefined}
                         alt={figure.name[lang]}
                         className={`w-full h-full object-cover transition-all duration-1000 transform group-hover:scale-110 ${isLoading ? 'opacity-0' : 'opacity-90 group-hover:opacity-100'}`}
+                        onError={(e) => {
+                            e.currentTarget.src = 'https://images.unsplash.com/photo-1587595431973-160d0d94add1?q=80&w=2076&auto=format&fit=crop';
+                        }}
                     />
                     {/* Multi-layered Cinematic Gradient */}
                     <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-95" />
