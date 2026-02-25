@@ -1,83 +1,138 @@
 export interface ArticleSection {
-    title: string;
-    content: string;
+    title: { en: string; ar: string };
+    content: { en: string; ar: string };
 }
 
 export interface MoroArticle {
     id: string;
-    title: string;
+    title: { en: string; ar: string };
     category: 'battle' | 'landmark' | 'city' | 'figure';
-    metaDescription: string;
-    intro: string;
+    metaDescription: { en: string; ar: string };
+    intro: { en: string; ar: string };
     sections: ArticleSection[];
-    conclusion: string;
+    conclusion: { en: string; ar: string };
 }
 
-const robustLongContent = `تعتبر هذه المحطة من أهم المحطات في تاريخ المملكة المغربية العريقة، حيث تجسد بوضوح التلاحم الوثيق بين الجغرافيا الاستراتيجية والعبقرية البشرية. في عام 2026، ومع تطور أنظمة الأرشفة الرقمية والبحث الدلالي (Semantic Search)، نجد أن التوثيق الدقيق لكل شبر من هذا الوطن هو واجب وطني وعلمي.
-لقد شكلت هذه المنطقة عبر العصور نقطة التقاء حضاري وتجاري من الطراز الأول، حيث كانت القوافل تعبر من وإلى أعماق إفريقيا والصحراء الكبرى، جالبة معها ليس فقط البضائع والذهب، بل الأفكار، والعلوم، والثقافات التي انصهرت في بوتقة الهوية المغربية المتفردة. إن المتأمل في العمارة المحلية والتخطيط العمراني يدرك تماماً مدى تقدم الفكر المغربي في تكييف البيئة لخدمة الإنسان، مع الحفاظ على توازن بيئي مستدام أذهل المؤرخين المعاصرين.
-
-علاوة على ذلك، لا يمكن إغفال التراث اللامادي المرتبط بهذا المكان، المتمثل في التقاليد الشفهية، والأهازيج الشعبية، وحتى فنون الطبخ التي تعد بمثابة أرشيف حي يتوارثه الأجيال. المؤرخون وعلماء الأنثروبولوجيا يجمعون على أن هذا الموقع شكل درعاً حصيناً لحماية الاستقرار، ومنصة لانطلاق حملات دبلوماسية وتجارية ربطت المغرب بأوروبا وآسيا قديماً وحاضراً.
-
-وفي سياق القراءات الجيوسياسية الحديثة، نقف باحترام أمام القرارات السيادية التي اتخذت هنا، والتي أثرت بشكل مباشر في رسم الخريطة العالمية في القرون الوسطى والحديثة. ليس غريباً أن نجد الزوار من كل بقاع الأرض يحجون إلى هذا المكان لاستلهام العظمة والوقوف على أطلال المجد الذي ترويه الحجارة في كل زاوية. إن هذا الارتباط الوثيق بين الماضي العريق والمستقبل المشرق هو ما يميز الرؤية التنموية للمملكة. تعكس هذه المعالم تطور الفنون الزخرفية والخط العربي الذي برع فيه المغاربة، حيث تتشابك الخطوط الكوفية والأندلسية مع الزخارف النباتية والهندسية لتخلق سيمفونية بصرية لا نظير لها.
-
-وقد أولت المؤسسات الوطنية عناية خاصة لترميم هذه الصروح، مستخدمة أحدث تقنيات التصوير ثلاثي الأبعاد وتقنيات الذكاء الاصطناعي لضمان الحفاظ على كل تفصيلة كما وضعها الصانع الأول. إن هذه الجهود لا تسعى فقط إلى الحفظ المادي، بل تمتد إلى بعث الروح في هذه الأماكن لتعود كفضاءات حية تستقطب الفعاليات الثقافية والفنية الدولية، مما يرسخ مكانة المغرب كعاصمة للثقافة والتسامح. وتلعب هذه السياسة دوراً محورياً في دعم السياحة الثقافية المستدامة التي تعود بالنفع على المجتمعات المحلية وتشجع الحرف اليدوية التقليدية التي أوشكت على الاندثار في بعض مناطق العالم، لكنها تجد في المغرب ملاذها الآمن والمزدهر بفضل الرعاية الملكية السامية.
-
-كما أن استحضار دور المرأة المغربية في هذا السياق يعد أمراً بالغ الأهمية، فقد كانت حاضرة وبقوة في بناء هذه الحضارة، سواء كعالمة مجتهدة، أو كحرفية ماهرة، أو كزعيمة روحية وسياسية. إن المكتبات والخزانات المغربية طافحة بالمخطوطات التي تشهد على هذا الإسهام النسوي الرائد الذي سبق عصره بكثير. وتعتبر هندسة المعالم وتوزيع فضاءاتها دليلاً آخر على التكامل المجتمعي والروحي، حيث المسجد يجاور المدرسة، والسوق يلاصق الحمام، مكوّنين نسيجاً اجتماعياً مترابطاً يسهل الحياة اليومية ويعزز التكافل بين مختلف شرائح المجتمع، وفق نموذج حضري فريد ألهم الكثير من مهندسي العصر الحديث في بحثهم عن مدن أكثر إنسانية وتوهجاً.
-
-ولا تقتصر أهمية الموقع على ما هو مرئي فقط، بل تمتد لتشمل شبكات المياه العبقرية المعروفة بـ "الخطارات"، والتي تمثل ثورة هندسية في تدبير ندرة المياه في الواحات والمناطق الجافة. لقد برع المغاربة في استغلال الموارد الطبيعية بحكمة واقتصاد، محولين الصحاري القاحلة إلى جنائن غناء تسر الناظرين وتطعم العابرين. كل هذه العناصر مجتمعة تجعل من القراءة في تاريخ هذا الموقع رحلة لا تنتهي من الاكتشاف والتعلم، ودعوة مفتوحة لكل باحث وشغوف بالمعرفة ليغوص في أعماق هذا التراث الإنساني الغني.
-
-بناءً على ذلك، تأتي أرشفة هذا الكنز المعرفي ضمن منصة MoroVerse خطوة رائدة نحو المستقبل. إن استخدام مقاييس SEO المتقدمة يضمن إيصال هذه السردية الوطنية الأصيلة إلى الملايين حول العالم، متجاوزين حواجز الزمن واللغة. نحن هنا لا نكتب التاريخ فحسب، بل نعيد إنتاجه وتوظيفه كقوة ناعمة ترسخ الانتماء، وتبني جسور التواصل، وتقدم للعالم نموذجاً حضارياً مشرفاً يرتكز على الأصالة، الانفتاح، والابتكار المستمر.
-
-*المصدر: المعهد الوطني لعلوم الآثار والتراث (نسخة الأرشيف الرقمي 2026).*`;
-
+// ============================================================
+// UNIQUE HISTORICAL DATA FOR LANDMARKS & FIGURES
+// ============================================================
 export const moroverseArticles: Record<string, MoroArticle> = {
-    'zallaqa': {
-        id: 'zallaqa',
-        title: 'معركة الزلاقة: يوم اهتزت شبه الجزيرة الإيبيرية (1086م)',
-        category: 'battle',
-        metaDescription: 'اكتشف عبقرية يوسف بن تاشفين في معركة الزلاقة، كيف أنقذت الإمبراطورية المرابطية الأندلس وأعادت رسم خريطة العالم الإسلامي.',
-        intro: 'في سهل الزلاقة بالقرب من بطليوس، التقى الجيشان في معركة مصيرية غيرت مجرى التاريخ الأندلسي وأثبتت قوة الإمبراطورية المرابطية وعمق استراتيجيتها العسكرية.',
+    'hassan-ii-mosque': {
+        id: 'hassan-ii-mosque',
+        title: { ar: 'مسجد الحسن الثاني: منارة الإسلام على المحيط', en: 'Hassan II Mosque: Islamic Beacon on the Atlantic' },
+        category: 'landmark',
+        metaDescription: {
+            ar: 'تحفة المعمار المغربي الأصيل، مسجد الحسن الثاني بالدار البيضاء.',
+            en: 'A masterpiece of authentic Moroccan architecture, the Hassan II Mosque in Casablanca.'
+        },
+        intro: {
+            ar: 'يعد مسجد الحسن الثاني أعجوبة معمارية حديثة تجمع بين التراث الأندلسي العريق والتقنيات المعاصرة، مشيداً فوق مياه المحيط الأطلسي ليجسد الآية الكريمة "وكَانَ عَرْشُهُ عَلَى الْمَاءِ".',
+            en: 'The Hassan II Mosque is a modern architectural marvel that blends ancient Andalusian heritage with contemporary techniques, built over the waters of the Atlantic to embody the Quranic verse "And His Throne was upon the water".'
+        },
         sections: [
             {
-                title: 'التكتيك المرابطي وعبقرية يوسف بن تاشفين',
-                content: robustLongContent
-            },
-            {
-                title: 'الأسئلة الشائعة (FAQs - 2026)',
-                content: '<strong>ما هي القيمة التاريخية لهذا الموقع؟</strong> يمثل هذا الموقع حجر الزاوية في بناء الذاكرة الجماعية المغربية. <br/> <strong>هل توجد دراسات حديثة عنه؟</strong> نعم، تم توثيقه حصرياً في موسوعة MoroVerse بتقنية SEO المتقدمة لعام 2026. <br/> <strong>كيف يمكن زيارته؟</strong> عبر الخريطة التفاعلية والبوصلة الزمنية المتوفرة في المنصة.'
-            },
-            {
-                title: 'الترابط المرجعي (Internal & External Linking)',
-                content: 'للمزيد من المعلومات، سارع بزيارة <a href="/auth/login" className="text-[#c5a059] underline font-bold">البوابة الإدارية لمشاريع التراث</a>. المرجو الرجوع إلى <a href="https://ar.wikipedia.org/wiki/تاريخ_المغرب" target="_blank" className="text-[#c5a059] underline font-bold">المصادر المفتوحة لتاريخ المملكة المغربية العلوية الشريفة</a> لتوسيع آفاق معرفتك وإدراك عظمة هذا الوطن.'
+                title: { ar: 'العبقرية الحرفية والمواد الأصيلة', en: 'Craftsmanship Genius and Authentic Materials' },
+                content: {
+                    ar: 'شارك في بناء المسجد آلاف المعلمين الزلايجيين والنحاتين والمبدعين المغاربة الذين أحيوا فنون "الزليج" و"الجبص" و"المنجور". كما استخدم الرخام والجرانيت المحلي ليؤكد الهوية الوطنية لهذا الصرح الديني والوطني.',
+                    en: 'Thousands of master Zellige craftsmen, carvers, and Moroccan creators participated in building the mosque, reviving the arts of Zellige, plaster, and woodcarving. Local marble and granite were used to emphasize the national identity of this religious and national landmark.'
+                }
             }
         ],
-        conclusion: 'أخرت الزلاقة سقوط الأندلس لأربعة قرون، وثبتت قدم الدولة المرابطية كإمبراطورية عظمى تحكم من سوس إلى شذونة، مؤكدة دور المغرب كحامٍ للغرب الإسلامي.'
+        conclusion: {
+            ar: 'يظل المسجد رمزاً لانفتاح المغرب واعتزازه بجذوره الروحية.',
+            en: 'The mosque remains a symbol of Morocco\'s openness and pride in its spiritual roots.'
+        }
+    },
+    'fatima-al-fihriya': {
+        id: 'fatima-al-fihriya',
+        title: { ar: 'فاطمة الفهرية: أم البنين ومؤسسة أقدم جامعة في العالم', en: 'Fatima al-Fihriya: Mother of the Boys and Founder of the World\'s Oldest University' },
+        category: 'figure',
+        metaDescription: {
+            ar: 'قصة السيدة التي وهبت مالها لبناء جامع وجامعة القرويين بفاس.',
+            en: 'The story of the woman who donated her wealth to build the Al-Qarawiyyin Mosque and University in Fez.'
+        },
+        intro: {
+            ar: 'في قلب مدينة فاس النابض بالحضارة، خلفت فاطمة الفهرية إرثاً علمياً غير مسبوق بتأسيسها لجامعة القرويين عام 859م، لتكون بذلك رائدة التعليم العالي في العالم التاريخي.',
+            en: 'In the heart of the civilized city of Fez, Fatima al-Fihriya left an unprecedented scientific legacy by founding the University of Al-Qarawiyyin in 859 AD, becoming a pioneer of higher education in history.'
+        },
+        sections: [
+            {
+                title: { ar: 'جامعة القرويين: منارة العلم عبر العصور', en: 'Al-Qarawiyyin University: Beacon of Science Through the Ages' },
+                content: {
+                    ar: 'لم يكن القرويين مجرد مسجد للصلاة، بل تحول بفضل رؤية فاطمة الفهرية إلى مركز إشعاع فكري تخرج منه ابن خلدون وابن رشد والعديد من العلماء الذين شكلوا الفكر المعاصر. ظلت الجامعة تعمل باستمرار منذ تأسيسها، مما يجعلها أقدم مؤسسة تعليمية قائمة.',
+                    en: 'Al-Qarawiyyin was not just a mosque for prayer, but transformed through Fatima al-Fihriya\'s vision into a center of intellectual radiance where Ibn Khaldun, Averroes, and many scholars who shaped modern thought graduated. The university has operated continuously since its founding, making it the oldest existing educational institution.'
+                }
+            }
+        ],
+        conclusion: {
+            ar: 'تجسد فاطمة الفهرية قوة المرأة المغربية ودورها المحوري في صنع التاريخ.',
+            en: 'Fatima al-Fihriya embodies the power of Moroccan women and their pivotal role in making history.'
+        }
+    },
+    'zallaqa': {
+        id: 'zallaqa',
+        title: {
+            ar: 'معركة الزلاقة: يوم اهتزت شبه الجزيرة الإيبيرية (1086م)',
+            en: 'Battle of Zallaqa: The Day the Iberian Peninsula Shook (1086 AD)'
+        },
+        category: 'battle',
+        metaDescription: {
+            ar: 'اكتشف عبقرية يوسف بن تاشفين في معركة الزلاقة التي أنقذت الأندلس.',
+            en: 'Discover the genius of Yusuf ibn Tashfin in the Battle of Zallaqa that saved Andalusia.'
+        },
+        intro: {
+            ar: 'في سهل الزلاقة، التقى المرابطون بقيادة يوسف بن تاشفين بقوات قشتالة في مواجهة غيرت مجرى التاريخ الأندلسي والإنساني.',
+            en: 'In the plains of Zallaqa, the Almoravids led by Yusuf ibn Tashfin met the forces of Castile in a confrontation that changed the course of Andalusian and human history.'
+        },
+        sections: [
+            {
+                title: { ar: 'التكتيك المرابطي وعبقرية الصمود', en: 'Almoravid Tactics and Genius of Resilience' },
+                content: {
+                    ar: 'تميزت المعركة باستخدام الطبول والحرب النفسية والتطويق المحكم، مما أدى لكسر شوكة القوات المعادية وحماية الوجود الإسلامي في الأندلس لأربعة قرون أخرى.',
+                    en: 'The battle featured the use of drums, psychological warfare, and tight encirclement, leading to the breaking of the enemy forces and protecting the Islamic presence in Andalusia for four more centuries.'
+                }
+            }
+        ],
+        conclusion: {
+            ar: 'تظل الزلاقة رمزاً للوحدة بين ضفتي المتوسط تحت راية المغرب.',
+            en: 'Zallaqa remains a symbol of unity between the two shores of the Mediterranean under Morocco\'s flag.'
+        }
     }
 };
 
-export const getArticle = (id: string, nameAr: string, category: 'battle' | 'landmark' | 'city' | 'figure'): MoroArticle => {
+export const getArticle = (id: string, nameAr: string, nameEn: string, category: 'battle' | 'landmark' | 'city' | 'figure'): MoroArticle => {
     if (moroverseArticles[id]) return moroverseArticles[id];
 
     return {
         id,
-        title: `سجل الخلود: ${nameAr}`,
+        title: {
+            ar: `${nameAr}: سجل الخلود المغربي`,
+            en: `${nameEn}: Moroccan Eternal Record`
+        },
         category,
-        metaDescription: `مقالة تاريخية مفصلة عن ${nameAr} في سجلات MoroVerse الرقمية لعام 2026.`,
-        intro: `تمثل ${nameAr} فصلاً مشرقاً في تاريخ المملكة المغربية، حيث تجسد روح الصمود والعبقرية التي طبعت هذا الوطن عبر العصور.`,
+        metaDescription: {
+            ar: `تحليل تاريخي معمق حول ${nameAr} من خلال الأرشيف الرقمي لـ MoroVerse.`,
+            en: `Deep historical analysis about ${nameEn} through MoroVerse Digital Archives.`
+        },
+        intro: {
+            ar: `تمثل ${nameAr} صفحة مشرقة في تراث المملكة، تجسد من خلالها تلاحم التاريخ بالجغرافيا والقيم الوطنية الخالدة.`,
+            en: `${nameEn} represents a bright page in the Kingdom's heritage, embodying the fusion of history, geography, and eternal national values.`
+        },
         sections: [
             {
-                title: 'الأهمية الجغرافية والتاريخية (مقال شامل - 1500 كلمة)',
-                content: robustLongContent
-            },
-            {
-                title: 'الأسئلة الشائعة (FAQs - 2026)',
-                content: '<strong>ما هي القيمة التاريخية السامية؟</strong> تمثل حجر الزاوية في بناء الذاكرة الجماعية المغربية. <br/> <strong>هل توجد دراسات حديثة؟</strong> نعم، تم توثيقه حصرياً في موسوعة MoroVerse بتقنية SEO المتقدمة لعام 2026. <br/> <strong>كيف يمكن استكشافه؟</strong> عبر الخريطة التفاعلية والبوصلة الزمنية المتوفرة في المنصة للعيش في الماضي.'
-            },
-            {
-                title: 'الترابط المرجعي (Internal & External Linking)',
-                content: 'للمزيد من المعلومات، سارع بزيارة <a href="/auth/login" className="text-[#c5a059] underline font-bold">البوابة الإدارية لمشاريع التراث</a>. المرجو الرجوع إلى <a href="https://ar.wikipedia.org/wiki/تاريخ_المغرب" target="_blank" className="text-[#c5a059] underline font-bold">المصادر المفتوحة لتاريخ المملكة المغربية العلوية الشريفة</a> لتوسيع آفاق معرفتك وإدراك عظمة هذا الوطن.'
+                title: {
+                    ar: 'الأبعاد التاريخية والرمزية',
+                    en: 'Historical and Symbolic Dimensions'
+                },
+                content: {
+                    ar: `إن البحث في تاريخ ${nameAr} يكشف لنا عن عمق الهوية المغربية وتعدد روافدها الثقافية والدينية والسياسية، مما يجعلها مادة خصبة للدراسة والاعتزاز للأجيال القادمة.`,
+                    en: `Research into the history of ${nameEn} reveals the depth of the Moroccan identity and the multiplicity of its cultural, religious, and political tributaries, making it a fertile subject for study and pride for future generations.`
+                }
             }
         ],
-        conclusion: `تظل ${nameAr} شاهدة على عظمة المملكة، محفوظة في ذاكرة MoroVerse كجزء لا يتجزأ من المجد المغربي الأبدي.`
+        conclusion: {
+            ar: `تظل ${nameAr} شاهدة على عظمة وإرادة أمة لا تلين.`,
+            en: `${nameEn} remains a witness to the greatness and unyielding will of a nation.`
+        }
     };
 };

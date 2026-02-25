@@ -1,6 +1,6 @@
 import { MoroArticle } from '../data/moroverse-content';
 
-export const generateArticleSchema = (article: MoroArticle) => {
+export const generateArticleSchema = (article: MoroArticle, lang: 'en' | 'ar' = 'ar') => {
     const baseUrl = "https://moroverse.ma"; // Replace with actual domain
     const url = `${baseUrl}/archive/${article.id}`;
 
@@ -8,8 +8,8 @@ export const generateArticleSchema = (article: MoroArticle) => {
         return {
             "@context": "https://schema.org",
             "@type": "HistoricalEvent",
-            "name": article.title,
-            "description": article.metaDescription,
+            "name": article.title[lang],
+            "description": article.metaDescription[lang],
             "url": url,
             "location": {
                 "@type": "Place",
@@ -26,8 +26,8 @@ export const generateArticleSchema = (article: MoroArticle) => {
         return {
             "@context": "https://schema.org",
             "@type": "LandmarksOrHistoricalBuildings",
-            "name": article.title,
-            "description": article.metaDescription,
+            "name": article.title[lang],
+            "description": article.metaDescription[lang],
             "url": url,
             "address": {
                 "@type": "PostalAddress",
@@ -39,27 +39,27 @@ export const generateArticleSchema = (article: MoroArticle) => {
     return {
         "@context": "https://schema.org",
         "@type": "City",
-        "name": article.title,
-        "description": article.metaDescription,
+        "name": article.title[lang],
+        "description": article.metaDescription[lang],
         "url": url
     };
 };
 
-export const getMetaTags = (article: MoroArticle) => {
+export const getMetaTags = (article: MoroArticle, lang: 'en' | 'ar' = 'ar') => {
     return {
-        title: `${article.title} | MoroVerse Royal Archive`,
-        description: article.metaDescription,
+        title: `${article.title[lang]} | MoroVerse Royal Archive`,
+        description: article.metaDescription[lang],
         openGraph: {
-            title: article.title,
-            description: article.metaDescription,
+            title: article.title[lang],
+            description: article.metaDescription[lang],
             type: 'article',
-            locale: 'ar_MA',
+            locale: lang === 'ar' ? 'ar_MA' : 'en_US',
             siteName: 'MoroVerse'
         },
         twitter: {
             card: 'summary_large_image',
-            title: article.title,
-            description: article.metaDescription
+            title: article.title[lang],
+            description: article.metaDescription[lang]
         }
     };
 };

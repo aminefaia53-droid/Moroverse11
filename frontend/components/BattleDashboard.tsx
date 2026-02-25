@@ -429,7 +429,7 @@ export default function BattleDashboard({ lang }: { lang: 'en' | 'ar' }) {
                         {selectedBattle && (
                             <script
                                 type="application/ld+json"
-                                dangerouslySetInnerHTML={{ __html: JSON.stringify(generateArticleSchema(getArticle(selectedBattle.id, selectedBattle.name.ar, 'battle'))) }}
+                                dangerouslySetInnerHTML={{ __html: JSON.stringify(generateArticleSchema(getArticle(selectedBattle.id, selectedBattle.name.ar, selectedBattle.name.en, 'battle'), lang)) }}
                             />
                         )}
                         <Swords className="w-10 h-10 text-primary animate-pulse" />
@@ -652,7 +652,7 @@ export default function BattleDashboard({ lang }: { lang: 'en' | 'ar' }) {
                                                 <button
                                                     onClick={() => {
                                                         if (isAcademic) {
-                                                            window.location.href = '/posts/' + selectedBattle.id;
+                                                            window.location.href = '/posts/' + selectedBattle.id + '?lang=' + lang;
                                                         } else {
                                                             setShowFullArticle(true);
                                                         }
@@ -675,7 +675,7 @@ export default function BattleDashboard({ lang }: { lang: 'en' | 'ar' }) {
             {/* FULL ARTICLE READER */}
             {selectedBattle && (
                 <ArticleReader
-                    article={getArticle(selectedBattle.id, selectedBattle.name.ar, 'battle')}
+                    article={getArticle(selectedBattle.id, selectedBattle.name.ar, selectedBattle.name.en, 'battle')}
                     isOpen={showFullArticle}
                     onClose={() => setShowFullArticle(false)}
                 />

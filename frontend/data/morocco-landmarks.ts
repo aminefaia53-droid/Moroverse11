@@ -15,8 +15,8 @@ export const moroccoLandmarks: Landmark[] = [
         city: { en: 'Casablanca', ar: 'الدار البيضاء' },
         foundation: { en: '20th Century', ar: 'القرن العشرين' },
         history: {
-            en: 'One of the largest mosques in the world, featuring the tallest minaret and stunning Atlantic views.',
-            ar: 'واحد من أكبر المساجد في العالم، يتميز بأعلى مئذنة وإطلالة ساحرة على المحيط الأطلسي.'
+            en: 'A colossal sentinel on the Atlantic shore, blending modern engineering with the soul of traditional Moroccan craftsmanship including hand-carved stone and wood.',
+            ar: 'حارس جليل على ضفاف الأطلسي، يمزج بين الهندسة الحديثة وروح الحرفة المغربية الأصيلة من نقش على الحجر والخشب.'
         },
         visualSoul: 'Mosque'
     },
@@ -26,8 +26,8 @@ export const moroccoLandmarks: Landmark[] = [
         city: { en: 'Rabat', ar: 'الرباط' },
         foundation: { en: '12th Century (Almohad Era)', ar: 'القرن الثاني عشر (العصر الموحدي)' },
         history: {
-            en: 'The minaret of an incomplete mosque intended to be the largest in the Islamic world.',
-            ar: 'مئذنة مسجد غير مكتمل كان يراد له أن يكون الأكبر في العالم الإسلامي.'
+            en: 'The majestic red sandstone minaret of an unfinished 12th-century mosque, standing as a silent witness to Almohad architectural ambition.',
+            ar: 'مئذنة مهيبة من الحجر الرملي الأحمر لمسجد لم يكتمل في القرن الثاني عشر، تقف شاهداً صامتاً على طموح العمارة الموحدية.'
         },
         visualSoul: 'Tower'
     },

@@ -180,7 +180,7 @@ export default function CityGrid({ lang }: { lang: 'en' | 'ar' }) {
                                         {selectedLocation && (
                                             <script
                                                 type="application/ld+json"
-                                                dangerouslySetInnerHTML={{ __html: JSON.stringify(generateArticleSchema(getArticle(selectedLocation.id, selectedLocation.name.ar, selectedLocation.name.en, 'city'))) }}
+                                                dangerouslySetInnerHTML={{ __html: JSON.stringify(generateArticleSchema(getArticle(selectedLocation.id, selectedLocation.name.ar, selectedLocation.name.en, 'city'), lang)) }}
                                             />
                                         )}
                                         <div className="p-6 bg-black rounded-full shadow-[0_0_30px_rgba(197,160,89,0.3)] border border-[#c5a059]">

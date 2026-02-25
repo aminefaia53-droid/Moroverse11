@@ -5,6 +5,7 @@ import ArticleReaderPage from './ArticleReaderPage';
 
 interface Props {
     params: { slug: string };
+    searchParams: { lang?: string };
 }
 
 export async function generateStaticParams() {
@@ -13,9 +14,10 @@ export async function generateStaticParams() {
     }));
 }
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
-    const article = getArticle(params.slug, params.slug, 'battle'); // Fallback logic in getArticle
-    const meta = getMetaTags(article);
+export async function generateMetadata({ params, searchParams }: Props): Promise<Metadata> {
+    const lang = searchParams.lang === 'en' ? 'en' : 'ar';
+    const article = getArticle(params.slug, params.slug, params.slug, 'battle'); // Fallback logic in getArticle
+    const meta = getMetaTags(article, lang);
 
     return {
         title: meta.title,
@@ -25,9 +27,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     };
 }
 
-export default function Page({ params }: Props) {
-    const article = getArticle(params.slug, params.slug, 'battle');
-    const schema = generateArticleSchema(article);
+export default function Page({ params, searchParams }: Props) {
+    const lang = searchParams.lang === 'en' ? 'en' : 'ar';
+    const article = getArticle(params.slug, params.slug, params.slug, 'battle');
+    const schema = generateArticleSchema(article, lang);
 
     return (
         <>

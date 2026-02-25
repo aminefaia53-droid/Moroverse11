@@ -3,13 +3,22 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, useAnimation, useMotionValue, useTransform, AnimatePresence } from 'framer-motion';
 
+import { useLanguage } from '../context/LanguageContext';
+
 // Types for Assistant State
 type Emotion = 'neutral' | 'happy' | 'concerned' | 'impressed';
 type Outfit = 'modern' | 'traditional';
 
 export default function MoroVerseAssistant() {
-    // State References
-    const [message, setMessage] = useState<string>("مرحبا معاك محمد أمين العميري! هل لاحظت التحديث الجديد؟ أصبح بإمكانك الآن تمرير البطاقات أفقياً بكل سلاسة على هاتفك.");
+    const { lang, t } = useLanguage();
+    // Use an effect to set initial message once lang is available
+    const [message, setMessage] = useState<string>("");
+
+    useEffect(() => {
+        if (!message) {
+            setMessage(t('assistant.welcome'));
+        }
+    }, [lang, t]);
     const [emotion, setEmotion] = useState<Emotion>('happy');
     const [outfit, setOutfit] = useState<Outfit>('traditional');
     const [isHovered, setIsHovered] = useState(false);
@@ -48,24 +57,20 @@ export default function MoroVerseAssistant() {
                 case 'city_click':
                     setEmotion('happy');
                     setOutfit('traditional');
-                    setMessage(`أهلاً بك في ${payload}، إحدى درر المغرب العظيم!`);
+                    setMessage(t('assistant.cityClick')(payload));
                     break;
                 case 'landmark_click':
                     setEmotion('impressed');
                     setOutfit('traditional');
-                    setMessage(`أنت الآن تتأمل ${payload}، شاهدٌ حي على عبقرية المعمار المغربي.`);
+                    setMessage(t('assistant.landmarkClick')(payload));
                     break;
                 case 'figure_click':
                     setEmotion('impressed');
-                    if (payload === 'ابن بطوطة') {
-                        setMessage("أحسنت صنعاً! أنت الآن في حضرة أعظم رحالة عرفه التاريخ.");
-                    } else {
-                        setMessage(`شخصية عظيمة! ${payload} ترك بصمة خالدة في تاريخ أمتنا.`);
-                    }
+                    setMessage(t('assistant.figureClick')(payload));
                     break;
-                case 'image_loaded': // New case for Auto-Fetch hook
+                case 'image_loaded':
                     setEmotion('happy');
-                    setMessage(`أرى أن الصورة التراثية لـ ${payload} قد اكتملت الآن، الجمال المغربي لا يُضاهى.`);
+                    setMessage(t('assistant.imageLoaded')(payload));
                     break;
             }
 
@@ -112,7 +117,7 @@ export default function MoroVerseAssistant() {
                     if (delta > 150) {
                         setEmotion('concerned');
                         setShowBubble(true);
-                        setMessage("تمهل يا صديقي، عظمة المغرب لا تُدرك إلا بالتدقيق.");
+                        setMessage(t('assistant.slowDown'));
 
                         setTimeout(() => {
                             setShowBubble(false);
@@ -275,7 +280,7 @@ export default function MoroVerseAssistant() {
                         exit={{ opacity: 0, scale: 0.8, x: 20 }}
                         className="assistant-bubble bg-white border-2 border-[#c5a059] shadow-[0_0_20px_rgba(197,160,89,0.5)] p-5 rounded-3xl rounded-tr-none md:rounded-tr-3xl md:rounded-br-none max-w-[200px] md:max-w-xs mt-10 md:mt-0 md:mb-10 mr-[-10px] md:mr-[-20px]"
                     >
-                        <p className="text-base font-arabic font-extrabold text-black text-right leading-relaxed" dir="rtl">
+                        <p className={`text-base font-extrabold text-black leading-relaxed ${lang === 'ar' ? 'font-arabic text-right' : 'text-left'}`} dir={lang === 'ar' ? 'rtl' : 'ltr'}>
                             {message}
                         </p>
                     </motion.div>

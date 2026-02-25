@@ -71,33 +71,48 @@ export async function generateMetadata(props: { params: Promise<{ slug: string }
 }
 
 // Next 15+ compatible page component
-export default async function PostPage(props: { params: Promise<{ slug: string }> }) {
+export default async function PostPage(props: {
+    params: Promise<{ slug: string }>,
+    searchParams: Promise<{ lang?: string }>
+}) {
     const params = await props.params;
+    const searchParams = await props.searchParams;
     const slug = params.slug;
+    const lang = searchParams.lang === 'en' ? 'en' : 'ar';
 
-    const filePath = path.join(process.cwd(), 'content', `${slug}.html`);
+    const contentDir = lang === 'en' ? path.join(process.cwd(), 'content', 'en') : path.join(process.cwd(), 'content');
+    const filePath = path.join(contentDir, `${slug}.html`);
 
-    let content = '<h1 style="color:#D4AF37;text-align:center;margin:5rem auto;">عذراً، المقال غير موجود</h1>';
+    let content = lang === 'ar'
+        ? '<h1 style="color:#D4AF37;text-align:center;margin:5rem auto;">عذراً، المقال غير موجود</h1>'
+        : '<h1 style="color:#D4AF37;text-align:center;margin:5rem auto;">Sorry, article not found</h1>';
+
     if (fs.existsSync(filePath)) {
         content = fs.readFileSync(filePath, 'utf8');
+    } else if (lang === 'en') {
+        // Fallback to Arabic if English not found
+        const fallbackPath = path.join(process.cwd(), 'content', `${slug}.html`);
+        if (fs.existsSync(fallbackPath)) {
+            content = fs.readFileSync(fallbackPath, 'utf8');
+        }
     }
 
     return (
-        <main className="min-h-screen bg-black pb-20 pt-32 relative">
+        <main className={`min-h-screen bg-black pb-20 pt-32 relative ${lang === 'ar' ? 'font-arabic' : 'font-sans'}`} dir={lang === 'ar' ? 'rtl' : 'ltr'}>
             {/* Zellij background texture */}
             <div className="absolute inset-0 opacity-[0.05] pointer-events-none" style={{ backgroundImage: "url('https://www.transparenttextures.com/patterns/az-subtle.png')" }} />
 
             {/* Back link */}
             <div className="container mx-auto px-4 lg:px-20 mb-6 relative z-10">
-                <a href="/" style={{ color: '#c5a059', textDecoration: 'none', fontSize: '0.9rem', fontWeight: 700, letterSpacing: '0.1em' }}>
-                    ← العودة إلى MoroVerse
+                <a href={`/?lang=${lang}`} style={{ color: '#c5a059', textDecoration: 'none', fontSize: '0.9rem', fontWeight: 700, letterSpacing: '0.1em' }}>
+                    {lang === 'ar' ? '← العودة إلى MoroVerse' : '← Back to MoroVerse'}
                 </a>
             </div>
 
             <div className="container mx-auto px-4 lg:px-20 relative z-10">
                 <div
                     className="bg-black/95 backdrop-blur-xl rounded-2xl border border-[#c5a059]/40 p-8 md:p-16 shadow-[0_0_50px_rgba(197,160,89,0.15)] text-white/90 prose prose-invert lg:prose-xl max-w-5xl mx-auto"
-                    style={{ lineHeight: '1.9', fontFamily: "'Cairo', 'Noto Naskh Arabic', serif" }}
+                    style={{ lineHeight: '1.9' }}
                     dangerouslySetInnerHTML={{ __html: content }}
                 />
             </div>

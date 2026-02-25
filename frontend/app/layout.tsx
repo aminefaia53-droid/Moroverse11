@@ -73,18 +73,22 @@ export const metadata = {
   },
 };
 
+import { LanguageProvider } from "../context/LanguageContext";
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="ar" dir="rtl">
       <body
         className={`${outfit.variable} ${cinzel.variable} ${playfair.variable} ${inter.variable} ${cairo.variable} antialiased selection:bg-gold-royal/30 selection:text-gold-royal`}
       >
-        {children}
-        <MoroVerseAssistant />
+        <LanguageProvider>
+          {children}
+          <MoroVerseAssistant />
+        </LanguageProvider>
       </body>
     </html>
   );

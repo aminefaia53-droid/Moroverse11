@@ -131,7 +131,7 @@ export default function LandmarkGrid({ lang }: { lang: 'en' | 'ar' }) {
                                     {selectedLandmark && (
                                         <script
                                             type="application/ld+json"
-                                            dangerouslySetInnerHTML={{ __html: JSON.stringify(generateArticleSchema(getArticle(selectedLandmark.id, selectedLandmark.name.ar, selectedLandmark.name.en, 'landmark'))) }}
+                                            dangerouslySetInnerHTML={{ __html: JSON.stringify(generateArticleSchema(getArticle(selectedLandmark.id, selectedLandmark.name.ar, selectedLandmark.name.en, 'landmark'), lang)) }}
                                         />
                                     )}
                                     <div className="inline-block p-6 rounded-full bg-black shadow-[0_0_30px_rgba(197,160,89,0.3)] border border-[#c5a059] mb-6">

@@ -14,11 +14,11 @@ import HistoricalFiguresGrid from "../components/HistoricalFiguresGrid";
 
 // Utils
 import AudioManager from "../utils/AudioManager";
-import ArticleReader from '@/components/ArticleReader';
 import MoroVerseLogo from '@/components/MoroVerseLogo';
+import { useLanguage } from "../context/LanguageContext";
 
 export default function Home() {
-  const [lang, setLang] = useState<"en" | "ar">("ar");
+  const { lang, setLang } = useLanguage();
   const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {

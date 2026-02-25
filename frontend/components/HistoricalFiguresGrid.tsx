@@ -125,9 +125,9 @@ function FigureCard({ figure, idx, lang }: { figure: HistoricalFigure; idx: numb
             transition={{ delay: idx * 0.1, duration: 0.5 }}
             onClick={() => {
                 window.dispatchEvent(new CustomEvent('moroverse-action', {
-                    detail: { type: 'figure_click', payload: figure.name.ar }
+                    detail: { type: 'figure_click', payload: figure.name[lang] }
                 }));
-                window.location.href = '/posts/' + figure.id;
+                window.location.href = '/posts/' + figure.id + '?lang=' + lang;
             }}
             className="group cursor-pointer w-full"
         >

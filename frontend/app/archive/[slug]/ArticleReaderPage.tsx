@@ -5,8 +5,12 @@ import Link from 'next/link';
 import { Crown, ArrowRight, Shield, Calendar, MapPin, Printer, Share2 } from 'lucide-react';
 import { MoroArticle } from '../../../data/moroverse-content';
 import SmartLink from '../../../components/SmartLink';
+import { useLanguage } from '../../../context/LanguageContext';
 
 const ArticleReaderPage = ({ article }: { article: MoroArticle }) => {
+    const { lang } = useLanguage();
+    const isAr = lang === 'ar';
+
     return (
         <div className="min-h-screen bg-black">
             {/* Navigation */}
@@ -41,7 +45,7 @@ const ArticleReaderPage = ({ article }: { article: MoroArticle }) => {
                         {article.category === 'battle' ? 'Battle Record' : article.category === 'landmark' ? 'Imperial Landmark' : 'Sovereign City'}
                     </span>
                     <h1 className="text-4xl md:text-6xl font-bold text-white font-arabic leading-tight">
-                        {article.title}
+                        {article.title[lang]}
                     </h1>
                 </div>
             </div>
@@ -70,7 +74,7 @@ const ArticleReaderPage = ({ article }: { article: MoroArticle }) => {
 
                         {/* Intro */}
                         <p className="text-2xl text-slate-800 leading-relaxed mb-16 font-arabic italic">
-                            <SmartLink text={article.intro} />
+                            <SmartLink text={article.intro[lang]} />
                         </p>
 
                         {/* Sections */}
@@ -79,10 +83,10 @@ const ArticleReaderPage = ({ article }: { article: MoroArticle }) => {
                                 <div key={idx} className="group">
                                     <h2 className="text-3xl font-bold text-slate-900 mb-6 flex items-center gap-4">
                                         <span className="w-12 h-[2px] bg-gold-royal group-hover:w-20 transition-all" />
-                                        {section.title}
+                                        {section.title[lang]}
                                     </h2>
                                     <p className="text-xl text-slate-600 leading-loose font-arabic">
-                                        <SmartLink text={section.content} />
+                                        <SmartLink text={section.content[lang]} />
                                     </p>
                                 </div>
                             ))}
@@ -92,7 +96,7 @@ const ArticleReaderPage = ({ article }: { article: MoroArticle }) => {
                         <div className="mt-20 p-12 bg-slate-900 rounded-[48px] relative overflow-hidden group shadow-2xl shadow-slate-900/20 text-center">
                             <div className="absolute top-0 right-0 w-48 h-48 bg-gold-royal/10 rounded-bl-full -mr-24 -mt-24 transition-transform duration-1000 group-hover:scale-120" />
                             <p className="relative z-10 text-white/90 text-xl leading-relaxed font-arabic max-w-2xl mx-auto">
-                                {article.conclusion}
+                                {article.conclusion[lang]}
                             </p>
                             <div className="mt-8 flex justify-center opacity-30">
                                 <div className="w-20 h-px bg-gold-royal" />
