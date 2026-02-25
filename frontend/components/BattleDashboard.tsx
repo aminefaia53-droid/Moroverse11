@@ -32,7 +32,7 @@ const battles: Battle[] = [
         location: { en: 'Mauretania Tingitana', ar: 'موريتانيا الطنجية' },
         era: 'Ancient',
         dynasty: 'Moorish Resistance',
-        name: { en: 'Aedemon Revolt', ar: 'ثورة إيديمون' },
+        name: { en: 'Aedemon Revolt', ar: 'ثورة أيديمون' },
         desc: { en: 'National uprising against the Roman Empire following the murder of King Ptolemy.', ar: 'انتفاضة وطنية ضد الإمبراطورية الرومانية بعد مقتل الملك بطليموس.' },
         combatants: { en: 'Moorish Tribes vs Rome', ar: 'القبائل المورية ضد روما' },
         leaders: { en: 'Aedemon', ar: 'إيديمون' },
@@ -51,7 +51,7 @@ const battles: Battle[] = [
         name: { en: 'Battle of the Nobles', ar: 'معركة الأشراف' },
         desc: { en: 'The decisive explosion of Moroccan independence against Umayyad marginalization.', ar: 'الانفجار الحاسم للاستقلال المغربي ضد التهميش الأموي.' },
         combatants: { en: 'Berber United Tribes vs Umayyad Caliphate', ar: 'القبائل المتحدة ضد الخلافة الأموية' },
-        leaders: { en: 'Maysara al-Matghari', ar: 'ميسرة المدغري' },
+        leaders: { en: 'Maysara al-Matghari', ar: 'ميسرة المطغري' },
         outcome: { en: 'Strategic victory for Moroccan autonomy.', ar: 'انتصار استراتيجي للحكم الذاتي المغربي.' },
         tactics: { en: 'Massive coordinated flank attacks.', ar: 'هجمات التفاف منسقة ضخمة.' },
         impact: { en: 'The birth of independent Moroccan statehood.', ar: 'ولادة الدولة المغربية المستقلة.' }
@@ -396,7 +396,7 @@ export default function BattleDashboard({ lang }: { lang: 'en' | 'ar' }) {
                                                 <Layers className="w-3.5 h-3.5 text-primary" />
                                             </div>
                                             <span className="text-[9px] font-black text-primary uppercase tracking-widest">
-                                                {lang === 'ar' ? 'التفاصيل' : 'DETAILS'}
+                                                {lang === 'ar' ? `سافر إلى عالم ${b.name.ar}` : `Journey into ${b.name.en}`}
                                             </span>
                                         </div>
                                         <ChevronRight className={`w-4 h-4 text-primary group-hover:translate-x-2 transition-transform ${lang === 'ar' ? 'rotate-180' : ''}`} />
