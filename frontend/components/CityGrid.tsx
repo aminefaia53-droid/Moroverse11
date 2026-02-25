@@ -149,13 +149,15 @@ export default function CityGrid({ lang }: { lang: 'en' | 'ar' }) {
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             exit={{ opacity: 0 }}
-                            className="absolute inset-0 bg-black/80 backdrop-blur-xl"
+                            onClick={() => setSelectedLocation(null)}
+                            className="absolute inset-0 bg-black/85 backdrop-blur-xl cursor-pointer"
                         />
 
                         <motion.div
-                            initial={{ opacity: 0, scale: 0.9, y: 40 }}
+                            initial={{ opacity: 0, scale: 0.92, y: 40 }}
                             animate={{ opacity: 1, scale: 1, y: 0 }}
-                            className="relative w-full max-w-4xl bg-black/90 rounded-[40px] shadow-[0_0_50px_rgba(197,160,89,0.2)] border border-[#c5a059] overflow-hidden"
+                            exit={{ opacity: 0, scale: 0.9, y: 40 }}
+                            className="relative w-full max-w-4xl bg-black/95 rounded-[32px] shadow-[0_0_50px_rgba(197,160,89,0.3)] border border-[#c5a059] overflow-y-auto max-h-[90vh]"
                         >
                             {/* Fact Sheet Header */}
                             <div className="relative h-64 bg-black/50 border-b border-[#c5a059]/30 flex items-center justify-center overflow-hidden">
@@ -186,9 +188,10 @@ export default function CityGrid({ lang }: { lang: 'en' | 'ar' }) {
                                 </div>
                                 <button
                                     onClick={() => setSelectedLocation(null)}
-                                    className="absolute top-8 right-8 p-3 rounded-2xl bg-black/80 border border-[#c5a059] hover:bg-[#c5a059]/20 transition-all text-white/60 hover:text-white z-20 shadow-lg"
+                                    className="absolute top-4 right-4 z-30 p-3 rounded-2xl bg-black border-2 border-[#c5a059] text-[#c5a059] hover:bg-[#c5a059] hover:text-black transition-all shadow-[0_0_20px_rgba(197,160,89,0.4)] flex items-center gap-2 text-xs font-black uppercase tracking-widest"
                                 >
-                                    <X className="w-6 h-6" />
+                                    <X className="w-5 h-5" />
+                                    <span className="hidden md:inline">{lang === 'ar' ? 'إغلاق' : 'Close'}</span>
                                 </button>
                             </div>
 
@@ -231,9 +234,9 @@ export default function CityGrid({ lang }: { lang: 'en' | 'ar' }) {
                                         </h4>
                                         <div className="flex flex-wrap gap-2">
                                             {selectedLocation.landmarks[lang].map((landmark, i) => (
-                                                <div key={i} className="px-4 py-3 rounded-2xl bg-slate-50 border border-primary/5 flex items-center gap-3 group hover:border-primary/20 transition-all">
-                                                    <div className="w-2 h-2 rounded-full bg-primary/40 group-hover:bg-primary" />
-                                                    <span className="text-[11px] font-bold text-foreground/70">{landmark}</span>
+                                                <div key={i} className="px-4 py-3 rounded-2xl bg-black/60 border border-[#c5a059]/30 flex items-center gap-3 group hover:border-primary/60 transition-all">
+                                                    <div className="w-2 h-2 rounded-full bg-[#c5a059]/60 group-hover:bg-primary" />
+                                                    <span className="text-[11px] font-bold text-white/80">{landmark}</span>
                                                 </div>
                                             ))}
                                         </div>
@@ -248,18 +251,13 @@ export default function CityGrid({ lang }: { lang: 'en' | 'ar' }) {
                                         </p>
                                     </div>
 
-                                    {(() => {
-                                        const isGenerated = ['tazenakht-forgotten-village', 'agbalou-nkardous-resistence'].includes(selectedLocation.id);
-                                        return (
-                                            <button
-                                                onClick={() => window.location.href = '/posts/' + selectedLocation.id}
-                                                className="w-full py-5 rounded-[32px] bg-primary text-white text-xs font-black uppercase tracking-[0.2em] flex items-center justify-center gap-3 shadow-[0_10px_20px_rgba(139,0,0,0.3)] hover:scale-105 hover:shadow-[0_0_20px_rgba(197,160,89,0.8)] transition-all group"
-                                            >
-                                                <Compass className="w-5 h-5 animate-pulse" />
-                                                {lang === 'ar' ? `سافر إلى عالم ${selectedLocation.name.ar}` : `Journey back to ${selectedLocation.name.en}`}
-                                            </button>
-                                        );
-                                    })()}
+                                    <button
+                                        onClick={() => window.location.href = '/posts/' + selectedLocation.id}
+                                        className="w-full py-5 rounded-[28px] bg-gradient-to-r from-[#8b0000] to-[#500000] text-white text-xs font-black uppercase tracking-[0.2em] flex items-center justify-center gap-3 shadow-[0_10px_30px_rgba(139,0,0,0.4)] hover:shadow-[0_0_30px_rgba(197,160,89,0.7)] hover:from-[#c5a059] hover:to-[#a08030] transition-all duration-500 border border-white/10"
+                                    >
+                                        <Compass className="w-5 h-5 animate-pulse" />
+                                        {lang === 'ar' ? `سافر إلى عالم ${selectedLocation.name.ar}` : `Journey to ${selectedLocation.name.en}`}
+                                    </button>
                                 </div>
                             </div>
                         </motion.div>
