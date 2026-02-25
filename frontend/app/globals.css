@@ -125,9 +125,27 @@ body {
   font-family: var(--font-arabic) !important;
 }
 
-/* Text Glow Utility */
+/* Text Glow Utility with Responsive Sizing */
 .text-glow {
   text-shadow: 0 0 20px rgba(255, 255, 255, 0.8), 0 0 40px rgba(197, 160, 89, 0.3);
+  letter-spacing: 0.05em;
+}
+
+.hero-title-responsive {
+  font-size: clamp(2.5rem, 12vw, 7rem);
+  line-height: 0.9;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.zellij-overlay {
+  position: absolute;
+  inset: 0;
+  background-image: url('https://www.transparenttextures.com/patterns/az-subtle.png');
+  /* A geometric zellij-like pattern */
+  opacity: 0.08;
+  pointer-events: none;
+  z-index: 1;
 }
 
 /* Camel Parallax Animation */

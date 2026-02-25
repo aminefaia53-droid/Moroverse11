@@ -70,8 +70,10 @@ export default function Home() {
   if (!isClient) return null;
 
   return (
-    <div className={`min-h-screen relative overflow-hidden text-foreground selection:bg-primary/20 font-sans ${lang === 'ar' ? 'font-arabic' : ''}`} dir={lang === 'ar' ? 'rtl' : 'ltr'}>
+    <div className={`min-h-screen relative overflow-x-hidden text-foreground selection:bg-primary/20 font-sans ${lang === 'ar' ? 'font-arabic' : ''}`} dir={lang === 'ar' ? 'rtl' : 'ltr'}>
 
+      {/* Zellij Silk Overlay */}
+      <div className="zellij-overlay fixed inset-0 pointer-events-none opacity-[0.07]"></div>
       {/* FIXED BACKGROUND: CINEMATIC RADIAL GLOW & DUNES */}
       <div className="fixed inset-0 z-0 hero-radial-glow overflow-hidden">
 
@@ -173,9 +175,9 @@ export default function Home() {
             <span className="text-[10px] md:text-xs font-bold tracking-widest uppercase">The Moroccan Digital Archive</span>
           </div>
 
-          <div className="flex items-center gap-6 mb-4 md:mb-6">
-            <MoroVerseLogo className="w-16 h-16 md:w-28 md:h-28" />
-            <h2 className="text-5xl md:text-8xl lg:text-[100px] font-display text-white uppercase tracking-[0.1em] leading-none font-black text-glow" style={{ textShadow: '0 10px 30px rgba(0,0,0,0.8), 0 0 40px rgba(197,160,89,0.4)' }}>
+          <div className="flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-8 mb-4 md:mb-8">
+            <MoroVerseLogo className="w-20 h-20 md:w-32 md:h-32 drop-shadow-[0_0_20px_rgba(197,160,89,0.5)]" />
+            <h2 className="hero-title-responsive font-display text-white font-black text-glow" style={{ textShadow: '0 10px 30px rgba(0,0,0,0.8), 0 0 40px rgba(197, 160, 89, 0.4)' }}>
               MOROVERSE
             </h2>
           </div>

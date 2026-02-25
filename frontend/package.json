@@ -1,6 +1,6 @@
+```json
 {
   "name": "frontend",
-  "version": "0.1.2",
   "private": true,
   "scripts": {
     "dev": "next dev",
