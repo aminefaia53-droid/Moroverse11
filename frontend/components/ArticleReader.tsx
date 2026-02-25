@@ -77,20 +77,27 @@ const ArticleReader: React.FC<ArticleReaderProps> = ({ article, isOpen, onClose 
                         </div>
 
                         <div className="flex-1 overflow-y-auto custom-scrollbar relative">
-                            {/* TOP SECTION: Cinematic Auto-playing Video */}
+                            {/* TOP SECTION: Cinematic Hero – Original 8K Image (Ken Burns) or Video Fallback */}
                             <div className="relative w-full h-[40vh] md:h-[50vh] bg-black shrink-0 overflow-hidden">
-                                {article.videoUrl ? (
+                                {article.generatedImage ? (
+                                    /* Phase 3: Original generated 8K image with Ken Burns slow-zoom */
+                                    <img
+                                        src={article.generatedImage}
+                                        alt={article.title[lang]}
+                                        className="w-full h-full object-cover opacity-90 animate-ken-burns"
+                                    />
+                                ) : article.videoUrl ? (
                                     <>
                                         {article.videoUrl.includes('youtube.com') || article.videoUrl.includes('youtu.be') ? (
                                             <iframe
                                                 src={(() => {
                                                     let videoId = '';
-                                                    if (article.videoUrl.includes('youtu.be/')) {
-                                                        videoId = article.videoUrl.split('youtu.be/')[1].split('?')[0];
-                                                    } else if (article.videoUrl.includes('youtube.com/watch?v=')) {
-                                                        videoId = article.videoUrl.split('v=')[1].split('&')[0];
-                                                    } else if (article.videoUrl.includes('youtube.com/embed/')) {
-                                                        videoId = article.videoUrl.split('embed/')[1].split('?')[0];
+                                                    if (article.videoUrl!.includes('youtu.be/')) {
+                                                        videoId = article.videoUrl!.split('youtu.be/')[1].split('?')[0];
+                                                    } else if (article.videoUrl!.includes('youtube.com/watch?v=')) {
+                                                        videoId = article.videoUrl!.split('v=')[1].split('&')[0];
+                                                    } else if (article.videoUrl!.includes('youtube.com/embed/')) {
+                                                        videoId = article.videoUrl!.split('embed/')[1].split('?')[0];
                                                     }
                                                     return `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&loop=1&playlist=${videoId}&controls=0&showinfo=0&rel=0`;
                                                 })()}

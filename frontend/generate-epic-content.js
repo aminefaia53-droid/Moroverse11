@@ -1,4 +1,7 @@
-export interface ArticleSection {
+const fs = require('fs');
+const path = require('path');
+
+const content = `export interface ArticleSection {
     title: { en: string; ar: string };
     content: { en: string; ar: string };
 }
@@ -300,8 +303,8 @@ export const getArticle = (id: string, nameAr: string, nameEn: string, category:
     return {
         id,
         title: {
-            ar: `${nameAr}`,
-            en: `${nameEn}`
+            ar: \`\${nameAr}\`,
+            en: \`\${nameEn}\`
         },
         category,
         metaDescription: { ar: '', en: '' },
@@ -310,3 +313,7 @@ export const getArticle = (id: string, nameAr: string, nameEn: string, category:
         conclusion: { ar: '', en: '' }
     };
 };
+`;
+
+fs.writeFileSync(path.join('data', 'moroverse-content.ts'), content);
+console.log('moroverse-content.ts successfully regenerated with 5 Epic fully loaded Articles Phase 3!');
