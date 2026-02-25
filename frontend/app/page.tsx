@@ -53,7 +53,7 @@ export default function Home() {
     ar: {
       welcome: "موروفيرس: الأفق الإمبراطوري",
       subtitle: "عظمة تتجاوز الظلال، منقوشة في الزمرد الأبدي",
-      cta: "استكشف الموسوعة",
+      cta: "استكشف المدونة",
       sections: {
         encyclopedia: "موسوعة المملكة",
         encyclopediaDesc: "استكشف روح كل مدينة، من الجوهرة الزرقاء شمالاً إلى لؤلؤة الجنوب.",
@@ -183,7 +183,7 @@ export default function Home() {
           </div>
 
           <p className="text-base md:text-2xl text-primary font-medium mb-10 md:mb-12 tracking-wide leading-relaxed uppercase drop-shadow-[0_4px_8px_rgba(0,0,0,0.9)] border-primary bg-black/30 p-4 rounded-xl backdrop-blur-sm text-center md:text-left md:border-l-4 md:pl-6 md:rounded-r-xl">
-            <span className="text-white font-bold block mb-2 drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)] font-arabic">{lang === 'ar' ? 'الذكاء الاصطناعي يلتقي بالأصالة' : 'AI Meets Authenticity'}</span>
+            <span className="text-white font-bold block mb-2 drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)] font-arabic">{lang === 'ar' ? 'تاريخ عريق يرحب بكم' : 'AI Meets Authenticity'}</span>
             <span className="drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">{lang === 'ar' ? 'اكتشف عبق التاريخ وروعة المكان في بوابة زمنية متطورة' : 'Explore the soul and beauty of the Kingdom through an advanced time portal'}</span>
           </p>
           <button className="px-12 md:px-16 py-5 md:py-6 bg-gradient-to-r from-[#8b0000] to-[#500000] text-white font-black text-xs md:text-sm tracking-[0.3em] uppercase hover:from-primary hover:to-primary transition-all duration-500 rounded-full shadow-[0_10px_30px_rgba(139,0,0,0.5)] hover:shadow-[0_0_30px_rgba(197,160,89,0.8)] border border-white/10 flex items-center gap-4 group mx-auto md:mx-0">
