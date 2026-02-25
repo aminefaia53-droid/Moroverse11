@@ -60,7 +60,7 @@ export default function LandmarkGrid({ lang }: { lang: 'en' | 'ar' }) {
             </div>
 
             {/* Grid */}
-            <div className="flex overflow-x-auto pb-6 gap-4 px-2 snap-x snap-mandatory no-scrollbar md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-8">
+            <div className="flex flex-col md:grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 px-2">
                 <AnimatePresence mode='popLayout'>
                     {filteredLandmarks.map((landmark, idx) => (
                         <LandmarkCard
@@ -222,7 +222,7 @@ function LandmarkCard({
                     detail: { type: 'landmark_click', payload: landmark.name.ar }
                 }));
             }}
-            className="group cursor-pointer snap-center w-[80vw] flex-shrink-0 md:w-auto"
+            className="group cursor-pointer w-full md:w-auto"
         >
             <div className="backdrop-blur-md bg-black/60 hover:bg-black/80 p-8 rounded-[40px] border border-[#c5a059] hover:border-primary transition-all duration-700 hover:shadow-[0_0_30px_rgba(197,160,89,0.4)] relative overflow-hidden h-80 flex flex-col justify-between">
 
