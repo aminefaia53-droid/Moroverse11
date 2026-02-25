@@ -144,7 +144,7 @@ export default function CityGrid({ lang }: { lang: 'en' | 'ar' }) {
             {/* Fact Sheet Modal */}
             <AnimatePresence>
                 {selectedLocation && (
-                    <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-8">
+                    <div className="fixed inset-0 z-[100] flex items-end md:items-center justify-center p-4 pb-6 md:p-8">
                         <motion.div
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
