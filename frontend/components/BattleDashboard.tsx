@@ -1,8 +1,8 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Swords, Calendar, Shield, MapPin, Users, Target, Info, Quote, Activity, ChevronRight, X, Layers, BookOpen, Crown } from 'lucide-react';
+import { Swords, Calendar, Shield, MapPin, Users, Target, Info, Quote, Activity, ChevronRight, X, Layers, BookOpen, Crown, Search, Compass } from 'lucide-react';
 import { getArticle } from '../data/moroverse-content';
 import ArticleReader from './ArticleReader';
 import { generateArticleSchema } from '../utils/seo';
@@ -43,12 +43,12 @@ const battles: Battle[] = [
 
     // --- ISLAMIC FOUNDATIONS (IDRISID & REVOLT) ---
     {
-        id: 'ashraf-nobles',
+        id: 'battle-of-bagdoura-741',
         year: '740',
         location: { en: 'Near Tangier / Bagdoura', ar: 'قرب طنجة / باقدورة' },
         era: 'Islamic',
         dynasty: 'Great Berber Revolt',
-        name: { en: 'Battle of the Nobles', ar: 'معركة الأشراف' },
+        name: { en: 'Battle of the Nobles', ar: 'معركة الأشراف (بقدورة)' },
         desc: { en: 'The decisive explosion of Moroccan independence against Umayyad marginalization.', ar: 'الانفجار الحاسم للاستقلال المغربي ضد التهميش الأموي.' },
         combatants: { en: 'Berber United Tribes vs Umayyad Caliphate', ar: 'القبائل المتحدة ضد الخلافة الأموية' },
         leaders: { en: 'Maysara al-Matghari', ar: 'ميسرة المطغري' },
@@ -73,7 +73,7 @@ const battles: Battle[] = [
 
     // --- IMPERIAL GLORY (ALMORAVID, ALMOHAD, MERINID) ---
     {
-        id: 'zallaqa',
+        id: 'battle-of-zallaqa-1086',
         year: '1086',
         location: { en: 'Zallaqa, Al-Andalus', ar: 'الزلاقة، الأندلس' },
         era: 'Imperial',
@@ -87,7 +87,7 @@ const battles: Battle[] = [
         impact: { en: 'Extended Muslim presence in Europe for 400 years.', ar: 'مدد التواجد الإسلامي في أوروبا لـ 400 سنة.' }
     },
     {
-        id: 'alarcos',
+        id: 'battle-of-al-ark-1195',
         year: '1195',
         location: { en: 'Alarcos, Al-Andalus', ar: 'الأرك، الأندلس' },
         era: 'Imperial',
@@ -99,6 +99,34 @@ const battles: Battle[] = [
         outcome: { en: 'Crushing victory.', ar: 'نصر ساحق.' },
         tactics: { en: 'Innovative combined arms (Archer/Cavalry).', ar: 'تنسيق مبتكر بين الرماية والخيالة.' },
         impact: { en: 'Established Almohads as the supreme Western power.', ar: 'ثبت الموحدين كقوة عظمى في الغرب.' }
+    },
+    {
+        id: 'battle-of-las-navas-de-tolosa-1212',
+        year: '1212',
+        location: { en: 'Al-Andalus', ar: 'حصن العقاب، الأندلس' },
+        era: 'Imperial',
+        dynasty: 'Almohad',
+        name: { en: 'Battle of Las Navas de Tolosa', ar: 'معركة حصن العقاب' },
+        desc: { en: 'A pivotal turning point in Al-Andalus history.', ar: 'منعرج حاسم في تاريخ الأندلس.' },
+        combatants: { en: 'Almohad Caliphate vs Christian Coalition', ar: 'الخلافة الموحدية ضد التحالف المسيحي' },
+        leaders: { en: 'Muhammad al-Nasir', ar: 'محمد الناصر' },
+        outcome: { en: 'Stiff resistance against superior numbers.', ar: 'مقاومة صلبة ضد أعداد متفوقة.' },
+        tactics: { en: 'Elite Palatial Guard formation.', ar: 'تشكيلات الحرس السلطاني النخبوية.' },
+        impact: { en: 'Defined the final stage of Almohad presence in Al-Andalus.', ar: 'حددت المرحلة الأخيرة للتواجد الموحدي بالأندلس.' }
+    },
+    {
+        id: 'battle-of-dononiyah-1276',
+        year: '1276',
+        location: { en: 'Dononiyah, Al-Andalus', ar: 'الدونونية، الأندلس' },
+        era: 'Imperial',
+        dynasty: 'Merinid',
+        name: { en: 'Battle of Dononiyah', ar: 'معركة الدونونية' },
+        desc: { en: 'Heroic Merinid expedition to stabilize the Strait and Al-Andalus.', ar: 'حملة مرينية بطولية لتثبيت المضيق والأندلس.' },
+        combatants: { en: 'Merinid Empire vs Castile', ar: 'الإمبراطورية المرينية ضد قشتالة' },
+        leaders: { en: 'Abu Yusuf Yaqub', ar: 'أبو يوسف يعقوب' },
+        outcome: { en: 'Strategic victory.', ar: 'انتصار استراتيجي.' },
+        tactics: { en: 'Combined naval and land tactics.', ar: 'تنسيق بحري وبري.' },
+        impact: { en: 'Extended Merinid influence across the Strait.', ar: 'مد النفوذ المريني عبر المضيق.' }
     },
     {
         id: 'sale-1260',
@@ -132,7 +160,7 @@ const battles: Battle[] = [
 
     // --- GLOBAL SOVEREIGN (SAADI & ALAOUITE) ---
     {
-        id: 'wadi-makhazin',
+        id: 'battle-of-wadi-al-makhazin-1578',
         year: '1578',
         location: { en: 'Wadi Al-Makhazin / Ksar el-Kebir', ar: 'وادي المخازن / القصر الكبير' },
         era: 'Imperial',
@@ -144,6 +172,20 @@ const battles: Battle[] = [
         outcome: { en: 'Total Sovereignty secured.', ar: 'تأمين السيادة المطلقة.' },
         tactics: { en: 'Strategic bridge sabotage and artillery mastery.', ar: 'تخريب القنطرة الاستراتيجي وإتقان المدفعية.' },
         impact: { en: 'Morocco recognized as a global power.', ar: 'الاعتراف بالمغرب كقوة عالمية.' }
+    },
+    {
+        id: 'oued-sebou-maamora-1515',
+        year: '1515',
+        location: { en: 'Wadi Sebou, Maamora', ar: 'وادي سيبو، المعمورة' },
+        era: 'Imperial',
+        dynasty: 'Saadi (Emergent)',
+        name: { en: 'Battle of Oued Sebou', ar: 'معركة وادي سيبو' },
+        desc: { en: 'Saadi and tribal resistance against Portuguese naval fortifications.', ar: 'المقاومة السعدية والقبلية ضد التحصينات البحرية البرتغالية.' },
+        combatants: { en: 'Moroccan Tribes vs Portugal', ar: 'القبائل المغربية ضد البرتغال' },
+        leaders: { en: 'Sheikh of Soufyan', ar: 'شيخ قبائل سفيان' },
+        outcome: { en: 'Repelled and contained invaders.', ar: 'دحر واحتواء الغزاة.' },
+        tactics: { en: 'River-bank ambushes.', ar: 'كمائن ضفاف النهر.' },
+        impact: { en: 'Restricted Portuguese influence to coastal enclaves.', ar: 'حصر النفوذ البرتغالي في الموانئ الساحلية.' }
     },
     {
         id: 'ceuta-siege',
@@ -176,7 +218,7 @@ const battles: Battle[] = [
 
     // --- MODERN RESISTANCE (1900 - 1956) ---
     {
-        id: 'annual',
+        id: 'battle-of-annual-1921',
         year: '1921',
         location: { en: 'Annual, Rif', ar: 'أنوال، الريف' },
         era: 'Modern Resistance',
@@ -188,6 +230,48 @@ const battles: Battle[] = [
         outcome: { en: 'Legendary victory.', ar: 'انتصار أسطوري.' },
         tactics: { en: 'Mobile flanking and trench-jumping.', ar: 'التفاف متحرك واقتحام الخنادق.' },
         impact: { en: 'Global symbol of decolonization.', ar: 'رمز عالمي لتصفية الاستعمار.' }
+    },
+    {
+        id: 'battle-of-bougafer-1933',
+        year: '1933',
+        location: { en: 'Mount Bougafer, Anti-Atlas', ar: 'جبل بوغافر' },
+        era: 'Modern Resistance',
+        dynasty: 'Ait Atta Resistance',
+        name: { en: 'Battle of Bougafer', ar: 'معركة بوغافر' },
+        desc: { en: 'A heroic stand of the Ait Atta tribes against the French colonial forces.', ar: 'ملحمة صمود قبائل أيت عطا ضد القوات الاستعمارية الفرنسية.' },
+        combatants: { en: 'Ait Atta Tribes vs France', ar: 'قبائل أيت عطا ضد فرنسا' },
+        leaders: { en: 'Assou ou-Baslam', ar: 'عسو أوبسلام' },
+        outcome: { en: 'Strategic stalemate and heroic compromise.', ar: 'تعادل استراتيجي وتوافق بطولي.' },
+        tactics: { en: 'Guerrilla mountain warfare.', ar: 'حرب العصابات الجبلية.' },
+        impact: { en: 'Delayed colonial control in the Atlas region.', ar: 'أخرت السيطرة الاستعمارية في منطقة الأطلس.' }
+    },
+    {
+        id: 'battle-of-isly-1844',
+        year: '1844',
+        location: { en: 'Isly River, Oujda', ar: 'وادي إيسلي، وجدة' },
+        era: 'Imperial',
+        dynasty: 'Alaouite',
+        name: { en: 'Battle of Isly', ar: 'معركة إيسلي' },
+        desc: { en: 'Moroccan forces defend North African sovereignty against expansionism.', ar: 'القوات المغربية تدافع عن سيادة شمال إفريقيا ضد التوسع.' },
+        combatants: { en: 'Royal Moroccan Army vs France', ar: 'الجيش السلطاني المغربي ضد فرنسا' },
+        leaders: { en: 'Sidi Mohammed', ar: 'سيدي محمد' },
+        outcome: { en: 'Hard-fought tactical loss.', ar: 'خسارة تكتيكية بشرف.' },
+        tactics: { en: 'Cavalry charges against modern artillery.', ar: 'هجمات الخيالة ضد المدفعية الحديثة.' },
+        impact: { en: 'Marked the beginning of modern structural reforms.', ar: 'شكلت بداية الإصلاحات الهيكلية الحديثة.' }
+    },
+    {
+        id: 'battle-of-tetouan-1860',
+        year: '1860',
+        location: { en: 'Tetouan', ar: 'تطوان' },
+        era: 'Imperial',
+        dynasty: 'Alaouite',
+        name: { en: 'Battle of Tetouan', ar: 'معركة تطوان' },
+        desc: { en: 'Defense of the White Dove against European naval and land incursions.', ar: 'الدفاع عن الحمامة البيضاء ضد التوغلات البحرية والبرية الأوروبية.' },
+        combatants: { en: 'Moroccan Army vs Spain', ar: 'الجيش المغربي ضد إسبانيا' },
+        leaders: { en: 'Moulay Abbas', ar: 'مولاي عباس' },
+        outcome: { en: 'Strategic urban resistance.', ar: 'مقاومة حضرية استراتيجية.' },
+        tactics: { en: 'Urban rampart defense.', ar: 'الدفاع عن أسوار المدينة.' },
+        impact: { en: 'Demonstrated Moroccan resilience in the north.', ar: 'أظهرت الصمود المغربي في الشمال.' }
     },
     {
         id: 'tazizaoute-1932',
@@ -248,13 +332,13 @@ const battles: Battle[] = [
         impact: { en: 'Solidified the Moroccan identity of the Saharan provinces.', ar: 'كرست الهوية المغربية للأقاليم الصحراوية.' }
     },
     {
-        id: 'dcheira',
+        id: 'battle-of-dcheira-1958',
         year: '1958',
         location: { en: 'Dcheira, Sahara', ar: 'الدشيرة، الصحراء' },
         era: 'Liberation',
         dynasty: 'Liberation Army',
         name: { en: 'Battle of Dcheira', ar: 'معركة الدشيرة' },
-        desc: { en: 'A decisive blow against the Spanish Foreign Legion.', ar: 'ضربة حاسمة ضد الفيلق الأجنبي الإسباني.' },
+        desc: { en: 'A decisive blow against the Spanish Foreign Legion in the Sahara.', ar: 'ضربة حاسمة ضد الفيلق الأجنبي الإسباني في الصحراء.' },
         combatants: { en: 'ALN vs Spain', ar: 'جيش التحرير ضد إسبانيا' },
         leaders: { en: 'Regional Commanders', ar: 'القادة الجهويون' },
         outcome: { en: 'Tactical Moroccan victory.', ar: 'انتصار تكتيكي مغربي.' },
@@ -290,22 +374,56 @@ const eras = [
 
 export default function BattleDashboard({ lang }: { lang: 'en' | 'ar' }) {
     const [filter, setFilter] = useState('All');
+    const [searchQuery, setSearchQuery] = useState('');
     const [selectedBattle, setSelectedBattle] = useState<Battle | null>(null);
     const [showFullArticle, setShowFullArticle] = useState(false);
 
     // Filter mapping logic
-    const displayBattles = battles.filter(b => {
-        if (filter === 'All') return true;
-        if (filter === 'Imperial') return b.dynasty === 'Almoravid' || b.dynasty === 'Almohad';
-        if (filter === 'Sovereign') return b.dynasty === 'Saadi' || b.dynasty.includes('Alaouite');
-        if (filter === 'Merinid') return b.dynasty === 'Merinid';
-        return b.era === filter || b.era.includes(filter);
-    });
+    const displayBattles = useMemo(() => {
+        return battles.filter(b => {
+            const matchesFilter = (() => {
+                if (filter === 'All') return true;
+                if (filter === 'Imperial') return b.dynasty === 'Almoravid' || b.dynasty === 'Almohad';
+                if (filter === 'Sovereign') return b.dynasty === 'Saadi' || b.dynasty.includes('Alaouite');
+                if (filter === 'Merinid') return b.dynasty === 'Merinid';
+                return b.era === filter || b.era.includes(filter);
+            })();
+
+            const matchesSearch =
+                b.name.en.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                b.name.ar.includes(searchQuery) ||
+                b.location.en.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                b.location.ar.includes(searchQuery);
+
+            return matchesFilter && matchesSearch;
+        });
+    }, [filter, searchQuery]);
 
     return (
-        <div className="relative w-full max-w-7xl mx-auto py-12 px-4 mb-20">
-            {/* Header section remains identical or slightly enhanced for higher density */}
-            <div className="flex flex-col lg:flex-row items-center justify-between mb-20 gap-10">
+        <div className="relative w-full max-w-7xl mx-auto py-12 px-4 mb-20 space-y-12">
+            {/* Search Bar */}
+            <div className="max-w-2xl mx-auto relative group w-full flex items-center">
+                <Search className={`absolute ${lang === 'ar' ? 'right-6' : 'left-6'} top-1/2 -translate-y-1/2 w-5 h-5 text-white/40 group-focus-within:text-primary transition-colors z-10`} />
+                <input
+                    type="text"
+                    dir={lang === 'ar' ? 'rtl' : 'ltr'}
+                    placeholder={lang === 'ar' ? 'بحث عن معركة أو عصر تاريخي...' : 'Search for a battle or historical era...'}
+                    className={`w-full ${lang === 'ar' ? 'pr-14 pl-12' : 'pl-14 pr-12'} py-5 rounded-[32px] bg-black/40 border border-[#c5a059]/20 focus:border-primary focus:bg-black/60 focus:ring-0 outline-none transition-all text-sm font-medium text-white placeholder-white/30 backdrop-blur-xl`}
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                />
+                {searchQuery && (
+                    <button
+                        onClick={() => setSearchQuery('')}
+                        className={`absolute ${lang === 'ar' ? 'left-6' : 'right-6'} top-1/2 -translate-y-1/2 p-2 hover:bg-white/10 rounded-full transition-colors z-10`}
+                    >
+                        <X className="w-4 h-4 text-white/40" />
+                    </button>
+                )}
+            </div>
+
+            {/* Header section */}
+            <div className="flex flex-col lg:flex-row items-center justify-between gap-10">
                 <div className="flex items-center gap-6 text-right">
                     <div className="p-5 bg-primary/10 rounded-3xl border border-primary/20 shadow-inner">
                         {selectedBattle && (
@@ -510,11 +628,30 @@ export default function BattleDashboard({ lang }: { lang: 'en' | 'ar' }) {
                                         </div>
 
                                         {(() => {
-                                            const isGenerated = ['sidi-bou-othmane-battle-1912', 'el-hri-battle-1914'].includes(selectedBattle.id);
+                                            // Slugs from content directory
+                                            const academicSlugs = [
+                                                'oued-sebou-maamora-1515',
+                                                'battle-of-bagdoura-741',
+                                                'battle-of-zallaqa-1086',
+                                                'battle-of-al-ark-1195',
+                                                'battle-of-las-navas-de-tolosa-1212',
+                                                'battle-of-dononiyah-1276',
+                                                'battle-of-wadi-al-makhazin-1578',
+                                                'battle-of-isly-1844',
+                                                'battle-of-tetouan-1860',
+                                                'sidi-bou-othmane-battle-1912',
+                                                'el-hri-battle-1914',
+                                                'battle-of-annual-1921',
+                                                'battle-of-bougafer-1933',
+                                                'battle-of-dcheira-1958',
+                                                'agbalou-nkardous-resistence',
+                                                'tazenakht-forgotten-village'
+                                            ];
+                                            const isAcademic = academicSlugs.includes(selectedBattle.id);
                                             return (
                                                 <button
                                                     onClick={() => {
-                                                        if (isGenerated) {
+                                                        if (isAcademic) {
                                                             window.location.href = '/posts/' + selectedBattle.id;
                                                         } else {
                                                             setShowFullArticle(true);
@@ -522,8 +659,8 @@ export default function BattleDashboard({ lang }: { lang: 'en' | 'ar' }) {
                                                     }}
                                                     className="w-full py-5 rounded-[32px] bg-primary text-white text-xs font-black uppercase tracking-[0.2em] flex items-center justify-center gap-3 shadow-xl shadow-primary/20 hover:scale-105 transition-all"
                                                 >
-                                                    <BookOpen className="w-5 h-5" />
-                                                    {lang === 'ar' ? 'اقرأ المقال الكامل' : 'READ FULL ARTICLE'}
+                                                    <Compass className="w-5 h-5 animate-pulse" />
+                                                    {lang === 'ar' ? `سافر إلى عالم ${selectedBattle.name.ar}` : `Journey into ${selectedBattle.name.en}`}
                                                 </button>
                                             );
                                         })()}
