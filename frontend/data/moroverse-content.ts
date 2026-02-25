@@ -3,6 +3,11 @@ export interface ArticleSection {
     content: { en: string; ar: string };
 }
 
+export interface ArticleFAQ {
+    q: { en: string; ar: string };
+    a: { en: string; ar: string };
+}
+
 export interface MoroArticle {
     id: string;
     title: { en: string; ar: string };
@@ -10,6 +15,7 @@ export interface MoroArticle {
     metaDescription: { en: string; ar: string };
     intro: { en: string; ar: string };
     sections: ArticleSection[];
+    faqs?: ArticleFAQ[];
     conclusion: { en: string; ar: string };
     videoUrl?: string;
     gallery?: string[];
@@ -41,93 +47,66 @@ export const moroverseArticles: Record<string, MoroArticle> = {
                 }
             }
         ],
+        faqs: [
+            {
+                q: { ar: "متى تم بناء مسجد الحسن الثاني؟", en: "When was the Hassan II Mosque built?" },
+                a: { ar: "تم الانتهاء من بنائه عام 1993 بعد سنوات من العمل المتواصل بمشاركة آلاف الحرفيين.", en: "Its construction was completed in 1993 after years of continuous work involving thousands of artisans." }
+            },
+            {
+                q: { ar: "ما هو ارتفاع مئذنة المسجد؟", en: "What is the height of the mosque's minaret?" },
+                a: { ar: "يبلغ ارتفاع المئذنة 210 أمتار، مما يجعلها من أعلى المآذن في العالم.", en: "The minaret is 210 meters high, making it one of the tallest minarets in the world." }
+            },
+            {
+                q: { ar: "هل يمكن لغير المسلمين زيارة المسجد؟", en: "Can non-Muslims visit the mosque?" },
+                a: { ar: "نعم، يعتبر مسجد الحسن الثاني من المساجد القليلة في المغرب التي تفتح أبوابها للزوار غير المسلمين عبر جولات سياحية منظمة ومؤطرة.", en: "Yes, the Hassan II Mosque is one of the few mosques in Morocco open to non-Muslim visitors through guided tours." }
+            }
+        ],
         conclusion: {
             ar: 'في النهاية، يقف مسجد الحسن الثاني كشاهد حي لا تخطئه العين على قدرة العقل البشري، وإبداع الأيادي المغربية الأصيلة، وعظمة الحضارة الإسلامية الممتدة عبر الأزمان والمكان. إنه ليس مجرد مبنى ديني محض يزوره السياح للالتقاط الصور المذهلة التذكارية، بل هو ملحمة مجسدة من الحجر والماء والخشب والزجاج، تروي قصة أمة عريقة استطاعت أن تحافظ على جذورها وهويتها الأصيلة بينما تعانق وتناطح السماء بمآذنها وتبحر في تحديات العصر والزمن بشجاعة وإيمان لا يلين ولا ينكسر أبداً.',
             en: 'Ultimately, the Hassan II Mosque stands as a living testament to human capability, the creativity of Moroccan hands, and the greatness of Islamic civilization. It is an epic materialized in stone, water, and wood.'
         },
         videoUrl: 'https://cdn.pixabay.com/video/2016/09/21/5361-182312675_large.mp4',
         gallery: [
-            'https://upload.wikimedia.org/wikipedia/commons/e/ee/Hassan_II_Mosque_1.jpg',
-            'https://upload.wikimedia.org/wikipedia/commons/6/69/Hassan_II_Mosque_-_interior.jpg',
-            'https://upload.wikimedia.org/wikipedia/commons/1/18/Hassan_II_Mosque_Casablanca.jpg'
-        ]
-    },
-    'fatima-al-fihriya': {
-        id: 'fatima-al-fihriya',
-        title: { ar: 'فاطمة الفهرية: أم البنين ومؤسسة أقدم جامعة مستمرة في تاريخ البشرية جمعاء', en: 'Fatima al-Fihriya: Mother of the Boys and Founder of the World Oldest University' },
-        category: 'figure',
-        metaDescription: { ar: 'قصة السيدة فاطمة الفهرية، المرأة التي وهبت مالها وحياتها لبناء جامع وجامعة القرويين بفاس، أقدم جامعة مستمرة في العالم وموطن العلم والتنوير منذ القرن التاسع الميلادي المشرق بالمعرفة.', en: 'The epic true story of Fatima al-Fihriya, the visionary woman who donated her wealth to build the Al-Qarawiyyin University in Fez, the oldest existing educational institution.' },
-        intro: {
-            ar: 'في قلب مدينة فاس العريقة، النابض بالحضارة والتاريخ والثقافة الأصيلة، برزت في غابر الأزمان شخصية نسائية استثنائية خلّفت إرثاً علمياً وإنسانياً غير مسبوق بتأسيسها لأول جامعة مستمرة في تاريخ الإنسانية قاطبة: إنها السيدة الفاضلة فاطمة بنت محمد الفهرية القرشية، التي لُقبت واشتهرت بلقب أم البنين. وُلدت فاطمة في عائلة غنية وعريقة تنتسب إلى قبيلة قريش في مدينة القيروان بتونس حالياً، ثم انتقلت مع عائلتها صُنوف المغتربين والباحثين عن الاستقرار إلى العاصمة الإدريسية فاس هرباً واستقراراً في عهد الدولة الأدارسة والمولى إدريس الثاني الذي شيد مدينة كانت تفيض بالعلم والعمران. ورغم ثرائها الكبير ومكانتها الاجتماعية المرموقة، فقد امتازت بروح الوفاء والزهد والتقوى وعلو الهمة، حيث لم تدخر جهداً في تسخير طاقاتها وأموالها وقوة عزيمتها لخدمة مجتمعها ودينها الإسلامي الحنيف السمح. لقد أدركت فاطمة بوعيها العميق وبصيرتها الثاقبة أن نهضة هذه الأمة تبدأ وتنتهي مع نشر العلم وتأسيس البنيان والدين وتشييد صروح المعرفة، وهي رؤية تنويرية سابقة شدت الانتباه وسبقت عصرها بكثير جداً. تجسد قصة بناءها لمسجد وجامعة القرويين عام 859م ملحمة كبرى من الإيثار الإنساني المدهش والعظيم والفريد، ما جعلها رائدة التعليم العالي على مستوى العالم والأم الروحية والمشعل الذي ينير درب كل طالب وكل باحث عن المعرفة حتى يومنا هذا، وستظل كذلك إلى الأبد بفضل صدق نيتها.',
-            en: 'In the heart of the civilized city of Fez, Fatima al-Fihriya left an unprecedented scientific legacy by founding the University of Al-Qarawiyyin in 859 AD, becoming a pioneer of higher education in history.'
-        },
-        sections: [
-            {
-                title: { ar: 'تأسيس جامعة القرويين: منارة شامخة للعلم والتسامح تشع عبر توالي العصور', en: 'Founding Al-Qarawiyyin: A Beacon of Science Through the Ages' },
-                content: {
-                    ar: 'لم يكن جامع القرويين في بداياته مجرد مسجد للصلاة والعبادة العابرة فحسب، بل تحول بفضل الله ثم بفضل رؤية وعطاء السيدة فاطمة الفهرية إلى مركز إشعاع فكري وحضاري وعلمي عالمي لا نظير له في الغرب الإسلامي بل في العالم بأسره. اشترت فاطمة بمال حر ورثته من أبيها وزوجها بستاناً واسعاً وسط المدينة وأشرفت بنفسها بشكل ميداني ويومي على عمليات البناء خطوة بخطوة. وقد أصرت بكل تقوى وإصرار وحزم على ألا تستخدم في البناء إلا المواد المستخرجة من تلك الأرض تحديداً، حرصاً منها على تحري الحلال التام، وأن تصوم طيلة فترة البناء التي امتدت لسنوات طويلة حتى اكتمل هذا الصرح الشامخ وتقبلته السماء. وبمجرد اكتماله للصلاة، لم يتوقف دوره أبداً عند حدود الشعائر، بل سرعان ما استقطب بقوة العلماء الكبار والجهابذة والطلبة والباحثين الوافدين من كل حدب وصوب للتبحر في الفقه، الطب، الفلك، الفلسفة، والرياضيات المتقدمة. تخرج من أروقته علماء أجلاء تركوا بصمة جلية وساطعة في تاريخ البشرية، أمثال العلامة والمؤرخ المؤسس ابن خلدون، والفيلسوف العظيم ابن رشد، والعالم والجغرافي الفذ الشريف الإدريسي، بل وحتى اللاهوتيين والبابوات المسيحيين الغربيين أمثال البابا سيلفستر الثاني الذي نقل بشغف الأرقام العربية إلى أوروبا المتخلفة آنذاك مستفيداً من علوم القرويين. هذا وتعتبر الجامعة حتى الآن، بشهادة رسمية من موسوعة غينيس للأرقام القياسية ومنظمة اليونسكو العالمية، أقدم مؤسسة تعليمية جامعية قائمة ومستمرة بلا انقطاع في وظيفتها التعليمية على مستوى الكرة الأرضية جمعاء.',
-                    en: 'Al-Qarawiyyin was not just a mosque for prayer, but transformed through Fatima vision into a center of intellectual radiance where Ibn Khaldun, Averroes, and many scholars who shaped modern thought graduated. The university has operated continuously since its founding, making it the oldest existing educational institution.'
-                }
-            },
-            {
-                title: { ar: 'رمزية المرأة المغربية والإسلامية الفذة والأثر الخالد في وجدان الأمة', en: 'The Symbolism of Moroccan Women and Eternal Legacy' },
-                content: {
-                    ar: 'تعد السيدة الطاهرة فاطمة الفهرية رمزاً حياً، بل أيقونة ساطعة وخالدة لتكريس وتوضيح الدور المحوري والقيمة الجوهرية للمرأة في صميم الحضارة الإسلامية والمغربية الأصيلة والممتدة عبر القرون. لقد جسدت بفضل الله ومبادرتها روح القيادة النسائية الحقيقية والفاعلة التي أسهمت، ولا تزال تسهم بصمت وفعالية، في التنمية الفكرية والمادية العظيمة للمجتمعات الإنسانية. إن مساهمتها الشجاعة التي استمرت لقرون لم تكن مجرد عمل خيري عابر أو هبة مالية انقطعت بموتها أو انقضاء زمنها، بل كانت بمثابة تأسيس رائد لمؤسسة مستدامة، أطلق عليها فيما بعد مصطلح "الوقف العلمي المؤبد"، الذي يضمن بكل قوة بقاء رسالة الجامعة واستقلالها المادي وقوة تأثيرها على الأجيال اللامتناهية من الطلبة والأساتذة. لا تزال جامعة القرويين، بمكتبتها الوطنية الضخمة النادرة المليئة بالمخطوطات القديمة وأبوابها الخشبية المنحوتة وفنائها الرخامي الذي تفوح منه رائحة المعرفة والزليج الأندلسي العتيق والفسيفساء، تذكرنا كل يوم وفي صمت مهيب بتلك السيدة العظيمة. إن إرث فاطمة يعلمنا ويعظنا دائماً أن الاستثمار في العقول وتربيتها ونشر العلوم الدينية والدنيوية النافعة هو أقوى وأبقى وأصلب أشكال البناء الإنساني عبر تاريخ حضارتنا الطويل، وأنه السد المنيع ضد الجهل والاندثار.',
-                    en: 'Fatima al-Fihriya remains a living symbol of women role in Islamic and Moroccan civilization. Her initiative was not just transient charity but the establishment of a sustainable institution. Al-Qarawiyyin continues to remind us every day of that great woman and her timeless endowment.'
-                }
-            }
-        ],
-        conclusion: {
-            ar: 'تظل ذكرى السيدة فاطمة الفهرية مجسدة وحاضرة بقوة في وجدان كل طالب علم يمر بممرات القرويين العتيقة، كالأم الرؤوم التي احتضنت بفضل وعيها ثقافة وحضارة أمة بأكملها وحمتها من الضياع والنسيان. إن سيرتها العطرة وقصتها ليست مجرد ذكرى تاريخية ماضية للتباكي، بل هي نبراس حي قوي ومستمر يضيء للمرأة وللمجتمع قاطبة طريق البذل والتفاني لبناء الحضارات المتقدمة والتنافس الخلاق والشريف في ساحات الابتكار والعلوم والأخلاق الإنسانية الراقية.',
-            en: 'Fatima al-Fihriya embodies the power of Moroccan women and their pivotal role in making history. Her biography is a continuous beacon for innovation and sciences.'
-        },
-        videoUrl: 'https://cdn.pixabay.com/video/2019/08/29/26330-357117094_large.mp4',
-        gallery: [
-            'https://upload.wikimedia.org/wikipedia/commons/e/e4/The_Qarawiyyin_Mosque%2C_Fez%2C_Morocco.jpg',
-            'https://upload.wikimedia.org/wikipedia/commons/0/02/Bou_Inania_Madrasa_Courtyard_Fez.jpg',
-            'https://upload.wikimedia.org/wikipedia/commons/8/87/Fez_Zellige_details.jpg'
-        ]
-    },
-    'sayyida-al-hurra': {
-        id: 'sayyida-al-hurra',
-        title: { ar: 'السيدة الحرة: حاكمة تطوان الفذة وأميرة الجهاد البحري في المتوسط وأسطورة البحار', en: 'Sayyida al-Hurra: The Formidable Ruler of Tetouan and Princess of Mediterranean Jihad' },
-        category: 'figure',
-        metaDescription: { ar: 'قصة السيدة الحرة، حاكمة تطوان القوية في القرن السادس عشر، والقائدة البحرية الصلبة التي أدارت تحالفات استراتيجية كبرى وواجهت بحزم واقتدار الغزوات والإمبراطوريات الأوروبية الاستعمارية في البحر الأبيض المتوسط.', en: 'Discover the epic saga of Sayyida al-Hurra, the powerful Governor of Tetouan and Naval Commander who faced the European empires during the 16th century.' },
-        intro: {
-            ar: 'تُعد السيدة الحرة، واسمها الحقيقي السيدة عائشة، واحدة من أبرز وأقوى الشخصيات السياسية والقيادية النسائية الساطعة في تاريخ المغرب الأقصى والعالم الإسلامي بأسره خلال مجريات وأحداث القرن السادس عشر الصاخب والمشتعل. ولدت عائشة لعائلة بني راشد المرموقة، وهي إحدى العائلات الأندلسية النبيلة الحاكمة والمحاربة التي أُجبرت وتجرعت مرارة النزوح للضفة الأخرى هرباً من مملكة غرناطة نحو المغرب الأقصى القريب بحثاً عن الأمان ومواصلة الجهاد بعد سقوط الفردوس المفقود بيد القوات المسيحية والممالك الإيبرية سنة 1492. لقد تركت هذه المأساة التاريخية العميقة أثراً بالغاً وعقيدة نضالية في نفس السيدة الحرة وشخصيتها القيادية، فزرعت فيها منذ الصغر روح الجهاد العنيفة والتحدي الشامخ المستعصي على الانكسار. سرعان ما صعدت هذه المرأة الموهوبة والذكية لتفرض وجودها وتقلدت أعلى مناصب الحكم وتسيير الشأن العام، لتصبح بعد فترة وجيزة الحاكمة الفعلية والمطلقة لمدينة تطوان الاستراتيجية بشمال المغرب الأقصى، والتي كانت بمثابة الخط العسكري الأمامي والمواجه المباشر للتوسع والغزوات الإيبرية. لقد حكمت السيدة الحرة وأدارت دولاب الدولة بيد من حديد ملفوفة بذكاء دبلوماسي خارق وبراعة نادرة، مما جعل اسمها يتردد بقوة وهيبة في كبرى البلاطات الملكية الإسبانية والبرتغالية التي أدركت تماماً وبكل رعب أن تطوان تحت قيادتها ليست مجرد قلعة محلية صغيرة، بل قوة بحرية وتجارية عظمى تتحكم بفاعلية بالغة في مضيق جبل طارق وحوض البحر الأبيض المتوسط الغربي.',
-            en: 'Sayyida al-Hurra is one of the most important political and leadership figures in Moroccan history during the 16th century, ruling Tetouan with intelligence and power and facing European ambitions at sea.'
-        },
-        sections: [
-            {
-                title: { ar: 'بناء وحماية أسوار تطوان وتوطيد الاستقلال السياسي والعسكري التام', en: 'Building Tetouan and Solidifying Independence' },
-                content: {
-                    ar: 'لم يقتصر دور ومجهود السيدة الحرة التاريخي على كونها مجرد قائدة عسكرية محاربة فحسب، بل برزت أولاً وبشكل لافت في مهاراتها الاستثنائية كبناءة وعمرانية وإدارية فذة أعادت تشكيل التضاريس. فقد أشرفت وتتبعت بنفسها وحرصها على مجمل عمليات إعادة بناء وتطوير مدينة تطوان من أطلالها الدارسة، مستلهمة في تصميماتها ورؤيتها الساحرة الطراز الأندلسي البديع والأصيل الذي جلبته عائلتها معها من غرناطة. وقامت بشكل استعجالي بتحصين المدينة المدمرة بأسوار ضخمة وقلاع منيعة تتحدى المدافع الحديثة، وجعلت منها خلال سنوات قليلة مركزاً نابضاً ومزدهراً للتجارة الدولية والملاحة البحرية والثقافة والفنون والمقاومة الوطنية الشرسة الصامدة. ازدهرت تطوان في عهدها الذهبي لتصبح معقلاً حصيناً آمناً للأندلسيين الفارين من بطش محاكم التفتيش الإسبانية المتطرفة والمجازر الوحشية، حيث وفرت لهم السيدة الحرة عبر سياساتها الحماية الكاملة والمأوى والكرامة المفقودة والاندماج السلس. وفي ظل حكمها القوي الشامخ، أدارت ببراعة نادرة علاقة ندية صارمة مع القوى العظمى الاستعمارية التوسعية آنذاك – متبوعة بالبرتغال وإسبانيا – ولم تتردد للحظة واحدة في فرض سيادتها المطلقة وعقد أصعب المفاوضات التجارية والعسكرية والسياسية وجهاً لوجه كأسطورة حية ومحاربة شجاعة تفرض الإجلال لقرارات سيادية عليا تخص أمن ومصلحة بلادها أولاً وأخيراً.',
-                    en: 'Sayyida al-Hurra not only ruled but fundamentally rebuilt Tetouan, drawing on Andalusian aesthetic styles. Under her strong hand, she fiercely managed relations with Portugal and Spain, imposing her sovereignty and engaging directly in negotiations and maritime defense.'
-                }
-            },
-            {
-                title: { ar: 'التحالف الإستراتيجي مع قراصنة البحر والأسطول العثماني بقيادة بربروسا العظيم', en: 'Strategic Naval Alliances and Barbarossa' },
-                content: {
-                    ar: 'أدركت وأيقنت السيدة الحرة مبكراً وفي لحظات حاسمة، بفضل دهائها العسكري المحنك وفهمها السياسي العميق، أن الحفاظ المستدام على استقلال تطوان وضمان سيادة السواحل المغربية شمالاً يتطلب ضرورة بناء وإعداد قوة بحرية ضاربة ورادعة لا يستهان بها في معادلات المتوسط. لذلك، أقدمت وأبرمت السيدة تحالفاً تاريخياً وثيقاً وقوياً جداً مع القائد والأسطول العثماني الشهير "خير الدين بربروسا" والبحارة المجاهدين الأشداء المرابطين في ثغور الجزائر المتأهبة لمواجهة التفوق التكنولوجي والغطرسة الأوروبية الصليبية في مياه البحر الأبيض المتوسط. بفضل هذا التحالف العسكري المحكم والتنسيق التكتيكي العميق في التجسس ونصب الكمائن البحرية، نجحت بقوة وثبات القوات البحرية المشتركة في إحباط وصد العديد من الهجمات، وشن عمليات اعتراض وتطويق ضارية ومستمرة ضد الأساطيل التجارية والحربية والقوافل الإسبانية والبرتغالية الثقيلة. أصبحت السيدة الحرة إثر ذلك بسنوات وجيزة أميرة وسيدة بلا منازع للجهاد البحري والملاحة، وكان نفوذها يمتد بقوة وهيمنة واضحة على طول المياه الإقليمية الغربية للبحر المتوسط والمضيق. إن تلك الانتصارات المدوية المتوالية لم تكن فقط بغرض حماية التراب وحدود الوطن، بل كانت رسالة واضحة وصريحة مفادها أن النكسة العظيمة للمسلمين بسقوط قرطبة وثم غرناطة لم تنسف قط روح الدفاع الثابت واستعادة الكرامة للمسلمين ولروحهم المتأهبة دوماً لرد الاعتبار.',
-                    en: 'Understanding the necessity of coastal defense, Sayyida al-Hurra allied with the famous Ottoman commander Hayreddin Barbarossa. This formidable alliance of privateers completely disrupted Spanish and Portuguese fleets, ensuring sovereignty across the Western Mediterranean.'
-                }
-            }
-        ],
-        conclusion: {
-            ar: 'تظل السيدة الحرة حتى يومنا هذا، وإلى الأبد المديد، رمزاً للسيادة والشموخ الوطني المغربي والمرأة الحرة المستقلة. إن قصتها الأسطورية ومسيرتها العسكرية تجسد واقعياً كيف يمكن للذكاء والدهاء السياسي، والصلابة الفتية والعقيدة العسكرية الراسخة، والإرادة الصادقة وحب الوطن أن تهزم بشكل ساحق أعتى الإمبراطوريات التوسعية قاطبة. لقد حفرت السيدة اسمها ونقشته بأحرف من ذهب ورصاص في دفاتر التاريخ كأميرة قوية وزعيمة فذة هزت عروش ممالك أوروبا الغربية وقادت سفن الكرامة والجهاد في واحدة من أكثر حقب التاريخ شدة وتوتراً.',
-            en: 'Sayyida al-Hurra remains a symbol of Moroccan sovereignty and loftiness in the face of great challenges. Her story embodies how intelligence and will can defeat the mightiest of empires.'
-        },
-        videoUrl: 'https://cdn.pixabay.com/video/2016/09/21/5361-182312675_large.mp4',
-        gallery: [
-            'https://upload.wikimedia.org/wikipedia/commons/c/cd/Tetouan_Medina.jpg',
-            'https://upload.wikimedia.org/wikipedia/commons/2/23/Martil_beach_and_mountains.jpg',
-            'https://upload.wikimedia.org/wikipedia/commons/a/ad/Moroccan_navy_ship.jpg'
+            'https://images.unsplash.com/photo-1539020140153-e479b8c22e70?q=80&w=2070&auto=format&fit=crop',
+            'https://images.unsplash.com/photo-1563825828551-fb18e47aa571?q=80&w=2070&auto=format&fit=crop',
+            'https://images.unsplash.com/photo-1548013146-72479768bada?q=80&w=2076&auto=format&fit=crop'
         ]
     }
 };
 
 export const getArticle = (id: string, nameAr: string, nameEn: string, category: 'battle' | 'landmark' | 'city' | 'figure'): MoroArticle => {
     if (moroverseArticles[id]) return moroverseArticles[id];
+
+    // Image Routing Logic based on ID / Category for extreme precision UI matching
+    let calculatedImages: string[] = [];
+    const safeId = id || "";
+
+    if (safeId.toLowerCase().includes('tangier') || safeId.toLowerCase().includes('tanger')) {
+        calculatedImages = [
+            'https://images.unsplash.com/photo-1548013146-72479768bada?q=80&w=2076&auto=format&fit=crop', // Tangier/Medina vibe
+            'https://images.unsplash.com/photo-1539020140153-e479b8c22e70?q=80&w=2070&auto=format&fit=crop',
+            'https://images.unsplash.com/photo-1563825828551-fb18e47aa571?q=80&w=2070&auto=format&fit=crop'
+        ];
+    } else if (category === 'battle' || safeId.toLowerCase().includes('zallaqa') || safeId.toLowerCase().includes('marrakech')) {
+        calculatedImages = [
+            'https://images.unsplash.com/photo-1599839619722-39751411ea63?q=80&w=2070&auto=format&fit=crop', // Cavalry/Horses/Swords 
+            'https://images.unsplash.com/photo-1533134242443-d4fd215305ad?q=80&w=2070&auto=format&fit=crop', // Desert riders
+            'https://images.unsplash.com/photo-1587595431973-160d0d94add1?q=80&w=2076&auto=format&fit=crop'  // Fortifications/Battlements
+        ];
+    } else {
+        // Fallback robust images
+        calculatedImages = [
+            'https://images.unsplash.com/photo-1549429440-660c608fba63?q=80&w=2070&auto=format&fit=crop', // Moroccan Sahara
+            'https://images.unsplash.com/photo-1548013146-72479768bada?q=80&w=2076&auto=format&fit=crop', // Medina overview
+            'https://images.unsplash.com/photo-1563825828551-fb18e47aa571?q=80&w=2070&auto=format&fit=crop'  // Zellige details
+        ];
+    }
+
+    // Direct MP4 mapping for global fallback coverage
+    let videoOverlay = 'https://cdn.pixabay.com/video/2019/08/08/25854-351855662_large.mp4';
+    if (category === 'battle') {
+        videoOverlay = 'https://cdn.pixabay.com/video/2016/09/21/5361-182312675_large.mp4';
+    }
 
     return {
         id,
@@ -166,15 +145,25 @@ export const getArticle = (id: string, nameAr: string, nameEn: string, category:
                 }
             }
         ],
+        faqs: [
+            {
+                q: { ar: `لماذا تحظى ${nameAr} بأهمية كبرى في التاريخ المغربي؟`, en: `Why is ${nameEn} so important in Moroccan history?` },
+                a: { ar: `بسبب دورها المحوري القوي في توجيه الأحداث السياسية والثقافية، ومساهمتها العميقة في ترسيخ القيم الوطنية والإسلامية العريقة التي شكلت وجدان الأمة عبر العصور الغابرة.`, en: `Due to its pivotal role in directing political and cultural events, and its contribution to consolidating the ancient national and Islamic values that shaped the conscience of the nation.` }
+            },
+            {
+                q: { ar: `ما هي أبرز المعالم المعمارية المتبقية لـ ${nameAr} اليوم؟`, en: `What are the most prominent monuments remaining of ${nameEn} today?` },
+                a: { ar: `تتجسد بقوة في المآثر العمرانية، الأسوار العتيقة، النياشين التاريخية والقصص الشعبية المتواترة التي لا تزال تُدرس في المناهج كشاهد ناطق على تلك الحقبة المضيئة.`, en: `It is strongly embodied in the urban monuments, ancient walls, historical medals and recurring folk tales that are still taught in the curricula.` }
+            },
+            {
+                q: { ar: `كيف يمكن للباحثين والزوار التفاعل مع إرث ${nameAr}؟`, en: `How can researchers interact with the legacy of ${nameEn}?` },
+                a: { ar: `عبر الانغماس في أرشيف مورو فيرس الرقمي الشامل، واستكشاف المراجع الأكاديمية والمكتبات الوطنية، والوقوف المباشر في عين المكان لاستشعار عظمة الماضي الممتد إلى الحاضر.`, en: `By diving into the comprehensive MoroVerse digital archive, exploring academic references, and standing directly on site.` }
+            }
+        ],
         conclusion: {
             ar: `في الخلاصة الجامعة المانعة والمؤكدة، تظل ${nameAr} وستبقى شاهدة أمينة وصادقة وعزماً جباراً على عظمة وتفرد إرادة أمة لا تلين أو تنكسر، مستقاة من إرث حضاري وديني وثقافي وجغرافي عميق ومتشعب يرفض رفضاً قاطعاً التهميش والتبعية ويثبت تفوقه الإنساني والحضاري الراقي في كل زمان ومكان بإذن الله وتوفيقه الدائم لتراب هذا الوطن المبارك المعطاء. إن هذا الفخر الجماعي الذي نستقيه من أريج وأخبار وقصص ${nameAr} هو الوقود الحقيقي والأصيل الذي يمضي به شباب المملكة والأجيال الصاعدة بثبات وعزم وحزم وإصرار كامل في طريق بناء الحاضر الماهر وتأسيس الغد الأفضل المشرق وتخليد المكانة الأسمى وسط الأمم دون تردد أو وهن، مستلهمين من ذلك المجد الغابر نوراً وهداية وشموخاً وطيداً وحباً عميقاً ومخلصاً لثرى مملكتنا العريقة والأصيلة التي ضربت أطنابها بكل قوة وعزم في عمق التاريخ البشري والإنساني منذ الأزل الجميل الممتد بصفحات الأمجاد وروايات البناء والحرية.`,
             en: `In an unyielding conclusion, ${nameEn} rigidly remains a prime witness to the greatness, uniqueness and highly unyielding will of a massive nation drawing deeply from civilization. This legacy is the fuel moving the Moroccan generation steadily and courageously into a very bright and prosperous and advanced future.`
         },
-        videoUrl: 'https://cdn.pixabay.com/video/2016/09/21/5361-182312675_large.mp4',
-        gallery: [
-            'https://upload.wikimedia.org/wikipedia/commons/e/ee/Hassan_II_Mosque_1.jpg',
-            'https://upload.wikimedia.org/wikipedia/commons/e/e4/The_Qarawiyyin_Mosque%2C_Fez%2C_Morocco.jpg',
-            'https://upload.wikimedia.org/wikipedia/commons/1/1a/Gibraltar1.jpg'
-        ]
+        videoUrl: videoOverlay,
+        gallery: calculatedImages
     };
 };

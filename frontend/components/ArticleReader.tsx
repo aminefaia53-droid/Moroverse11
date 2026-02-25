@@ -235,6 +235,28 @@ const ArticleReader: React.FC<ArticleReaderProps> = ({ article, isOpen, onClose 
                                         ))}
                                     </div>
 
+                                    {/* SEO FAQs */}
+                                    {article.faqs && article.faqs.length > 0 && (
+                                        <div className="mt-20 group relative">
+                                            <h2 className={`text-2xl md:text-3xl font-bold text-gold-royal mb-8 flex items-center gap-4 ${isAr ? 'font-arabic' : 'font-serif'}`}>
+                                                <span className={`w-8 h-[2px] bg-gold-royal/50 group-hover:w-16 group-hover:bg-gold-royal transition-all duration-500 ${!isAr && 'order-2'}`} />
+                                                <span className={!isAr ? 'order-1' : ''}>{isAr ? 'الأسئلة الشائعة (FAQs)' : 'Frequently Asked Questions'}</span>
+                                            </h2>
+                                            <div className="space-y-6">
+                                                {article.faqs.map((faq, idx) => (
+                                                    <div key={idx} className="bg-black/30 border border-gold-royal/5 p-6 rounded-xl hover:border-gold-royal/20 transition-all">
+                                                        <h3 className={`text-lg font-bold text-white/90 mb-3 ${isAr ? 'font-arabic' : 'font-serif'}`}>
+                                                            {faq.q[lang]}
+                                                        </h3>
+                                                        <p className={`text-white/70 leading-relaxed ${isAr ? 'font-arabic' : 'font-sans'}`}>
+                                                            {faq.a[lang]}
+                                                        </p>
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        </div>
+                                    )}
+
                                     {/* Legacy / Conclusion */}
                                     <div className="mt-20 p-8 md:p-12 relative overflow-hidden group rounded-xl bg-gradient-to-br from-[#064e3b]/30 to-black/30 border border-gold-royal/10 shadow-inner">
                                         <div className={`absolute top-0 w-32 h-32 bg-gold-royal/5 rounded-full blur-2xl -mt-16 transition-transform group-hover:scale-150 ${isAr ? 'right-0 -mr-16' : 'left-0 -ml-16'}`} />
