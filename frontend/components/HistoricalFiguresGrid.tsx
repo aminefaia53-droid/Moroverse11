@@ -2,7 +2,7 @@
 
 import React, { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { BookOpen, Crown, Shield, Compass, Palette, Sparkles, MapPin } from 'lucide-react';
+import { BookOpen, Crown, Shield, Compass, Palette, Sparkles, MapPin, Search } from 'lucide-react';
 import { HistoricalFigure, moroccoFigures } from '../data/morocco-figures';
 import { useAutoImageFetcher } from '../hooks/useAutoImageFetcher';
 
@@ -19,6 +19,7 @@ const CategoryIcon = ({ category, className }: { category: HistoricalFigure['cat
 
 export default function HistoricalFiguresGrid({ lang }: { lang: 'en' | 'ar' }) {
     const [selectedCategory, setSelectedCategory] = useState<HistoricalFigure['category'] | null>(null);
+    const [searchQuery, setSearchQuery] = useState('');
 
     const categories = useMemo(() => {
         const cats = new Set(moroccoFigures.map(f => f.category));
@@ -26,9 +27,16 @@ export default function HistoricalFiguresGrid({ lang }: { lang: 'en' | 'ar' }) {
     }, []);
 
     const filteredFigures = useMemo(() => {
-        if (!selectedCategory) return moroccoFigures;
-        return moroccoFigures.filter(f => f.category === selectedCategory);
-    }, [selectedCategory]);
+        return moroccoFigures.filter(f => {
+            const matchesCategory = !selectedCategory || f.category === selectedCategory;
+            const matchesSearch =
+                f.name.en.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                f.name.ar.includes(searchQuery) ||
+                f.specialty.en.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                f.specialty.ar.includes(searchQuery);
+            return matchesCategory && matchesSearch;
+        });
+    }, [selectedCategory, searchQuery]);
 
     const getCategoryLabel = (cat: HistoricalFigure['category'], lang: 'en' | 'ar') => {
         const labels = {
@@ -42,7 +50,19 @@ export default function HistoricalFiguresGrid({ lang }: { lang: 'en' | 'ar' }) {
     };
 
     return (
-        <div className="space-y-16">
+        <div className="space-y-12">
+            {/* Search Bar */}
+            <div className="max-w-2xl mx-auto relative group">
+                <Search className="absolute left-6 top-1/2 -translate-y-1/2 w-5 h-5 text-white/40 group-focus-within:text-primary transition-colors" />
+                <input
+                    type="text"
+                    placeholder={lang === 'ar' ? 'بحث عن شخصية أو عبقري تاريخي...' : 'Search for a figure or historical genius...'}
+                    className="w-full pl-14 pr-8 py-5 rounded-[32px] bg-black/40 border border-[#c5a059]/20 focus:border-primary focus:bg-black/60 focus:ring-0 outline-none transition-all text-sm font-medium text-white placeholder-white/30 backdrop-blur-xl"
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                />
+            </div>
+
             {/* Filter Bar */}
             <div className="flex flex-wrap justify-center gap-3">
                 <button

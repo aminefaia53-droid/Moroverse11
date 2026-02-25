@@ -81,12 +81,12 @@ export default function CityGrid({ lang }: { lang: 'en' | 'ar' }) {
             <div className="moro-glass p-8 rounded-3xl border border-primary/10 shadow-2xl space-y-6">
                 <div className="flex flex-col md:flex-row gap-6">
                     {/* Search */}
-                    <div className="relative flex-grow">
-                        <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-white/40" />
+                    <div className="relative flex-grow group">
+                        <Search className="absolute left-6 top-1/2 -translate-y-1/2 w-5 h-5 text-white/40 group-focus-within:text-primary transition-colors" />
                         <input
                             type="text"
                             placeholder={lang === 'ar' ? 'بحث عن مدينة أو دوار...' : 'Search for a city or douar...'}
-                            className="w-full pl-12 pr-6 py-4 rounded-2xl bg-black/40 border border-white/10 focus:border-primary focus:bg-black/80 focus:ring-0 outline-none transition-all text-sm font-medium text-white placeholder-white/40"
+                            className="w-full pl-14 pr-8 py-5 rounded-[32px] bg-black/40 border border-[#c5a059]/20 focus:border-primary focus:bg-black/60 focus:ring-0 outline-none transition-all text-sm font-medium text-white placeholder-white/30 backdrop-blur-xl"
                             value={searchQuery}
                             onChange={(e) => setSearchQuery(e.target.value)}
                         />

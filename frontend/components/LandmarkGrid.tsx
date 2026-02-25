@@ -2,7 +2,7 @@
 
 import React, { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Building2, Landmark as LandmarkIcon, Crown, History, Mountain, Waves, Shield, X, Compass, Info, MapPin, ChevronRight, TowerControl as Tower, BookOpen } from 'lucide-react';
+import { Building2, Landmark as LandmarkIcon, Crown, History, Mountain, Waves, Shield, X, Compass, Info, MapPin, ChevronRight, TowerControl as Tower, BookOpen, Search } from 'lucide-react';
 import { Landmark, moroccoLandmarks } from '../data/morocco-landmarks';
 import { useAutoImageFetcher } from '../hooks/useAutoImageFetcher';
 import { getArticle } from '../data/moroverse-content';
@@ -24,6 +24,7 @@ const LandmarkSoulIcon = ({ soul, className }: { soul: Landmark['visualSoul']; c
 
 export default function LandmarkGrid({ lang }: { lang: 'en' | 'ar' }) {
     const [selectedCity, setSelectedCity] = useState<string | null>(null);
+    const [searchQuery, setSearchQuery] = useState('');
     const [selectedLandmark, setSelectedLandmark] = useState<Landmark | null>(null);
     const [showFullArticle, setShowFullArticle] = useState(false);
 
@@ -34,12 +35,31 @@ export default function LandmarkGrid({ lang }: { lang: 'en' | 'ar' }) {
     }, []);
 
     const filteredLandmarks = useMemo(() => {
-        if (!selectedCity) return moroccoLandmarks;
-        return moroccoLandmarks.filter(l => l.city.en === selectedCity);
-    }, [selectedCity]);
+        return moroccoLandmarks.filter(l => {
+            const matchesCity = !selectedCity || l.city.en === selectedCity;
+            const matchesSearch =
+                l.name.en.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                l.name.ar.includes(searchQuery) ||
+                l.city.en.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                l.city.ar.includes(searchQuery);
+            return matchesCity && matchesSearch;
+        });
+    }, [selectedCity, searchQuery]);
 
     return (
-        <div className="space-y-16">
+        <div className="space-y-12">
+            {/* Search Bar */}
+            <div className="max-w-2xl mx-auto relative group">
+                <Search className="absolute left-6 top-1/2 -translate-y-1/2 w-5 h-5 text-white/40 group-focus-within:text-primary transition-colors" />
+                <input
+                    type="text"
+                    placeholder={lang === 'ar' ? 'بحث عن معلم أو مدينة تاريخية...' : 'Search for a landmark or historic city...'}
+                    className="w-full pl-14 pr-8 py-5 rounded-[32px] bg-black/40 border border-[#c5a059]/20 focus:border-primary focus:bg-black/60 focus:ring-0 outline-none transition-all text-sm font-medium text-white placeholder-white/30 backdrop-blur-xl"
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                />
+            </div>
+
             {/* Mini Filter Bar */}
             <div className="flex flex-wrap justify-center gap-3">
                 <button
