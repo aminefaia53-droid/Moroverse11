@@ -349,7 +349,7 @@ export default function BattleDashboard({ lang }: { lang: 'en' | 'ar' }) {
                             exit={{ opacity: 0, scale: 0.95 }}
                             transition={{ duration: 0.5, delay: idx * 0.03 }}
                             onClick={() => setSelectedBattle(b)}
-                            className="group relative h-[480px] rounded-[48px] overflow-hidden glass-card-elite border border-primary/5 hover:border-primary/50 transition-all duration-700 bg-black/60 cursor-pointer shadow-xl hover:shadow-2xl"
+                            className="group relative h-[480px] rounded-[48px] overflow-hidden backdrop-blur-md bg-black/60 hover:bg-black/80 border border-primary/50 hover:border-primary transition-all duration-700 cursor-pointer shadow-xl hover:shadow-2xl hover:shadow-[0_0_30px_rgba(197,160,89,0.4)]"
                         >
                             {/* Visual Layer */}
                             <div className="absolute inset-0 z-0">
@@ -377,7 +377,7 @@ export default function BattleDashboard({ lang }: { lang: 'en' | 'ar' }) {
                                             </span>
                                         </div>
                                     </div>
-                                    <h4 className="text-3xl font-serif text-moro-gold font-black uppercase leading-tight group-hover:text-white transition-colors">
+                                    <h4 className="text-4xl font-serif text-primary font-black uppercase leading-tight drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] transition-colors font-arabic">
                                         {lang === 'ar' ? b.name.ar : b.name.en}
                                     </h4>
                                     <div className="flex items-center gap-2 text-gold-royal/80">
@@ -387,7 +387,7 @@ export default function BattleDashboard({ lang }: { lang: 'en' | 'ar' }) {
                                 </div>
 
                                 <div className="space-y-6">
-                                    <p className="text-sm text-white/80 leading-relaxed line-clamp-2 italic drop-shadow-md">
+                                    <p className="text-[15px] text-white leading-relaxed line-clamp-2 italic drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
                                         "{b.desc[lang]}"
                                     </p>
                                     <div className="flex items-center justify-between pt-6 border-t border-foreground/5">

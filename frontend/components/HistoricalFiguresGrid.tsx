@@ -98,10 +98,11 @@ function FigureCard({ figure, idx, lang }: { figure: HistoricalFigure; idx: numb
                 window.dispatchEvent(new CustomEvent('moroverse-action', {
                     detail: { type: 'figure_click', payload: figure.name.ar }
                 }));
+                window.location.href = '/posts/' + figure.id;
             }}
             className="group cursor-pointer snap-center min-w-[85vw] md:min-w-0 flex-shrink-0"
         >
-            <div className="moro-glass hover:bg-black/80 p-8 rounded-[40px] border border-primary/10 hover:border-primary transition-all duration-500 hover:shadow-[0_0_30px_rgba(197,160,89,0.4)] hover:-translate-y-2 relative overflow-hidden h-[420px] flex flex-col justify-between bg-black/60">
+            <div className="bg-black/60 backdrop-blur-md hover:bg-black/80 p-8 rounded-[40px] border border-[#c5a059] hover:shadow-[0_0_30px_rgba(197,160,89,0.4)] hover:-translate-y-2 transition-all duration-500 relative overflow-hidden h-[420px] flex flex-col justify-between">
 
                 {/* Dynamic HD Background Image */}
                 <div className="absolute inset-0 z-0 overflow-hidden rounded-[40px]">
@@ -133,7 +134,7 @@ function FigureCard({ figure, idx, lang }: { figure: HistoricalFigure; idx: numb
 
                     {/* Name & Specialty */}
                     <div className="mb-4">
-                        <h3 className="text-2xl font-black text-white group-hover:text-primary mb-2 drop-shadow-md leading-tight transition-colors">
+                        <h3 className="text-3xl font-black text-[#c5a059] mb-2 drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] leading-tight transition-colors font-arabic">
                             {figure.name[lang]}
                         </h3>
                         <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/40 group-hover:bg-black/5 backdrop-blur-md text-white group-hover:text-primary text-[10px] font-bold uppercase tracking-widest border border-white/10 transition-colors">
@@ -144,7 +145,7 @@ function FigureCard({ figure, idx, lang }: { figure: HistoricalFigure; idx: numb
 
                     {/* Bio */}
                     <div className="flex-grow mt-2">
-                        <p className="text-sm text-white/80 group-hover:text-white leading-relaxed tracking-wide max-h-32 overflow-hidden text-ellipsis line-clamp-4 font-medium transition-colors">
+                        <p className="text-[15px] text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] leading-relaxed tracking-wide max-h-32 overflow-hidden text-ellipsis line-clamp-4 font-medium transition-colors">
                             {figure.shortBio[lang]}
                         </p>
                     </div>

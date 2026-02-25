@@ -11,7 +11,7 @@ export default function MoroVerseAssistant() {
     // State References
     const [message, setMessage] = useState<string>("مرحبا معاك محمد أمين العميري! هل لاحظت التحديث الجديد؟ أصبح بإمكانك الآن تمرير البطاقات أفقياً بكل سلاسة على هاتفك.");
     const [emotion, setEmotion] = useState<Emotion>('happy');
-    const [outfit, setOutfit] = useState<Outfit>('modern');
+    const [outfit, setOutfit] = useState<Outfit>('traditional');
     const [isHovered, setIsHovered] = useState(false);
     const [showBubble, setShowBubble] = useState(true);
 
@@ -47,12 +47,12 @@ export default function MoroVerseAssistant() {
             switch (type) {
                 case 'city_click':
                     setEmotion('happy');
-                    setOutfit('modern');
+                    setOutfit('traditional');
                     setMessage(`أهلاً بك في ${payload}، إحدى درر المغرب العظيم!`);
                     break;
                 case 'landmark_click':
                     setEmotion('impressed');
-                    setOutfit('traditional'); // Wardrobe Morphing to traditional
+                    setOutfit('traditional');
                     setMessage(`أنت الآن تتأمل ${payload}، شاهدٌ حي على عبقرية المعمار المغربي.`);
                     break;
                 case 'figure_click':
@@ -179,9 +179,12 @@ export default function MoroVerseAssistant() {
     // Render Clothing based on state
     const renderOutfitOptions = () => {
         if (outfit === 'modern') {
-            // Modern Suit/Jacket
+            // Moroccan Jellaba (Default)
             return (
-                <path d="M 20 100 Q 50 80 80 100 L 90 150 L 10 150 Z" fill="#1e293b" />
+                <g>
+                    <path d="M 15 100 Q 50 70 85 100 L 95 150 L 5 150 Z" fill="#f8f9fa" />
+                    <path d="M 40 100 L 50 150 L 60 100 Z" fill="none" stroke="#c5a059" strokeWidth="2" />
+                </g>
             );
         } else {
             // Traditional Selham (Cloak)
@@ -189,6 +192,7 @@ export default function MoroVerseAssistant() {
                 <g>
                     <path d="M 15 100 Q 50 70 85 100 L 100 150 L 0 150 Z" fill="#006233" />
                     <path d="M 40 100 L 50 150 L 60 100 Z" fill="#c1272d" opacity="0.8" />
+                    <path d="M 35 100 L 50 150 L 65 100 Z" fill="none" stroke="#c5a059" strokeWidth="1.5" />
                 </g>
             );
         }
@@ -270,9 +274,9 @@ export default function MoroVerseAssistant() {
                         initial={{ opacity: 0, scale: 0.8, x: 20 }}
                         animate={{ opacity: 1, scale: 1, x: 0 }}
                         exit={{ opacity: 0, scale: 0.8, x: 20 }}
-                        className="bg-white/90 backdrop-blur-md border border-primary/20 shadow-2xl p-4 rounded-3xl rounded-tr-none md:rounded-tr-3xl md:rounded-br-none max-w-[200px] md:max-w-xs mt-10 md:mt-0 md:mb-10 mr-[-10px] md:mr-[-20px]"
+                        className="bg-white border-2 border-[#c5a059] shadow-[0_0_20px_rgba(197,160,89,0.5)] p-5 rounded-3xl rounded-tr-none md:rounded-tr-3xl md:rounded-br-none max-w-[200px] md:max-w-xs mt-10 md:mt-0 md:mb-10 mr-[-10px] md:mr-[-20px]"
                     >
-                        <p className="text-sm font-arabic font-bold text-slate-900 text-right leading-relaxed" dir="rtl">
+                        <p className="text-base font-arabic font-extrabold text-slate-900 text-right leading-relaxed" dir="rtl">
                             {message}
                         </p>
                     </motion.div>
@@ -281,36 +285,43 @@ export default function MoroVerseAssistant() {
 
             {/* Avatar Container */}
             <motion.div
-                className="w-28 h-28 relative rounded-full bg-slate-100 shadow-xl border-4 border-white overflow-hidden"
+                className="w-28 h-28 relative rounded-full bg-slate-900 shadow-[0_0_30px_rgba(197,160,89,0.5)] border-4 border-[#c5a059] overflow-hidden"
                 style={{
                     rotateX: headRotateX,
                     rotateY: headRotateY,
                     transformPerspective: 800
                 }}
             >
-                {/* SVG Avatar Engine */}
-                <svg viewBox="0 0 100 100" className="w-full h-full drop-shadow-md">
-                    {/* Neck */}
-                    <rect x="42" y="70" width="16" height="20" fill="#fbd38d" />
+                {/* SVG Avatar Engine: Moroccan Guide */}
+                <svg viewBox="0 0 100 100" className="w-full h-full transform scale-125 pt-4 drop-shadow-md">
+                    {/* Djellaba shoulders */}
+                    <path d="M 20 100 Q 50 65 80 100" fill="#6d4c41" />
+                    {/* Face */}
+                    <circle cx="50" cy="50" r="25" fill="#e0ac69" />
+                    {/* Tarboush (Red Fez) */}
+                    <path d="M 32 30 L 68 30 L 62 10 L 38 10 Z" fill="#b71c1c" />
+                    <rect x="48" y="5" width="4" height="5" fill="#000000" />
+                    <path d="M 50 10 Q 60 15 65 25" stroke="#000000" strokeWidth="1.5" fill="none" />
 
-                    {/* Wardrobe Morphing Group */}
-                    <AnimatePresence mode="wait">
-                        <motion.g
-                            key={outfit}
-                            initial={{ opacity: 0, y: 10 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            exit={{ opacity: 0, y: -10 }}
-                            transition={{ duration: 0.4 }}
-                        >
-                            {renderOutfitOptions()}
-                        </motion.g>
-                    </AnimatePresence>
+                    {/* Eyebrows */}
+                    <path d="M 38 48 Q 42 45 46 48" stroke="#3e2723" strokeWidth="2" fill="none" />
+                    <path d="M 54 48 Q 58 45 62 48" stroke="#3e2723" strokeWidth="2" fill="none" />
 
-                    {/* Head */}
-                    <rect x="30" y="20" width="40" height="55" rx="20" fill="#fbd38d" />
+                    {/* Eyes - Dynamic tracking */}
+                    <g style={{ transform: `translate(${eyeX}px, ${eyeY}px)` }}>
+                        <circle cx="42" cy="52" r="2.5" fill="#3e2723" />
+                        <circle cx="58" cy="52" r="2.5" fill="#3e2723" />
+                    </g>
 
-                    {/* Hair (Black, elegant fade) */}
-                    <path d="M 28 40 Q 30 15 50 15 Q 70 15 72 40 L 72 25 Q 70 10 50 10 Q 30 10 28 25 Z" fill="#1e293b" />
+                    {/* Mustache/Beard */}
+                    <path d="M 42 62 Q 50 68 58 62 Q 50 72 42 62" fill="#3e2723" />
+
+
+                    {/* Tarbouche (Red Fez) */}
+                    <path d="M 32 25 L 34 5 L 66 5 L 68 25 Z" fill="#c1272d" />
+                    {/* Tarbouche Tassel */}
+                    <path d="M 50 5 Q 55 -2 65 12 L 67 15" fill="none" stroke="#111827" strokeWidth="1.5" />
+                    <circle cx="67" cy="15" r="2" fill="#111827" />
 
                     {/* Ears */}
                     <circle cx="28" cy="48" r="4" fill="#fbd38d" />

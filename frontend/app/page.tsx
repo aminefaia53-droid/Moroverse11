@@ -180,9 +180,9 @@ export default function Home() {
             </h2>
           </div>
 
-          <p className="text-lg md:text-2xl text-primary font-medium mb-10 md:mb-12 tracking-wide leading-relaxed uppercase drop-shadow-md border-l-4 border-primary pl-6">
-            <span className="text-white font-bold block mb-2">{lang === 'ar' ? 'الذكاء الاصطناعي يلتقي بالأصالة' : 'AI Meets Authenticity'}</span>
-            {lang === 'ar' ? 'اكتشف عبق التاريخ وروعة المكان في بوابة زمنية متطورة' : 'Explore the soul and beauty of the Kingdom through an advanced time portal'}
+          <p className="text-lg md:text-2xl text-primary font-medium mb-10 md:mb-12 tracking-wide leading-relaxed uppercase drop-shadow-[0_4px_8px_rgba(0,0,0,0.9)] border-l-4 border-primary pl-6 bg-black/30 p-4 rounded-r-xl backdrop-blur-sm w-max md:w-auto">
+            <span className="text-white font-bold block mb-2 drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)] font-arabic">{lang === 'ar' ? 'الذكاء الاصطناعي يلتقي بالأصالة' : 'AI Meets Authenticity'}</span>
+            <span className="drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">{lang === 'ar' ? 'اكتشف عبق التاريخ وروعة المكان في بوابة زمنية متطورة' : 'Explore the soul and beauty of the Kingdom through an advanced time portal'}</span>
           </p>
           <button className="px-12 md:px-16 py-5 md:py-6 bg-gradient-to-r from-[#8b0000] to-[#500000] text-white font-black text-xs md:text-sm tracking-[0.3em] uppercase hover:from-primary hover:to-primary transition-all duration-500 rounded-full shadow-[0_10px_30px_rgba(139,0,0,0.5)] hover:shadow-[0_0_30px_rgba(197,160,89,0.8)] border border-white/10 flex items-center gap-4 group">
             <Compass className="w-5 h-5 text-primary group-hover:text-white transition-colors animate-pulse" />

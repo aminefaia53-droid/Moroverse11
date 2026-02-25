@@ -253,13 +253,7 @@ export default function CityGrid({ lang }: { lang: 'en' | 'ar' }) {
                                         const isGenerated = ['tazenakht-forgotten-village', 'agbalou-nkardous-resistence'].includes(selectedLocation.id);
                                         return (
                                             <button
-                                                onClick={() => {
-                                                    if (isGenerated) {
-                                                        window.location.href = '/posts/' + selectedLocation.id;
-                                                    } else {
-                                                        setShowFullArticle(true);
-                                                    }
-                                                }}
+                                                onClick={() => window.location.href = '/posts/' + selectedLocation.id}
                                                 className="w-full py-5 rounded-[32px] bg-primary text-white text-xs font-black uppercase tracking-[0.2em] flex items-center justify-center gap-3 shadow-[0_10px_20px_rgba(139,0,0,0.3)] hover:scale-105 hover:shadow-[0_0_20px_rgba(197,160,89,0.8)] transition-all group"
                                             >
                                                 <Compass className="w-5 h-5 animate-pulse" />
@@ -317,7 +311,7 @@ function CityCard({
             }}
             className="group cursor-pointer relative h-[380px] snap-center min-w-[85vw] md:min-w-0 flex-shrink-0" // Fixed height to maintain HD visual consistency
         >
-            <div className="moro-glass hover:bg-black/80 p-6 rounded-3xl border border-primary/10 hover:border-primary transition-all duration-500 hover:shadow-[0_0_30px_rgba(197,160,89,0.4)] h-full overflow-hidden flex flex-col justify-between bg-black/60">
+            <div className="backdrop-blur-md bg-black/60 hover:bg-black/80 p-6 rounded-3xl border border-[#c5a059] hover:border-primary transition-all duration-500 hover:shadow-[0_0_30px_rgba(197,160,89,0.4)] h-full overflow-hidden flex flex-col justify-between">
 
                 {/* Dynamic HD Background Image */}
                 <div className="absolute inset-0 z-0 overflow-hidden rounded-3xl pointer-events-none">
@@ -351,16 +345,16 @@ function CityCard({
                 </div>
 
                 <div className="relative z-10 pointer-events-none flex-grow flex flex-col justify-end pb-4">
-                    <h3 className="text-2xl font-black text-white group-hover:text-moro-gold mb-1 transition-colors drop-shadow-md leading-tight">
+                    <h3 className="text-3xl font-black text-[#c5a059] mb-1 transition-colors drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] leading-tight font-arabic">
                         {loc.name[lang]}
                     </h3>
-                    <p className="text-[10px] text-primary group-hover:text-primary/80 font-bold uppercase tracking-widest mb-4">
+                    <p className="text-[10px] text-primary/80 font-bold uppercase tracking-widest mb-4 drop-shadow-[0_1px_2px_rgba(0,0,0,0.8)]">
                         {loc.regionName[lang]}
                     </p>
 
                     <div className="w-8 h-1 bg-gradient-to-r from-primary to-transparent mb-4 group-hover:w-full transition-all duration-700 opacity-50 group-hover:opacity-100" />
 
-                    <p className="text-xs text-white/80 group-hover:text-white leading-relaxed tracking-wide line-clamp-2 italic font-medium transition-colors">
+                    <p className="text-sm text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] leading-relaxed tracking-wide line-clamp-2 italic font-medium transition-colors">
                         "{loc.history[lang]}"
                     </p>
                 </div>

@@ -166,7 +166,7 @@ export default function LandmarkGrid({ lang }: { lang: 'en' | 'ar' }) {
                                         </div>
                                     </div>
                                     <button
-                                        onClick={() => setShowFullArticle(true)}
+                                        onClick={() => window.location.href = '/posts/' + selectedLandmark.id}
                                         className="w-full py-5 rounded-[32px] bg-primary text-white text-xs font-black uppercase tracking-[0.2em] flex items-center justify-center gap-3 shadow-[0_10px_20px_rgba(139,0,0,0.3)] hover:scale-105 hover:shadow-[0_0_20px_rgba(197,160,89,0.8)] transition-all mt-8 group"
                                     >
                                         <Compass className="w-5 h-5 animate-pulse" />
@@ -223,7 +223,7 @@ function LandmarkCard({
             }}
             className="group cursor-pointer snap-center min-w-[85vw] md:min-w-0 flex-shrink-0"
         >
-            <div className="moro-glass hover:bg-black/80 p-8 rounded-[40px] border border-primary/10 hover:border-primary transition-all duration-700 hover:shadow-[0_0_30px_rgba(197,160,89,0.4)] relative overflow-hidden h-80 flex flex-col justify-between bg-black/60">
+            <div className="backdrop-blur-md bg-black/60 hover:bg-black/80 p-8 rounded-[40px] border border-[#c5a059] hover:border-primary transition-all duration-700 hover:shadow-[0_0_30px_rgba(197,160,89,0.4)] relative overflow-hidden h-80 flex flex-col justify-between">
 
                 {/* Dynamic HD Background Image */}
                 <div className="absolute inset-0 z-0 overflow-hidden rounded-[40px]">
@@ -246,7 +246,7 @@ function LandmarkCard({
                     <div className="w-16 h-16 rounded-3xl bg-black/40 backdrop-blur-md border border-white/10 flex items-center justify-center mb-6 group-hover:bg-primary transition-all duration-500 shadow-sm">
                         <LandmarkSoulIcon soul={landmark.visualSoul} className="w-8 h-8 text-white transition-colors duration-500" />
                     </div>
-                    <h3 className="text-2xl font-black text-white group-hover:text-primary mb-2 drop-shadow-md transition-colors">{landmark.name[lang]}</h3>
+                    <h3 className="text-3xl font-black text-[#c5a059] mb-2 drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] transition-colors font-arabic">{landmark.name[lang]}</h3>
                     <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/40 backdrop-blur-md text-white group-hover:text-primary group-hover:bg-primary/20 text-[10px] font-bold uppercase tracking-widest border border-white/10 w-fit mt-1 transition-colors">
                         <MapPin className="w-3 h-3" />
                         {landmark.city[lang]}
