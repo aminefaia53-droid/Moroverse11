@@ -122,16 +122,16 @@ export default function LandmarkGrid({ lang }: { lang: 'en' | 'ar' }) {
                             className="relative w-full max-w-4xl bg-black/90 rounded-[50px] shadow-[0_0_50px_rgba(197,160,89,0.2)] border border-[#c5a059] overflow-hidden"
                         >
                             {/* Header Visual */}
-                            <div className="h-64 bg-black/50 border-b border-[#c5a059]/30 flex items-center justify-center relative overflow-hidden">
+                            <div className="h-80 bg-black/50 border-b border-[#c5a059]/30 flex flex-col items-center justify-start relative overflow-hidden">
                                 <div className="absolute inset-0 opacity-[0.05] pointer-events-none" style={{ backgroundImage: "url('https://www.transparenttextures.com/patterns/arabesque.png')" }} />
                                 <div className="absolute inset-0 opacity-10 flex items-center justify-center animate-pulse">
                                     <LandmarkSoulIcon soul={selectedLandmark.visualSoul} className="w-[500px] h-[500px] text-primary" />
                                 </div>
-                                <div className="relative z-10 text-center">
+                                <div className="relative z-10 text-center pt-16">
                                     {selectedLandmark && (
                                         <script
                                             type="application/ld+json"
-                                            dangerouslySetInnerHTML={{ __html: JSON.stringify(generateArticleSchema(getArticle(selectedLandmark.id, selectedLandmark.name.ar, 'landmark'))) }}
+                                            dangerouslySetInnerHTML={{ __html: JSON.stringify(generateArticleSchema(getArticle(selectedLandmark.id, selectedLandmark.name.ar, selectedLandmark.name.en, 'landmark'))) }}
                                         />
                                     )}
                                     <div className="inline-block p-6 rounded-full bg-black shadow-[0_0_30px_rgba(197,160,89,0.3)] border border-[#c5a059] mb-6">
@@ -142,14 +142,15 @@ export default function LandmarkGrid({ lang }: { lang: 'en' | 'ar' }) {
                                 </div>
                                 <button
                                     onClick={() => setSelectedLandmark(null)}
-                                    className="absolute top-10 right-10 p-3 rounded-2xl bg-black/80 border border-[#c5a059] hover:bg-[#c5a059]/20 transition-all text-white/60 hover:text-white z-20 shadow-lg"
+                                    className="absolute top-6 left-6 z-30 p-3 rounded-2xl bg-black/80 border-2 border-[#c5a059] text-[#c5a059] hover:bg-[#c5a059] hover:text-black transition-all shadow-[0_0_20px_rgba(197,160,89,0.4)] flex items-center gap-2 text-xs font-black uppercase tracking-widest"
                                 >
-                                    <X className="w-6 h-6" />
+                                    <X className="w-5 h-5" />
+                                    <span className="hidden md:inline">{lang === 'ar' ? 'إغلاق' : 'Close'}</span>
                                 </button>
                             </div>
 
                             {/* Data Content */}
-                            <div className="p-12 md:p-16 grid grid-cols-1 md:grid-cols-2 gap-16">
+                            <div className="p-12 md:p-16 pb-32 grid grid-cols-1 md:grid-cols-2 gap-16">
                                 <div className="space-y-10">
                                     <div>
                                         <h4 className="flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.3em] text-[#c5a059] mb-6">
@@ -212,7 +213,7 @@ export default function LandmarkGrid({ lang }: { lang: 'en' | 'ar' }) {
             {/* FULL ARTICLE READER */}
             {selectedLandmark && (
                 <ArticleReader
-                    article={getArticle(selectedLandmark.id, selectedLandmark.name.ar, 'landmark')}
+                    article={getArticle(selectedLandmark.id, selectedLandmark.name.ar, selectedLandmark.name.en, 'landmark')}
                     isOpen={showFullArticle}
                     onClose={() => setShowFullArticle(false)}
                 />
@@ -248,7 +249,7 @@ function LandmarkCard({
             onClick={() => {
                 onClick(landmark);
                 window.dispatchEvent(new CustomEvent('moroverse-action', {
-                    detail: { type: 'landmark_click', payload: landmark.name.ar }
+                    detail: { type: 'landmark_click', payload: landmark.name[lang] }
                 }));
             }}
             className="group cursor-pointer w-full md:w-auto"

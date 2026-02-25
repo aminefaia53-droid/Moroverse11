@@ -170,17 +170,17 @@ export default function CityGrid({ lang }: { lang: 'en' | 'ar' }) {
                             className="relative w-full max-w-4xl bg-black/95 rounded-[32px] shadow-[0_0_50px_rgba(197,160,89,0.3)] border border-[#c5a059] overflow-y-auto max-h-[90vh]"
                         >
                             {/* Fact Sheet Header */}
-                            <div className="relative h-64 bg-black/50 border-b border-[#c5a059]/30 flex items-center justify-center overflow-hidden">
+                            <div className="relative h-80 bg-black/50 border-b border-[#c5a059]/30 flex flex-col items-center justify-start overflow-hidden">
                                 <div className="absolute inset-0 opacity-[0.05] pointer-events-none" style={{ backgroundImage: "url('https://www.transparenttextures.com/patterns/arabesque.png')" }} />
                                 <div className="absolute inset-0 opacity-10 flex items-center justify-center">
                                     <SoulIcon soul={selectedLocation.visualSoul} className="w-96 h-96 text-primary animate-pulse" />
                                 </div>
-                                <div className="relative z-10 text-center space-y-4">
+                                <div className="relative z-10 text-center space-y-4 pt-16">
                                     <div className="flex justify-center">
                                         {selectedLocation && (
                                             <script
                                                 type="application/ld+json"
-                                                dangerouslySetInnerHTML={{ __html: JSON.stringify(generateArticleSchema(getArticle(selectedLocation.id, selectedLocation.name.ar, 'city'))) }}
+                                                dangerouslySetInnerHTML={{ __html: JSON.stringify(generateArticleSchema(getArticle(selectedLocation.id, selectedLocation.name.ar, selectedLocation.name.en, 'city'))) }}
                                             />
                                         )}
                                         <div className="p-6 bg-black rounded-full shadow-[0_0_30px_rgba(197,160,89,0.3)] border border-[#c5a059]">
@@ -198,7 +198,7 @@ export default function CityGrid({ lang }: { lang: 'en' | 'ar' }) {
                                 </div>
                                 <button
                                     onClick={() => setSelectedLocation(null)}
-                                    className="absolute top-4 right-4 z-30 p-3 rounded-2xl bg-black border-2 border-[#c5a059] text-[#c5a059] hover:bg-[#c5a059] hover:text-black transition-all shadow-[0_0_20px_rgba(197,160,89,0.4)] flex items-center gap-2 text-xs font-black uppercase tracking-widest"
+                                    className="absolute top-6 left-6 z-30 p-3 rounded-2xl bg-black/80 border-2 border-[#c5a059] text-[#c5a059] hover:bg-[#c5a059] hover:text-black transition-all shadow-[0_0_20px_rgba(197,160,89,0.4)] flex items-center gap-2 text-xs font-black uppercase tracking-widest"
                                 >
                                     <X className="w-5 h-5" />
                                     <span className="hidden md:inline">{lang === 'ar' ? 'إغلاق' : 'Close'}</span>
@@ -206,7 +206,7 @@ export default function CityGrid({ lang }: { lang: 'en' | 'ar' }) {
                             </div>
 
                             {/* Fact Sheet Content */}
-                            <div className="p-12 grid grid-cols-1 md:grid-cols-2 gap-12">
+                            <div className="p-12 pb-32 grid grid-cols-1 md:grid-cols-2 gap-12">
                                 <div className="space-y-8">
                                     <div>
                                         <h4 className="flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.2em] text-[#c5a059] mb-4">
@@ -262,7 +262,7 @@ export default function CityGrid({ lang }: { lang: 'en' | 'ar' }) {
                                     </div>
 
                                     <button
-                                        onClick={() => window.location.href = '/posts/' + selectedLocation.id}
+                                        onClick={() => window.location.href = '/posts/' + selectedLocation.id + '?lang=' + lang}
                                         className="w-full py-5 rounded-[28px] bg-gradient-to-r from-[#8b0000] to-[#500000] text-white text-xs font-black uppercase tracking-[0.2em] flex items-center justify-center gap-3 shadow-[0_10px_30px_rgba(139,0,0,0.4)] hover:shadow-[0_0_30px_rgba(197,160,89,0.7)] hover:from-[#c5a059] hover:to-[#a08030] transition-all duration-500 border border-white/10"
                                     >
                                         <Compass className="w-5 h-5 animate-pulse" />
@@ -278,7 +278,7 @@ export default function CityGrid({ lang }: { lang: 'en' | 'ar' }) {
             {/* FULL ARTICLE READER */}
             {selectedLocation && (
                 <ArticleReader
-                    article={getArticle(selectedLocation.id, selectedLocation.name.ar, 'city')}
+                    article={getArticle(selectedLocation.id, selectedLocation.name.ar, selectedLocation.name.en, 'city')}
                     isOpen={showFullArticle}
                     onClose={() => setShowFullArticle(false)}
                 />
@@ -313,7 +313,7 @@ function CityCard({
             onClick={() => {
                 onClick(loc);
                 window.dispatchEvent(new CustomEvent('moroverse-action', {
-                    detail: { type: 'city_click', payload: loc.name.ar }
+                    detail: { type: 'city_click', payload: loc.name[lang] }
                 }));
             }}
             className="group cursor-pointer relative h-[400px] w-full md:h-[380px]" // Fixed height to maintain HD visual consistency
