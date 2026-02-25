@@ -13,6 +13,7 @@ export interface Location {
     history: { en: string; ar: string };
     visualSoul: 'Medina' | 'Kasbah' | 'Modern' | 'Modern-Coastal' | 'Oasis' | 'Mountain-Village' | 'Tent';
     details?: { en: string; ar: string };
+    imageUrl?: string;
 }
 
 export interface Region {
@@ -30,10 +31,10 @@ export const moroccoRegions: Region[] = [
         capital: 'Tangier',
         zoomLevel: { scale: 3.5, x: "30%", y: "45%" },
         provinces: [
-            { id: 'tangier', name: { en: 'Tangier', ar: 'طنجة' }, type: 'Major City', climate: 'Mediterranean', landmarks: { en: ['Hercules Caves'], ar: ['مغارة هرقل'] }, coords: { top: '3%', left: '55%' }, history: { en: 'International gateway.', ar: 'البوابة الدولية.' }, visualSoul: 'Modern-Coastal' },
+            { id: 'tangier', name: { en: 'Tangier', ar: 'طنجة' }, type: 'Major City', climate: 'Mediterranean', landmarks: { en: ['Hercules Caves'], ar: ['مغارة هرقل'] }, coords: { top: '3%', left: '55%' }, history: { en: 'International gateway.', ar: 'البوابة الدولية.' }, visualSoul: 'Modern-Coastal', imageUrl: 'https://images.unsplash.com/photo-1549488344-1f9b8d2bd1f3?q=80&w=2070&auto=format&fit=crop' },
             { id: 'tetouan', name: { en: 'Tetouan', ar: 'تطوان' }, type: 'Major City', climate: 'Mediterranean', landmarks: { en: ['Ancient Medina'], ar: ['المدينة العتيقة'] }, coords: { top: '5%', left: '62%' }, history: { en: 'The White Dove.', ar: 'الحمامة البيضاء.' }, visualSoul: 'Medina' },
             { id: 'alhoceima', name: { en: 'Al Hoceima', ar: 'الحسيمة' }, type: 'Major City', climate: 'Mediterranean', landmarks: { en: ['Quemado Beach'], ar: ['شاطئ كيمادو'] }, coords: { top: '5%', left: '68%' }, history: { en: 'Mediterranean pearl.', ar: 'لؤلؤة المتوسط.' }, visualSoul: 'Modern-Coastal' },
-            { id: 'chefchaouen', name: { en: 'Chefchaouen', ar: 'شفشاون' }, type: 'Medium City', climate: 'Mountain', landmarks: { en: ['Blue Medina'], ar: ['المدينة الزرقاء'] }, coords: { top: '8%', left: '60%' }, history: { en: 'The Blue City.', ar: 'المدينة الزرقاء.' }, visualSoul: 'Medina' },
+            { id: 'chefchaouen', name: { en: 'Chefchaouen', ar: 'شفشاون' }, type: 'Medium City', climate: 'Mountain', landmarks: { en: ['Blue Medina'], ar: ['المدينة الزرقاء'] }, coords: { top: '8%', left: '60%' }, history: { en: 'The Blue City.', ar: 'المدينة الزرقاء.' }, visualSoul: 'Medina', imageUrl: 'https://images.unsplash.com/photo-1548625361-19a9e748882a?q=80&w=2070&auto=format&fit=crop' },
             { id: 'larache', name: { en: 'Larache', ar: 'العرائش' }, type: 'Medium City', climate: 'Coastal', landmarks: { en: ['Lixus'], ar: ['ليكسوس'] }, coords: { top: '10%', left: '52%' }, history: { en: 'Ancient port.', ar: 'ميناء قديم.' }, visualSoul: 'Modern-Coastal' },
             { id: 'ksar-el-kebir', name: { en: 'Ksar el-Kebir', ar: 'القصر الكبير' }, type: 'Medium City', climate: 'Continental', landmarks: { en: ['Wadi Al-Makhazin Site'], ar: ['موقع وادي المخازن'] }, coords: { top: '12%', left: '53%' }, history: { en: 'Historic victory site.', ar: 'موقع النصر التاريخي.' }, visualSoul: 'Medina' },
             { id: 'ouazzane', name: { en: 'Ouazzane', ar: 'وزان' }, type: 'Medium City', climate: 'Mountain', landmarks: { en: ['Green City'], ar: ['المدينة الخضراء'] }, coords: { top: '15%', left: '58%' }, history: { en: 'Spiritual center.', ar: 'مركز روحي.' }, visualSoul: 'Medina' },
@@ -77,7 +78,7 @@ export const moroccoRegions: Region[] = [
         capital: 'Fez',
         zoomLevel: { scale: 3.5, x: "25%", y: "30%" },
         provinces: [
-            { id: 'fez', name: { en: 'Fez', ar: 'فاس' }, type: 'Major City', climate: 'Continental', landmarks: { en: ['Al-Qarawiyyin'], ar: ['جامعة القرويين'] }, coords: { top: '30%', left: '65%' }, history: { en: 'Eternal Medina.', ar: 'المدينة الأزلية.' }, visualSoul: 'Medina' },
+            { id: 'fez', name: { en: 'Fez', ar: 'فاس' }, type: 'Major City', climate: 'Continental', landmarks: { en: ['Al-Qarawiyyin'], ar: ['جامعة القرويين'] }, coords: { top: '30%', left: '65%' }, history: { en: 'Eternal Medina.', ar: 'المدينة الأزلية.' }, visualSoul: 'Medina', imageUrl: '/images/gallery/fez.png' },
             { id: 'meknes', name: { en: 'Meknes', ar: 'مكناس' }, type: 'Major City', climate: 'Continental', landmarks: { en: ['Bab Mansour'], ar: ['باب المنصور'] }, coords: { top: '33%', left: '58%' }, history: { en: 'Ismailite capital.', ar: 'العاصمة الإسماعيلية.' }, visualSoul: 'Medina' },
             { id: 'taza', name: { en: 'Taza', ar: 'تازة' }, type: 'Major City', climate: 'Mountain', landmarks: { en: ['Friouato Cave'], ar: ['مغارة فريواطو'] }, coords: { top: '28%', left: '72%' }, history: { en: 'Mountain corridor.', ar: 'الممر الجبلي.' }, visualSoul: 'Medina' },
             { id: 'sefrou', name: { en: 'Sefrou', ar: 'صفرو' }, type: 'Medium City', climate: 'Mountain', landmarks: { en: ['Cherry Festival'], ar: ['مهرجان الحب الملوك'] }, coords: { top: '35%', left: '66%' }, history: { en: 'The Cherry city.', ar: 'مدينة الحب الملوك.' }, visualSoul: 'Medina' },
@@ -101,7 +102,7 @@ export const moroccoRegions: Region[] = [
         capital: 'Rabat',
         zoomLevel: { scale: 4.5, x: "15%", y: "25%" },
         provinces: [
-            { id: 'rabat', name: { en: 'Rabat', ar: 'الرباط' }, type: 'Major City', climate: 'Coastal', landmarks: { en: ['Hassan Tower'], ar: ['صومعة حسان'] }, coords: { top: '26%', left: '46%' }, history: { en: 'The Imperial Capital.', ar: 'العاصمة الإمبراطورية.' }, visualSoul: 'Modern' },
+            { id: 'rabat', name: { en: 'Rabat', ar: 'الرباط' }, type: 'Major City', climate: 'Coastal', landmarks: { en: ['Hassan Tower'], ar: ['صومعة حسان'] }, coords: { top: '25%', left: '50%' }, history: { en: 'Capital of light.', ar: 'عاصمة الأنوار.' }, visualSoul: 'Modern', imageUrl: 'https://images.unsplash.com/photo-1644331049219-c09a803e1e55?q=80&w=1964&auto=format&fit=crop' },
             { id: 'sale', name: { en: 'Salé', ar: 'سلا' }, type: 'Major City', climate: 'Coastal', landmarks: { en: ['Bab Lamrisa'], ar: ['باب المريسة'] }, coords: { top: '25%', left: '47%' }, history: { en: 'Pirates and Scholars.', ar: 'القراصنة والعلماء.' }, visualSoul: 'Medina' },
             { id: 'kenitra', name: { en: 'Kénitra', ar: 'القنيطرة' }, type: 'Major City', climate: 'Coastal', landmarks: { en: ['Mehdia Beach'], ar: ['شاطئ المهدية'] }, coords: { top: '22%', left: '48%' }, history: { en: 'Sebou River port.', ar: 'ميناء نهر سبو.' }, visualSoul: 'Modern' },
             { id: 'khemisset', name: { en: 'Khemisset', ar: 'الخميسات' }, type: 'Major City', climate: 'Continental', landmarks: { en: ['Dayet Roumi'], ar: ['ضاية رومي'] }, coords: { top: '30%', left: '52%' }, history: { en: 'Zemmour capital.', ar: 'عاصمة زمور.' }, visualSoul: 'Modern' },
@@ -143,10 +144,10 @@ export const moroccoRegions: Region[] = [
         capital: 'Casablanca',
         zoomLevel: { scale: 4, x: "10%", y: "15%" },
         provinces: [
-            { id: 'casablanca', name: { en: 'Casablanca', ar: 'الدار البيضاء' }, type: 'Major City', climate: 'Coastal', landmarks: { en: ['Hassan II Mosque'], ar: ['مسجد الحسن الثاني'] }, coords: { top: '30%', left: '42%' }, history: { en: 'The White House.', ar: 'الدار البيضاء.' }, visualSoul: 'Modern' },
+            { id: 'casablanca', name: { en: 'Casablanca', ar: 'الدار البيضاء' }, type: 'Major City', climate: 'Coastal', landmarks: { en: ['Hassan II Mosque'], ar: ['مسجد الحسن الثاني'] }, coords: { top: '35%', left: '42%' }, history: { en: 'The White House.', ar: 'الدار البيضاء.' }, visualSoul: 'Modern-Coastal', imageUrl: 'https://images.unsplash.com/photo-1582236353904-7431c4cbcf33?q=80&w=2070&auto=format&fit=crop' },
             { id: 'settat', name: { en: 'Settat', ar: 'سطات' }, type: 'Major City', climate: 'Continental', landmarks: { en: ['Agriculture'], ar: ['الفلاحة'] }, coords: { top: '42%', left: '44%' }, history: { en: 'Agriculture heart.', ar: 'القلب الفلاحي.' }, visualSoul: 'Modern' },
             { id: 'el-jadida', name: { en: 'El Jadida', ar: 'الجديدة' }, type: 'Major City', climate: 'Coastal', landmarks: { en: ['Portuguese Cistern'], ar: ['المسقاة البرتغالية'] }, coords: { top: '38%', left: '38%' }, history: { en: 'Mazagan.', ar: 'مازاغان.' }, visualSoul: 'Modern-Coastal' },
-            { id: 'mohammedia', name: { en: 'Mohammedia', ar: 'المحمدية' }, type: 'Major City', climate: 'Coastal', landmarks: { en: ['The Port'], ar: ['الميناء'] }, coords: { top: '28%', left: '43.5%' }, history: { en: 'Fedala.', ar: 'فضالة.' }, visualSoul: 'Modern-Coastal' },
+            { id: 'mohammedia', name: { en: 'Mohammedia', ar: 'المحمدية' }, type: 'Major City', climate: 'Coastal', landmarks: { en: ['The Port'], ar: ['الميناء'] }, coords: { top: '37%', left: '43%' }, history: { en: 'City of flowers.', ar: 'مدينة الزهور.' }, visualSoul: 'Modern' },
             { id: 'berrechid', name: { en: 'Berrechid', ar: 'برشيد' }, type: 'Major City', climate: 'Continental', landmarks: { en: ['Industrial Zone'], ar: ['المنطقة الصناعية'] }, coords: { top: '35%', left: '43%' }, history: { en: 'Economic hub.', ar: 'مركز اقتصادي.' }, visualSoul: 'Modern' },
             { id: 'benslimane', name: { en: 'Benslimane', ar: 'بنسليمان' }, type: 'Medium City', climate: 'Continental', landmarks: { en: ['Oak Forests'], ar: ['غابات البلوط'] }, coords: { top: '32%', left: '48%' }, history: { en: 'Green city.', ar: 'المدينة الخضراء.' }, visualSoul: 'Modern' },
             { id: 'sidi-bennour', name: { en: 'Sidi Bennour', ar: 'سيدي بنور' }, type: 'Medium City', climate: 'Continental', landmarks: { en: ['Weekly Market'], ar: ['السوق الأسبوعي'] }, coords: { top: '45%', left: '36%' }, history: { en: 'Doukkala heart.', ar: 'قلب دكالة.' }, visualSoul: 'Modern' },
@@ -164,7 +165,7 @@ export const moroccoRegions: Region[] = [
         capital: 'Marrakech',
         zoomLevel: { scale: 3.5, x: "20%", y: "0%" },
         provinces: [
-            { id: 'marrakech', name: { en: 'Marrakech', ar: 'مراكش' }, type: 'Major City', climate: 'Continental', landmarks: { en: ['Koutoubia'], ar: ['الكتبية'] }, coords: { top: '55%', left: '45%' }, history: { en: 'The Ochre city.', ar: 'المدينة الحمراء.' }, visualSoul: 'Medina' },
+            { id: 'marrakech', name: { en: 'Marrakech', ar: 'مراكش' }, type: 'Major City', climate: 'Saharan', landmarks: { en: ['Koutoubia'], ar: ['الكتبية'] }, coords: { top: '65%', left: '40%' }, history: { en: 'The Red City.', ar: 'المدينة الحمراء.' }, visualSoul: 'Medina', imageUrl: '/images/gallery/marrakech.png' },
             { id: 'safi', name: { en: 'Safi', ar: 'أسفي' }, type: 'Major City', climate: 'Coastal', landmarks: { en: ['Pottery'], ar: ['الخزف'] }, coords: { top: '42%', left: '32%' }, history: { en: 'Pottery capital.', ar: 'عاصمة الخزف.' }, visualSoul: 'Modern-Coastal' },
             { id: 'essaouira', name: { en: 'Essaouira', ar: 'الصويرة' }, type: 'Major City', climate: 'Coastal', landmarks: { en: ['Skala'], ar: ['الصقالة'] }, coords: { top: '58%', left: '28%' }, history: { en: 'Mogador.', ar: 'موغادور.' }, visualSoul: 'Medina' },
             { id: 'kelat-sraghna', name: { en: 'Kelaat Sraghna', ar: 'قلعة السراغنة' }, type: 'Major City', climate: 'Continental', landmarks: { en: ['Agriculture'], ar: ['الفلاحة'] }, coords: { top: '50%', left: '50%' }, history: { en: 'Agricultural hub.', ar: 'مركز فلاحي.' }, visualSoul: 'Modern' },
@@ -188,7 +189,7 @@ export const moroccoRegions: Region[] = [
         zoomLevel: { scale: 3, x: "40%", y: "-10%" },
         provinces: [
             { id: 'errachidia', name: { en: 'Errachidia', ar: 'الرشيدية' }, type: 'Major City', climate: 'Saharan', landmarks: { en: ['Tafilalet Palms'], ar: ['نخيل تافيلالت'] }, coords: { top: '48%', left: '72%' }, history: { en: 'Ksar Es-Souk.', ar: 'قصر السوق.' }, visualSoul: 'Oasis' },
-            { id: 'ouarzazate', name: { en: 'Ouarzazate', ar: 'ورزازات' }, type: 'Major City', climate: 'Saharan', landmarks: { en: ['Taourirt Kasbah'], ar: ['قصبة تاوريرت'] }, coords: { top: '62%', left: '55%' }, history: { en: 'Desert Hollywood.', ar: 'هوليود الصحراء.' }, visualSoul: 'Kasbah' },
+            { id: 'ouarzazate', name: { en: 'Ouarzazate', ar: 'ورزازات' }, type: 'Major City', climate: 'Saharan', landmarks: { en: ['Taourirt Kasbah'], ar: ['قصبة تاوريرت'] }, coords: { top: '62%', left: '55%' }, history: { en: 'Desert Hollywood.', ar: 'هوليود الصحراء.' }, visualSoul: 'Kasbah', imageUrl: 'https://images.unsplash.com/photo-1539668512229-ef442c00f8d2?q=80&w=2070&auto=format&fit=crop' },
             { id: 'tinghir', name: { en: 'Tinghir', ar: 'تنغير' }, type: 'Major City', climate: 'Mountain', landmarks: { en: ['Todra Gorges'], ar: ['مضايق تودغى'] }, coords: { top: '55%', left: '62%' }, history: { en: 'Palace of the Oasis.', ar: 'قصر الواحة.' }, visualSoul: 'Oasis' },
             { id: 'zagora', name: { en: 'Zagora', ar: 'زاكورة' }, type: 'Major City', climate: 'Saharan', landmarks: { en: ['Timbuktu 52 Days'], ar: ['تمبوكتو 52 يوماً'] }, coords: { top: '75%', left: '62%' }, history: { en: 'Caravan halt.', ar: 'محطة القوافل.' }, visualSoul: 'Oasis' },
             { id: 'midelt', name: { en: 'Midelt', ar: 'ميدلت' }, type: 'Major City', climate: 'Mountain', landmarks: { en: ['Apples'], ar: ['التفاح'] }, coords: { top: '45%', left: '68%' }, history: { en: 'Lead mines.', ar: 'مناجم الرصاص.' }, visualSoul: 'Mountain-Village' },
@@ -209,7 +210,7 @@ export const moroccoRegions: Region[] = [
         capital: 'Agadir',
         zoomLevel: { scale: 4, x: "15%", y: "-15%" },
         provinces: [
-            { id: 'agadir', name: { en: 'Agadir', ar: 'أكادير' }, type: 'Major City', climate: 'Coastal', landmarks: { en: ['Agadir Oufella'], ar: ['أكادير أوفلا'] }, coords: { top: '65%', left: '35%' }, history: { en: 'Coastal resilience.', ar: 'الصمود الساحلي.' }, visualSoul: 'Modern-Coastal' },
+            { id: 'agadir', name: { en: 'Agadir', ar: 'أكادير' }, type: 'Major City', climate: 'Coastal', landmarks: { en: ['Agadir Oufella'], ar: ['أكادير أوفلا'] }, coords: { top: '65%', left: '35%' }, history: { en: 'Coastal resilience.', ar: 'الصمود الساحلي.' }, visualSoul: 'Modern-Coastal', imageUrl: 'https://images.unsplash.com/photo-1541484842121-cc51da4ba69e?q=80&w=2070&auto=format&fit=crop' },
             { id: 'inezgane', name: { en: 'Inezgane', ar: 'إنزكان' }, type: 'Major City', climate: 'Coastal', landmarks: { en: ['Grand Souk'], ar: ['السوق الكبي'] }, coords: { top: '66%', left: '34%' }, history: { en: 'Trade hub of the South.', ar: 'مركز التجارة بالجنوب.' }, visualSoul: 'Modern' },
             { id: 'ait-melloul', name: { en: 'Aït Melloul', ar: 'أيت ملول' }, type: 'Major City', climate: 'Continental', landmarks: { en: ['Industrial Zone'], ar: ['المنطقة الصناعية'] }, coords: { top: '67%', left: '34%' }, history: { en: 'Industrial gateway.', ar: 'البوابة الصناعية.' }, visualSoul: 'Modern' },
             { id: 'tiznit', name: { en: 'Tiznit', ar: 'تيزنيت' }, type: 'Major City', climate: 'Continental', landmarks: { en: ['Silver Jewelry'], ar: ['الحلي الفضية'] }, coords: { top: '75%', left: '30%' }, history: { en: 'The Silver city.', ar: 'مدينة الفضة.' }, visualSoul: 'Medina' },

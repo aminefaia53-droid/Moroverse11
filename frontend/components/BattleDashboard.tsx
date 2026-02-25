@@ -467,7 +467,7 @@ export default function BattleDashboard({ lang }: { lang: 'en' | 'ar' }) {
                             exit={{ opacity: 0, scale: 0.95 }}
                             transition={{ duration: 0.5, delay: idx * 0.03 }}
                             onClick={() => setSelectedBattle(b)}
-                            className="group relative h-[480px] rounded-[48px] overflow-hidden backdrop-blur-md bg-black/60 hover:bg-black/80 border border-primary/50 hover:border-primary transition-all duration-700 cursor-pointer shadow-xl hover:shadow-2xl hover:shadow-[0_0_30px_rgba(197,160,89,0.4)]"
+                            className="group relative h-[480px] rounded-xl overflow-hidden glass-card-elite hover:bg-black/80 border border-primary/50 hover:border-primary transition-all duration-700 cursor-pointer shadow-xl hover:shadow-2xl hover:shadow-[0_0_30px_rgba(197,160,89,0.4)]"
                         >
                             {/* Visual Layer */}
                             <div className="absolute inset-0 z-0">
@@ -539,7 +539,7 @@ export default function BattleDashboard({ lang }: { lang: 'en' | 'ar' }) {
                             initial={{ scale: 0.9, y: 100, opacity: 0 }}
                             animate={{ scale: 1, y: 0, opacity: 1 }}
                             exit={{ scale: 0.9, y: 100, opacity: 0 }}
-                            className="bg-white w-full max-w-6xl h-full max-h-[85vh] rounded-[56px] overflow-hidden shadow-2xl border border-white/20 relative flex flex-col md:flex-row"
+                            className="bg-black/95 w-full max-w-6xl h-full max-h-[85vh] rounded-xl overflow-hidden shadow-[0_30px_60px_-15px_rgba(0,0,0,0.8),0_0_40px_rgba(197,160,89,0.15)] border border-[#c5a059]/30 relative flex flex-col md:flex-row"
                         >
                             <button
                                 onClick={() => setSelectedBattle(null)}
@@ -564,7 +564,7 @@ export default function BattleDashboard({ lang }: { lang: 'en' | 'ar' }) {
                                 </div>
                             </div>
 
-                            <div className="flex-1 bg-white overflow-y-auto p-12 md:p-16">
+                            <div className="flex-1 bg-black/40 backdrop-blur-xl overflow-y-auto p-12 md:p-16 text-white/90 glass-card-elite">
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
                                     <div className="space-y-10">
                                         <div className="space-y-3">
@@ -572,7 +572,7 @@ export default function BattleDashboard({ lang }: { lang: 'en' | 'ar' }) {
                                                 <MapPin className="w-4 h-4" />
                                                 <h4 className="text-[10px] font-black uppercase tracking-widest">{lang === 'ar' ? 'الموقع الجغرافي' : 'LOCATION'}</h4>
                                             </div>
-                                            <p className="text-xl font-bold text-foreground/80">{selectedBattle.location[lang]}</p>
+                                            <p className="text-xl font-bold text-white/90">{selectedBattle.location[lang]}</p>
                                         </div>
 
                                         <div className="space-y-3">
@@ -582,10 +582,10 @@ export default function BattleDashboard({ lang }: { lang: 'en' | 'ar' }) {
                                             </div>
                                             <div className="space-y-3">
                                                 <p className="text-base">
-                                                    <span className="text-foreground/40 font-black text-[9px] uppercase mr-2">Military:</span> {selectedBattle.combatants[lang]}
+                                                    <span className="text-white/40 font-black text-[9px] uppercase mr-2">Military:</span> {selectedBattle.combatants[lang]}
                                                 </p>
                                                 <p className="text-base">
-                                                    <span className="text-foreground/40 font-black text-[9px] uppercase mr-2">Command:</span> <span className="text-primary font-bold">{selectedBattle.leaders[lang]}</span>
+                                                    <span className="text-white/40 font-black text-[9px] uppercase mr-2">Command:</span> <span className="text-primary font-bold">{selectedBattle.leaders[lang]}</span>
                                                 </p>
                                             </div>
                                         </div>
@@ -595,33 +595,33 @@ export default function BattleDashboard({ lang }: { lang: 'en' | 'ar' }) {
                                                 <Activity className="w-4 h-4" />
                                                 <h4 className="text-[10px] font-black uppercase tracking-widest">{lang === 'ar' ? 'الخسائر' : 'CASUALTIES'}</h4>
                                             </div>
-                                            <p className="text-base text-foreground/60">{selectedBattle.casualties?.[lang] || (lang === 'ar' ? 'غير مسجلة بدقة' : 'Not recorded in logs')}</p>
+                                            <p className="text-base text-white/60">{selectedBattle.casualties?.[lang] || (lang === 'ar' ? 'غير مسجلة بدقة' : 'Not recorded in logs')}</p>
                                         </div>
                                     </div>
 
                                     <div className="space-y-10">
                                         <div className="space-y-3">
-                                            <div className="flex items-center gap-2 text-emerald-deep">
+                                            <div className="flex items-center gap-2 text-emerald-500">
                                                 <Target className="w-4 h-4" />
                                                 <h4 className="text-[10px] font-black uppercase tracking-widest">{lang === 'ar' ? 'النهج التكتيكي' : 'TACTICAL APPROACH'}</h4>
                                             </div>
-                                            <div className="p-6 bg-emerald-deep/5 rounded-[32px] border-l-4 border-emerald-deep italic text-base text-emerald-deep leading-relaxed">
+                                            <div className="p-6 bg-emerald-500/10 rounded-xl border-l-4 border-emerald-500 italic text-base text-emerald-400 leading-relaxed">
                                                 "{selectedBattle.tactics[lang]}"
                                             </div>
                                         </div>
 
                                         <div className="space-y-3">
-                                            <div className="flex items-center gap-2 text-star-red">
+                                            <div className="flex items-center gap-2 text-red-500">
                                                 <Quote className="w-4 h-4" />
                                                 <h4 className="text-[10px] font-black uppercase tracking-widest">{lang === 'ar' ? 'الأثر التاريخي' : 'HISTORICAL LEGACY'}</h4>
                                             </div>
-                                            <p className="text-base text-foreground/70 leading-relaxed">
+                                            <p className="text-base text-white/70 leading-relaxed">
                                                 {selectedBattle.impact[lang]}
                                             </p>
                                         </div>
 
-                                        <div className="p-8 bg-slate-50 rounded-[32px] border border-slate-100">
-                                            <span className="text-[9px] font-black text-slate-400 uppercase tracking-widest block mb-1">Outcome</span>
+                                        <div className="p-8 bg-black/40 rounded-xl border border-white/5">
+                                            <span className="text-[9px] font-black text-white/40 uppercase tracking-widest block mb-1">Outcome</span>
                                             <p className="text-xl font-black text-primary uppercase">
                                                 {selectedBattle.outcome[lang]}
                                             </p>
@@ -657,7 +657,7 @@ export default function BattleDashboard({ lang }: { lang: 'en' | 'ar' }) {
                                                             setShowFullArticle(true);
                                                         }
                                                     }}
-                                                    className="w-full py-5 rounded-[32px] bg-primary text-white text-xs font-black uppercase tracking-[0.2em] flex items-center justify-center gap-3 shadow-xl shadow-primary/20 hover:scale-105 transition-all"
+                                                    className="w-full py-5 rounded-xl bg-gradient-to-r from-[#8b0000] to-[#500000] text-white text-xs font-black uppercase tracking-[0.2em] flex items-center justify-center gap-3 shadow-[0_10px_30px_rgba(139,0,0,0.4)] hover:shadow-[0_0_30px_rgba(197,160,89,0.7)] hover:from-[#c5a059] hover:to-[#a08030] transition-all border border-white/10 group"
                                                 >
                                                     <Compass className="w-5 h-5 animate-pulse" />
                                                     {lang === 'ar' ? `سافر إلى عالم ${selectedBattle.name.ar}` : `Journey into ${selectedBattle.name.en}`}

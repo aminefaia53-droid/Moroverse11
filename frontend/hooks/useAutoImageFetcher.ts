@@ -20,8 +20,17 @@ export function useAutoImageFetcher({ query, preloadedImageUrl }: UseAutoImageFe
     const [error, setError] = useState<Error | null>(null);
 
     useEffect(() => {
-        // If we already have a preloaded image, don't fetch
+        // If we already have a preloaded image
         if (preloadedImageUrl) {
+            // If it's a local path, we can skip fetching/proxying
+            if (preloadedImageUrl.startsWith('/') || preloadedImageUrl.startsWith('./')) {
+                setImageUrl(preloadedImageUrl);
+                setIsLoading(false);
+                return;
+            }
+            // If it's an external URL (like Unsplash), still proxy it to avoid ORB/CORS issues
+            const proxiedUrl = `https://wsrv.nl/?url=${encodeURIComponent(preloadedImageUrl)}&w=800&fit=cover&output=webp`;
+            setImageUrl(proxiedUrl);
             setIsLoading(false);
             return;
         }

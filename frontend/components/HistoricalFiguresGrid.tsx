@@ -5,6 +5,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { BookOpen, Crown, Shield, Compass, Palette, Sparkles, MapPin, Search, X } from 'lucide-react';
 import { HistoricalFigure, moroccoFigures } from '../data/morocco-figures';
 import { useAutoImageFetcher } from '../hooks/useAutoImageFetcher';
+import { getArticle } from '../data/moroverse-content';
+import ArticleReader from './ArticleReader';
 
 const CategoryIcon = ({ category, className }: { category: HistoricalFigure['category']; className?: string }) => {
     switch (category) {
@@ -20,6 +22,8 @@ const CategoryIcon = ({ category, className }: { category: HistoricalFigure['cat
 export default function HistoricalFiguresGrid({ lang }: { lang: 'en' | 'ar' }) {
     const [selectedCategory, setSelectedCategory] = useState<HistoricalFigure['category'] | null>(null);
     const [searchQuery, setSearchQuery] = useState('');
+    const [selectedFigure, setSelectedFigure] = useState<HistoricalFigure | null>(null);
+    const [showFullArticle, setShowFullArticle] = useState(false);
 
     const categories = useMemo(() => {
         const cats = new Set(moroccoFigures.map(f => f.category));
@@ -102,15 +106,43 @@ export default function HistoricalFiguresGrid({ lang }: { lang: 'en' | 'ar' }) {
             <div className="flex flex-col md:grid md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-6 px-2">
                 <AnimatePresence mode='popLayout'>
                     {filteredFigures.map((figure, idx) => (
-                        <FigureCard key={figure.id} figure={figure} idx={idx} lang={lang} />
+                        <FigureCard
+                            key={figure.id}
+                            figure={figure}
+                            idx={idx}
+                            lang={lang}
+                            onClick={(f) => {
+                                setSelectedFigure(f);
+                                setShowFullArticle(true);
+                            }}
+                        />
                     ))}
                 </AnimatePresence>
             </div>
+
+            {/* FULL ARTICLE READER */}
+            {selectedFigure && (
+                <ArticleReader
+                    article={getArticle(selectedFigure.id, selectedFigure.name.ar, selectedFigure.name.en, 'figure')}
+                    isOpen={showFullArticle}
+                    onClose={() => setShowFullArticle(false)}
+                />
+            )}
         </div>
     );
 }
 
-function FigureCard({ figure, idx, lang }: { figure: HistoricalFigure; idx: number; lang: 'en' | 'ar' }) {
+function FigureCard({
+    figure,
+    idx,
+    lang,
+    onClick
+}: {
+    figure: HistoricalFigure;
+    idx: number;
+    lang: 'en' | 'ar';
+    onClick: (figure: HistoricalFigure) => void;
+}) {
     const { imageUrl, isLoading } = useAutoImageFetcher({
         query: figure.name.en, // Use English name for better Wiki API results generally, but fallback is handled in hook
         preloadedImageUrl: figure.imageUrl
@@ -127,64 +159,56 @@ function FigureCard({ figure, idx, lang }: { figure: HistoricalFigure; idx: numb
                 window.dispatchEvent(new CustomEvent('moroverse-action', {
                     detail: { type: 'figure_click', payload: figure.name[lang] }
                 }));
-                window.location.href = '/posts/' + figure.id + '?lang=' + lang;
+                onClick(figure);
             }}
-            className="group cursor-pointer w-full"
+            className="group cursor-pointer relative aspect-[3/4] w-full"
         >
-            <div className="bg-black/60 backdrop-blur-md hover:bg-black/80 p-8 rounded-[40px] border border-[#c5a059] hover:shadow-[0_0_30px_rgba(197,160,89,0.4)] hover:-translate-y-2 transition-all duration-500 relative overflow-hidden h-[420px] flex flex-col justify-between">
+            <div className="relative h-full w-full rounded-xl border-2 border-[#c5a059]/20 hover:border-[#c5a059]/80 transition-all duration-700 overflow-hidden shadow-2xl glass-card-elite group-hover:shadow-[0_20px_60px_rgba(197,160,89,0.25)]">
 
-                {/* Dynamic HD Background Image */}
-                <div className="absolute inset-0 z-0 overflow-hidden rounded-[40px]">
-                    {imageUrl && (
-                        <div
-                            className={`absolute inset-0 bg-cover bg-center transition-opacity duration-1000 ${isLoading ? 'opacity-0' : 'opacity-10 group-hover:opacity-30'}`}
-                            style={{ backgroundImage: `url(${imageUrl})`, filter: 'grayscale(50%) contrast(120%)' }}
-                        >
-                            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/80 group-hover:from-black/90 group-hover:via-black/70 to-transparent transition-colors duration-700" />
-                        </div>
-                    )}
+                {/* Cinematic Background Image */}
+                <div className="absolute inset-0 z-0">
+                    <img
+                        src={figure.imageUrl || imageUrl || undefined}
+                        alt={figure.name[lang]}
+                        className={`w-full h-full object-cover transition-all duration-1000 transform group-hover:scale-110 ${isLoading ? 'opacity-0' : 'opacity-90 group-hover:opacity-100'}`}
+                    />
+                    {/* Multi-layered Cinematic Gradient */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-95" />
+                    <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-transparent opacity-40" />
                 </div>
 
-                {/* Fallback/Decorative SVG Icon */}
-                <div className="absolute -right-6 -top-6 opacity-[0.04] group-hover:opacity-10 transition-all duration-700 transform group-hover:scale-125 group-hover:rotate-12 z-0">
-                    <CategoryIcon category={figure.category} className="w-48 h-48 text-white group-hover:text-primary transition-colors duration-700" />
-                </div>
-
-                <div className="relative z-10 flex flex-col h-full pointer-events-none">
-                    {/* Header Icon & Era */}
-                    <div className="flex justify-between items-start mb-6">
-                        <div className="w-14 h-14 rounded-2xl bg-black/40 backdrop-blur-md border border-white/10 flex items-center justify-center group-hover:bg-primary transition-all duration-500 shadow-sm">
-                            <CategoryIcon category={figure.category} className="w-6 h-6 text-white transition-colors duration-500" />
+                {/* Card Content Overlay */}
+                <div className="relative z-10 h-full p-8 flex flex-col justify-between">
+                    <div className="flex justify-between items-start">
+                        <div className="p-4 rounded-full bg-black/60 backdrop-blur-xl border border-[#c5a059]/30 group-hover:border-[#c5a059] transition-all duration-500">
+                            <CategoryIcon category={figure.category} className="w-8 h-8 text-[#c5a059]" />
                         </div>
-                        <div className="px-3 py-1 rounded-full bg-black/40 group-hover:bg-primary/20 backdrop-blur-md border border-white/10 group-hover:border-primary/50 text-[9px] font-bold text-white uppercase tracking-wider max-w-[50%] text-center leading-tight transition-colors">
-                            {figure.era[lang]}
+                        <div className="flex flex-col items-end gap-2">
+                            <span className="px-4 py-1.5 rounded-full bg-black/60 backdrop-blur-md border border-[#c5a059]/40 text-[#c5a059] text-[10px] font-black uppercase tracking-[0.2em]">
+                                {figure.era[lang]}
+                            </span>
                         </div>
                     </div>
 
-                    {/* Name & Specialty */}
-                    <div className="mb-4">
-                        <h3 className="text-3xl font-black text-[#c5a059] mb-2 drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] leading-tight transition-colors font-arabic">
+                    <div className="space-y-4">
+                        <h3 className="text-4xl font-black text-[#c5a059] drop-shadow-[0_4px_8px_rgba(0,0,0,0.8)] font-arabic leading-tight transform group-hover:translate-x-2 transition-transform duration-500">
                             {figure.name[lang]}
                         </h3>
-                        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/40 group-hover:bg-black/5 backdrop-blur-md text-white group-hover:text-primary text-[10px] font-bold uppercase tracking-widest border border-white/10 transition-colors">
-                            <Sparkles className="w-3 h-3" />
+                        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/40 backdrop-blur-md text-white group-hover:text-primary text-[10px] font-bold uppercase tracking-widest border border-white/10 transition-colors">
+                            <Sparkles className="w-3 h-3 text-[#c5a059]" />
                             {figure.specialty[lang]}
                         </div>
-                    </div>
-
-                    {/* Bio */}
-                    <div className="flex-grow mt-2">
-                        <p className="text-[15px] text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] leading-relaxed tracking-wide max-h-32 overflow-hidden text-ellipsis line-clamp-4 font-medium transition-colors">
+                        <p className="text-sm text-white/80 line-clamp-2 italic font-medium opacity-0 group-hover:opacity-100 transition-all duration-700 translate-y-4 group-hover:translate-y-0 mt-4 max-w-[90%]">
                             {figure.shortBio[lang]}
                         </p>
                     </div>
+                </div>
 
-                    {/* Time Compass CTA */}
-                    <div className="mt-auto flex items-center gap-2 text-[9px] font-black uppercase tracking-widest text-primary group-hover:text-primary transition-all relative z-10 pt-4">
-                        <div className="w-6 h-6 rounded-full bg-black/40 group-hover:bg-primary border border-white/10 group-hover:border-primary flex items-center justify-center transition-colors">
-                            <Compass className="w-3 h-3 text-white transition-all group-hover:animate-pulse" />
-                        </div>
-                        <span>{lang === 'ar' ? `سافر إلى عالم ${figure.name.ar}` : `Journey back to ${figure.name.en}`}</span>
+                {/* Interactive Indicator */}
+                <div className="absolute bottom-6 right-8 z-20 opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-x-4 group-hover:translate-x-0">
+                    <div className="flex items-center gap-3 px-5 py-3 rounded-full bg-[#c5a059] text-black text-[10px] font-black uppercase tracking-widest shadow-xl">
+                        <Compass className="w-4 h-4 animate-spin-slow" />
+                        <span>{lang === 'ar' ? 'سيرة ذاتية' : 'Read Memoir'}</span>
                     </div>
                 </div>
             </div>

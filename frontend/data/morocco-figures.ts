@@ -18,7 +18,8 @@ export const moroccoFigures: HistoricalFigure[] = [
         shortBio: {
             en: 'Founder of the University of Al Quaraouiyine in Fez, recognized by Guinness World Records as the oldest existing, continually operating higher educational institution in the world.',
             ar: 'مؤسسة جامعة القرويين في فاس، والتي تعتبرها موسوعة جينيس أقدم مؤسسة تعليم عالٍ لا تزال تعمل في العالم.'
-        }
+        },
+        imageUrl: '/images/gallery/fatima-al-fihriya.png'
     },
     {
         id: 'sayyida-al-hurra',
@@ -29,7 +30,8 @@ export const moroccoFigures: HistoricalFigure[] = [
         shortBio: {
             en: 'Queen of Tétouan and a prominent naval leader who controlled the western Mediterranean Sea during her reign.',
             ar: 'حاكمة تطوان وقائدة بحرية بارزة سيطرت على غرب البحر الأبيض المتوسط خلال فترة حكمها.'
-        }
+        },
+        imageUrl: '/images/gallery/sayyida-al-hurra.png'
     },
     {
         id: 'tariq-ibn-ziyad',
@@ -40,7 +42,8 @@ export const moroccoFigures: HistoricalFigure[] = [
         shortBio: {
             en: 'A renowned commander who led the Islamic conquest of Visigothic Hispania, famously associated with the Rock of Gibraltar (Jabal Tariq).',
             ar: 'قائد عسكري شهير قاد الفتح الإسلامي لشبه الجزيرة الأيبيرية، ويرتبط اسمه تاريخياً بجبل طارق.'
-        }
+        },
+        imageUrl: '/images/gallery/tariq-ibn-ziyad.png'
     },
     {
         id: 'ibn-battuta',
@@ -51,6 +54,7 @@ export const moroccoFigures: HistoricalFigure[] = [
         shortBio: {
             en: 'One of the greatest travelers in history, journeying across the Islamic world, Africa, Europe, and Asia over nearly three decades.',
             ar: 'من أعظم الرحالة في التاريخ، جاب العالم الإسلامي، إفريقيا، أوروبا، وآسيا على مدى قرابة ثلاثة عقود.'
-        }
+        },
+        imageUrl: '/images/gallery/ibn-battuta.png'
     }
 ];

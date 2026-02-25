@@ -181,14 +181,7 @@ body {
   background: rgba(197, 160, 89, 0.5);
 }
 
-/* 
- * MoroVerse Fatal Fix: Absolute Dark Mode Enforcement
- * This ensures no white backgrounds remain on the site.
- */
-* {
-  background-color: black !important;
-  color: white !important;
-}
+/* Custom Theme Polish */
 
 /* Explicit exclusion for the Assistant Bubble for readability */
 .assistant-bubble {

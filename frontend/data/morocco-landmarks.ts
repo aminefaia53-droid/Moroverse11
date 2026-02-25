@@ -18,7 +18,8 @@ export const moroccoLandmarks: Landmark[] = [
             en: 'A colossal sentinel on the Atlantic shore, blending modern engineering with the soul of traditional Moroccan craftsmanship including hand-carved stone and wood.',
             ar: 'حارس جليل على ضفاف الأطلسي، يمزج بين الهندسة الحديثة وروح الحرفة المغربية الأصيلة من نقش على الحجر والخشب.'
         },
-        visualSoul: 'Mosque'
+        visualSoul: 'Mosque',
+        imageUrl: 'https://images.unsplash.com/photo-1577147443647-81867e3ed31f?q=80&w=2070&auto=format&fit=crop'
     },
     {
         id: 'hassan-tower',
@@ -29,7 +30,8 @@ export const moroccoLandmarks: Landmark[] = [
             en: 'The majestic red sandstone minaret of an unfinished 12th-century mosque, standing as a silent witness to Almohad architectural ambition.',
             ar: 'مئذنة مهيبة من الحجر الرملي الأحمر لمسجد لم يكتمل في القرن الثاني عشر، تقف شاهداً صامتاً على طموح العمارة الموحدية.'
         },
-        visualSoul: 'Tower'
+        visualSoul: 'Tower',
+        imageUrl: 'https://images.unsplash.com/photo-1644331049219-c09a803e1e55?q=80&w=1964&auto=format&fit=crop'
     },
     {
         id: 'el-badi-palace',
@@ -40,7 +42,8 @@ export const moroccoLandmarks: Landmark[] = [
             en: 'A ruined palace commissioned by the sultan Ahmad al-Mansur, once known as the "Incomparable".',
             ar: 'قصر مدمر أمر ببنائه السلطان أحمد المنصور السعدي، وكان يعرف بـ "البديع" لعظمته.'
         },
-        visualSoul: 'Palace'
+        visualSoul: 'Palace',
+        imageUrl: 'https://images.unsplash.com/photo-1518684079-3c830dcef090?q=80&w=1974&auto=format&fit=crop'
     },
     {
         id: 'volubilis',
@@ -51,7 +54,8 @@ export const moroccoLandmarks: Landmark[] = [
             en: 'A partly excavated Berber and Roman city in Morocco, a UNESCO World Heritage site.',
             ar: 'مدينة أمازيغية ورومانية محفورة جزئياً، مصنفة كإرث عالمي من طرف اليونسكو.'
         },
-        visualSoul: 'Ruin'
+        visualSoul: 'Ruin',
+        imageUrl: 'https://images.unsplash.com/photo-1629747387925-6905ff5a558a?q=80&w=2070&auto=format&fit=crop'
     },
     {
         id: 'hercules-caves',
@@ -62,7 +66,8 @@ export const moroccoLandmarks: Landmark[] = [
             en: 'A natural limestone cave complex near Tangier, famous for its entrance resembling the map of Africa.',
             ar: 'مجمع مغارات طبيعية قرب طنجة، يشتهر بمدخله الذي يشبه خريطة إفريقيا.'
         },
-        visualSoul: 'Cave'
+        visualSoul: 'Cave',
+        imageUrl: 'https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?q=80&w=2021&auto=format&fit=crop'
     },
     {
         id: 'boujdour-lighthouse',
@@ -73,7 +78,8 @@ export const moroccoLandmarks: Landmark[] = [
             en: 'A historic lighthouse serving as a vital navigation milestone on the Saharan coast.',
             ar: 'منارة تاريخية تشكل علامة جغرافية حيوية للملاحة على الساحل الصحراوي.'
         },
-        visualSoul: 'Lighthouse'
+        visualSoul: 'Lighthouse',
+        imageUrl: 'https://images.unsplash.com/photo-1621531604538-9e557604b11f?q=80&w=1964&auto=format&fit=crop'
     },
     {
         id: 'essaouira-fortress',
@@ -84,6 +90,7 @@ export const moroccoLandmarks: Landmark[] = [
             en: 'A historic bastion guarding the port, showcasing a blend of European and Moroccan military architecture.',
             ar: 'حصن تاريخي يحرس الميناء، يمزج بين العمارة العسكرية الأوروبية والمغربية.'
         },
-        visualSoul: 'Fortress'
+        visualSoul: 'Fortress',
+        imageUrl: 'https://images.unsplash.com/photo-1622329778939-9d5de5914102?q=80&w=2048&auto=format&fit=crop'
     }
 ];
