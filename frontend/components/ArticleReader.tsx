@@ -33,13 +33,13 @@ const ArticleReader: React.FC<ArticleReaderProps> = ({ article, isOpen, onClose 
                         initial={{ opacity: 0, scale: 0.9, y: 20 }}
                         animate={{ opacity: 1, scale: 1, y: 0 }}
                         exit={{ opacity: 0, scale: 0.9, y: 20 }}
-                        className="relative w-full max-w-4xl max-h-[90vh] bg-white rounded-2xl shadow-2xl overflow-hidden flex flex-col border border-gold-royal/20"
+                        className="relative w-full max-w-4xl max-h-[90vh] bg-black/90 backdrop-blur-xl rounded-2xl shadow-[0_0_50px_rgba(197,160,89,0.2)] overflow-hidden flex flex-col border border-gold-royal/30"
                     >
                         {/* Royal Header Bar */}
                         <div className="h-2 bg-gradient-to-r from-royal-red via-gold-royal to-star-green" />
 
                         {/* Header */}
-                        <div className="px-6 py-4 border-b border-slate-100 flex items-center justify-between bg-slate-50/50">
+                        <div className="px-6 py-4 border-b border-gold-royal/20 flex items-center justify-between bg-black/40">
                             <div className="flex items-center gap-3">
                                 <div className="w-10 h-10 rounded-full bg-gold-royal/10 flex items-center justify-center text-gold-royal">
                                     <Crown size={20} />
@@ -48,16 +48,16 @@ const ArticleReader: React.FC<ArticleReaderProps> = ({ article, isOpen, onClose 
                                     <span className="text-[10px] font-bold tracking-[0.2em] text-gold-royal uppercase">
                                         MoroVerse Royal Archive
                                     </span>
-                                    <h3 className="text-slate-900 font-bold flex items-center gap-2">
+                                    <h3 className="text-white font-bold flex items-center gap-2">
                                         {article.category === 'battle' ? 'سجل البطولات' : article.category === 'landmark' ? 'سجل المعالم' : 'سجل الحواضر'}
                                     </h3>
                                 </div>
                             </div>
                             <div className="flex items-center gap-2">
-                                <button className="p-2 hover:bg-slate-200 rounded-full transition-colors text-slate-400">
+                                <button className="p-2 hover:bg-gold-royal/20 rounded-full transition-colors text-white/60 hover:text-white">
                                     <Printer size={18} />
                                 </button>
-                                <button className="p-2 hover:bg-slate-200 rounded-full transition-colors text-slate-400">
+                                <button className="p-2 hover:bg-gold-royal/20 rounded-full transition-colors text-white/60 hover:text-white">
                                     <Share2 size={18} />
                                 </button>
                                 <button
@@ -70,10 +70,13 @@ const ArticleReader: React.FC<ArticleReaderProps> = ({ article, isOpen, onClose 
                         </div>
 
                         {/* Scrollable Content */}
-                        <div className="flex-1 overflow-y-auto custom-scrollbar bg-[url('https://www.transparenttextures.com/patterns/cream-paper.png')]">
-                            <div className="px-8 md:px-16 py-12 text-right" dir="rtl">
+                        <div className="flex-1 overflow-y-auto custom-scrollbar bg-black/10 relative">
+                            {/* Texture overlay for royal feel */}
+                            <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: "url('https://www.transparenttextures.com/patterns/arabesque.png')" }} />
+
+                            <div className="px-8 md:px-16 py-12 text-right relative z-10" dir="rtl">
                                 {/* Article Title */}
-                                <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6 font-arabic leading-tight">
+                                <h1 className="text-4xl md:text-5xl font-black text-gold-royal mb-6 font-arabic leading-tight drop-shadow-md">
                                     {article.title}
                                 </h1>
 
@@ -94,19 +97,19 @@ const ArticleReader: React.FC<ArticleReaderProps> = ({ article, isOpen, onClose 
                                 </div>
 
                                 {/* Intro */}
-                                <p className="text-xl text-slate-700 leading-relaxed mb-12 font-arabic italic">
+                                <p className="text-xl text-white/90 leading-relaxed mb-12 font-arabic italic border-r-2 border-gold-royal/50 pr-6 pl-2">
                                     <SmartLink text={article.intro} />
                                 </p>
 
                                 {/* Sections */}
                                 <div className="space-y-12">
                                     {article.sections.map((section, idx) => (
-                                        <div key={idx} className="group">
-                                            <h2 className="text-2xl font-bold text-slate-900 mb-4 flex items-center gap-3">
-                                                <span className="w-8 h-[2px] bg-gold-royal group-hover:w-12 transition-all" />
+                                        <div key={idx} className="group bg-black/40 p-8 rounded-3xl border border-gold-royal/10 hover:border-gold-royal/30 transition-colors">
+                                            <h2 className="text-2xl font-black text-gold-royal mb-6 flex items-center gap-3">
+                                                <span className="w-8 h-[2px] bg-gold-royal group-hover:w-16 transition-all duration-500" />
                                                 {section.title}
                                             </h2>
-                                            <p className="text-lg text-slate-600 leading-loose font-arabic">
+                                            <p className="text-lg text-white/80 leading-loose font-arabic">
                                                 <SmartLink text={section.content} />
                                             </p>
                                         </div>
@@ -129,9 +132,9 @@ const ArticleReader: React.FC<ArticleReaderProps> = ({ article, isOpen, onClose 
                         </div>
 
                         {/* Footer */}
-                        <div className="px-8 py-4 bg-slate-50 border-t border-slate-100 flex justify-between items-center text-[10px] text-slate-400 font-bold tracking-widest uppercase">
+                        <div className="px-8 py-5 bg-black/80 border-t border-gold-royal/20 flex justify-between items-center text-[10px] text-white/40 font-bold tracking-widest uppercase">
                             <span>MoroVerse Digital Sovereignty © 2026</span>
-                            <div className="flex items-center gap-1 text-gold-royal">
+                            <div className="flex items-center gap-2 text-gold-royal bg-gold-royal/10 px-3 py-1.5 rounded-full border border-gold-royal/30">
                                 <Crown size={12} />
                                 <span>Authentic Record</span>
                             </div>
