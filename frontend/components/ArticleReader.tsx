@@ -81,22 +81,44 @@ const ArticleReader: React.FC<ArticleReaderProps> = ({ article, isOpen, onClose 
                             <div className="relative w-full h-[40vh] md:h-[50vh] bg-black shrink-0 overflow-hidden">
                                 {article.videoUrl ? (
                                     <>
-                                        <video
-                                            src={article.videoUrl}
-                                            autoPlay
-                                            muted={!isVideoPlaying}
-                                            loop
-                                            playsInline
-                                            className="w-full h-full object-cover opacity-80"
-                                        />
-                                        <div className="absolute bottom-4 right-4 z-20">
-                                            <button
-                                                onClick={() => setIsVideoPlaying(!isVideoPlaying)}
-                                                className="p-3 bg-black/40 backdrop-blur-sm rounded-xl border border-white/10 text-white hover:text-gold-royal hover:bg-black/60 transition-all"
-                                            >
-                                                {isVideoPlaying ? <Pause size={16} /> : <Play size={16} />}
-                                            </button>
-                                        </div>
+                                        {article.videoUrl.includes('youtube.com') || article.videoUrl.includes('youtu.be') ? (
+                                            <iframe
+                                                src={(() => {
+                                                    let videoId = '';
+                                                    if (article.videoUrl.includes('youtu.be/')) {
+                                                        videoId = article.videoUrl.split('youtu.be/')[1].split('?')[0];
+                                                    } else if (article.videoUrl.includes('youtube.com/watch?v=')) {
+                                                        videoId = article.videoUrl.split('v=')[1].split('&')[0];
+                                                    } else if (article.videoUrl.includes('youtube.com/embed/')) {
+                                                        videoId = article.videoUrl.split('embed/')[1].split('?')[0];
+                                                    }
+                                                    return `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&loop=1&playlist=${videoId}&controls=0&showinfo=0&rel=0`;
+                                                })()}
+                                                title={`${article.title[lang]} Cinematic Video`}
+                                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                                allowFullScreen
+                                                className="w-full h-[150%] md:h-[200%] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 object-cover opacity-80 pointer-events-none"
+                                            />
+                                        ) : (
+                                            <>
+                                                <video
+                                                    src={article.videoUrl}
+                                                    autoPlay
+                                                    muted={!isVideoPlaying}
+                                                    loop
+                                                    playsInline
+                                                    className="w-full h-full object-cover opacity-80"
+                                                />
+                                                <div className="absolute bottom-4 right-4 z-20">
+                                                    <button
+                                                        onClick={() => setIsVideoPlaying(!isVideoPlaying)}
+                                                        className="p-3 bg-black/40 backdrop-blur-sm rounded-xl border border-white/10 text-white hover:text-gold-royal hover:bg-black/60 transition-all"
+                                                    >
+                                                        {isVideoPlaying ? <Pause size={16} /> : <Play size={16} />}
+                                                    </button>
+                                                </div>
+                                            </>
+                                        )}
                                     </>
                                 ) : (
                                     <div className="w-full h-full flex items-center justify-center bg-gradient-to-b from-[#064e3b] to-black">
@@ -169,7 +191,7 @@ const ArticleReader: React.FC<ArticleReaderProps> = ({ article, isOpen, onClose 
                                                         exit={{ opacity: 0 }}
                                                         transition={{ duration: 0.5 }}
                                                         className="w-full h-full object-cover"
-                                                        alt="Gallery Image"
+                                                        alt={`${article.title[lang]} - ${isAr ? 'صورة' : 'Visual'} ${activeImageIndex + 1}`}
                                                     />
                                                 </AnimatePresence>
                                                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none" />
