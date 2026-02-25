@@ -1,4 +1,11 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://moroverse.ma/sitemap.xml
+# Disallow admin routes from being crawled
+Disallow: /api/
+Disallow: /_next/
+Disallow: /auth/
+
+# Sitemap location
+Sitemap: https://moroverse.vercel.app/sitemap.xml
+Sitemap: https://moroverse.vercel.app/sitemap-posts.xml

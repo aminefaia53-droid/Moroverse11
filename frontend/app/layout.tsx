@@ -29,14 +29,47 @@ const cairo = Cairo({
 });
 
 export const metadata = {
-  title: "MoroVerse | The 100% Digital Twin of Morocco",
-  description: "Experience the Kingdom of Light in a revolutionary digital dimension.",
+  title: "MoroVerse | الموسوعة الرقمية للتاريخ المغربي",
+  description: "استكشف عمق التاريخ المغربي وروعة حضارته في بوابة زمنية متطورة. معارك، مدن، معالم، وشخصيات تاريخية — كلها موثّقة في MoroVerse.",
+  keywords: "تاريخ المغرب, مدن مغربية, معارك مغربية, المرابطون, وليلي, فاس, مراكش, ابن بطوطة, فاطمة الفهرية",
   manifest: "/manifest.json",
-  themeColor: "#006233",
+  themeColor: "#8b0000",
+  viewport: "width=device-width, initial-scale=1, maximum-scale=5",
+  robots: "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+  authors: [{ name: "Mohamed Amine El Amiri" }],
+  creator: "MoroVerse Royal Digital Archive",
+  publisher: "MoroVerse",
+  openGraph: {
+    type: "website",
+    locale: "ar_MA",
+    alternateLocale: "en_US",
+    url: "https://moroverse.vercel.app",
+    siteName: "MoroVerse — الأرشيف الرقمي المغربي",
+    title: "MoroVerse | الموسوعة الرقمية للتاريخ المغربي",
+    description: "استكشف عمق التاريخ المغربي وروعة حضارته في بوابة زمنية متطورة. معارك، مدن، معالم، وشخصيات تاريخية.",
+    images: [
+      {
+        url: "https://moroverse.vercel.app/hero-bg.png",
+        width: 1200,
+        height: 630,
+        alt: "MoroVerse — الأرشيف الرقمي للمملكة المغربية",
+      }
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "MoroVerse | الموسوعة الرقمية للتاريخ المغربي",
+    description: "استكشف عمق التاريخ المغربي وروعة حضارته في بوابة زمنية متطورة.",
+    images: ["https://moroverse.vercel.app/hero-bg.png"],
+    creator: "@moroverse",
+  },
   appleWebApp: {
     capable: true,
-    statusBarStyle: "default",
+    statusBarStyle: "black-translucent",
     title: "MoroVerse",
+  },
+  alternates: {
+    canonical: "https://moroverse.vercel.app",
   },
 };
 
