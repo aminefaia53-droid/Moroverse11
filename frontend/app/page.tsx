@@ -197,7 +197,7 @@ export default function Home() {
       <section className="py-48 px-10 relative z-20">
         <div className="max-w-7xl mx-auto">
           <div className="mb-24 text-center space-y-8">
-            <h3 className="text-6xl font-serif text-primary uppercase tracking-[0.3em] font-black text-glow drop-shadow-[0_5px_15px_rgba(0,0,0,0.5)]">
+            <h3 className="text-4xl md:text-6xl font-serif text-primary uppercase tracking-normal md:tracking-[0.3em] font-black text-glow drop-shadow-[0_5px_15px_rgba(0,0,0,0.5)] leading-tight">
               {t.sections.encyclopedia}
             </h3>
             <p className="text-white/60 max-w-4xl mx-auto text-xl font-light tracking-wide leading-relaxed uppercase drop-shadow-md">
@@ -214,7 +214,7 @@ export default function Home() {
       <section className="py-48 px-10 relative z-20">
         <div className="max-w-7xl mx-auto">
           <div className="mb-24 text-center space-y-8">
-            <h3 className="text-6xl font-serif text-primary uppercase tracking-[0.3em] font-black text-glow drop-shadow-[0_5px_15px_rgba(0,0,0,0.5)]">{t.sections.battles}</h3>
+            <h3 className="text-4xl md:text-6xl font-serif text-primary uppercase tracking-normal md:tracking-[0.3em] font-black text-glow drop-shadow-[0_5px_15px_rgba(0,0,0,0.5)] leading-tight">{t.sections.battles}</h3>
             <p className="text-white/60 max-w-4xl mx-auto text-xl font-light tracking-wide leading-relaxed uppercase drop-shadow-md">{t.sections.battlesDesc}</p>
             <div className="w-64 h-1 bg-primary/20 mx-auto" />
           </div>
@@ -233,7 +233,7 @@ export default function Home() {
             viewport={{ once: true }}
             className="mb-24 text-center space-y-8"
           >
-            <h3 className="text-7xl font-serif text-primary uppercase tracking-wider font-black drop-shadow-sm text-glow">
+            <h3 className="text-5xl md:text-7xl font-serif text-primary uppercase tracking-normal md:tracking-wider font-black drop-shadow-sm text-glow leading-tight">
               {lang === 'ar' ? (
                 <span className="font-arabic text-primary/80">معالم مغربية</span>
               ) : (
@@ -260,7 +260,7 @@ export default function Home() {
             viewport={{ once: true }}
             className="mb-24 text-center space-y-8"
           >
-            <h3 className="text-7xl font-serif text-primary uppercase tracking-[0.4em] font-black drop-shadow-sm">
+            <h3 className="text-5xl md:text-7xl font-serif text-primary uppercase tracking-normal md:tracking-[0.4em] font-black drop-shadow-sm leading-tight">
               {lang === 'ar' ? (
                 <span className="font-arabic text-primary/80">{t.sections.figures}</span>
               ) : (
