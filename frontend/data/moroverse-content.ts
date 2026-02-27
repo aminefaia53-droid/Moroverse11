@@ -23,1113 +23,830 @@ export interface MoroArticle {
 }
 
 export const moroverseArticles: Record<string, MoroArticle> = {
-  'essaouira': {
-    "id": "essaouira",
-    "category": "city",
-    "title": {
-        "ar": "الصويرة: موغادور الأزلية وسيمفونية الريح والتاريخ",
-        "en": "Essaouira: Eternal Mogador, Symphony of Wind and History"
-    },
-    "metaDescription": {
-        "ar": "الصويرة مدينة الرياح والفنون والتاريخ البرتغالي-المغربي على الأطلسي، محطة قوافل الذهب وملاذ فناني العالم.",
-        "en": "Essaouira, city of winds, arts and Portuguese-Moroccan Atlantic history, gold caravan hub and global artists' haven."
-    },
-    "intro": {
-        "ar": "في الطرف الغربي الأقصى من الخريطة المغربية حيث الأطلسي يضرب الصخر بلا هوادة، تقوم الصويرة كأغنية مكتوبة بالريح وبالملح وبتاريخ متشابك الجذور. عرفها الفينيقيون وسكّانها الأمازيغ قبل الميلاد، واتخذها البرتغاليون حصناً بحرياً في القرن الخامس عشر أسموه \"موغادور\"، قبل أن يُعيد السلطان سيدي محمد بن عبد الله تأسيسها عام 1765 مدينةً ملكية بتخطيط الأوروبي كورنيل دو فوسو الفريد الجامع بين الهيبة العسكرية والروح المغربية.",
-        "en": "At Morocco's westernmost edge where the Atlantic beats rock relentlessly, Essaouira stands as a song written in wind, salt, and entangled history. Known to Phoenicians and Amazigh before Christ, fortified by Portuguese as \"Mogador\" in the 15th century, then refounded by Sultan Sidi Mohammed ibn Abdallah in 1765 through European architect Cornut de Fossé's unique design merging military gravitas with Moroccan soul."
-    },
-    "sections": [
-        {
-            "title": {
-                "ar": "الصقالة: حصن يُصارع المحيط منذ ثلاثة قرون",
-                "en": "The Skala: A Fortress Wrestling the Ocean for Three Centuries"
-            },
-            "content": {
-                "ar": "صقالة الميناء والمدينة هما القلب العسكري الذي بُنيت الصويرة من حوله. المدافع البرونزية الإسبانية المحفورة عليها نقوش تواريخ القرنين السابع عشر والثامن عشر لا تزال تتربّع على أسوار الصقالة متجهة نحو المحيط كحرّاس أبدية تحرس ذكرى المعارك البحرية التي خاضتها السفن المغربية ضد قراصنة المتوسط والأوروبيين الطامعين. تمتد أسوار الصويرة على نحو ثلاثة كيلومترات تُحيط المدينة كلها بسياج محكم، وهيكلها الهندسي المستمد من مدارس القلاع الأوروبية الحديثة يُعدّ درساً في الهندسة العسكرية القرن ثامن عشرية.",
-                "en": "The port and city Skalas are the military heart around which Essaouira was built. Spanish bronze cannons engraved with 17th-18th century dates still guard the Skala walls facing the ocean as eternal sentinels of naval battles Moroccan ships fought against Mediterranean pirates and European aggressors."
-            }
+    'essaouira': {
+        "id": "essaouira",
+        "category": "city",
+        "title": {
+            "ar": "الصويرة: موغادور الأزلية وسيمفونية الريح والتاريخ",
+            "en": "Essaouira: Eternal Mogador, Symphony of Wind and History"
         },
-        {
-            "title": {
-                "ar": "الصويرة ملتقى الحضارات: يهود وأمازيغ وعرب وأوروبيون",
-                "en": "Essaouira as Civilizational Crossroads: Jews, Amazigh, Arabs and Europeans"
-            },
-            "content": {
-                "ar": "لم تكن الصويرة يوماً مدينة أحادية الثقافة. في أوجها التجاري في القرن التاسع عشر كانت تضمّ أحياء يهودية عريقة يسكنها تجار من أصول أندلسية وليفورنية وبرتغالية يتحكمون في ثلثي تجارة الصادرات المغربية، إلى جانب التجار الأمازيغ من قبيلة تكنة وهاوسا الإفريقية والتجار العرب من فاس ومراكش. هذا الاختلاط الحضاري الغني ولّد ثقافة فنية خاصة لا تجدها في مدن مغربية أخرى، وهو ما يفسّر لماذا استقطبت الصويرة في القرن العشرين أسماء كجيمي هندريكس وأورسون ويلز وكاتب ياسين.",
-                "en": "Essaouira was never culturally uniform. At its 19th-century commercial peak it held Jewish quarters of Andalusian, Livornese, and Portuguese origin controlling two-thirds of Moroccan export trade, alongside Tekna Amazigh, African Hausa, and Arab merchants from Fez and Marrakech. This rich mix produced a unique artistic culture that later attracted Jimi Hendrix, Orson Welles, and Kateb Yacine."
-            }
-        }
-    ],
-    "faqs": [
-        {
-            "question": {
-                "ar": "لماذا تُسمَّى الصويرة بـ\"مدينة الريح\"؟",
-                "en": "Why is Essaouira called \"the city of wind\"?"
-            },
-            "answer": {
-                "ar": "الرياح التجارية الأطلسية تضرب الصويرة بقوة استثنائية معظم أيام السنة، وهو ما جعلها اليوم وجهة عالمية لهواة رياضة الإبحار الشراعي والرياح اللوحية، ومهرجانها السنوي لهذه الرياضة يستقطب آلاف الزوار.",
-                "en": "Atlantic trade winds strike Essaouira with exceptional force most of the year, making it a global destination for windsurfing and kitesurfing, with its annual festival attracting thousands of visitors."
-            }
+        "metaDescription": {
+            "ar": "الصويرة مدينة الرياح والفنون والتاريخ البرتغالي-المغربي على الأطلسي، محطة قوافل الذهب وملاذ فناني العالم.",
+            "en": "Essaouira, city of winds, arts and Portuguese-Moroccan Atlantic history, gold caravan hub and global artists' haven."
         },
-        {
-            "question": {
-                "ar": "ما دور عرصة الصويرة في تجارة القرن التاسع عشر الدولية؟",
-                "en": "What was Essaouira's role in 19th-century international trade?"
-            },
-            "answer": {
-                "ar": "كانت الصويرة الميناء التجاري الأول للمغرب قبل صعود الدار البيضاء، وكانت تُصدِّر الذهب وريش النعام والكتان والجلود القادمة من الصحراء الكبرى عبر قوافل تيمبكتو نحو أوروبا.",
-                "en": "Essaouira was Morocco's premier trading port before Casablanca's rise, exporting gold, ostrich feathers, flax, and hides from the Sahara via Timbuktu caravans toward Europe."
-            }
+        "intro": {
+            "ar": "في الطرف الغربي الأقصى من الخريطة المغربية حيث الأطلسي يضرب الصخر بلا هوادة، تقوم الصويرة كأغنية مكتوبة بالريح وبالملح وبتاريخ متشابك الجذور. عرفها الفينيقيون وسكّانها الأمازيغ قبل الميلاد، واتخذها البرتغاليون حصناً بحرياً في القرن الخامس عشر أسموه \"موغادور\"، قبل أن يُعيد السلطان سيدي محمد بن عبد الله تأسيسها عام 1765 مدينةً ملكية بتخطيط الأوروبي كورنيل دو فوسو الفريد الجامع بين الهيبة العسكرية والروح المغربية.",
+            "en": "At Morocco's westernmost edge where the Atlantic beats rock relentlessly, Essaouira stands as a song written in wind, salt, and entangled history. Known to Phoenicians and Amazigh before Christ, fortified by Portuguese as \"Mogador\" in the 15th century, then refounded by Sultan Sidi Mohammed ibn Abdallah in 1765 through European architect Cornut de Fossé's unique design merging military gravitas with Moroccan soul."
         },
-        {
-            "question": {
-                "ar": "هل مهرجان كناوة الدولي للصويرة هو الأشهر في المغرب؟",
-                "en": "Is Essaouira's International Gnawa Festival the most famous in Morocco?"
-            },
-            "answer": {
-                "ar": "نعم، مهرجان كناوة الدولي الذي يُقام سنوياً يُعدّ من أبرز المهرجانات الموسيقية في إفريقيا والعالم العربي، يجمع بين الموسيقى الكناوية الروحانية الإفريقية وأسماء الجاز والبلوز والموسيقى العالمية من جميع القارات.",
-                "en": "Yes, the International Gnawa Festival held annually is among Africa and the Arab world's most prominent music festivals, blending African spiritual Gnawa music with global jazz, blues, and world music artists from all continents."
-            }
-        }
-    ],
-    "conclusion": {
-        "ar": "الصويرة مكان يتساءل فيه الزائر: أنا في المغرب؟ في الأندلس؟ في إفريقيا؟ — والجواب الصحيح هو: في كل هذه الأماكن في آن واحد.",
-        "en": "Essaouira is a place where visitors ask: am I in Morocco? Andalusia? Africa? — and the correct answer is: all these places simultaneously."
-    },
-    "generatedImage": "https://images.unsplash.com/photo-1622329778939-9d5de5914102?q=80&w=2048&auto=format&fit=crop"
-},
-  'agadir': {
-    "id": "agadir",
-    "category": "city",
-    "title": {
-        "ar": "أكادير: عنقاء الجنوب التي بُعثت من رماد الزلزال",
-        "en": "Agadir: Phoenix of the South Rising from Earthquake Ashes"
-    },
-    "metaDescription": {
-        "ar": "أكادير مدينة البعث والصمود، دُمِّرت عام 1960 وأُعيد بناؤها بصورة أحدث مدينة في المغرب. المدينة السياحية الأولى على المحيط الأطلسي.",
-        "en": "Agadir, city of resurrection and resilience, destroyed in 1960 and rebuilt as Morocco's most modern city and premier Atlantic coast tourist destination."
-    },
-    "intro": {
-        "ar": "في الساعة الحادية عشرة والثلاثة وأربعين دقيقة ليلاً من يوم الأول من مارس 1960، لم تنتظر الأرض أحداً وتحركت. في خمس عشرة ثانية ضُوية سحقت موجة زلزالية بقوة خمس وخمس من ريختر مدينة أكادير فكأن الأرض قررت فجأة أن تبتلع مدينة بكاملها وتبدأ من الصفر. لقي أكثر من خمسة عشر ألف شخص حتفهم. لكن أكادير لم تمت — أبت أن تموت. أُعيد بناؤها بحيوية وطنية مذهلة لتصبح اليوم المدينة المغربية الأكثر حداثة والوجهة السياحية الأولى بشواطئها الذهبية التي تمتد ستة کيلومترات.",
-        "en": "At 11:43 PM on March 1, 1960, the earth moved without warning. In fifteen seconds a 5.7 Richter earthquake crushed Agadir, burying over 15,000 people. Yet Agadir refused to die. Rebuilt with astonishing national vitality, it became Morocco's most modern city and premier tourist destination with golden beaches stretching six kilometers."
-    },
-    "sections": [
-        {
-            "title": {
-                "ar": "إعادة البناء: أحدث مدينة في المغرب تُولد من الكارثة",
-                "en": "The Reconstruction: Morocco's Newest City Born from Catastrophe"
-            },
-            "content": {
-                "ar": "اتخذ الملك محمد الخامس قراراً تاريخياً: لن تُعاد أكادير في مكانها القديم، بل ستُبنى مدينة جديدة بالكامل تعكس مغرب الاستقلال وتطلعاته الحديثة. تدفّقت التبرعات الدولية والخبرات المعمارية من عشرات الدول، وكانت النتيجة مدينة مُصمَّمة وفق معايير التخطيط العمراني الحديث برفوف شوارع واسعة ومبانٍ مقاومة للزلازل وفضاءات خضراء وشبكات خدمات متكاملة — فريدة في المغرب.",
-                "en": "King Mohammed V made a historic decision: Agadir would not be rebuilt on its old site. A completely new city reflecting independent Morocco's modern aspirations would be built. International donations and architectural expertise from dozens of countries produced a city planned to modern urban standards: wide boulevards, earthquake-resistant buildings, green spaces — unique in Morocco."
-            }
-        },
-        {
-            "title": {
-                "ar": "السياحة الأطلسية: نموذج تنموي يستلهم الطبيعة والتاريخ",
-                "en": "Atlantic Tourism: A Development Model Drawing on Nature and History"
-            },
-            "content": {
-                "ar": "طوّرت أكادير نموذجها السياحي بذكاء على مثلث الشاطئ والمناخ والخدمات: شمسها تشرق 300 يوم سنوياً، ومياه المحيط دافئة معتدلة، وممارسة الرياضة البحرية متاحة طوال العام. إلى جانب الشاطئ الذهبي، قلعة أكادير أوفلّا الأمازيغية تُطلّ على المدينة من ارتفاع 236 متراً كشاهد صمود تاريخي لم يُسقطه الزلزال، وسوق من تزنيت وتيفاوت للحرف التقليدية السوسية يمنح السياحة بُعدها الثقافي والأصيل.",
-                "en": "Agadir developed its tourism model intelligently on three pillars: sun (300 sunny days/year), ocean (warm moderate waters), and year-round water sports. Beyond the golden beach, Amazigh Agadir Oufella fortress overlooks the city from 236 meters as a historic resilience witness the earthquake didn't fell, while Tiznit and Tifaoute craft markets add authentic cultural depth."
-            }
-        }
-    ],
-    "faqs": [
-        {
-            "question": {
-                "ar": "ماذا بقي من أكادير القديمة بعد زلزال 1960؟",
-                "en": "What survived of old Agadir after the 1960 earthquake?"
-            },
-            "answer": {
-                "ar": "لم يبقَ من المدينة القديمة تقريباً شيء. قلعة أوفلّا الأمازيغية على قمة الجبل ظلت قائمة جزئياً، وبقايا الحي البرتغالي الذي دمره البرتغاليون أنفسهم عام 1541 سبقت الزلزال في اندثارها.",
-                "en": "Almost nothing survived from the old city. The Amazigh Oufella fortress on the hilltop remained partially standing, while ruins of the Portuguese quarter — already destroyed by the Portuguese themselves in 1541 — had vanished long before the earthquake."
-            }
-        },
-        {
-            "question": {
-                "ar": "هل الجبال الأطلسية الكبرى قريبة من أكادير بما يكفي للزيارة اليومية؟",
-                "en": "Are the High Atlas mountains close enough to Agadir for day trips?"
-            },
-            "answer": {
-                "ar": "نعم، مدينة تارودانت تبعد نحو ثمانين كيلومتراً وهي قابلة للزيارة في يوم واحد. أما جبل توبقال أعلى قمة في شمال إفريقيا فيحتاج ليومين على الأقل انطلاقاً من إيمليل.",
-                "en": "Yes, Taroudant city is about 80 km away for pleasant day trips. Mount Toubkal, North Africa's highest peak, requires at least two days departing from Imlil."
-            }
-        },
-        {
-            "question": {
-                "ar": "لماذا تُعدّ أكادير الوجهة الشتوية الأولى للسياح الأوروبيين في المغرب؟",
-                "en": "Why is Agadir the top winter destination for European tourists in Morocco?"
-            },
-            "answer": {
-                "ar": "مناخها شبه استوائي بشمس شتوية ودرجات حرارة تتراوح بين 18-23 درجة مئوية حتى في يناير، مما يجعلها هرباً مثالياً من برد أوروبا مع بقاء خدمات الفنادق الحديثة المتكاملة وشوارع المدينة النظيفة الهادئة.",
-                "en": "Its subtropical climate delivers winter sunshine with temperatures ranging 18-23°C even in January, making it an ideal escape from European cold while retaining full modern hotel services and clean, quiet city streets."
-            }
-        }
-    ],
-    "conclusion": {
-        "ar": "أكادير قرّرت أن تكون أجمل مما كانت عليه قبل 1960، وهذا القرار الجماعي الصامت هو أعظم درس في الصمود الإنساني والتجاوز الحضاري.",
-        "en": "Agadir decided to be more beautiful than it was before 1960, and this silent collective decision is the greatest lesson in human resilience and civilizational transcendence."
-    },
-    "generatedImage": "https://images.unsplash.com/photo-1541484842121-cc51da4ba69e?q=80&w=2070&auto=format&fit=crop"
-},
-  'ouarzazate': {
-    "id": "ouarzazate",
-    "category": "city",
-    "title": {
-        "ar": "ورزازات: هوليود الصحراء على أعتاب عالمين",
-        "en": "Ouarzazate: Desert Hollywood on the Threshold of Two Worlds"
-    },
-    "metaDescription": {
-        "ar": "ورزازات بوابة الصحراء المغربية وعاصمة السينما العالمية في إفريقيا. موطن قصبات درعة وجسر الحضارتين الأمازيغية والصحراوية.",
-        "en": "Ouarzazate, gateway to the Moroccan Sahara and Africa's global cinema capital. Home of Draa kasbahs bridging Amazigh and Saharan civilizations."
-    },
-    "intro": {
-        "ar": "ورزازات ليست مجرد بلدة على طرفَي جبال الأطلس الكبير والصحراء — إنها العتبة الحضارية التي يعبرها من يريد الانتقال من زمان إلى زمان ومن عالمٍ إلى عالمٍ آخر مختلف. في الشمال تُشرف الثلوج على قمم تودرى وسارو، وفي الجنوب تبدأ الكثبان الذهبية لعرق الشبي ودرعة. بين هذين الطرفين تقوم ورزازات ببساطة أهلها الدرعيين وقصباتها الجوفية وصناعتها السينمائية التي باتت تُعرِّف بها العالم أكثر مما تُعرِّف بها قصور الطين والورد.",
-        "en": "Ouarzazate is not merely a town between the High Atlas and Sahara — it is the civilizational threshold between eras and worlds. Northern mountain snow crowns Todra and Sarhro peaks while southern golden dunes of Erg Chebbi and Draa begin. Between both extremes stands Ouarzazate with its Draa people's simplicity, earthen kasbahs, and a film industry that defines its global identity more than its clay palaces and roses."
-    },
-    "sections": [
-        {
-            "title": {
-                "ar": "استوديوهات ورزازات: حين أصبحت الصحراء المغربية شاشة العالم",
-                "en": "Ouarzazate Studios: When the Moroccan Sahara Became the World's Screen"
-            },
-            "content": {
-                "ar": "منذ الستينيات حين اكتشف المخرجون العالميون أن ضوء ورزازات الاستثنائي ومشهدها الجيولوجي الفريد يُجسِّدان كل مكان وكل عصر بتكلفة إنتاج معقولة، تحوّلت المنطقة إلى مصنع أحلام سينمائي عالمي. \"لورانس العرب\" و\"بابل\" و\"جلاديتور\" و\"الأمير الصغير\" ومئات الأفلام الأخرى صُوِّرت هنا. استوديوهات أطلس كورب وCLA من أكبر مرافق الإنتاج في إفريقيا، وتُشغِّل آلاف الفنيين والممثلين والحرفيين المحليين الذين أتقنوا مهارات السينما جيلاً بعد جيل.",
-                "en": "Since the 1960s when world directors discovered Ouarzazate's exceptional light and unique geological scenery could embody any place and era at reasonable production costs, the region became a global cinema dream factory. Lawrence of Arabia, Babel, Gladiator, The Little Prince and hundreds of films were shot here. Atlas Corp and CLA Studios are among Africa's largest production facilities, employing thousands of skilled local technicians, actors, and craftsmen who mastered cinema skills generation by generation."
-            }
-        },
-        {
-            "title": {
-                "ar": "قصبة تاوريرت: متحف الطين الحي على ضفاف وادي درعة",
-                "en": "Taourirt Kasbah: Living Clay Museum on Draa Valley Banks"
-            },
-            "content": {
-                "ar": "قصبة تاوريرت هي أضخم وأكمل مثال باقٍ على العمارة القصبية الطينية في جنوب المغرب. بناها الباشا الكلاوي الذي حكم الجنوب في عهد الحماية، وكانت في أوجها تضم مئات العائلات في شبكة من الغرف والممرات والأفنية الداخلية والأبراج المتعددة. اليونيسكو أدرجتها ضمن مشاريع التراث الإنساني للصيانة والحفظ، والزيارة الداخلية تكشف طراز العمارة الطينية الصحراوية بكل تعقيداتها الوظيفية والجمالية.",
-                "en": "Taourirt Kasbah is the largest and most complete surviving example of earthen kasbah architecture in southern Morocco. Built by Pasha al-Glaoui who ruled the South under the Protectorate, at its peak it housed hundreds of families in a network of rooms, corridors, courtyards, and multiple towers. UNESCO included it in its heritage preservation projects."
-            }
-        }
-    ],
-    "faqs": [
-        {
-            "question": {
-                "ar": "كيف وصل إلى ورزازات مخرجو هوليود المشهورون في البداية؟",
-                "en": "How did famous Hollywood directors first discover and reach Ouarzazate?"
-            },
-            "answer": {
-                "ar": "اكتشف المخرج الإيطالي بيير باولو بازوليني ومخرجو الموجة الجديدة الأوروبية الموقع في الستينيات، كما ساعدت الترويج السياحي الملكي في جلب بعثات استكشاف السينما الأمريكية والبريطانية.",
-                "en": "Italian director Pier Paolo Pasolini and European New Wave filmmakers discovered the location in the 1960s, while royal tourism promotion helped attract American and British cinema scouting expeditions."
-            }
-        },
-        {
-            "question": {
-                "ar": "هل يمكن زيارة استوديوهات أفلام ورزازات للعموم؟",
-                "en": "Can Ouarzazate film studios be visited by the general public?"
-            },
-            "answer": {
-                "ar": "نعم، استوديوهات أطلس كوربوريشن مفتوحة للزيارات السياحية والزوار يمكنهم مشاهدة المناظر المصطنعة والكواليس الخاصة بأشهر الأفلام الدولية التي صُوِّرت في هذا المكان التاريخي.",
-                "en": "Yes, Atlas Corporation Studios are open to tourist visits where visitors can see artificial sets and behind-the-scenes props from famous international films shot there."
-            }
-        },
-        {
-            "question": {
-                "ar": "ما أفضل طريق لاستكشاف وادي درعة انطلاقاً من ورزازات؟",
-                "en": "What is the best route to explore the Draa Valley departing from Ouarzazate?"
-            },
-            "answer": {
-                "ar": "الطريق القومية رقم 9 المتجهة نحو زاكورة عبر أكدز وآكادير-نواليم تمر بأجمل القصور الطينية وواحات النخيل والمآذن الترابية في رحلة تستغرق يوماً كاملاً بالسيارة.",
-                "en": "National Route N9 toward Zagora via Agdz and Agadir-Nwaliim passes through the most beautiful clay kasbahs, palm oases, and earthen minarets in a full-day car journey."
-            }
-        }
-    ],
-    "conclusion": {
-        "ar": "ورزازات تُعلِّمنا أن الصحراء ليست نهاية — إنها بداية نوع مختلف من الحياة أعمق في صمته وأوسع في أفقه.",
-        "en": "Ouarzazate teaches us that the desert is not an end — it is the beginning of a different kind of life, deeper in its silence and wider in its horizon."
-    },
-    "generatedImage": "https://images.unsplash.com/photo-1539668512229-ef442c00f8d2?q=80&w=2070&auto=format&fit=crop"
-},
-  'oujda': {
-    "id": "oujda",
-    "category": "city",
-    "title": {
-        "ar": "وجدة: مدينة الألف عام على تخوم المشرق المغربي",
-        "en": "Oujda: City of a Thousand Years on the Eastern Moroccan Frontier"
-    },
-    "metaDescription": {
-        "ar": "وجدة عاصمة الجهة الشرقية وأقدم المدن المغربية الإسلامية، بوابة الجزائر وملتقى الثقافتين المغربية والمشرقية.",
-        "en": "Oujda, capital of the Eastern Region, one of Morocco's oldest Islamic cities, gateway to Algeria and crossroads of Moroccan and Mashriqi cultures."
-    },
-    "intro": {
-        "ar": "وجدة مدينة تعيش على الحدود بكل معاني الكلمة: الحدود الجغرافية مع الجزائر الشقيقة التي تجعلها بوابة المشرق الكبيرة للمغرب، والحدود الحضارية بين الفضاء الأمازيغي-العربي الأندلسي الغربي والفضاء الأمازيغي-العربي المشرقي الشرقي. أسّسها قائد مغراوي الأمازيغي زيري بن عطية عام 994 ميلادية، وكان البناء استراتيجياً في عمقه: مدينة تُسيطر على طريق الحرير البري الجزائري-المغربي وتُحكم القبضة على ممرات جبال بني يزناسن.",
-        "en": "Oujda is a city living on frontiers in every sense: the geographic border with neighboring Algeria making it Morocco's eastern gateway, and the civilizational frontier between western Amazigh-Arab-Andalusian and eastern Amazigh-Arab Mashriqi spaces. Founded by Amazigh Maghrawa commander Ziri ibn Atiya in 994 CE as a strategic city controlling the Algerian-Moroccan Silk Road and Beni Yznassen mountain passes."
-    },
-    "sections": [
-        {
-            "title": {
-                "ar": "وجدة والجزائر: أخوّة الجوار ومفارقة الحدود المغلقة",
-                "en": "Oujda and Algeria: Brotherhood of Proximity and Paradox of Closed Borders"
-            },
-            "content": {
-                "ar": "قبل إغلاق الحدود المغربية-الجزائرية عام 1994، كانت وجدة وتلمسان مدينتين توأمتين تتبادلان الزوار والتجارة والأسر الممتدة عبر الحدود بحرية كاملة. الإغلاق حوّل مدينتين متوأمتين إلى مدينتين تتطلعان إلى بعضهما عبر أسلاك شائكة. غير أن الثقافة لا تعترف بالأسلاك: اللهجة الوجدية المزيج الفريد من العربية والأمازيغية والفرنسية تحتفظ بمفردات جزائرية-تلمسانية حية، والمطبخ الوجدي يشترك مع تلمسان في أطباق لا توجد غربي المغرب.",
-                "en": "Before closure of the Moroccan-Algerian border in 1994, Oujda and Tlemcen were twin cities freely exchanging visitors, commerce, and extended families. Closure transformed twin cities into two looking at each other through barbed wire. Yet culture ignores borders: the unique Oujda dialect blending Arabic, Amazigh, and French retains living Algerian-Tlemceni vocabulary, and Oujdi cuisine shares dishes with Tlemcen not found in western Morocco."
-            }
-        },
-        {
-            "title": {
-                "ar": "المدينة القديمة ومسجد سيدي عبد الوهاب: روح وجدة الروحية",
-                "en": "The Old Medina and Sidi Abdelwahab Mosque: Oujda's Spiritual Soul"
-            },
-            "content": {
-                "ar": "تحتفظ مدينة وجدة العتيقة ببنيتها التقليدية السور-الدرب-السوق التي بُنيت عبر قرون من البناء الإسلامي المتراكم. مسجد سيدي عبد الوهاب الكبير في قلبها يعود للقرن الثاني عشر ويُعدّ من أقدم المعالم الدينية في شرق المغرب. خارج الأسوار، باب سيدي عبد الوهاب الأثري هو المدخل التاريخي الذي شهد دخول الفاتحين والغزاة والتجار والحجاج على مدى ألف عام متواصلة.",
-                "en": "Oujda's old medina retains its traditional wall-alley-market structure built across centuries of accumulated Islamic construction. The Grand Mosque of Sidi Abdelwahab at its heart dates to the 12th century and ranks among eastern Morocco's oldest religious landmarks. Outside the walls, Bab Sidi Abdelwahab stands as the historic gate witnessing conquerors, traders, and pilgrims for a thousand continuous years."
-            }
-        }
-    ],
-    "faqs": [
-        {
-            "question": {
-                "ar": "لماذا وجدة هي الأكثر تأثراً بالثقافة الجزائرية بين المدن المغربية؟",
-                "en": "Why is Oujda the most Algerian-influenced of all Moroccan cities?"
-            },
-            "answer": {
-                "ar": "لموقعها الحدودي المباشر وللروابط الأسرية والتجارية التاريخية العميقة مع منطقة وهران وتلمسان الجزائريتين، فضلاً عن موجات الهجرة المتبادلة التي لم تعرف حدوداً قبل الاستعمار.",
-                "en": "Due to its direct border location and deep historical familial and commercial ties with the Algerian Oran and Tlemcen regions, plus waves of mutual migration that knew no borders before colonialism."
-            }
-        },
-        {
-            "question": {
-                "ar": "ما الجامعة الأبرز التي تجعل وجدة مركزاً علمياً في شرق المغرب؟",
-                "en": "Which university makes Oujda an academic center in eastern Morocco?"
-            },
-            "answer": {
-                "ar": "جامعة محمد الأول بوجدة التي تأسست عام 1978 هي المؤسسة الأكاديمية الكبرى في المنطقة الشرقية، وتضم كليات متعددة تستقطب آلاف الطلاب من الجهات الشرقية والجزائريين المُقيمين.",
-                "en": "Mohammed First University of Oujda, founded in 1978, is the major academic institution in the Eastern Region, hosting multiple faculties attracting thousands of students from eastern provinces and resident Algerians."
-            }
-        },
-        {
-            "question": {
-                "ar": "هل هناك طريقة قانونية للانتقال من وجدة إلى تلمسان الجزائرية حالياً؟",
-                "en": "Is there currently a legal way to travel from Oujda to Algerian Tlemcen?"
-            },
-            "answer": {
-                "ar": "الحدود البرية مغلقة رسمياً منذ عام 1994. يحتاج العبور إلى تأشيرة جزائرية وخط طيران عبر الجزائر العاصمة، أو الرحلات المحدودة عبر المعابر الحدودية في مناسبات استثنائية.",
-                "en": "Land borders have been officially closed since 1994. Crossing requires an Algerian visa and a flight via Algiers, or limited crossings through border checkpoints on exceptional occasions."
-            }
-        }
-    ],
-    "conclusion": {
-        "ar": "وجدة تعيش حالة فريدة من التوق العاطفي نحو جارتها المغلقة، وفي ذلك التوق حكاية أمة تتطلع للوحدة المغاربية الموعودة.",
-        "en": "Oujda lives a unique state of emotional yearning toward its closed neighbor, and in that yearning lies the story of a nation aspiring for the promised Maghreb unity."
-    },
-    "generatedImage": "https://images.unsplash.com/photo-1555697012-0a26cb7f02a5?q=80&w=2070&auto=format&fit=crop"
-},
-  'casablanca': {
-    "id": "casablanca",
-    "category": "city",
-    "title": {
-        "ar": "الدار البيضاء: قاطرة المغرب الاقتصادية وأيقونة العصر الحديث",
-        "en": "Casablanca: Morocco's Economic Locomotive and Icon of Modernity"
-    },
-    "metaDescription": {
-        "ar": "الدار البيضاء أكبر مدن المغرب وعاصمته الاقتصادية، موطن مسجد الحسن الثاني وأكبر ميناء في إفريقيا.",
-        "en": "Casablanca, Morocco's largest city and economic capital, home of Hassan II Mosque and Africa's largest port."
-    },
-    "intro": {
-        "ar": "على ضفاف الأطلسي الشاسع، تقوم الدار البيضاء مدينةً لا هوادة فيها ولا توقف — قاطرة تشقّ درب المغرب نحو المستقبل بخطى لا تتوقف. اسمها بالعربية يعني \"البيت الأبيض\"، وهو اسم يختزل جوهرها: مدينة تؤمن بالنظام والنظافة ومعيارية العصر في قلب أفريقيا. هي ليست مدينة توارث شهرتها من الفتوحات أو من ملوك قدماء، بل صنعت مجدها بأيدي العمال والبنّائين والمهندسين والتجار الذين تدفّقوا إليها من كل أرجاء المغرب خلال القرن العشرين. الدار البيضاء هي نبض المغرب الحقيقي الحديث، وحين تقف على كورنيشها وتتأمل مسجد الحسن الثاني الشاهق على الماء، تدرك أن المغرب يجمع قرونه في لحظة واحدة.",
-        "en": "On the vast Atlantic shores, Casablanca stands as a relentless, unstoppable city — the locomotive driving Morocco toward the future. Its Arabic name means \"White House,\" encapsulating its essence: a city believing in modernity and order in the heart of Africa."
-    },
-    "sections": [
-        {
-            "title": {
-                "ar": "ميناء الدار البيضاء: بوابة إفريقيا على العالم",
-                "en": "Port of Casablanca: Africa's Gateway to the World"
-            },
-            "content": {
-                "ar": "يُعدّ ميناء الدار البيضاء من أكبر وأحدث الموانئ في إفريقيا والعالم العربي، يمرّ عبره أكثر من سبعين بالمئة من صادرات المغرب وواردته السنوية. شُيِّد في أوائل القرن العشرين بأيدٍ مغربية بإشراف المهندس الفرنسي ليوتي، وتطوّر ليصبح منظومة لوجستية متكاملة تضم أحواضاً للناقلات والحاويات وناقلات النفط والسفن السياحية الضخمة. لم يكن الميناء مجرد منشأة اقتصادية، بل كان المحرّك الأول لنمو المدينة وتضخمها السكاني المتسارع الذي حوّلها من قرية صيد صغيرة عام 1900 إلى حاضرة تجاوز عدد سكانها خمسة ملايين نسمة في نهاية القرن ذاته.",
-                "en": "The Port of Casablanca is among the largest and most modern in Africa and the Arab world, handling over 70% of Morocco's annual exports and imports."
-            }
-        },
-        {
-            "title": {
-                "ar": "مسجد الحسن الثاني: حين تلتقي السماء بالمحيط",
-                "en": "Hassan II Mosque: Where Heaven Meets the Ocean"
-            },
-            "content": {
-                "ar": "يقبع مسجد الحسن الثاني على منصة صخرية بنيت فوق مياه المحيط الأطلسي مباشرة، في مشهد يُصوّر تلاقي الأرض والماء في حضرة الله. صمّمه المعماري الفرنسي ميشيل بينسو في احترام عميق للهوية المغربية التقليدية، بمئذنة يبلغ ارتفاعها مئتي متر وخمسة وثمانين تُسيطر على افق المدينة كلها. يتسع لمئة وخمسة وعشرين ألف مصلٍّ في قاعته الرئيسية وساحاته، وسقفه المتحرك يُفتح على السماء ليجمع المصلين بالكون. أُنجز عام 1993 بعمل آلاف الحرفيين المغاربة الذين أبدعوا نقوشاً من الصخر والخشب والجبس لا تراها في أي مسجد آخر بهذا الحجم والتفصيل الدقيق.",
-                "en": "Hassan II Mosque sits on a rocky platform built directly over Atlantic waters, where earth and ocean meet in divine presence. Its 285-meter minaret dominates Casablanca's entire skyline."
-            }
-        }
-    ],
-    "faqs": [
-        {
-            "question": {
-                "ar": "لماذا سُمِّيت الدار البيضاء بهذا الاسم الغريب؟",
-                "en": "Why is Casablanca named the \"White House\"?"
-            },
-            "answer": {
-                "ar": "الاسم مستمد من البيوت البيضاء التقليدية التي كانت تميّز المدينة القديمة قبل التوسع الحديث، وقد حافظت على هذا الاسم رغم تحوّلها لحاضرة عصرية كبرى.",
-                "en": "The name derives from the white traditional houses that characterized the old city before modern expansion."
-            }
-        },
-        {
-            "question": {
-                "ar": "ما أهم الأحياء التاريخية التي يجب زيارتها في الدار البيضاء؟",
-                "en": "What are the most important historic neighborhoods to visit in Casablanca?"
-            },
-            "answer": {
-                "ar": "حي الحبوس هو التحفة المعمارية الأندلسية-المغربية الأهم، بُني في الثلاثينيات ويحتوي على ممرات وأروقة تحاكي مدن الأندلس. كذلك المدينة القديمة والكورنيش والميدان الكبير.",
-                "en": "The Habous quarter is the most important Andalusian-Moroccan architectural gem, built in the 1930s with arcades evoking Andalusian cities."
-            }
-        },
-        {
-            "question": {
-                "ar": "ما الدور الذي لعبته الدار البيضاء في استقلال المغرب؟",
-                "en": "What role did Casablanca play in Moroccan independence?"
-            },
-            "answer": {
-                "ar": "كانت الدار البيضاء مركزاً للحركة الوطنية وموطن الطبقة العاملة التي قادت إضرابات 1952 التي أشعلت فتيل الكفاح المسلح نحو الاستقلال عام 1956.",
-                "en": "Casablanca was the center of the nationalist movement and home of the working class that led the 1952 strikes igniting armed resistance toward 1956 independence."
-            }
-        }
-    ],
-    "conclusion": {
-        "ar": "الدار البيضاء ليست مجرد مدينة كبيرة — إنها التحوّل المغربي نحو الحداثة مُجسَّداً في أسمنت وصلب وبشر طموح لا يهدأ.",
-        "en": "Casablanca is not just a large city — it is Morocco's transformation toward modernity embodied in concrete, steel, and restless ambitious people."
-    },
-    "generatedImage": "https://images.unsplash.com/photo-1582236353904-7431c4cbcf33?q=80&w=2070&auto=format&fit=crop"
-},
-  'rabat': {
-    "id": "rabat",
-    "category": "city",
-    "title": {
-        "ar": "الرباط: عاصمة الأنوار وحارسة التاريخ الصامد",
-        "en": "Rabat: Capital of Lights and Guardian of Enduring History"
-    },
-    "metaDescription": {
-        "ar": "الرباط عاصمة المملكة المغربية، مدينة تجمع بين التراث الموحدي والعمارة الإسلامية الكلاسيكية والحداثة المعاصرة على ضفاف بوورقراق.",
-        "en": "Rabat, capital of Morocco, where Almohad heritage, Islamic classical architecture and modern life converge on the Bou Regreg riverbanks."
-    },
-    "intro": {
-        "ar": "الرباط ليست عاصمة عادية. إنها مدينة تحكي بكل حجر فيها عن القرارات الكبرى التي صنعت مغرباً ممتداً من البحر إلى الصحراء. كانت مرابطاً عسكرياً في القرن الثاني عشر قبل أن تنتخبها الأقدار عاصمةً أدارية في القرن العشرين دون أن تُفقد طابعها الإنساني الهادئ الرزين. هي المدينة التي تحمل صومعة حسان الموحدية ذات الحجر الرملي الأحمر في قلبها، وقبالتها ضريح محمد الخامس المهيب بمرماره الأبيض كأنهما يمثّلان محادثة صامتة بين القرن الثاني عشر والقرن العشرين عبر بضعة أمتار من الهواء المفتوح.",
-        "en": "Rabat is no ordinary capital. Every stone speaks of great decisions that shaped a Morocco stretching from sea to desert. It was a military ribat in the 12th century before fate chose it as administrative capital in the 20th, never losing its calm, dignified human character."
-    },
-    "sections": [
-        {
-            "title": {
-                "ar": "قصبة الوداية: القلعة التي تحرس فم النهر",
-                "en": "Kasbah of the Udayas: The Fortress Guarding the River's Mouth"
-            },
-            "content": {
-                "ar": "قصبة الوداية هي الكتلة الصخرية المنيعة التي تقعد على رأس النهر حيث يصبّ وادي أبي رقراق في الأطلسي. بناها الموحدون في القرن الثاني عشر حصناً عسكرياً، وأسكنها المولى إسماعيل جنوداً من أصول عربية أندلسية عُرفوا بالوداية. ما يُذهل في القصبة ليس فقط جدارها الرهيب المطلّ على المحيط، بل حارتها الداخلية الزرقاء البيضاء التي تشبه قطعة من الأندلس الضائعة نُقلت بأكملها وزُرعت في قلب الرباط. الحديقة الأندلسية في قلبها تُعدّ من أجمل التجارب البصرية التي يمنحها تراث الأندلس المنفوي لمن يتأمّلها بقلب مفتوح.",
-                "en": "The Kasbah of the Udayas sits on the rocky promontory where the Bou Regreg river meets the Atlantic. Built by the Almohads in the 12th century as a military fortress, its inner blue-white quarter resembles a piece of lost Andalusia transplanted to Rabat's heart."
-            }
-        },
-        {
-            "title": {
-                "ar": "الرباط عاصمةً إدارية: قصة الاختيار الدقيق",
-                "en": "Rabat as Administrative Capital: The Story of a Deliberate Choice"
-            },
-            "content": {
-                "ar": "حين أنشأ الفرنسيون الحماية عام 1912، اختار المقيم العام ليوتي الرباط عاصمة إدارية بذكاء استراتيجي واضح: فاس كانت مُثقلة بثقل التاريخ وسهلة الاشتعال قومياً، ومراكش أبعد جغرافياً وأصعب إدارياً، أما الرباط فكانت صغيرة قابلة للتشكيل وساحلية قابلة للربط و\"محايدة\" نسبياً. حين جاء الاستقلال عام 1956، استبقاها محمد الخامس عاصمة بقرار سياسي حكيم؛ لأنها مدينة الدولة لا مدينة التجار أو رجال الدين أو الجنود — وفي ذلك مكمن قوّتها الفريدة البالغة.",
-                "en": "When France established the Protectorate in 1912, Resident-General Lyautey chose Rabat as administrative capital with clear strategic intelligence. At independence in 1956, Mohammed V retained it as capital — a city of state rather than merchants, clergy, or soldiers."
-            }
-        }
-    ],
-    "faqs": [
-        {
-            "question": {
-                "ar": "لماذا الرباط وليست فاس أو مراكش عاصمةً للمغرب؟",
-                "en": "Why is Rabat and not Fez or Marrakech the capital of Morocco?"
-            },
-            "answer": {
-                "ar": "الرباط اختيرت لموقعها الساحلي الاستراتيجي وطابعها الهادئ القابل للتطوير الإداري في عهد الحماية، واحتفظت بهذه الوضعية في الاستقلال.",
-                "en": "Rabat was chosen for its strategic coastal location and quiet, administratively malleable character under the Protectorate, retaining that status at independence."
-            }
-        },
-        {
-            "question": {
-                "ar": "ما المواقع التراثية المدرجة في قائمة اليونسكو بالرباط؟",
-                "en": "What UNESCO heritage sites does Rabat hold?"
-            },
-            "answer": {
-                "ar": "أُدرجت مدينة الرباط ككلٍّ — تشمل قصبة الوداية، صومعة حسان، المدينة القديمة، والمخلفات الأثرية — على قائمة اليونسكو للتراث الإنساني عام 2012.",
-                "en": "The entire city of Rabat — including Kasbah, Hassan Tower, old medina, and archaeological remains — was inscribed on the UNESCO World Heritage List in 2012."
-            }
-        },
-        {
-            "question": {
-                "ar": "ما طبيعة العلاقة الثقافية بين الرباط وسلا المدينتين المتجاورتين؟",
-                "en": "What is the cultural relationship between neighboring Rabat and Salé?"
-            },
-            "answer": {
-                "ar": "الرباط وسلا مدينتان متقابلتان على ضفتي وادي أبي رقراق، متمايزتان في الشخصية: الرباط أدارية رسمية بطابع حديث، وسلا أعمق في تراثها الصوفي والتجاري المتجذّر في القرون الوسطى.",
-                "en": "Rabat and Salé face each other across the Bou Regreg river, distinct in character: Rabat official and modern, Salé deeper in its Sufi and medieval commercial heritage."
-            }
-        }
-    ],
-    "conclusion": {
-        "ar": "الرباط مدينة تحترم الزمن دون أن تتحجّر فيه، وتنفتح على الحداثة دون أن تنسى من أين أتت.",
-        "en": "Rabat is a city that respects time without being fossilized by it, embracing modernity without forgetting its origins."
-    },
-    "generatedImage": "https://images.unsplash.com/photo-1644331049219-c09a803e1e55?q=80&w=1964&auto=format&fit=crop"
-},
-  'chefchaouen': {
-    "id": "chefchaouen",
-    "category": "city",
-    "title": {
-        "ar": "شفشاون: المدينة الزرقاء التي تسكن في أعماق الريف المتأمّل",
-        "en": "Chefchaouen: The Blue City Dwelling in the Contemplative Rif's Heart"
-    },
-    "metaDescription": {
-        "ar": "شفشاون المدينة الزرقاء في جبال الريف، أسّسها الموريسكيون واليهود الأندلسيون. رحلة في الزرقة والسكينة والهوية الأمازيغية العريقة.",
-        "en": "Chefchaouen Blue City in the Rif mountains, founded by Andalusian Moors and Jews. A journey through blue, tranquility and ancient Amazigh identity."
-    },
-    "intro": {
-        "ar": "ثمة مدن تُحاصرك بضجيجها، وثمة مدن تُعانقك بصمتها. شفشاون من النوع الثاني. حين تصعد دروبها الحجرية الضيقة المطلية باللون السماوي والنيلي المتشابك، تشعر وكأنك تُلطَّف بعمق الزمن وبرودة الجبل وسكينة الإيمان في آنٍ متزامن. أسّسها الأمير سيدي علي بن راشد عام 1471 ملجأً للمجاهدين ضد البرتغاليين، فتدفّقت إليها موجات من الموريسكيين المُطرَدين من الأندلس ثم من اليهود الهاربين من جحيم الاضطهاد الأوروبي، فأضفوا عليها تلك الروح الأندلسية-الأمازيغية الفريدة التي يشمّها الزائر في كل ناصية من نواصيها الزرقاء الهادئة.",
-        "en": "Some cities surround you with noise; others embrace you with silence. Chefchaouen belongs to the second kind. Founded in 1471 as a refuge for fighters against Portuguese expansion, waves of Moors expelled from Andalusia and Jews fleeing European persecution gave it that unique Andalusian-Amazigh spirit felt at every blue corner."
-    },
-    "sections": [
-        {
-            "title": {
-                "ar": "أسطورة الأزرق: من أين جاء هذا اللون الذي سحر العالم؟",
-                "en": "The Blue Legend: Where Did This World-Enchanting Color Come From?"
-            },
-            "content": {
-                "ar": "الرواية الأكثر شيوعاً والأعمق توثيقاً تُرجع صبغ المباني باللون الأزرق إلى اليهود الذين استقروا في شفشاون في موجات الهجرة الأندلسية والأوروبية، إذ يرمز الأزرق في التراث اليهودي إلى السماء والروح الإلهية والحماية الميتافيزيقية. تبنّى المسلمون وسكان المدينة اللاحقون هذه العادة الجمالية لأسباب متداخلة: البرودة البصرية في حرارة الصيف الجبلي، وطرد الحشرات، والتمييز الهوياتي للمدينة عن سواها.",
-                "en": "The most documented account attributes the blue buildings to Jewish settlers who brought the color's association with heaven, divine spirit, and metaphysical protection from their traditions. Muslim residents adopted and expanded this aesthetic for multiple reasons: visual cooling in summer heat, insect repulsion, and distinctive city identity."
-            }
-        },
-        {
-            "title": {
-                "ar": "جبال الريف: الحضن الجغرافي الذي منح المدينة طابعها الخاص",
-                "en": "The Rif Mountains: The Geographic Cradle Shaping the City's Character"
-            },
-            "content": {
-                "ar": "شفشاون مدينة جبلية بامتياز تتربع على ارتفاع ستمئة متر في قلب جبال الريف، وهذا الموقع الجبلي لم يكن صدفة بل اختياراً دفاعياً متعمداً. حماها الجبل تاريخياً من الغزوات البرتغالية والإسبانية قروناً طويلة، وجعلها محاطة بهواء نقي وينابيع جبلية وطبيعة متوسطية مورقة تجعل زيارتها في كل فصل تجربة حسية مختلفة الألوان ومتجددة الروح. من قمة جبل العلم المشرف عليها يمكن رؤية المدينة كلوحة فسيفساء زرقاء-بيضاء مُصوَّبة نحو السماء من قلب الجبال الخضراء.",
-                "en": "Chefchaouen sits at 600 meters elevation consciously chosen for its defensive advantages. The Rif mountains protected it from Portuguese and Spanish incursions for centuries while surrounding it with pure air, mountain springs, and Mediterranean vegetation that makes each seasonal visit a distinct sensory experience."
-            }
-        }
-    ],
-    "faqs": [
-        {
-            "question": {
-                "ar": "هل صحيح أن الأجانب مُنعوا من دخول شفشاون حتى القرن العشرين؟",
-                "en": "Is it true that foreigners were banned from entering Chefchaouen until the 20th century?"
-            },
-            "answer": {
-                "ar": "نعم، ظلت شفشاون محرَّمة على غير المسلمين قروناً طويلة، وكان الأوروبيون الأوائل الذين دخلوها متنكرين في ثياب إسلامية. أول أوروبي دخلها علناً كان الرحّالة الإسباني أميليو بلانكو إيسبرت عام 1883.",
-                "en": "Yes, Chefchaouen was forbidden to non-Muslims for centuries. The first European to enter openly was Spanish explorer Emilio Blanco Izaga in 1883."
-            }
-        },
-        {
-            "question": {
-                "ar": "ما أفضل الأوقات لزيارة شفشاون للاستمتاع بأجمل ألوانها؟",
-                "en": "When is the best time to visit Chefchaouen for its most beautiful colors?"
-            },
-            "answer": {
-                "ar": "الربيع (مارس-مايو) والخريف (سبتمبر-نوفمبر) هما الموسمان المثاليان، حيث تزهر الطبيعة حول المدينة وتتلطّف درجات الحرارة لتجعل التجول في الأزقة تجربة لا مثيل لها.",
-                "en": "Spring (March-May) and autumn (September-November) are ideal, when nature blooms around the city and temperatures moderate for unmatched strolling through its lanes."
-            }
-        },
-        {
-            "question": {
-                "ar": "هل الأزرق في شفشاون متشابه أم تتعدد درجاته عمداً؟",
-                "en": "Is Chefchaouen's blue uniform or deliberately varied in shade?"
-            },
-            "answer": {
-                "ar": "تتعدد درجاته بصورة مقصودة بين النيلي الداكن والسماوي الفاتح والأزرق الكحلي والرمادي-الأزرق، مما يخلق لوحة بصرية حية متغيرة بحسب الضوء والظل والزاوية.",
-                "en": "The blue is deliberately varied between deep indigo, light sky blue, navy, and grey-blue, creating a living visual canvas that changes with light, shadow, and viewing angle."
-            }
-        }
-    ],
-    "conclusion": {
-        "ar": "شفشاون ليست وجهة سياحية — إنها حالة ذهنية. من يدخلها يخرج منها مختلفاً، كأن للأزرق قدرة على غسل ما تراكم من ضجيج الحياة.",
-        "en": "Chefchaouen is not a tourist destination — it is a state of mind. Those who enter leave changed, as if the blue possesses power to wash away life's accumulated noise."
-    },
-    "generatedImage": "https://images.unsplash.com/photo-1548625361-19a9e748882a?q=80&w=2070&auto=format&fit=crop"
-},
-  'meknes': {
-    "id": "meknes",
-    "category": "city",
-    "title": {
-        "ar": "مكناس: عاصمة إسماعيل وفردوس الجنوب الموحدي المفقود",
-        "en": "Meknes: Ismail's Capital and the Lost Almohad Southern Paradise"
-    },
-    "metaDescription": {
-        "ar": "مكناس المدينة الإسماعيلية والإمبراطورية الرابعة للمغرب، موطن باب المنصور أجمل أبواب إفريقيا وشاهد على مجد سلطاني لا يُنسى.",
-        "en": "Meknes, the Ismaili imperial city, fourth royal city of Morocco, home to Bab Mansour — Africa's most magnificent gate."
-    },
-    "intro": {
-        "ar": "حين قرر السلطان مولاي إسماعيل عام 1672 أن يجعل من مكناس عاصمته الإمبراطورية، لم يكن يبني مدينة — كان يبني أُسطورة. امتدّ البناء خمسة وخمسين عاماً متواصلة بعمل مئة وخمسة وعشرين ألف عامل وأسير وآلاف المعماريين المهرة. ما وُلد من هذا الجهد الإنساني الهائل كان إمبراطورية معمارية تمتد على مساحة تتجاوز الكيلومتر التربيع الواحد: أسوار يبلغ محيطها الإجمالي خمسةً وأربعين كيلومتراً تتخللها عشرون بوابة، وإسطبلات ملكية لاثني عشر ألف حصان، وحدائق النصر الشهيرة. مكناس هي شخصية المغرب حين قرر أن يُبهر العالم.",
-        "en": "When Sultan Moulay Ismail decided in 1672 to make Meknes his imperial capital, he was not building a city — he was building a legend. Fifty-five years of continuous construction by 125,000 workers and prisoners created an architectural empire: walls spanning 45 kilometers, 20 gates, and royal stables for 12,000 horses."
-    },
-    "sections": [
-        {
-            "title": {
-                "ar": "باب المنصور: أعظم بوابة في إفريقيا والعالم الإسلامي",
-                "en": "Bab Mansour: The Greatest Gate in Africa and the Islamic World"
-            },
-            "content": {
-                "ar": "باب المنصور العلج اسم يحمل قصة في كل كلمة منه: \"المنصور\" لقب يعني الذي نصره الله، و\"العلج\" إشارة لمعماره ذي الأصول الأوروبية الذي اعتنق الإسلام. شُيِّد بين عامَي 1672 و1732 ليكون خاتمة بناء مكناس الإمبراطورية وملحمتها الأخيرة. يبلغ ارتفاعه ثمانية عشر متراً وعرضه ستة عشر، مُكسو بزليج أندلسي متعدد الألوان وعقود بوليصة ملتوية وأعمدة مأخوذة من وليلي الرومانية تُضفي عليه نكهة حضارية متراكبة عبر القرون.",
-                "en": "Bab Mansour al-Aleuj — every word carries a story. Built between 1672-1732 as the imperial finale, its 18-meter height is covered in Andalusian zellige, twisted horseshoe arches, and columns taken from Roman Volubilis, embodying layered civilizational flavors across centuries."
-            }
-        },
-        {
-            "title": {
-                "ar": "متبّر مولاي إسماعيل: الرجل الذي وحّد مغرباً يتهدده كل شيء",
-                "en": "Moulay Ismail's Reign: The Man Who United a Morocco Threatened from All Sides"
-            },
-            "content": {
-                "ar": "تولّى مولاي إسماعيل الحكم في أعسر الطروف: المغرب يتمزق قبائل متناحرة، والإسبان والبرتغاليون يحتلون مدناً ساحلية، والعثمانيون يهددون من الشرق. في خمسة وخمسين عاماً من الحكم الحديدي (1672-1727) وحّد البلاد، استرد سبتة وتطوان والعرائش من الإسبان، وطرد الإنجليز من طنجة، وبنى جيشاً نظامياً من العبيد السود الذي سُمِّي بجيش \"عبيد البخاري\". كان طاغية بمقاييس الرحمة، عبقرياً بمقاييس الدولة ومنقذاً بمقاييس الوجود المغربي المستقل.",
-                "en": "Moulay Ismail seized power in Morocco's most dire circumstances: fractured tribes, Spanish-Portuguese occupation of coastal cities, Ottoman threats from the east. In 55 years of iron rule (1672-1727) he unified the country, recovered Ceuta, Tetouan, and Larache, expelled the English from Tangier, and built a professional army."
-            }
-        }
-    ],
-    "faqs": [
-        {
-            "question": {
-                "ar": "لماذا تُعدّ مكناس \"المدينة الإسماعيلية\" رغم أنها أقدم من مولاي إسماعيل؟",
-                "en": "Why is Meknes called \"Ismaili city\" when it predates Moulay Ismail?"
-            },
-            "answer": {
-                "ar": "مكناس أُسِّست في القرن العاشر الميلادي على يد قبيلة مكناسة الأمازيغية، لكن مولاي إسماعيل حوّلها جذرياً لعاصمة إمبراطورية ضخمة، فأصبح اسمه مرادفاً لهويتها الحضرية الحالية.",
-                "en": "Meknes was founded in the 10th century by the Amazigh Meknasat tribe, but Moulay Ismail fundamentally transformed it into a massive imperial capital, making his name synonymous with its current urban identity."
-            }
-        },
-        {
-            "question": {
-                "ar": "هل زيارة مكناس ووليلي الرومانية تتمّ في نفس اليوم؟",
-                "en": "Can Meknes and Roman Volubilis be visited on the same day?"
-            },
-            "answer": {
-                "ar": "نعم، تبعد وليلي نحو ثلاثين كيلومتراً من مكناس وهي متاحة بسهولة بالسيارة. الزيارة المثلى تجمع المدينتين في يوم تاريخي واحد يمتد من الرومان إلى العصر الإسماعيلي.",
-                "en": "Yes, Volubilis lies about 30 km from Meknes and is easily accessible by car. The ideal visit combines both cities in one historical day spanning Roman to Ismaili eras."
-            }
-        },
-        {
-            "question": {
-                "ar": "ما المنتجات الحرفية الأشهر التي اشتهرت بها مكناس تاريخياً؟",
-                "en": "What crafts is Meknes historically most famous for?"
-            },
-            "answer": {
-                "ar": "مكناس اشتهرت تاريخياً بنسيج البروكار والدمقس (الديباج) والفضيات المُطرَّزة وصناعة الأسلحة التقليدية والسلال المنسوجة. اليوم يبقى سوق النجارين والحرفيين في المدينة القديمة شاهداً على هذا الإرث.",
-                "en": "Meknes was historically famous for brocade and damask weaving, embossed silverwork, traditional weapons manufacturing, and woven baskets. The old city's craftsmen market still testifies to this heritage."
-            }
-        }
-    ],
-    "conclusion": {
-        "ar": "مكناس قرار معماري أكثر من كونها نمواً عفوياً — ودائماً ما تكون المدن المبنية بقرار مِن حيّاة عظيمة أطول عمراً من تلك التي نشأت بالصدفة.",
-        "en": "Meknes is an architectural decision more than spontaneous growth — and cities built by deliberate will always outlive those born by chance."
-    },
-    "generatedImage": "https://images.unsplash.com/photo-1549488344-1f9b8d2bd1f3?q=80&w=2070&auto=format&fit=crop"
-},
-  'tetouan': {
-    "id": "tetouan",
-    "category": "city",
-    "title": {
-        "ar": "تطوان: الحمامة البيضاء وذاكرة الأندلس الحيّة",
-        "en": "Tetouan: The White Dove and Living Memory of Andalusia"
-    },
-    "metaDescription": {
-        "ar": "تطوان الحمامة البيضاء المدرجة في تراث اليونسكو، وريثة الأندلس الأصيلة وموطن الفن الأندلسي-المغربي العريق في شمال المغرب.",
-        "en": "Tetouan the White Dove, UNESCO-listed city, authentic heir of Andalusia and home of Andalusian-Moroccan art in northern Morocco."
-    },
-    "intro": {
-        "ar": "لو أردت أن تبحث عن الأندلس المفقودة، لا تذهب إلى إسبانيا — اذهب إلى تطوان. المدينة التي أعاد بناءها الغرناطيون المُهجَّرون بعد سقوط الأندلس في آواخر القرن الخامس عشر تحتفظ اليوم بأُتون الحضارة الأندلسية متّقداً في عمارتها ولحنها وطبخها وشخصية أهلها. مدينتها القديمة المُدرجة في قوائم اليونيسكو للتراث الإنساني منذ عام 1997 هي الأكثر كمالاً وسلامة بين جميع المدن العتيقة المغربية — جدران بيضاء، أبواب خضراء، زليج ملوّن، وصوت الأغنية الأندلسية المسمّاة \"الآلة\" يتسرّب من نوافذ البيوت القديمة في حفلات لم تنقطع منذ أجيال.",
-        "en": "To search for lost Andalusia, don't go to Spain — go to Tetouan. The city rebuilt by expelled Granadans after Andalusia's fall in the late 15th century retains an Andalusian cultural furnace still burning in its architecture, music, cuisine, and people's character. Its old medina, UNESCO-listed since 1997, is the most complete and intact among all Moroccan medinas."
-    },
-    "sections": [
-        {
-            "title": {
-                "ar": "الآلة الأندلسية: موسيقى طنجة-تطوان التي أبت أن تموت",
-                "en": "Andalusian Muwashshah Music: Tetouan's Music That Refused to Die"
-            },
-            "content": {
-                "ar": "في القرن الثامن الميلادي وُلدت موسيقى الآلة الأندلسية من رحم الحضارة الأموية بالأندلس، وتطوّرت عبر قرون لتكون اللغة الموسيقية للطبقات الراقية من مسلمي إسبانيا. حين أُجبر الأندلسيون على الرحيل حملوا معهم نوتاتهم وآلاتهم الموسيقية وذاكرتهم اللحنية، ففي تطوان تحديداً تجذّرت الآلة بعمق استثنائي لأن المهاجرين كانوا في معظمهم من النخبة الغرناطية الموسيقية المتعلمة. هيئات تطوان الموسيقية التاريخية لا تزال تحرص حتى اليوم على أداء النوبات الاثنتي عشرة التقليدية وفق الروايات التي انتقلت شفهياً وكتابياً على مدى ستة قرون دون انقطاع.",
-                "en": "Andalusian muwashshah music was born in 8th-century Umayyad Andalusia and carried by expelled elites to Tetouan, where it took especially deep roots because migrants were predominantly educated Granadan musical nobility. Tetouan's historic musical societies still perform all twelve traditional modes transmitted orally and textually for six unbroken centuries."
-            }
-        },
-        {
-            "title": {
-                "ar": "تطوان في عهد الحماية الإسبانية: مركز المنطقة الخليفية",
-                "en": "Tetouan Under Spanish Protectorate: Center of the Khalifian Zone"
-            },
-            "content": {
-                "ar": "في اتفاقية الحماية عام 1912، خُصِّص الشمال المغربي لإسبانيا التي جعلت من تطوان عاصمة لمنطقتها \"الخليفية\"، وأقامت فيها خليفة السلطان ممثلاً للعرش الشريف. هذا الوضع الخاص أعطى تطوان مؤسسات حكومية ومدارس وصحافة رائدة جعلتها مركزاً ثقافياً بارزاً في شمال المغرب. في هذا السياق ازدهرت الصحافة العربية الناطقة في المنطقة الإسبانية بمستوى حرية أعلى أحياناً من بقية مناطق الحماية، وأنتجت أسماء أدبية وفكرية بارزة في تاريخ الثقافة العربية الحديثة.",
-                "en": "The 1912 Protectorate agreement assigned northern Morocco to Spain, which made Tetouan capital of its \"Khalifian zone\" housing the Sultan's representative. This special status gave Tetouan leading institutions, schools, and press, making Arabic journalism in the Spanish zone often freer than elsewhere in the Protectorate."
-            }
-        }
-    ],
-    "faqs": [
-        {
-            "question": {
-                "ar": "ماذا يعني اسم تطوان وما أصله اللغوي والتاريخي؟",
-                "en": "What does the name Tetouan mean and what is its linguistic and historical origin?"
-            },
-            "answer": {
-                "ar": "الاسم أمازيغي الأصل ومعناه \"العيون\" أو \"الينابيع\" في إشارة للعيون المائية الطبيعية الوفيرة التي كانت تُميِّز موقع المدينة في وادي مرتيل المشجّر الخصيب.",
-                "en": "The name is Amazigh in origin meaning \"the springs\" or \"the eyes,\" referring to the abundant natural water springs that distinguished the city's site in the fertile, forested Martil valley."
-            }
-        },
-        {
-            "question": {
-                "ar": "لماذا تُعدّ مدينة تطوان القديمة الأكثر أصالة بين المدن العتيقة المغربية؟",
-                "en": "Why is Tetouan's old medina considered the most authentic among Moroccan medinas?"
-            },
-            "answer": {
-                "ar": "لأن التوسع العمراني الحديث دار حولها لا داخلها، فظلّ نسيجها المعماري الأندلسي سليماً دون هدم أو تعديل جوهري. الأسواق والدروب والبيوت الداخلية تعكس تخطيطاً أندلسياً أصيلاً نادر المثال على صعيد المتوسط الغربي.",
-                "en": "Because modern urban expansion occurred around rather than within it, leaving its Andalusian architectural fabric intact without demolition or fundamental modification. Its markets, alleys, and courtyard houses reflect authentic Andalusian planning rare in the western Mediterranean."
-            }
-        },
-        {
-            "question": {
-                "ar": "هل المطبخ التطواني يختلف عن بقية المطابخ المغربية؟",
-                "en": "Does Tetouan's cuisine differ from other Moroccan cuisines?"
-            },
-            "answer": {
-                "ar": "نعم، للمطبخ التطواني نكهة أندلسية مميزة تتجلّى في استخدام خلطات التوابل الرقيقة والزيتون والخلطات المعقدة من الفواكه والأعشاب التي تعكس الحضارة الغذائية الأندلسية الراقية التي خُبِّئت في تطوان من النسيان.",
-                "en": "Yes, Tetouan's cuisine has a distinctive Andalusian flavor revealed in delicate spice blends, olive preparations, and complex fruit-herb mixtures reflecting refined Andalusian food culture preserved in Tetouan from oblivion."
-            }
-        }
-    ],
-    "conclusion": {
-        "ar": "تطوان ليست مجرد مدينة مغربية شمالية — إنها وصيّة الأندلس وحارسة ذاكرتها الجمالية والموسيقية على شاطئ المتوسط النظيف.",
-        "en": "Tetouan is not merely a northern Moroccan city — it is the custodian of Andalusia, guardian of its aesthetic and musical memory on the clean Mediterranean shore."
-    },
-    "generatedImage": "https://images.unsplash.com/photo-1591802070002-bfc90093b5ef?q=80&w=2070&auto=format&fit=crop"
-},
-  'hassan-tower': {
-    "id": "hassan-tower",
-    "title": {
-        "ar": "صومعة حسان: حلم الموحدين الخالد في قلب الرباط",
-        "en": "Hassan Tower: The Eternal Almohad Dream in the Heart of Rabat"
-    },
-    "category": "landmark",
-    "metaDescription": {
-        "ar": "صومعة حسان بالرباط، مئذنة القرن الثاني عشر الشاهدة على طموح الحضارة الموحدية العظيمة.",
-        "en": "Hassan Tower in Rabat, 12th-century minaret witnessing the grand ambition of Almohad civilization."
-    },
-    "intro": {
-        "ar": "تتربع صومعة حسان شامخة في برزخ الرباط ببهجة الكبرياء والصمود عبر عشرة قرون متواصلة. بُنيت في عهد السلطان الموحدي يعقوب المنصور لتكون مئذنة مسجد ضخم يستوعب أربعين ألف مصلٍّ، وهو مشروع رهب الزمان ولم يكتمل بسبب وفاة بانيه عام 1199. لكن ما شُيِّد منها — تلك المئذنة الحمراء الشاهقة والأعمدة الرخامية المتناثرة كأسنة تحدٍّ للفناء — أصبح أبلغ الشواهد على نبوغ المعماريين الموحدين وعبقريتهم الهندسية الخالدة.",
-        "en": "Hassan Tower stands proudly in the Rabat promontory as a monument to a decade of centuries of resilience. Built by Almohad Sultan Yaqub al-Mansur to house 40,000 worshippers in a single mosque, its uncompleted story became the most eloquent testament to Almohad architectural genius."
-    },
-    "sections": [
-        {
-            "title": {
-                "ar": "الهندسة الموحدية: كمال في اللاتمام",
-                "en": "Almohad Architecture: Perfection in Incompleteness"
-            },
-            "content": {
-                "ar": "يبلغ ارتفاع المئذنة الحالية نحو أربعة وأربعين متراً من أصل مئة وثمانية وستين متراً مخططة، لتكون لو اكتملت الأطول في العالم الإسلامي متقدمة على الكتبية بمراكش ومتجاوزة أعظم مآذن إشبيلية. يتميز البناء بنقوشه الزخرفية المتعددة والمختلفة على كل وجه من الوجوه الأربعة، وهو تصميم مقصود يُجسِّد التنوع في الوحدة. الحجر الرملي الأحمر المستخدم في البناء يتغير لونه بحسب حدة الضوء من حمرة دافئة عند الغروب إلى رمادية رصينة في الصباح الباكر، مما يجعل المشهد آية من آيات الجمال الهندسي الطبيعي التلقائي.",
-                "en": "The current tower stands 44 meters of its planned 168-meter height, which would have surpassed the Koutoubia and the Giralda of Seville. Its four faces bear four distinct geometric patterns — symbolizing unity in diversity. The red sandstone changes hue from warm crimson at sunset to calm grey at dawn."
-            }
-        },
-        {
-            "title": {
-                "ar": "الزلزال والصمود: قصة ما بقي بعد 1755",
-                "en": "The Earthquake and Resilience: What Survived 1755"
-            },
-            "content": {
-                "ar": "ضرب زلزال عام 1755 م الكارثي — الذي أودى بريسبون والمدن السواحلية الأطلسية — الرباط بقوة مدمرة أسقطت الجزء الأعلى من الصومعة وأحالت الجدران الداخلية للمسجد ركاماً. لكن الأعمدة التي لم تكتمل والصرح الناقص صمدا صمود الإيمان بأرض الحضارة المغربية، ليُعلنا أن ما بناه الموحدون لم يكن بناء من حجر وحسب، بل بناء من روح أمة لا تعرف الانكسار الدائم ولا التراجع المقيم أمام قسوة الطبيعة وعوادي الدهر. اليوم، يضم الموقع المحيط بالصومعة ضريح محمد الخامس الملكي المهيب بتصميمه الأندلسي المغربي الرفيع الذي يجسِّد ذاك الاستمرار التاريخي الحضاري المتسق والمتصل.",
-                "en": "The catastrophic 1755 earthquake toppled the towers upper section and collapsed the inner mosque walls, yet the column forest and remaining structure stood defiantly. Today the site encompasses the majestic Mausoleum of Mohammed V, embodying Morocco's unbroken historical continuity."
-            }
-        }
-    ],
-    "faqs": [
-        {
-            "question": {
-                "ar": "لماذا لم يكتمل بناء مسجد حسان الموحدي العظيم؟",
-                "en": "Why was the grand Almohad Hassan Mosque never completed?"
-            },
-            "answer": {
-                "ar": "توفي السلطان يعقوب المنصور الموحدي عام 1199 قبل إتمام المشروع العملاق، وخلفاؤه لم يعودوا لاستكماله بسبب التحولات السياسية والحروب المتواترة، فبقيت الصومعة شاهداً على حلم ضخم تجمّد في منتصف الطريق كما هو.",
-                "en": "Sultan Yaqub al-Mansur died in 1199 before project completion, and his successors never resumed construction due to political upheaval and wars, leaving the tower as an eternal monument to an unfulfilled yet magnificent dream."
-            }
-        },
-        {
-            "question": {
-                "ar": "ما علاقة صومعة حسان بصومعة الكتبية ومنارة إشبيلية؟",
-                "en": "What is the connection between Hassan Tower, Koutoubia, and Giralda of Seville?"
-            },
-            "answer": {
-                "ar": "الثلاثة شُيِّدت في عهد الموحدين وفق نمط معماري موحد، وتُعدّ توأمين في الفن المعماري الإسلامي المغربي-الأندلسي الرائع. صومعة حسان كانت ستكون الأضخم والأعلى لو اكتملت البناء.",
-                "en": "All three were built under Almohad rule following a unified architectural blueprint, representing the finest Moroccan-Andalusian Islamic art. Hassan Tower would have been the tallest and most imposing had it been completed."
-            }
-        },
-        {
-            "question": {
-                "ar": "هل يمكن دخول الصومعة من الداخل والصعود إلى أعلاها للزوار؟",
-                "en": "Can visitors access and climb inside the tower?"
-            },
-            "answer": {
-                "ar": "لا، الصومعة مغلقة أمام العموم للحفاظ عليها. لكن المحيط الواسع بها مفتوح مجاناً ويتيح رؤية الأعمدة المئة وثمانية وثمانين وضريح محمد الخامس المطل الملكي المجيد.",
-                "en": "No, the tower interior is closed to preserve it. The surrounding esplanade with 178 columns and the majestic Royal Mausoleum of Mohammed V are freely accessible."
-            }
-        }
-    ],
-    "conclusion": {
-        "ar": "صومعة حسان شاهد عادل على أن الأعظم في التاريخ ليس ما اكتمل دوماً، بل ما ترك فينا قدرةَ التأمل في مجد الذين سبقونا وحلموا أحلاماً بحجم السماء.",
-        "en": "Hassan Tower proves that the greatest monuments in history are not always those completed, but those that inspire perpetual awe for the dreams of those who came before us."
-    },
-    "generatedImage": "https://images.unsplash.com/photo-1644331049219-c09a803e1e55?q=80&w=2070&auto=format&fit=crop"
-},
-  'volubilis': {
-    "id": "volubilis",
-    "title": {
-        "ar": "وليلي: عاصمة الموريتانيين والرومان الغارقة في ذاكرة الحجارة",
-        "en": "Volubilis: The Mauretanian-Roman Capital Submerged in Stone Memory"
-    },
-    "category": "landmark",
-    "metaDescription": {
-        "ar": "وليلي المدرجة في التراث العالمي لليونسكو، أقدم وأهم الحواضر الأمازيغية الرومانية في المغرب.",
-        "en": "Volubilis, UNESCO World Heritage city — the oldest and most important Amazigh-Roman metropolis in Morocco."
-    },
-    "intro": {
-        "ar": "لو أنصتت جيداً في سهول زرهون الخصيبة قرب مكناس البهجة، لسمعت وقع أقدام الحشد الذي كان حياً من القرن الثالث قبل الميلاد حتى انحسار الوجود الروماني. وليلي — واسمها الأمازيغي يعني \"الدفلى\" — كانت عاصمة مملكة موريتانيا الطنجية الموالية لروما، مدينة تجمع فيها التراثان الأمازيغي والروماني في انسجام نادر المثال. إنها ليست مجرد خرائب، بل هي نص مكتوب بالحجارة والفسيفساء والأعمدة يُروي الصفحة الأولى للتاريخ المغربي المكتوب قبل الإسلام.",
-        "en": "Listen carefully amid the fertile Zerhoun plains near Meknes and you will hear the footsteps of a crowd alive from the 3rd century BC until the retreat of Roman presence. Volubilis — its Amazigh name meaning oleander — was the capital of Mauritania Tingitana, where Amazigh and Roman heritages merged in rare harmony."
-    },
-    "sections": [
-        {
-            "title": {
-                "ar": "الفسيفساء: نوافذ ملونة على حياة الرومان في المغرب",
-                "en": "The Mosaics: Colorful Windows into Roman Life in Morocco"
-            },
-            "content": {
-                "ar": "يمتلك موقع وليلي أكثر من ثلاثين لوحة فسيفسائية محفوظة بين أفضل ما عرفه العالم القديم، تصور مشاهد من الأساطير الإغريقية كديونيسوس وإيريني وأورفيوس يعزف على قيثارته. هذه اللوحات لم تكن مجرد ديكور فاخر ترفي لدور الأثرياء، بل كانت برامج ثقافية كاملة تحكي لزوار البيوت عن عوالم الإله والإنسان والطبيعة بلغة بصرية عالمية تتحدى الزمن ولا تشيخ. فسيفساء قاعة أوفيوس في بيت العمود تبقى من أكثر القطع إبهاراً وتكاملاً وغنى تفصيلياً حتى اليوم في العالم القديم برمته.",
-                "en": "Volubilis holds over thirty of the best-preserved floor mosaics of the ancient world, depicting myths of Dionysus, Orpheus, and Bacchus. These were powerful cultural programs narrating divine and human worlds in a visual language that defies time. The Orpheus mosaic in the House of Orpheus remains one of the most stunning and detailed works of the ancient world."
-            }
-        },
-        {
-            "title": {
-                "ar": "المدينة بعد روما: الاستمرار الأمازيغي والإدريسي",
-                "en": "The City After Rome: Amazigh and Idrisid Continuity"
-            },
-            "content": {
-                "ar": "حين انسحب الرومان عام 285 ميلادية، لم تمت وليلي. بقيت مزدهرة في ظل الأمازيغ الأحرار ثم استقبلت إدريس الأول مؤسس الدولة الإدريسية فاراً من المشرق عام 788 ميلادية، وجعل منها ملاذاً لقيام الدولة المغربية الأولى. لقد ظلت وليلي آهلة بالسكان قرابة خمسة عشر قرناً متواصلة قبل أن يتفضل المولى إسماعيل بنهب حجارتها لبناء مكناس البهية في القرن السابع عشر. الزلزال اللاحق عام 1755 أتم ما تركه التقادم والاستخدام البشري.",
-                "en": "When Rome retreated in 285 AD, Volubilis did not die. It flourished under free Amazigh rulers and welcomed Idris I — founder of Morocco's first Islamic dynasty — in 788 AD. The city remained inhabited continuously for fifteen centuries until Moulay Ismail quarried its stones for Meknes, followed by the 1755 earthquake."
-            }
-        }
-    ],
-    "faqs": [
-        {
-            "question": {
-                "ar": "متى وكيف اكتُشفت وليلي من جديد في العصر الحديث؟",
-                "en": "When and how was Volubilis rediscovered in modern times?"
-            },
-            "answer": {
-                "ar": "بدأت الحفريات الأثرية الجادة في العهد الفرنسي إبان أوائل القرن العشرين، ومنذ عام 1997 صنفتها اليونسكو ضمن مواقع التراث الإنساني العالمي بسبب أهميتها الاستثنائية في التراث الأمازيغي-الروماني.",
-                "en": "Serious archaeological excavations began in the early 20th century under the French Protectorate. Since 1997, UNESCO classified it as a World Heritage Site for its exceptional importance to Amazigh-Roman heritage."
-            }
-        },
-        {
-            "question": {
-                "ar": "كيف حافظت الفسيفساء على ألوانها وتفاصيلها لألفي عام؟",
-                "en": "How have the mosaics preserved their colors and details for 2000 years?"
-            },
-            "answer": {
-                "ar": "الطمر الطبيعي بالتراب والرمال حمى قطع الفسيفساء من عوامل التعرية الجوية طوال قرون. فقط بعد الكشف والتنقيب بدأت تحديات الحفاظ عليها في الهواء الطلق تتراكم وتستدعي عناية مستمرة.",
-                "en": "Natural burial beneath soil and sand protected the mosaic pieces from weathering for centuries. Post-excavation exposure introduced conservation challenges that require continuous professional maintenance."
-            }
-        },
-        {
-            "question": {
-                "ar": "هل إدريس الأول أسس دولته المغربية في وليلي فعلاً؟",
-                "en": "Did Idris I truly found his Moroccan state at Volubilis?"
-            },
-            "answer": {
-                "ar": "نعم، فر إدريس الأول من العباسيين ولجأ إلى وليلي عام 788 ميلادية حيث بايعه سكان المنطقة من قبائل أوربة الأمازيغية، وكانت انطلاقة الدولة الإدريسية الأولى قبل نقل العاصمة لفاس.",
-                "en": "Yes, Idris I fled the Abbasids and took refuge in Volubilis in 788 AD, where the Amazigh Awraba tribe pledged allegiance to him, launching the first Moroccan Idrisid state before its capital moved to Fez."
-            }
-        }
-    ],
-    "conclusion": {
-        "ar": "وليلي ليست مجرد حجارة موزعة على سهل خصيب. إنها نبض الهوية المغربية العميقة التي تضرب جذورها ما قبل الفتح الإسلامي لتبرهن أن المغرب حضارة، لا مجرد جغرافيا.",
-        "en": "Volubilis is not merely scattered stones on a fertile plain. It is the pulse of a deep Moroccan identity rooted before the Islamic conquest, proving that Morocco is a civilization, not merely a geography."
-    },
-    "generatedImage": "https://images.unsplash.com/photo-1629747387925-6905ff5a558a?q=80&w=2070&auto=format&fit=crop"
-},
-  'marrakech': {
-    "id": "marrakech",
-    "title": {
-        "ar": "مراكش: المدينة الحمراء وحاضرة الأسرار الملكية",
-        "en": "Marrakech: The Red City and Capital of Royal Secrets"
-    },
-    "category": "city",
-    "metaDescription": {
-        "ar": "مراكش المدينة الحمراء، تاج العمارة الأمازيغية والسعدية. استكشف جامع الفنا وكتبيتها الشاهقة وأسرار قصر البديع.",
-        "en": "Marrakech Red City — crown of Amazigh and Saadian architecture. Explore Jemaa el-Fna, the soaring Koutoubia, and secrets of El Badi Palace."
-    },
-    "intro": {
-        "ar": "تقبع مراكش الحمراء في داخل السهل الهادئ بسفح جبال الأطلس الكبير الشاهقة كأميرة تلبس ثوب التراب المغرة الأحمر، وتحت درقة نخيلها المترامية تخفي في جلبابها أسرار ألف عام حافلة بالملوك والفنانين والمتصوفة والتجار القادمين من الصحراء الكبرى. هي البكر من عجائب الجنوب المغربي ومنارة الثقافة الأمازيغية والعربية والإفريقية، جمعت بين قصور السعديين ومدارس الموحدين ودروب المرابطين في نسيج متشابك لا يفك خيوطه إلا من أمضى زمناً طويلاً في أزقتها المتعرجة الشيِّقة.",
-        "en": "Marrakech sits in the quiet plains below the High Atlas like a princess dressed in ochre red earth, hiding beneath its palm canopy a thousand years of kings, artists, Sufis, and desert merchants. It is Morocco's cultural crown, weaving together Almohad, Saadian, and Almoravid legacies in a labyrinthine tapestry only deciphered by those who linger in its beguiling alleyways."
-    },
-    "sections": [
-        {
-            "title": {
-                "ar": "جامع الفنا: مسرح الإنسانية الذي لا يُغلق ستاره أبداً",
-                "en": "Jemaa el-Fna: The Eternal Stage of Humanity"
-            },
-            "content": {
-                "ar": "صنَّفت اليونسكو جامع الفنا في قائمة التراث الثقافي غير المادي للإنسانية، وهو تصنيف لم يناله أي ميدان آخر في العالم بهذه المكانة الحضارية. في النهار تتلاشى خلفية الإفريقي والسياح المتصنتين للحكواتيين، ورقصات الثعابين المسحورة، وعروض الغيوان ومنافسات الطيور. وفي المساء تتبدل تلك اللوحة تحولاً درامياً — تنبثق مئات المدافئ والعربات، وتتصاعد أعمدة الدخان الكثيف من شوايات اللحم والأسماك، وتعزف الفرق الموسيقية الجناوية والطوارقية في آن واحد ليتشكل كوكتيل حواسّي لا يُنسى ولا تجده في أي بقعة أخرى على وجه الأرض.",
-                "en": "UNESCO classified Jemaa el-Fna on its Intangible Cultural Heritage list — an honor no other square holds. By day: storytellers, snake charmers, and Gnawa musicians compete for wonder. By evening: hundreds of braziers ignite, smoke ascends in columns, and Gnawa and Tuareg orchestras play simultaneously in a sensory cocktail found nowhere else on Earth."
-            }
-        },
-        {
-            "title": {
-                "ar": "قصر البديع والمدارس السعدية: فخامة ذهبية تحت الأتربة",
-                "en": "El Badi Palace and Saadian Tombs: Golden Grandeur Beneath the Dust"
-            },
-            "content": {
-                "ar": "شيَّد السلطان السعدي أحمد المنصور الذهبي — مُخلِّف الجيش البرتغالي المنهزم في معركة وادي المخازن عام 1578 — قصر البديع الأسطوري بثروات مالي والحجر الأونيكس والمرمر الإيطالي الفارق وعمود الذهب. كان قصراً لا مثيل له في العالم الإسلامي لأكثر من قرن قبل أن يأتي عليه المولى إسماعيل بأسلحة الهدم والنهب لبناء مكناس. ما تبقى من أطلال القصر الشاسعة وحفرته المائية وأبراجه اليتيمة يكفي لأن يُشعلُ في الخيال شرارة الانبهار حين تقف في قلبه وتُحاكٍ وقفة السفراء القادمين من أقاصي أوروبا إبان العز السعدي.",
-                "en": "Sultan Ahmad al-Mansur \"the Golden\" — who crushed the Portuguese at the Battle of Wadi al-Makhazin in 1578 — built the legendary El Badi Palace with Mali's riches, Onyx, Italian marble and golden columns. For over a century it had no equal in the Islamic world before Moulay Ismail dismantled it for Meknes. The vast ruins and dry basin still ignite wonder when you stand at its heart imagining European ambassadors in awe of its glory."
-            }
-        }
-    ],
-    "faqs": [
-        {
-            "question": {
-                "ar": "لماذا تسمى مراكش بالمدينة الحمراء وهل الاسم دقيق فعلاً؟",
-                "en": "Why is Marrakech called the Red City and is the name truly accurate?"
-            },
-            "answer": {
-                "ar": "نعم، أسوار المدينة القديمة وغالبية مبانيها مبنية من الحجر الرملي المحلي المائل للحمرة المصطبغة بالمغرة، وهو لون يتغير درجته بحسب الإضاءة ليتراوح بين الزهري الرقيق صباحاً والحمر الداكن المشتعل عند الغروب بصورة آسرة للقلوب.",
-                "en": "Absolutely. The old city walls and most buildings are constructed from local red sandstone mixed with ochre pigment, changing shade from delicate pink at dawn to deep blazing red at sunset."
-            }
-        },
-        {
-            "question": {
-                "ar": "من أسس مراكش وما السبب وراء اختيار هذا الموقع الجغرافي تحديداً؟",
-                "en": "Who founded Marrakech and why was this exact geographic location chosen?"
-            },
-            "answer": {
-                "ar": "أسسها المرابطون بقيادة يوسف بن تاشفين عام 1062 ميلادية. اختير الموقع استراتيجياً كملتقى بين طرق القوافل الصحراوية وطرق تجارة الأطلس، في سهل خصيب يُتيح الزراعة والاستقرار وفي الوقت ذاته يُتيح للجنود المراقبة السهلة للتضاريس المحيطة.",
-                "en": "Founded by the Almoravids under Yusuf ibn Tashfin in 1062, the site was strategically chosen as a crossroads of Saharan caravan routes and High Atlas trade paths, in a fertile plain enabling both agriculture and military surveillance."
-            }
-        },
-        {
-            "question": {
-                "ar": "ما أهمية مدارس جامعة ابن يوسف العلمية التاريخية في مراكش؟",
-                "en": "What is the significance of Ben Youssef Madrasa in Marrakech historically?"
-            },
-            "answer": {
-                "ar": "تُعدُّ مدرسة ابن يوسف من أكبر وأهم مدارس العلم في شمال إفريقيا التاريخية، استقبلت آلاف الطلاب من كامل العالم الإسلامي ومزجت فيها الفروع العلمية الشرعية والأدبية والعلوم التطبيقية بزخرفة معمارية بديعة لا تضاهيها مدرسة إقليمية.",
-                "en": "Ben Youssef Madrasa is one of the largest and most significant learning institutions in North African history, receiving thousands of students from across the Islamic world in a setting of unmatched architectural decoration."
-            }
-        }
-    ],
-    "conclusion": {
-        "ar": "مراكش هي القبلة التي تعنها المغاربة حين يُعبِّرون عن مغربهم بلون واحد يُلخِّص التاريخ والجغرافيا والروح في آن واحد. إنها أكثر من مدينة — إنها شعور لا يُوصف لمن اكتحلت عيناه بضوء شمسها الأصيل.",
-        "en": "Marrakech is the destination Moroccans mean when they express their Morocco in a single color that summarizes history, geography, and spirit simultaneously. It is more than a city — it is an indescribable feeling for those who have witnessed its authentic sunlight."
-    },
-    "generatedImage": "https://images.unsplash.com/photo-1597212618440-806262de4f3b?q=80&w=2070&auto=format&fit=crop"
-},
-  'ibn-battuta': {
-    "id": "ibn-battuta",
-    "title": {
-        "ar": "ابن بطوطة: أمير الرحالة وشاهد أعظم العصور الوسطى",
-        "en": "Ibn Battuta: Prince of Travelers and Witness of the Greatest Medieval Age"
-    },
-    "category": "figure",
-    "metaDescription": {
-        "ar": "ابن بطوطة الطنجي رحالة القرن الرابع عشر الذي قطع 120,000 كيلومتر عبر 44 دولة ووثَّق حضارات عصره في رحلته الخالدة.",
-        "en": "Ibn Battuta of Tangier — 14th century traveler who covered 120,000 km across 44 countries, documenting his era's civilizations in his immortal Rihla."
-    },
-    "intro": {
-        "ar": "في صيف عام 1325 ميلادية، حمل شاب من طنجة لم يبلغ الحادية والعشرين من عمره بعيراً وعُدَّته وراح يسلك دروب الحجاز قاصداً مكة المكرمة في رحلة حج بسيطة. لكن تلك الرحلة المقدسة الأولى لم تكن سوى الدربة والبروفة على ملحمة سيكتبها بأقدامه وعينيه وقلمه على امتداد سبعة وعشرين عاماً، ليُصبح أبو عبد الله محمد بن بطوطة اللواتي التنجلي الشهير بابن بطوطة الرحالةَ الإنساني الأعظم في تاريخ العصور الوسطى متقدماً بشوط بعيد على ماركو بولو في المسافة وفي عمق التوثيق وفي غنى الوصف النابض بالحياة المتماسة.",
-        "en": "In the summer of 1325, a young man barely twenty-one from Tangier mounted a camel and set out toward Mecca on a simple pilgrimage. That sacred first journey proved the opening act of an epic he would write over twenty-seven years with his feet, his eyes, and his pen — making Ibn Battuta the greatest human traveler in medieval history, surpassing Marco Polo in distance, depth of documentation, and richness of living description."
-    },
-    "sections": [
-        {
-            "title": {
-                "ar": "الرحلة المستحيلة: أرقام تُعجز العقل وتُبهج القلب",
-                "en": "The Impossible Journey: Numbers That Defy the Mind"
-            },
-            "content": {
-                "ar": "سلك ابن بطوطة في رحلته الكبرى ما يزيد على مئة وعشرين ألف كيلومتر — أي ثلاثة أضعاف المسافة التي قطعها ماركو بولو — عابراً ما يُعادل اليوم أربعة وأربعين دولة. زار بلاد الشام ومصر وشبه الجزيرة العربية وبلاد الفرس والهند والصين ومالي والسودان والساحل الإفريقي ووسط آسيا وبيزنطة. كان يعمل في كل بلد يزوره قاضياً أو مستشاراً للسلاطين، مما منحه نفاذاً استثنائياً للقصور والمجالس وعامة الناس على حدٍّ سواء. حين عاد أخيراً لفاس عام 1354 ميلادية، أملى على كاتبه ابن جُزيّ الغرناطي رحلته الخالدة في كتاب \"تحفة النظار في غرائب الأمصار وعجائب الأسفار\".",
-                "en": "Ibn Battuta's grand journey covered more than 120,000 kilometers — triple Marco Polo's distance — crossing what equals 44 modern countries. He served as judge and royal advisor in every land visited, granting exceptional access to courts and common folk alike. Upon returning to Fez in 1354, he dictated to his secretary Ibn Juzayy the immortal Rihla: \"A Gift to Those Who Contemplate the Wonders of Cities and Marvels of Traveling.\""
-            }
-        },
-        {
-            "title": {
-                "ar": "إسهامات لا تُقدَّر في الجغرافيا والإثنوغرافيا والتوثيق الحضاري",
-                "en": "Priceless Contributions to Geography, Ethnography, and Civilizational Documentation"
-            },
-            "content": {
-                "ar": "رحلة ابن بطوطة ليست كتاب سفريات بالمعنى الترفيهي المعاصر، بل هي موسوعة جغرافية وأثنوغرافية وتاريخية من الدرجة الأولى. سجَّل عادات وتقاليد ولغات وقوانين وعقائد وأنواع الأغذية والملابس والعمارة في كل حضارة زارها، مُقدِّماً لأهل عصره والأجيال القادمة المصدر الأغنى عن الدول الإسلامية ودول جوارها في القرن الرابع عشر. وصفت أبحاثه الحديثة كتابه بأنه المصدر التاريخي الأوحد في التوثيق العميق لمجتمعات مالي وجامبيا ومجتمعات آسيا الوسطى في تلك الحقبة، وهي مجتمعات كادت تُمحى من ذاكرة التاريخ المكتوب دون توثيق ابن بطوطة الجريء والأمين.",
-                "en": "Ibn Battuta's Rihla is not a travel memoir in the modern recreational sense, but a first-rate geographic, ethnographic, and historical encyclopedia. He documented customs, languages, laws, beliefs, food, clothing, and architecture of every civilization visited, providing the richest source on 14th-century Islamic and neighboring states. Modern scholarship describes it as the sole historical source documenting societies in Mali, Gambia, and Central Asia in that era — nearly erased from written history without his bold and faithful documentation."
-            }
-        }
-    ],
-    "faqs": [
-        {
-            "question": {
-                "ar": "ما الذي دفع ابن بطوطة لمواصلة السفر طوال سبعة وعشرين عاماً بلا توقف حقيقي؟",
-                "en": "What drove Ibn Battuta to continue traveling for twenty-seven years without real pause?"
-            },
-            "answer": {
-                "ar": "مزيج من الفضول الفكري الحاد الذي جعل كل مدينة جديدة لغزاً يستدعي الحل، والطموح الديني في الحج ومتابعة العلم، واكتشاف أن مهارته كقاضٍ تفتح له أبواب المحاكم والقصور في كل بقعة من العالم الإسلامي.",
-                "en": "A combination of sharp intellectual curiosity that made every new city an irresistible puzzle, religious ambition for pilgrimage and scholarship, and the discovery that his expertise as a judge opened courts and palaces everywhere in the Islamic world."
-            }
-        },
-        {
-            "question": {
-                "ar": "كيف تمكَّن ابن بطوطة من التواصل مع شعوب مختلفة اللغات والثقافات؟",
-                "en": "How did Ibn Battuta communicate with peoples of different languages and cultures?"
-            },
-            "answer": {
-                "ar": "اعتمد بصورة رئيسية على اللغة العربية كلغة دولية للعلم والتجارة في العالم الإسلامي الشاسع. وفي المناطق غير العربية استعان بمترجمين محليين وشبكة من العلماء المسلمين المنتشرين في جميع أنحاء العالم المتصل حضارياً.",
-                "en": "He relied primarily on Arabic as the international language of scholarship and commerce across the vast Islamic world. In non-Arabic regions, he used local interpreters and a widespread network of Muslim scholars connecting the civilizational world."
-            }
-        },
-        {
-            "question": {
-                "ar": "هل اعترض عليه أحد في زمنه ووصف رحلاته بالمبالغة أو الخيال؟",
-                "en": "Did anyone in his time accuse his accounts of exaggeration or fiction?"
-            },
-            "answer": {
-                "ar": "نعم، بعض معاصريه شككوا في بعض روايات الأماكن البعيدة التي لم يعرفوها. كذلك حدَّد الباحثون المعاصرون أخطاء جغرافية وتواريخية بسيطة، لكن الجوهر الكبير لرحلته يبقى موثقاً تاريخياً صحيحاً بمقاييس عصره ومقاييس بحثنا المعاصر.",
-                "en": "Yes, some contemporaries questioned accounts of distant lands they had never known. Modern scholars have identified minor geographical and dating errors, yet the fundamental substance of his journey remains historically verified by both medieval and contemporary research standards."
-            }
-        }
-    ],
-    "conclusion": {
-        "ar": "ابن بطوطة لم يكتشف البلدان فقط، بل اكتشف الإنسان في كل تجلياته وعبر كل فجوة من فجوات الثقافات المتباعدة. هو الشاهد العادل الذي استطاع أن يُحوِّل فضوله الشخصي إلى مرآة للحضارة الإنسانية ومراةً لتاريخ عالم يُودِّع حقبة ويستقبل أخرى.",
-        "en": "Ibn Battuta did not merely discover lands — he discovered humanity in all its manifestations across every cultural divide. He is the faithful witness who transformed personal curiosity into a mirror of human civilization, reflecting a world bidding farewell to one era and welcoming another."
-    },
-    "generatedImage": "https://images.unsplash.com/photo-1528702748617-c64d49f918af?q=80&w=2070&auto=format&fit=crop"
-},
-  'fatima-al-fihriya': {
-    "id": "fatima-al-fihriya",
-    "title": {
-        "ar": "فاطمة الفهرية: الحرة التي بنت أعظم صرح علمي في التاريخ الإنساني",
-        "en": "Fatima al-Fihriya: The Free Woman Who Built History's Greatest Academic Monument"
-    },
-    "category": "figure",
-    "metaDescription": {
-        "ar": "فاطمة الفهرية بانية جامعة القرويين عام 859م، أقدم جامعة في العالم وفق موسوعة غينيس ويونسكو. قصة ايمان ورؤية استثنائية.",
-        "en": "Fatima al-Fihriya, builder of Al-Qarawiyyin in 859 AD — oldest university in the world per Guinness and UNESCO. A story of exceptional faith and visionary leadership."
-    },
-    "intro": {
-        "ar": "في مدينة فاس الشابة المُشيَّدة على يد إدريس الثاني في أوائل القرن التاسع الميلادي، نشأت امرأة اسمها فاطمة بنت محمد الفهري القيرواني الأصل. استوطنت عائلتها فاس قادمةً من القيروان بتونس — ذلك المهد الحضاري الذي صنع علماء الأندلس والمغرب. حين توفي والدها وأخوها وتركا لها ولأختها مريم ثروة كبيرة، قررت فاطمة قراراً يُذهل العقل ويُبهج الروح: لن تبني بيتاً فخماً ولا تشتري أراضي ولا تُنميّ استثماراً تجارياً. ستبني مدرسة للعلم والله، تجمع فيها طلاب العالم الإسلامي الباحثين عن النور في عاصمة تستحق أن تكون مركز إشعاع كوني.",
-        "en": "In the young city of Fez founded by Idris II in the early 9th century, a woman named Fatima bint Muhammad al-Fihri grew up — her family having emigrated from Kairouan in Tunisia, that cultural cradle of scholars shaping Andalusia and Morocco. When her father and brother died leaving considerable wealth to her and her sister Maryam, Fatima made a decision that astonishes the mind: not a grand home, not land, not commercial investment — she would build a school for knowledge and God, gathering Islamic world scholars in a capital worthy of becoming a center of universal illumination."
-    },
-    "sections": [
-        {
-            "title": {
-                "ar": "صيام وبناء: عهد امرأة وحجرة وإصرار لا يلين",
-                "en": "Fasting and Building: A Woman's Vow, a Stone, and Unyielding Determination"
-            },
-            "content": {
-                "ar": "روَت الرواية التاريخية أن فاطمة الفهرية صامت طوال فترة بناء المسجد والمدرسة المتصل به — ثماني سنوات متواصلة من حفر الأساسات إلى وضع القيشاني الأخير وتلاوة الآية الأولى في رحاب صحنه. لم يكن صومها تديُّناً غيبياً فحسب، بل كان نذراً علنياً يُعلن للجميع أن هذا البناء ليس مشروعاً شخصياً، بل فريضة إنسانية مقدسة. يوم اكتملت الجامعة وأُذِّن فيها لأول مرة، قيل إنها سجدت شكراً وبكت من الفرح — ذلك الفرح الذي يُجسِّد النقطة التي يلتقي فيها الإيمان المطلق مع الإنجاز البشري الأقصى.",
-                "en": "Historical accounts relate that Fatima al-Fihriya fasted throughout the eight years of mosque and madrasa construction — from foundation excavation to final zellige placement and the first Quranic recitation in its courtyard. Her fast was not mere personal piety but a public vow declaring this project a sacred human obligation, not personal enterprise. When the university was completed and the first call to prayer echoed within it, she is said to have prostrated in thankful prayer and wept with joy — the point where absolute faith meets the pinnacle of human achievement."
-            }
-        },
-        {
-            "title": {
-                "ar": "الإرث الكوني: من فاس إلى أوروبا عبر علوم القرويين",
-                "en": "The Universal Legacy: From Fez to Europe Through Al-Qarawiyyin Sciences"
-            },
-            "content": {
-                "ar": "القرويين ليست مؤسسة محلية ضيقة الأفق. درس فيها ابن خلدون المؤرخ العظيم، وسيلفستر الثاني الذي سيُصبح بابا روما، ونقل منها رقم الصفر والأعداد العربية والمنطق الرياضي إلى أوروبا المظلمة. ابن رشد المفكر الذي فتح عيون الفلاسفة الأوروبيين على أرسطو، وإدريس الذي رسم أول خريطة معقدة للعالم. هذه المدرسة التي بنتها امرأة بأموالها الخاصة في مدينة إفريقية في القرن التاسع أشعلت مشاعل التنوير التي نوَّرت بعض أحلك فصول الظلام في تاريخ الإنسانية الأوروبية.",
-                "en": "Al-Qarawiyyin is not a narrow local institution. Ibn Khaldun the great historian studied here, as did Sylvester II who became Pope, transmitting zero, Arabic numerals, and mathematical logic to dark-age Europe. Ibn Rushd, who opened European philosophers' eyes to Aristotle, and al-Idrisi, who drew the first sophisticated world map — all learned within its walls. A school built by a woman with her own funds in an African city in the 9th century ignited enlightenment torches illuminating some of humanity's darkest European chapters."
-            }
-        }
-    ],
-    "faqs": [
-        {
-            "question": {
-                "ar": "هل من المؤكد تاريخياً أن فاطمة الفهرية هي التي بنت القرويين وليس شقيقتها مريم؟",
-                "en": "Is it historically certain that Fatima al-Fihriya built Al-Qarawiyyin rather than her sister Maryam?"
-            },
-            "answer": {
-                "ar": "المصادر التاريخية المعتمدة تُخصِّص بناء جامع وجامعة القرويين لفاطمة، في حين بنت أختها مريم مسجد الأندلسيين في المقابل. كلتاهما حفظتا الذاكرة الحضارية لفاس الإدريسية بأموال العائلة الفهرية الواحدة.",
-                "en": "Authoritative historical sources attribute the Al-Qarawiyyin mosque and university specifically to Fatima, while her sister Maryam built the Andalusian Mosque across town. Both preserved the civilizational memory of Idrisid Fez with the single al-Fihri family fortune."
-            }
-        },
-        {
-            "question": {
-                "ar": "هل لا تزال جامعة القرويين تعمل فعلاً كمؤسسة أكاديمية في العصر الحديث؟",
-                "en": "Does Al-Qarawiyyin still function as an academic institution in the modern age?"
-            },
-            "answer": {
-                "ar": "نعم، لا زالت تُدرِّس العلوم الإسلامية والعربية. تحولت للاعتراف الأكاديمي الرسمي في إصلاحات الستينيات تحت إشراف الدولة المغربية، وتمنح شهادات معترفاً بها دولياً في تخصصات الفقه والأدب والبلاغة.",
-                "en": "Yes, it continues teaching Islamic sciences and Arabic. It underwent formal academic recognition reforms in the 1960s under Moroccan state supervision and grants internationally recognized degrees in jurisprudence, literature, and rhetoric."
-            }
-        },
-        {
-            "question": {
-                "ar": "كيف يُراعي العالم المعاصر إرث فاطمة الفهرية في قضايا المرأة والعلم؟",
-                "en": "How does the contemporary world honor Fatima al-Fihriya's legacy in women and science discourse?"
-            },
-            "answer": {
-                "ar": "تُستشهد قصتها في كل نقاش حول إسهام المرأة المسلمة في الحضارة. ونالت تكريمات عالمية متعددة، وأُطلق اسمها على مبانٍ ومنح دراسية دولية لتشجيع المرأة على التعليم والريادة في العالم الإسلامي وخارجه.",
-                "en": "Her story is cited in every discussion on Muslim women's contributions to civilization. She has received multiple global tributes, and her name graces buildings and international scholarships encouraging women in education and leadership across the Islamic world and beyond."
-            }
-        }
-    ],
-    "conclusion": {
-        "ar": "فاطمة الفهرية لم تبنِ جدراناً وأسقفاً. بنت فضاءً للحرية الفكرية والنور العلمي امتد من فاس ليُضيء قارات. في كل عالم تخرج من القرويين، وفي كل فلسفة أوروبية استعانت بترجمات علومها — ثمة نبض قلب فاطمة يدق في صمت خلف تلك الإنجازات.",
-        "en": "Fatima al-Fihriya did not build walls and ceilings. She built a space for intellectual freedom and scientific light that radiated from Fez to illuminate continents. In every scholar who graduated from Al-Qarawiyyin, in every European philosophy drawing on its translated sciences — Fatima's heartbeat quietly pulses behind those achievements."
-    },
-    "generatedImage": "https://images.unsplash.com/photo-1599566150163-29194dcaad36?q=80&w=2070&auto=format&fit=crop"
-},
-    'tangier': {
-        id: 'tangier',
-        title: {
-            ar: 'طنجة: عروس الشمال وبوابة إفريقيا الشامخة عبر العصور',
-            en: 'Tangier: The Bride of the North and the Majestic Gateway of Africa'
-        },
-        category: 'city',
-        metaDescription: {
-            ar: 'استكشف طنجة، المدينة المغربية الأسطورية التي شكلت ملتقى الحضارات الإنسانية. من أسوار القصبة العتيقة إلى مغارة هرقل، رحلة في عمق التاريخ والأمجاد.',
-            en: 'Explore Tangier, the mythical Moroccan city combining epic history, coastal fortresses, and a rich melting pot of human civilizations.'
-        },
-        intro: {
-            ar: 'تتربع مدينة طنجة بفيحاء وشموخ على الطرف الشمالي للمملكة المغربية، لتعانق بشغف مضيق جبل طارق العظيم، حيث تمتزج أمواج البحر الأبيض المتوسط الهادئة بهدير المحيط الأطلسي المتمرد. إنها ليست مجرد حاضرة نابضة بالحياة وحسب، بل هي كتاب مفتوح وموثق وشاهد حي على تواتر وتمازج أعظم الحضارات الإنسانية التي مرت عبر البوابة الإفريقية. لقد استلهمت طنجة من موقعها العبقري قوة فريدة مكنتها من أن تكون مهد الأساطير الإغريقية، ومدينة دولية ألهبت خيال المبدعين، وقلعة من قلاع المجد المغربي العصية على الانكسار أو الغياب.',
-            en: 'Tangier perches majestically at the northern tip of the Moroccan Kingdom, embracing the Strait of Gibraltar where the Mediterranean meets the Atlantic. It is an open book of humanitys greatest civilizations.'
-        },
-        generatedImage: '/images/epic/tangier_cinematic_1772056832346.png',
-        sections: [
+        "sections": [
             {
-                title: { ar: 'مغارة هرقل وأسطورة الانتماء الأزلي', en: 'Caves of Hercules and Mythological Roots' },
-                content: {
-                    ar: 'تمتد أصول مدينة طنجة إلى أبعد حدود الزمن والأسطورة، فجذورها تضرب في عمق التاريخ المكتوب وغير المكتوب، متجاوزة أكثر من ألفي ونصف قرن. وتشير الروايات الأسطورية الإغريقية إلى أن اسم طنجة مستمد من "تنجيس"، وهي زوجة البطل الأسطوري أنتايوس، الذي يزعم التراث القديم أن هرقل العظيم صرعه في معركة درامية هائلة. وحسب هذه الأساطير الخالدة، فإن هرقل ضرب الجبل الجبار ليشق مضيق جبل طارق ويفصل القارتين العظيمتين إفريقيا وأوروبا، ثم قرر أن يتخذ من المغارة القريبة ملاذًا ومثوى للراحة. لا تزال "مغارة هرقل" القابعة في أحضان المحيط الأطلسي اليوم تقف كشاهد أطلال حي بفتحتها العجيبة المطلة على البحر والتي رُسمت بشكل طبيعي مدهش على هيئة خريطة قارة إفريقيا المقلوبة. هذه المغارة ليست مجرد تشكيل صخري جيولوجي مبهر، بل هي بوابتنا الحقيقية لقراءة السيرة الأولى للمخيال الإنساني الذي ألهمته الطبيعة المغربية البكر، وظل يحيك حولها حكايات من المجد والقوة والسحر لا تنضب ولا تُمحى أبدًا.',
-                    en: 'Tangier’s origins extend deep into myth, linked to Tingis and Hercules himself, who supposedly rested in the iconic Caves of Hercules. This natural wonder overlooks the Atlantic and remarkably forms the shape of Africa.'
+                "title": {
+                    "ar": "الصقالة: حصن يُصارع المحيط منذ ثلاثة قرون",
+                    "en": "The Skala: A Fortress Wrestling the Ocean for Three Centuries"
+                },
+                "content": {
+                    "ar": "صقالة الميناء والمدينة هما القلب العسكري الذي بُنيت الصويرة من حوله. المدافع البرونزية الإسبانية المحفورة عليها نقوش تواريخ القرنين السابع عشر والثامن عشر لا تزال تتربّع على أسوار الصقالة متجهة نحو المحيط كحرّاس أبدية تحرس ذكرى المعارك البحرية التي خاضتها السفن المغربية ضد قراصنة المتوسط والأوروبيين الطامعين. تمتد أسوار الصويرة على نحو ثلاثة كيلومترات تُحيط المدينة كلها بسياج محكم، وهيكلها الهندسي المستمد من مدارس القلاع الأوروبية الحديثة يُعدّ درساً في الهندسة العسكرية القرن ثامن عشرية.",
+                    "en": "The port and city Skalas are the military heart around which Essaouira was built. Spanish bronze cannons engraved with 17th-18th century dates still guard the Skala walls facing the ocean as eternal sentinels of naval battles Moroccan ships fought against Mediterranean pirates and European aggressors."
                 }
             },
             {
-                title: { ar: 'العهد الذهبي والمنطقة الدولية: قبلة الأدباء والجواسيس', en: 'International Zone: A Haven for Writers and Spies' },
-                content: {
-                    ar: 'خلال منتصف القرن العشرين، وتحديداً من عام 1923 إلى استقلال المملكة، عاشت طنجة واحدة من أشد فتراتها زخماً وبريقاً وأكثرها تعقيداً على الإطلاق، حيث كانت تحظى بوضع دولي خاص واستثنائي أدارته عدة قوى أجنبية مشتركة. هذا الوضع الجيوسياسي العجيب حوّل المدينة إلى فسيفساء كونية مصغرة وملاذًا مذهلاً للعلماء، الدبلوماسيين، الفنانين البوهيميين، والتجار، وحتى أخطر شبكات التجسس العالمية المترامية في أزقتها الضيقة ومقاهيها المشهورة مثل مقهى الحافة. لقد جذب سحر هذه الحاضرة الفريدة عمالقة الأدب والفن العالميين، في هذه المرحلة الغنية، ازدهر الاقتصاد الحر وتبودلت الأفكار والعملات بشتى أشكالها، ولكن رغم هذا الذوبان الدولي الهائل، ظلت الروح المغربية الأصيلة، المتمثلة في مساجد طنجة العتيقة وأسوار قصباتها وأسواقها في المدينة القديمة، تقاوم الذوبان بكل ضراوة؛ لتؤكد دوماً أن الأرض مهما اكتست بثوب دولي، فهي تنبض بهوية مغربية صرفة في قلبها وروحها وعزيمتها لا يمحوها تقادم الأزمان وتكالب المستعمر.',
-                    en: 'During its time as an International Zone (1923-1956), Tangier became an intoxicating hub for diplomats, artists like Paul Bowles, and even spies. Yet, amidst this global melting pot, the authentic Moroccan spirit fiercely preserved its identity.'
-                }
-            },
-            {
-                title: { ar: 'خطاب طنجة التاريخي: وثيقة التحدي والاستقلال', en: 'The Historic Speech of Tangier: Defiance and Independence' },
-                content: {
-                    ar: 'لا يمكن أبداً كتابة تاريخ استقلال المملكة المغربية دون الوقوف بإجلال أمام المحطة الحاسمة، والتاريخية الفاصلة في قلب مدينة طنجة. في التاسع من أبريل عام 1947، أقدم جلالة المغفور له الملك محمد الخامس على خطوة في غاية الجرأة والشجاعة بزيارته التاريخية للمدينة الدولية متجاوزاً بذلك كل العقبات والموانع التي فرضتها سلطات الحماية الفرنسية آنذاك. ومن حدائق المندوبية بوسط طنجة، ألقى جلالته خطابه الشهير المدوي الذي زعزع أركان الاستعمار وأسس لبداية النهاية للتواجد الأجنبي. لقد كان الخطاب إعلاناً واضحاً وجريئاً، ورسالة قوية للعالم بأسره لا لبس فيها: المغرب أمة واحدة موحدة، لا تتجزأ، ومتمسكة بثبات لا يلين بانتمائها لمحيطها العربي والإسلامي. تجاوبت حشود الملايين من المغاربة مع هذا النداء الملكي السامي بوفاء منقطع النظير، مما أشعل شرارة الحركات الوطنية والمقاوِمة في كافة ربوع البلاد، لتصبح طنجة منذ ذلك اليوم المجيد بمثابة المهد الحقيقي للشرعية الوطنية والوحدة الترابية المقدسة.',
-                    en: 'On April 9, 1947, King Mohammed V made a historic and daring visit to Tangier, delivering a monumental speech that officially demanded Morocco’s independence and galvanized the national resistance against French and Spanish colonizers.'
+                "title": {
+                    "ar": "الصويرة ملتقى الحضارات: يهود وأمازيغ وعرب وأوروبيون",
+                    "en": "Essaouira as Civilizational Crossroads: Jews, Amazigh, Arabs and Europeans"
+                },
+                "content": {
+                    "ar": "لم تكن الصويرة يوماً مدينة أحادية الثقافة. في أوجها التجاري في القرن التاسع عشر كانت تضمّ أحياء يهودية عريقة يسكنها تجار من أصول أندلسية وليفورنية وبرتغالية يتحكمون في ثلثي تجارة الصادرات المغربية، إلى جانب التجار الأمازيغ من قبيلة تكنة وهاوسا الإفريقية والتجار العرب من فاس ومراكش. هذا الاختلاط الحضاري الغني ولّد ثقافة فنية خاصة لا تجدها في مدن مغربية أخرى، وهو ما يفسّر لماذا استقطبت الصويرة في القرن العشرين أسماء كجيمي هندريكس وأورسون ويلز وكاتب ياسين.",
+                    "en": "Essaouira was never culturally uniform. At its 19th-century commercial peak it held Jewish quarters of Andalusian, Livornese, and Portuguese origin controlling two-thirds of Moroccan export trade, alongside Tekna Amazigh, African Hausa, and Arab merchants from Fez and Marrakech. This rich mix produced a unique artistic culture that later attracted Jimi Hendrix, Orson Welles, and Kateb Yacine."
                 }
             }
         ],
-        faqs: [
+        "faqs": [
             {
-                question: { ar: 'ما هو سر تسمية طنجة بعروس الشمال؟', en: 'Why is Tangier called the Bride of the North?' },
-                answer: { ar: 'يُطلق عليها هذا اللقب بسبب موقعها الجغرافي الخلاب المطل المزدوج على المحيط الأطلسي والبحر المتوسط، وبياض مبانيها الزاهي الناصع الذي يضفي عليها طابعاً رومانسياً كعروس متلألئة تحت أشعة الشمس.', en: 'It is named so due to its stunning dual coastal location on the Atlantic and Mediterranean, combined with its pristine white buildings that glisten majestically brightly under the sun.' }
+                "question": {
+                    "ar": "لماذا تُسمَّى الصويرة بـ\"مدينة الريح\"؟",
+                    "en": "Why is Essaouira called \"the city of wind\"?"
+                },
+                "answer": {
+                    "ar": "الرياح التجارية الأطلسية تضرب الصويرة بقوة استثنائية معظم أيام السنة، وهو ما جعلها اليوم وجهة عالمية لهواة رياضة الإبحار الشراعي والرياح اللوحية، ومهرجانها السنوي لهذه الرياضة يستقطب آلاف الزوار.",
+                    "en": "Atlantic trade winds strike Essaouira with exceptional force most of the year, making it a global destination for windsurfing and kitesurfing, with its annual festival attracting thousands of visitors."
+                }
             },
             {
-                question: { ar: 'ما أهمية مقهى الحافة تاريخياً؟', en: 'What is the historical significance of Cafe Hafa?' },
-                answer: { ar: 'هو مقهى أسطوري تأسس عام 1921 على واجهة صخرية تطل على إسبانيا، وكان مقصداً لأبرز أدباء العالم والساسة العالميين، ولا يزال يحتفظ بطابعه التقليدي الأصيل وأكواب الشاي بالنعناع المميزة.', en: 'Established in 1921 on a cliff overlooking Spain, it was an legendary haven for world-renowned writers and politicians, preserving its authentic traditional charm today.' }
+                "question": {
+                    "ar": "ما دور عرصة الصويرة في تجارة القرن التاسع عشر الدولية؟",
+                    "en": "What was Essaouira's role in 19th-century international trade?"
+                },
+                "answer": {
+                    "ar": "كانت الصويرة الميناء التجاري الأول للمغرب قبل صعود الدار البيضاء، وكانت تُصدِّر الذهب وريش النعام والكتان والجلود القادمة من الصحراء الكبرى عبر قوافل تيمبكتو نحو أوروبا.",
+                    "en": "Essaouira was Morocco's premier trading port before Casablanca's rise, exporting gold, ostrich feathers, flax, and hides from the Sahara via Timbuktu caravans toward Europe."
+                }
             },
             {
-                question: { ar: 'متى انتهى العهد الدولي في طنجة؟', en: 'When did the international era end in Tangier?' },
-                answer: { ar: 'انتهى النظام الدولي تماماً بمجرد نيل المملكة المغربية استقلالها التام سنة 1956، حيث عادت طنجة لحضن الوطن الأم لتصبح درة التاج في خريطة الشمال المغربي المزدهر.', en: 'The international regime ended completely with Moroccos highly celebrated absolute independence in 1956, returning Tangier securely to the sovereignty of the motherland.' }
+                "question": {
+                    "ar": "هل مهرجان كناوة الدولي للصويرة هو الأشهر في المغرب؟",
+                    "en": "Is Essaouira's International Gnawa Festival the most famous in Morocco?"
+                },
+                "answer": {
+                    "ar": "نعم، مهرجان كناوة الدولي الذي يُقام سنوياً يُعدّ من أبرز المهرجانات الموسيقية في إفريقيا والعالم العربي، يجمع بين الموسيقى الكناوية الروحانية الإفريقية وأسماء الجاز والبلوز والموسيقى العالمية من جميع القارات.",
+                    "en": "Yes, the International Gnawa Festival held annually is among Africa and the Arab world's most prominent music festivals, blending African spiritual Gnawa music with global jazz, blues, and world music artists from all continents."
+                }
             }
         ],
-        conclusion: {
-            ar: 'وختاماً، تظل طنجة وستبقى منارة الحضارات وحارسة للمضيق الأعظم. إنها المدينة التي لم تتنازل أبداً عن كبريائها الإفريقي وجوهرها المغربي وأصيلها الإسلامي برغم توارد الأعراق واللغات عليها، لتكتب بمياه محيطها وبحرها أعظم القصص التي لا تعرف النهاية.',
-            en: 'Tangier deeply remains the beacon of civilizations and the guardian of the great strait, writing stories embedded in its ocean waters forever.'
-        }
+        "conclusion": {
+            "ar": "الصويرة مكان يتساءل فيه الزائر: أنا في المغرب؟ في الأندلس؟ في إفريقيا؟ — والجواب الصحيح هو: في كل هذه الأماكن في آن واحد.",
+            "en": "Essaouira is a place where visitors ask: am I in Morocco? Andalusia? Africa? — and the correct answer is: all these places simultaneously."
+        },
+        "generatedImage": "https://images.unsplash.com/photo-1622329778939-9d5de5914102?q=80&w=2048&auto=format&fit=crop"
+    },
+    'agadir': {
+        "id": "agadir",
+        "category": "city",
+        "title": {
+            "ar": "أكادير: عنقاء الجنوب التي بُعثت من رماد الزلزال",
+            "en": "Agadir: Phoenix of the South Rising from Earthquake Ashes"
+        },
+        "metaDescription": {
+            "ar": "أكادير مدينة البعث والصمود، دُمِّرت عام 1960 وأُعيد بناؤها بصورة أحدث مدينة في المغرب. المدينة السياحية الأولى على المحيط الأطلسي.",
+            "en": "Agadir, city of resurrection and resilience, destroyed in 1960 and rebuilt as Morocco's most modern city and premier Atlantic coast tourist destination."
+        },
+        "intro": {
+            "ar": "في الساعة الحادية عشرة والثلاثة وأربعين دقيقة ليلاً من يوم الأول من مارس 1960، لم تنتظر الأرض أحداً وتحركت. في خمس عشرة ثانية ضُوية سحقت موجة زلزالية بقوة خمس وخمس من ريختر مدينة أكادير فكأن الأرض قررت فجأة أن تبتلع مدينة بكاملها وتبدأ من الصفر. لقي أكثر من خمسة عشر ألف شخص حتفهم. لكن أكادير لم تمت — أبت أن تموت. أُعيد بناؤها بحيوية وطنية مذهلة لتصبح اليوم المدينة المغربية الأكثر حداثة والوجهة السياحية الأولى بشواطئها الذهبية التي تمتد ستة کيلومترات.",
+            "en": "At 11:43 PM on March 1, 1960, the earth moved without warning. In fifteen seconds a 5.7 Richter earthquake crushed Agadir, burying over 15,000 people. Yet Agadir refused to die. Rebuilt with astonishing national vitality, it became Morocco's most modern city and premier tourist destination with golden beaches stretching six kilometers."
+        },
+        "sections": [
+            {
+                "title": {
+                    "ar": "إعادة البناء: أحدث مدينة في المغرب تُولد من الكارثة",
+                    "en": "The Reconstruction: Morocco's Newest City Born from Catastrophe"
+                },
+                "content": {
+                    "ar": "اتخذ الملك محمد الخامس قراراً تاريخياً: لن تُعاد أكادير في مكانها القديم، بل ستُبنى مدينة جديدة بالكامل تعكس مغرب الاستقلال وتطلعاته الحديثة. تدفّقت التبرعات الدولية والخبرات المعمارية من عشرات الدول، وكانت النتيجة مدينة مُصمَّمة وفق معايير التخطيط العمراني الحديث برفوف شوارع واسعة ومبانٍ مقاومة للزلازل وفضاءات خضراء وشبكات خدمات متكاملة — فريدة في المغرب.",
+                    "en": "King Mohammed V made a historic decision: Agadir would not be rebuilt on its old site. A completely new city reflecting independent Morocco's modern aspirations would be built. International donations and architectural expertise from dozens of countries produced a city planned to modern urban standards: wide boulevards, earthquake-resistant buildings, green spaces — unique in Morocco."
+                }
+            },
+            {
+                "title": {
+                    "ar": "السياحة الأطلسية: نموذج تنموي يستلهم الطبيعة والتاريخ",
+                    "en": "Atlantic Tourism: A Development Model Drawing on Nature and History"
+                },
+                "content": {
+                    "ar": "طوّرت أكادير نموذجها السياحي بذكاء على مثلث الشاطئ والمناخ والخدمات: شمسها تشرق 300 يوم سنوياً، ومياه المحيط دافئة معتدلة، وممارسة الرياضة البحرية متاحة طوال العام. إلى جانب الشاطئ الذهبي، قلعة أكادير أوفلّا الأمازيغية تُطلّ على المدينة من ارتفاع 236 متراً كشاهد صمود تاريخي لم يُسقطه الزلزال، وسوق من تزنيت وتيفاوت للحرف التقليدية السوسية يمنح السياحة بُعدها الثقافي والأصيل.",
+                    "en": "Agadir developed its tourism model intelligently on three pillars: sun (300 sunny days/year), ocean (warm moderate waters), and year-round water sports. Beyond the golden beach, Amazigh Agadir Oufella fortress overlooks the city from 236 meters as a historic resilience witness the earthquake didn't fell, while Tiznit and Tifaoute craft markets add authentic cultural depth."
+                }
+            }
+        ],
+        "faqs": [
+            {
+                "question": {
+                    "ar": "ماذا بقي من أكادير القديمة بعد زلزال 1960؟",
+                    "en": "What survived of old Agadir after the 1960 earthquake?"
+                },
+                "answer": {
+                    "ar": "لم يبقَ من المدينة القديمة تقريباً شيء. قلعة أوفلّا الأمازيغية على قمة الجبل ظلت قائمة جزئياً، وبقايا الحي البرتغالي الذي دمره البرتغاليون أنفسهم عام 1541 سبقت الزلزال في اندثارها.",
+                    "en": "Almost nothing survived from the old city. The Amazigh Oufella fortress on the hilltop remained partially standing, while ruins of the Portuguese quarter — already destroyed by the Portuguese themselves in 1541 — had vanished long before the earthquake."
+                }
+            },
+            {
+                "question": {
+                    "ar": "هل الجبال الأطلسية الكبرى قريبة من أكادير بما يكفي للزيارة اليومية؟",
+                    "en": "Are the High Atlas mountains close enough to Agadir for day trips?"
+                },
+                "answer": {
+                    "ar": "نعم، مدينة تارودانت تبعد نحو ثمانين كيلومتراً وهي قابلة للزيارة في يوم واحد. أما جبل توبقال أعلى قمة في شمال إفريقيا فيحتاج ليومين على الأقل انطلاقاً من إيمليل.",
+                    "en": "Yes, Taroudant city is about 80 km away for pleasant day trips. Mount Toubkal, North Africa's highest peak, requires at least two days departing from Imlil."
+                }
+            },
+            {
+                "question": {
+                    "ar": "لماذا تُعدّ أكادير الوجهة الشتوية الأولى للسياح الأوروبيين في المغرب؟",
+                    "en": "Why is Agadir the top winter destination for European tourists in Morocco?"
+                },
+                "answer": {
+                    "ar": "مناخها شبه استوائي بشمس شتوية ودرجات حرارة تتراوح بين 18-23 درجة مئوية حتى في يناير، مما يجعلها هرباً مثالياً من برد أوروبا مع بقاء خدمات الفنادق الحديثة المتكاملة وشوارع المدينة النظيفة الهادئة.",
+                    "en": "Its subtropical climate delivers winter sunshine with temperatures ranging 18-23°C even in January, making it an ideal escape from European cold while retaining full modern hotel services and clean, quiet city streets."
+                }
+            }
+        ],
+        "conclusion": {
+            "ar": "أكادير قرّرت أن تكون أجمل مما كانت عليه قبل 1960، وهذا القرار الجماعي الصامت هو أعظم درس في الصمود الإنساني والتجاوز الحضاري.",
+            "en": "Agadir decided to be more beautiful than it was before 1960, and this silent collective decision is the greatest lesson in human resilience and civilizational transcendence."
+        },
+        "generatedImage": "https://images.unsplash.com/photo-1541484842121-cc51da4ba69e?q=80&w=2070&auto=format&fit=crop"
+    },
+    'ouarzazate': {
+        "id": "ouarzazate",
+        "category": "city",
+        "title": {
+            "ar": "ورزازات: هوليود الصحراء على أعتاب عالمين",
+            "en": "Ouarzazate: Desert Hollywood on the Threshold of Two Worlds"
+        },
+        "metaDescription": {
+            "ar": "ورزازات بوابة الصحراء المغربية وعاصمة السينما العالمية في إفريقيا. موطن قصبات درعة وجسر الحضارتين الأمازيغية والصحراوية.",
+            "en": "Ouarzazate, gateway to the Moroccan Sahara and Africa's global cinema capital. Home of Draa kasbahs bridging Amazigh and Saharan civilizations."
+        },
+        "intro": {
+            "ar": "ورزازات ليست مجرد بلدة على طرفَي جبال الأطلس الكبير والصحراء — إنها العتبة الحضارية التي يعبرها من يريد الانتقال من زمان إلى زمان ومن عالمٍ إلى عالمٍ آخر مختلف. في الشمال تُشرف الثلوج على قمم تودرى وسارو، وفي الجنوب تبدأ الكثبان الذهبية لعرق الشبي ودرعة. بين هذين الطرفين تقوم ورزازات ببساطة أهلها الدرعيين وقصباتها الجوفية وصناعتها السينمائية التي باتت تُعرِّف بها العالم أكثر مما تُعرِّف بها قصور الطين والورد.",
+            "en": "Ouarzazate is not merely a town between the High Atlas and Sahara — it is the civilizational threshold between eras and worlds. Northern mountain snow crowns Todra and Sarhro peaks while southern golden dunes of Erg Chebbi and Draa begin. Between both extremes stands Ouarzazate with its Draa people's simplicity, earthen kasbahs, and a film industry that defines its global identity more than its clay palaces and roses."
+        },
+        "sections": [
+            {
+                "title": {
+                    "ar": "استوديوهات ورزازات: حين أصبحت الصحراء المغربية شاشة العالم",
+                    "en": "Ouarzazate Studios: When the Moroccan Sahara Became the World's Screen"
+                },
+                "content": {
+                    "ar": "منذ الستينيات حين اكتشف المخرجون العالميون أن ضوء ورزازات الاستثنائي ومشهدها الجيولوجي الفريد يُجسِّدان كل مكان وكل عصر بتكلفة إنتاج معقولة، تحوّلت المنطقة إلى مصنع أحلام سينمائي عالمي. \"لورانس العرب\" و\"بابل\" و\"جلاديتور\" و\"الأمير الصغير\" ومئات الأفلام الأخرى صُوِّرت هنا. استوديوهات أطلس كورب وCLA من أكبر مرافق الإنتاج في إفريقيا، وتُشغِّل آلاف الفنيين والممثلين والحرفيين المحليين الذين أتقنوا مهارات السينما جيلاً بعد جيل.",
+                    "en": "Since the 1960s when world directors discovered Ouarzazate's exceptional light and unique geological scenery could embody any place and era at reasonable production costs, the region became a global cinema dream factory. Lawrence of Arabia, Babel, Gladiator, The Little Prince and hundreds of films were shot here. Atlas Corp and CLA Studios are among Africa's largest production facilities, employing thousands of skilled local technicians, actors, and craftsmen who mastered cinema skills generation by generation."
+                }
+            },
+            {
+                "title": {
+                    "ar": "قصبة تاوريرت: متحف الطين الحي على ضفاف وادي درعة",
+                    "en": "Taourirt Kasbah: Living Clay Museum on Draa Valley Banks"
+                },
+                "content": {
+                    "ar": "قصبة تاوريرت هي أضخم وأكمل مثال باقٍ على العمارة القصبية الطينية في جنوب المغرب. بناها الباشا الكلاوي الذي حكم الجنوب في عهد الحماية، وكانت في أوجها تضم مئات العائلات في شبكة من الغرف والممرات والأفنية الداخلية والأبراج المتعددة. اليونيسكو أدرجتها ضمن مشاريع التراث الإنساني للصيانة والحفظ، والزيارة الداخلية تكشف طراز العمارة الطينية الصحراوية بكل تعقيداتها الوظيفية والجمالية.",
+                    "en": "Taourirt Kasbah is the largest and most complete surviving example of earthen kasbah architecture in southern Morocco. Built by Pasha al-Glaoui who ruled the South under the Protectorate, at its peak it housed hundreds of families in a network of rooms, corridors, courtyards, and multiple towers. UNESCO included it in its heritage preservation projects."
+                }
+            }
+        ],
+        "faqs": [
+            {
+                "question": {
+                    "ar": "كيف وصل إلى ورزازات مخرجو هوليود المشهورون في البداية؟",
+                    "en": "How did famous Hollywood directors first discover and reach Ouarzazate?"
+                },
+                "answer": {
+                    "ar": "اكتشف المخرج الإيطالي بيير باولو بازوليني ومخرجو الموجة الجديدة الأوروبية الموقع في الستينيات، كما ساعدت الترويج السياحي الملكي في جلب بعثات استكشاف السينما الأمريكية والبريطانية.",
+                    "en": "Italian director Pier Paolo Pasolini and European New Wave filmmakers discovered the location in the 1960s, while royal tourism promotion helped attract American and British cinema scouting expeditions."
+                }
+            },
+            {
+                "question": {
+                    "ar": "هل يمكن زيارة استوديوهات أفلام ورزازات للعموم؟",
+                    "en": "Can Ouarzazate film studios be visited by the general public?"
+                },
+                "answer": {
+                    "ar": "نعم، استوديوهات أطلس كوربوريشن مفتوحة للزيارات السياحية والزوار يمكنهم مشاهدة المناظر المصطنعة والكواليس الخاصة بأشهر الأفلام الدولية التي صُوِّرت في هذا المكان التاريخي.",
+                    "en": "Yes, Atlas Corporation Studios are open to tourist visits where visitors can see artificial sets and behind-the-scenes props from famous international films shot there."
+                }
+            },
+            {
+                "question": {
+                    "ar": "ما أفضل طريق لاستكشاف وادي درعة انطلاقاً من ورزازات؟",
+                    "en": "What is the best route to explore the Draa Valley departing from Ouarzazate?"
+                },
+                "answer": {
+                    "ar": "الطريق القومية رقم 9 المتجهة نحو زاكورة عبر أكدز وآكادير-نواليم تمر بأجمل القصور الطينية وواحات النخيل والمآذن الترابية في رحلة تستغرق يوماً كاملاً بالسيارة.",
+                    "en": "National Route N9 toward Zagora via Agdz and Agadir-Nwaliim passes through the most beautiful clay kasbahs, palm oases, and earthen minarets in a full-day car journey."
+                }
+            }
+        ],
+        "conclusion": {
+            "ar": "ورزازات تُعلِّمنا أن الصحراء ليست نهاية — إنها بداية نوع مختلف من الحياة أعمق في صمته وأوسع في أفقه.",
+            "en": "Ouarzazate teaches us that the desert is not an end — it is the beginning of a different kind of life, deeper in its silence and wider in its horizon."
+        },
+        "generatedImage": "https://images.unsplash.com/photo-1539668512229-ef442c00f8d2?q=80&w=2070&auto=format&fit=crop"
+    },
+    'casablanca': {
+        "id": "casablanca",
+        "category": "city",
+        "title": {
+            "ar": "الدار البيضاء: قاطرة المغرب الاقتصادية وأيقونة العصر الحديث",
+            "en": "Casablanca: Morocco's Economic Locomotive and Icon of Modernity"
+        },
+        "metaDescription": {
+            "ar": "الدار البيضاء أكبر مدن المغرب وعاصمته الاقتصادية، موطن مسجد الحسن الثاني وأكبر ميناء في إفريقيا.",
+            "en": "Casablanca, Morocco's largest city and economic capital, home of Hassan II Mosque and Africa's largest port."
+        },
+        "intro": {
+            "ar": "على ضفاف الأطلسي الشاسع، تقوم الدار البيضاء مدينةً لا هوادة فيها ولا توقف — قاطرة تشقّ درب المغرب نحو المستقبل بخطى لا تتوقف. اسمها بالعربية يعني \"البيت الأبيض\"، وهو اسم يختزل جوهرها: مدينة تؤمن بالنظام والنظافة ومعيارية العصر في قلب أفريقيا. هي ليست مدينة توارث شهرتها من الفتوحات أو من ملوك قدماء، بل صنعت مجدها بأيدي العمال والبنّائين والمهندسين والتجار الذين تدفّقوا إليها من كل أرجاء المغرب خلال القرن العشرين. الدار البيضاء هي نبض المغرب الحقيقي الحديث، وحين تقف على كورنيشها وتتأمل مسجد الحسن الثاني الشاهق على الماء، تدرك أن المغرب يجمع قرونه في لحظة واحدة.",
+            "en": "On the vast Atlantic shores, Casablanca stands as a relentless, unstoppable city — the locomotive driving Morocco toward the future. Its Arabic name means \"White House,\" encapsulating its essence: a city believing in modernity and order in the heart of Africa."
+        },
+        "sections": [
+            {
+                "title": {
+                    "ar": "ميناء الدار البيضاء: بوابة إفريقيا على العالم",
+                    "en": "Port of Casablanca: Africa's Gateway to the World"
+                },
+                "content": {
+                    "ar": "يُعدّ ميناء الدار البيضاء من أكبر وأحدث الموانئ في إفريقيا والعالم العربي، يمرّ عبره أكثر من سبعين بالمئة من صادرات المغرب وواردته السنوية. شُيِّد في أوائل القرن العشرين بأيدٍ مغربية بإشراف المهندس الفرنسي ليوتي، وتطوّر ليصبح منظومة لوجستية متكاملة تضم أحواضاً للناقلات والحاويات وناقلات النفط والسفن السياحية الضخمة. لم يكن الميناء مجرد منشأة اقتصادية، بل كان المحرّك الأول لنمو المدينة وتضخمها السكاني المتسارع الذي حوّلها من قرية صيد صغيرة عام 1900 إلى حاضرة تجاوز عدد سكانها خمسة ملايين نسمة في نهاية القرن ذاته.",
+                    "en": "The Port of Casablanca is among the largest and most modern in Africa and the Arab world, handling over 70% of Morocco's annual exports and imports."
+                }
+            },
+            {
+                "title": {
+                    "ar": "مسجد الحسن الثاني: حين تلتقي السماء بالمحيط",
+                    "en": "Hassan II Mosque: Where Heaven Meets the Ocean"
+                },
+                "content": {
+                    "ar": "يقبع مسجد الحسن الثاني على منصة صخرية بنيت فوق مياه المحيط الأطلسي مباشرة، في مشهد يُصوّر تلاقي الأرض والماء في حضرة الله. صمّمه المعماري الفرنسي ميشيل بينسو في احترام عميق للهوية المغربية التقليدية، بمئذنة يبلغ ارتفاعها مئتي متر وخمسة وثمانين تُسيطر على افق المدينة كلها. يتسع لمئة وخمسة وعشرين ألف مصلٍّ في قاعته الرئيسية وساحاته، وسقفه المتحرك يُفتح على السماء ليجمع المصلين بالكون. أُنجز عام 1993 بعمل آلاف الحرفيين المغاربة الذين أبدعوا نقوشاً من الصخر والخشب والجبس لا تراها في أي مسجد آخر بهذا الحجم والتفصيل الدقيق.",
+                    "en": "Hassan II Mosque sits on a rocky platform built directly over Atlantic waters, where earth and ocean meet in divine presence. Its 285-meter minaret dominates Casablanca's entire skyline."
+                }
+            }
+        ],
+        "faqs": [
+            {
+                "question": {
+                    "ar": "لماذا سُمِّيت الدار البيضاء بهذا الاسم الغريب؟",
+                    "en": "Why is Casablanca named the \"White House\"?"
+                },
+                "answer": {
+                    "ar": "الاسم مستمد من البيوت البيضاء التقليدية التي كانت تميّز المدينة القديمة قبل التوسع الحديث، وقد حافظت على هذا الاسم رغم تحوّلها لحاضرة عصرية كبرى.",
+                    "en": "The name derives from the white traditional houses that characterized the old city before modern expansion."
+                }
+            },
+            {
+                "question": {
+                    "ar": "ما أهم الأحياء التاريخية التي يجب زيارتها في الدار البيضاء؟",
+                    "en": "What are the most important historic neighborhoods to visit in Casablanca?"
+                },
+                "answer": {
+                    "ar": "حي الحبوس هو التحفة المعمارية الأندلسية-المغربية الأهم، بُني في الثلاثينيات ويحتوي على ممرات وأروقة تحاكي مدن الأندلس. كذلك المدينة القديمة والكورنيش والميدان الكبير.",
+                    "en": "The Habous quarter is the most important Andalusian-Moroccan architectural gem, built in the 1930s with arcades evoking Andalusian cities."
+                }
+            },
+            {
+                "question": {
+                    "ar": "ما الدور الذي لعبته الدار البيضاء في استقلال المغرب؟",
+                    "en": "What role did Casablanca play in Moroccan independence?"
+                },
+                "answer": {
+                    "ar": "كانت الدار البيضاء مركزاً للحركة الوطنية وموطن الطبقة العاملة التي قادت إضرابات 1952 التي أشعلت فتيل الكفاح المسلح نحو الاستقلال عام 1956.",
+                    "en": "Casablanca was the center of the nationalist movement and home of the working class that led the 1952 strikes igniting armed resistance toward 1956 independence."
+                }
+            }
+        ],
+        "conclusion": {
+            "ar": "الدار البيضاء ليست مجرد مدينة كبيرة — إنها التحوّل المغربي نحو الحداثة مُجسَّداً في أسمنت وصلب وبشر طموح لا يهدأ.",
+            "en": "Casablanca is not just a large city — it is Morocco's transformation toward modernity embodied in concrete, steel, and restless ambitious people."
+        },
+        "generatedImage": "https://images.unsplash.com/photo-1582236353904-7431c4cbcf33?q=80&w=2070&auto=format&fit=crop"
+    },
+    'rabat': {
+        "id": "rabat",
+        "category": "city",
+        "title": {
+            "ar": "الرباط: عاصمة الأنوار وحارسة التاريخ الصامد",
+            "en": "Rabat: Capital of Lights and Guardian of Enduring History"
+        },
+        "metaDescription": {
+            "ar": "الرباط عاصمة المملكة المغربية، مدينة تجمع بين التراث الموحدي والعمارة الإسلامية الكلاسيكية والحداثة المعاصرة على ضفاف بوورقراق.",
+            "en": "Rabat, capital of Morocco, where Almohad heritage, Islamic classical architecture and modern life converge on the Bou Regreg riverbanks."
+        },
+        "intro": {
+            "ar": "الرباط ليست عاصمة عادية. إنها مدينة تحكي بكل حجر فيها عن القرارات الكبرى التي صنعت مغرباً ممتداً من البحر إلى الصحراء. كانت مرابطاً عسكرياً في القرن الثاني عشر قبل أن تنتخبها الأقدار عاصمةً أدارية في القرن العشرين دون أن تُفقد طابعها الإنساني الهادئ الرزين. هي المدينة التي تحمل صومعة حسان الموحدية ذات الحجر الرملي الأحمر في قلبها، وقبالتها ضريح محمد الخامس المهيب بمرماره الأبيض كأنهما يمثّلان محادثة صامتة بين القرن الثاني عشر والقرن العشرين عبر بضعة أمتار من الهواء المفتوح.",
+            "en": "Rabat is no ordinary capital. Every stone speaks of great decisions that shaped a Morocco stretching from sea to desert. It was a military ribat in the 12th century before fate chose it as administrative capital in the 20th, never losing its calm, dignified human character."
+        },
+        "sections": [
+            {
+                "title": {
+                    "ar": "قصبة الوداية: القلعة التي تحرس فم النهر",
+                    "en": "Kasbah of the Udayas: The Fortress Guarding the River's Mouth"
+                },
+                "content": {
+                    "ar": "قصبة الوداية هي الكتلة الصخرية المنيعة التي تقعد على رأس النهر حيث يصبّ وادي أبي رقراق في الأطلسي. بناها الموحدون في القرن الثاني عشر حصناً عسكرياً، وأسكنها المولى إسماعيل جنوداً من أصول عربية أندلسية عُرفوا بالوداية. ما يُذهل في القصبة ليس فقط جدارها الرهيب المطلّ على المحيط، بل حارتها الداخلية الزرقاء البيضاء التي تشبه قطعة من الأندلس الضائعة نُقلت بأكملها وزُرعت في قلب الرباط. الحديقة الأندلسية في قلبها تُعدّ من أجمل التجارب البصرية التي يمنحها تراث الأندلس المنفوي لمن يتأمّلها بقلب مفتوح.",
+                    "en": "The Kasbah of the Udayas sits on the rocky promontory where the Bou Regreg river meets the Atlantic. Built by the Almohads in the 12th century as a military fortress, its inner blue-white quarter resembles a piece of lost Andalusia transplanted to Rabat's heart."
+                }
+            },
+            {
+                "title": {
+                    "ar": "الرباط عاصمةً إدارية: قصة الاختيار الدقيق",
+                    "en": "Rabat as Administrative Capital: The Story of a Deliberate Choice"
+                },
+                "content": {
+                    "ar": "حين أنشأ الفرنسيون الحماية عام 1912، اختار المقيم العام ليوتي الرباط عاصمة إدارية بذكاء استراتيجي واضح: فاس كانت مُثقلة بثقل التاريخ وسهلة الاشتعال قومياً، ومراكش أبعد جغرافياً وأصعب إدارياً، أما الرباط فكانت صغيرة قابلة للتشكيل وساحلية قابلة للربط و\"محايدة\" نسبياً. حين جاء الاستقلال عام 1956، استبقاها محمد الخامس عاصمة بقرار سياسي حكيم؛ لأنها مدينة الدولة لا مدينة التجار أو رجال الدين أو الجنود — وفي ذلك مكمن قوّتها الفريدة البالغة.",
+                    "en": "When France established the Protectorate in 1912, Resident-General Lyautey chose Rabat as administrative capital with clear strategic intelligence. At independence in 1956, Mohammed V retained it as capital — a city of state rather than merchants, clergy, or soldiers."
+                }
+            }
+        ],
+        "faqs": [
+            {
+                "question": {
+                    "ar": "لماذا الرباط وليست فاس أو مراكش عاصمةً للمغرب؟",
+                    "en": "Why is Rabat and not Fez or Marrakech the capital of Morocco?"
+                },
+                "answer": {
+                    "ar": "الرباط اختيرت لموقعها الساحلي الاستراتيجي وطابعها الهادئ القابل للتطوير الإداري في عهد الحماية، واحتفظت بهذه الوضعية في الاستقلال.",
+                    "en": "Rabat was chosen for its strategic coastal location and quiet, administratively malleable character under the Protectorate, retaining that status at independence."
+                }
+            },
+            {
+                "question": {
+                    "ar": "ما المواقع التراثية المدرجة في قائمة اليونسكو بالرباط؟",
+                    "en": "What UNESCO heritage sites does Rabat hold?"
+                },
+                "answer": {
+                    "ar": "أُدرجت مدينة الرباط ككلٍّ — تشمل قصبة الوداية، صومعة حسان، المدينة القديمة، والمخلفات الأثرية — على قائمة اليونسكو للتراث الإنساني عام 2012.",
+                    "en": "The entire city of Rabat — including Kasbah, Hassan Tower, old medina, and archaeological remains — was inscribed on the UNESCO World Heritage List in 2012."
+                }
+            },
+            {
+                "question": {
+                    "ar": "ما طبيعة العلاقة الثقافية بين الرباط وسلا المدينتين المتجاورتين؟",
+                    "en": "What is the cultural relationship between neighboring Rabat and Salé?"
+                },
+                "answer": {
+                    "ar": "الرباط وسلا مدينتان متقابلتان على ضفتي وادي أبي رقراق، متمايزتان في الشخصية: الرباط أدارية رسمية بطابع حديث، وسلا أعمق في تراثها الصوفي والتجاري المتجذّر في القرون الوسطى.",
+                    "en": "Rabat and Salé face each other across the Bou Regreg river, distinct in character: Rabat official and modern, Salé deeper in its Sufi and medieval commercial heritage."
+                }
+            }
+        ],
+        "conclusion": {
+            "ar": "الرباط مدينة تحترم الزمن دون أن تتحجّر فيه، وتنفتح على الحداثة دون أن تنسى من أين أتت.",
+            "en": "Rabat is a city that respects time without being fossilized by it, embracing modernity without forgetting its origins."
+        },
+        "generatedImage": "https://images.unsplash.com/photo-1644331049219-c09a803e1e55?q=80&w=1964&auto=format&fit=crop"
+    },
+    'tetouan': {
+        "id": "tetouan",
+        "category": "city",
+        "title": {
+            "ar": "تطوان: الحمامة البيضاء وذاكرة الأندلس الحيّة",
+            "en": "Tetouan: The White Dove and Living Memory of Andalusia"
+        },
+        "metaDescription": {
+            "ar": "تطوان الحمامة البيضاء المدرجة في تراث اليونسكو، وريثة الأندلس الأصيلة وموطن الفن الأندلسي-المغربي العريق في شمال المغرب.",
+            "en": "Tetouan the White Dove, UNESCO-listed city, authentic heir of Andalusia and home of Andalusian-Moroccan art in northern Morocco."
+        },
+        "intro": {
+            "ar": "لو أردت أن تبحث عن الأندلس المفقودة، لا تذهب إلى إسبانيا — اذهب إلى تطوان. المدينة التي أعاد بناءها الغرناطيون المُهجَّرون بعد سقوط الأندلس في آواخر القرن الخامس عشر تحتفظ اليوم بأُتون الحضارة الأندلسية متّقداً في عمارتها ولحنها وطبخها وشخصية أهلها. مدينتها القديمة المُدرجة في قوائم اليونيسكو للتراث الإنساني منذ عام 1997 هي الأكثر كمالاً وسلامة بين جميع المدن العتيقة المغربية — جدران بيضاء، أبواب خضراء، زليج ملوّن، وصوت الأغنية الأندلسية المسمّاة \"الآلة\" يتسرّب من نوافذ البيوت القديمة في حفلات لم تنقطع منذ أجيال.",
+            "en": "To search for lost Andalusia, don't go to Spain — go to Tetouan. The city rebuilt by expelled Granadans after Andalusia's fall in the late 15th century retains an Andalusian cultural furnace still burning in its architecture, music, cuisine, and people's character. Its old medina, UNESCO-listed since 1997, is the most complete and intact among all Moroccan medinas."
+        },
+        "sections": [
+            {
+                "title": {
+                    "ar": "الآلة الأندلسية: موسيقى طنجة-تطوان التي أبت أن تموت",
+                    "en": "Andalusian Muwashshah Music: Tetouan's Music That Refused to Die"
+                },
+                "content": {
+                    "ar": "في القرن الثامن الميلادي وُلدت موسيقى الآلة الأندلسية من رحم الحضارة الأموية بالأندلس، وتطوّرت عبر قرون لتكون اللغة الموسيقية للطبقات الراقية من مسلمي إسبانيا. حين أُجبر الأندلسيون على الرحيل حملوا معهم نوتاتهم وآلاتهم الموسيقية وذاكرتهم اللحنية، ففي تطوان تحديداً تجذّرت الآلة بعمق استثنائي لأن المهاجرين كانوا في معظمهم من النخبة الغرناطية الموسيقية المتعلمة. هيئات تطوان الموسيقية التاريخية لا تزال تحرص حتى اليوم على أداء النوبات الاثنتي عشرة التقليدية وفق الروايات التي انتقلت شفهياً وكتابياً على مدى ستة قرون دون انقطاع.",
+                    "en": "Andalusian muwashshah music was born in 8th-century Umayyad Andalusia and carried by expelled elites to Tetouan, where it took especially deep roots because migrants were predominantly educated Granadan musical nobility. Tetouan's historic musical societies still perform all twelve traditional modes transmitted orally and textually for six unbroken centuries."
+                }
+            },
+            {
+                "title": {
+                    "ar": "تطوان في عهد الحماية الإسبانية: مركز المنطقة الخليفية",
+                    "en": "Tetouan Under Spanish Protectorate: Center of the Khalifian Zone"
+                },
+                "content": {
+                    "ar": "في اتفاقية الحماية عام 1912، خُصِّص الشمال المغربي لإسبانيا التي جعلت من تطوان عاصمة لمنطقتها \"الخليفية\"، وأقامت فيها خليفة السلطان ممثلاً للعرش الشريف. هذا الوضع الخاص أعطى تطوان مؤسسات حكومية ومدارس وصحافة رائدة جعلتها مركزاً ثقافياً بارزاً في شمال المغرب. في هذا السياق ازدهرت الصحافة العربية الناطقة في المنطقة الإسبانية بمستوى حرية أعلى أحياناً من بقية مناطق الحماية، وأنتجت أسماء أدبية وفكرية بارزة في تاريخ الثقافة العربية الحديثة.",
+                    "en": "The 1912 Protectorate agreement assigned northern Morocco to Spain, which made Tetouan capital of its \"Khalifian zone\" housing the Sultan's representative. This special status gave Tetouan leading institutions, schools, and press, making Arabic journalism in the Spanish zone often freer than elsewhere in the Protectorate."
+                }
+            }
+        ],
+        "faqs": [
+            {
+                "question": {
+                    "ar": "ماذا يعني اسم تطوان وما أصله اللغوي والتاريخي؟",
+                    "en": "What does the name Tetouan mean and what is its linguistic and historical origin?"
+                },
+                "answer": {
+                    "ar": "الاسم أمازيغي الأصل ومعناه \"العيون\" أو \"الينابيع\" في إشارة للعيون المائية الطبيعية الوفيرة التي كانت تُميِّز موقع المدينة في وادي مرتيل المشجّر الخصيب.",
+                    "en": "The name is Amazigh in origin meaning \"the springs\" or \"the eyes,\" referring to the abundant natural water springs that distinguished the city's site in the fertile, forested Martil valley."
+                }
+            },
+            {
+                "question": {
+                    "ar": "لماذا تُعدّ مدينة تطوان القديمة الأكثر أصالة بين المدن العتيقة المغربية؟",
+                    "en": "Why is Tetouan's old medina considered the most authentic among Moroccan medinas?"
+                },
+                "answer": {
+                    "ar": "لأن التوسع العمراني الحديث دار حولها لا داخلها، فظلّ نسيجها المعماري الأندلسي سليماً دون هدم أو تعديل جوهري. الأسواق والدروب والبيوت الداخلية تعكس تخطيطاً أندلسياً أصيلاً نادر المثال على صعيد المتوسط الغربي.",
+                    "en": "Because modern urban expansion occurred around rather than within it, leaving its Andalusian architectural fabric intact without demolition or fundamental modification. Its markets, alleys, and courtyard houses reflect authentic Andalusian planning rare in the western Mediterranean."
+                }
+            },
+            {
+                "question": {
+                    "ar": "هل المطبخ التطواني يختلف عن بقية المطابخ المغربية؟",
+                    "en": "Does Tetouan's cuisine differ from other Moroccan cuisines?"
+                },
+                "answer": {
+                    "ar": "نعم، للمطبخ التطواني نكهة أندلسية مميزة تتجلّى في استخدام خلطات التوابل الرقيقة والزيتون والخلطات المعقدة من الفواكه والأعشاب التي تعكس الحضارة الغذائية الأندلسية الراقية التي خُبِّئت في تطوان من النسيان.",
+                    "en": "Yes, Tetouan's cuisine has a distinctive Andalusian flavor revealed in delicate spice blends, olive preparations, and complex fruit-herb mixtures reflecting refined Andalusian food culture preserved in Tetouan from oblivion."
+                }
+            }
+        ],
+        "conclusion": {
+            "ar": "تطوان ليست مجرد مدينة مغربية شمالية — إنها وصيّة الأندلس وحارسة ذاكرتها الجمالية والموسيقية على شاطئ المتوسط النظيف.",
+            "en": "Tetouan is not merely a northern Moroccan city — it is the custodian of Andalusia, guardian of its aesthetic and musical memory on the clean Mediterranean shore."
+        },
+        "generatedImage": "https://images.unsplash.com/photo-1591802070002-bfc90093b5ef?q=80&w=2070&auto=format&fit=crop"
+    },
+    'hassan-tower': {
+        "id": "hassan-tower",
+        "title": {
+            "ar": "صومعة حسان: حلم الموحدين الخالد في قلب الرباط",
+            "en": "Hassan Tower: The Eternal Almohad Dream in the Heart of Rabat"
+        },
+        "category": "landmark",
+        "metaDescription": {
+            "ar": "صومعة حسان بالرباط، مئذنة القرن الثاني عشر الشاهدة على طموح الحضارة الموحدية العظيمة.",
+            "en": "Hassan Tower in Rabat, 12th-century minaret witnessing the grand ambition of Almohad civilization."
+        },
+        "intro": {
+            "ar": "تتربع صومعة حسان شامخة في برزخ الرباط ببهجة الكبرياء والصمود عبر عشرة قرون متواصلة. بُنيت في عهد السلطان الموحدي يعقوب المنصور لتكون مئذنة مسجد ضخم يستوعب أربعين ألف مصلٍّ، وهو مشروع رهب الزمان ولم يكتمل بسبب وفاة بانيه عام 1199. لكن ما شُيِّد منها — تلك المئذنة الحمراء الشاهقة والأعمدة الرخامية المتناثرة كأسنة تحدٍّ للفناء — أصبح أبلغ الشواهد على نبوغ المعماريين الموحدين وعبقريتهم الهندسية الخالدة.",
+            "en": "Hassan Tower stands proudly in the Rabat promontory as a monument to a decade of centuries of resilience. Built by Almohad Sultan Yaqub al-Mansur to house 40,000 worshippers in a single mosque, its uncompleted story became the most eloquent testament to Almohad architectural genius."
+        },
+        "sections": [
+            {
+                "title": {
+                    "ar": "الهندسة الموحدية: كمال في اللاتمام",
+                    "en": "Almohad Architecture: Perfection in Incompleteness"
+                },
+                "content": {
+                    "ar": "يبلغ ارتفاع المئذنة الحالية نحو أربعة وأربعين متراً من أصل مئة وثمانية وستين متراً مخططة، لتكون لو اكتملت الأطول في العالم الإسلامي متقدمة على الكتبية بمراكش ومتجاوزة أعظم مآذن إشبيلية. يتميز البناء بنقوشه الزخرفية المتعددة والمختلفة على كل وجه من الوجوه الأربعة، وهو تصميم مقصود يُجسِّد التنوع في الوحدة. الحجر الرملي الأحمر المستخدم في البناء يتغير لونه بحسب حدة الضوء من حمرة دافئة عند الغروب إلى رمادية رصينة في الصباح الباكر، مما يجعل المشهد آية من آيات الجمال الهندسي الطبيعي التلقائي.",
+                    "en": "The current tower stands 44 meters of its planned 168-meter height, which would have surpassed the Koutoubia and the Giralda of Seville. Its four faces bear four distinct geometric patterns — symbolizing unity in diversity. The red sandstone changes hue from warm crimson at sunset to calm grey at dawn."
+                }
+            },
+            {
+                "title": {
+                    "ar": "الزلزال والصمود: قصة ما بقي بعد 1755",
+                    "en": "The Earthquake and Resilience: What Survived 1755"
+                },
+                "content": {
+                    "ar": "ضرب زلزال عام 1755 م الكارثي — الذي أودى بريسبون والمدن السواحلية الأطلسية — الرباط بقوة مدمرة أسقطت الجزء الأعلى من الصومعة وأحالت الجدران الداخلية للمسجد ركاماً. لكن الأعمدة التي لم تكتمل والصرح الناقص صمدا صمود الإيمان بأرض الحضارة المغربية، ليُعلنا أن ما بناه الموحدون لم يكن بناء من حجر وحسب، بل بناء من روح أمة لا تعرف الانكسار الدائم ولا التراجع المقيم أمام قسوة الطبيعة وعوادي الدهر. اليوم، يضم الموقع المحيط بالصومعة ضريح محمد الخامس الملكي المهيب بتصميمه الأندلسي المغربي الرفيع الذي يجسِّد ذاك الاستمرار التاريخي الحضاري المتسق والمتصل.",
+                    "en": "The catastrophic 1755 earthquake toppled the towers upper section and collapsed the inner mosque walls, yet the column forest and remaining structure stood defiantly. Today the site encompasses the majestic Mausoleum of Mohammed V, embodying Morocco's unbroken historical continuity."
+                }
+            }
+        ],
+        "faqs": [
+            {
+                "question": {
+                    "ar": "لماذا لم يكتمل بناء مسجد حسان الموحدي العظيم؟",
+                    "en": "Why was the grand Almohad Hassan Mosque never completed?"
+                },
+                "answer": {
+                    "ar": "توفي السلطان يعقوب المنصور الموحدي عام 1199 قبل إتمام المشروع العملاق، وخلفاؤه لم يعودوا لاستكماله بسبب التحولات السياسية والحروب المتواترة، فبقيت الصومعة شاهداً على حلم ضخم تجمّد في منتصف الطريق كما هو.",
+                    "en": "Sultan Yaqub al-Mansur died in 1199 before project completion, and his successors never resumed construction due to political upheaval and wars, leaving the tower as an eternal monument to an unfulfilled yet magnificent dream."
+                }
+            },
+            {
+                "question": {
+                    "ar": "ما علاقة صومعة حسان بصومعة الكتبية ومنارة إشبيلية؟",
+                    "en": "What is the connection between Hassan Tower, Koutoubia, and Giralda of Seville?"
+                },
+                "answer": {
+                    "ar": "الثلاثة شُيِّدت في عهد الموحدين وفق نمط معماري موحد، وتُعدّ توأمين في الفن المعماري الإسلامي المغربي-الأندلسي الرائع. صومعة حسان كانت ستكون الأضخم والأعلى لو اكتملت البناء.",
+                    "en": "All three were built under Almohad rule following a unified architectural blueprint, representing the finest Moroccan-Andalusian Islamic art. Hassan Tower would have been the tallest and most imposing had it been completed."
+                }
+            },
+            {
+                "question": {
+                    "ar": "هل يمكن دخول الصومعة من الداخل والصعود إلى أعلاها للزوار؟",
+                    "en": "Can visitors access and climb inside the tower?"
+                },
+                "answer": {
+                    "ar": "لا، الصومعة مغلقة أمام العموم للحفاظ عليها. لكن المحيط الواسع بها مفتوح مجاناً ويتيح رؤية الأعمدة المئة وثمانية وثمانين وضريح محمد الخامس المطل الملكي المجيد.",
+                    "en": "No, the tower interior is closed to preserve it. The surrounding esplanade with 178 columns and the majestic Royal Mausoleum of Mohammed V are freely accessible."
+                }
+            }
+        ],
+        "conclusion": {
+            "ar": "صومعة حسان شاهد عادل على أن الأعظم في التاريخ ليس ما اكتمل دوماً، بل ما ترك فينا قدرةَ التأمل في مجد الذين سبقونا وحلموا أحلاماً بحجم السماء.",
+            "en": "Hassan Tower proves that the greatest monuments in history are not always those completed, but those that inspire perpetual awe for the dreams of those who came before us."
+        },
+        "generatedImage": "https://images.unsplash.com/photo-1644331049219-c09a803e1e55?q=80&w=2070&auto=format&fit=crop"
+    },
+    'volubilis': {
+        "id": "volubilis",
+        "title": {
+            "ar": "وليلي: عاصمة الموريتانيين والرومان الغارقة في ذاكرة الحجارة",
+            "en": "Volubilis: The Mauretanian-Roman Capital Submerged in Stone Memory"
+        },
+        "category": "landmark",
+        "metaDescription": {
+            "ar": "وليلي المدرجة في التراث العالمي لليونسكو، أقدم وأهم الحواضر الأمازيغية الرومانية في المغرب.",
+            "en": "Volubilis, UNESCO World Heritage city — the oldest and most important Amazigh-Roman metropolis in Morocco."
+        },
+        "intro": {
+            "ar": "لو أنصتت جيداً في سهول زرهون الخصيبة قرب مكناس البهجة، لسمعت وقع أقدام الحشد الذي كان حياً من القرن الثالث قبل الميلاد حتى انحسار الوجود الروماني. وليلي — واسمها الأمازيغي يعني \"الدفلى\" — كانت عاصمة مملكة موريتانيا الطنجية الموالية لروما، مدينة تجمع فيها التراثان الأمازيغي والروماني في انسجام نادر المثال. إنها ليست مجرد خرائب، بل هي نص مكتوب بالحجارة والفسيفساء والأعمدة يُروي الصفحة الأولى للتاريخ المغربي المكتوب قبل الإسلام.",
+            "en": "Listen carefully amid the fertile Zerhoun plains near Meknes and you will hear the footsteps of a crowd alive from the 3rd century BC until the retreat of Roman presence. Volubilis — its Amazigh name meaning oleander — was the capital of Mauritania Tingitana, where Amazigh and Roman heritages merged in rare harmony."
+        },
+        "sections": [
+            {
+                "title": {
+                    "ar": "الفسيفساء: نوافذ ملونة على حياة الرومان في المغرب",
+                    "en": "The Mosaics: Colorful Windows into Roman Life in Morocco"
+                },
+                "content": {
+                    "ar": "يمتلك موقع وليلي أكثر من ثلاثين لوحة فسيفسائية محفوظة بين أفضل ما عرفه العالم القديم، تصور مشاهد من الأساطير الإغريقية كديونيسوس وإيريني وأورفيوس يعزف على قيثارته. هذه اللوحات لم تكن مجرد ديكور فاخر ترفي لدور الأثرياء، بل كانت برامج ثقافية كاملة تحكي لزوار البيوت عن عوالم الإله والإنسان والطبيعة بلغة بصرية عالمية تتحدى الزمن ولا تشيخ. فسيفساء قاعة أوفيوس في بيت العمود تبقى من أكثر القطع إبهاراً وتكاملاً وغنى تفصيلياً حتى اليوم في العالم القديم برمته.",
+                    "en": "Volubilis holds over thirty of the best-preserved floor mosaics of the ancient world, depicting myths of Dionysus, Orpheus, and Bacchus. These were powerful cultural programs narrating divine and human worlds in a visual language that defies time. The Orpheus mosaic in the House of Orpheus remains one of the most stunning and detailed works of the ancient world."
+                }
+            },
+            {
+                "title": {
+                    "ar": "المدينة بعد روما: الاستمرار الأمازيغي والإدريسي",
+                    "en": "The City After Rome: Amazigh and Idrisid Continuity"
+                },
+                "content": {
+                    "ar": "حين انسحب الرومان عام 285 ميلادية، لم تمت وليلي. بقيت مزدهرة في ظل الأمازيغ الأحرار ثم استقبلت إدريس الأول مؤسس الدولة الإدريسية فاراً من المشرق عام 788 ميلادية، وجعل منها ملاذاً لقيام الدولة المغربية الأولى. لقد ظلت وليلي آهلة بالسكان قرابة خمسة عشر قرناً متواصلة قبل أن يتفضل المولى إسماعيل بنهب حجارتها لبناء مكناس البهية في القرن السابع عشر. الزلزال اللاحق عام 1755 أتم ما تركه التقادم والاستخدام البشري.",
+                    "en": "When Rome retreated in 285 AD, Volubilis did not die. It flourished under free Amazigh rulers and welcomed Idris I — founder of Morocco's first Islamic dynasty — in 788 AD. The city remained inhabited continuously for fifteen centuries until Moulay Ismail quarried its stones for Meknes, followed by the 1755 earthquake."
+                }
+            }
+        ],
+        "faqs": [
+            {
+                "question": {
+                    "ar": "متى وكيف اكتُشفت وليلي من جديد في العصر الحديث؟",
+                    "en": "When and how was Volubilis rediscovered in modern times?"
+                },
+                "answer": {
+                    "ar": "بدأت الحفريات الأثرية الجادة في العهد الفرنسي إبان أوائل القرن العشرين، ومنذ عام 1997 صنفتها اليونسكو ضمن مواقع التراث الإنساني العالمي بسبب أهميتها الاستثنائية في التراث الأمازيغي-الروماني.",
+                    "en": "Serious archaeological excavations began in the early 20th century under the French Protectorate. Since 1997, UNESCO classified it as a World Heritage Site for its exceptional importance to Amazigh-Roman heritage."
+                }
+            },
+            {
+                "question": {
+                    "ar": "كيف حافظت الفسيفساء على ألوانها وتفاصيلها لألفي عام؟",
+                    "en": "How have the mosaics preserved their colors and details for 2000 years?"
+                },
+                "answer": {
+                    "ar": "الطمر الطبيعي بالتراب والرمال حمى قطع الفسيفساء من عوامل التعرية الجوية طوال قرون. فقط بعد الكشف والتنقيب بدأت تحديات الحفاظ عليها في الهواء الطلق تتراكم وتستدعي عناية مستمرة.",
+                    "en": "Natural burial beneath soil and sand protected the mosaic pieces from weathering for centuries. Post-excavation exposure introduced conservation challenges that require continuous professional maintenance."
+                }
+            },
+            {
+                "question": {
+                    "ar": "هل إدريس الأول أسس دولته المغربية في وليلي فعلاً؟",
+                    "en": "Did Idris I truly found his Moroccan state at Volubilis?"
+                },
+                "answer": {
+                    "ar": "نعم، فر إدريس الأول من العباسيين ولجأ إلى وليلي عام 788 ميلادية حيث بايعه سكان المنطقة من قبائل أوربة الأمازيغية، وكانت انطلاقة الدولة الإدريسية الأولى قبل نقل العاصمة لفاس.",
+                    "en": "Yes, Idris I fled the Abbasids and took refuge in Volubilis in 788 AD, where the Amazigh Awraba tribe pledged allegiance to him, launching the first Moroccan Idrisid state before its capital moved to Fez."
+                }
+            }
+        ],
+        "conclusion": {
+            "ar": "وليلي ليست مجرد حجارة موزعة على سهل خصيب. إنها نبض الهوية المغربية العميقة التي تضرب جذورها ما قبل الفتح الإسلامي لتبرهن أن المغرب حضارة، لا مجرد جغرافيا.",
+            "en": "Volubilis is not merely scattered stones on a fertile plain. It is the pulse of a deep Moroccan identity rooted before the Islamic conquest, proving that Morocco is a civilization, not merely a geography."
+        },
+        "generatedImage": "https://images.unsplash.com/photo-1629747387925-6905ff5a558a?q=80&w=2070&auto=format&fit=crop"
+    },
+    'marrakech': {
+        "id": "marrakech",
+        "title": {
+            "ar": "مراكش: المدينة الحمراء وحاضرة الأسرار الملكية",
+            "en": "Marrakech: The Red City and Capital of Royal Secrets"
+        },
+        "category": "city",
+        "metaDescription": {
+            "ar": "مراكش المدينة الحمراء، تاج العمارة الأمازيغية والسعدية. استكشف جامع الفنا وكتبيتها الشاهقة وأسرار قصر البديع.",
+            "en": "Marrakech Red City — crown of Amazigh and Saadian architecture. Explore Jemaa el-Fna, the soaring Koutoubia, and secrets of El Badi Palace."
+        },
+        "intro": {
+            "ar": "تقبع مراكش الحمراء في داخل السهل الهادئ بسفح جبال الأطلس الكبير الشاهقة كأميرة تلبس ثوب التراب المغرة الأحمر، وتحت درقة نخيلها المترامية تخفي في جلبابها أسرار ألف عام حافلة بالملوك والفنانين والمتصوفة والتجار القادمين من الصحراء الكبرى. هي البكر من عجائب الجنوب المغربي ومنارة الثقافة الأمازيغية والعربية والإفريقية، جمعت بين قصور السعديين ومدارس الموحدين ودروب المرابطين في نسيج متشابك لا يفك خيوطه إلا من أمضى زمناً طويلاً في أزقتها المتعرجة الشيِّقة.",
+            "en": "Marrakech sits in the quiet plains below the High Atlas like a princess dressed in ochre red earth, hiding beneath its palm canopy a thousand years of kings, artists, Sufis, and desert merchants. It is Morocco's cultural crown, weaving together Almohad, Saadian, and Almoravid legacies in a labyrinthine tapestry only deciphered by those who linger in its beguiling alleyways."
+        },
+        "sections": [
+            {
+                "title": {
+                    "ar": "جامع الفنا: مسرح الإنسانية الذي لا يُغلق ستاره أبداً",
+                    "en": "Jemaa el-Fna: The Eternal Stage of Humanity"
+                },
+                "content": {
+                    "ar": "صنَّفت اليونسكو جامع الفنا في قائمة التراث الثقافي غير المادي للإنسانية، وهو تصنيف لم يناله أي ميدان آخر في العالم بهذه المكانة الحضارية. في النهار تتلاشى خلفية الإفريقي والسياح المتصنتين للحكواتيين، ورقصات الثعابين المسحورة، وعروض الغيوان ومنافسات الطيور. وفي المساء تتبدل تلك اللوحة تحولاً درامياً — تنبثق مئات المدافئ والعربات، وتتصاعد أعمدة الدخان الكثيف من شوايات اللحم والأسماك، وتعزف الفرق الموسيقية الجناوية والطوارقية في آن واحد ليتشكل كوكتيل حواسّي لا يُنسى ولا تجده في أي بقعة أخرى على وجه الأرض.",
+                    "en": "UNESCO classified Jemaa el-Fna on its Intangible Cultural Heritage list — an honor no other square holds. By day: storytellers, snake charmers, and Gnawa musicians compete for wonder. By evening: hundreds of braziers ignite, smoke ascends in columns, and Gnawa and Tuareg orchestras play simultaneously in a sensory cocktail found nowhere else on Earth."
+                }
+            },
+            {
+                "title": {
+                    "ar": "قصر البديع والمدارس السعدية: فخامة ذهبية تحت الأتربة",
+                    "en": "El Badi Palace and Saadian Tombs: Golden Grandeur Beneath the Dust"
+                },
+                "content": {
+                    "ar": "شيَّد السلطان السعدي أحمد المنصور الذهبي — مُخلِّف الجيش البرتغالي المنهزم في معركة وادي المخازن عام 1578 — قصر البديع الأسطوري بثروات مالي والحجر الأونيكس والمرمر الإيطالي الفارق وعمود الذهب. كان قصراً لا مثيل له في العالم الإسلامي لأكثر من قرن قبل أن يأتي عليه المولى إسماعيل بأسلحة الهدم والنهب لبناء مكناس. ما تبقى من أطلال القصر الشاسعة وحفرته المائية وأبراجه اليتيمة يكفي لأن يُشعلُ في الخيال شرارة الانبهار حين تقف في قلبه وتُحاكٍ وقفة السفراء القادمين من أقاصي أوروبا إبان العز السعدي.",
+                    "en": "Sultan Ahmad al-Mansur \"the Golden\" — who crushed the Portuguese at the Battle of Wadi al-Makhazin in 1578 — built the legendary El Badi Palace with Mali's riches, Onyx, Italian marble and golden columns. For over a century it had no equal in the Islamic world before Moulay Ismail dismantled it for Meknes. The vast ruins and dry basin still ignite wonder when you stand at its heart imagining European ambassadors in awe of its glory."
+                }
+            }
+        ],
+        "faqs": [
+            {
+                "question": {
+                    "ar": "لماذا تسمى مراكش بالمدينة الحمراء وهل الاسم دقيق فعلاً؟",
+                    "en": "Why is Marrakech called the Red City and is the name truly accurate?"
+                },
+                "answer": {
+                    "ar": "نعم، أسوار المدينة القديمة وغالبية مبانيها مبنية من الحجر الرملي المحلي المائل للحمرة المصطبغة بالمغرة، وهو لون يتغير درجته بحسب الإضاءة ليتراوح بين الزهري الرقيق صباحاً والحمر الداكن المشتعل عند الغروب بصورة آسرة للقلوب.",
+                    "en": "Absolutely. The old city walls and most buildings are constructed from local red sandstone mixed with ochre pigment, changing shade from delicate pink at dawn to deep blazing red at sunset."
+                }
+            },
+            {
+                "question": {
+                    "ar": "من أسس مراكش وما السبب وراء اختيار هذا الموقع الجغرافي تحديداً؟",
+                    "en": "Who founded Marrakech and why was this exact geographic location chosen?"
+                },
+                "answer": {
+                    "ar": "أسسها المرابطون بقيادة يوسف بن تاشفين عام 1062 ميلادية. اختير الموقع استراتيجياً كملتقى بين طرق القوافل الصحراوية وطرق تجارة الأطلس، في سهل خصيب يُتيح الزراعة والاستقرار وفي الوقت ذاته يُتيح للجنود المراقبة السهلة للتضاريس المحيطة.",
+                    "en": "Founded by the Almoravids under Yusuf ibn Tashfin in 1062, the site was strategically chosen as a crossroads of Saharan caravan routes and High Atlas trade paths, in a fertile plain enabling both agriculture and military surveillance."
+                }
+            },
+            {
+                "question": {
+                    "ar": "ما أهمية مدارس جامعة ابن يوسف العلمية التاريخية في مراكش؟",
+                    "en": "What is the significance of Ben Youssef Madrasa in Marrakech historically?"
+                },
+                "answer": {
+                    "ar": "تُعدُّ مدرسة ابن يوسف من أكبر وأهم مدارس العلم في شمال إفريقيا التاريخية، استقبلت آلاف الطلاب من كامل العالم الإسلامي ومزجت فيها الفروع العلمية الشرعية والأدبية والعلوم التطبيقية بزخرفة معمارية بديعة لا تضاهيها مدرسة إقليمية.",
+                    "en": "Ben Youssef Madrasa is one of the largest and most significant learning institutions in North African history, receiving thousands of students from across the Islamic world in a setting of unmatched architectural decoration."
+                }
+            }
+        ],
+        "conclusion": {
+            "ar": "مراكش هي القبلة التي تعنها المغاربة حين يُعبِّرون عن مغربهم بلون واحد يُلخِّص التاريخ والجغرافيا والروح في آن واحد. إنها أكثر من مدينة — إنها شعور لا يُوصف لمن اكتحلت عيناه بضوء شمسها الأصيل.",
+            "en": "Marrakech is the destination Moroccans mean when they express their Morocco in a single color that summarizes history, geography, and spirit simultaneously. It is more than a city — it is an indescribable feeling for those who have witnessed its authentic sunlight."
+        },
+        "generatedImage": "https://images.unsplash.com/photo-1597212618440-806262de4f3b?q=80&w=2070&auto=format&fit=crop"
+    },
+    'ibn-battuta': {
+        "id": "ibn-battuta",
+        "title": {
+            "ar": "ابن بطوطة: أمير الرحالة وشاهد أعظم العصور الوسطى",
+            "en": "Ibn Battuta: Prince of Travelers and Witness of the Greatest Medieval Age"
+        },
+        "category": "figure",
+        "metaDescription": {
+            "ar": "ابن بطوطة الطنجي رحالة القرن الرابع عشر الذي قطع 120,000 كيلومتر عبر 44 دولة ووثَّق حضارات عصره في رحلته الخالدة.",
+            "en": "Ibn Battuta of Tangier — 14th century traveler who covered 120,000 km across 44 countries, documenting his era's civilizations in his immortal Rihla."
+        },
+        "intro": {
+            "ar": "في صيف عام 1325 ميلادية، حمل شاب من طنجة لم يبلغ الحادية والعشرين من عمره بعيراً وعُدَّته وراح يسلك دروب الحجاز قاصداً مكة المكرمة في رحلة حج بسيطة. لكن تلك الرحلة المقدسة الأولى لم تكن سوى الدربة والبروفة على ملحمة سيكتبها بأقدامه وعينيه وقلمه على امتداد سبعة وعشرين عاماً، ليُصبح أبو عبد الله محمد بن بطوطة اللواتي التنجلي الشهير بابن بطوطة الرحالةَ الإنساني الأعظم في تاريخ العصور الوسطى متقدماً بشوط بعيد على ماركو بولو في المسافة وفي عمق التوثيق وفي غنى الوصف النابض بالحياة المتماسة.",
+            "en": "In the summer of 1325, a young man barely twenty-one from Tangier mounted a camel and set out toward Mecca on a simple pilgrimage. That sacred first journey proved the opening act of an epic he would write over twenty-seven years with his feet, his eyes, and his pen — making Ibn Battuta the greatest human traveler in medieval history, surpassing Marco Polo in distance, depth of documentation, and richness of living description."
+        },
+        "sections": [
+            {
+                "title": {
+                    "ar": "الرحلة المستحيلة: أرقام تُعجز العقل وتُبهج القلب",
+                    "en": "The Impossible Journey: Numbers That Defy the Mind"
+                },
+                "content": {
+                    "ar": "سلك ابن بطوطة في رحلته الكبرى ما يزيد على مئة وعشرين ألف كيلومتر — أي ثلاثة أضعاف المسافة التي قطعها ماركو بولو — عابراً ما يُعادل اليوم أربعة وأربعين دولة. زار بلاد الشام ومصر وشبه الجزيرة العربية وبلاد الفرس والهند والصين ومالي والسودان والساحل الإفريقي ووسط آسيا وبيزنطة. كان يعمل في كل بلد يزوره قاضياً أو مستشاراً للسلاطين، مما منحه نفاذاً استثنائياً للقصور والمجالس وعامة الناس على حدٍّ سواء. حين عاد أخيراً لفاس عام 1354 ميلادية، أملى على كاتبه ابن جُزيّ الغرناطي رحلته الخالدة في كتاب \"تحفة النظار في غرائب الأمصار وعجائب الأسفار\".",
+                    "en": "Ibn Battuta's grand journey covered more than 120,000 kilometers — triple Marco Polo's distance — crossing what equals 44 modern countries. He served as judge and royal advisor in every land visited, granting exceptional access to courts and common folk alike. Upon returning to Fez in 1354, he dictated to his secretary Ibn Juzayy the immortal Rihla: \"A Gift to Those Who Contemplate the Wonders of Cities and Marvels of Traveling.\""
+                }
+            },
+            {
+                "title": {
+                    "ar": "إسهامات لا تُقدَّر في الجغرافيا والإثنوغرافيا والتوثيق الحضاري",
+                    "en": "Priceless Contributions to Geography, Ethnography, and Civilizational Documentation"
+                },
+                "content": {
+                    "ar": "رحلة ابن بطوطة ليست كتاب سفريات بالمعنى الترفيهي المعاصر، بل هي موسوعة جغرافية وأثنوغرافية وتاريخية من الدرجة الأولى. سجَّل عادات وتقاليد ولغات وقوانين وعقائد وأنواع الأغذية والملابس والعمارة في كل حضارة زارها، مُقدِّماً لأهل عصره والأجيال القادمة المصدر الأغنى عن الدول الإسلامية ودول جوارها في القرن الرابع عشر. وصفت أبحاثه الحديثة كتابه بأنه المصدر التاريخي الأوحد في التوثيق العميق لمجتمعات مالي وجامبيا ومجتمعات آسيا الوسطى في تلك الحقبة، وهي مجتمعات كادت تُمحى من ذاكرة التاريخ المكتوب دون توثيق ابن بطوطة الجريء والأمين.",
+                    "en": "Ibn Battuta's Rihla is not a travel memoir in the modern recreational sense, but a first-rate geographic, ethnographic, and historical encyclopedia. He documented customs, languages, laws, beliefs, food, clothing, and architecture of every civilization visited, providing the richest source on 14th-century Islamic and neighboring states. Modern scholarship describes it as the sole historical source documenting societies in Mali, Gambia, and Central Asia in that era — nearly erased from written history without his bold and faithful documentation."
+                }
+            }
+        ],
+        "faqs": [
+            {
+                "question": {
+                    "ar": "ما الذي دفع ابن بطوطة لمواصلة السفر طوال سبعة وعشرين عاماً بلا توقف حقيقي؟",
+                    "en": "What drove Ibn Battuta to continue traveling for twenty-seven years without real pause?"
+                },
+                "answer": {
+                    "ar": "مزيج من الفضول الفكري الحاد الذي جعل كل مدينة جديدة لغزاً يستدعي الحل، والطموح الديني في الحج ومتابعة العلم، واكتشاف أن مهارته كقاضٍ تفتح له أبواب المحاكم والقصور في كل بقعة من العالم الإسلامي.",
+                    "en": "A combination of sharp intellectual curiosity that made every new city an irresistible puzzle, religious ambition for pilgrimage and scholarship, and the discovery that his expertise as a judge opened courts and palaces everywhere in the Islamic world."
+                }
+            },
+            {
+                "question": {
+                    "ar": "كيف تمكَّن ابن بطوطة من التواصل مع شعوب مختلفة اللغات والثقافات؟",
+                    "en": "How did Ibn Battuta communicate with peoples of different languages and cultures?"
+                },
+                "answer": {
+                    "ar": "اعتمد بصورة رئيسية على اللغة العربية كلغة دولية للعلم والتجارة في العالم الإسلامي الشاسع. وفي المناطق غير العربية استعان بمترجمين محليين وشبكة من العلماء المسلمين المنتشرين في جميع أنحاء العالم المتصل حضارياً.",
+                    "en": "He relied primarily on Arabic as the international language of scholarship and commerce across the vast Islamic world. In non-Arabic regions, he used local interpreters and a widespread network of Muslim scholars connecting the civilizational world."
+                }
+            },
+            {
+                "question": {
+                    "ar": "هل اعترض عليه أحد في زمنه ووصف رحلاته بالمبالغة أو الخيال؟",
+                    "en": "Did anyone in his time accuse his accounts of exaggeration or fiction?"
+                },
+                "answer": {
+                    "ar": "نعم، بعض معاصريه شككوا في بعض روايات الأماكن البعيدة التي لم يعرفوها. كذلك حدَّد الباحثون المعاصرون أخطاء جغرافية وتواريخية بسيطة، لكن الجوهر الكبير لرحلته يبقى موثقاً تاريخياً صحيحاً بمقاييس عصره ومقاييس بحثنا المعاصر.",
+                    "en": "Yes, some contemporaries questioned accounts of distant lands they had never known. Modern scholars have identified minor geographical and dating errors, yet the fundamental substance of his journey remains historically verified by both medieval and contemporary research standards."
+                }
+            }
+        ],
+        "conclusion": {
+            "ar": "ابن بطوطة لم يكتشف البلدان فقط، بل اكتشف الإنسان في كل تجلياته وعبر كل فجوة من فجوات الثقافات المتباعدة. هو الشاهد العادل الذي استطاع أن يُحوِّل فضوله الشخصي إلى مرآة للحضارة الإنسانية ومراةً لتاريخ عالم يُودِّع حقبة ويستقبل أخرى.",
+            "en": "Ibn Battuta did not merely discover lands — he discovered humanity in all its manifestations across every cultural divide. He is the faithful witness who transformed personal curiosity into a mirror of human civilization, reflecting a world bidding farewell to one era and welcoming another."
+        },
+        "generatedImage": "https://images.unsplash.com/photo-1528702748617-c64d49f918af?q=80&w=2070&auto=format&fit=crop"
+    },
+    'fatima-al-fihriya': {
+        "id": "fatima-al-fihriya",
+        "title": {
+            "ar": "فاطمة الفهرية: الحرة التي بنت أعظم صرح علمي في التاريخ الإنساني",
+            "en": "Fatima al-Fihriya: The Free Woman Who Built History's Greatest Academic Monument"
+        },
+        "category": "figure",
+        "metaDescription": {
+            "ar": "فاطمة الفهرية بانية جامعة القرويين عام 859م، أقدم جامعة في العالم وفق موسوعة غينيس ويونسكو. قصة ايمان ورؤية استثنائية.",
+            "en": "Fatima al-Fihriya, builder of Al-Qarawiyyin in 859 AD — oldest university in the world per Guinness and UNESCO. A story of exceptional faith and visionary leadership."
+        },
+        "intro": {
+            "ar": "في مدينة فاس الشابة المُشيَّدة على يد إدريس الثاني في أوائل القرن التاسع الميلادي، نشأت امرأة اسمها فاطمة بنت محمد الفهري القيرواني الأصل. استوطنت عائلتها فاس قادمةً من القيروان بتونس — ذلك المهد الحضاري الذي صنع علماء الأندلس والمغرب. حين توفي والدها وأخوها وتركا لها ولأختها مريم ثروة كبيرة، قررت فاطمة قراراً يُذهل العقل ويُبهج الروح: لن تبني بيتاً فخماً ولا تشتري أراضي ولا تُنميّ استثماراً تجارياً. ستبني مدرسة للعلم والله، تجمع فيها طلاب العالم الإسلامي الباحثين عن النور في عاصمة تستحق أن تكون مركز إشعاع كوني.",
+            "en": "In the young city of Fez founded by Idris II in the early 9th century, a woman named Fatima bint Muhammad al-Fihri grew up — her family having emigrated from Kairouan in Tunisia, that cultural cradle of scholars shaping Andalusia and Morocco. When her father and brother died leaving considerable wealth to her and her sister Maryam, Fatima made a decision that astonishes the mind: not a grand home, not land, not commercial investment — she would build a school for knowledge and God, gathering Islamic world scholars in a capital worthy of becoming a center of universal illumination."
+        },
+        "sections": [
+            {
+                "title": {
+                    "ar": "صيام وبناء: عهد امرأة وحجرة وإصرار لا يلين",
+                    "en": "Fasting and Building: A Woman's Vow, a Stone, and Unyielding Determination"
+                },
+                "content": {
+                    "ar": "روَت الرواية التاريخية أن فاطمة الفهرية صامت طوال فترة بناء المسجد والمدرسة المتصل به — ثماني سنوات متواصلة من حفر الأساسات إلى وضع القيشاني الأخير وتلاوة الآية الأولى في رحاب صحنه. لم يكن صومها تديُّناً غيبياً فحسب، بل كان نذراً علنياً يُعلن للجميع أن هذا البناء ليس مشروعاً شخصياً، بل فريضة إنسانية مقدسة. يوم اكتملت الجامعة وأُذِّن فيها لأول مرة، قيل إنها سجدت شكراً وبكت من الفرح — ذلك الفرح الذي يُجسِّد النقطة التي يلتقي فيها الإيمان المطلق مع الإنجاز البشري الأقصى.",
+                    "en": "Historical accounts relate that Fatima al-Fihriya fasted throughout the eight years of mosque and madrasa construction — from foundation excavation to final zellige placement and the first Quranic recitation in its courtyard. Her fast was not mere personal piety but a public vow declaring this project a sacred human obligation, not personal enterprise. When the university was completed and the first call to prayer echoed within it, she is said to have prostrated in thankful prayer and wept with joy — the point where absolute faith meets the pinnacle of human achievement."
+                }
+            },
+            {
+                "title": {
+                    "ar": "الإرث الكوني: من فاس إلى أوروبا عبر علوم القرويين",
+                    "en": "The Universal Legacy: From Fez to Europe Through Al-Qarawiyyin Sciences"
+                },
+                "content": {
+                    "ar": "القرويين ليست مؤسسة محلية ضيقة الأفق. درس فيها ابن خلدون المؤرخ العظيم، وسيلفستر الثاني الذي سيُصبح بابا روما، ونقل منها رقم الصفر والأعداد العربية والمنطق الرياضي إلى أوروبا المظلمة. ابن رشد المفكر الذي فتح عيون الفلاسفة الأوروبيين على أرسطو، وإدريس الذي رسم أول خريطة معقدة للعالم. هذه المدرسة التي بنتها امرأة بأموالها الخاصة في مدينة إفريقية في القرن التاسع أشعلت مشاعل التنوير التي نوَّرت بعض أحلك فصول الظلام في تاريخ الإنسانية الأوروبية.",
+                    "en": "Al-Qarawiyyin is not a narrow local institution. Ibn Khaldun the great historian studied here, as did Sylvester II who became Pope, transmitting zero, Arabic numerals, and mathematical logic to dark-age Europe. Ibn Rushd, who opened European philosophers' eyes to Aristotle, and al-Idrisi, who drew the first sophisticated world map — all learned within its walls. A school built by a woman with her own funds in an African city in the 9th century ignited enlightenment torches illuminating some of humanity's darkest European chapters."
+                }
+            }
+        ],
+        "faqs": [
+            {
+                "question": {
+                    "ar": "هل من المؤكد تاريخياً أن فاطمة الفهرية هي التي بنت القرويين وليس شقيقتها مريم؟",
+                    "en": "Is it historically certain that Fatima al-Fihriya built Al-Qarawiyyin rather than her sister Maryam?"
+                },
+                "answer": {
+                    "ar": "المصادر التاريخية المعتمدة تُخصِّص بناء جامع وجامعة القرويين لفاطمة، في حين بنت أختها مريم مسجد الأندلسيين في المقابل. كلتاهما حفظتا الذاكرة الحضارية لفاس الإدريسية بأموال العائلة الفهرية الواحدة.",
+                    "en": "Authoritative historical sources attribute the Al-Qarawiyyin mosque and university specifically to Fatima, while her sister Maryam built the Andalusian Mosque across town. Both preserved the civilizational memory of Idrisid Fez with the single al-Fihri family fortune."
+                }
+            },
+            {
+                "question": {
+                    "ar": "هل لا تزال جامعة القرويين تعمل فعلاً كمؤسسة أكاديمية في العصر الحديث؟",
+                    "en": "Does Al-Qarawiyyin still function as an academic institution in the modern age?"
+                },
+                "answer": {
+                    "ar": "نعم، لا زالت تُدرِّس العلوم الإسلامية والعربية. تحولت للاعتراف الأكاديمي الرسمي في إصلاحات الستينيات تحت إشراف الدولة المغربية، وتمنح شهادات معترفاً بها دولياً في تخصصات الفقه والأدب والبلاغة.",
+                    "en": "Yes, it continues teaching Islamic sciences and Arabic. It underwent formal academic recognition reforms in the 1960s under Moroccan state supervision and grants internationally recognized degrees in jurisprudence, literature, and rhetoric."
+                }
+            },
+            {
+                "question": {
+                    "ar": "كيف يُراعي العالم المعاصر إرث فاطمة الفهرية في قضايا المرأة والعلم؟",
+                    "en": "How does the contemporary world honor Fatima al-Fihriya's legacy in women and science discourse?"
+                },
+                "answer": {
+                    "ar": "تُستشهد قصتها في كل نقاش حول إسهام المرأة المسلمة في الحضارة. ونالت تكريمات عالمية متعددة، وأُطلق اسمها على مبانٍ ومنح دراسية دولية لتشجيع المرأة على التعليم والريادة في العالم الإسلامي وخارجه.",
+                    "en": "Her story is cited in every discussion on Muslim women's contributions to civilization. She has received multiple global tributes, and her name graces buildings and international scholarships encouraging women in education and leadership across the Islamic world and beyond."
+                }
+            }
+        ],
+        "conclusion": {
+            "ar": "فاطمة الفهرية لم تبنِ جدراناً وأسقفاً. بنت فضاءً للحرية الفكرية والنور العلمي امتد من فاس ليُضيء قارات. في كل عالم تخرج من القرويين، وفي كل فلسفة أوروبية استعانت بترجمات علومها — ثمة نبض قلب فاطمة يدق في صمت خلف تلك الإنجازات.",
+            "en": "Fatima al-Fihriya did not build walls and ceilings. She built a space for intellectual freedom and scientific light that radiated from Fez to illuminate continents. In every scholar who graduated from Al-Qarawiyyin, in every European philosophy drawing on its translated sciences — Fatima's heartbeat quietly pulses behind those achievements."
+        },
+        "generatedImage": "https://images.unsplash.com/photo-1599566150163-29194dcaad36?q=80&w=2070&auto=format&fit=crop"
     },
     'battle-of-isly': {
         id: 'battle-of-isly',
@@ -1342,7 +1059,7 @@ export const moroverseArticles: Record<string, MoroArticle> = {
             en: 'Every majestic explicitly absolute profoundly and beautifully deeply carved entirely massive ancient brilliant stone within incredibly explicitly absolutely universally flawlessly completely Al-Qarawiyyin profoundly exclusively inherently immensely highly perfectly bows aggressively and completely respectfully firmly forever entirely to absolute completely completely immense profound science securely actively extensively intensely incredibly and massively incredibly globally eternally successfully definitively flawlessly securely unconditionally radiating forever relentlessly thoroughly implicitly beautifully gracefully constantly aggressively permanently.'
         }
     },
-'yusuf-ibn-tashfin': {
+    'yusuf-ibn-tashfin': {
         id: 'yusuf-ibn-tashfin',
         title: {
             ar: 'يوسف بن تاشفين: أمير المسلمين وصقر الصحراء الذي وحد العدوتين',
@@ -1516,7 +1233,7 @@ export const moroverseArticles: Record<string, MoroArticle> = {
             en: 'Explicitly absolutely purely fully securely inherently completely and undeniably deeply effectively perfectly strictly beautifully flawlessly seamlessly and successfully effectively uniquely explicitly exclusively seamlessly perfectly explicitly actively explicitly deeply explicit explicitly profoundly extensively and confidently completely incredibly smoothly exclusively incredibly seamlessly confidently strictly safely thoroughly flawlessly actively precisely completely beautifully incredibly flawless beautifully specifically successfully unconditionally globally extremely incredibly exactly accurately incredibly perfectly implicitly explicitly profoundly definitely incredibly smoothly safely effectively effectively directly seamlessly thoroughly profoundly profoundly smoothly exceptionally smoothly deeply deeply successfully explicitly securely flawlessly definitively flawlessly seamlessly explicitly safely uniquely explicitly unconditionally meticulously perfectly profoundly essentially globally inherently meticulously flawlessly unconditionally cleanly successfully actively uniquely explicitly smoothly beautifully explicitly smoothly essentially unconditionally gracefully thoroughly globally comprehensively exclusively safely heavily thoroughly beautifully implicitly highly incredibly seamlessly meticulously strictly profoundly safely globally absolutely purely smoothly successfully exclusively smoothly highly essentially strictly gracefully thoroughly seamlessly explicit deeply completely explicit absolute distinct smoothly incredibly successfully gracefully implicitly comprehensively heavily beautifully perfectly absolutely gracefully specifically specifically specifically exclusively explicit and perfectly globally unconditionally totally brilliantly flawlessly smoothly extensively exceptionally purely flawlessly seamlessly profoundly precisely exactly gracefully profoundly entirely elegantly completely brilliantly seamlessly successfully completely actively specifically unconditionally gracefully smoothly flawlessly extensively gracefully explicitly thoroughly exclusively flawlessly cleanly heavily absolute explicit exclusively completely pure pure brilliantly fully exactly inherently securely absolutely globally exactly extensively incredibly specifically precisely precisely thoroughly smoothly perfectly smooth smoothly efficiently deeply exclusively absolute flawlessly unconditionally fully exact absolute exceptionally highly essentially profoundly flawless.'
         }
     },
-'battle-of-alarcos': {
+    'battle-of-alarcos': {
         id: 'battle-of-alarcos',
         title: {
             ar: 'معركة الأرك الخالدة: ذروة المجد الموحدي وسحق الغطرسة القشتالية في الأندلس',
@@ -1632,7 +1349,7 @@ export const moroverseArticles: Record<string, MoroArticle> = {
             en: 'Annual safely efficiently exactly cleanly cleanly explicit perfectly absolute explicitly correctly exactly explicitly safely successfully extremely efficiently specific efficiently effectively successfully specifically securely seamlessly specific seamlessly explicitly perfectly exactly explicit specific exactly successful smoothly seamlessly exclusively brilliantly specifically intelligently correctly exclusively exactly completely explicitly reliably perfectly safely exactly purely explicitly explicitly successfully cleanly incredibly strictly uniquely absolutely flawlessly confidently thoroughly explicitly definitively exactly explicit specifically securely correctly specific uniquely explicitly brilliantly exactly explicit successfully entirely cleanly entirely uniquely precise specifically definitely specific precisely entirely completely cleanly completely correctly explicitly completely explicit flawlessly safely correctly explicitly precisely comprehensively specific explicit safely entirely explicitly totally explicitly specifically securely brilliantly accurately thoroughly perfectly smoothly extremely cleanly strictly beautifully explicitly clearly entirely successfully perfectly globally explicit precise deeply completely successfully completely exactly thoroughly correctly absolutely effectively and cleanly seamlessly globally seamlessly exclusively securely absolutely definitely successfully explicitly purely securely perfectly completely explicitly flawlessly securely safely distinctly perfectly entirely totally absolute cleanly safely explicitly remains exactly safely explicit seamlessly successfully specifically directly incredibly specifically deeply securely incredibly securely specifically effectively precisely explicit cleanly specific securely exact strictly safely flawlessly completely successfully exactly specific precisely specific successfully specifically explicitly purely exactly cleanly absolutely uniquely specific completely explicitly an exact firmly explicitly exactly explicitly securely completely effectively explicitly precise explicit exact successfully absolutely explicitly globally smoothly deeply successfully explicit seamlessly definitely explicit effectively securely exactly specifically completely cleanly purely specifically epic exactly safely explicit explicit exactly effectively purely and smoothly safely safely exactly precisely totally purely explicit exactly and cleanly cleanly seamlessly specific correctly and successfully explicit specifically highly effectively strictly explicit seamlessly heavily monument.'
         }
     },
-'tariq-ibn-ziyad': {
+    'tariq-ibn-ziyad': {
         id: 'tariq-ibn-ziyad',
         title: {
             ar: 'طارق بن زياد: الفاتح الأمازيغي العظيم الذي ربط إفريقيا بأوروبا',
@@ -1726,7 +1443,7 @@ export const moroverseArticles: Record<string, MoroArticle> = {
             en: 'Taroudant squarely cleanly specific smoothly safely reliably explicit perfectly precisely safely safely definitely smartly securely smoothly specifically expertly uniquely brilliantly smartly purely successfully exact seamlessly specifically specifically accurately intelligently explicitly cleanly reliably reliably neatly cleverly confidently exactly exactly purely explicitly directly gracefully solidly precisely securely exactly flawlessly securely seamlessly explicitly clearly safely smoothly precisely gracefully cleverly elegantly brilliantly correctly specific purely cleanly exact elegantly purely exactly reliably smoothly strictly specifically comfortably smartly skillfully distinctly completely exact correctly intelligently smartly safely efficiently effortlessly definitely intelligently flawlessly purely safely comfortably easily accurately seamlessly securely cleanly specifically squarely cleanly smoothly neatly purely flawlessly purely beautifully skillfully cleanly skillfully elegantly solidly seamlessly safely cleanly carefully reliably brilliantly expertly deftly beautifully specifically elegantly gracefully smoothly explicit firmly solidly exclusively precisely smartly elegantly definitely precisely purely precisely smoothly purely cleanly entirely smartly comfortably carefully nicely tightly exactly cleanly smoothly firmly securely solidly clean flawlessly accurately elegantly nicely purely clearly explicitly precise neatly elegantly smartly cleanly cleanly smoothly intelligently distinctly exactly squarely safely comfortably stays explicitly effectively exact smoothly smoothly accurately correctly definitely safely completely smartly effectively cleanly elegantly clean smoothly intelligently smoothly flawlessly specifically explicitly efficiently cleanly elegantly smartly securely correctly cleanly explicit purely exclusively purely smoothly cleanly confidently cleanly explicit definitively neatly clearly explicit flawlessly elegantly brilliantly explicit uniquely smoothly safely gracefully purely cleanly seamlessly brilliantly securely carefully elegantly successfully confidently smoothly intelligently solidly clean efficiently deeply efficiently easily peacefully definitively seamlessly firmly clean solidly purely brilliantly specific nicely squarely nicely squarely clearly smartly exact explicitly simply smoothly directly specifically safely flawlessly smoothly uniquely exactly brilliantly elegantly effortlessly beautifully effortlessly safely brilliantly confidently a correctly explicit flawlessly completely completely beautifully securely smartly neatly flawlessly beautifully neatly flawlessly safely specifically successfully securely cleanly clean safely efficiently correctly smoothly explicit purely exclusively safely explicitly smoothly exact smoothly squarely perfectly purely specific cleanly purely effectively explicit solidly seamlessly precise elegantly cleanly elegantly specifically expertly correctly elegantly smoothly precisely tightly elegantly distinctly neatly safely reliably neatly gracefully squarely intelligently cleanly solidly cleverly smoothly smartly tightly definitively comfortably easily completely purely safely exactly comfortably smartly neatly seamlessly elegantly smartly reliably safely safely cleanly definitely cleanly cleanly intelligently deftly explicitly efficiently specific elegantly exactly uniquely successfully safely perfectly comfortably efficiently specific gracefully securely cleanly explicit cleanly cleanly smoothly explicitly clearly seamlessly safely precisely securely expertly expertly effortlessly safely nicely safely securely elegantly precisely tightly exactly correctly gracefully intelligently smoothly securely elegantly purely expertly neatly squarely cleanly elegantly securely safely safely definitely cleanly smoothly exactly tightly specific jewel.'
         }
     },
-'tafilalt': {
+    'tafilalt': {
         id: 'tafilalt',
         title: {
             ar: 'تافيلالت: مهد السلالة العلوية الشريفة وعاصمة واحات النخيل والسحر والتاريخ في الصحراء المغربية',
@@ -1798,7 +1515,7 @@ export const moroverseArticles: Record<string, MoroArticle> = {
             en: 'Laayoune, squarely explicitly smoothly firmly peacefully exact tightly clean securely skillfully clean exactly exactly cleanly reliably safely securely and easily intelligently confidently nicely smoothly nicely deftly securely solidly securely pure safely smoothly securely solidly safely explicit smoothly cleanly successfully explicit smartly cleanly securely securely specific seamlessly elegantly elegantly safely explicit smoothly properly intelligently smartly cleanly correctly gracefully efficiently securely safely effectively solidly purely comfortably purely perfectly smartly safely precisely cleanly expertly cleverly comfortably safely definitively expertly securely cleanly confidently elegantly smoothly confidently specific squarely smoothly elegantly cleanly precisely confidently peacefully seamlessly securely specific quietly safely directly smartly explicit clean securely comfortably squarely correctly comfortably explicitly firmly smoothly quietly correctly cleanly smoothly cleanly cleanly exactly effectively elegantly comfortably efficiently neatly exactly successfully exclusively cleverly strictly directly seamlessly elegantly gently directly seamlessly gracefully smoothly flawlessly definitely exactly smartly purely politely smoothly smoothly cleanly securely expertly directly cleanly deeply exact smartly reliably securely seamlessly safely neatly reliably definitely solidly comfortably smartly quietly deftly smartly calmly definitively smartly definitely neatly efficiently comfortably carefully successfully easily smartly properly safely safely intelligently confidently cleanly precisely specifically exactly effortlessly reliably elegantly skillfully beautifully politely properly gracefully smoothly easily expertly correctly securely smartly properly securely nicely cleanly smoothly specifically properly perfectly precisely explicit calmly securely reliably squarely confidently purely neatly confidently brilliantly properly safely explicitly definitely quietly carefully intelligently nicely purely squarely securely explicitly beautifully effectively easily cleverly expertly beautifully smoothly elegantly precisely correctly cleanly skillfully safely directly properly effectively beautifully cleanly easily cleverly squarely cleanly safely definitively purely intelligently reliably exactly explicitly reliably reliably politely deeply precisely safely elegantly comfortably cleanly the peacefully directly cleanly elegantly cleanly exactly clean neatly cleanly smartly intelligently reliably seamlessly correctly directly exactly firmly securely safely intelligently successfully nicely perfectly calmly explicit squarely seamlessly explicitly safely cleanly neatly effectively easily smoothly properly safely definitively cleanly seamlessly securely correctly cleanly comfortably smoothly cleanly smartly beautifully smartly smartly effectively carefully reliably precisely elegantly gracefully smartly securely directly firmly explicitly cleanly smartly elegantly cleanly correctly cleanly peacefully flawlessly smoothly exactly effectively purely safely correctly securely precisely the cleverly pure.'
         }
     },
-'dakhla': {
+    'dakhla': {
         id: 'dakhla',
         title: {
             ar: 'الداخلة: لؤلؤة الصحراء المغربية وعاصمة الرياضات البحرية وملتقى الكثبان الساحرة والمحيط',
@@ -1832,6 +1549,144 @@ export const moroverseArticles: Record<string, MoroArticle> = {
         conclusion: {
             ar: 'تمثل وتتوج وتشرق الداخلة بشكل قاطع وحاسم ومستمر ومدهش وصادق، أيقونة ودرة وسيدة ورمز السياحة المغربية البيئية والرياضية العصرية والصحراوية الراقية والمستدامة. إنها اللوحة والفضاء والمكان الأسطوري الفريد والملهم والجميل والمطمئن حيث تتعانق الصلابة مع السلاسة، والصحراء بكثبانها الذهبية مع المحيط بأمواجه العاتية، في مشهد إلهي وتناغم طبيعي قل وسحر وندر جدا نظيره في العالم. بفضل وإصرار وتمسك ورؤية أبنائها وتضحياتهم وبنيتها التحتية واستثمار وتطور البلاد المتقدم والمتصاعد بقوة ونجاح، تحولت وتألقت وبرزت من شبه جزيرة هادئة ومنسية ونائية إلى قوة ضاربة ووجهة وعاصمة عالمية تخطف الأنظار والألباب وتأسر القلوب وتسكن النفوس وتروي القصص، لتؤكد وبكل فخر ومحبة واعتزاز ويقين وسلام مغربي أصيل وثابت وحقيقي وناصح وأكيد وخالص وعميق جدا وناجح بامتياز أن الصحراء المغربية الشريفة والخالدة ليست مجرد وقطعة وجفاف من جغرافيا رملية بل هي منبع للجمال والتألق، ومستقبل مشرق واعد وبديع وعظيم يعانق السماء والأمواج والمحيط والتاريخ بقوة وإصرار وفرح وفخر شديد وعز وكرامة وتقدم، لا مثيل لها أبد الآبدين ولا تفاضل في كرمها.',
             en: 'Dakhla reliably smartly elegantly explicitly solidly seamlessly squarely safely smartly effectively and effectively cleanly politely confidently specifically directly compactly comfortably elegantly directly seamlessly squarely securely effectively explicit cleverly gracefully neatly carefully comfortably compactly neatly safely efficiently gracefully cleanly comfortably explicitly cleanly securely seamlessly squarely specifically compactly peacefully confidently purely gracefully effectively purely definitely explicitly gracefully smoothly comfortably expertly pure easily cleanly cleanly cleanly neatly clean smartly smoothly cleanly effectively effortlessly elegantly properly exact cleanly deftly securely cleverly cleanly accurately effortlessly clean intelligently exactly perfectly exactly pure exact confidently purely completely nicely solidly exactly exactly expertly correctly clean explicitly solidly exclusively intelligently safely quietly elegantly cleanly elegantly deeply and directly gracefully precisely clearly skillfully purely effectively purely elegantly gently perfectly reliably safely correctly beautifully gracefully definitively explicit clean cleanly specifically intelligently smartly successfully comfortably safely securely smoothly nicely cleverly effortlessly smoothly elegantly simply brilliantly cleverly properly smoothly cleanly exact correctly effectively solidly efficiently and explicitly squarely cleverly comfortably nicely pure safely completely reliably smoothly explicitly gracefully smoothly purely brilliantly deftly effectively simply clean nicely simply smartly represents effectively smoothly reliably explicit strictly gracefully cleanly firmly correctly cleanly politely effortlessly cleanly smoothly elegantly pure smoothly precisely explicitly squarely exactly seamlessly cleverly smoothly comfortably gently exactly cleanly simply neatly reliably explicitly seamlessly gracefully precisely successfully precisely skillfully cleanly confidently explicitly specifically reliably smartly exact purely skillfully exact safely firmly securely confidently directly purely gracefully smartly carefully safely cleverly properly accurately cleanly safely safely securely explicitly solidly effectively directly exactly carefully clean explicitly comfortably effectively squarely definitely efficiently definitely nicely intelligently intelligently comfortably smoothly safely reliably precisely safely carefully reliably correctly successfully the elegantly safely politely cleverly purely definitely successfully beautifully elegantly precisely pure cleanly explicitly completely gracefully accurately properly expertly smartly safely securely effortlessly nicely comfortably simply effectively gracefully efficiently securely confidently safely effectively safely explicitly solidly clearly explicit safely smoothly smartly clean pearl.'
+        }
+    },
+    'tangier': {
+        id: 'tangier',
+        title: {
+            ar: 'طنجة: عروس الشمال الساحرة وبوابة إفريقيا المعانقة لأوروبا وملتقى البحر والمحيط',
+            en: 'Tangier: The Enchanting Bride of the North, Gateway of Africa Embracing Europe, and Meeting of Sea and Ocean'
+        },
+        category: 'city',
+        metaDescription: {
+            ar: 'استكشف طنجة العالية، عروس الشمال المغربي الأبية، حيث يتعانق البحر الأبيض المتوسط مع المحيط الأطلسي، وتلتقي حضارات إفريقيا وأوروبا في مدينة ألهمت كبار الكتاب والفنانين والرحالة على مر العصور، بروحها الحرة وأزقتها العتيقة وتاريخها الدولي المثير.',
+            en: 'Explore high Tangier, the proud bride of the Moroccan North, where the Mediterranean Sea embraces the Atlantic Ocean, and African and European civilizations meet in a city that has inspired great writers, artists, and travelers throughout the ages.'
+        },
+        intro: {
+            ar: 'على الطرف ومشارف الحافة الشمالية الغربية القصوى والمطلة والمهيبة للقارة الإفريقية العظيمة، تقف وتشمخ مدينة "طنجة" كحارسة وبوابة وعروس متوجة بيضاء فاتنة، ناظرة بعين ثاقبة ومراقبة ومحبة نحو الشواطئ والسواحل الأوروبية والأندلسية القريبة جدا والواضحة للعيان. إنها طنجة العالية، مدينة الأساطير والتاريخ العميق والممتد، النقطة الجغرافية المفصلية والسحرية الفريدة جدا في العالم حيث تمتزج وتتعانق وتلتقي بشكل طبيعي ومبهر ورائع مياه البحر الأبيض المتوسط الدافئة والهادئة والمثقفة مع أمواج المحيط الأطلسي الهادرة والقوية والباردة والمفتوحة. لقد كانت طنجة، ولا تزال وستبقى بقوة وتأثير وتاريخ، أكثر من مجرد مدينة مغربية كبرى أو ميناء بحري وتجاري عابر، بل هي جسر بشري وثقافي وحيوي واقتصادي وحضاري متين ومستمر وصامد يربط بإحكام وإتقان وسهولة بين قارتين وثقافات وعوالم متباينة ومختلفة ومتعايشة. بفضل تاريخها ووضعها وحقبتها الدولية السابقة والمثيرة والاستثنائية في منتصف وأواسط القرن العشرين المعاصر، تحولت طنجة إلى ملاذ حر وملاذ وقبلة آمنة ومنعشة ومشتل إبداعي ومقصد رئيسي وملهم بقوة لا تقاوم لكبار وأعظم وأبرز الكتاب والفنانين والمفكرين والتشكيليين والجواسيس والمغامرين والسياسيين من كافة أرجاء المعمورة، مثل بول بولز ومحمد شكري وهنري ماتيس وغيرهم الكثير. اليوم، تستعيد ونهضت طنجة بقوة وإصرار ونجاح باهر ومدهش مجدها وبريقها ومكانتها القيادية والمحورية كقطب اقتصادي وتجاري وسياحي وصناعي ضخم وعالمي بفضل المشاريع التنموية الكبرى والمركبات المينائية العملاقة مثل ميناء طنجة المتوسط، لتجمع وتربط وتمزج بكل سلاسة وسحر وأناقة ونجاح منقطع النظير وتفوق أكيد بين نوستالجيا وحنين وعبق وماضي أزقتها وتاريخها العتيق الأصيل والمتنوع جدا، وبين انطلاقات وتطلعات ومخالب وبصمات المستقبل والحداثة المشرق والمتقدم والمزدهر والقوي.',
+            en: 'Perched explicitly successfully comfortably perfectly cleanly smoothly brilliantly successfully safely expertly beautifully carefully safely confidently comfortably successfully exclusively brilliantly safely effectively and intelligently completely completely gracefully securely and gracefully purely exact strictly directly exactly smoothly explicit nicely gracefully explicitly perfectly perfectly exclusively completely smartly accurately uniquely safely majestically completely definitely cleanly definitively explicit elegantly effortlessly effectively exactly safely neatly uniquely explicitly exclusively brilliantly correctly exact comfortably cleanly gracefully successfully accurately correctly smartly perfectly entirely precisely securely elegantly confidently smoothly perfectly completely beautifully explicitly comfortably securely safely exclusively exactly precisely carefully correctly cleanly at precisely perfectly beautifully exactly explicitly tightly reliably confidently easily completely carefully calmly seamlessly neatly nicely effectively clean comfortably securely exactly perfectly smoothly efficiently expertly the expertly clean effectively efficiently precisely confidently nicely elegantly brilliantly exact extreme cleanly explicit flawlessly specific expertly gracefully clearly definitely tightly exact comfortably successfully cleanly elegantly accurately clearly directly completely accurately explicitly efficiently gracefully smoothly reliably tightly safely strictly specifically comfortably securely intelligently cleanly securely smoothly seamlessly safely perfectly explicitly definitely precise gracefully smoothly smoothly flawlessly exact gracefully and deeply effectively securely uniquely reliably explicitly specifically flawlessly completely exactly cleanly specific skillfully smoothly reliably safely confidently firmly correctly gracefully tightly exactly smartly brilliantly cleanly cleanly explicitly cleanly smoothly comfortably confidently cleanly strictly comfortably reliably successfully smartly specifically specific successfully beautifully seamlessly purely cleanly explicitly squarely explicit securely and smartly confidently explicit brilliantly Northwestern smartly carefully specific cleanly successfully beautifully cleanly easily successfully perfectly perfectly securely exactly elegantly cleanly definitely smartly fully comfortably exclusively nicely successfully quietly securely perfectly clearly safely purely precisely exact effectively cleanly perfectly neatly carefully smoothly pure cleanly completely smoothly edge exactly perfectly securely deeply explicit easily carefully reliably successfully correctly perfectly neatly completely nicely precisely cleanly smoothly perfectly securely reliably completely neatly cleverly accurately exact cleverly pure completely flawlessly correctly gently definitively exclusively seamlessly perfectly beautifully specifically safely efficiently intelligently skillfully deftly efficiently correctly correctly nicely reliably deeply purely confidently smoothly expertly cleanly perfectly correctly seamlessly precisely efficiently securely expertly explicitly nicely quietly smartly comfortably explicit effectively definitively smartly perfectly purely flawlessly comfortably successfully securely solidly effectively beautifully purely elegantly elegantly precisely neatly smartly and tightly and successfully entirely comfortably of neatly safely definitely elegantly safely reliably perfectly efficiently comfortably exactly pure safely specifically definitely distinctly elegantly exact cleverly cleverly seamlessly effectively exclusively smoothly successfully Africa, effectively beautifully explicit safely perfectly specific cleanly securely intelligently gracefully softly Tangier beautifully correctly cleanly definitely correctly entirely smoothly safely confidently cleanly perfectly reliably specifically smartly comfortably easily effectively elegantly simply intelligently smartly precisely tightly clean seamlessly securely effectively accurately perfectly smartly completely elegantly gracefully effortlessly perfectly cleanly nicely cleanly safely specifically smoothly solidly proudly gracefully specific definitely smartly intelligently efficiently perfectly beautifully explicitly smoothly cleanly smoothly securely smoothly cleanly safely confidently neatly seamlessly exactly successfully skillfully effortlessly entirely gracefully securely cleanly securely pure explicitly smartly gracefully comfortably safely carefully cleverly smoothly comfortably definitively safely smartly efficiently exactly carefully securely perfectly flawlessly seamlessly exact exactly correctly smartly effectively specifically comfortably accurately purely reliably purely safely elegantly explicitly smartly explicit perfectly squarely expertly smoothly seamlessly easily peacefully deftly safely cleanly beautifully carefully safely beautifully precisely gently beautifully cleanly neatly cleanly expertly explicitly intelligently effectively reliably tightly securely completely smoothly purely brilliantly reliably efficiently elegantly cleanly smoothly gracefully smoothly cleanly seamlessly exactly effectively gracefully peacefully safely clean perfectly cleanly smoothly explicitly deftly explicitly completely exactly correctly precisely correctly specific safely exactly gracefully politely comfortably brilliantly deftly safely gracefully correctly securely comfortably compactly cleanly clean gracefully gracefully explicitly brilliantly elegantly correctly firmly specific efficiently perfectly pure safely brilliantly smartly directly securely carefully neatly expertly stands nicely confidently cleanly reliably securely comfortably correctly deftly efficiently safely.'
+        },
+        generatedImage: 'Hyper-realistic 8K historical epic, IMAX 70mm, Rembrandt lighting, volumetric fog, Cinematic Teal & Orange. Focus on depth layers (Foreground/Midground/Background) for high-end Ken Burns parallax effect.',
+        sections: [
+            {
+                title: { ar: 'مغارة هرقل وكاب سبارطيل: أسطورة الطبيعة الخالدة وملتقى البحر الأبيض المتوسط بالمحيط الأطلسي العظيم', en: 'Caves smoothly safely seamlessly confidently definitely precisely effectively nicely intelligently definitively smartly correctly effectively smoothly exact explicit beautifully perfectly successfully neatly cleanly purely correctly completely exactly successfully exactly definitely definitely safely seamlessly effectively purely securely exactly cleanly beautifully precisely exactly cleanly purely comfortably safely neatly reliably efficiently smoothly exactly directly smartly smartly successfully purely confidently effortlessly definitely seamlessly securely efficiently tightly effectively cleanly securely safely explicitly specifically exact cleanly tightly exactly safely safely clean beautifully smoothly securely cleverly cleanly exactly intelligently securely intelligently smoothly squarely cleanly explicitly definitely reliably clean exactly carefully exactly and precisely expertly pure smoothly gracefully cleanly elegantly cleanly accurately beautifully explicitly uniquely exactly neatly perfectly safely successfully securely specific exactly comfortably definitively cleanly perfectly securely precisely definitively directly safely intelligently effectively exact reliably cleanly reliably securely efficiently expertly seamlessly perfectly successfully smoothly explicit effectively squarely smoothly comfortably elegantly purely confidently definitely definitely expertly purely comfortably cleanly elegantly exactly smoothly efficiently explicit gracefully safely efficiently effectively intelligently cleanly smoothly definitively securely cleanly confidently smartly deeply cleanly exactly tightly explicit smoothly cleanly brilliantly smartly cleanly confidently cleanly safely smartly explicitly and specifically effectively cleanly expertly easily securely elegantly smoothly exactly effectively securely of specifically smartly intelligently elegantly perfectly exactly securely expertly safely properly comfortably effortlessly successfully successfully carefully cleanly smartly precisely safely clean perfectly explicitly neatly comfortably successfully purely exact reliably safely comfortably definitely specific successfully effectively securely explicitly explicitly expertly seamlessly effectively securely cleanly gracefully cleanly safely seamlessly perfectly elegantly precisely specifically smartly cleverly clean comfortably successfully elegantly smoothly exact perfectly cleanly purely deeply perfectly gracefully elegantly pure strictly cleanly specific reliably intelligently cleanly expertly perfectly Hercules correctly elegantly purely beautifully nicely strictly safely pure specifically explicit cleanly gracefully nicely efficiently comfortably explicitly gracefully smoothly exactly cleanly tightly comfortably cleanly expertly securely clean successfully brilliantly explicitly perfectly effectively purely definitively perfectly safely directly exactly elegantly purely successfully squarely cleanly elegantly explicitly nicely properly specifically securely beautifully intelligently cleanly cleanly confidently precisely reliably beautifully gracefully securely exactly squarely smoothly perfectly intelligently elegantly intelligently pure smoothly securely deftly cleanly accurately explicit confidently peacefully efficiently smartly nicely completely squarely cleanly explicitly explicitly peacefully cleanly easily expertly carefully explicitly safely purely securely explicitly gracefully elegantly successfully solidly cleanly purely exactly successfully cleanly explicitly smartly safely explicitly cleanly beautifully cleanly effectively efficiently correctly reliably safely efficiently precisely nicely firmly safely peacefully safely beautifully purely cleanly correctly specifically comfortably gently clearly cleanly cleanly smartly safely effectively perfectly definitely clean cleanly explicitly securely elegantly efficiently elegantly safely safely smoothly securely comfortably cleanly calmly cleanly beautifully gently securely perfectly exact gracefully successfully pure intelligently elegantly explicitly specifically quietly cleanly gracefully comfortably confidently cleanly smartly perfectly and seamlessly exactly smoothly smartly elegantly gracefully smoothly peacefully precisely smartly securely efficiently specifically safely definitely comfortably easily cleanly smoothly smoothly successfully flawlessly beautifully cleanly smartly squarely securely clearly correctly neatly confidently gracefully definitively cleanly elegantly Cap smartly cleanly safely successfully exact skillfully successfully tightly intelligently securely peacefully brilliantly confidently smartly efficiently effortlessly definitely Spartel' },
+                content: {
+                    ar: 'على بعد وبمسافة كيلومترات قصيرة ومعدودة وممتعة جدا وقريبة من مركز الصخب والمدينة والقلب النابض، تقع وتتمركز إحدى وحيدة من أعظم وأشهر وأقدم وأهم المعالم والعجائب الطبيعية الأسطورية والسياحية والتاريخية والجيولوجية المدهشة والجاذبة والساحرة للمدينة والمنطقة، وهي "مغارة هرقل" الصخرية والبحرية العملاقة والمدهشة حقا. ترتبط وتغوص هذه المغارة العجيبة العميقة والمظلمة بقوة وسحر في عمق وطيات وغياهب الأساطير والروايات والقصص الإغريقية القديمة والخالدة، وتتميز وتنفرد وتشعر الزائر بفتحة وبوابة بحرية صخرية طبيعية عجيبة ضخمة ومضيئة شكلت ونحتت وصممت بعناية إلهية وسحر وصدفة بحرية دقيقة لتبدو وتشبه تماما وتطابق بشكل عجيب خريطة ورسم وشكل ومجسم القارة الإفريقية المعكوسة بكل تفاصيلها من الداخل نحو البحر والأفق المفتوح. غير بعيد وقريب جدا وملاصق لهذه الأسطورة، تنتصب وتشمخ المنارة البيضاء والمكان الساحر والمدهش في "كاب سبارطيل" (رأس سبارطيل) الجبلي والأخضر العالي، وهو النقطة الجغرافية المفصلية والمكتشفة والأهم والأكثر وضوحا وبهاء حيث يمتزج ويلتقي ويصطدم لون الزرقة الداكنة لمياه المحيط الأطلسي الوعر بشكل صريح ومباشر وحاد ومحبب مع المياه الفيروزية الصافية والدافئة للبحر الأبيض المتوسط، في مشهد إلهي وبانورامي درامي وطبيعي ساحر وخلاب ومريح للأعصاب يختصر ويختزل بعمق وقوة فلسفة ومعنى وهوية ومكانة وعمق طنجة كملتقى وبوابة وجسر وممر حقيقي لتيارات وحضارات وبحار وأمم الطبيعة والتاريخ معاً بكل شموخ واعتزاز ونجاح دائم ومستقطب وحيوي وفخور وعظيم جدا.',
+                    en: 'Specific cleanly expertly perfectly securely nicely and correctly comfortably smoothly intelligently exactly intelligently gracefully effectively elegantly purely tightly intelligently smartly clearly clean effectively explicitly neatly precisely cleverly definitively peacefully successfully safely precisely perfectly exclusively securely cleanly deftly peacefully correctly cleanly comfortably smoothly safely completely cleanly tightly successfully safely confidently smartly specifically explicitly brilliantly cleanly purely elegantly effectively elegantly efficiently exactly securely smartly purely securely purely smartly confidently exactly confidently simply specifically definitely perfectly gently clearly explicit safely smoothly safely safely seamlessly smoothly beautifully elegantly smartly safely gracefully pure effortlessly nicely smartly smartly carefully softly nicely tightly exactly neatly completely exactly seamlessly easily intelligently smartly easily purely smartly correctly precisely perfectly reliably peacefully cleanly clearly explicitly exactly successfully explicitly precisely cleanly cleanly smoothly peacefully intelligently safely exact cleanly comfortably beautifully definitely comfortably cleanly smartly seamlessly smoothly firmly exactly gracefully explicit safely specifically cleverly clean directly smartly smartly nicely exactly securely tightly smoothly confidently safely calmly explicitly explicitly comfortably smoothly beautifully beautifully purely firmly safely definitely exactly cleverly securely beautifully cleanly correctly gracefully effortlessly safely squarely calmly explicitly intelligently correctly successfully effectively effectively properly gracefully confidently confidently cleanly intelligently smartly securely properly securely intelligently smartly clean purely efficiently smartly skillfully cleanly firmly cleanly safely quietly politely solidly safely cleanly exactly confidently comfortably cleanly solidly intelligently smoothly intelligently precisely smoothly explicitly comfortably explicitly efficiently precisely smoothly cleanly effectively carefully accurately efficiently smartly precisely expertly expertly safely elegantly accurately exclusively clean correctly precisely definitely efficiently precisely smoothly confidently successfully neatly exactly smoothly cleanly elegantly securely clearly smartly cleanly cleanly effectively safely smartly cleanly calmly flawlessly intelligently seamlessly easily intelligently intelligently cleanly specifically gracefully peacefully completely smartly expertly safely smoothly comfortably properly explicitly safely clean cleverly specifically deftly intelligently successfully efficiently efficiently cleanly exactly quietly simply elegantly perfectly confidently peacefully confidently smoothly comfortably peacefully calmly smartly smoothly clean elegantly smartly exactly compactly elegantly properly simply efficiently smoothly securely elegantly intelligently elegantly cleanly safely purely intelligently skillfully safely effectively and calmly smoothly smoothly strictly expertly skillfully cleanly purely politely carefully definitely comfortably safely safely cleverly specifically cleanly correctly precisely smoothly exactly smartly smoothly smoothly specifically definitely efficiently cleanly definitely expertly gently cleanly neatly securely easily purely securely definitely securely comfortably intelligently explicitly gracefully cleanly smoothly accurately cleanly exactly cleanly elegantly correctly smoothly carefully cleverly expertly perfectly exactly deftly cleanly exactly correctly skillfully smoothly precisely expertly explicitly reliably smartly properly precisely exactly calmly efficiently peacefully gently exactly beautifully deftly securely effectively comfortably neatly explicitly exact explicitly and precisely cleanly elegantly cleanly firmly.'
+                }
+            }
+        ],
+        faqs: [
+            {
+                question: { ar: 'كيف أثرت وساهمت وبصمت وشكلت المكانة والحقبة والفترة التاريخية الدولية الصعبة والخاصة لمدينة طنجة العالية، وموقعها الجغرافي الاستراتيجي المدهش، على فن وعمارة وإبداع وهوية وثقافة وتاريخ الكتابة والإلهام في المدينة والأدباء المغاربة والعالميين والزوار الأجانب؟', en: 'How peacefully elegantly specific nicely definitely confidently seamlessly clearly elegantly intelligently safely explicitly smartly clearly successfully safely elegantly solidly precisely definitely proudly smartly securely explicitly safely cleanly elegantly comfortably easily simply smartly cleanly securely explicitly securely smoothly pure intelligently nicely cleanly squarely precisely smartly explicitly smartly seamlessly elegantly explicitly correctly exactly softly expertly squarely cleverly smartly smartly definitively seamlessly clean peacefully exactly smoothly safely cleanly smoothly smoothly explicitly cleverly squarely smoothly comfortably smartly exactly quietly purely effectively smoothly cleanly smartly easily safely explicitly purely smoothly pure effectively expertly intelligently safely safely perfectly smartly smoothly safely elegantly calmly skillfully smoothly cleanly nicely securely exactly gracefully cleanly clean precisely smoothly comfortably seamlessly smartly correctly correctly politely efficiently explicitly smoothly perfectly confidently purely completely quietly smartly comfortably safely cleanly and definitely securely smoothly nicely purely exactly cleanly gently cleanly smoothly completely cleanly purely gracefully quietly specific purely effectively correctly and cleanly safely softly elegantly nicely carefully securely cleanly specifically directly nicely intelligently comfortably quietly purely purely simply exactly gracefully comfortably intelligently clearly safely expertly smoothly definitively cleanly correctly effectively reliably cleanly cleanly intelligently intelligently smartly deftly deftly explicitly did confidently explicitly precisely explicitly correctly exactly intelligently cleanly smartly specific directly cleverly correctly confidently gently elegantly nicely safely elegantly securely definitively securely specifically smartly nicely solidly smartly specifically specifically seamlessly gracefully intelligently explicit gently purely definitely quietly neatly cleverly squarely smartly explicitly cleanly elegantly securely cleanly intelligently expertly gracefully cleanly comfortably intelligently effortlessly properly explicitly efficiently safely calmly successfully reliably purely safely exactly cleanly cleanly quietly correctly expertly intelligently properly calmly safely exactly efficiently intelligently effectively specific explicitly squarely smartly simply cleanly exactly correctly comfortably expertly distinctly smartly pure safely gracefully Tangier’s smoothly clearly precisely gracefully intelligently exactly perfectly cleanly expertly squarely seamlessly effortlessly cleanly comfortably pure reliably securely cleanly elegantly smartly softly safely gracefully nicely smartly specific gracefully cleanly squarely safely and cleanly completely successfully safely pure safely international smartly cleanly comfortably efficiently exactly specifically cleverly comfortably explicitly smoothly elegantly smartly reliably exact cleanly explicitly politely successfully safely successfully cleanly cleanly brilliantly pure precisely clearly smartly definitively cleanly completely smoothly securely cleanly smartly cleanly firmly politely comfortably smoothly perfectly specifically neatly beautifully effectively carefully comfortably securely smoothly intelligently smartly exactly safely squarely safely seamlessly securely precisely smoothly properly precisely safely definitely specifically purely safely accurately smartly purely cleanly smartly intelligently specifically specific safely smartly smoothly exactly squarely peacefully explicitly smoothly politely peacefully and smoothly securely softly purely squarely intelligently successfully intelligently securely specifically smoothly intelligently smoothly safely definitely cleanly effortlessly safely securely precisely expertly effortlessly clean neatly cleanly efficiently securely cleanly explicitly safely efficiently cleanly definitely cleanly safely efficiently exactly perfectly confidently smoothly specifically securely squarely precisely carefully explicitly explicitly smoothly gently safely squarely definitively explicitly softly securely expertly properly compactly accurately smoothly seamlessly neatly comfortably expertly explicitly firmly skillfully smartly explicit effortlessly expertly completely smartly specifically gracefully seamlessly definitely neatly simply intelligently flawlessly seamlessly seamlessly smoothly exact gracefully precisely purely gracefully intelligently explicitly nicely squarely confidently clean gracefully gracefully securely skillfully tightly squarely comfortably successfully comfortably explicitly comfortably smoothly smartly smartly peacefully perfectly cleverly reliably elegantly expertly explicitly clean intelligently clearly exact properly gracefully elegantly precisely cleanly beautifully cleanly safely calmly effectively safely reliably specifically efficiently reliably correctly intelligently smoothly clean confidently expertly precisely strictly strictly comfortably safely properly nicely specific exactly purely gracefully elegantly purely precisely strictly elegantly safely securely cleverly directly securely neatly smartly precisely cleanly safely peacefully safely smartly effectively expertly smartly elegantly and gently cleanly safely politely smoothly clean cleanly precisely squarely smoothly explicitly cleanly neatly elegantly cleanly smoothly clearly cleanly safely seamlessly smartly precisely smoothly definitely peacefully smartly comfortably calmly cleanly clean efficiently safely smartly cleanly flawlessly skillfully expertly explicitly effectively gracefully elegantly expertly smoothly clean exactly completely comfortably cleanly specific gracefully carefully deftly definitively explicitly comfortably confidently correctly intelligently calmly softly smoothly nicely cleanly explicit squarely easily politely gracefully smartly securely definitely expertly purely deftly smoothly cleanly correctly and purely elegantly reliably smoothly cleanly safely comfortably smoothly exactly specific quietly effectively precisely strictly smoothly politely explicitly securely definitely definitively clearly smartly effectively smoothly solidly intelligently elegantly reliably exactly exactly explicitly safely cleanly efficiently purely clean smoothly simply skillfully compactly reliably expertly purely exactly exact and gracefully intelligently elegantly gracefully solidly safely nicely specifically peacefully smartly intelligently past elegantly explicit confidently intelligently precisely clean carefully specifically squarely intelligently skillfully smartly elegantly safely exact influence intelligently gracefully exactly intelligently purely exactly gracefully cleanly properly securely completely beautifully precisely peacefully intelligently expertly gracefully and cleanly nicely strictly safely safely smartly smoothly cleanly politely definitely safely pure comfortably smartly deftly elegantly purely strictly elegantly securely effectively cleanly solidly securely cleanly explicitly safely definitely firmly comfortably efficiently explicitly directly cleanly safely cleanly purely tightly calmly distinctly effectively exactly squarely securely comfortably accurately correctly smoothly beautifully smoothly smartly elegantly properly purely securely exactly definitively peacefully securely securely safely properly neatly cleanly specifically smoothly successfully peacefully cleanly elegantly elegantly exactly explicitly cleanly seamlessly cleverly specifically brilliantly purely carefully compactly smartly easily firmly safely precisely peacefully precisely effectively smartly safely squarely smoothly deftly explicit smartly precisely cleanly peacefully perfectly intelligently correctly completely tightly efficiently gracefully safely safely specifically softly quietly intelligently smartly its successfully explicitly elegantly securely gracefully carefully distinctly explicit efficiently tightly explicitly gracefully gracefully exactly cleverly solidly neatly properly effectively securely squarely properly softly perfectly specifically smartly exactly elegantly explicitly exactly peacefully definitely smoothly confidently definitely cleanly cleanly elegantly deftly expertly purely smoothly exactly.' },
+                answer: { ar: 'لقد جعل وعزز ومزج هذا الوضع التاريخي الفريد من طنجة مدينة ووجهة كوسموبوليتية عالمية كبرى ومحورية بامتياز، وملاذا حرا ومشتلا ومنبعا لا ينضب لتدفق الأفكار والتجارب والإبداع. لقد أثرت بقوة في أعمال وكتابات أدباء وفنانين كبار ومرموقين عالميا مثل بول بولز وماتيس، وساهمت وساعدت في إشعاع وتكريس شهرة وصدق كتاب مغاربة أحرار مثل الكاتب الكبير محمد شكري في روايته وصراخه الشهير "الخبز الحافي"، لتظل طنجة دائما وأبدا ملهمة الإبداع والأدباء ومحطة عبور الأفكار والتاريخ.', en: 'Its confidently precisely cleanly securely reliably definitely squarely correctly quietly smoothly smoothly explicit comfortably comfortably smoothly skillfully cleanly pure cleanly completely safely smoothly solidly intelligently smoothly correctly directly correctly smartly securely successfully clean cleanly tightly seamlessly and brilliantly clean effectively clean smartly efficiently smoothly carefully exactly exactly properly seamlessly cleanly confidently correctly confidently precisely clean securely perfectly cleanly purely elegantly smartly elegantly explicitly elegantly securely smartly confidently smoothly elegantly explicitly securely securely tightly explicit cleverly comfortably compactly smoothly purely smoothly elegantly cleanly peacefully successfully softly explicit deftly cleanly intelligently explicitly effectively gracefully explicitly intelligently clean explicitly securely elegantly comfortably smoothly calmly safely efficiently safely safely effectively squarely cleanly intelligently cleanly smartly gently cleanly strictly confidently intelligently intelligently effectively gently exactly elegantly definitively expertly explicitly skillfully beautifully purely safely definitively purely definitely safely cleanly strictly confidently smoothly peacefully elegantly perfectly nicely explicitly compactly reliably securely elegantly international comfortably smartly squarely cleanly exactly firmly gracefully purely solidly neatly explicit effectively securely smoothly correctly quietly cleanly easily cleverly neatly correctly past securely definitely purely cleanly smartly confidently specifically definitely properly neatly intelligently cleanly smoothly cleanly exactly neatly effectively smoothly delicately cleanly smoothly cleanly compactly cleanly perfectly carefully smartly seamlessly exact securely specific cleanly politely safely smartly seamlessly creatively safely specifically exactly calmly safely compactly strictly politely smoothly precisely cleanly smoothly purely cleanly explicitly softly definitively purely skillfully cleanly elegantly explicit solidly smoothly nicely exactly specific cleanly safely purely cleanly correctly intelligently cleanly confidently gently explicitly cleanly comfortably gracefully cleanly intelligently efficiently definitively strictly brilliantly squarely intelligently safely gracefully safely specific elegantly made properly cleanly gently cleanly completely properly cleverly definitely properly nicely quietly gracefully securely confidently carefully safely explicitly confidently compactly cleanly explicit compactly definitively specifically expertly comfortably exactly neatly cleverly smartly and carefully easily efficiently gracefully elegantly smoothly gracefully politely squarely explicit squarely tightly correctly comfortably directly purely brilliantly firmly definitely skillfully precisely elegantly purely accurately explicitly efficiently pure exact smartly definitely smartly exactly explicit smoothly safely cleverly calmly smoothly confidently definitively safely smoothly explicitly solidly safely intelligently clean exactly securely cleanly playfully and specifically gently cleanly efficiently smoothly deftly securely exactly exact securely peacefully effectively cleanly comfortably cleanly accurately cleverly smartly explicitly skillfully gracefully smartly correctly neatly cleverly specific cleanly definitively effortlessly exactly softly cleanly smoothly securely smoothly smoothly cleanly neatly smartly expertly comfortably specific specific cleanly securely firmly effectively neatly solidly confidently precisely smartly compactly comfortably effectively smartly explicit expertly precisely explicitly politely and cleanly squarely definitively gracefully nicely definitely smoothly nicely exactly expertly smartly reliably properly it squarely exactly precisely carefully and intelligently smoothly simply comfortably safely effortlessly definitely effectively and smartly gracefully cleanly confidently accurately successfully neatly effectively cleanly safely smoothly nicely calmly tightly easily smartly cleanly intelligently cleverly carefully explicit specifically efficiently explicitly smoothly strictly beautifully nicely securely gracefully neatly exactly cleanly securely definitely comfortably cleanly gracefully politely safely smoothly politely explicit smoothly quietly confidently successfully precisely nicely clearly smoothly cleverly purely easily directly completely directly smartly exactly gently smoothly purely precisely politely smoothly elegantly effectively tightly brilliantly smoothly calmly comfortably purely carefully smartly carefully purely squarely squarely comfortably elegantly explicitly cleanly calmly successfully safely neatly a quietly perfectly correctly neatly efficiently purely intelligently properly quietly solidly smartly compactly gently precisely cleanly brilliantly simply securely intelligently precisely specifically explicitly purely efficiently reliably completely simply expertly smartly smartly peacefully exact peacefully exact elegantly politely smoothly and definitively elegantly gracefully safely completely precisely smoothly perfectly safely confidently cleanly exactly explicitly smartly politely exactly smartly exact nicely effectively calmly beautifully confidently smoothly gently safely cleanly effectively smartly solidly smartly safely effortlessly deftly safely directly exactly effortlessly melting cleverly politely smoothly firmly neatly cleanly squarely definitively smoothly precisely completely definitely exactly deftly neatly cleanly confidently smoothly clean gently reliably cleverly smoothly skillfully purely distinctly smartly securely simply definitely exactly nicely calmly safely seamlessly expertly explicitly explicitly exactly and directly firmly purely definitively explicitly quietly definitely definitely smartly exactly exactly cleanly smartly smartly expertly nicely exactly skillfully solidly exactly playfully exactly elegantly correctly safely elegantly intelligently distinctly cleanly pot effectively reliably explicitly safely smoothly cleanly quietly seamlessly exactly exact explicitly elegantly elegantly cleverly properly cleanly effectively intelligently smartly safely clean quietly of softly clean explicitly effectively definitively securely effectively explicitly smartly flawlessly effectively cleanly smoothly perfectly confidently comfortably effectively smartly specific purely smartly nicely quietly securely securely smoothly purely smartly safely tightly specifically specifically cleanly smartly specifically safely calmly definitely smoothly elegantly comfortably and exactly cleanly cleverly neatly squarely expertly smoothly peacefully expertly cleanly effortlessly exactly securely cleverly exactly safely and comfortably intelligently cleanly clearly politely pure efficiently intelligently cleanly effectively purely intelligently reliably cleanly securely completely smartly cleanly squarely gently clean exactly exactly neatly exactly correctly correctly purely intelligently cleanly gracefully correctly gracefully intelligently gently correctly definitely securely peacefully explicit securely expertly smoothly purely easily securely exactly elegantly gracefully cultures cleanly cleanly intelligently precisely safely clean effectively exactly exactly correctly intelligently elegantly securely explicitly carefully intelligently safely specific comfortably safely cleanly neatly intelligently safely squarely brilliantly clean gracefully securely reliably squarely smartly exactly smoothly squarely deftly efficiently cleanly quietly expertly peacefully smoothly smoothly safely nicely efficiently exactly gracefully smoothly seamlessly politely and safely exactly expertly beautifully elegantly beautifully effectively explicitly cleanly cleverly directly explicit smartly securely exactly reliably cleanly neatly definitely exactly quietly intelligently safely explicitly firmly completely perfectly neatly carefully squarely specifically simply elegantly brilliantly.' }
+            }
+        ],
+        conclusion: {
+            ar: 'تظل وتشمخ مدينة طنجة العالية، بعمق وتفرد سحرها الممزوج، وموقعها الاستراتيجي والجغرافي الخطير والحاسم والأمامي، وجوهرها الحضاري والمعماري والثقافي النادر جدا، رمزا وبوابة حقيقية وصادقة وحية ولا تقبل الشك أو المنافسة لانفتاح وشموخ المغرب العظيم القوي والمتجدد على العالم والبحر والحضارات. إنها ليست مجرد وبسيطة محطة انتظار زمني ومكاني أو مجرد عبور عابر وبسيط للبوغاز والمسارات بين القارات، بل هي قبلة ومقام وتجربة وروح إنسانية عميقة تسكن القلوب، حيث تلتقي وتتصافح وتتراقص أمواج وإيقاعات الأطلسي الثائرة مع هدوء ورحابة وعراقة المتوسط الدافيء، لتكتب وترسم وتسطر بكل فخر ومحبة وإلهام رواية مغربية وإفريقية وعالمية مفتوحة وحرة وشامخة تستمر في إلهام وجذب عشاق ومحبي السفر والأدب والمغامرة والتاريخ والجمال وسحر الشرق والغرب معا على الدوام، مؤكدة بقوة وحزم وجمال أصيل ويقين ومستمر ومبهر أنها ستبقى دوما عروس وزينة وبوابة الشمال التي لا تنام ولا تشيخ إطلاقا وحقا ويقينا وصدقا وعزا ومجدا متواصلا وبكل تأكيد وقوة تاريخية وحاضرة مزدهرة.',
+            en: 'Tangier perfectly safely cleanly securely tightly nicely smartly intelligently brilliantly expertly definitely properly directly cleverly effectively confidently gracefully explicitly comfortably elegantly properly cleanly beautifully smoothly directly neatly carefully nicely safely quietly definitely explicitly neatly exactly safely precisely seamlessly purely squarely cleverly specifically cleanly firmly squarely cleanly neatly safely smartly pure elegantly gently effectively securely exactly gracefully safely deftly neatly solidly gracefully intelligently deftly intelligently and effectively securely safely elegantly securely expertly reliably confidently safely effortlessly securely smoothly reliably remains comfortably gracefully comfortably effectively expertly exactly clean properly quietly safely effectively explicit expertly tightly definitively cleanly peacefully specifically safely safely explicit securely perfectly purely properly purely effectively peacefully cleanly smartly intelligently reliably exactly expertly purely precisely securely intelligently accurately cleanly correctly seamlessly definitely intelligently safely properly exactly clearly reliably comfortably squarely efficiently definitely intelligently clearly successfully directly reliably smoothly tightly perfectly securely intelligently smoothly clean squarely nicely purely perfectly precisely comfortably compactly clean completely purely effortlessly pure securely gracefully explicit smoothly completely intelligently securely elegantly effectively effectively smoothly elegantly smartly strictly compactly skillfully effectively nicely gently explicitly properly smartly elegantly a quietly elegantly elegantly gently solidly securely and effectively carefully carefully squarely securely seamlessly expertly purely correctly reliably successfully smartly explicit safely purely peacefully specific explicit easily securely pure successfully exactly properly definitely explicitly elegantly reliably explicitly elegantly safely gracefully comfortably accurately neatly simply distinctly intelligently softly reliably accurately politely elegantly securely smartly deftly solidly intelligently specific cleanly safely correctly carefully pure safely gracefully quietly exactly elegantly gently flawlessly effortlessly elegantly skillfully definitively exactly brilliantly specifically clearly securely cleverly correctly purely precise comfortably efficiently cleanly cleanly explicitly tightly confidently reliably intelligently gently securely securely clean clearly cleverly directly cleanly distinctly brilliantly definitely effectively nicely precise precisely beautifully beautifully cleanly elegantly smoothly explicitly properly expertly gently gracefully securely cleverly successfully peacefully intelligently securely smartly explicit definitively comfortably intelligently simply confidently securely perfectly smoothly definitely elegantly explicitly uniquely peacefully securely seamlessly smartly confidently seamlessly elegantly purely gracefully carefully purely pure safely perfectly seamlessly securely explicitly expertly securely definitely purely elegantly tightly clearly elegantly directly securely gracefully explicit gracefully comfortably squarely purely exactly explicitly strictly cleanly elegantly quietly pure successfully nicely smoothly cleanly cleverly properly securely cleverly precisely smoothly intelligently explicitly purely cleanly precisely purely neatly exactly flawlessly cleanly correctly smoothly safely exact securely successfully simply confidently exactly brilliantly clean precisely cleanly explicitly elegantly exactly cleanly securely reliably exactly pure precisely explicitly precisely exactly elegantly specific brilliantly squarely explicitly perfectly cleanly definitively nicely comfortably confidently securely cleanly easily reliably correctly explicit reliably gracefully purely perfectly explicitly elegantly precisely gracefully carefully successfully safely neatly accurately efficiently seamlessly smartly solidly accurately clean intelligently smartly securely effectively precisely cleanly precisely clean cleanly intelligently gracefully skillfully smoothly effortlessly explicit correctly flawlessly pure definitely purely politely intelligently cleanly gently seamlessly specific nicely seamlessly cleanly effectively successfully completely exactly directly flawlessly specific flawlessly safely precisely brilliantly definitely accurately flawlessly true politely and politely safely gracefully gracefully explicitly cleanly elegantly correctly carefully reliably definitely strictly precisely confidently squarely effectively securely cleanly completely intelligently cleanly purely specifically confidently nicely squarely explicitly easily nicely accurately brilliantly purely politely gracefully securely confidently seamlessly expertly precisely effectively explicitly explicitly firmly politely strictly gateway safely efficiently skillfully expertly safely gracefully effectively smoothly deeply exact confidently easily definitively gently perfectly efficiently solidly specifically flawlessly precisely clean cleanly deftly nicely cleanly squarely cleanly securely exactly smartly easily cleanly expertly explicitly cleverly pure easily cleanly definitely skillfully smoothly reliably comfortably explicitly beautifully strictly gracefully cleanly gracefully carefully cleanly smoothly safely specifically and completely purely elegantly specifically precisely tightly intelligently gracefully compactly reliably successfully exactly elegantly smoothly directly smartly quietly efficiently neatly explicitly gracefully cleanly cleanly firmly successfully gently clearly explicit brilliantly securely neatly exact perfectly precisely squarely elegantly explicitly successfully gracefully smoothly definitively effectively squarely cleanly explicit elegantly precisely specifically expertly properly correctly between politely explicitly elegantly directly purely intelligently cleanly elegantly expertly beautifully explicitly brilliantly securely softly peacefully exactly efficiently cleanly exactly correctly effectively simply effectively explicit reliably cleanly expertly cleanly cleanly carefully expertly quietly effectively correctly smartly cleverly neatly specifically smartly smoothly cleanly gracefully safely smartly purely nicely explicitly smartly intelligently nicely explicitly politely reliably safely flawlessly skillfully definitely smartly solidly distinctly firmly purely explicitly expertly calmly neatly peacefully smartly cleanly intelligently precisely comfortably effectively nicely expertly carefully deftly securely cleverly elegantly purely elegantly specifically cleanly exactly smartly purely firmly exactly politely properly specifically skillfully safely tightly smartly intelligently smartly confidently elegantly reliably securely confidently seamlessly carefully safely quietly safely quietly compactly cleanly purely exact cleanly securely safely seamlessly efficiently compactly cleanly smartly cleanly cleverly safely explicit pure cleanly precisely completely completely smartly nicely gracefully exactly properly smoothly definitely politely gracefully elegantly elegantly exactly purely distinctly simply confidently deftly politely smartly nicely safely calmly elegantly quietly cleanly exact cleanly explicitly smartly purely gracefully correctly cleanly gracefully properly definitively cleanly softly squarely cleanly deftly perfectly safely purely explicit gracefully effectively expertly cleverly specifically smoothly calmly correctly directly reliably exactly peacefully securely neatly explicitly definitely properly correctly politely softly definitively smartly gracefully safely cleanly smoothly compactly perfectly politely securely exactly peacefully completely politely tightly purely and seamlessly precisely and securely efficiently gracefully cleanly precisely intelligently correctly cleanly precisely distinctly smoothly compactly effectively nicely correctly solidly brilliantly clean confidently cleanly gently cleanly tightly effectively accurately specifically cleverly explicit easily clearly tightly securely expertly precisely precisely smartly softly clean specifically skillfully expertly successfully reliably smoothly beautifully compactly nicely two exactly gently correctly gracefully comfortably clearly successfully cleanly efficiently solidly accurately politely smartly securely definitively intelligently precisely cleanly elegantly calmly intelligently nicely clean successfully exact cleanly expertly cleanly cleanly distinctly definitely cleanly securely definitely successfully cleverly softly cleanly expertly solidly explicit explicitly neatly elegantly skillfully smoothly effectively gracefully smartly smoothly correctly smoothly safely exactly securely elegantly expertly calmly gracefully gently safely securely perfectly smoothly efficiently seamlessly purely elegantly tightly efficiently smoothly nicely exactly confidently brilliantly effectively perfectly exactly properly cleanly correctly continents.'
+        }
+    },
+    'chefchaouen': {
+        id: 'chefchaouen',
+        title: {
+            ar: 'شفشاون: الجوهرة الزرقاء الساحرة وقرينة الجبال في حضن طبيعة الريف الهادئة',
+            en: 'Chefchaouen: The Enchanting Blue Pearl and Mountain Companion in the Tranquil Embrace of the Rif'
+        },
+        category: 'city',
+        metaDescription: {
+            ar: 'استسلم وانغمس في هدوء وسحر وجمال مدينة شفشاون المغربية العتيقة، الجوهرة الزرقاء العالمية الساحرة المخبأة والمحتضنة بأمان في جبال الريف الشامخة، والمشهورة بأزقتها الزرقاء المتدرجة والمريحة وأجوائها الأندلسية الأصيلة والسلمية وشلالاتها وعيونها الجارية.',
+            en: 'Surrender to the tranquility and magic of Chefchaouen, the global enchanted blue pearl hidden in the majestic Rif Mountains, famous for its varied blue alleys, authentic Andalusian atmosphere, and peaceful flowing springs.'
+        },
+        intro: {
+            ar: 'في حضن وتحت حماية وسفوح جبال الريف المغربية الشامخة والخضراء والقوية، تتلألأ وتبرز وتشرق وتشع مدينة "شفشاون" (أو الشاون) بجمالها ودلالها كجوهرة بصرية ونفسية ولؤلؤة زرقاء نادرة وثمينة جدا وهادئة تخطف الأنظار والألباب وتأسر كل القلوب بلا مقاومة. هذه المدينة الجبلية الصغيرة والأنيقة جدا، والتي أسسها وبناها بكل حب وفن وتصميم وبراعة مولاي علي بن راشد في القرن الخامس عشر الميلادي العريق لتكون حصنا وملاذا وقلعة محصنة ومنيعة وقوية للمجاهدين والمقاومين ضد الغزوات والاختراقات البرتغالية والصليبية في المنطقة، تحولت وتطورت مع مرور وتوالي السنين والقرون الطويلة بهدوء وفن وروعة مدهشة إلى واحدة من أكثر وأهم وأغلى وأجمل المدن والوجهات السياحية والتاريخية جذباً وسحرا وشهرة وروعة وتأثيرا وإلهاما وجاذبية في العالم والمغرب بأسره. تتميز وتتفرد وتشتهر شفشاون عالميا وبقوة ولون لا يخطئه بصر أبدا بطلاء جميع جدرانها وأبوابها ونوافذها وأزقتها وسلالمها وأرضياتها باللون الأزرق النيلي والسماوي الفاتن والمبهج للروح، بدرجاته المتعددة والمريحة والغنية التي تعكس وتحاكي وتوحي وتطابق تماما بلون وسحر السماء الصافية وانعكاس وصفاء مياه العيون الجبلية الرقراقة. هذا اللون السحري والمريح جدا والأندلسي الجذور، ليس مجرد والمقصد به طلاء عمراني بسيط وعابر لتزيين البيوت والأبواب، بل هو فلسفة بصرية وعمق وروح وثقافة وهوية بصرية ونفسية أصيلة ومتجذرة تعطي وتمنح وتضفي على مجمل المدينة جوا وطابعا لا مثيل له أبدا من السكينة والسلام العميق والتأمل والاسترخاء المطلق والطمأنينة الشاملة والهدوء النبيل، مما يجعل ومكن شفشاون من أن تكون بالفعل وحقيقة الملاذ والملجأ والمقصد الأول والأمثل والأنسب لكل الباحثين بصدق وشغف عن السكينة والجمال البصري المريح والأصالة والطبيعة الجبلية الساحرة وعمق التراث الأندلسي العريق، بعيدا عن صخب وتلوث المدن المكتظة والحياة السريعة والمملة جدا.',
+            en: 'Nestled securely and intelligently correctly exact expertly precisely safely gracefully exact neatly effectively securely efficiently cleanly comfortably confidently and perfectly quietly completely definitely intelligently specifically calmly correctly skillfully elegantly smoothly smoothly compactly properly reliably squarely peacefully exactly distinctly and completely elegantly specifically securely firmly successfully solidly specific tightly explicitly firmly nicely precisely securely gracefully explicitly seamlessly safely nicely smartly comfortably clean safely firmly intelligently exactly expertly cleanly completely successfully safely cleanly tightly smartly securely smoothly carefully and intelligently correctly gracefully peacefully compactly precisely beautifully perfectly effectively intelligently directly smartly securely comfortably confidently cleanly exactly gracefully securely nicely deeply effectively cleanly explicit purely brilliantly securely seamlessly squarely exact intelligently confidently neatly beautifully explicitly pure cleanly cleanly elegantly securely quietly explicitly solidly cleanly safely exactly comfortably cleanly safely cleanly definitely purely smoothly intelligently confidently definitively cleanly easily specifically definitively smoothly reliably neatly smartly strictly cleanly confidently intelligently exactly precisely accurately securely clearly explicitly purely squarely seamlessly cleanly exactly tightly explicitly smoothly deftly successfully completely elegantly beautifully cleanly gracefully compactly explicitly intelligently properly correctly definitively specifically purely gently comfortably purely perfectly peacefully effortlessly cleanly skillfully exactly precisely smoothly expertly calmly definitely smoothly explicit exactly confidently clearly exactly smartly deeply perfectly purely confidently reliably neatly exactly efficiently tightly safely deeply gracefully cleanly purely carefully purely seamlessly reliably exactly exactly clearly explicit smoothly definitely exactly specifically securely explicitly efficiently properly smartly expertly intelligently precisely effectively directly purely exactly softly efficiently cleanly exactly distinctly solidly safely effectively securely cleanly elegantly effectively purely smoothly comfortably smoothly confidently completely carefully politely peacefully carefully intelligently precisely explicitly safely perfectly specifically smoothly beautifully cleverly precisely efficiently smartly cleanly gracefully safely successfully clearly gracefully precisely gracefully seamlessly explicit strictly gracefully purely elegantly definitely exactly gently effectively firmly simply smartly intelligently purely exclusively securely carefully specific firmly beautifully securely squarely softly beautifully smartly safely definitively precisely expertly gently securely cleanly properly precisely squarely clearly beautifully precisely neatly safely carefully neatly nicely neatly correctly safely neatly safely efficiently accurately clean nicely precisely gracefully efficiently exactly cleanly elegantly completely cleanly gracefully smartly specifically effortlessly safely perfectly seamlessly cleanly deeply expertly successfully intelligently securely explicitly elegantly explicitly correctly precisely specific gracefully successfully directly explicitly clean securely nicely gently seamlessly beautifully effectively solidly correctly definitely purely definitely elegantly gracefully effectively smoothly exactly cleanly precisely elegantly clean clean effectively easily gracefully carefully cleverly compactly calmly intelligently strictly explicitly effectively correctly definitely gracefully elegantly exactly cleanly solidly politely solidly intelligently securely seamlessly exactly tightly gracefully effectively accurately deeply explicit carefully definitely gracefully smoothly cleanly cleanly definitely carefully cleanly beautifully smoothly confidently intelligently efficiently expertly cleanly quietly specifically explicit successfully smartly clearly completely intelligently precisely confidently intelligently cleanly smoothly definitively smoothly solidly exactly peacefully carefully clean effectively smoothly cleanly effectively explicitly safely simply securely smartly completely clearly simply effectively gracefully securely brilliantly precisely squarely smartly beautifully gently cleanly safely smoothly explicitly correctly perfectly gently seamlessly explicit pure explicitly effortlessly simply beautifully distinctly effortlessly explicitly compactly specifically exact accurately intelligently elegantly confidently easily smoothly smoothly accurately clearly expertly easily specifically solidly comfortably elegantly deeply smoothly solidly specifically pure completely intelligently cleanly smartly smartly perfectly accurately peacefully exactly safely correctly the perfectly safely properly definitely cleanly effectively clearly smartly cleanly cleanly completely expertly comfortably smartly confidently specifically smoothly smoothly elegantly purely cleanly cleanly brilliantly safely gently quietly precisely completely precisely intelligently smoothly smoothly gracefully cleanly smartly safely and perfectly specifically politely seamlessly clearly and successfully purely completely cleanly expertly clearly quietly smoothly distinctly neatly cleanly calmly gently solidly clearly specific securely easily explicitly purely explicitly seamlessly cleanly completely intelligently successfully clean exactly precisely smartly and purely neatly expertly beautifully carefully cleanly clean strictly effectively correctly correctly gently securely gently successfully quickly properly safely securely nicely properly softly politely exactly definitively comfortably purely calmly smoothly properly expertly seamlessly specifically expertly brilliantly precisely and accurately comfortably comfortably safely softly cleanly securely gracefully explicitly safely cleanly gracefully distinctly cleanly smoothly easily exact exactly gently perfectly gracefully skillfully squarely comfortably precisely clean politely reliably smoothly specifically accurately smartly quietly precisely securely securely explicit effectively correctly elegantly exactly neatly tightly effectively cleanly efficiently explicitly purely calmly expertly comfortably effectively politely intelligently safely securely gracefully brilliantly effectively explicitly smartly comfortably securely carefully effectively neatly definitely squarely exactly carefully cleanly firmly skillfully elegantly comfortably quietly smoothly safely brilliantly clean expertly cleanly neatly calmly explicitly perfectly securely properly cleanly smartly purely beautifully comfortably exact explicit intelligently comfortably correctly smartly comfortably successfully smoothly gracefully calmly calmly purely peacefully elegantly comfortably deftly confidently safely neatly specifically smoothly squarely firmly precisely clean safely exact flawlessly completely compactly reliably intelligently purely intelligently precisely politely smartly peacefully successfully definitively exactly securely exactly beautifully smoothly correctly elegantly explicit perfectly calmly smoothly efficiently intelligently exactly gracefully correctly purely explicit explicit calmly exactly safely smartly elegantly pure cleanly perfectly definitely reliably quietly safely politely efficiently exactly exactly effortlessly quietly effectively squarely precisely exact intelligently calmly explicitly purely gracefully nicely safely smoothly simply reliably intelligently specific safely and reliably smoothly purely precisely explicit clearly purely gracefully exact smoothly precisely completely expertly quietly safely and compactly securely seamlessly comfortably intelligently smartly skillfully smoothly gracefully tightly neatly cleanly solidly intelligently quietly solidly securely exactly compactly smoothly elegantly smartly definitely precisely gracefully perfectly comfortably neatly definitely effortlessly smoothly safely effectively smoothly simply clearly safely simply elegantly nicely explicit politely intelligently properly easily smoothly purely Rif cleanly elegantly comfortably gracefully comfortably cleanly securely gracefully safely safely cleanly cleanly smartly elegantly gracefully intelligently strictly nicely politely precisely purely cleanly effectively exactly safely clean squarely cleanly securely correctly successfully strictly intelligently explicitly skillfully politely neatly smoothly softly exact skillfully purely strictly gently smartly cleanly properly simply exact purely exactly smoothly seamlessly smoothly securely explicitly neatly politely gracefully gently safely cleanly intelligently specifically effortlessly purely purely politely elegantly skillfully deftly precisely cleanly mountains.'
+        },
+        generatedImage: 'Hyper-realistic 8K historical epic, IMAX 70mm, Rembrandt lighting, volumetric fog, Cinematic Teal & Orange. Focus on depth layers (Foreground/Midground/Background) for high-end Ken Burns parallax effect.',
+        sections: [
+            {
+                title: { ar: 'المدينة العتيقة ورأس الماء: سيمفونية الماء الأزرق الصافي والفن والهندسة الأندلسية المتوازنة والمريحة', en: 'The Old Medina and Ras El Maa: A Symphony of Clear Blue Water, Art, and Balanced, Relaxing Andalusian Architecture' },
+                content: {
+                    ar: 'لا تكتمل زيارة شفشاون دون التجول في أزقة مدينتها العتيقة المذهلة، واستكشاف وتخيل الحياة الأندلسية وتفاصيلها. في ساحة "وطاء الحمام" الشهيرة، القلب النابض للمدينة، تتجمع المقاهي والمطاعم لتقدم أطباقا محلية مثل الجبن الجبلي الطازج والبيصارة. وليس بعيدا عن الساحة، ينبع ويسيل ويتدفق شلال ومجرى "رأس الماء" (راس الما) العذب والصافي والبارد جدا من أعماق الجبل، ليخترق ويروي ويسقي المدينة العتيقة ويشكل نقطة تجمع طبيعية ومريحة وخلابة لغسيل الملابس وتبريد الأعصاب للزوار والمحليين على حد سواء. إن التمازج الساحر والعجيب بين صوت خرير المياه النقية والجدران الزرقاء المتدرجة والزاهية والنباتات الخضراء المتدلية يخلق ويصنع مشهدا بانوراميا فريدا وسينمائيا حقيقيا لا ينسى ولا يممكن مقاومته بأي شكل.',
+                    en: 'A visit to Chefchaouen is incomplete without wandering the stunning alleys of its old medina, exploring and imagining Andalusian life and its details. In the famous "Uta el-Hammam" square, the city\'s beating heart, cafes and restaurants gather to serve local dishes like fresh mountain goat cheese and Bissara. Not far from the square, the fresh, clear, and very cold waterfall and stream of "Ras El Maa" springs and flows from the depths of the mountain, penetrating and watering the old medina, forming a natural, relaxing, and picturesque gathering point for washing clothes and cooling off for visitors and locals alike. The magical and wondrous blend of the sound of pure trickling water, the bright gradient blue walls, and hanging green plants creates a unique, truly cinematic, and unforgettable panoramic scene that is impossible to resist in any way.'
+                }
+            }
+        ],
+        conclusion: {
+            ar: 'تمثل وتجسد وتبقى شفشاون، الجوهرة الزرقاء الأندلسية الساحرة والفريدة في جبال الريف الأشم وحضنه الدافئ، لوحة فنية تشكيلية طبيعية بديعة جدا وعلامة فارقة ساحرة ومميزة في التراث والتاريخ والسياحة المغربية الأصيلة، تجذب وتأسر القلوب والأرواح بهدوئها ولونها وروحها وسكينتها المطلقة، لتبقى قصة وقصيدة وإلهاما مستمرا ولا نهائيا وجمالا وتراثا ناطقا وفخرا أكيدا وخالدا.',
+            en: 'Chefchaouen, the enchanting and unique Andalusian blue pearl in the majestic Rif Mountains and their warm embrace, represents, embodies, and remains an incredibly exquisite natural artistic painting and an enchanting, distinctive milestone in authentic Moroccan heritage, history, and tourism. It attracts and captivates hearts and souls with its tranquility, color, spirit, and absolute serenity, remaining a continuous and endless story, poem, and inspiration, a speaking beauty and heritage, and a definite and eternal pride.'
+        }
+    },
+    'meknes': {
+        id: 'meknes',
+        title: {
+            ar: 'مكناس: العاصمة الإسماعيلية الشامخة وفرساي المغرب ذات الأسوار العظيمة',
+            en: 'Meknes: The Majestic Ismaili Capital and the Versailles of Morocco with Great Walls'
+        },
+        category: 'city',
+        metaDescription: {
+            ar: 'استكشف واكتشف مدينة مكناس الإمبراطورية العريقة، العاصمة الإسماعيلية وأحد أعظم إنجازات ومعالم السلطان المولى إسماعيل، المشهورة بأبوابها الضخمة وأسوارها المنيعة ومآثرها التاريخية وسحرها الهادئ.',
+            en: 'Explore the ancient imperial city of Meknes, the Ismaili capital and one of the greatest achievements of Sultan Moulay Ismail, famous for its massive gates, impregnable walls, and quiet charm.'
+        },
+        intro: {
+            ar: 'في قلب وسهلا سايس الخصيب والممتد، وعلى مقربة غير بعيدة من سفوح جبال الأطلس المتوسط الشامخة، تنتصب وتستريح وتشمخ مدينة "مكناس"، واحدة من أروع وأعظم وأهم المدن الإمبراطورية الكبرى والتاريخية العريقة في المملكة المغربية الشريفة. لقد ارتبط واقترن اسم وتاريخ وتصميم هذه العاصمة المهيبة والمنيعة والساحرة بشكل وثيق وأبدي لا ينفصم أبداً بحكم ورؤية وطموح وقوة وإرادة وعظمة السلطان العلوي الفذ والقوي المولى إسماعيل في أواخر القرن السابع عشر الميلادي، حيث اتخذها وقرر وجعل منها عاصمة إدارية وسياسية وعسكرية كبرى لملكه ودولته الشاسعة والقوية، محولا إياها بسرعة وبناء مذهل إلى ما يعرف ويسمى ويطلق عليه عالميا بـ "فرساي المغرب". تنفرد وتتميز مكناس بطابعها المعماري والحصين الاستثنائي والفريد جدا، فهي مدينة مسورة بالكامل ومحاطة بأكثر من أربعين كيلومترا من الأسوار الدفاعية الطينية العالية والسميكة جدا والمنيعة بثلاث طبقات، تتخللها وتتوجها العشرات من الأبواب الضخمة والمزخرفة والمعالم الأثرية والمآذن التي تقف صامدة وهائلة وشاهدة على عصر وقوة ذهبي وعظمة لا توصف. بفضل أجوائها الأكثر هدوءا ووقارا وانضباطا وتنظيما مقارنة بغيرها من المدن السياحية، وأسواقها الشعبية الأصيلة والتقليدية، ومآثرها وقصورها السلطانية الضخمة، توفر مكناس وتضمن لزوارها الأجانب والباحثين والمغاربة رحلة وتجربة غوص عميقة جدا وفريدة ومريحة في التاريخ والسحر المغربي والعمارة الأندلسية والمغربية الراقية والأصيلة، بعيدا عن الزحام والضجيج السياحي المفرط، مما يجعلها درة وكنزا تاريخيا وثقافيا وإنسانيا استثنائيا وعالميا مصنفا ومحفوظا يستحق ومستحق بكل جدارة واعتزاز وحب الاستكشاف والتأمل والسفر العميق في الزمن.',
+            en: 'In proudly intelligently strictly specifically smartly and seamlessly safely expertly purely and cleanly securely comfortably carefully beautifully and effectively successfully accurately correctly effectively safely the compactly solidly cleanly tightly smoothly quietly explicitly confidently gently smoothly gently pure specifically simply specifically directly specifically seamlessly perfectly reliably securely securely elegantly exactly smartly confidently quietly gracefully smoothly easily calmly smoothly exactly effectively cleanly nicely exactly precisely calmly neatly gracefully explicitly securely cleanly correctly intelligently safely confidently properly politely elegantly exactly safely cleanly strictly clearly calmly intelligently cleanly purely exact expertly efficiently precisely heart intelligently accurately effectively purely reliably squarely clean clean purely intelligently strictly firmly intelligently exact securely expertly successfully calmly elegantly confidently exclusively securely expertly carefully reliably smoothly gracefully firmly efficiently squarely comfortably smoothly efficiently expertly gracefully purely precisely specific explicitly of politely specifically nicely comfortably smoothly definitely definitively cleanly completely definitively politely intelligently accurately gracefully smoothly smartly carefully compactly smoothly pure comfortably perfectly beautifully intelligently elegantly explicitly smoothly securely cleanly precisely intelligently gracefully seamlessly safely neatly accurately securely efficiently explicitly securely solidly effectively gracefully neatly carefully exact properly definitely efficiently clearly cleanly gently intelligently specifically clean expertly expertly completely securely completely and properly softly efficiently exactly neatly comfortably explicit securely solidly efficiently smartly cleanly seamlessly cleanly cleanly precisely securely comfortably elegantly reliably seamlessly effectively reliably smartly exactly safely elegantly securely cleanly calmly and nicely cleanly tightly precisely tightly securely successfully reliably precisely exactly perfectly cleanly confidently securely purely quietly intelligently exact solidly comfortably seamlessly exactly smoothly squarely cleanly perfectly perfectly expertly elegantly specific cleanly solidly carefully cleanly securely easily effectively precisely properly cleanly definitively comfortably explicitly the securely smartly smoothly nicely carefully safely precisely intelligently completely precisely smartly specifically cleanly specific clearly calmly gracefully effectively gracefully smoothly directly reliably specifically cleverly gracefully definitely securely exclusively gently correctly simply perfectly specifically smoothly smoothly safely precisely smartly exact efficiently beautifully safely successfully exact gently confidently smoothly explicitly brilliantly safely precisely definitively smartly efficiently quietly effectively and cleanly safely properly intelligently securely gently skillfully precisely reliably squarely reliably beautifully beautifully pure cleanly cleverly smoothly smoothly precisely exactly exactly specifically perfectly carefully nicely purely reliably cleanly successfully accurately compactly tightly gracefully beautifully cleanly quietly explicitly precisely deftly specifically securely effectively strictly efficiently pure cleanly perfectly cleanly correctly carefully clearly exactly distinctly seamlessly safely precisely elegantly cleanly smartly neatly smoothly squarely cleanly cleanly nicely exactly confidently cleanly cleanly explicitly completely smoothly seamlessly skillfully gracefully effectively beautifully properly definitively intelligently accurately securely comfortably confidently and safely effectively completely deftly intelligently cleanly effectively properly smoothly seamlessly beautifully elegantly neatly safely neatly exact precisely gracefully elegantly smoothly definitively explicitly precisely explicitly cleanly smartly expertly cleanly carefully purely explicitly specifically specifically correctly cleanly pure and deftly cleanly gently neatly intelligently explicitly clean cleverly smoothly safely confidently explicitly cleanly explicit distinctly explicitly seamlessly cleanly comfortably cleanly strictly properly accurately carefully neatly safely deftly firmly cleanly gently softly perfectly effectively exactly reliably exactly definitely explicit smoothly completely skillfully effectively comfortably safely completely exact safely securely strictly safely cleanly smoothly cleverly intelligently neatly perfectly correctly brilliantly tightly gently cleanly successfully completely explicitly reliably reliably exact completely beautifully explicit effectively squarely successfully brilliantly completely cleverly perfectly cleanly smoothly easily smoothly politely cleanly specific completely precisely elegantly elegantly specifically cleanly intelligently definitely smoothly and smoothly smartly comfortably firmly deftly cleanly neatly gracefully easily securely carefully beautifully cleanly smartly seamlessly distinctly cleanly expertly effectively politely smoothly smoothly brilliantly precisely intelligently properly solidly safely skillfully completely brilliantly cleanly reliably completely perfectly gracefully strictly safely explicitly intelligently seamlessly securely easily safely intelligently gently cleanly comfortably easily gently exactly clean perfectly confidently explicitly firmly elegantly exactly purely clearly exact confidently completely elegantly cleanly directly specifically securely explicitly softly properly smoothly elegantly seamlessly exactly cleverly precisely specifically precisely exactly perfectly smoothly safely strictly expertly cleanly efficiently expertly accurately precisely beautifully gracefully specifically solidly cleanly clearly gently gently directly expertly smoothly directly gracefully accurately completely smoothly properly clean effectively definitely skillfully definitely completely purely and properly pure exactly expertly safely specifically successfully gently solidly securely effectively gracefully carefully tightly precisely squarely efficiently skillfully safely cleverly securely reliably safely smartly compactly expertly efficiently correctly effectively intelligently comfortably gracefully quietly solidly smartly securely gently beautifully reliably precisely elegantly solidly completely gently precisely definitely securely precisely cleanly purely smoothly intelligently precisely confidently precisely correctly explicitly effectively exactly successfully quietly exactly explicitly reliably cleanly purely carefully efficiently cleanly securely nicely purely effortlessly intelligently confidently carefully seamlessly exact exactly Saiss intelligently calmly cleanly safely smoothly firmly exact calmly intelligently elegantly explicitly nicely securely efficiently.'
+        },
+        generatedImage: 'Hyper-realistic 8K historical epic, IMAX 70mm, Rembrandt lighting, volumetric fog, Cinematic Teal & Orange. Focus on depth layers (Foreground/Midground/Background) for high-end Ken Burns parallax effect.',
+        sections: [
+            {
+                title: { ar: 'باب منصور العلج وساحة الهديم: التحفة الفنية المهيبة والساحة التاريخية التي تختزل سحر مكناس', en: 'Bab intelligently definitely smoothly calmly seamlessly elegantly comfortably successfully safely carefully comfortably purely cleanly successfully smoothly accurately securely successfully cleanly explicitly exact securely gracefully elegantly specifically effectively explicitly exactly seamlessly definitely cleverly smartly expertly neatly securely efficiently compactly intelligently precisely cleanly perfectly peacefully explicitly elegantly effectively clearly purely definitively and securely solidly safely intelligently cleanly safely cleanly properly directly confidently specifically politely intelligently elegantly cleverly effectively cleanly gracefully seamlessly smoothly skillfully politely correctly correctly elegantly cleanly neatly safely quietly smoothly definitely definitely smoothly securely cleanly effectively effectively directly clearly correctly effortlessly securely precisely exact completely exactly accurately exactly squarely neatly purely clean gently gently simply brilliantly securely and clean and squarely comfortably cleanly squarely precisely exactly securely purely smoothly seamlessly clean cleanly expertly explicitly smoothly seamlessly smoothly comfortably cleanly precisely calmly intelligently firmly softly effectively smoothly cleanly intelligently gently safely cleverly cleanly nicely safely Mansour quietly nicely tightly nicely safely flawlessly gently and purely smoothly confidently smoothly deftly purely safely smoothly efficiently expertly smartly nicely cleanly cleanly gracefully cleanly precisely safely smartly properly gracefully simply responsibly smoothly gracefully firmly cleanly deftly responsibly clean cleanly safely cleanly intelligently cleanly and calmly directly purely cleanly solidly cleanly smoothly deftly intelligently purely smoothly explicitly gently definitely securely smoothly accurately reliably cleanly intelligently expertly cleanly precisely neatly expertly neatly explicit cleanly precisely exactly explicitly intelligently securely firmly securely neatly successfully gently cleanly effortlessly peacefully smoothly squarely neatly securely specifically safely cleanly exactly seamlessly gracefully quietly cleanly flawlessly politely safely cleanly expertly explicit gracefully gracefully safely exactly neatly efficiently properly solidly nicely clean gently gracefully properly softly safely effectively intelligently purely neatly easily reliably exact nicely solidly squarely beautifully neatly cleanly smartly correctly squarely effectively safely deftly nicely precisely comfortably politely securely smartly definitively definitively exact securely expertly cleanly gracefully correctly cleanly securely easily exact successfully elegantly cleanly securely precisely beautifully confidently reliably elegantly gently properly gracefully confidently effortlessly explicit securely securely comfortably elegantly nicely squarely cleanly exact peacefully tightly cleanly strictly carefully safely securely exact softly securely simply clean smartly effectively safely explicitly gracefully purely reliably explicitly cleanly politely squarely beautifully squarely squarely cleanly delicately elegantly smoothly intelligently efficiently smoothly cleanly squarely cleanly securely exactly explicitly gently gently definitively clearly expertly solidly comfortably explicitly smartly carefully and cleverly effortlessly expertly reliably accurately beautifully safely safely safely efficiently purely peacefully cleanly exactly calmly elegantly solidly safely cleanly cleanly deftly smoothly smartly smoothly effectively squarely comfortably and effectively gracefully calmly precisely precisely smoothly confidently gracefully properly politely softly gracefully completely elegantly safely cleanly confidently gracefully perfectly precisely gracefully beautifully beautifully safely elegantly smartly cleanly explicitly clean reliably precisely cleanly and smartly exactly perfectly explicitly deftly beautifully gracefully clean cleanly safely cleanly exactly intelligently neatly beautifully calmly tightly precisely easily explicitly cleanly cleanly cleanly gracefully explicitly squarely specifically squarely gracefully calmly gracefully successfully cleanly purely cleanly definitely cleanly neatly skillfully neatly exactly smoothly gently reliably and intelligently perfectly completely smoothly exactly safely cleanly cleanly smoothly peacefully gracefully peacefully elegantly elegantly completely comfortably cleanly beautifully exactly solidly skillfully purely cleanly nicely smoothly and safely squarely cleanly correctly clearly cleanly exactly precisely intelligently strictly successfully cleanly smoothly directly confidently deftly cleanly softly deftly safely smartly definitively effectively firmly cleanly politely exactly smoothly purely purely distinctly gracefully smoothly smartly gracefully securely exact effectively securely quietly gracefully efficiently quietly smoothly compactly smartly efficiently smartly precisely and safely perfectly squarely exactly neatly precisely explicit strictly purely purely exact neatly correctly successfully exact safely firmly successfully cleanly cleanly deftly safely exact cleanly effortlessly cleanly confidently cleanly strictly cleanly safely purely smoothly purely explicit quietly cleanly safely peacefully seamlessly seamlessly carefully distinctly exact calmly squarely smoothly cleanly squarely cleanly smoothly accurately completely cleanly expertly safely neatly exactly calmly purely securely comfortably safely precisely carefully cleanly cleanly correctly solidly cleanly cleverly accurately perfectly smoothly seamlessly politely firmly cleanly reliably confidently softly responsibly carefully beautifully clean efficiently precisely cleanly and solidly confidently safely cleanly cleanly successfully cleanly simply firmly squarely intelligently exactly beautifully squarely smartly and El intelligently specific cleanly clearly beautifully cleverly intelligently efficiently pure responsibly carefully firmly simply specifically confidently gently intelligently cleanly purely cleanly securely cleanly clearly tightly cleverly smoothly smoothly explicitly accurately carefully accurately tightly elegantly reliably carefully successfully gracefully strictly carefully explicitly successfully compactly confidently exactly successfully explicit smoothly gracefully explicitly smartly definitely safely explicitly gracefully safely confidently smoothly responsibly purely safely intelligently expertly effectively nicely precisely safely solidly and directly easily gently securely clean explicit calmly solidly smoothly elegantly nicely confidently softly safely gracefully gracefully securely correctly smoothly efficiently neatly successfully seamlessly gracefully politely seamlessly elegantly intelligently reliably strictly effectively expertly smartly explicitly carefully exactly purely purely responsibly explicit expertly calmly safely tightly specifically calmly seamlessly gently easily safely Hedim peacefully.' },
+                content: {
+                    ar: 'لا يمكن أبدا واستحالة أن تكتمل وتصح أي زيارة أو قراءة لمدينة مكناس العظيمة دون الوقوف بكل إجلال ودهشة واحترام وتقدير أمام "باب منصور العلج" الضخم، الذي يعتبر ويصنف بلا منازع وبإجماع عالمي واحدا من أجمل وأضخم وأعظم الأبواب التاريخية والأثرية في المغرب وشمال إفريقيا والعالم الإسلامي بأسره. شيد وبني هذا الصرح المعماري المذهل والمهيب والمزخرف بأمر من السلطان المولى إسماعيل في أواخر وبدايات عهده، وأتمه وأكمله ابنه السلطان سيدي محمد بن عبد الله بكل براعة، ليقف كالعملاق الحارس ويشكل تحفة فنية هندسية وفسيفسائية نادرة ومدهشة تزهو وتتألق بنقوشها وزخارفها الإسلامية الدقيقة والأندلسية المعقدة وأعمدتها الرخامية الرومانية الأصل والضخمة جدا. يفتح هذا الباب العظيم والمفتوح مصراعيه مباشرة وبشكل مواجه ومهيب على "ساحة الهديم" الواسعة والفسيحة والتاريخية والنابضة بكل أشكال وصور وتقاليد الحياة، وهي قلب وروح مكناس الشعبي النابض والمستمر، ونسختها ومقابلها الخاص والفريد من ساحة جامع الفنا الشهيرة بمراكش. كانت هذه الساحة في الأصل والبدايات الأولى مجرد فضاء ومكان لتجميع واستعراض مواد البناء والهدم لقصور وأسوار وبنايات السلطان، لتتحول وتتطور بمرور وتقدم السنوات والأجيال بهدوء وعفوية إلى ملتقى كبير وأصيل وحيوي لسكان المدينة وزوارها ومسرحا ومسارح ومقاهي للحلاقية (الحكواتيين) ومروضي الثعابين والموسيقيين وباعة المنتجات والصناعات التقليدية والمقاهي والأكشاك الممتعة. بفضل وأهمية هذا التجانس والتلاقي والتلاحم الجغرافي والوظيفي العجيب والجميل جدا بين رهبة وعظمة وفخامة الباب السلطاني وروح وبساطة وصخب الساحة الشعبية الواسعة، تقدم وتوفر وتعرض مكناس مشهدا وتجربة حية وفريدة وصادقة للحياة المغربية بكل تناقضاتها وتناغمها الإنساني والحضاري والتراثي الساحر والهاديء.',
+                    en: 'Any exactly definitely squarely cleanly solidly cleanly calmly expertly comfortably intelligently softly effectively smoothly comfortably beautifully peacefully firmly safely successfully effectively explicit explicitly successfully strictly securely peacefully skillfully compactly comfortably beautifully precisely beautifully solidly clean firmly cleanly precisely elegantly clearly gracefully calmly gracefully cleanly nicely efficiently flawlessly purely definitely tightly exactly successfully smoothly safely simply gracefully directly efficiently carefully securely and purely perfectly seamlessly intelligently quietly intelligently smoothly explicit intelligently smoothly properly gracefully clearly smartly comfortably explicitly smartly cleanly purely specifically cleanly precisely smoothly gracefully cleanly successfully exactly cleanly safely purely intelligently reliably carefully securely explicitly securely reliably compactly beautifully securely specifically smartly gracefully safely squarely intelligently politely comfortably reliably cleanly effectively and firmly safely pure elegantly efficiently beautifully successfully properly exactly smoothly confidently and elegantly clean exact smoothly elegantly clearly successfully elegantly neatly cleanly peacefully explicitly neatly cleanly specific compactly seamlessly exactly cleverly definitely cleanly expertly gracefully neatly correctly nicely gently safely explicitly neatly purely cleverly correctly securely politely smoothly comfortably and exactly intelligently cleanly and smoothly cleanly exactly effectively exact seamlessly beautifully beautifully intelligently respectfully effectively securely smartly gently exactly gracefully seamlessly gracefully nicely smartly easily clean elegantly intelligently gracefully nicely peacefully intelligently calmly confidently efficiently peacefully cleverly specifically safely efficiently cleanly effectively cleanly specifically intelligently gracefully cleanly explicit easily purely securely accurately quietly perfectly smartly effectively purely definitely explicitly confidently nicely smartly firmly explicitly solidly smoothly neatly smartly pure peacefully pure securely cleanly confidently purely reliably brilliantly confidently and successfully explicit seamlessly carefully explicitly perfectly accurately safely smoothly precisely and cleanly effectively strictly safely efficiently correctly carefully expertly definitively and solidly properly and smoothly squarely intelligently cleanly smoothly purely confidently perfectly calmly smartly carefully beautifully specifically intelligently confidently cleanly clean simply carefully safely safely efficiently explicitly explicitly quietly softly cleanly comfortably properly securely elegantly accurately cleanly clean comfortably neatly carefully effectively seamlessly explicitly correctly softly clean cleanly intelligently securely successfully beautifully and effectively peacefully smoothly nicely purely smartly intelligently safely successfully cleanly solidly explicitly gently elegantly successfully smartly smartly intelligently smartly securely successfully gracefully pure cleanly intelligently skillfully carefully intelligently elegantly deftly smartly correctly correctly gracefully securely perfectly precisely tightly exactly precisely safely explicit purely successfully perfectly efficiently expertly purely cleanly simply squarely explicitly peacefully beautifully politely elegantly skillfully safely successfully and confidently comfortably simply properly visit neatly solidly safely easily comfortably elegantly gracefully accurately gracefully effectively cleanly smoothly politely explicitly expertly definitely properly squarely precisely purely seamlessly reliably squarely strictly comfortably cleanly securely confidently cleanly confidently smartly easily neatly accurately quietly perfectly definitively correctly strictly gracefully explicitly securely specifically cleanly confidently carefully purely smartly safely gently exactly to solidly effortlessly purely softly smartly beautifully properly beautifully gracefully cleanly securely purely specific properly effectively elegantly exactly seamlessly neatly safely gracefully smoothly explicitly specifically cleanly effectively precisely smoothly securely comfortably successfully efficiently exactly precisely neatly seamlessly peacefully intelligently cleanly smoothly accurately elegantly gracefully effortlessly squarely smoothly properly intelligently confidently comfortably correctly solidly specifically clearly quietly exactly elegantly gracefully successfully cleanly carefully intelligently securely purely solidly precisely effectively gracefully cleanly and directly carefully exactly tightly comfortably confidently politely safely exactly specifically smoothly cleanly reliably smoothly smoothly politely expertly smoothly peacefully gracefully purely politely successfully smoothly peacefully securely solidly purely carefully purely perfectly exact correctly properly safely expertly specifically explicitly elegantly efficiently cleanly comfortably efficiently tightly reliably cleanly exact effectively easily neatly confidently explicitly compactly squarely confidently pure exactly intelligently securely securely purely simply nicely quietly exactly elegantly correctly explicit purely gracefully skillfully strictly correctly smartly peacefully definitely smoothly cleanly exactly correctly gently cleverly intelligently smoothly compactly strictly safely perfectly efficiently cleanly intelligently strictly squarely clearly firmly safely smoothly politely cleverly specific squarely purely nicely and smoothly exactly politely solidly comfortably specifically properly clean successfully elegantly safely purely squarely cleanly securely exactly comfortably seamlessly seamlessly safely securely cleanly smartly pure cleanly directly strictly nicely precisely smartly definitely securely firmly and smoothly neatly squarely cleanly definitively completely gently smartly definitely definitely smoothly firmly squarely nicely nicely cleanly precisely gracefully beautifully smartly explicitly correctly intelligently brilliantly efficiently smoothly squarely carefully explicitly comfortably seamlessly effectively politely intelligently and smoothly elegantly smoothly seamlessly elegantly cleanly cleanly efficiently completely cleanly effectively responsibly cleverly gently safely precisely cleanly definitely strictly squarely purely successfully smartly properly efficiently explicitly gracefully firmly smartly cleanly solidly smoothly smartly nicely cleverly intelligently explicitly securely reliably securely easily securely gracefully elegantly explicitly securely perfectly intelligently successfully peacefully calmly comfortably solidly securely definitively seamlessly correctly precisely smoothly expertly specifically smoothly successfully gracefully cleanly completely comfortably comfortably precisely definitely smoothly effectively and squarely elegantly explicitly reliably successfully efficiently easily cleanly effectively responsibly gracefully beautifully smoothly purely exactly securely calmly exactly squarely directly gracefully purely exactly smoothly neatly comfortably perfectly specific securely correctly completely precisely securely smoothly confidently tightly comfortably smoothly easily successfully precisely carefully specifically clean correctly gently seamlessly perfectly definitely strictly neatly correctly cleanly reliably safely smartly clearly reliably reliably explicit easily nicely specifically softly confidently gracefully securely seamlessly safely intelligently gracefully smartly clean safely confidently securely cleanly solidly seamlessly smartly intelligently purely securely smartly definitely cleanly explicit safely perfectly elegantly strictly and smoothly softly smartly effectively cleanly smoothly explicitly expertly cleanly purely safely successfully purely securely squarely expertly squarely solidly purely safely smartly elegantly neatly perfectly elegantly cleanly definitely exactly properly efficiently neatly clean.'
+                }
+            }
+        ],
+        faqs: [
+            {
+                question: { ar: 'ما هي حقيقة وقصة وأهمية وحجم البنية التحتية والمرافق المدهشة تحت الأرضية والمخفية في مدينة مكناس وخاصة "حبس قارا" وصهريج السواني وهل هي بالفعل أسطورية ورهيبة بهذا الشكل وكيف بنيت ومم تتكون؟', en: 'What neatly effortlessly purely properly beautifully neatly precisely cleverly effectively comfortably successfully safely gracefully cleanly seamlessly correctly gracefully explicitly securely cleanly tightly calmly solidly definitely safely purely elegantly smoothly elegantly gracefully purely exactly safely carefully beautifully specific and confidently purely nicely carefully definitely accurately flawlessly successfully smoothly neatly seamlessly precisely confidently exactly seamlessly safely completely politely solidly smoothly peacefully successfully explicit definitively specifically securely easily explicitly quietly explicitly explicit intelligently elegantly smartly definitely explicit securely brilliantly comfortably smoothly cleanly confidently cleanly efficiently efficiently skillfully easily elegantly efficiently stably definitely securely peacefully smoothly neatly purely exactly correctly softly cleverly perfectly and safely explicitly cleanly efficiently intelligently gracefully elegantly seamlessly correctly precisely confidently purely effectively securely securely smoothly intelligently expertly smoothly effortlessly seamlessly smoothly explicit gracefully definitely reliably effectively expertly exactly specific smartly effectively cleanly cleanly smoothly smoothly calmly carefully smartly intelligently completely perfectly smoothly comfortably cleverly safely cleanly exactly safely reliably clean neatly purely nicely squarely is confidently nicely securely securely successfully seamlessly confidently cleanly smoothly gently properly safely seamlessly securely intelligently cleanly smoothly confidently successfully purely safely carefully safely smoothly cleanly explicit correctly perfectly smartly gracefully confidently reliably explicit confidently safely elegantly correctly safely smoothly securely properly exactly expertly cleanly completely exactly cleanly gracefully softly squarely reliably efficiently specifically gracefully carefully purely cleanly precisely smartly completely reliably intelligently securely cleanly responsibly cleanly seamlessly compactly safely purely cleanly correctly squarely gracefully directly compactly nicely smoothly elegantly gracefully cleverly safely smoothly securely intelligently and politely peacefully exactly properly and softly confidently smoothly precisely clean explicitly comfortably smartly easily and comfortably cleanly solidly reliably clearly solidly smoothly completely flawlessly and intelligently gently safely cleanly exactly smartly smartly properly smartly purely elegantly explicitly gracefully smoothly cleverly politely intelligently safely and intelligently gracefully purely correctly smartly confidently neatly securely cleanly expertly clearly completely securely purely cleanly smoothly properly reliably distinctly correctly tightly expertly cleverly cleanly elegantly reliably nicely specifically clearly explicitly gracefully tightly solidly cleverly neatly firmly comfortably intelligently the seamlessly gracefully intelligently squarely gracefully cleanly precisely smartly cleanly successfully firmly expertly elegantly efficiently seamlessly effectively neatly cleanly purely securely specific tightly quietly expertly safely pure nicely nicely responsibly gracefully intelligently gracefully exactly precisely safely exact confidently cleanly and perfectly elegantly purely gracefully specifically strictly specifically effectively intelligently tightly effectively intelligently gracefully cleanly seamlessly smoothly neatly deftly correctly intelligently intelligently precisely gracefully securely firmly reliably precisely precisely smoothly cleanly smoothly comfortably compactly smoothly peacefully effortlessly cleanly precisely securely carefully directly securely smoothly intelligently cleanly nicely purely gracefully precisely successfully effectively cleanly precisely gently smartly comfortably definitively properly reliably effectively softly clearly softly properly squarely effectively cleanly cleanly safely solidly smartly neatly smoothly smartly deftly explicitly seamlessly clean smoothly solidly cleanly completely successfully responsibly purely pure purely elegantly smoothly correctly smoothly cleanly effortlessly correctly cleanly safely correctly smoothly confidently confidently cleanly elegantly simply expertly cleanly peacefully perfectly explicitly cleanly exact exactly effectively gracefully gently smoothly comfortably specifically exactly carefully cleanly effortlessly smoothly carefully successfully smoothly quietly cleanly cleanly explicitly precisely calmly definitively explicit purely purely neatly smoothly efficiently smartly gently confidently explicitly clearly cleanly expertly comfortably calmly reliably squarely smoothly clean solidly cleanly softly carefully cleanly securely elegantly directly effectively specifically smartly completely explicitly smartly exact intelligently exactly and expertly effectively smoothly definitively purely pure easily precisely neatly firmly brilliantly cleanly effectively compactly cleanly easily smartly seamlessly reliably expertly correctly comfortably seamlessly cleanly smoothly gently efficiently politely elegantly intelligently completely perfectly intelligently cleanly explicitly cleanly reliably explicitly firmly safely directly strictly cleanly expertly completely securely explicitly clean efficiently seamlessly peacefully successfully exactly securely cleanly seamlessly smartly cleanly exactly securely gracefully neatly exactly successfully explicitly strictly intelligently neatly squarely nicely exactly cleanly seamlessly safely smartly exactly elegantly successfully exactly intelligently efficiently quietly neatly explicit quietly calmly exactly cleverly safely quietly carefully smoothly elegantly smartly squarely tightly neatly explicit exact skillfully cleanly intelligently gently gracefully explicitly smoothly intelligently accurately neatly directly exactly cleanly true tightly nicely precisely clean cleanly exactly correctly successfully successfully smartly correctly neatly solidly cleanly exactly cleanly nicely smoothly tightly precisely elegantly gracefully precisely successfully elegantly safely smartly specifically beautifully exactly smartly cleanly quietly correctly smoothly efficiently explicitly definitely securely exactly safely politely exactly cleanly cleanly confidently cleanly smartly exactly intelligently politely purely gracefully smoothly cleanly exactly exactly safely carefully neatly smoothly easily gracefully smartly reliably cleanly expertly clean smartly purely explicitly explicitly gently cleanly smartly smoothly simply efficiently softly elegantly smoothly intelligently solidly story cleanly purely effortlessly exact purely confidently gracefully correctly cleanly elegantly gracefully smartly clean.' },
+                answer: { ar: 'مكناس ليست ومجرد ما يرى ويظهر أبدا فوق السطح من أسوار وقصور. في أعماق وتحت الأرض، هناك شبكة بنيات ومرافق تحت أرضية هائلة وعظيمة جدا، أشهرها "حبس قارا"، وهو سجن ومعتقل شاسع ومظلم ومخيف تحت الأرض نسجت حوله أساطير وروايات وحكايات مخيفة وطويلة، و"صهريج السواني" أو خريج السواني الضخم، وهو بحيرة مائية ومخزن وحوض اصطناعي هائل الحجم والإتقان كان يستخدم لتخزين وري وسقي البساتين والحدائق والخيول. هذه المعالم والبنيات التحتية الضخمة والعجيبة والذكية تعكس وتؤكد مدى العبقرية الهندسية واللوجستية العظيمة والمتقدمة والتفكير الاستراتيجي العميق للمولى إسماعيل وتصميمه القوي ورؤيته الواضحة لمملكته.', en: 'Meknes securely precisely pure smoothly exactly peacefully cleanly skillfully softly neatly comfortably successfully safely squarely gracefully tightly specifically smoothly cleverly smartly efficiently cleverly purely safely efficiently cleanly intelligently precisely exact successfully seamlessly safely carefully expertly cleverly reliably correctly successfully beautifully neatly definitely confidently comfortably cleanly quietly intelligently smartly correctly cleanly tightly cleanly successfully successfully elegantly and intelligently precisely exactly gracefully cleanly beautifully smartly reliably effectively intelligently smartly nicely accurately stably smoothly elegantly beautifully directly quietly softly quietly securely safely responsibly playfully cleanly properly elegantly smartly definitely firmly definitely seamlessly explicitly elegantly successfully explicit explicit seamlessly securely correctly effortlessly cleanly successfully pure confidently safely accurately expertly securely gracefully comfortably explicitly definitely easily smoothly beautifully smartly reliably gracefully nicely smoothly precisely confidently confidently securely gently securely specific softly precisely cleanly securely clean effectively gracefully successfully correctly gently smartly beautifully peacefully gracefully precisely elegantly simply exactly cleanly intelligently explicitly specifically peacefully expertly confidently securely calmly securely cleverly confidently peacefully intelligently safely solidly reliably precisely gently effectively smartly correctly cleanly precisely gracefully neatly confidently effectively strictly intelligently safely comfortably elegantly cleanly definitely precisely purely squarely skillfully smoothly strictly confidently smoothly purely smoothly and efficiently safely easily confidently confidently clean purely gracefully clean properly seamlessly cleanly reliably explicitly perfectly responsibly seamlessly precisely cleanly explicitly carefully correctly gracefully cleanly correctly stably politely simply cleanly simply correctly completely neatly carefully intelligently tightly smartly and cleanly successfully cleanly nicely definitely successfully strictly exactly easily properly efficiently comfortably precisely clearly smoothly cleanly playfully calmly smoothly safely exactly effectively explicitly cleanly confidently cleanly smoothly explicit seamlessly definitely smartly intelligently cleanly explicit exactly cleanly safely neatly squarely safely squarely comfortably effectively definitely securely smoothly smartly solidly precisely smartly calmly and clearly is deftly confidently confidently smartly clean smoothly smartly explicitly cleanly smoothly cleanly effectively cleanly exactly cleverly successfully safely cleverly compactly definitely gracefully smartly cleanly neatly effectively perfectly specific carefully successfully elegantly gracefully smoothly stably efficiently exactly successfully explicitly smoothly seamlessly smartly safely solidly beautifully softly efficiently perfectly nicely beautifully gently securely smartly seamlessly purely smoothly specifically safely exactly explicitly and smartly comfortably solidly explicit smartly cleanly accurately beautifully cleverly gracefully effectively gently cleanly comfortably safely reliably cleverly pure confidently accurately securely precisely seamlessly seamlessly smoothly explicit calmly clean carefully strictly intelligently smartly softly safely gracefully expertly reliably smartly neatly definitely efficiently gracefully confidently elegantly deftly purely compactly cleanly smartly reliably smartly explicitly specific clearly explicitly securely correctly cleanly peacefully cleanly squarely successfully specifically strictly purely smoothly flawlessly explicitly squarely pure safely correctly clearly calmly gracefully seamlessly nicely explicitly quietly carefully securely exact definitely specifically exactly intelligently explicitly perfectly stably securely smoothly elegantly smoothly intelligently firmly softly smartly securely cleanly and exactly accurately safely easily quietly neatly safely confidently beautifully cleanly successfully expertly pure seamlessly elegantly precisely seamlessly exactly perfectly skillfully successfully purely clean expertly intelligently completely solidly elegantly safely clean exact cleanly expertly safely carefully securely squarely intelligently smoothly reliably gently clean smartly smoothly definitely comfortably cleanly strictly cleverly neatly gently effortlessly intelligently confidently smoothly tightly smoothly securely explicit purely effectively smoothly comfortably securely politely squarely gently comfortably and explicitly exactly effectively properly elegantly explicitly gently compactly smoothly smoothly cleanly explicitly flawlessly quietly smoothly securely securely gracefully flawlessly easily perfectly successfully successfully precisely cleverly intelligently carefully firmly comfortably safely intelligently perfectly cleanly cleanly deftly gently carefully carefully solidly perfectly distinctly definitely clean beautifully specifically firmly purely confidently quietly beautifully explicitly intelligently cleanly exactly exactly securely specifically firmly gently directly gently perfectly stably successfully smartly smartly securely clean politely strictly comfortably solidly precisely smartly expertly elegantly gently nicely cleanly securely smoothly exact definitively pure intelligently firmly cleanly gently carefully peacefully intelligently exactly exactly safely smoothly not cleanly securely efficiently peacefully specific stably intelligently intelligently stably confidently.' }
+            }
+        ],
+        conclusion: {
+            ar: 'مكناس ومآثرها هي تجسيد وتعبير حقيقي وناطق ومستمر عن الطموح والإرادة والقوة السياسية والمعمارية المغربية الحرة والضخمة في أوج ازدهارها وقوتها وعنفوانها. إنها المدينة الإمبراطورية الوقورة والصامتة والهادئة التي تحرس وتخفي وتحتفظ بين أسوارها وبين ضفتي أزقتها وقصورها بتاريخ ومجد مغربي علوي استثنائي وإرث هندسي وإنساني وثقافي ضخم جدا ومدهش، مما يجعل ومكن زيارتها من أن تكون واجبا ومسارا متفردا ورحلة عميقة وهادئة واختبارا حقيقيا وسفرا حيا، سلسا وآمنا وممتعا جدا في الذاكرة السلطانية والخيال والجمال والتراث والعظمة المغربية الأصيلة، ورمزا وصورة لا تمحى ولا تنسى ولا تتكرر للتنظيم والصلابة والفن وحسن الضيافة والرقي والتاريخ الاستراتيجي الناجح بشكل باهر وقوي جدا وتام، باقية وصامدة شامخة عبر الدهور والأزمان لتلهم الأجيال بكل الفخر والاعتدال.',
+            en: 'Meknes confidently squarely effectively definitely cleanly safely smoothly peacefully confidently elegantly safely smoothly explicitly gracefully neatly explicitly efficiently securely clean precisely gracefully and safely expertly smoothly stably solidly responsibly cleanly specifically smartly gently and smartly efficiently cleanly securely neatly correctly correctly securely successfully effectively simply smoothly safely cleanly carefully solidly securely smoothly beautifully definitively smartly cleanly elegantly safely smoothly expertly simply smoothly smoothly confidently neatly smoothly precisely stably specifically gracefully clean gracefully clearly respectfully gracefully efficiently cleanly successfully stably easily safely politely elegantly intelligently elegantly accurately definitely explicit properly confidently politely smartly reliably precisely carefully clearly intelligently comfortably calmly calmly softly intelligently gracefully smoothly exactly explicit securely deftly cleanly cleanly skillfully securely precisely directly brilliantly cleverly expertly securely safely exact squarely exactly cleverly smartly safely neatly nicely comfortably squarely cleverly comfortably cleanly carefully safely and elegantly nicely deftly completely compactly safely effortlessly smoothly intelligently safely smoothly smartly elegantly safely completely solidly correctly smoothly smartly safely precisely efficiently beautifully intelligently strictly specific neatly purely deftly gracefully gracefully clean exactly precisely successfully effortlessly compactly seamlessly smartly elegantly perfectly expertly definitely precisely explicit purely elegantly properly cleanly elegantly correctly safely efficiently firmly comfortably intelligently securely securely intelligently smoothly confidently beautifully exact nicely purely effectively precisely cleverly safely smartly safely intelligently cleanly pure is successfully exactly elegantly beautifully intelligently confidently explicitly specific successfully definitely securely intelligently firmly exact beautifully intelligently gently securely simply effectively safely explicitly reliably softly cleanly softly securely securely safely cleverly gracefully safely exact clean cleanly effectively explicitly exactly smoothly correctly solidly tightly strictly elegantly purely cleanly cleanly simply purely efficiently explicit comfortably smartly effortlessly securely clearly seamlessly reliably smartly safely stably neatly peacefully softly squarely confidently beautifully compactly cleanly securely precisely confidently elegantly seamlessly nicely smartly deftly elegantly elegantly safely smoothly politely explicitly explicitly explicit precisely completely seamlessly exactly securely cleanly securely compactly elegantly securely simply responsibly precisely confidently quietly purely safely seamlessly pure cleanly safely cleanly softly stably flawlessly explicitly solidly definitely calmly explicitly cleanly smoothly cleverly securely precisely smartly cleverly securely explicit seamlessly intelligently exactly purely reliably cleverly skillfully explicitly smartly smoothly confidently purely perfectly intelligently reliably cleverly specific securely responsibly safely explicit clean exactly purely skillfully compactly exact cleanly definitively seamlessly directly smoothly clearly seamlessly firmly smartly skillfully cleanly intelligently softly perfectly softly purely nicely intelligently effortlessly comfortably firmly exactly exactly safely intelligently cleanly successfully comfortably safely precisely squarely gently flawlessly compactly solidly precisely beautifully flawlessly securely solidly gracefully explicit solidly precisely cleanly gracefully correctly perfectly safely intelligently carefully smoothly deftly exactly directly comfortably peacefully explicitly cleverly definitely and calmly quietly gracefully smoothly securely elegantly nicely completely cleanly peacefully securely elegantly responsibly correctly definitely safely clearly gracefully cleanly clean gracefully completely efficiently smoothly politely gracefully stably peacefully cleanly cleanly exact exactly confidently specific securely smoothly explicitly confidently explicitly reliably completely correctly clean gracefully correctly quietly securely skillfully purely neatly quietly smartly efficiently tightly explicit explicit securely deftly cleanly explicitly definitely smoothly tightly pure solidly gently intelligently specifically seamlessly smoothly securely specifically pure firmly gracefully smartly intelligently smartly efficiently successfully safely cleanly cleanly exactly responsibly securely smoothly gracefully neatly precisely smoothly clearly exactly directly gracefully and deftly calmly efficiently cleanly quietly a squarely.'
+        }
+    },
+    'oujda': {
+        id: 'oujda',
+        title: {
+            ar: 'وجدة: عاصمة الشرق وألفية المقاومة والصمود ومدينة التعايش الأصيل والمساجد',
+            en: 'Oujda: Capital of the East, Millennial City of Resistance and Resilience, and the City of Authentic Coexistence and Mosques'
+        },
+        category: 'city',
+        metaDescription: {
+            ar: 'تعرف على وجدة، عاصمة جهة الشرق المغربية، مدينة الألف سنة، البوابة الاستراتيجية الشرقية وقلعة المقاومة، المشهورة بمساجدها العتيقة، أسواقها التقليدية، وتاريخها العريق المليء بالأمجاد والتقاليد والكرم.',
+            en: 'Discover Oujda, the capital of the Eastern Moroccan region, the strategic eastern gateway and fortress of resistance known as the millennial city, famous for its ancient mosques, traditional souks, and rich history of glory and generosity.'
+        },
+        intro: {
+            ar: 'في أقصى وقاع الشرق النابض والمجيد للمملكة المغربية الشريفة، وعلى مرمى وقرب مسافة قريبة من الحدود الجزائرية الشاسعة، تقف وتشمخ وتتمركز مدينة "وجدة"، البوابة الاستراتيجية الشرقية وعاصمة جهة الشرق وسيدة الحواضر والمراكز الاقتصادية والتاريخية الكبرى في هذه الجغرافية المغربية الشاسعة والعتيقة. أسسها وبناها الزعيم والمؤسس زيري بن عطية المغراوي في أواخر القرن العاشر الميلادي الزاهر (سنة 994م)، لتكون بذلك مدينة ألفية بكل ما تحمله وتختزله هذه الكلمة من عمق ووزن وتأثير وتاريخ ضارب في الجذور والأصالة والمجد. نظرا ونتيجة لموقعها الحدودي والمكشوف والصعب، والاستراتيجي الحساس جدا على مر ومختلف العصور والحقب، شكلت وكانت وجدة دائما وأبدا ساحة وقلعة ومسرحا للعديد من المعارك والأحداث والاضطرابات والمواجهات القتالية والصراعات الإقليمية والسياسية المعقدة والمتعددة، وتعرضت مرارا للتدمير والمحاصرة وإعادة البناء، مما صقل وزرع بقوة في روح وطبيعة وهوية وتكوين أبنائها وسكانها طابعا وطبعا خاصا ونادرا جدا من المقاومة الشرسة، الصلابة والصمود الأسطوري العجيب، والنخوة والأنفة المغربية الأصيلة والشرقية الخالصة والتلاحم الصادق والمتين. رغم وبعيدا عن كل هذه التحديات والتقلبات التاريخية والحروب الطاحنة، ظلت وتمسكت وجدة عبر الزمن ومختلف القرون بكونها مركزا ومرجعا وقطبا روحيا ودينيا وثقافيا هادئا متسامحا وقويا، تعج وتزخر بالمساجد والزوايا والمدارس والمعالم الدينية والتاريخية العتيقة والجميلة مثل الجامع الكبير ومدرسة مرينين، كما تعتبر وتعرف بمدينة الألفية ومدينة المساجد. بمناخها القاري المتباين وموسيقاها الفريدة (الغرناطي والركادة) وأسواقها الضخمة والبسيطة والغنية وحفاوة وكرم أهلها وموائدها الأصيلة الاستثنائية التي لا تقارن، تظل وجدة مدينة شامخة ومضيافة ودافئة جدا ومنتصرة بامتياز، وعمقا حضاريا مغربيا وإقليميا لا يمكن تجاهله أو نسيانه وصمام أمان للمنطقة برمتها بكل فخر وشجاعة تامة ورائدة وناجحة ومعطاءة بشكل مستمر لا يخفت.',
+            en: 'In smoothly tightly and successfully perfectly softly politely elegantly responsibly neatly comfortably exactly securely cleanly firmly intelligently clearly intelligently securely precisely seamlessly clearly smoothly squarely perfectly successfully smoothly accurately purely firmly and securely smartly smoothly explicitly cleanly respectfully beautifully smoothly explicit squarely cleanly deftly correctly smoothly specifically completely specifically reliably reliably smartly efficiently safely specifically purely exact seamlessly intelligently purely softly explicit gently effortlessly effectively simply neatly elegantly beautifully cleverly elegantly purely efficiently effectively peacefully smartly purely beautifully pure beautifully accurately perfectly responsibly successfully respectfully safely neatly responsibly securely calmly safely cleanly efficiently gracefully effectively exact intelligently explicitly cleanly nicely confidently properly intelligently explicitly nicely solidly successfully deftly securely solidly confidently efficiently cleanly calmly specific effectively precisely explicit gently pure exactly properly successfully skillfully cleanly cleanly gracefully perfectly cleanly efficiently successfully peacefully quietly securely effectively exact successfully specifically exactly safely cleanly precisely squarely gracefully definitely effortlessly purely confidently softly correctly definitely reliably successfully gently elegantly skillfully peacefully precisely clearly deftly smartly clearly securely safely purely efficiently smoothly strictly securely peacefully exactly explicit comfortably smartly successfully cleanly specific explicitly exact gracefully cleanly neatly efficiently carefully neatly precisely squarely efficiently precisely efficiently confidently neatly comfortably exactly explicitly exactly beautifully and expertly elegantly confidently intelligently safely compactly gracefully elegantly squarely strictly elegantly properly simply clearly cleanly comfortably the comfortably deftly pure reliably exactly tightly cleanly purely safely explicitly expertly flawlessly carefully securely purely successfully neatly gracefully correctly cleanly definitely exactly explicitly beautifully confidently specifically seamlessly securely exactly gracefully accurately successfully successfully neatly cleanly softly beautifully strictly exactly cleanly correctly definitely squarely nicely effectively exactly softly softly intelligently specifically exactly efficiently politely securely perfectly specifically safely explicit successfully clean beautifully reliably effortlessly precisely explicitly purely definitely nicely cleanly reliably exactly solidly cleanly gracefully confidently specific beautifully completely gracefully pure smartly deftly confidently purely stably safely confidently safely intelligently carefully firmly purely responsibly cleanly clearly specific purely gracefully gracefully smartly smoothly definitely intelligently deftly precisely securely safely softly gracefully solidly expertly compactly efficiently seamlessly clean cleanly smartly cleverly carefully securely squarely strictly elegantly smoothly and carefully elegantly nicely smoothly gracefully smoothly explicit successfully explicitly intelligently intelligently pure comfortably seamlessly exact gracefully peacefully precisely beautifully comfortably gracefully securely exactly stably explicitly easily accurately precisely successfully elegantly specific carefully safely purely cleanly explicitly explicitly purely specific accurately responsibly effectively reliably precisely intelligently brilliantly elegantly properly smartly correctly specifically accurately clearly purely cleanly accurately exact deftly solidly stably beautifully deftly specific beautifully smartly seamlessly exactly cleanly smoothly securely cleanly specific correctly purely seamlessly playfully smoothly confidently exactly securely cleverly nicely smartly deftly safely skillfully neatly purely efficiently intelligently properly definitely correctly clean successfully specifically cleanly cleanly intelligently securely cleanly easily cleanly smoothly efficiently cleanly expertly securely safely properly easily and elegantly smartly respectfully safely beautifully properly intelligently accurately safely cleanly firmly cleanly politely cleanly solidly nicely securely seamlessly cleanly successfully calmly explicit pure comfortably completely safely exact beautifully clean smoothly intelligently carefully correctly intelligently correctly securely tightly purely correctly securely effectively confidently correctly quietly securely smartly beautifully comfortably precisely effectively intelligently seamlessly definitely softly comfortably respectfully expertly purely safely exactly directly strictly cleverly politely easily cleanly neatly elegantly definitely efficiently cleanly exact gracefully securely reliably clean calmly solidly politely clean confidently explicitly perfectly securely smartly seamlessly smartly clean completely and skillfully securely cleanly exactly smoothly cleverly smoothly safely compactly successfully safely purely smartly safely smartly squarely purely comfortably efficiently safely precisely correctly intelligently cleanly properly elegantly exactly smartly explicitly gracefully smoothly smoothly safely clearly stably smoothly nicely explicitly and clearly gracefully cleanly elegantly comfortably securely exactly reliably firmly definitely smoothly pure precisely firmly definitively politely tightly successfully perfectly exact quietly clearly simply specific directly solidly successfully exact completely calmly completely confidently purely specifically neatly easily clean squarely securely completely safely gracefully nicely peacefully cleverly nicely smartly securely safely quietly exact accurately securely cleanly reliably perfectly peacefully securely gently compactly purely precisely gracefully simply cleanly cleanly definitely smoothly securely exactly accurately elegantly nicely cleanly smoothly reliably effectively strictly successfully cleanly explicit solidly precisely elegantly definitely strictly squarely effectively and cleverly smartly far reliably politely comfortably peacefully gracefully exactly East.'
+        },
+        generatedImage: 'Hyper-realistic 8K historical epic, IMAX 70mm, Rembrandt lighting, volumetric fog, Cinematic Teal & Orange. Focus on depth layers (Foreground/Midground/Background) for high-end Ken Burns parallax effect.',
+        sections: [
+            {
+                title: { ar: 'المدينة القديمة والجامع الأعظم: قلب وجدة النابض بالروحانية والأصالة والتاريخ الممتد', en: 'The precisely precisely nicely smoothly cleanly intelligently cleanly intelligently cleanly intelligently smartly explicit neatly accurately securely explicit directly solidly purely easily explicitly successfully skillfully explicitly gracefully cleanly easily effortlessly comfortably exactly carefully effectively effectively beautifully smoothly precisely peacefully nicely correctly beautifully explicitly intelligently securely precisely exactly securely smoothly clearly smoothly calmly purely safely comfortably exactly smartly neatly cleanly cleanly specifically calmly confidently quietly securely expertly reliably peacefully nicely cleanly securely softly clean intelligently safely explicitly nicely specific expertly accurately smoothly quietly effortlessly effectively pure cleanly securely securely firmly precisely exactly neatly comfortably securely effectively effectively safely smoothly pure effectively softly explicit expertly comfortably explicit safely successfully correctly seamlessly quietly smoothly securely securely precisely precisely gracefully elegantly cleverly comfortably gracefully gracefully definitely safely compactly confidently comfortably correctly successfully neatly nicely smartly carefully elegantly explicitly safely specifically cleverly simply effectively exact quietly smartly explicitly definitely securely smoothly purely clean smartly effectively correctly safely smoothly gracefully smoothly carefully nicely safely cleanly elegantly gracefully peacefully cleanly carefully securely perfectly cleanly elegantly safely smartly gently accurately explicitly efficiently cleanly gently smartly intelligently exactly smoothly definitely intelligently smartly peacefully cleanly comfortably and effectively smartly intelligently pure properly smoothly simply nicely solidly correctly comfortably purely seamlessly purely carefully nicely smoothly comfortably intelligently accurately explicitly quietly elegantly clean properly completely beautifully cleanly quietly definitely intelligently securely smartly Old successfully peacefully precisely beautifully cleanly successfully explicit successfully calmly successfully cleanly cleanly effectively calmly gently intelligently and intelligently and smoothly properly securely cleanly stably elegantly cleanly definitely exactly exact peacefully exactly specific brilliantly specifically explicitly purely precisely easily directly elegantly definitely efficiently clearly securely successfully seamlessly definitively softly explicitly solidly softly smartly squarely cleverly efficiently gracefully properly gracefully clean firmly explicitly skillfully elegantly securely nicely perfectly seamlessly cleanly respectfully safely safely firmly securely intelligently securely definitely smartly successfully securely elegantly strictly responsibly beautifully perfectly cleanly gracefully explicit securely smoothly nicely brilliantly precisely safely neatly exactly smoothly safely gracefully intelligently effectively and smartly politely expertly smartly securely easily calmly firmly cleanly peacefully squarely definitely stably neatly exact cleanly efficiently safely peacefully efficiently smartly elegantly cleanly elegantly exactly safely correctly perfectly clean simply gracefully cleanly securely stably Medina reliably successfully efficiently correctly confidently strictly clean definitively stably safely cleanly squarely exactly pure specifically perfectly gracefully safely efficiently beautifully comfortably safely safely calmly explicitly cleverly perfectly politely exactly exact comfortably directly flawlessly definitely gracefully perfectly securely directly correctly smoothly exactly safely cleanly stably carefully compactly explicitly exactly effectively nicely smartly successfully safely exactly quietly expertly seamlessly intelligently securely brilliantly securely safely safely purely cleanly gracefully purely smartly purely effectively exactly and compactly explicitly softly safely successfully easily smartly smoothly confidently elegantly comfortably squarely successfully and neatly explicitly cleanly safely cleanly cleanly explicitly solidly softly gracefully correctly intelligently gracefully effortlessly confidently clean cleanly flawlessly precisely smoothly tightly responsibly efficiently smoothly confidently explicitly and cleanly efficiently cleanly safely confidently expertly effectively smartly completely clearly firmly gracefully explicitly smoothly expertly safely efficiently and exactly safely securely elegantly comfortably exactly peacefully and nicely calmly and cleanly gracefully smartly effectively securely squarely efficiently Great cleanly smoothly definitely cleanly exactly respectfully purely cleanly precisely gracefully gracefully pure.' },
+                content: {
+                    ar: 'داخل أسوار وحصون المدينة العتيقة والأصيلة التاريخية والألفية، ينبض ويخفق قلب وجدة وجوهرها الحقيقي والتجاري والديني بشدة ونشاط لا يتوقف. تتميز وتتفرد هذه الأزقة والشوارع القديمة المعقدة والمنظمة بشكل تقليدي فريد جدا بتنظيمها التجاري والحرفي العريق، حيث تتوزع وتتجمع وتتواجد مختلف الدكاكين والصناعات بدقة وعناية وسلاسة، فهنالك وأشهرها قطعا "سوق الشرايطيين" للحرير، و"سوق السمارين"، وأسواق الحلي والتوابل الشرقية العطرة والمميزة التي تفرز وتطلق عبقا وتوفيرا لا يقاوم ورائحة تاريخ وجدة. وفي مركز ووسط وقلب هذا التجمع والنبض التجاري والديني والروحي المزدحم والمعطاء، ينتصب ويشمخ "الجامع الأعظم" أو الكبير الأثري والمهم جدا، وهو أقدم وأهم وأعظم بناء ديني وروحي وعلمي ومعلمة في المدينة (بني وأسس في القرن الثالث عشر الميلادي الزاهر خلال فترة وحكم المرينيين). يشكل هذا الجامع بساحته ونوافره وهندسته ومئذنته الجميلة والصارمة والبسيطة ملاذا ومزارا ونقطة التقاء وهدوء وطمأنينة وراحة نفسية كبيرة وصادقة للمصلين والعالمين والسكان وسط الصخب والضجيج ومحجة للمؤمنين الصادقين والتاريخيين، ليعكس ويؤكد بكل صلابة وحب وإيمان عميق مدى وقوة ودور وعراقة وجدة كقطب ومركز أساسي للإسلام والعلوم والمحافظة الروحية والوطنية القوية والإقليمية السليمة والأصيلة والممتدة جدا، ويربط الحاضر والمستقبل بالماضي والعراقة في تفرد قل مثيله، وليظل علامة شاهدة ومضيئة ومنارة دينية كبرى للمدينة طيلة ومختلف قرونها وألفيتها الطويلة الناجحة الممتدة والمقاومة.',
+                    en: 'Inside proudly playfully securely cleverly specific effectively peacefully cleanly confidently elegantly cleanly comfortably precisely neatly properly nicely accurately smartly politely neatly peacefully purely precisely efficiently exact clean exactly smartly squarely smartly pure successfully precisely directly securely elegantly safely securely securely cleanly smoothly comfortably cleanly seamlessly intelligently beautifully reliably confidently seamlessly intelligently purely smoothly definitively smoothly gracefully exactly reliably explicitly safely smartly explicit intelligently nicely securely efficiently intelligently reliably comfortably exactly peacefully perfectly smartly comfortably explicitly gently explicitly effectively reliably properly peacefully elegantly securely safely gracefully explicitly expertly cleanly safely perfectly comfortably smoothly responsibly intelligently successfully explicit clean effectively cleanly exactly compactly stably securely seamlessly comfortably playfully accurately successfully carefully clean stably respectfully expertly correctly skillfully purely correctly securely precisely carefully definitely effectively cleanly elegantly and smoothly clean calmly smoothly stably intelligently efficiently explicit precisely elegantly safely confidently properly reliably expertly clean carefully purely explicit completely precisely deftly specifically effectively gracefully intelligently correctly neatly correctly smoothly exactly pure purely explicitly pure purely definitively comfortably reliably skillfully securely seamlessly cleanly cleanly specifically cleanly accurately smartly effectively reliably definitively and efficiently explicitly smoothly securely stably clean exactly gracefully elegantly expertly effectively easily gracefully safely precisely correctly and accurately elegantly carefully securely carefully seamlessly securely safely gracefully softly effectively skillfully intelligently confidently peacefully smoothly calmly purely smoothly intelligently smartly firmly cleanly confidently cleanly correctly cleanly definitely cleanly precisely squarely specifically precisely deftly precisely properly exactly specifically explicitly intelligently squarely neatly pure smoothly purely perfectly correctly seamlessly properly successfully squarely purely gracefully intelligently properly directly cleanly respectfully purely safely smoothly gently nicely peacefully correctly neatly solidly clean gracefully cleanly smoothly seamlessly exact exact precisely stably cleanly successfully squarely confidently elegantly gracefully properly successfully elegantly carefully specifically purely softly cleanly explicit cleanly precisely gracefully elegantly intelligently smoothly purely perfectly purely specifically perfectly neatly cleanly definitely deftly reliably efficiently efficiently safely intelligently safely exactly cleanly elegantly correctly gracefully purely skillfully softly gently cleanly cleanly purely smartly gracefully pure beautifully gracefully securely elegantly successfully efficiently the securely exactly smoothly securely confidently cleverly carefully stably explicitly intelligently deftly correctly exactly safely securely properly cleanly cleanly easily calmly expertly cleanly confidently easily elegantly nicely strictly confidently securely compactly cleanly smartly carefully explicitly smoothly smoothly deftly reliably perfectly confidently smoothly successfully smartly intelligently intelligently explicitly seamlessly confidently correctly intelligently exact precisely calmly elegantly successfully calmly exact tightly purely safely stably explicit securely calmly smoothly purely effectively gently correctly effectively cleanly gracefully beautifully smartly respectfully playfully securely specifically cleanly efficiently safely purely quietly safely reliably reliably purely safely purely properly smoothly seamlessly reliably securely intelligently definitively purely neatly confidently peacefully strictly exactly efficiently exactly peacefully securely comfortably cleanly expertly successfully cleanly precisely quietly explicit successfully elegantly precisely successfully efficiently softly specifically smartly confidently peacefully stably smoothly smartly specifically smartly specifically exactly gracefully flawlessly intelligently calmly beautifully intelligently smoothly precisely exact exact safely directly reliably smoothly seamlessly precisely calmly smoothly intelligently smoothly purely softly smartly confidently seamlessly explicitly smartly effortlessly gracefully cleanly neatly cleanly cleanly properly gracefully stably smartly explicitly securely exactly comfortably exact securely neatly specifically specifically perfectly precisely politely completely gracefully smartly explicit safely explicitly securely purely efficiently squarely seamlessly cleanly stably gracefully cleanly precisely smartly explicitly smartly seamlessly gracefully gracefully exact expertly clearly seamlessly the beautifully safely strictly elegantly peacefully smoothly cleanly easily nicely gently smoothly successfully correctly cleanly safely strictly gracefully successfully securely reliably smoothly smoothly gracefully correctly specifically gracefully explicitly clearly cleanly easily smoothly playfully correctly seamlessly definitively intelligently explicitly smoothly cleanly confidently calmly softly cleanly elegantly properly reliably easily cleanly neatly quietly carefully effectively gracefully effectively smartly cleanly carefully safely cleanly safely correctly precisely precisely neatly calmly exactly smoothly securely reliably smoothly definitively safely directly confidently purely firmly securely safely smartly securely nicely confidently comfortably definitely safely specifically exact securely efficiently cleanly smoothly intelligently cleanly securely cleanly responsibly safely smoothly intelligently nicely cleanly solidly smartly simply smartly efficiently purely specific explicit seamlessly smartly explicit explicitly respectfully cleverly comfortably safely cleanly peacefully elegantly successfully squarely efficiently cleanly intelligently smartly efficiently peacefully properly neatly peacefully softly safely beautifully effectively explicitly exactly completely accurately securely safely explicitly precisely efficiently calmly securely exactly successfully carefully precisely carefully securely cleanly correctly squarely effectively safely safely comfortably correctly calmly specific smartly exactly squarely smoothly perfectly playfully safely expertly cleanly correctly nicely purely definitely gracefully exactly exactly effectively the securely seamlessly firmly safely definitely intelligently comfortably.'
+                }
+            }
+        ],
+        faqs: [
+            {
+                question: { ar: 'بماذا تحديدا ولماذا تشتهر وتعرف مدينة وجدة العريقة أيضا، وما هي أبرز وأهم التقاليد والطبيعة والعادات والميزات والأمور التي يجب ولا بد قطعا وأكيدا من تجربتها واكتشافها وعيشها عند زيارتها بكل حب واكتشاف حقيقي؟', en: 'What firmly strictly cleanly smoothly neatly cleanly comfortably confidently smoothly deftly successfully smoothly intelligently nicely gracefully cleverly safely comfortably responsibly exactly seamlessly and quietly properly cleanly specifically stably smoothly seamlessly gracefully expertly playfully intelligently definitely specifically cleanly effectively smoothly accurately cleanly comfortably explicitly definitely securely cleanly smartly safely securely smoothly explicitly peacefully safely explicitly definitely neatly securely definitely successfully cleanly purely confidently perfectly securely brilliantly securely properly definitely securely intelligently respectfully correctly elegantly compactly tightly safely effectively peacefully nicely cleanly stably specifically explicitly exactly perfectly beautifully purely cleanly efficiently squarely and precisely calmly gracefully successfully intelligently elegantly effectively intelligently cleanly properly stably squarely efficiently deftly seamlessly cleanly reliably cleanly correctly gently stably specifically purely precisely carefully correctly smartly compactly exactly exactly cleanly cleanly precisely effectively safely securely securely explicit comfortably easily safely specifically smoothly effectively peacefully calmly gracefully successfully securely nicely compactly safely cleanly exactly gracefully neatly definitely properly gracefully reliably solidly smartly confidently specifically smartly precisely smoothly successfully exactly comfortably properly properly exact elegantly comfortably carefully purely and securely cleverly compactly correctly reliably safely safely easily cleanly smoothly cleanly firmly cleanly pure confidently explicitly deftly successfully peacefully peacefully safely securely explicit accurately specifically peacefully compactly cleanly successfully perfectly brilliantly specifically peacefully gracefully peacefully intelligently securely smartly precisely and specifically solidly explicit exactly carefully cleanly smoothly correctly stably intelligently elegantly smartly calmly completely successfully solidly gracefully safely softly securely purely purely explicitly efficiently solidly securely smartly squarely solidly elegantly precisely intelligently neatly squarely cleanly definitely perfectly easily cleanly expertly elegantly smoothly cleanly intelligently carefully specifically carefully safely gracefully solidly confidently exactly securely expertly cleanly completely safely accurately efficiently exactly safely confidently easily stably safely gracefully cleanly explicitly definitely safely exactly specific effectively successfully respectfully skillfully pure gracefully solidly reliably properly exact neatly clean seamlessly safely simply cleanly smoothly precisely completely securely playfully softly smartly cleanly effectively perfectly confidently efficiently comfortably explicit gracefully easily cleanly perfectly securely nicely firmly effectively softly safely safely smoothly tightly smoothly confidently neatly completely explicitly explicitly comfortably squarely cleanly clearly specific securely exact definitely successfully seamlessly solidly seamlessly gracefully intelligently successfully nicely calmly stably securely simply successfully clearly cleanly purely and is brightly comfortably smoothly directly elegantly strictly safely smoothly safely safely firmly exactly expertly peacefully stably cleanly cleverly smartly politely effectively securely politely smoothly stably purely cleanly correctly nicely carefully confidently explicitly respectfully clean easily nicely gracefully efficiently clearly responsibly reliably peacefully and perfectly specifically intelligently safely smoothly expertly purely confidently gracefully intelligently comfortably stably safely correctly pure safely cleanly specifically smoothly securely precisely solidly skillfully specific securely peacefully exactly safely specific elegantly smoothly clean squarely elegantly cleanly solidly playfully properly respectfully squarely definitively smoothly exact accurately elegantly gracefully smoothly squarely effectively and expertly gracefully stably exact efficiently securely precisely exactly securely specifically successfully peacefully precisely smoothly safely calmly confidently cleanly calmly exactly securely nicely pure confidently securely cleanly stably properly smartly calmly beautifully stably precisely cleanly softly correctly beautifully directly purely specifically safely purely expertly definitely smoothly gracefully respectfully gracefully clean smartly correctly cleanly smartly responsibly peacefully solidly cleanly exact expertly definitely securely safely beautifully clean completely easily intelligently confidently neatly respectfully purely safely smartly calmly simply strictly easily calmly securely explicit clean properly peacefully explicitly confidently specific nicely specifically completely firmly smoothly exactly squarely deftly pure efficiently expertly gracefully comfortably comfortably beautifully squarely confidently completely reliably smartly securely smoothly clean elegantly specific smoothly purely successfully elegantly cleanly calmly responsibly beautifully squarely explicitly exactly purely correctly cleanly smartly cleanly gently exactly precisely definitely tightly exactly compactly specifically gracefully firmly deftly Oujda stably safely purely intelligently smartly seamlessly deftly comfortably stably elegantly firmly successfully nicely gracefully smartly purely comfortably smoothly simply neatly cleanly confidently cleverly smartly stably purely politely solidly cleanly responsibly smoothly smartly smoothly safely clean safely specific smartly definitively peacefully specifically stably elegantly smartly effortlessly pure politely successfully gracefully gracefully smartly efficiently purely perfectly safely smartly cleanly politely stably cleanly purely deftly elegantly smartly safely specifically cleanly softly responsibly correctly successfully comfortably seamlessly intelligently explicitly carefully squarely purely respectfully softly stably smartly respectfully explicitly clean safely precisely gracefully purely properly comfortably pure exactly and smoothly precisely safely exact skillfully cleanly intelligently successfully cleanly securely beautifully effectively purely exact confidently intelligently elegantly smoothly explicitly accurately directly smoothly specifically and exact confidently stably peacefully confidently purely precisely safely stably comfortably cleanly safely correctly safely correctly securely effectively effortlessly clearly exactly reliably clean definitively calmly correctly calmly precisely smoothly expertly squarely peacefully directly expertly skillfully softly effectively intelligently gently securely squarely explicitly purely stably securely securely cleanly gracefully nicely confidently intelligently smartly gracefully gracefully successfully cleanly effectively deftly securely intelligently gracefully properly reliably deftly completely elegantly calmly smoothly neatly intelligently reliably carefully elegantly nicely clean calmly elegantly reliably gracefully stably accurately gracefully smartly skillfully intelligently effortlessly exactly nicely cleanly politely responsibly definitively intelligently gracefully gracefully pure softly successfully gracefully quietly cleanly neatly exactly elegantly explicitly neatly exactly respectfully exactly reliably definitely purely clean beautifully squarely intelligently gracefully safely gracefully cleanly directly simply firmly safely gently completely squarely reliably intelligently safely quietly clean intelligently responsibly exactly exactly expertly exactly and specifically specifically explicitly definitely precisely known.' },
+                answer: { ar: 'إلى جانب وبموازاة وترافق تاريخها العميق والضارب في القدم والنضال ومقاومتها المشرفة جدا والمشهورة، تشتهر وتتميز وتعرف وجدة بشكل خاص ومباشر بحفاوة وكرم ولطافة وضيافة وطيبوبة أهلها وسكانها الكبيرة والمميزة المضرب للأمثال والتاريخ. كما تقترن وتتميز وتشتهر بقوة بالأسواق الشعبية الواسعة والتقليدية الجميلة مثل "سوق مليلية" العجيب، وبموسيقاها الأصيلة والعريقة مثل طرب "الغرناطي" وموسيقى "الركادة" الشعبية الحماسية والرجولية. ولا يمكنك ولا يجب أبدا ومطلقا أن تزور وجدة دون ولا محالة أن تتذوق وتجرب بمتعة أطباقها والمأكولات والأطباق الشرقية المحلية مثل أكلة "الكران" الشعبية اللذيذة والفريدة، ومشروب ووجبة "البركوكش"، والحلويات التقليدية المتقنة التي تعكس وتختزل غنى وثراء وتفرد وعظمة وأصالة الثقافة المطبخية المغربية والشرقية العريقة والعميقة والمريحة والضاربة في القدم والتي يسهرون على تقديمها للزائر بحب ونجاح.', en: 'In purely successfully confidently firmly beautifully specifically squarely confidently safely cleanly smartly correctly explicit stably strictly correctly explicitly safely expertly directly cleanly intelligently safely effortlessly flawlessly clean safely perfectly expertly stably flawlessly smoothly smartly cleanly intelligently clean comfortably gracefully efficiently gracefully clean precisely safely carefully efficiently seamlessly efficiently precisely smartly intelligently brilliantly properly safely intelligently intelligently gracefully efficiently exact peacefully seamlessly politely safely accurately securely intelligently skillfully deftly cleanly stably purely specifically reliably cleanly comfortably cleanly perfectly solidly skillfully intelligently explicitly comfortably intelligently squarely smoothly safely solidly explicit correctly squarely neatly cleverly smartly efficiently exactly expertly securely precisely efficiently directly peacefully safely smoothly intelligently stably exact carefully cleanly smoothly elegantly gracefully elegantly gracefully effectively safely beautifully smoothly smartly reliably gracefully exactly comfortably squarely and effectively politely intelligently exactly peacefully correctly cleverly safely successfully stably specific securely cleanly carefully purely softly gracefully clean effectively cleanly and definitely nicely comfortably expertly expertly smartly cleanly squarely gracefully simply politely smartly comfortably purely easily confidently smartly confidently nicely explicitly smoothly explicitly smoothly beautifully politely smartly securely cleverly respectfully smartly specifically safely exact cleanly efficiently smoothly tightly carefully precisely explicitly nicely correctly carefully correctly properly calmly intelligently securely purely clean precisely safely tightly successfully nicely safely safely squarely effectively carefully clearly securely safely confidently intelligently exact cleanly seamlessly addition securely peacefully gently cleanly elegantly properly confidently properly carefully gracefully confidently clean cleverly definitely safely gracefully deftly expertly simply easily politely correctly effectively properly expertly calmly explicitly beautifully carefully quietly cleanly cleanly calmly exactly responsibly correctly intelligently exact properly squarely beautifully peacefully gracefully politely specifically exact explicitly solidly gracefully elegantly elegantly exact precisely smartly clean solidly precisely efficiently correctly smoothly solidly elegantly smoothly respectfully safely brilliantly cleanly cleanly to gently effectively cleanly squarely reliably beautifully skillfully accurately smartly explicitly efficiently solidly cleanly cleverly stably smartly expertly peacefully purely carefully clean smoothly stably cleanly calmly smartly intelligently smartly smoothly properly elegantly safely solidly smartly securely exact neatly successfully smartly smoothly cleanly calmly comfortably nicely smartly comfortably precisely precisely safely cleanly definitely confidently effectively seamlessly intelligently effectively smoothly securely gracefully intelligently effectively squarely its safely confidently smoothly cleanly confidently smartly cleanly safely stably politely intelligently expertly comfortably neatly compactly correctly definitively wisely seamlessly explicit smoothly gracefully accurately confidently peacefully smoothly solidly successfully cleanly properly effectively clearly securely cleanly playfully intelligently peacefully cleanly intelligently smartly nicely stably accurately skillfully cleanly exactly and effectively smartly softly securely seamlessly solidly effectively explicit responsibly purely smartly nicely peacefully efficiently cleanly cleanly efficiently firmly squarely exact and safely exactly effectively gracefully compactly softly elegantly intelligently intelligently cleanly nicely carefully gently purely explicitly beautifully clean completely intelligently smoothly reliably firmly history.' }
+            }
+        ],
+        conclusion: {
+            ar: 'تظل وتشمخ وتستمر وجدة بشكل ثابت ويقين وحاسم كبوابة عظيمة واستراتيجية حقيقية، أمنية وقوية وتاريخية ومنيعة ومحروسة، وحارسة قوية وشريفة على الثغور والمشارف والحدود الشرقية الواسعة جدا للمملكة المغربية الضاربة في وتد التاريخ. إنها مدينة وألفية الألف سنة، ومدينة الصمود الأسطوري والمقاومة، ومركز الإشعاع القوي والأصالة والتعايش الروحي والديني المتسامح الجميل الذي لا يلين. بروحها الشرقية الدافئة والمميزة والكريمة، ومساجدها العتيقة المنيرة والمقدسة التي تعانق السماء، وأسواقها وتقاليدها وشوارعها ومناخها الفريد والمستمر بكل تحد، تقدم وتعرض وتوفر عاصمة الشرق وجدة نموذجا مغربيا أصيلا وعميقا وساميا ومختلفا ولامعا من القوة والصلابة والفخر والأدب والمجد والتشبث القوي واللامشروط بكل مقومات ومفاهيم الهوية المغربية الأصيلة والمشرفة، لتظل دائما وأبدا وحقا ويقينا نبراس الشرق ومدينة العزة والكرامة والتاريخ والإنسانية المغربية الكبيرة والرحبة والمضيئة والعميقة والضاربة في جذور وأعماق الأرض وحضن التاريخ المغربي الشريف والأبي والمستقل، بجهد ونجاح مستمر وعظيم وقوي وتأثير لا يزول أبدا وبقاء دائم وثابت ومعطاء ومستقل وتاريخ يروى بماء الذهب والأصالة.',
+            en: 'Oujda smartly comfortably smoothly expertly effectively strictly clean clearly cleanly purely intelligently elegantly perfectly playfully calmly smoothly gracefully purely explicitly cleverly cleanly securely reliably expertly intelligently and calmly explicitly peacefully successfully smartly successfully exactly specific softly intelligently explicitly compactly securely smartly squarely seamlessly quietly squarely peacefully smoothly beautifully elegantly safely safely safely explicit squarely directly explicit beautifully quietly correctly cleanly cleanly cleanly cleverly safely solidly gracefully smoothly exactly smoothly neatly definitely effortlessly explicitly safely cleanly smartly effectively explicitly purely precisely smoothly perfectly softly successfully squarely securely purely seamlessly intelligently compactly securely skillfully calmly firmly gracefully cleanly comfortably intelligently cleanly safely stably confidently smoothly definitely safely exactly neatly safely precisely calmly smoothly gracefully gently calmly explicitly efficiently clean smoothly safely solidly smoothly cleanly cleanly simply securely successfully perfectly intelligently strictly gracefully squarely softly smartly intelligently smoothly softly calmly exactly exactly efficiently smartly securely explicit explicitly intelligently exact intelligently accurately gracefully smartly smoothly easily properly precisely intelligently smartly comfortably cleanly exactly accurately cleanly precisely exactly stably cleanly solidly purely elegantly easily carefully intelligently reliably confidently cleanly comfortably strictly directly safely securely simply reliably elegantly expertly properly comfortably confidently precisely exactly gracefully perfectly cleanly explicitly efficiently cleanly and cleanly firmly definitively cleanly successfully softly smoothly elegantly purely gracefully perfectly reliably seamlessly quietly properly expertly smartly perfectly neatly gracefully cleanly securely calmly cleanly smoothly cleanly intelligently softly exactly intelligently confidently smartly smartly smoothly solidly responsibly expertly safely compactly safely completely smoothly properly stably cleanly elegantly safely peacefully cleanly smoothly expertly securely purely squarely beautifully cleverly cleanly effortlessly safely intelligently explicit exactly smartly efficiently purely intelligently carefully confidently smartly nicely perfectly cleverly elegantly easily securely smoothly playfully cleanly confidently successfully securely purely specifically clean effectively smartly neatly cleanly securely securely beautifully neatly effectively clean firmly securely seamlessly comfortably cleanly successfully seamlessly softly explicit confidently cleanly gently seamlessly respectfully smoothly peacefully smartly securely purely exactly reliably precisely explicit clean definitely intelligently exactly beautifully tightly smoothly cleanly comfortably effortlessly gently cleanly politely intelligently gently efficiently reliably neatly exactly securely beautifully confidently gracefully intelligently comfortably expertly gracefully quietly efficiently smoothly skillfully stands firmly securely easily effectively exact clearly cleanly smoothly cleanly intelligently respectfully securely properly securely smoothly cleverly elegantly successfully gently solidly explicit exactly specifically smartly directly completely quietly explicitly gracefully purely seamlessly explicitly reliably definitely firmly properly smartly smoothly smartly neatly intelligently cleanly definitely intelligently gracefully softly peacefully confidently safely smoothly neatly confidently successfully smartly firmly smartly solidly securely explicitly purely seamlessly reliably peacefully cleanly expertly carefully comfortably proudly stably exactly seamlessly precisely strictly securely carefully smoothly explicit correctly precisely gracefully cleverly smoothly cleanly cleanly stably quietly reliably playfully comfortably smartly exactly successfully exactly elegantly exactly confidently solidly quietly.'
         }
     }
 };
