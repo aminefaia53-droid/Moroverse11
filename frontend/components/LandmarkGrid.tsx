@@ -138,10 +138,10 @@ export default function LandmarkGrid({ lang }: { lang: 'en' | 'ar' }) {
                                         />
                                     )}
                                     <div className="inline-block p-6 rounded-full bg-black shadow-[0_0_30px_rgba(197,160,89,0.3)] border border-[#c5a059] mb-6">
-                                        <LandmarkSoulIcon soul={selectedLandmark.visualSoul} className="w-12 h-12 text-[#c5a059]" />
+                                        <LandmarkSoulIcon soul={selectedLandmark?.visualSoul} className="w-12 h-12 text-[#c5a059]" />
                                     </div>
-                                    <h2 className="text-5xl font-black text-[#c5a059] font-arabic drop-shadow-md">{selectedLandmark.name[lang]}</h2>
-                                    <p className="text-[11px] font-black text-white/80 uppercase tracking-[0.3em] mt-2">{selectedLandmark.city[lang]}</p>
+                                    <h2 className="text-5xl font-black text-[#c5a059] font-arabic drop-shadow-md">{selectedLandmark?.name?.[lang]}</h2>
+                                    <p className="text-[11px] font-black text-white/80 uppercase tracking-[0.3em] mt-2">{selectedLandmark?.city?.[lang]}</p>
                                 </div>
                                 <button
                                     onClick={() => setSelectedLandmark(null)}
@@ -163,11 +163,11 @@ export default function LandmarkGrid({ lang }: { lang: 'en' | 'ar' }) {
                                         <div className="p-6 rounded-3xl bg-black/40 border border-[#c5a059]/20 space-y-4">
                                             <div className="flex justify-between items-center pb-4 border-b border-[#c5a059]/10">
                                                 <span className="text-[11px] font-bold text-white/50 uppercase">{lang === 'ar' ? 'تاريخ التأسيس' : 'FOUNDED'}</span>
-                                                <span className="text-sm font-black text-white">{selectedLandmark.foundation[lang]}</span>
+                                                <span className="text-sm font-black text-white">{selectedLandmark?.foundation?.[lang]}</span>
                                             </div>
                                             <div className="flex justify-between items-center pt-2">
                                                 <span className="text-[11px] font-bold text-white/50 uppercase">{lang === 'ar' ? 'نمط العمارة' : 'STYLE'}</span>
-                                                <span className="text-sm font-black text-white">{selectedLandmark.visualSoul}</span>
+                                                <span className="text-sm font-black text-white">{selectedLandmark?.visualSoul}</span>
                                             </div>
                                         </div>
                                     </div>
@@ -178,7 +178,7 @@ export default function LandmarkGrid({ lang }: { lang: 'en' | 'ar' }) {
                                             {lang === 'ar' ? 'النبذة المعمارية والسيادية' : 'ARCHITECTURAL BRIEF'}
                                         </h4>
                                         <p className="text-lg text-white/90 leading-relaxed tracking-wide font-serif italic text-justify">
-                                            "{selectedLandmark.history[lang]}"
+                                            "{selectedLandmark?.history?.[lang]}"
                                         </p>
                                     </div>
                                 </div>

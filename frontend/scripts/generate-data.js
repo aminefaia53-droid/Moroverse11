@@ -52,6 +52,13 @@ function detectCity(slug, meta = {}) {
  * Ignores garbage text before the first '---' (common with n8n automation).
  */
 function parseMarkdown(fileContent, filename) {
+    // 1. Basic validation of slug/filename
+    const id = filename.replace('.md', '');
+    if (id.length < 2 || id === 'index' || id === '-') {
+        console.warn(`[SKIP] Invalid filename/slug: ${filename}`);
+        return null;
+    }
+
     const firstDelim = fileContent.indexOf('---');
     if (firstDelim === -1) {
         console.warn(`[WARN] No frontmatter found in ${filename}`);
@@ -70,16 +77,27 @@ function parseMarkdown(fileContent, filename) {
     // Body is everything after the closing ---
     const body = fileContent.substring(secondDelim + 4).trim();
 
-    // Parse key: "value" pairs
-    const meta = {};
+    // Parse key: "value" pairs with defaults
+    const meta = {
+        title: '',
+        city: '',
+        category: 'landmark',
+        image: '',
+        description: '',
+        ...{} // Placeholder for future defaults
+    };
+
     frontmatterBlock.split('\n').forEach(line => {
         const colonIndex = line.indexOf(':');
         if (colonIndex > -1) {
             const key = line.substring(0, colonIndex).trim();
             const value = line.substring(colonIndex + 1).trim().replace(/^['"]|['"]$/g, '');
-            meta[key] = value;
+            if (key) meta[key] = value;
         }
     });
+
+    // Final sanity check: if no title was found, use the slug
+    if (!meta.title) meta.title = id.replace(/-/g, ' ');
 
     return { meta, body };
 }

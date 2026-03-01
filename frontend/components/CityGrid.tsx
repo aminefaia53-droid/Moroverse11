@@ -198,12 +198,12 @@ export default function CityGrid({ lang }: { lang: 'en' | 'ar' }) {
                                             <SoulIcon soul={selectedLocation.visualSoul} className="w-12 h-12 text-[#c5a059]" />
                                         </div>
                                     </div>
-                                    <h2 className="text-5xl font-black text-[#c5a059] font-arabic drop-shadow-md">{selectedLocation.name[lang]}</h2>
+                                    <h2 className="text-5xl font-black text-[#c5a059] font-arabic drop-shadow-md">{selectedLocation?.name?.[lang]}</h2>
                                     <div className="flex items-center justify-center gap-4">
-                                        <span className="px-4 py-1.5 rounded-full bg-[#c5a059]/20 text-[#c5a059] border border-[#c5a059]/50 text-[10px] font-black uppercase tracking-widest">{selectedLocation.type}</span>
+                                        <span className="px-4 py-1.5 rounded-full bg-[#c5a059]/20 text-[#c5a059] border border-[#c5a059]/50 text-[10px] font-black uppercase tracking-widest">{selectedLocation?.type}</span>
                                         <span className="px-4 py-1.5 rounded-full bg-black/40 text-white/80 border border-white/10 text-[10px] font-black uppercase tracking-widest flex items-center gap-2">
-                                            <ClimateIcon climate={selectedLocation.climate} className="w-3 h-3 text-[#c5a059]" />
-                                            {selectedLocation.climate}
+                                            <ClimateIcon climate={selectedLocation?.climate as any} className="w-3 h-3 text-[#c5a059]" />
+                                            {selectedLocation?.climate}
                                         </span>
                                     </div>
                                 </div>
@@ -227,11 +227,11 @@ export default function CityGrid({ lang }: { lang: 'en' | 'ar' }) {
                                         <div className="space-y-4">
                                             <div className="flex justify-between items-center py-3 border-b border-[#c5a059]/10">
                                                 <span className="text-[11px] font-bold text-white/50 uppercase">{lang === 'ar' ? 'الجهة' : 'REGION'}</span>
-                                                <span className="text-sm font-bold text-white">{selectedLocation.regionName[lang]}</span>
+                                                <span className="text-sm font-bold text-white">{selectedLocation?.regionName?.[lang]}</span>
                                             </div>
                                             <div className="flex justify-between items-center py-3 border-b border-[#c5a059]/10">
                                                 <span className="text-[11px] font-bold text-white/50 uppercase">{lang === 'ar' ? 'الإقليم' : 'PROVINCE'}</span>
-                                                <span className="text-sm font-bold text-white">{selectedLocation.province || (lang === 'ar' ? 'مركزي' : 'Autonomous')}</span>
+                                                <span className="text-sm font-bold text-white">{selectedLocation?.province || (lang === 'ar' ? 'مركزي' : 'Autonomous')}</span>
                                             </div>
                                         </div>
                                     </div>
@@ -242,7 +242,7 @@ export default function CityGrid({ lang }: { lang: 'en' | 'ar' }) {
                                             {lang === 'ar' ? 'النبذة التاريخية' : 'HISTORICAL BRIEF'}
                                         </h4>
                                         <p className="text-lg text-white/90 leading-relaxed tracking-wide font-serif italic text-justify">
-                                            "{selectedLocation.history[lang]}"
+                                            "{selectedLocation?.history?.[lang]}"
                                         </p>
                                     </div>
                                 </div>
