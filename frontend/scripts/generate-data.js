@@ -4,37 +4,67 @@ const path = require('path');
 const contentDir = path.join(__dirname, '../content/posts');
 const outputFile = path.join(__dirname, '../data/generated-content.json');
 
+// Map of slug prefixes to Arabic/English city names
+const CITY_MAP = {
+    marrakech: { ar: 'مراكش', en: 'Marrakech' },
+    fes: { ar: 'فاس', en: 'Fes' },
+    meknes: { ar: 'مكناس', en: 'Meknes' },
+    rabat: { ar: 'الرباط', en: 'Rabat' },
+    casablanca: { ar: 'الدار البيضاء', en: 'Casablanca' },
+    tangier: { ar: 'طنجة', en: 'Tangier' },
+    essaouira: { ar: 'الصويرة', en: 'Essaouira' },
+    agadir: { ar: 'أكادير', en: 'Agadir' },
+    ouarzazate: { ar: 'ورزازات', en: 'Ouarzazate' },
+    chefchaouen: { ar: 'شفشاون', en: 'Chefchaouen' },
+    merzouga: { ar: 'مرزوقة', en: 'Merzouga' },
+    ait: { ar: 'أيت بن حدو', en: 'Aït Benhaddou' },
+    volubilis: { ar: 'وليلي', en: 'Volubilis' },
+    dakhla: { ar: 'الداخلة', en: 'Dakhla' },
+    boujdour: { ar: 'بوجدور', en: 'Boujdour' },
+    ifrane: { ar: 'إفران', en: 'Ifrane' },
+    ouzoud: { ar: 'أوزود', en: 'Ouzoud' },
+    erg: { ar: 'إرق شيبي', en: 'Erg Chebbi' },
+    atlas: { ar: 'أطلس', en: 'Atlas' },
+    safi: { ar: 'آسفي', en: 'Safi' },
+};
+
 /**
- * Safely extracts frontmatter and body from markdown content.
- * Ignores any garbage text before the first '---' block (common with n8n).
+ * Detects city from slug prefix (e.g., "marrakech-jemaa-el-fnaa" → Marrakech)
+ */
+function detectCity(slug) {
+    const prefix = slug.split('-')[0].toLowerCase();
+    return CITY_MAP[prefix] || { ar: 'المغرب', en: 'Morocco' };
+}
+
+/**
+ * Safely extracts frontmatter and body from a markdown file.
+ * Ignores garbage text before the first '---' (common with n8n automation).
  */
 function parseMarkdown(fileContent, filename) {
-    // Find first '---' delimiter
     const firstDelim = fileContent.indexOf('---');
     if (firstDelim === -1) {
-        console.warn(`[WARN] No frontmatter delimiter found in ${filename}`);
+        console.warn(`[WARN] No frontmatter found in ${filename}`);
         return null;
     }
 
-    // The frontmatter starts after the first ---
     const afterFirst = fileContent.indexOf('\n', firstDelim) + 1;
     const secondDelim = fileContent.indexOf('\n---', afterFirst);
 
     if (secondDelim === -1) {
-        console.warn(`[WARN] No closing frontmatter delimiter in ${filename}`);
+        console.warn(`[WARN] Unclosed frontmatter in ${filename}`);
         return null;
     }
 
     const frontmatterBlock = fileContent.substring(afterFirst, secondDelim).trim();
-    const body = fileContent.substring(secondDelim + 4).trim(); // skip '\n---'
+    // Body is everything after the closing ---
+    const body = fileContent.substring(secondDelim + 4).trim();
 
-    // Parse key: value pairs
+    // Parse key: "value" pairs
     const meta = {};
     frontmatterBlock.split('\n').forEach(line => {
         const colonIndex = line.indexOf(':');
         if (colonIndex > -1) {
             const key = line.substring(0, colonIndex).trim();
-            // Remove surrounding quotes
             const value = line.substring(colonIndex + 1).trim().replace(/^['"]|['"]$/g, '');
             meta[key] = value;
         }
@@ -44,43 +74,65 @@ function parseMarkdown(fileContent, filename) {
 }
 
 /**
- * Convert markdown body into MoroArticle sections.
- * Each ## heading becomes a new section.
+ * Splits markdown body into article sections by ## headings.
+ * Content before any ## heading becomes the article intro.
  */
-function bodyToSections(body) {
-    if (!body) return [];
+function bodyToArticle(body, description) {
+    if (!body) {
+        return {
+            intro: description || '',
+            sections: [{
+                title: { ar: 'نبذة تاريخية', en: 'Historical Overview' },
+                content: { ar: description || '', en: description || '' }
+            }],
+            conclusion: description || ''
+        };
+    }
 
+    // Remove the first # title line (duplicate of frontmatter title)
+    const cleaned = body.replace(/^#\s+.+\n?/, '').trim();
+
+    // Split by ## subheadings
+    const parts = cleaned.split(/\n(?=##\s)/);
+
+    let intro = '';
     const sections = [];
-    // Split by ## headings
-    const parts = body.split(/\n(?=##\s)/);
 
-    parts.forEach(part => {
+    parts.forEach((part, i) => {
         const lines = part.split('\n');
-        const titleLine = lines[0];
+        const first = lines[0].trim();
 
-        if (titleLine.startsWith('## ')) {
-            const sectionTitle = titleLine.replace(/^##\s+/, '').trim();
-            const sectionContent = lines.slice(1).join('\n').trim()
-                .replace(/^\*\*(.+?)\*\*/g, '$1') // remove bold markers
-                .replace(/^#+\s/gm, ''); // remove any sub-headings markers
-
+        if (first.startsWith('## ')) {
+            const sectionTitle = first.replace(/^##\s+/, '').trim();
+            const sectionContent = lines.slice(1).join('\n').trim();
             if (sectionContent) {
                 sections.push({
                     title: { ar: sectionTitle, en: sectionTitle },
                     content: { ar: sectionContent, en: sectionContent }
                 });
             }
-        } else {
-            // Content before any ## heading — becomes the intro or first section
-            const text = part.replace(/^#\s.+\n?/, '').trim(); // Remove # title line
-            if (text && sections.length === 0) {
-                // We'll use this as the "intro" of the article (handled separately)
-                sections.__intro = text;
-            }
+        } else if (i === 0) {
+            // First block before any ## heading becomes the intro
+            intro = part.trim();
         }
     });
 
-    return sections;
+    // Fallback intro from description if body is just the title
+    if (!intro) intro = description || '';
+
+    // If no sections were found, create one from the body text
+    if (sections.length === 0 && cleaned) {
+        sections.push({
+            title: { ar: 'نبذة تاريخية', en: 'Historical Overview' },
+            content: { ar: intro || cleaned, en: intro || cleaned }
+        });
+    }
+
+    return {
+        intro: intro || description || '',
+        sections,
+        conclusion: description || intro || ''
+    };
 }
 
 function generateData() {
@@ -98,7 +150,7 @@ function generateData() {
         cities: [],
         battles: [],
         figures: [],
-        articles: {} // Full article content keyed by slug/id
+        articles: {}
     };
 
     files.forEach(file => {
@@ -110,13 +162,28 @@ function generateData() {
         if (!parsed) return;
 
         const { meta, body } = parsed;
+        const city = detectCity(id);
+        const { intro, sections, conclusion } = bodyToArticle(body, meta.description);
 
-        // Build sections from markdown body
-        const sections = bodyToSections(body);
-        const intro = sections.__intro || meta.description || '';
-        delete sections.__intro;
+        // Full article object for ArticleReader
+        const article = {
+            id,
+            title: { ar: meta.title || id, en: meta.titleEn || id.replace(/-/g, ' ') },
+            category: (meta.category || 'landmark').toLowerCase(),
+            metaDescription: {
+                ar: meta.description || '',
+                en: meta.descriptionEn || meta.description || ''
+            },
+            intro: { ar: intro, en: intro },
+            sections,
+            faqs: [],
+            conclusion: { ar: conclusion, en: conclusion },
+            generatedImage: meta.image || null,
+        };
 
-        // Base entry for grid cards
+        generatedData.articles[id] = article;
+
+        // Base card data
         const entry = {
             id,
             name: { ar: meta.title || id, en: meta.titleEn || id.replace(/-/g, ' ') },
@@ -124,44 +191,24 @@ function generateData() {
             imageUrl: meta.image || null,
         };
 
-        // Build full article object for ArticleReader
-        const article = {
-            id,
-            title: { ar: meta.title || id, en: meta.titleEn || id.replace(/-/g, ' ') },
-            category: (meta.category || 'landmark').toLowerCase(),
-            metaDescription: { ar: meta.description || '', en: meta.descriptionEn || '' },
-            intro: { ar: intro, en: intro },
-            sections: sections.length > 0 ? sections : [
-                {
-                    title: { ar: 'نبذة تاريخية', en: 'Historical Overview' },
-                    content: { ar: meta.description || '', en: meta.descriptionEn || meta.description || '' }
-                }
-            ],
-            faqs: [],
-            conclusion: { ar: meta.description || '', en: meta.descriptionEn || '' },
-            generatedImage: meta.image || null,
-        };
+        const cat = (meta.category || 'landmark').toLowerCase();
 
-        generatedData.articles[id] = article;
-
-        // Categorize for grid display
-        switch (meta.category?.toLowerCase()) {
+        switch (cat) {
             case 'landmark':
             case 'landmarks':
                 generatedData.landmarks.push({
                     ...entry,
-                    city: { ar: meta.city || 'المغرب', en: meta.cityEn || 'Morocco' },
+                    city,
                     foundation: { ar: meta.foundation || 'تاريخي', en: meta.foundationEn || 'Historical' },
                     history: entry.desc,
                     visualSoul: meta.visualSoul || 'Ruin'
                 });
                 break;
-
             case 'city':
             case 'cities':
                 generatedData.cities.push({
                     ...entry,
-                    regionName: { ar: meta.region || 'غير محدد', en: meta.regionEn || 'Morocco' },
+                    regionName: { ar: meta.region || city.ar, en: meta.regionEn || city.en },
                     history: entry.desc,
                     type: meta.type || 'Major City',
                     climate: meta.climate || 'Mediterranean',
@@ -169,7 +216,6 @@ function generateData() {
                     landmarks: { ar: [meta.landmarks || 'معالم متنوعة'], en: [meta.landmarksEn || 'Various Landmarks'] }
                 });
                 break;
-
             case 'battle':
             case 'battles':
                 generatedData.battles.push({
@@ -177,32 +223,30 @@ function generateData() {
                     year: meta.year || 'غير مسجل',
                     era: meta.era || 'Historical',
                     dynasty: meta.dynasty || 'Unknown',
-                    location: { ar: meta.location || 'المغرب', en: meta.locationEn || 'Morocco' },
-                    combatants: { ar: meta.combatants || 'أطراف متنازعة', en: meta.combatantsEn || 'Opposing Forces' },
-                    leaders: { ar: meta.leaders || 'غير معروف', en: meta.leadersEn || 'Unknown' },
-                    tactics: { ar: meta.tactics || 'تكتيكات متنوعة', en: meta.tacticsEn || 'Various tactics' },
-                    outcome: { ar: meta.outcome || 'غير معروف', en: meta.outcomeEn || 'Unknown' },
+                    location: { ar: meta.location || city.ar, en: meta.locationEn || city.en },
+                    combatants: { ar: meta.combatants || 'أطراف متنازعة', en: 'Opposing Forces' },
+                    leaders: { ar: meta.leaders || 'غير معروف', en: 'Unknown' },
+                    tactics: { ar: meta.tactics || 'تكتيكات متنوعة', en: 'Various tactics' },
+                    outcome: { ar: meta.outcome || 'غير معروف', en: 'Unknown' },
                     impact: entry.desc
                 });
                 break;
-
             case 'figure':
             case 'figures':
                 generatedData.figures.push({
                     ...entry,
                     era: { ar: meta.era || 'عصر تاريخي', en: meta.eraEn || 'Historical Era' },
-                    category: meta.figureCategory || 'Science',
+                    category: meta.figureCategory || 'Scholar',
                     shortBio: entry.desc,
-                    specialty: { ar: meta.specialty || 'تخصص عام', en: meta.specialtyEn || 'General' },
+                    specialty: { ar: meta.specialty || 'علم وفكر', en: meta.specialtyEn || 'Knowledge' },
                 });
                 break;
-
             default:
-                // Default unknown items to landmarks
+                // Default unknown → landmark
                 generatedData.landmarks.push({
                     ...entry,
-                    city: { ar: meta.city || 'المغرب', en: meta.cityEn || 'Morocco' },
-                    foundation: { ar: meta.foundation || 'تاريخي', en: meta.foundationEn || 'Historical' },
+                    city,
+                    foundation: { ar: 'تاريخي', en: 'Historical' },
                     history: entry.desc,
                     visualSoul: meta.visualSoul || 'Ruin'
                 });
@@ -212,8 +256,7 @@ function generateData() {
     });
 
     fs.writeFileSync(outputFile, JSON.stringify(generatedData, null, 2), 'utf8');
-    console.log(`[INFO] Generated ${Object.keys(generatedData.articles).length} articles`);
-    console.log(`[INFO] Landmarks: ${generatedData.landmarks.length}, Cities: ${generatedData.cities.length}, Battles: ${generatedData.battles.length}, Figures: ${generatedData.figures.length}`);
+    console.log(`[DONE] ${Object.keys(generatedData.articles).length} articles | Landmarks: ${generatedData.landmarks.length} | Cities: ${generatedData.cities.length} | Battles: ${generatedData.battles.length} | Figures: ${generatedData.figures.length}`);
 }
 
 generateData();

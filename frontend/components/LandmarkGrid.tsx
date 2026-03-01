@@ -1,13 +1,13 @@
 "use client";
 
 import React, { useState, useMemo } from 'react';
+import { useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Building2, Landmark as LandmarkIcon, Crown, History, Mountain, Waves, Shield, X, Compass, Info, MapPin, ChevronRight, TowerControl as Tower, BookOpen, Search } from 'lucide-react';
 import { Landmark } from '../data/morocco-landmarks';
 import generatedContent from '../data/generated-content.json';
+import { generateArticleSchema, getMetaTags } from '../utils/seo';
 import { getArticle } from '../data/moroverse-content';
-import ArticleReader from './ArticleReader';
-import { generateArticleSchema } from '../utils/seo';
 
 const dynamicLandmarks: Landmark[] = generatedContent.landmarks as Landmark[];
 
@@ -25,10 +25,10 @@ const LandmarkSoulIcon = ({ soul, className }: { soul: Landmark['visualSoul']; c
 };
 
 export default function LandmarkGrid({ lang }: { lang: 'en' | 'ar' }) {
+    const router = useRouter();
     const [selectedCity, setSelectedCity] = useState<string | null>(null);
     const [searchQuery, setSearchQuery] = useState('');
     const [selectedLandmark, setSelectedLandmark] = useState<Landmark | null>(null);
-    const [showFullArticle, setShowFullArticle] = useState(false);
 
     const cities = useMemo(() => {
         const allCities = dynamicLandmarks.map(l => l.city);
@@ -199,7 +199,7 @@ export default function LandmarkGrid({ lang }: { lang: 'en' | 'ar' }) {
                                         </div>
                                     </div>
                                     <button
-                                        onClick={() => setShowFullArticle(true)}
+                                        onClick={() => router.push(`/archive/${selectedLandmark.id}?lang=${lang}`)}
                                         className="w-full py-5 rounded-[32px] bg-primary text-white text-xs font-black uppercase tracking-[0.2em] flex items-center justify-center gap-3 shadow-[0_10px_20px_rgba(139,0,0,0.3)] hover:scale-105 hover:shadow-[0_0_20px_rgba(197,160,89,0.8)] transition-all mt-8 group"
                                     >
                                         <Compass className="w-5 h-5 animate-pulse" />
@@ -212,14 +212,6 @@ export default function LandmarkGrid({ lang }: { lang: 'en' | 'ar' }) {
                 )}
             </AnimatePresence>
 
-            {/* FULL ARTICLE READER */}
-            {selectedLandmark && (
-                <ArticleReader
-                    article={getArticle(selectedLandmark.id, selectedLandmark.name.ar, selectedLandmark.name.en, 'landmark')}
-                    isOpen={showFullArticle}
-                    onClose={() => setShowFullArticle(false)}
-                />
-            )}
         </div>
     );
 }
