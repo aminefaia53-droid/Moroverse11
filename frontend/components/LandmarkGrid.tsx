@@ -4,7 +4,6 @@ import React, { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Building2, Landmark as LandmarkIcon, Crown, History, Mountain, Waves, Shield, X, Compass, Info, MapPin, ChevronRight, TowerControl as Tower, BookOpen, Search } from 'lucide-react';
 import { Landmark, moroccoLandmarks } from '../data/morocco-landmarks';
-import { useAutoImageFetcher } from '../hooks/useAutoImageFetcher';
 import { getArticle } from '../data/moroverse-content';
 import ArticleReader from './ArticleReader';
 import { generateArticleSchema } from '../utils/seo';
@@ -233,11 +232,6 @@ function LandmarkCard({
     lang: 'en' | 'ar';
     onClick: (landmark: Landmark) => void
 }) {
-    const { imageUrl, isLoading } = useAutoImageFetcher({
-        query: landmark.name.en,
-        preloadedImageUrl: landmark.imageUrl
-    });
-
     return (
         <motion.div
             layout
@@ -259,11 +253,11 @@ function LandmarkCard({
                 {/* Cinematic Background Image */}
                 <div className="absolute inset-0 z-0">
                     <img
-                        src={landmark.imageUrl || imageUrl || undefined}
+                        src={`/images/${landmark.id}.jpg`}
                         alt={landmark.name[lang]}
-                        className={`w-full h-full object-cover transition-all duration-1000 transform group-hover:scale-110 ${isLoading ? 'opacity-0' : 'opacity-90 group-hover:opacity-100'}`}
+                        className={`w-full h-full object-cover transition-all duration-1000 transform group-hover:scale-110 opacity-90 group-hover:opacity-100`}
                         onError={(e) => {
-                            e.currentTarget.src = 'https://images.unsplash.com/photo-1548013146-72479768bada?q=80&w=2076&auto=format&fit=crop';
+                            e.currentTarget.style.display = 'none';
                         }}
                     />
                     {/* Multi-layered Cinematic Gradient */}

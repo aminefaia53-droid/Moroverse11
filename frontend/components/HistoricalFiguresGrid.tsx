@@ -4,7 +4,6 @@ import React, { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { BookOpen, Crown, Shield, Compass, Palette, Sparkles, MapPin, Search, X } from 'lucide-react';
 import { HistoricalFigure, moroccoFigures } from '../data/morocco-figures';
-import { useAutoImageFetcher } from '../hooks/useAutoImageFetcher';
 import { getArticle } from '../data/moroverse-content';
 import ArticleReader from './ArticleReader';
 
@@ -143,11 +142,6 @@ function FigureCard({
     lang: 'en' | 'ar';
     onClick: (figure: HistoricalFigure) => void;
 }) {
-    const { imageUrl, isLoading } = useAutoImageFetcher({
-        query: figure.name.en, // Use English name for better Wiki API results generally, but fallback is handled in hook
-        preloadedImageUrl: figure.imageUrl
-    });
-
     return (
         <motion.div
             layout
@@ -168,11 +162,11 @@ function FigureCard({
                 {/* Cinematic Background Image */}
                 <div className="absolute inset-0 z-0">
                     <img
-                        src={figure.imageUrl || imageUrl || undefined}
+                        src={`/images/${figure.id}.jpg`}
                         alt={figure.name[lang]}
-                        className={`w-full h-full object-cover transition-all duration-1000 transform group-hover:scale-110 ${isLoading ? 'opacity-0' : 'opacity-90 group-hover:opacity-100'}`}
+                        className={`w-full h-full object-cover transition-all duration-1000 transform group-hover:scale-110 opacity-90 group-hover:opacity-100`}
                         onError={(e) => {
-                            e.currentTarget.src = 'https://images.unsplash.com/photo-1587595431973-160d0d94add1?q=80&w=2076&auto=format&fit=crop';
+                            e.currentTarget.style.display = 'none';
                         }}
                     />
                     {/* Multi-layered Cinematic Gradient */}

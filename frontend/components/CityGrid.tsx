@@ -7,7 +7,6 @@ import { moroccoRegions, Location, ZoneType, ClimateType } from '../data/morocco
 import { getArticle } from '../data/moroverse-content';
 import ArticleReader from './ArticleReader';
 import { generateArticleSchema } from '../utils/seo';
-import { useAutoImageFetcher } from '../hooks/useAutoImageFetcher';
 
 const SoulIcon = ({ soul, className }: { soul: string; className?: string }) => {
     switch (soul) {
@@ -298,11 +297,6 @@ function CityCard({
     lang: 'en' | 'ar';
     onClick: (loc: ExtendedLocation) => void
 }) {
-    const { imageUrl, isLoading } = useAutoImageFetcher({
-        query: loc.name.en,
-        preloadedImageUrl: loc.imageUrl
-    });
-
     return (
         <motion.div
             layout
@@ -323,11 +317,11 @@ function CityCard({
                 {/* Image Background */}
                 <div className="absolute inset-0 z-0 bg-black">
                     <img
-                        src={loc.imageUrl || imageUrl || undefined}
+                        src={`/images/${loc.id}.jpg`}
                         alt={loc.name[lang]}
-                        className={`w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110 ${isLoading ? 'opacity-0' : 'opacity-50 group-hover:opacity-60'}`}
+                        className={`w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110 opacity-50 group-hover:opacity-60`}
                         onError={(e) => {
-                            e.currentTarget.src = 'https://images.unsplash.com/photo-1549429440-660c608fba63?q=80&w=2070&auto=format&fit=crop';
+                            e.currentTarget.style.display = 'none';
                         }}
                     />
                     {/* Multi-layered Cinematic Gradient */}
