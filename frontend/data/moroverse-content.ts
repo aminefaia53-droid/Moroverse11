@@ -23,3 +23,16 @@ export interface MoroArticle {
 }
 
 export const moroverseArticles: Record<string, MoroArticle> = {};
+
+export const getArticle = (id: string, nameAr: string, nameEn: string, category: 'battle' | 'landmark' | 'city' | 'figure'): MoroArticle => {
+    return moroverseArticles[id] || {
+        id,
+        title: { ar: nameAr, en: nameEn },
+        category,
+        metaDescription: { ar: '', en: '' },
+        intro: { ar: 'محتوى قيد التطوير...', en: 'Content under development...' },
+        sections: [],
+        faqs: [],
+        conclusion: { ar: '', en: '' }
+    };
+};
