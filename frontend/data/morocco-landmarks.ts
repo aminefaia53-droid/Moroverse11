@@ -4,8 +4,9 @@ export interface Landmark {
     city: { en: string; ar: string };
     foundation: { en: string; ar: string };
     history: { en: string; ar: string };
-    visualSoul: 'Mosque' | 'Tower' | 'Palace' | 'Ruin' | 'Cave' | 'Lighthouse' | 'Fortress';
-    imageUrl?: string;
+    visualSoul: string;
+    imageUrl?: string | null;
+    isPending?: boolean;
 }
 
 export const moroccoLandmarks: Landmark[] = [

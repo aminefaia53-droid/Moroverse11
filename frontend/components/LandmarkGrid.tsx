@@ -3,7 +3,7 @@
 import React, { useState, useMemo } from 'react';
 import { useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Building2, Landmark as LandmarkIcon, Crown, History, Mountain, Waves, Shield, X, Compass, Info, MapPin, ChevronRight, TowerControl as Tower, BookOpen, Search } from 'lucide-react';
+import { Building2, Landmark as LandmarkIcon, Crown, History, Mountain, Waves, Shield, X, Compass, Info, MapPin, ChevronRight, TowerControl as Tower, BookOpen, Search, Lock } from 'lucide-react';
 import { Landmark } from '../data/morocco-landmarks';
 import generatedContent from '../data/generated-content.json';
 import { generateArticleSchema, getMetaTags } from '../utils/seo';
@@ -33,8 +33,9 @@ export default function LandmarkGrid({ lang }: { lang: 'en' | 'ar' }) {
     const cities = useMemo(() => {
         const allCities = dynamicLandmarks.map(l => l.city);
         const unique = Array.from(new Set(allCities.map(c => c.en))).map(en => allCities.find(c => c.en === en)!);
-        return unique;
-    }, []);
+        // Sort alphabetically but put Major cities first if desired (e.g. Rabat, Casablanca)
+        return unique.sort((a, b) => a[lang].localeCompare(b[lang]));
+    }, [dynamicLandmarks]);
 
     const filteredLandmarks = useMemo(() => {
         return dynamicLandmarks.filter(l => {
@@ -199,11 +200,15 @@ export default function LandmarkGrid({ lang }: { lang: 'en' | 'ar' }) {
                                         </div>
                                     </div>
                                     <button
-                                        onClick={() => router.push(`/archive/${selectedLandmark.id}?lang=${lang}`)}
-                                        className="w-full py-5 rounded-[32px] bg-primary text-white text-xs font-black uppercase tracking-[0.2em] flex items-center justify-center gap-3 shadow-[0_10px_20px_rgba(139,0,0,0.3)] hover:scale-105 hover:shadow-[0_0_20px_rgba(197,160,89,0.8)] transition-all mt-8 group"
+                                        disabled={selectedLandmark.isPending}
+                                        onClick={() => !selectedLandmark.isPending && router.push(`/archive/${selectedLandmark.id}?lang=${lang}`)}
+                                        className={`w-full py-5 rounded-[32px] ${selectedLandmark.isPending ? 'bg-white/5 text-white/20 border border-white/10' : 'bg-primary text-white shadow-[0_10px_20px_rgba(139,0,0,0.3)] hover:scale-105 hover:shadow-[0_0_20px_rgba(197,160,89,0.8)]'} text-xs font-black uppercase tracking-[0.2em] flex items-center justify-center gap-3 transition-all mt-8 group`}
                                     >
-                                        <Compass className="w-5 h-5 animate-pulse" />
-                                        {lang === 'ar' ? `سافر إلى عالم ${selectedLandmark.name.ar}` : `Journey back to ${selectedLandmark.name.en}`}
+                                        {selectedLandmark.isPending ? <Lock className="w-5 h-5" /> : <Compass className="w-5 h-5 animate-pulse" />}
+                                        {selectedLandmark.isPending
+                                            ? (lang === 'ar' ? 'بانتظار السجلات الملكية' : 'Awaiting Royal Records')
+                                            : (lang === 'ar' ? `سافر إلى عالم ${selectedLandmark.name.ar}` : `Journey back to ${selectedLandmark.name.en}`)
+                                        }
                                     </button>
                                 </div>
                             </div>
@@ -247,14 +252,21 @@ function LandmarkCard({
 
                 {/* Cinematic Background Image */}
                 <div className="absolute inset-0 z-0">
-                    <img
-                        src={`/images/${landmark.id}.jpg`}
-                        alt={landmark.name[lang]}
-                        className={`w-full h-full object-cover transition-all duration-1000 transform group-hover:scale-110 opacity-90 group-hover:opacity-100`}
-                        onError={(e) => {
-                            e.currentTarget.style.display = 'none';
-                        }}
-                    />
+                    {!landmark.isPending ? (
+                        <img
+                            src={`/images/${landmark.id}.jpg`}
+                            alt={landmark.name[lang]}
+                            className={`w-full h-full object-cover transition-all duration-1000 transform group-hover:scale-110 opacity-90 group-hover:opacity-100`}
+                            onError={(e) => {
+                                e.currentTarget.style.display = 'none';
+                            }}
+                        />
+                    ) : (
+                        <div className="w-full h-full bg-slate-900 flex items-center justify-center overflow-hidden">
+                            <div className="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/arabesque.png')]" />
+                            <Lock className="w-16 h-16 text-white/5 scale-110 group-hover:scale-150 group-hover:text-primary/10 transition-all duration-1000" />
+                        </div>
+                    )}
                     {/* Multi-layered Cinematic Gradient */}
                     <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-80" />
                     <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-transparent opacity-40" />
@@ -274,16 +286,19 @@ function LandmarkCard({
                     </div>
 
                     <div className="space-y-4">
-                        <h3 className="text-4xl font-black text-[#c5a059] drop-shadow-[0_4px_8px_rgba(0,0,0,0.8)] font-arabic leading-tight transform group-hover:translate-x-2 transition-transform duration-500">
-                            {landmark.name[lang]}
-                        </h3>
+                        <div className="flex items-center gap-2">
+                            <h3 className="text-3xl md:text-4xl font-black text-[#c5a059] drop-shadow-[0_4px_8px_rgba(0,0,0,0.8)] font-arabic leading-tight transform group-hover:translate-x-2 transition-transform duration-500">
+                                {landmark.name[lang]}
+                            </h3>
+                            {landmark.isPending && <Lock className="w-4 h-4 text-white/20" />}
+                        </div>
                         <div className="flex items-center gap-3">
                             <MapPin className="w-4 h-4 text-[#c5a059]" />
                             <span className="text-xs font-bold text-white/90 uppercase tracking-widest drop-shadow-md">
                                 {landmark.city[lang]}
                             </span>
                         </div>
-                        <p className="text-sm text-white/80 line-clamp-2 italic font-medium opacity-0 group-hover:opacity-100 transition-all duration-700 translate-y-4 group-hover:translate-y-0 mt-4 max-w-[90%]">
+                        <p className="text-sm text-white/60 line-clamp-2 italic font-medium opacity-0 group-hover:opacity-100 transition-all duration-700 translate-y-4 group-hover:translate-y-0 mt-4 max-w-[90%]">
                             "{landmark.history[lang]}"
                         </p>
                     </div>
@@ -291,9 +306,9 @@ function LandmarkCard({
 
                 {/* Interactive Indicator */}
                 <div className="absolute bottom-6 right-8 z-20 opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-x-4 group-hover:translate-x-0">
-                    <div className="flex items-center gap-3 px-5 py-3 rounded-full bg-[#c5a059] text-black text-[10px] font-black uppercase tracking-widest shadow-xl">
-                        <Compass className="w-4 h-4 animate-spin-slow" />
-                        <span>{lang === 'ar' ? 'رحلة تاريخية' : 'Visit Landmark'}</span>
+                    <div className={`flex items-center gap-3 px-5 py-3 rounded-full ${landmark.isPending ? 'bg-white/10 text-white/40' : 'bg-[#c5a059] text-black shadow-xl'} text-[10px] font-black uppercase tracking-widest`}>
+                        {landmark.isPending ? <Lock className="w-4 h-4" /> : <Compass className="w-4 h-4 animate-spin-slow" />}
+                        <span>{landmark.isPending ? (lang === 'ar' ? 'سجل مغلق' : 'Sealed Record') : (lang === 'ar' ? 'رحلة تاريخية' : 'Visit Landmark')}</span>
                     </div>
                 </div>
             </div>

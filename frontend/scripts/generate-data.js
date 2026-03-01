@@ -16,22 +16,33 @@ const CITY_MAP = {
     agadir: { ar: 'أكادير', en: 'Agadir' },
     ouarzazate: { ar: 'ورزازات', en: 'Ouarzazate' },
     chefchaouen: { ar: 'شفشاون', en: 'Chefchaouen' },
-    merzouga: { ar: 'مرزوقة', en: 'Merzouga' },
+    tetouan: { ar: 'تطوان', en: 'Tetouan' },
+    laayoune: { ar: 'العيون', en: 'Laayoune' },
+    dakhla: { ar: 'الداخلة', en: 'Dakhla' },
+    ifrane: { ar: 'إفران', en: 'Ifrane' },
     ait: { ar: 'أيت بن حدو', en: 'Aït Benhaddou' },
     volubilis: { ar: 'وليلي', en: 'Volubilis' },
-    dakhla: { ar: 'الداخلة', en: 'Dakhla' },
     boujdour: { ar: 'بوجدور', en: 'Boujdour' },
-    ifrane: { ar: 'إفران', en: 'Ifrane' },
     ouzoud: { ar: 'أوزود', en: 'Ouzoud' },
-    erg: { ar: 'إرق شيبي', en: 'Erg Chebbi' },
-    atlas: { ar: 'أطلس', en: 'Atlas' },
+    merzouga: { ar: 'مرزوقة', en: 'Merzouga' },
     safi: { ar: 'آسفي', en: 'Safi' },
 };
 
 /**
- * Detects city from slug prefix (e.g., "marrakech-jemaa-el-fnaa" → Marrakech)
+ * Detects city from slug prefix or explicit meta field
  */
-function detectCity(slug) {
+function detectCity(slug, meta = {}) {
+    // 1. Check for explicit city in frontmatter
+    if (meta.city) {
+        // Try to find in map for translations
+        const mapped = Object.values(CITY_MAP).find(c =>
+            c.ar === meta.city || c.en.toLowerCase() === meta.city.toLowerCase()
+        );
+        if (mapped) return mapped;
+        return { ar: meta.city, en: meta.city };
+    }
+
+    // 2. Fallback to slug prefix
     const prefix = slug.split('-')[0].toLowerCase();
     return CITY_MAP[prefix] || { ar: 'المغرب', en: 'Morocco' };
 }
@@ -135,15 +146,39 @@ function bodyToArticle(body, description) {
     };
 }
 
+const manifestPath = path.join(__dirname, '../data/encyclopedia-manifest.json');
+
+/**
+ * Normalizes Arabic/English text for slug generation
+ */
+function slugify(text) {
+    if (!text) return '';
+    return text.toString().toLowerCase()
+        .replace(/\s+/g, '-')           // Replace spaces with -
+        .replace(/[^\w\u0600-\u06FF-]/g, '') // Keep alphanumeric, Arabic, and -
+        .replace(/--+/g, '-')           // Replace multiple - with single -
+        .trim();
+}
+
 function generateData() {
     console.log('[INFO] Starting dynamic content generation...');
 
+    const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
+
     if (!fs.existsSync(contentDir)) {
-        console.error('[ERROR] Content directory not found:', contentDir);
-        process.exit(1);
+        fs.mkdirSync(contentDir, { recursive: true });
     }
 
     const files = fs.readdirSync(contentDir).filter(f => f.endsWith('.md'));
+    const fileMap = {};
+
+    // 1. Index all existing markdown files
+    files.forEach(file => {
+        const rawContent = fs.readFileSync(path.join(contentDir, file), 'utf8');
+        const id = file.replace('.md', '');
+        const parsed = parseMarkdown(rawContent, file);
+        if (parsed) fileMap[id] = { ...parsed, id };
+    });
 
     const generatedData = {
         landmarks: [],
@@ -153,110 +188,111 @@ function generateData() {
         articles: {}
     };
 
-    files.forEach(file => {
-        const filePath = path.join(contentDir, file);
-        const rawContent = fs.readFileSync(filePath, 'utf8');
-        const id = file.replace('.md', '');
+    // 2. Process Manifest (Preparation of Spaces)
+    manifest.cities.forEach(cityNode => {
+        cityNode.landmarks.forEach(landmarkName => {
+            // Priority: Try to find file by city_en-landmark_en slug
+            const landmarkSlug = slugify(landmarkName);
+            const citySlug = cityNode.name.en.toLowerCase();
+            const expectedId = `${citySlug}-${landmarkSlug}`;
 
-        const parsed = parseMarkdown(rawContent, file);
-        if (!parsed) return;
+            // Try to find if any file exists for this landmark (either direct or expected)
+            const fileData = fileMap[expectedId] || Object.values(fileMap).find(f =>
+                f.meta.title === landmarkName || f.id === expectedId || f.id === landmarkSlug
+            );
 
-        const { meta, body } = parsed;
-        const city = detectCity(id);
+            if (fileData) {
+                const { meta, body, id } = fileData;
+                const city = detectCity(id, meta);
+                const { intro, sections, conclusion } = bodyToArticle(body, meta.description);
+
+                const article = {
+                    id,
+                    title: { ar: meta.title || landmarkName, en: meta.titleEn || id.replace(/-/g, ' ') },
+                    category: 'landmark',
+                    metaDescription: { ar: meta.description || '', en: meta.descriptionEn || '' },
+                    intro: { ar: intro, en: intro },
+                    sections,
+                    conclusion: { ar: conclusion, en: conclusion },
+                    generatedImage: meta.image || null,
+                    isPending: false
+                };
+                generatedData.articles[id] = article;
+
+                generatedData.landmarks.push({
+                    id,
+                    name: article.title,
+                    desc: article.metaDescription,
+                    imageUrl: meta.image || null,
+                    city,
+                    foundation: { ar: meta.foundation || 'تاريخي', en: meta.foundationEn || 'Historical' },
+                    history: article.metaDescription,
+                    visualSoul: meta.visualSoul || 'Ruin',
+                    isPending: false
+                });
+
+                delete fileMap[fileData.id]; // Mark as processed
+            } else {
+                // 3. Create Pending Card (The "Space")
+                const id = expectedId;
+                generatedData.landmarks.push({
+                    id,
+                    name: { ar: landmarkName, en: landmarkName },
+                    desc: {
+                        ar: `هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...`,
+                        en: `This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles...`
+                    },
+                    imageUrl: null,
+                    city: { ar: cityNode.name.ar, en: cityNode.name.en },
+                    foundation: { ar: 'قيد التوثيق', en: 'Pending' },
+                    history: { ar: 'قيد التوثيق', en: 'Pending' },
+                    visualSoul: 'Ruin',
+                    isPending: true
+                });
+            }
+        });
+    });
+
+    // 4. Handle remaining files not in manifest (e.g. Figures, Battles, or custom posts)
+    Object.values(fileMap).forEach(({ meta, body, id }) => {
+        const city = detectCity(id, meta);
         const { intro, sections, conclusion } = bodyToArticle(body, meta.description);
 
-        // Full article object for ArticleReader
         const article = {
             id,
             title: { ar: meta.title || id, en: meta.titleEn || id.replace(/-/g, ' ') },
             category: (meta.category || 'landmark').toLowerCase(),
-            metaDescription: {
-                ar: meta.description || '',
-                en: meta.descriptionEn || meta.description || ''
-            },
+            metaDescription: { ar: meta.description || '', en: meta.descriptionEn || '' },
             intro: { ar: intro, en: intro },
             sections,
-            faqs: [],
             conclusion: { ar: conclusion, en: conclusion },
             generatedImage: meta.image || null,
+            isPending: false
         };
-
         generatedData.articles[id] = article;
 
-        // Base card data
         const entry = {
             id,
-            name: { ar: meta.title || id, en: meta.titleEn || id.replace(/-/g, ' ') },
-            desc: { ar: meta.description || '', en: meta.descriptionEn || '' },
+            name: article.title,
+            desc: article.metaDescription,
             imageUrl: meta.image || null,
         };
 
-        const cat = (meta.category || 'landmark').toLowerCase();
-
-        switch (cat) {
-            case 'landmark':
-            case 'landmarks':
-                generatedData.landmarks.push({
-                    ...entry,
-                    city,
-                    foundation: { ar: meta.foundation || 'تاريخي', en: meta.foundationEn || 'Historical' },
-                    history: entry.desc,
-                    visualSoul: meta.visualSoul || 'Ruin'
-                });
-                break;
-            case 'city':
-            case 'cities':
-                generatedData.cities.push({
-                    ...entry,
-                    regionName: { ar: meta.region || city.ar, en: meta.regionEn || city.en },
-                    history: entry.desc,
-                    type: meta.type || 'Major City',
-                    climate: meta.climate || 'Mediterranean',
-                    visualSoul: meta.visualSoul || 'Medina',
-                    landmarks: { ar: [meta.landmarks || 'معالم متنوعة'], en: [meta.landmarksEn || 'Various Landmarks'] }
-                });
-                break;
-            case 'battle':
-            case 'battles':
-                generatedData.battles.push({
-                    ...entry,
-                    year: meta.year || 'غير مسجل',
-                    era: meta.era || 'Historical',
-                    dynasty: meta.dynasty || 'Unknown',
-                    location: { ar: meta.location || city.ar, en: meta.locationEn || city.en },
-                    combatants: { ar: meta.combatants || 'أطراف متنازعة', en: 'Opposing Forces' },
-                    leaders: { ar: meta.leaders || 'غير معروف', en: 'Unknown' },
-                    tactics: { ar: meta.tactics || 'تكتيكات متنوعة', en: 'Various tactics' },
-                    outcome: { ar: meta.outcome || 'غير معروف', en: 'Unknown' },
-                    impact: entry.desc
-                });
-                break;
-            case 'figure':
-            case 'figures':
-                generatedData.figures.push({
-                    ...entry,
-                    era: { ar: meta.era || 'عصر تاريخي', en: meta.eraEn || 'Historical Era' },
-                    category: meta.figureCategory || 'Scholar',
-                    shortBio: entry.desc,
-                    specialty: { ar: meta.specialty || 'علم وفكر', en: meta.specialtyEn || 'Knowledge' },
-                });
-                break;
-            default:
-                // Default unknown → landmark
-                generatedData.landmarks.push({
-                    ...entry,
-                    city,
-                    foundation: { ar: 'تاريخي', en: 'Historical' },
-                    history: entry.desc,
-                    visualSoul: meta.visualSoul || 'Ruin'
-                });
-                generatedData.articles[id].category = 'landmark';
-                break;
+        const cat = article.category;
+        if (cat === 'landmark') {
+            generatedData.landmarks.push({ ...entry, city, foundation: { ar: meta.foundation || 'تاريخي', en: 'Historical' }, visualSoul: meta.visualSoul || 'Ruin', isPending: false });
+        } else if (cat === 'city') {
+            generatedData.cities.push({ ...entry, regionName: { ar: meta.region || city.ar, en: 'Region' }, isPending: false });
+        } else if (cat === 'battle') {
+            generatedData.battles.push({ ...entry, year: meta.year || 'Unknown', location: { ar: meta.location || city.ar, en: 'Location' }, isPending: false });
+        } else if (cat === 'figure') {
+            generatedData.figures.push({ ...entry, era: { ar: meta.era || 'Era', en: 'Era' }, isPending: false });
         }
     });
 
     fs.writeFileSync(outputFile, JSON.stringify(generatedData, null, 2), 'utf8');
-    console.log(`[DONE] ${Object.keys(generatedData.articles).length} articles | Landmarks: ${generatedData.landmarks.length} | Cities: ${generatedData.cities.length} | Battles: ${generatedData.battles.length} | Figures: ${generatedData.figures.length}`);
+    console.log(`[DONE] Pre-staged ${generatedData.landmarks.length} landmark spaces.`);
 }
 
 generateData();
+

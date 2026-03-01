@@ -1,1720 +1,2582 @@
 {
   "landmarks": [
     {
-      "id": "ait-ben-haddou",
-      "name": {
-        "ar": "قصبة أيت بن حدو",
-        "en": "ait ben haddou"
-      },
-      "desc": {
-        "ar": "قرية طينية محصنة في سفوح الأطلس، تصنف كتراث عالمي لليونسكو وظهرت في عدة أفلام عالمية.",
-        "en": ""
-      },
-      "imageUrl": "/images/ait-ben-haddou.jpg",
-      "city": {
-        "ar": "أيت بن حدو",
-        "en": "Aït Benhaddou"
-      },
-      "foundation": {
-        "ar": "تاريخي",
-        "en": "Historical"
-      },
-      "history": {
-        "ar": "قرية طينية محصنة في سفوح الأطلس، تصنف كتراث عالمي لليونسكو وظهرت في عدة أفلام عالمية.",
-        "en": ""
-      },
-      "visualSoul": "Ruin"
-    },
-    {
-      "id": "atlas-studios",
-      "name": {
-        "ar": "استوديوهات أطلس",
-        "en": "atlas studios"
-      },
-      "desc": {
-        "ar": "هوليود إفريقيا في ورزازات، أحد أكبر استوديوهات التصوير السينمائي المفتوحة في العالم.",
-        "en": ""
-      },
-      "imageUrl": "/images/atlas-studios.jpg",
-      "city": {
-        "ar": "أطلس",
-        "en": "Atlas"
-      },
-      "foundation": {
-        "ar": "تاريخي",
-        "en": "Historical"
-      },
-      "history": {
-        "ar": "هوليود إفريقيا في ورزازات، أحد أكبر استوديوهات التصوير السينمائي المفتوحة في العالم.",
-        "en": ""
-      },
-      "visualSoul": "Ruin"
-    },
-    {
-      "id": "boujdour-lighthouse",
-      "name": {
-        "ar": "منارة بوجدور",
-        "en": "boujdour lighthouse"
-      },
-      "desc": {
-        "ar": "معلمة تاريخية شامخة في الملاحة البحرية لصحراء المحيط الأطلسي، تقف قبالة جزر الكناري.",
-        "en": ""
-      },
-      "imageUrl": "/images/boujdour.jpg",
-      "city": {
-        "ar": "بوجدور",
-        "en": "Boujdour"
-      },
-      "foundation": {
-        "ar": "تاريخي",
-        "en": "Historical"
-      },
-      "history": {
-        "ar": "معلمة تاريخية شامخة في الملاحة البحرية لصحراء المحيط الأطلسي، تقف قبالة جزر الكناري.",
-        "en": ""
-      },
-      "visualSoul": "Ruin"
-    },
-    {
-      "id": "casablanca-habous",
-      "name": {
-        "ar": "حي الأحباس بالدار البيضاء",
-        "en": "casablanca habous"
-      },
-      "desc": {
-        "ar": "حي تاريخي بني في بداية القرن العشرين يجمع بين التخطيط الحديث والمعمار المغربي التقليدي.",
-        "en": ""
-      },
-      "imageUrl": "/images/habous.jpg",
-      "city": {
-        "ar": "الدار البيضاء",
-        "en": "Casablanca"
-      },
-      "foundation": {
-        "ar": "تاريخي",
-        "en": "Historical"
-      },
-      "history": {
-        "ar": "حي تاريخي بني في بداية القرن العشرين يجمع بين التخطيط الحديث والمعمار المغربي التقليدي.",
-        "en": ""
-      },
-      "visualSoul": "Ruin"
-    },
-    {
-      "id": "casablanca-hassan-ii",
-      "name": {
-        "ar": "مسجد الحسن الثاني",
-        "en": "casablanca hassan ii"
-      },
-      "desc": {
-        "ar": "معلمة دينية ومعمارية فريدة، يمتلك أطول مئذنة في العالم ويطل مباشرة على المحيط الأطلسي.",
-        "en": ""
-      },
-      "imageUrl": "/images/hassan-ii.jpg",
-      "city": {
-        "ar": "الدار البيضاء",
-        "en": "Casablanca"
-      },
-      "foundation": {
-        "ar": "تاريخي",
-        "en": "Historical"
-      },
-      "history": {
-        "ar": "معلمة دينية ومعمارية فريدة، يمتلك أطول مئذنة في العالم ويطل مباشرة على المحيط الأطلسي.",
-        "en": ""
-      },
-      "visualSoul": "Ruin"
-    },
-    {
-      "id": "dakhla-sebkha",
-      "name": {
-        "ar": "سبخة الداخلة",
-        "en": "dakhla sebkha"
-      },
-      "desc": {
-        "ar": "لؤلؤة الصحراء المغربية حيث يلتقي بحر الأطلسي برمال الصحراء في مشهد طبيعي فريد.",
-        "en": ""
-      },
-      "imageUrl": "/images/dakhla.jpg",
-      "city": {
-        "ar": "الداخلة",
-        "en": "Dakhla"
-      },
-      "foundation": {
-        "ar": "تاريخي",
-        "en": "Historical"
-      },
-      "history": {
-        "ar": "لؤلؤة الصحراء المغربية حيث يلتقي بحر الأطلسي برمال الصحراء في مشهد طبيعي فريد.",
-        "en": ""
-      },
-      "visualSoul": "Ruin"
-    },
-    {
-      "id": "erg-chebbi",
-      "name": {
-        "ar": "عرق الشبي بمرزوكة",
-        "en": "erg chebbi"
-      },
-      "desc": {
-        "ar": "كثبان رملية ذهبية ساحرة تعانق عنان السماء في صحراء مرزوكة، وجهة سحرية لا تُنسى.",
-        "en": ""
-      },
-      "imageUrl": "/images/erg-chebbi.jpg",
-      "city": {
-        "ar": "إرق شيبي",
-        "en": "Erg Chebbi"
-      },
-      "foundation": {
-        "ar": "تاريخي",
-        "en": "Historical"
-      },
-      "history": {
-        "ar": "كثبان رملية ذهبية ساحرة تعانق عنان السماء في صحراء مرزوكة، وجهة سحرية لا تُنسى.",
-        "en": ""
-      },
-      "visualSoul": "Ruin"
-    },
-    {
-      "id": "essaouira-skala",
-      "name": {
-        "ar": "صقالة الميناء",
-        "en": "essaouira skala"
-      },
-      "desc": {
-        "ar": "برج مراقبة وحصن برتغالي يحرس مدينة الصويرة بأمواجها العاتية ومدافعها البرونزية.",
-        "en": ""
-      },
-      "imageUrl": "/images/skala.jpg",
-      "city": {
-        "ar": "الصويرة",
-        "en": "Essaouira"
-      },
-      "foundation": {
-        "ar": "تاريخي",
-        "en": "Historical"
-      },
-      "history": {
-        "ar": "برج مراقبة وحصن برتغالي يحرس مدينة الصويرة بأمواجها العاتية ومدافعها البرونزية.",
-        "en": ""
-      },
-      "visualSoul": "Ruin"
-    },
-    {
-      "id": "fes-al-attarine",
-      "name": {
-        "ar": "مدرسة العطارين",
-        "en": "fes al attarine"
-      },
-      "desc": {
-        "ar": "تحفة المعمار المريني في فاس، تتميز بالنقوش الجصية والزليج الدقيق والخشب المحفور.",
-        "en": ""
-      },
-      "imageUrl": "/images/al-attarine.jpg",
-      "city": {
-        "ar": "فاس",
-        "en": "Fes"
-      },
-      "foundation": {
-        "ar": "تاريخي",
-        "en": "Historical"
-      },
-      "history": {
-        "ar": "تحفة المعمار المريني في فاس، تتميز بالنقوش الجصية والزليج الدقيق والخشب المحفور.",
-        "en": ""
-      },
-      "visualSoul": "Ruin"
-    },
-    {
-      "id": "fes-al-qarawiyyin",
-      "name": {
-        "ar": "جامع القرويين",
-        "en": "fes al qarawiyyin"
-      },
-      "desc": {
-        "ar": "أقدم جامعة مستمرة في العالم وأحد أهم المراكز الروحية والعلمية في مدينة فاس التاريخية.",
-        "en": ""
-      },
-      "imageUrl": "/images/al-qarawiyyin.jpg",
-      "city": {
-        "ar": "فاس",
-        "en": "Fes"
-      },
-      "foundation": {
-        "ar": "تاريخي",
-        "en": "Historical"
-      },
-      "history": {
-        "ar": "أقدم جامعة مستمرة في العالم وأحد أهم المراكز الروحية والعلمية في مدينة فاس التاريخية.",
-        "en": ""
-      },
-      "visualSoul": "Ruin"
-    },
-    {
-      "id": "fes-bab-boujloud",
-      "name": {
-        "ar": "باب بوجلود",
-        "en": "fes bab boujloud"
-      },
-      "desc": {
-        "ar": "المدخل الرئيسي الأزرق للمدينة القديمة في فاس، رمز العمارة المورسكية الجميلة.",
-        "en": ""
-      },
-      "imageUrl": "/images/bab-boujloud.jpg",
-      "city": {
-        "ar": "فاس",
-        "en": "Fes"
-      },
-      "foundation": {
-        "ar": "تاريخي",
-        "en": "Historical"
-      },
-      "history": {
-        "ar": "المدخل الرئيسي الأزرق للمدينة القديمة في فاس، رمز العمارة المورسكية الجميلة.",
-        "en": ""
-      },
-      "visualSoul": "Ruin"
-    },
-    {
-      "id": "fes-chouara-tannery",
-      "name": {
-        "ar": "دار الدبغ",
-        "en": "fes chouara tannery"
-      },
-      "desc": {
-        "ar": "أشهر دار لدباغة الجلود في فاس، حيث الألوان الزاهية والعمل اليدوي المتوارث منذ قرون.",
-        "en": ""
-      },
-      "imageUrl": "/images/chouara.jpg",
-      "city": {
-        "ar": "فاس",
-        "en": "Fes"
-      },
-      "foundation": {
-        "ar": "تاريخي",
-        "en": "Historical"
-      },
-      "history": {
-        "ar": "أشهر دار لدباغة الجلود في فاس، حيث الألوان الزاهية والعمل اليدوي المتوارث منذ قرون.",
-        "en": ""
-      },
-      "visualSoul": "Ruin"
-    },
-    {
-      "id": "ifrane-lion",
-      "name": {
-        "ar": "أسد إيفران",
-        "en": "ifrane lion"
-      },
-      "desc": {
-        "ar": "تمثال حجري شهير يرمز لأسد الأطلس، يتوسط مدينة إيفران الملقبة بسويسرا المغرب.",
-        "en": ""
-      },
-      "imageUrl": "/images/ifrane-lion.jpg",
-      "city": {
-        "ar": "إفران",
-        "en": "Ifrane"
-      },
-      "foundation": {
-        "ar": "تاريخي",
-        "en": "Historical"
-      },
-      "history": {
-        "ar": "تمثال حجري شهير يرمز لأسد الأطلس، يتوسط مدينة إيفران الملقبة بسويسرا المغرب.",
-        "en": ""
-      },
-      "visualSoul": "Ruin"
-    },
-    {
-      "id": "marrakech-bahia-palace",
-      "name": {
-        "ar": "قصر الباهية",
-        "en": "marrakech bahia palace"
-      },
-      "desc": {
-        "ar": "قصر أندلسي مغربي مذهل يعكس ترف وعظمة القرن التاسع عشر بحدائقه وزخارفه المعقدة.",
-        "en": ""
-      },
-      "imageUrl": "/images/bahia-palace.jpg",
-      "city": {
-        "ar": "مراكش",
-        "en": "Marrakech"
-      },
-      "foundation": {
-        "ar": "تاريخي",
-        "en": "Historical"
-      },
-      "history": {
-        "ar": "قصر أندلسي مغربي مذهل يعكس ترف وعظمة القرن التاسع عشر بحدائقه وزخارفه المعقدة.",
-        "en": ""
-      },
-      "visualSoul": "Ruin"
-    },
-    {
-      "id": "marrakech-ben-youssef",
-      "name": {
-        "ar": "مدرسة بن يوسف",
-        "en": "marrakech ben youssef"
-      },
-      "desc": {
-        "ar": "من أكبر المدارس التاريخية في المغرب الأقصى، تحفة تجمع بين تناسق الزليج وجمال النقش والمقرنصات.",
-        "en": ""
-      },
-      "imageUrl": "/images/ben-youssef.jpg",
-      "city": {
-        "ar": "مراكش",
-        "en": "Marrakech"
-      },
-      "foundation": {
-        "ar": "تاريخي",
-        "en": "Historical"
-      },
-      "history": {
-        "ar": "من أكبر المدارس التاريخية في المغرب الأقصى، تحفة تجمع بين تناسق الزليج وجمال النقش والمقرنصات.",
-        "en": ""
-      },
-      "visualSoul": "Ruin"
-    },
-    {
-      "id": "marrakech-el-badi-palace",
-      "name": {
-        "ar": "قصر البديع",
-        "en": "marrakech el badi palace"
-      },
-      "desc": {
-        "ar": "أطلال قصر سعدي عظيم كان يُعتبر من عجائب الدنيا في زمانه، بناه أحمد المنصور الذهبي.",
-        "en": ""
-      },
-      "imageUrl": "/images/el-badi.jpg",
-      "city": {
-        "ar": "مراكش",
-        "en": "Marrakech"
-      },
-      "foundation": {
-        "ar": "تاريخي",
-        "en": "Historical"
-      },
-      "history": {
-        "ar": "أطلال قصر سعدي عظيم كان يُعتبر من عجائب الدنيا في زمانه، بناه أحمد المنصور الذهبي.",
-        "en": ""
-      },
-      "visualSoul": "Ruin"
-    },
-    {
-      "id": "marrakech-jemaa-el-fnaa",
-      "name": {
-        "ar": "جامع الفنا",
-        "en": "marrakech jemaa el fnaa"
-      },
-      "desc": {
-        "ar": "الساحة النابضة بالحياة قلب مراكش، مسرح مفتوح يجمع رواة القصص، الموسيقيين، والمأكولات الشعبية.",
-        "en": ""
-      },
-      "imageUrl": "/images/jemaa-el-fnaa.jpg",
-      "city": {
-        "ar": "مراكش",
-        "en": "Marrakech"
-      },
-      "foundation": {
-        "ar": "تاريخي",
-        "en": "Historical"
-      },
-      "history": {
-        "ar": "الساحة النابضة بالحياة قلب مراكش، مسرح مفتوح يجمع رواة القصص، الموسيقيين، والمأكولات الشعبية.",
-        "en": ""
-      },
-      "visualSoul": "Ruin"
-    },
-    {
-      "id": "marrakech-majorelle",
-      "name": {
-        "ar": "حدائق ماجوريل",
-        "en": "marrakech majorelle"
-      },
-      "desc": {
-        "ar": "واحة استوائية ساحرة في قلب مراكش تمزج بين اللون الأزرق الماجوريل والنباتات النادرة.",
-        "en": ""
-      },
-      "imageUrl": "/images/majorelle.jpg",
-      "city": {
-        "ar": "مراكش",
-        "en": "Marrakech"
-      },
-      "foundation": {
-        "ar": "تاريخي",
-        "en": "Historical"
-      },
-      "history": {
-        "ar": "واحة استوائية ساحرة في قلب مراكش تمزج بين اللون الأزرق الماجوريل والنباتات النادرة.",
-        "en": ""
-      },
-      "visualSoul": "Ruin"
-    },
-    {
-      "id": "meknes-bab-mansour",
-      "name": {
-        "ar": "باب المنصور لعلج",
-        "en": "meknes bab mansour"
-      },
-      "desc": {
-        "ar": "أضخم وأجمل أبواب المغرب، يزين مدخل العاصمة الإسماعيلية مكناس بنقوشه وزخارفه الأخاذة.",
-        "en": ""
-      },
-      "imageUrl": "/images/bab-mansour.jpg",
-      "city": {
-        "ar": "مكناس",
-        "en": "Meknes"
-      },
-      "foundation": {
-        "ar": "تاريخي",
-        "en": "Historical"
-      },
-      "history": {
-        "ar": "أضخم وأجمل أبواب المغرب، يزين مدخل العاصمة الإسماعيلية مكناس بنقوشه وزخارفه الأخاذة.",
-        "en": ""
-      },
-      "visualSoul": "Ruin"
-    },
-    {
-      "id": "meknes-habs-qara",
-      "name": {
-        "ar": "حبس قرا",
-        "en": "meknes habs qara"
-      },
-      "desc": {
-        "ar": "سجن تاريخي غامض ومترامي الأطراف يقع تحت الأرض في قلب قصبة مكناس الإسماعيلية.",
-        "en": ""
-      },
-      "imageUrl": "/images/habs-qara.jpg",
-      "city": {
-        "ar": "مكناس",
-        "en": "Meknes"
-      },
-      "foundation": {
-        "ar": "تاريخي",
-        "en": "Historical"
-      },
-      "history": {
-        "ar": "سجن تاريخي غامض ومترامي الأطراف يقع تحت الأرض في قلب قصبة مكناس الإسماعيلية.",
-        "en": ""
-      },
-      "visualSoul": "Ruin"
-    },
-    {
-      "id": "meknes-sahrij-souani",
-      "name": {
-        "ar": "صهريج السواني",
-        "en": "meknes sahrij souani"
-      },
-      "desc": {
-        "ar": "خزان مائي عظيم وبنية تحتية تاريخية أمر ببنائها السلطان المولى إسماعيل لتزويد مكناس بالمياه.",
-        "en": ""
-      },
-      "imageUrl": "/images/sahrij-souani.jpg",
-      "city": {
-        "ar": "مكناس",
-        "en": "Meknes"
-      },
-      "foundation": {
-        "ar": "تاريخي",
-        "en": "Historical"
-      },
-      "history": {
-        "ar": "خزان مائي عظيم وبنية تحتية تاريخية أمر ببنائها السلطان المولى إسماعيل لتزويد مكناس بالمياه.",
-        "en": ""
-      },
-      "visualSoul": "Ruin"
-    },
-    {
-      "id": "meknes-volubilis",
-      "name": {
-        "ar": "وليلي",
-        "en": "meknes volubilis"
-      },
-      "desc": {
-        "ar": "أهم المواقع الأثرية الرومانية في المغرب، تتميز بفسيفسائها البديعة ومعابدها التاريخية.",
-        "en": ""
-      },
-      "imageUrl": "/images/volubilis.jpg",
-      "city": {
-        "ar": "مكناس",
-        "en": "Meknes"
-      },
-      "foundation": {
-        "ar": "تاريخي",
-        "en": "Historical"
-      },
-      "history": {
-        "ar": "أهم المواقع الأثرية الرومانية في المغرب، تتميز بفسيفسائها البديعة ومعابدها التاريخية.",
-        "en": ""
-      },
-      "visualSoul": "Ruin"
-    },
-    {
-      "id": "ouzoud-falls",
-      "name": {
-        "ar": "شلالات أوزود",
-        "en": "ouzoud falls"
-      },
-      "desc": {
-        "ar": "أعلى وأجمل شلالات المغرب، جنة طبيعية مخفية في جبال الأطلس المتوسط.",
-        "en": ""
-      },
-      "imageUrl": "/images/ouzoud.jpg",
-      "city": {
-        "ar": "أوزود",
-        "en": "Ouzoud"
-      },
-      "foundation": {
-        "ar": "تاريخي",
-        "en": "Historical"
-      },
-      "history": {
-        "ar": "أعلى وأجمل شلالات المغرب، جنة طبيعية مخفية في جبال الأطلس المتوسط.",
-        "en": ""
-      },
-      "visualSoul": "Ruin"
-    },
-    {
-      "id": "rabat-chellah",
-      "name": {
-        "ar": "موقع شالة",
-        "en": "rabat chellah"
-      },
-      "desc": {
-        "ar": "مدينة أثرية تعانق الآثار الرومانية والإسلامية المرينية، حيث الهدوء وأعشاش طيور اللقلق.",
-        "en": ""
-      },
-      "imageUrl": "/images/chellah.jpg",
-      "city": {
-        "ar": "الرباط",
-        "en": "Rabat"
-      },
-      "foundation": {
-        "ar": "تاريخي",
-        "en": "Historical"
-      },
-      "history": {
-        "ar": "مدينة أثرية تعانق الآثار الرومانية والإسلامية المرينية، حيث الهدوء وأعشاش طيور اللقلق.",
-        "en": ""
-      },
-      "visualSoul": "Ruin"
-    },
-    {
-      "id": "rabat-hassan-tower",
+      "id": "rabat-صومعة-حسان",
       "name": {
         "ar": "صومعة حسان",
-        "en": "rabat hassan tower"
+        "en": "صومعة حسان"
       },
       "desc": {
-        "ar": "مئذنة غير مكتملة لمسجد تاريخي بناه الموحدون في الرباط، تعتبر رمزاً شاهقاً للمدينة.",
-        "en": ""
+        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
+        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
       },
-      "imageUrl": "/images/hassan-tower.jpg",
+      "imageUrl": null,
       "city": {
         "ar": "الرباط",
         "en": "Rabat"
       },
       "foundation": {
-        "ar": "تاريخي",
-        "en": "Historical"
+        "ar": "قيد التوثيق",
+        "en": "Pending"
       },
       "history": {
-        "ar": "مئذنة غير مكتملة لمسجد تاريخي بناه الموحدون في الرباط، تعتبر رمزاً شاهقاً للمدينة.",
-        "en": ""
+        "ar": "قيد التوثيق",
+        "en": "Pending"
       },
-      "visualSoul": "Ruin"
+      "visualSoul": "Ruin",
+      "isPending": true
     },
     {
-      "id": "rabat-kasbah-oudaya",
+      "id": "rabat-قصبة-الأوداية",
       "name": {
-        "ar": "قصبة الوداية",
-        "en": "rabat kasbah oudaya"
+        "ar": "قصبة الأوداية",
+        "en": "قصبة الأوداية"
       },
       "desc": {
-        "ar": "قلعة تاريخية بيضاء وزرقاء تقع على مصب نهر أبي رقراق، تتميز بحدائقها الأندلسية العبقة.",
-        "en": ""
+        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
+        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
       },
-      "imageUrl": "/images/kasbah-oudaya.jpg",
+      "imageUrl": null,
       "city": {
         "ar": "الرباط",
         "en": "Rabat"
       },
       "foundation": {
-        "ar": "تاريخي",
-        "en": "Historical"
+        "ar": "قيد التوثيق",
+        "en": "Pending"
       },
       "history": {
-        "ar": "قلعة تاريخية بيضاء وزرقاء تقع على مصب نهر أبي رقراق، تتميز بحدائقها الأندلسية العبقة.",
-        "en": ""
+        "ar": "قيد التوثيق",
+        "en": "Pending"
       },
-      "visualSoul": "Ruin"
+      "visualSoul": "Ruin",
+      "isPending": true
     },
     {
-      "id": "rabat-mohammed-v-mausoleum",
+      "id": "rabat-شالة",
+      "name": {
+        "ar": "شالة",
+        "en": "شالة"
+      },
+      "desc": {
+        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
+        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+      },
+      "imageUrl": null,
+      "city": {
+        "ar": "الرباط",
+        "en": "Rabat"
+      },
+      "foundation": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "history": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "visualSoul": "Ruin",
+      "isPending": true
+    },
+    {
+      "id": "rabat-ضريح-محمد-الخامس",
       "name": {
         "ar": "ضريح محمد الخامس",
-        "en": "rabat mohammed v mausoleum"
+        "en": "ضريح محمد الخامس"
       },
       "desc": {
-        "ar": "تحفة معمارية مغربية معاصرة تضم رفات الملك محمد الخامس والملك الحسن الثاني طيب الله ثراهما.",
-        "en": ""
+        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
+        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
       },
-      "imageUrl": "/images/mohammed-v.jpg",
+      "imageUrl": null,
       "city": {
         "ar": "الرباط",
         "en": "Rabat"
       },
       "foundation": {
-        "ar": "تاريخي",
-        "en": "Historical"
+        "ar": "قيد التوثيق",
+        "en": "Pending"
       },
       "history": {
-        "ar": "تحفة معمارية مغربية معاصرة تضم رفات الملك محمد الخامس والملك الحسن الثاني طيب الله ثراهما.",
-        "en": ""
+        "ar": "قيد التوثيق",
+        "en": "Pending"
       },
-      "visualSoul": "Ruin"
+      "visualSoul": "Ruin",
+      "isPending": true
     },
     {
-      "id": "safi-ksar-el-bahr",
+      "id": "rabat-حديقة-التجارب-النباتية",
       "name": {
-        "ar": "قصر البحر بآسفي",
-        "en": "safi ksar el bahr"
+        "ar": "حديقة التجارب النباتية",
+        "en": "حديقة التجارب النباتية"
       },
       "desc": {
-        "ar": "حصن برتغالي عتيد يطل بشموخ على أمواج المحيط الأطلسي لمدينة آسفي العريقة.",
-        "en": ""
+        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
+        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
       },
-      "imageUrl": "/images/ksar-el-bahr.jpg",
+      "imageUrl": null,
       "city": {
-        "ar": "آسفي",
-        "en": "Safi"
+        "ar": "الرباط",
+        "en": "Rabat"
       },
       "foundation": {
-        "ar": "تاريخي",
-        "en": "Historical"
+        "ar": "قيد التوثيق",
+        "en": "Pending"
       },
       "history": {
-        "ar": "حصن برتغالي عتيد يطل بشموخ على أمواج المحيط الأطلسي لمدينة آسفي العريقة.",
-        "en": ""
+        "ar": "قيد التوثيق",
+        "en": "Pending"
       },
-      "visualSoul": "Ruin"
+      "visualSoul": "Ruin",
+      "isPending": true
     },
     {
-      "id": "tangier-hercules-cave",
+      "id": "rabat-متحف-محمد-السادس-للفن-الحديث",
       "name": {
-        "ar": "مغارة هرقل",
-        "en": "tangier hercules cave"
+        "ar": "متحف محمد السادس للفن الحديث",
+        "en": "متحف محمد السادس للفن الحديث"
       },
       "desc": {
-        "ar": "مغارة أسطورية ذات فتحة على شكل خريطة إفريقيا، تقع بالقرب من مدينة طنجة.",
-        "en": ""
+        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
+        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
       },
-      "imageUrl": "/images/hercules-cave.jpg",
+      "imageUrl": null,
+      "city": {
+        "ar": "الرباط",
+        "en": "Rabat"
+      },
+      "foundation": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "history": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "visualSoul": "Ruin",
+      "isPending": true
+    },
+    {
+      "id": "rabat-قصر-التواركة",
+      "name": {
+        "ar": "قصر التواركة",
+        "en": "قصر التواركة"
+      },
+      "desc": {
+        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
+        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+      },
+      "imageUrl": null,
+      "city": {
+        "ar": "الرباط",
+        "en": "Rabat"
+      },
+      "foundation": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "history": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "visualSoul": "Ruin",
+      "isPending": true
+    },
+    {
+      "id": "rabat-محطة-الرباط-المدينة",
+      "name": {
+        "ar": "محطة الرباط المدينة",
+        "en": "محطة الرباط المدينة"
+      },
+      "desc": {
+        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
+        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+      },
+      "imageUrl": null,
+      "city": {
+        "ar": "الرباط",
+        "en": "Rabat"
+      },
+      "foundation": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "history": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "visualSoul": "Ruin",
+      "isPending": true
+    },
+    {
+      "id": "rabat-كاتدرائية-القديس-بطرس",
+      "name": {
+        "ar": "كاتدرائية القديس بطرس",
+        "en": "كاتدرائية القديس بطرس"
+      },
+      "desc": {
+        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
+        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+      },
+      "imageUrl": null,
+      "city": {
+        "ar": "الرباط",
+        "en": "Rabat"
+      },
+      "foundation": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "history": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "visualSoul": "Ruin",
+      "isPending": true
+    },
+    {
+      "id": "rabat-باب-الرواح",
+      "name": {
+        "ar": "باب الرواح",
+        "en": "باب الرواح"
+      },
+      "desc": {
+        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
+        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+      },
+      "imageUrl": null,
+      "city": {
+        "ar": "الرباط",
+        "en": "Rabat"
+      },
+      "foundation": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "history": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "visualSoul": "Ruin",
+      "isPending": true
+    },
+    {
+      "id": "casablanca-مسجد-الحسن-الثاني",
+      "name": {
+        "ar": "مسجد الحسن الثاني",
+        "en": "مسجد الحسن الثاني"
+      },
+      "desc": {
+        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
+        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+      },
+      "imageUrl": null,
+      "city": {
+        "ar": "الدار البيضاء",
+        "en": "Casablanca"
+      },
+      "foundation": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "history": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "visualSoul": "Ruin",
+      "isPending": true
+    },
+    {
+      "id": "casablanca-حي-الأحباس",
+      "name": {
+        "ar": "حي الأحباس",
+        "en": "حي الأحباس"
+      },
+      "desc": {
+        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
+        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+      },
+      "imageUrl": null,
+      "city": {
+        "ar": "الدار البيضاء",
+        "en": "Casablanca"
+      },
+      "foundation": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "history": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "visualSoul": "Ruin",
+      "isPending": true
+    },
+    {
+      "id": "casablanca-محكمة-الباشا",
+      "name": {
+        "ar": "محكمة الباشا",
+        "en": "محكمة الباشا"
+      },
+      "desc": {
+        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
+        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+      },
+      "imageUrl": null,
+      "city": {
+        "ar": "الدار البيضاء",
+        "en": "Casablanca"
+      },
+      "foundation": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "history": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "visualSoul": "Ruin",
+      "isPending": true
+    },
+    {
+      "id": "casablanca-منارة-العنق",
+      "name": {
+        "ar": "منارة العنق",
+        "en": "منارة العنق"
+      },
+      "desc": {
+        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
+        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+      },
+      "imageUrl": null,
+      "city": {
+        "ar": "الدار البيضاء",
+        "en": "Casablanca"
+      },
+      "foundation": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "history": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "visualSoul": "Ruin",
+      "isPending": true
+    },
+    {
+      "id": "casablanca-ساحة-محمد-الخامس",
+      "name": {
+        "ar": "ساحة محمد الخامس",
+        "en": "ساحة محمد الخامس"
+      },
+      "desc": {
+        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
+        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+      },
+      "imageUrl": null,
+      "city": {
+        "ar": "الدار البيضاء",
+        "en": "Casablanca"
+      },
+      "foundation": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "history": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "visualSoul": "Ruin",
+      "isPending": true
+    },
+    {
+      "id": "casablanca-حديقة-الجامعة-العربية",
+      "name": {
+        "ar": "حديقة الجامعة العربية",
+        "en": "حديقة الجامعة العربية"
+      },
+      "desc": {
+        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
+        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+      },
+      "imageUrl": null,
+      "city": {
+        "ar": "الدار البيضاء",
+        "en": "Casablanca"
+      },
+      "foundation": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "history": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "visualSoul": "Ruin",
+      "isPending": true
+    },
+    {
+      "id": "casablanca-موروكو-مول",
+      "name": {
+        "ar": "موروكو مول",
+        "en": "موروكو مول"
+      },
+      "desc": {
+        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
+        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+      },
+      "imageUrl": null,
+      "city": {
+        "ar": "الدار البيضاء",
+        "en": "Casablanca"
+      },
+      "foundation": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "history": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "visualSoul": "Ruin",
+      "isPending": true
+    },
+    {
+      "id": "casablanca-مسجد-ولد-الحمراء",
+      "name": {
+        "ar": "مسجد ولد الحمراء",
+        "en": "مسجد ولد الحمراء"
+      },
+      "desc": {
+        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
+        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+      },
+      "imageUrl": null,
+      "city": {
+        "ar": "الدار البيضاء",
+        "en": "Casablanca"
+      },
+      "foundation": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "history": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "visualSoul": "Ruin",
+      "isPending": true
+    },
+    {
+      "id": "casablanca-كنيسة-القلب-المقدس",
+      "name": {
+        "ar": "كنيسة القلب المقدس",
+        "en": "كنيسة القلب المقدس"
+      },
+      "desc": {
+        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
+        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+      },
+      "imageUrl": null,
+      "city": {
+        "ar": "الدار البيضاء",
+        "en": "Casablanca"
+      },
+      "foundation": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "history": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "visualSoul": "Ruin",
+      "isPending": true
+    },
+    {
+      "id": "casablanca-حي-آنفا-التاريخي",
+      "name": {
+        "ar": "حي آنفا التاريخي",
+        "en": "حي آنفا التاريخي"
+      },
+      "desc": {
+        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
+        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+      },
+      "imageUrl": null,
+      "city": {
+        "ar": "الدار البيضاء",
+        "en": "Casablanca"
+      },
+      "foundation": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "history": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "visualSoul": "Ruin",
+      "isPending": true
+    },
+    {
+      "id": "marrakech-ساحة-جامع-الفنا",
+      "name": {
+        "ar": "ساحة جامع الفنا",
+        "en": "ساحة جامع الفنا"
+      },
+      "desc": {
+        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
+        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+      },
+      "imageUrl": null,
+      "city": {
+        "ar": "مراكش",
+        "en": "Marrakech"
+      },
+      "foundation": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "history": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "visualSoul": "Ruin",
+      "isPending": true
+    },
+    {
+      "id": "marrakech-صومعة-الكتبية",
+      "name": {
+        "ar": "صومعة الكتبية",
+        "en": "صومعة الكتبية"
+      },
+      "desc": {
+        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
+        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+      },
+      "imageUrl": null,
+      "city": {
+        "ar": "مراكش",
+        "en": "Marrakech"
+      },
+      "foundation": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "history": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "visualSoul": "Ruin",
+      "isPending": true
+    },
+    {
+      "id": "marrakech-قصر-الباهية",
+      "name": {
+        "ar": "قصر الباهية",
+        "en": "قصر الباهية"
+      },
+      "desc": {
+        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
+        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+      },
+      "imageUrl": null,
+      "city": {
+        "ar": "مراكش",
+        "en": "Marrakech"
+      },
+      "foundation": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "history": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "visualSoul": "Ruin",
+      "isPending": true
+    },
+    {
+      "id": "marrakech-قصر-البديع",
+      "name": {
+        "ar": "قصر البديع",
+        "en": "قصر البديع"
+      },
+      "desc": {
+        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
+        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+      },
+      "imageUrl": null,
+      "city": {
+        "ar": "مراكش",
+        "en": "Marrakech"
+      },
+      "foundation": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "history": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "visualSoul": "Ruin",
+      "isPending": true
+    },
+    {
+      "id": "marrakech-حدائق-المنارة",
+      "name": {
+        "ar": "حدائق المنارة",
+        "en": "حدائق المنارة"
+      },
+      "desc": {
+        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
+        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+      },
+      "imageUrl": null,
+      "city": {
+        "ar": "مراكش",
+        "en": "Marrakech"
+      },
+      "foundation": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "history": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "visualSoul": "Ruin",
+      "isPending": true
+    },
+    {
+      "id": "marrakech-حديقة-ماجوريل",
+      "name": {
+        "ar": "حديقة ماجوريل",
+        "en": "حديقة ماجوريل"
+      },
+      "desc": {
+        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
+        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+      },
+      "imageUrl": null,
+      "city": {
+        "ar": "مراكش",
+        "en": "Marrakech"
+      },
+      "foundation": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "history": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "visualSoul": "Ruin",
+      "isPending": true
+    },
+    {
+      "id": "marrakech-قبور-السعديين",
+      "name": {
+        "ar": "قبور السعديين",
+        "en": "قبور السعديين"
+      },
+      "desc": {
+        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
+        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+      },
+      "imageUrl": null,
+      "city": {
+        "ar": "مراكش",
+        "en": "Marrakech"
+      },
+      "foundation": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "history": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "visualSoul": "Ruin",
+      "isPending": true
+    },
+    {
+      "id": "marrakech-مدرسة-بن-يوسف",
+      "name": {
+        "ar": "مدرسة بن يوسف",
+        "en": "مدرسة بن يوسف"
+      },
+      "desc": {
+        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
+        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+      },
+      "imageUrl": null,
+      "city": {
+        "ar": "مراكش",
+        "en": "Marrakech"
+      },
+      "foundation": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "history": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "visualSoul": "Ruin",
+      "isPending": true
+    },
+    {
+      "id": "marrakech-متحف-مراكش",
+      "name": {
+        "ar": "متحف مراكش",
+        "en": "متحف مراكش"
+      },
+      "desc": {
+        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
+        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+      },
+      "imageUrl": null,
+      "city": {
+        "ar": "مراكش",
+        "en": "Marrakech"
+      },
+      "foundation": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "history": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "visualSoul": "Ruin",
+      "isPending": true
+    },
+    {
+      "id": "marrakech-باب-دكالة",
+      "name": {
+        "ar": "باب دكالة",
+        "en": "باب دكالة"
+      },
+      "desc": {
+        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
+        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+      },
+      "imageUrl": null,
+      "city": {
+        "ar": "مراكش",
+        "en": "Marrakech"
+      },
+      "foundation": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "history": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "visualSoul": "Ruin",
+      "isPending": true
+    },
+    {
+      "id": "marrakech-واحة-النخيل",
+      "name": {
+        "ar": "واحة النخيل",
+        "en": "واحة النخيل"
+      },
+      "desc": {
+        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
+        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+      },
+      "imageUrl": null,
+      "city": {
+        "ar": "مراكش",
+        "en": "Marrakech"
+      },
+      "foundation": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "history": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "visualSoul": "Ruin",
+      "isPending": true
+    },
+    {
+      "id": "fes-جامع-القرويين",
+      "name": {
+        "ar": "جامع القرويين",
+        "en": "جامع القرويين"
+      },
+      "desc": {
+        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
+        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+      },
+      "imageUrl": null,
+      "city": {
+        "ar": "فاس",
+        "en": "Fes"
+      },
+      "foundation": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "history": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "visualSoul": "Ruin",
+      "isPending": true
+    },
+    {
+      "id": "fes-فندق-النجارين",
+      "name": {
+        "ar": "فندق النجارين",
+        "en": "فندق النجارين"
+      },
+      "desc": {
+        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
+        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+      },
+      "imageUrl": null,
+      "city": {
+        "ar": "فاس",
+        "en": "Fes"
+      },
+      "foundation": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "history": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "visualSoul": "Ruin",
+      "isPending": true
+    },
+    {
+      "id": "fes-مدرسة-العطارين",
+      "name": {
+        "ar": "مدرسة العطارين",
+        "en": "مدرسة العطارين"
+      },
+      "desc": {
+        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
+        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+      },
+      "imageUrl": null,
+      "city": {
+        "ar": "فاس",
+        "en": "Fes"
+      },
+      "foundation": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "history": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "visualSoul": "Ruin",
+      "isPending": true
+    },
+    {
+      "id": "fes-مدرسة-بوعنانية",
+      "name": {
+        "ar": "مدرسة بوعنانية",
+        "en": "مدرسة بوعنانية"
+      },
+      "desc": {
+        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
+        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+      },
+      "imageUrl": null,
+      "city": {
+        "ar": "فاس",
+        "en": "Fes"
+      },
+      "foundation": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "history": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "visualSoul": "Ruin",
+      "isPending": true
+    },
+    {
+      "id": "fes-باب-بوجلود",
+      "name": {
+        "ar": "باب بوجلود",
+        "en": "باب بوجلود"
+      },
+      "desc": {
+        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
+        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+      },
+      "imageUrl": null,
+      "city": {
+        "ar": "فاس",
+        "en": "Fes"
+      },
+      "foundation": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "history": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "visualSoul": "Ruin",
+      "isPending": true
+    },
+    {
+      "id": "fes-دار-الدبغ-شوارة",
+      "name": {
+        "ar": "دار الدبغ شوارة",
+        "en": "دار الدبغ شوارة"
+      },
+      "desc": {
+        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
+        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+      },
+      "imageUrl": null,
+      "city": {
+        "ar": "فاس",
+        "en": "Fes"
+      },
+      "foundation": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "history": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "visualSoul": "Ruin",
+      "isPending": true
+    },
+    {
+      "id": "fes-زاوية-مولاي-إدريس",
+      "name": {
+        "ar": "زاوية مولاي إدريس",
+        "en": "زاوية مولاي إدريس"
+      },
+      "desc": {
+        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
+        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+      },
+      "imageUrl": null,
+      "city": {
+        "ar": "فاس",
+        "en": "Fes"
+      },
+      "foundation": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "history": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "visualSoul": "Ruin",
+      "isPending": true
+    },
+    {
+      "id": "fes-متحف-البطحاء",
+      "name": {
+        "ar": "متحف البطحاء",
+        "en": "متحف البطحاء"
+      },
+      "desc": {
+        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
+        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+      },
+      "imageUrl": null,
+      "city": {
+        "ar": "فاس",
+        "en": "Fes"
+      },
+      "foundation": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "history": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "visualSoul": "Ruin",
+      "isPending": true
+    },
+    {
+      "id": "fes-أسوار-فاس-البالي",
+      "name": {
+        "ar": "أسوار فاس البالي",
+        "en": "أسوار فاس البالي"
+      },
+      "desc": {
+        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
+        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+      },
+      "imageUrl": null,
+      "city": {
+        "ar": "فاس",
+        "en": "Fes"
+      },
+      "foundation": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "history": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "visualSoul": "Ruin",
+      "isPending": true
+    },
+    {
+      "id": "fes-ملاح-فاس",
+      "name": {
+        "ar": "ملاح فاس",
+        "en": "ملاح فاس"
+      },
+      "desc": {
+        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
+        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+      },
+      "imageUrl": null,
+      "city": {
+        "ar": "فاس",
+        "en": "Fes"
+      },
+      "foundation": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "history": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "visualSoul": "Ruin",
+      "isPending": true
+    },
+    {
+      "id": "tangier-مغارة-هرقل",
+      "name": {
+        "ar": "مغارة هرقل",
+        "en": "مغارة هرقل"
+      },
+      "desc": {
+        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
+        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+      },
+      "imageUrl": null,
       "city": {
         "ar": "طنجة",
         "en": "Tangier"
       },
       "foundation": {
-        "ar": "تاريخي",
-        "en": "Historical"
+        "ar": "قيد التوثيق",
+        "en": "Pending"
       },
       "history": {
-        "ar": "مغارة أسطورية ذات فتحة على شكل خريطة إفريقيا، تقع بالقرب من مدينة طنجة.",
-        "en": ""
+        "ar": "قيد التوثيق",
+        "en": "Pending"
       },
-      "visualSoul": "Ruin"
+      "visualSoul": "Ruin",
+      "isPending": true
+    },
+    {
+      "id": "tangier-قصبة-طنجة",
+      "name": {
+        "ar": "قصبة طنجة",
+        "en": "قصبة طنجة"
+      },
+      "desc": {
+        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
+        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+      },
+      "imageUrl": null,
+      "city": {
+        "ar": "طنجة",
+        "en": "Tangier"
+      },
+      "foundation": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "history": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "visualSoul": "Ruin",
+      "isPending": true
+    },
+    {
+      "id": "tangier-منارة-كاب-سبارتيل",
+      "name": {
+        "ar": "منارة كاب سبارتيل",
+        "en": "منارة كاب سبارتيل"
+      },
+      "desc": {
+        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
+        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+      },
+      "imageUrl": null,
+      "city": {
+        "ar": "طنجة",
+        "en": "Tangier"
+      },
+      "foundation": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "history": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "visualSoul": "Ruin",
+      "isPending": true
+    },
+    {
+      "id": "tangier-متحف-القصبة",
+      "name": {
+        "ar": "متحف القصبة",
+        "en": "متحف القصبة"
+      },
+      "desc": {
+        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
+        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+      },
+      "imageUrl": null,
+      "city": {
+        "ar": "طنجة",
+        "en": "Tangier"
+      },
+      "foundation": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "history": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "visualSoul": "Ruin",
+      "isPending": true
+    },
+    {
+      "id": "tangier-مقهى-الحافة",
+      "name": {
+        "ar": "مقهى الحافة",
+        "en": "مقهى الحافة"
+      },
+      "desc": {
+        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
+        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+      },
+      "imageUrl": null,
+      "city": {
+        "ar": "طنجة",
+        "en": "Tangier"
+      },
+      "foundation": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "history": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "visualSoul": "Ruin",
+      "isPending": true
+    },
+    {
+      "id": "tangier-فيلا-هاريس",
+      "name": {
+        "ar": "فيلا هاريس",
+        "en": "فيلا هاريس"
+      },
+      "desc": {
+        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
+        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+      },
+      "imageUrl": null,
+      "city": {
+        "ar": "طنجة",
+        "en": "Tangier"
+      },
+      "foundation": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "history": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "visualSoul": "Ruin",
+      "isPending": true
+    },
+    {
+      "id": "tangier-ساحة-9-أبريل",
+      "name": {
+        "ar": "ساحة 9 أبريل",
+        "en": "ساحة 9 أبريل"
+      },
+      "desc": {
+        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
+        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+      },
+      "imageUrl": null,
+      "city": {
+        "ar": "طنجة",
+        "en": "Tangier"
+      },
+      "foundation": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "history": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "visualSoul": "Ruin",
+      "isPending": true
+    },
+    {
+      "id": "tangier-حدائق-المندوبية",
+      "name": {
+        "ar": "حدائق المندوبية",
+        "en": "حدائق المندوبية"
+      },
+      "desc": {
+        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
+        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+      },
+      "imageUrl": null,
+      "city": {
+        "ar": "طنجة",
+        "en": "Tangier"
+      },
+      "foundation": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "history": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "visualSoul": "Ruin",
+      "isPending": true
+    },
+    {
+      "id": "tangier-المدينة-القديمة",
+      "name": {
+        "ar": "المدينة القديمة",
+        "en": "المدينة القديمة"
+      },
+      "desc": {
+        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
+        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+      },
+      "imageUrl": null,
+      "city": {
+        "ar": "طنجة",
+        "en": "Tangier"
+      },
+      "foundation": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "history": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "visualSoul": "Ruin",
+      "isPending": true
+    },
+    {
+      "id": "tangier-فندق-المنزه-التاريخي",
+      "name": {
+        "ar": "فندق المنزه التاريخي",
+        "en": "فندق المنزه التاريخي"
+      },
+      "desc": {
+        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
+        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+      },
+      "imageUrl": null,
+      "city": {
+        "ar": "طنجة",
+        "en": "Tangier"
+      },
+      "foundation": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "history": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "visualSoul": "Ruin",
+      "isPending": true
+    },
+    {
+      "id": "meknes-باب-منصور-لعلج",
+      "name": {
+        "ar": "باب منصور لعلج",
+        "en": "باب منصور لعلج"
+      },
+      "desc": {
+        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
+        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+      },
+      "imageUrl": null,
+      "city": {
+        "ar": "مكناس",
+        "en": "Meknes"
+      },
+      "foundation": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "history": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "visualSoul": "Ruin",
+      "isPending": true
+    },
+    {
+      "id": "meknes-ضريح-مولاي-إسماعيل",
+      "name": {
+        "ar": "ضريح مولاي إسماعيل",
+        "en": "ضريح مولاي إسماعيل"
+      },
+      "desc": {
+        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
+        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+      },
+      "imageUrl": null,
+      "city": {
+        "ar": "مكناس",
+        "en": "Meknes"
+      },
+      "foundation": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "history": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "visualSoul": "Ruin",
+      "isPending": true
+    },
+    {
+      "id": "meknes-حبس-قارة",
+      "name": {
+        "ar": "حبس قارة",
+        "en": "حبس قارة"
+      },
+      "desc": {
+        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
+        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+      },
+      "imageUrl": null,
+      "city": {
+        "ar": "مكناس",
+        "en": "Meknes"
+      },
+      "foundation": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "history": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "visualSoul": "Ruin",
+      "isPending": true
+    },
+    {
+      "id": "meknes-ساحة-الهديم",
+      "name": {
+        "ar": "ساحة الهديم",
+        "en": "ساحة الهديم"
+      },
+      "desc": {
+        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
+        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+      },
+      "imageUrl": null,
+      "city": {
+        "ar": "مكناس",
+        "en": "Meknes"
+      },
+      "foundation": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "history": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "visualSoul": "Ruin",
+      "isPending": true
+    },
+    {
+      "id": "meknes-المدرسة-البوعنانية",
+      "name": {
+        "ar": "المدرسة البوعنانية",
+        "en": "المدرسة البوعنانية"
+      },
+      "desc": {
+        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
+        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+      },
+      "imageUrl": null,
+      "city": {
+        "ar": "مكناس",
+        "en": "Meknes"
+      },
+      "foundation": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "history": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "visualSoul": "Ruin",
+      "isPending": true
+    },
+    {
+      "id": "meknes-هري-السواني",
+      "name": {
+        "ar": "هري السواني",
+        "en": "هري السواني"
+      },
+      "desc": {
+        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
+        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+      },
+      "imageUrl": null,
+      "city": {
+        "ar": "مكناس",
+        "en": "Meknes"
+      },
+      "foundation": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "history": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "visualSoul": "Ruin",
+      "isPending": true
+    },
+    {
+      "id": "meknes-صهريج-السواني",
+      "name": {
+        "ar": "صهريج السواني",
+        "en": "صهريج السواني"
+      },
+      "desc": {
+        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
+        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+      },
+      "imageUrl": null,
+      "city": {
+        "ar": "مكناس",
+        "en": "Meknes"
+      },
+      "foundation": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "history": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "visualSoul": "Ruin",
+      "isPending": true
+    },
+    {
+      "id": "meknes-قصر-المنصور",
+      "name": {
+        "ar": "قصر المنصور",
+        "en": "قصر المنصور"
+      },
+      "desc": {
+        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
+        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+      },
+      "imageUrl": null,
+      "city": {
+        "ar": "مكناس",
+        "en": "Meknes"
+      },
+      "foundation": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "history": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "visualSoul": "Ruin",
+      "isPending": true
+    },
+    {
+      "id": "meknes-وليلي",
+      "name": {
+        "ar": "وليلي",
+        "en": "وليلي"
+      },
+      "desc": {
+        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
+        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+      },
+      "imageUrl": null,
+      "city": {
+        "ar": "مكناس",
+        "en": "Meknes"
+      },
+      "foundation": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "history": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "visualSoul": "Ruin",
+      "isPending": true
+    },
+    {
+      "id": "meknes-مولاي-إدريس-زرهون",
+      "name": {
+        "ar": "مولاي إدريس زرهون",
+        "en": "مولاي إدريس زرهون"
+      },
+      "desc": {
+        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
+        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+      },
+      "imageUrl": null,
+      "city": {
+        "ar": "مكناس",
+        "en": "Meknes"
+      },
+      "foundation": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "history": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "visualSoul": "Ruin",
+      "isPending": true
+    },
+    {
+      "id": "agadir-قصبة-أكادير-أوفلا",
+      "name": {
+        "ar": "قصبة أكادير أوفلا",
+        "en": "قصبة أكادير أوفلا"
+      },
+      "desc": {
+        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
+        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+      },
+      "imageUrl": null,
+      "city": {
+        "ar": "أكادير",
+        "en": "Agadir"
+      },
+      "foundation": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "history": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "visualSoul": "Ruin",
+      "isPending": true
+    },
+    {
+      "id": "agadir-سوق-الأحد",
+      "name": {
+        "ar": "سوق الأحد",
+        "en": "سوق الأحد"
+      },
+      "desc": {
+        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
+        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+      },
+      "imageUrl": null,
+      "city": {
+        "ar": "أكادير",
+        "en": "Agadir"
+      },
+      "foundation": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "history": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "visualSoul": "Ruin",
+      "isPending": true
+    },
+    {
+      "id": "agadir-حديقة-التماسيح",
+      "name": {
+        "ar": "حديقة التماسيح",
+        "en": "حديقة التماسيح"
+      },
+      "desc": {
+        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
+        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+      },
+      "imageUrl": null,
+      "city": {
+        "ar": "أكادير",
+        "en": "Agadir"
+      },
+      "foundation": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "history": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "visualSoul": "Ruin",
+      "isPending": true
+    },
+    {
+      "id": "agadir-حديقة-الطيور",
+      "name": {
+        "ar": "حديقة الطيور",
+        "en": "حديقة الطيور"
+      },
+      "desc": {
+        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
+        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+      },
+      "imageUrl": null,
+      "city": {
+        "ar": "أكادير",
+        "en": "Agadir"
+      },
+      "foundation": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "history": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "visualSoul": "Ruin",
+      "isPending": true
+    },
+    {
+      "id": "agadir-مارينا-أكادير",
+      "name": {
+        "ar": "مارينا أكادير",
+        "en": "مارينا أكادير"
+      },
+      "desc": {
+        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
+        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+      },
+      "imageUrl": null,
+      "city": {
+        "ar": "أكادير",
+        "en": "Agadir"
+      },
+      "foundation": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "history": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "visualSoul": "Ruin",
+      "isPending": true
+    },
+    {
+      "id": "agadir-ساحة-الأمل",
+      "name": {
+        "ar": "ساحة الأمل",
+        "en": "ساحة الأمل"
+      },
+      "desc": {
+        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
+        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+      },
+      "imageUrl": null,
+      "city": {
+        "ar": "أكادير",
+        "en": "Agadir"
+      },
+      "foundation": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "history": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "visualSoul": "Ruin",
+      "isPending": true
+    },
+    {
+      "id": "agadir-المتحف-الأمازيغي",
+      "name": {
+        "ar": "المتحف الأمازيغي",
+        "en": "المتحف الأمازيغي"
+      },
+      "desc": {
+        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
+        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+      },
+      "imageUrl": null,
+      "city": {
+        "ar": "أكادير",
+        "en": "Agadir"
+      },
+      "foundation": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "history": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "visualSoul": "Ruin",
+      "isPending": true
+    },
+    {
+      "id": "agadir-أكادير-باي",
+      "name": {
+        "ar": "أكادير باي",
+        "en": "أكادير باي"
+      },
+      "desc": {
+        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
+        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+      },
+      "imageUrl": null,
+      "city": {
+        "ar": "أكادير",
+        "en": "Agadir"
+      },
+      "foundation": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "history": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "visualSoul": "Ruin",
+      "isPending": true
+    },
+    {
+      "id": "chefchaouen-ساحة-وطاء-الحمام",
+      "name": {
+        "ar": "ساحة وطاء الحمام",
+        "en": "ساحة وطاء الحمام"
+      },
+      "desc": {
+        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
+        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+      },
+      "imageUrl": null,
+      "city": {
+        "ar": "شفشاون",
+        "en": "Chefchaouen"
+      },
+      "foundation": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "history": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "visualSoul": "Ruin",
+      "isPending": true
+    },
+    {
+      "id": "chefchaouen-القصبة",
+      "name": {
+        "ar": "القصبة",
+        "en": "القصبة"
+      },
+      "desc": {
+        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
+        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+      },
+      "imageUrl": null,
+      "city": {
+        "ar": "شفشاون",
+        "en": "Chefchaouen"
+      },
+      "foundation": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "history": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "visualSoul": "Ruin",
+      "isPending": true
+    },
+    {
+      "id": "chefchaouen-منبع-رأس-الماء",
+      "name": {
+        "ar": "منبع رأس الماء",
+        "en": "منبع رأس الماء"
+      },
+      "desc": {
+        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
+        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+      },
+      "imageUrl": null,
+      "city": {
+        "ar": "شفشاون",
+        "en": "Chefchaouen"
+      },
+      "foundation": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "history": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "visualSoul": "Ruin",
+      "isPending": true
+    },
+    {
+      "id": "chefchaouen-المسجد-الأعظم",
+      "name": {
+        "ar": "المسجد الأعظم",
+        "en": "المسجد الأعظم"
+      },
+      "desc": {
+        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
+        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+      },
+      "imageUrl": null,
+      "city": {
+        "ar": "شفشاون",
+        "en": "Chefchaouen"
+      },
+      "foundation": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "history": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "visualSoul": "Ruin",
+      "isPending": true
+    },
+    {
+      "id": "chefchaouen-الأحياء-الزرقاء",
+      "name": {
+        "ar": "الأحياء الزرقاء",
+        "en": "الأحياء الزرقاء"
+      },
+      "desc": {
+        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
+        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+      },
+      "imageUrl": null,
+      "city": {
+        "ar": "شفشاون",
+        "en": "Chefchaouen"
+      },
+      "foundation": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "history": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "visualSoul": "Ruin",
+      "isPending": true
+    },
+    {
+      "id": "chefchaouen-حي-السويقة",
+      "name": {
+        "ar": "حي السويقة",
+        "en": "حي السويقة"
+      },
+      "desc": {
+        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
+        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+      },
+      "imageUrl": null,
+      "city": {
+        "ar": "شفشاون",
+        "en": "Chefchaouen"
+      },
+      "foundation": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "history": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "visualSoul": "Ruin",
+      "isPending": true
+    },
+    {
+      "id": "chefchaouen-حي-ريف-الأندلس",
+      "name": {
+        "ar": "حي ريف الأندلس",
+        "en": "حي ريف الأندلس"
+      },
+      "desc": {
+        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
+        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+      },
+      "imageUrl": null,
+      "city": {
+        "ar": "شفشاون",
+        "en": "Chefchaouen"
+      },
+      "foundation": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "history": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "visualSoul": "Ruin",
+      "isPending": true
+    },
+    {
+      "id": "tetouan-المدينة-القديمة",
+      "name": {
+        "ar": "المدينة القديمة",
+        "en": "المدينة القديمة"
+      },
+      "desc": {
+        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
+        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+      },
+      "imageUrl": null,
+      "city": {
+        "ar": "تطوان",
+        "en": "Tetouan"
+      },
+      "foundation": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "history": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "visualSoul": "Ruin",
+      "isPending": true
+    },
+    {
+      "id": "tetouan-ساحة-الفدان",
+      "name": {
+        "ar": "ساحة الفدان",
+        "en": "ساحة الفدان"
+      },
+      "desc": {
+        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
+        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+      },
+      "imageUrl": null,
+      "city": {
+        "ar": "تطوان",
+        "en": "Tetouan"
+      },
+      "foundation": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "history": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "visualSoul": "Ruin",
+      "isPending": true
+    },
+    {
+      "id": "tetouan-مدرسة-الفنون-والصنائع",
+      "name": {
+        "ar": "مدرسة الفنون والصنائع",
+        "en": "مدرسة الفنون والصنائع"
+      },
+      "desc": {
+        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
+        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+      },
+      "imageUrl": null,
+      "city": {
+        "ar": "تطوان",
+        "en": "Tetouan"
+      },
+      "foundation": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "history": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "visualSoul": "Ruin",
+      "isPending": true
+    },
+    {
+      "id": "tetouan-كنيسة-نصرة-الانتصار",
+      "name": {
+        "ar": "كنيسة نصرة الانتصار",
+        "en": "كنيسة نصرة الانتصار"
+      },
+      "desc": {
+        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
+        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+      },
+      "imageUrl": null,
+      "city": {
+        "ar": "تطوان",
+        "en": "Tetouan"
+      },
+      "foundation": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "history": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "visualSoul": "Ruin",
+      "isPending": true
+    },
+    {
+      "id": "tetouan-الملاح-القديم",
+      "name": {
+        "ar": "الملاح القديم",
+        "en": "الملاح القديم"
+      },
+      "desc": {
+        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
+        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+      },
+      "imageUrl": null,
+      "city": {
+        "ar": "تطوان",
+        "en": "Tetouan"
+      },
+      "foundation": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "history": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "visualSoul": "Ruin",
+      "isPending": true
+    },
+    {
+      "id": "tetouan-قصبة-جبل-درسة",
+      "name": {
+        "ar": "قصبة جبل درسة",
+        "en": "قصبة جبل درسة"
+      },
+      "desc": {
+        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
+        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+      },
+      "imageUrl": null,
+      "city": {
+        "ar": "تطوان",
+        "en": "Tetouan"
+      },
+      "foundation": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "history": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "visualSoul": "Ruin",
+      "isPending": true
+    },
+    {
+      "id": "essaouira-سقالة-الميناء",
+      "name": {
+        "ar": "سقالة الميناء",
+        "en": "سقالة الميناء"
+      },
+      "desc": {
+        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
+        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+      },
+      "imageUrl": null,
+      "city": {
+        "ar": "الصويرة",
+        "en": "Essaouira"
+      },
+      "foundation": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "history": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "visualSoul": "Ruin",
+      "isPending": true
+    },
+    {
+      "id": "essaouira-جزيرة-موغادور",
+      "name": {
+        "ar": "جزيرة موغادور",
+        "en": "جزيرة موغادور"
+      },
+      "desc": {
+        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
+        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+      },
+      "imageUrl": null,
+      "city": {
+        "ar": "الصويرة",
+        "en": "Essaouira"
+      },
+      "foundation": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "history": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "visualSoul": "Ruin",
+      "isPending": true
+    },
+    {
+      "id": "essaouira-ساحة-مولاي-الحسن",
+      "name": {
+        "ar": "ساحة مولاي الحسن",
+        "en": "ساحة مولاي الحسن"
+      },
+      "desc": {
+        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
+        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+      },
+      "imageUrl": null,
+      "city": {
+        "ar": "الصويرة",
+        "en": "Essaouira"
+      },
+      "foundation": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "history": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "visualSoul": "Ruin",
+      "isPending": true
+    },
+    {
+      "id": "essaouira-أبواب-المدينة-السبعة",
+      "name": {
+        "ar": "أبواب المدينة السبعة",
+        "en": "أبواب المدينة السبعة"
+      },
+      "desc": {
+        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
+        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+      },
+      "imageUrl": null,
+      "city": {
+        "ar": "الصويرة",
+        "en": "Essaouira"
+      },
+      "foundation": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "history": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "visualSoul": "Ruin",
+      "isPending": true
+    },
+    {
+      "id": "essaouira-حي-الملاح",
+      "name": {
+        "ar": "حي الملاح",
+        "en": "حي الملاح"
+      },
+      "desc": {
+        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
+        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+      },
+      "imageUrl": null,
+      "city": {
+        "ar": "الصويرة",
+        "en": "Essaouira"
+      },
+      "foundation": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "history": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "visualSoul": "Ruin",
+      "isPending": true
+    },
+    {
+      "id": "essaouira-شاطئ-الصويرة",
+      "name": {
+        "ar": "شاطئ الصويرة",
+        "en": "شاطئ الصويرة"
+      },
+      "desc": {
+        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
+        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+      },
+      "imageUrl": null,
+      "city": {
+        "ar": "الصويرة",
+        "en": "Essaouira"
+      },
+      "foundation": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "history": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "visualSoul": "Ruin",
+      "isPending": true
+    },
+    {
+      "id": "ouarzazate-قصبة-آيت-بن-حدو",
+      "name": {
+        "ar": "قصبة آيت بن حدو",
+        "en": "قصبة آيت بن حدو"
+      },
+      "desc": {
+        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
+        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+      },
+      "imageUrl": null,
+      "city": {
+        "ar": "ورزازات",
+        "en": "Ouarzazate"
+      },
+      "foundation": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "history": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "visualSoul": "Ruin",
+      "isPending": true
+    },
+    {
+      "id": "ouarzazate-قصبة-تاوريرت",
+      "name": {
+        "ar": "قصبة تاوريرت",
+        "en": "قصبة تاوريرت"
+      },
+      "desc": {
+        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
+        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+      },
+      "imageUrl": null,
+      "city": {
+        "ar": "ورزازات",
+        "en": "Ouarzazate"
+      },
+      "foundation": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "history": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "visualSoul": "Ruin",
+      "isPending": true
+    },
+    {
+      "id": "ouarzazate-استوديوهات-الأطلس",
+      "name": {
+        "ar": "استوديوهات الأطلس",
+        "en": "استوديوهات الأطلس"
+      },
+      "desc": {
+        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
+        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+      },
+      "imageUrl": null,
+      "city": {
+        "ar": "ورزازات",
+        "en": "Ouarzazate"
+      },
+      "foundation": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "history": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "visualSoul": "Ruin",
+      "isPending": true
+    },
+    {
+      "id": "ouarzazate-واحة-فينط",
+      "name": {
+        "ar": "واحة فينط",
+        "en": "واحة فينط"
+      },
+      "desc": {
+        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
+        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+      },
+      "imageUrl": null,
+      "city": {
+        "ar": "ورزازات",
+        "en": "Ouarzazate"
+      },
+      "foundation": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "history": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "visualSoul": "Ruin",
+      "isPending": true
+    },
+    {
+      "id": "ouarzazate-سد-المنصور-الذهبي",
+      "name": {
+        "ar": "سد المنصور الذهبي",
+        "en": "سد المنصور الذهبي"
+      },
+      "desc": {
+        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
+        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+      },
+      "imageUrl": null,
+      "city": {
+        "ar": "ورزازات",
+        "en": "Ouarzazate"
+      },
+      "foundation": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "history": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "visualSoul": "Ruin",
+      "isPending": true
+    },
+    {
+      "id": "sahara-ساحة-المشور-بالعيون",
+      "name": {
+        "ar": "ساحة المشور بالعيون",
+        "en": "ساحة المشور بالعيون"
+      },
+      "desc": {
+        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
+        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+      },
+      "imageUrl": null,
+      "city": {
+        "ar": "العيون والداخلة",
+        "en": "Sahara"
+      },
+      "foundation": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "history": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "visualSoul": "Ruin",
+      "isPending": true
+    },
+    {
+      "id": "sahara-كنيسة-القديس-فرنسيس",
+      "name": {
+        "ar": "كنيسة القديس فرنسيس",
+        "en": "كنيسة القديس فرنسيس"
+      },
+      "desc": {
+        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
+        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+      },
+      "imageUrl": null,
+      "city": {
+        "ar": "العيون والداخلة",
+        "en": "Sahara"
+      },
+      "foundation": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "history": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "visualSoul": "Ruin",
+      "isPending": true
+    },
+    {
+      "id": "sahara-شاطئ-فم-الواد",
+      "name": {
+        "ar": "شاطئ فم الواد",
+        "en": "شاطئ فم الواد"
+      },
+      "desc": {
+        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
+        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+      },
+      "imageUrl": null,
+      "city": {
+        "ar": "العيون والداخلة",
+        "en": "Sahara"
+      },
+      "foundation": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "history": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "visualSoul": "Ruin",
+      "isPending": true
+    },
+    {
+      "id": "sahara-خليج-الداخلة",
+      "name": {
+        "ar": "خليج الداخلة",
+        "en": "خليج الداخلة"
+      },
+      "desc": {
+        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
+        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+      },
+      "imageUrl": null,
+      "city": {
+        "ar": "العيون والداخلة",
+        "en": "Sahara"
+      },
+      "foundation": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "history": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "visualSoul": "Ruin",
+      "isPending": true
+    },
+    {
+      "id": "sahara-جزيرة-التنين",
+      "name": {
+        "ar": "جزيرة التنين",
+        "en": "جزيرة التنين"
+      },
+      "desc": {
+        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
+        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+      },
+      "imageUrl": null,
+      "city": {
+        "ar": "العيون والداخلة",
+        "en": "Sahara"
+      },
+      "foundation": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "history": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "visualSoul": "Ruin",
+      "isPending": true
+    },
+    {
+      "id": "sahara-منارة-الداخلة",
+      "name": {
+        "ar": "منارة الداخلة",
+        "en": "منارة الداخلة"
+      },
+      "desc": {
+        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
+        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+      },
+      "imageUrl": null,
+      "city": {
+        "ar": "العيون والداخلة",
+        "en": "Sahara"
+      },
+      "foundation": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "history": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "visualSoul": "Ruin",
+      "isPending": true
     }
   ],
   "cities": [],
   "battles": [],
   "figures": [],
-  "articles": {
-    "ait-ben-haddou": {
-      "id": "ait-ben-haddou",
-      "title": {
-        "ar": "قصبة أيت بن حدو",
-        "en": "ait ben haddou"
-      },
-      "category": "landmark",
-      "metaDescription": {
-        "ar": "قرية طينية محصنة في سفوح الأطلس، تصنف كتراث عالمي لليونسكو وظهرت في عدة أفلام عالمية.",
-        "en": "قرية طينية محصنة في سفوح الأطلس، تصنف كتراث عالمي لليونسكو وظهرت في عدة أفلام عالمية."
-      },
-      "intro": {
-        "ar": "قرية طينية محصنة في سفوح الأطلس، تصنف كتراث عالمي لليونسكو وظهرت في عدة أفلام عالمية.",
-        "en": "قرية طينية محصنة في سفوح الأطلس، تصنف كتراث عالمي لليونسكو وظهرت في عدة أفلام عالمية."
-      },
-      "sections": [
-        {
-          "title": {
-            "ar": "نبذة تاريخية",
-            "en": "Historical Overview"
-          },
-          "content": {
-            "ar": "قرية طينية محصنة في سفوح الأطلس، تصنف كتراث عالمي لليونسكو وظهرت في عدة أفلام عالمية.",
-            "en": "قرية طينية محصنة في سفوح الأطلس، تصنف كتراث عالمي لليونسكو وظهرت في عدة أفلام عالمية."
-          }
-        }
-      ],
-      "faqs": [],
-      "conclusion": {
-        "ar": "قرية طينية محصنة في سفوح الأطلس، تصنف كتراث عالمي لليونسكو وظهرت في عدة أفلام عالمية.",
-        "en": "قرية طينية محصنة في سفوح الأطلس، تصنف كتراث عالمي لليونسكو وظهرت في عدة أفلام عالمية."
-      },
-      "generatedImage": "/images/ait-ben-haddou.jpg"
-    },
-    "atlas-studios": {
-      "id": "atlas-studios",
-      "title": {
-        "ar": "استوديوهات أطلس",
-        "en": "atlas studios"
-      },
-      "category": "landmark",
-      "metaDescription": {
-        "ar": "هوليود إفريقيا في ورزازات، أحد أكبر استوديوهات التصوير السينمائي المفتوحة في العالم.",
-        "en": "هوليود إفريقيا في ورزازات، أحد أكبر استوديوهات التصوير السينمائي المفتوحة في العالم."
-      },
-      "intro": {
-        "ar": "هوليود إفريقيا في ورزازات، أحد أكبر استوديوهات التصوير السينمائي المفتوحة في العالم.",
-        "en": "هوليود إفريقيا في ورزازات، أحد أكبر استوديوهات التصوير السينمائي المفتوحة في العالم."
-      },
-      "sections": [
-        {
-          "title": {
-            "ar": "نبذة تاريخية",
-            "en": "Historical Overview"
-          },
-          "content": {
-            "ar": "هوليود إفريقيا في ورزازات، أحد أكبر استوديوهات التصوير السينمائي المفتوحة في العالم.",
-            "en": "هوليود إفريقيا في ورزازات، أحد أكبر استوديوهات التصوير السينمائي المفتوحة في العالم."
-          }
-        }
-      ],
-      "faqs": [],
-      "conclusion": {
-        "ar": "هوليود إفريقيا في ورزازات، أحد أكبر استوديوهات التصوير السينمائي المفتوحة في العالم.",
-        "en": "هوليود إفريقيا في ورزازات، أحد أكبر استوديوهات التصوير السينمائي المفتوحة في العالم."
-      },
-      "generatedImage": "/images/atlas-studios.jpg"
-    },
-    "boujdour-lighthouse": {
-      "id": "boujdour-lighthouse",
-      "title": {
-        "ar": "منارة بوجدور",
-        "en": "boujdour lighthouse"
-      },
-      "category": "landmark",
-      "metaDescription": {
-        "ar": "معلمة تاريخية شامخة في الملاحة البحرية لصحراء المحيط الأطلسي، تقف قبالة جزر الكناري.",
-        "en": "معلمة تاريخية شامخة في الملاحة البحرية لصحراء المحيط الأطلسي، تقف قبالة جزر الكناري."
-      },
-      "intro": {
-        "ar": "معلمة تاريخية شامخة في الملاحة البحرية لصحراء المحيط الأطلسي، تقف قبالة جزر الكناري.",
-        "en": "معلمة تاريخية شامخة في الملاحة البحرية لصحراء المحيط الأطلسي، تقف قبالة جزر الكناري."
-      },
-      "sections": [
-        {
-          "title": {
-            "ar": "نبذة تاريخية",
-            "en": "Historical Overview"
-          },
-          "content": {
-            "ar": "معلمة تاريخية شامخة في الملاحة البحرية لصحراء المحيط الأطلسي، تقف قبالة جزر الكناري.",
-            "en": "معلمة تاريخية شامخة في الملاحة البحرية لصحراء المحيط الأطلسي، تقف قبالة جزر الكناري."
-          }
-        }
-      ],
-      "faqs": [],
-      "conclusion": {
-        "ar": "معلمة تاريخية شامخة في الملاحة البحرية لصحراء المحيط الأطلسي، تقف قبالة جزر الكناري.",
-        "en": "معلمة تاريخية شامخة في الملاحة البحرية لصحراء المحيط الأطلسي، تقف قبالة جزر الكناري."
-      },
-      "generatedImage": "/images/boujdour.jpg"
-    },
-    "casablanca-habous": {
-      "id": "casablanca-habous",
-      "title": {
-        "ar": "حي الأحباس بالدار البيضاء",
-        "en": "casablanca habous"
-      },
-      "category": "landmark",
-      "metaDescription": {
-        "ar": "حي تاريخي بني في بداية القرن العشرين يجمع بين التخطيط الحديث والمعمار المغربي التقليدي.",
-        "en": "حي تاريخي بني في بداية القرن العشرين يجمع بين التخطيط الحديث والمعمار المغربي التقليدي."
-      },
-      "intro": {
-        "ar": "حي تاريخي بني في بداية القرن العشرين يجمع بين التخطيط الحديث والمعمار المغربي التقليدي.",
-        "en": "حي تاريخي بني في بداية القرن العشرين يجمع بين التخطيط الحديث والمعمار المغربي التقليدي."
-      },
-      "sections": [
-        {
-          "title": {
-            "ar": "نبذة تاريخية",
-            "en": "Historical Overview"
-          },
-          "content": {
-            "ar": "حي تاريخي بني في بداية القرن العشرين يجمع بين التخطيط الحديث والمعمار المغربي التقليدي.",
-            "en": "حي تاريخي بني في بداية القرن العشرين يجمع بين التخطيط الحديث والمعمار المغربي التقليدي."
-          }
-        }
-      ],
-      "faqs": [],
-      "conclusion": {
-        "ar": "حي تاريخي بني في بداية القرن العشرين يجمع بين التخطيط الحديث والمعمار المغربي التقليدي.",
-        "en": "حي تاريخي بني في بداية القرن العشرين يجمع بين التخطيط الحديث والمعمار المغربي التقليدي."
-      },
-      "generatedImage": "/images/habous.jpg"
-    },
-    "casablanca-hassan-ii": {
-      "id": "casablanca-hassan-ii",
-      "title": {
-        "ar": "مسجد الحسن الثاني",
-        "en": "casablanca hassan ii"
-      },
-      "category": "landmark",
-      "metaDescription": {
-        "ar": "معلمة دينية ومعمارية فريدة، يمتلك أطول مئذنة في العالم ويطل مباشرة على المحيط الأطلسي.",
-        "en": "معلمة دينية ومعمارية فريدة، يمتلك أطول مئذنة في العالم ويطل مباشرة على المحيط الأطلسي."
-      },
-      "intro": {
-        "ar": "معلمة دينية ومعمارية فريدة، يمتلك أطول مئذنة في العالم ويطل مباشرة على المحيط الأطلسي.",
-        "en": "معلمة دينية ومعمارية فريدة، يمتلك أطول مئذنة في العالم ويطل مباشرة على المحيط الأطلسي."
-      },
-      "sections": [
-        {
-          "title": {
-            "ar": "نبذة تاريخية",
-            "en": "Historical Overview"
-          },
-          "content": {
-            "ar": "معلمة دينية ومعمارية فريدة، يمتلك أطول مئذنة في العالم ويطل مباشرة على المحيط الأطلسي.",
-            "en": "معلمة دينية ومعمارية فريدة، يمتلك أطول مئذنة في العالم ويطل مباشرة على المحيط الأطلسي."
-          }
-        }
-      ],
-      "faqs": [],
-      "conclusion": {
-        "ar": "معلمة دينية ومعمارية فريدة، يمتلك أطول مئذنة في العالم ويطل مباشرة على المحيط الأطلسي.",
-        "en": "معلمة دينية ومعمارية فريدة، يمتلك أطول مئذنة في العالم ويطل مباشرة على المحيط الأطلسي."
-      },
-      "generatedImage": "/images/hassan-ii.jpg"
-    },
-    "dakhla-sebkha": {
-      "id": "dakhla-sebkha",
-      "title": {
-        "ar": "سبخة الداخلة",
-        "en": "dakhla sebkha"
-      },
-      "category": "landmark",
-      "metaDescription": {
-        "ar": "لؤلؤة الصحراء المغربية حيث يلتقي بحر الأطلسي برمال الصحراء في مشهد طبيعي فريد.",
-        "en": "لؤلؤة الصحراء المغربية حيث يلتقي بحر الأطلسي برمال الصحراء في مشهد طبيعي فريد."
-      },
-      "intro": {
-        "ar": "لؤلؤة الصحراء المغربية حيث يلتقي بحر الأطلسي برمال الصحراء في مشهد طبيعي فريد.",
-        "en": "لؤلؤة الصحراء المغربية حيث يلتقي بحر الأطلسي برمال الصحراء في مشهد طبيعي فريد."
-      },
-      "sections": [
-        {
-          "title": {
-            "ar": "نبذة تاريخية",
-            "en": "Historical Overview"
-          },
-          "content": {
-            "ar": "لؤلؤة الصحراء المغربية حيث يلتقي بحر الأطلسي برمال الصحراء في مشهد طبيعي فريد.",
-            "en": "لؤلؤة الصحراء المغربية حيث يلتقي بحر الأطلسي برمال الصحراء في مشهد طبيعي فريد."
-          }
-        }
-      ],
-      "faqs": [],
-      "conclusion": {
-        "ar": "لؤلؤة الصحراء المغربية حيث يلتقي بحر الأطلسي برمال الصحراء في مشهد طبيعي فريد.",
-        "en": "لؤلؤة الصحراء المغربية حيث يلتقي بحر الأطلسي برمال الصحراء في مشهد طبيعي فريد."
-      },
-      "generatedImage": "/images/dakhla.jpg"
-    },
-    "erg-chebbi": {
-      "id": "erg-chebbi",
-      "title": {
-        "ar": "عرق الشبي بمرزوكة",
-        "en": "erg chebbi"
-      },
-      "category": "landmark",
-      "metaDescription": {
-        "ar": "كثبان رملية ذهبية ساحرة تعانق عنان السماء في صحراء مرزوكة، وجهة سحرية لا تُنسى.",
-        "en": "كثبان رملية ذهبية ساحرة تعانق عنان السماء في صحراء مرزوكة، وجهة سحرية لا تُنسى."
-      },
-      "intro": {
-        "ar": "كثبان رملية ذهبية ساحرة تعانق عنان السماء في صحراء مرزوكة، وجهة سحرية لا تُنسى.",
-        "en": "كثبان رملية ذهبية ساحرة تعانق عنان السماء في صحراء مرزوكة، وجهة سحرية لا تُنسى."
-      },
-      "sections": [
-        {
-          "title": {
-            "ar": "نبذة تاريخية",
-            "en": "Historical Overview"
-          },
-          "content": {
-            "ar": "كثبان رملية ذهبية ساحرة تعانق عنان السماء في صحراء مرزوكة، وجهة سحرية لا تُنسى.",
-            "en": "كثبان رملية ذهبية ساحرة تعانق عنان السماء في صحراء مرزوكة، وجهة سحرية لا تُنسى."
-          }
-        }
-      ],
-      "faqs": [],
-      "conclusion": {
-        "ar": "كثبان رملية ذهبية ساحرة تعانق عنان السماء في صحراء مرزوكة، وجهة سحرية لا تُنسى.",
-        "en": "كثبان رملية ذهبية ساحرة تعانق عنان السماء في صحراء مرزوكة، وجهة سحرية لا تُنسى."
-      },
-      "generatedImage": "/images/erg-chebbi.jpg"
-    },
-    "essaouira-skala": {
-      "id": "essaouira-skala",
-      "title": {
-        "ar": "صقالة الميناء",
-        "en": "essaouira skala"
-      },
-      "category": "landmark",
-      "metaDescription": {
-        "ar": "برج مراقبة وحصن برتغالي يحرس مدينة الصويرة بأمواجها العاتية ومدافعها البرونزية.",
-        "en": "برج مراقبة وحصن برتغالي يحرس مدينة الصويرة بأمواجها العاتية ومدافعها البرونزية."
-      },
-      "intro": {
-        "ar": "برج مراقبة وحصن برتغالي يحرس مدينة الصويرة بأمواجها العاتية ومدافعها البرونزية.",
-        "en": "برج مراقبة وحصن برتغالي يحرس مدينة الصويرة بأمواجها العاتية ومدافعها البرونزية."
-      },
-      "sections": [
-        {
-          "title": {
-            "ar": "نبذة تاريخية",
-            "en": "Historical Overview"
-          },
-          "content": {
-            "ar": "برج مراقبة وحصن برتغالي يحرس مدينة الصويرة بأمواجها العاتية ومدافعها البرونزية.",
-            "en": "برج مراقبة وحصن برتغالي يحرس مدينة الصويرة بأمواجها العاتية ومدافعها البرونزية."
-          }
-        }
-      ],
-      "faqs": [],
-      "conclusion": {
-        "ar": "برج مراقبة وحصن برتغالي يحرس مدينة الصويرة بأمواجها العاتية ومدافعها البرونزية.",
-        "en": "برج مراقبة وحصن برتغالي يحرس مدينة الصويرة بأمواجها العاتية ومدافعها البرونزية."
-      },
-      "generatedImage": "/images/skala.jpg"
-    },
-    "fes-al-attarine": {
-      "id": "fes-al-attarine",
-      "title": {
-        "ar": "مدرسة العطارين",
-        "en": "fes al attarine"
-      },
-      "category": "landmark",
-      "metaDescription": {
-        "ar": "تحفة المعمار المريني في فاس، تتميز بالنقوش الجصية والزليج الدقيق والخشب المحفور.",
-        "en": "تحفة المعمار المريني في فاس، تتميز بالنقوش الجصية والزليج الدقيق والخشب المحفور."
-      },
-      "intro": {
-        "ar": "تحفة المعمار المريني في فاس، تتميز بالنقوش الجصية والزليج الدقيق والخشب المحفور.",
-        "en": "تحفة المعمار المريني في فاس، تتميز بالنقوش الجصية والزليج الدقيق والخشب المحفور."
-      },
-      "sections": [
-        {
-          "title": {
-            "ar": "نبذة تاريخية",
-            "en": "Historical Overview"
-          },
-          "content": {
-            "ar": "تحفة المعمار المريني في فاس، تتميز بالنقوش الجصية والزليج الدقيق والخشب المحفور.",
-            "en": "تحفة المعمار المريني في فاس، تتميز بالنقوش الجصية والزليج الدقيق والخشب المحفور."
-          }
-        }
-      ],
-      "faqs": [],
-      "conclusion": {
-        "ar": "تحفة المعمار المريني في فاس، تتميز بالنقوش الجصية والزليج الدقيق والخشب المحفور.",
-        "en": "تحفة المعمار المريني في فاس، تتميز بالنقوش الجصية والزليج الدقيق والخشب المحفور."
-      },
-      "generatedImage": "/images/al-attarine.jpg"
-    },
-    "fes-al-qarawiyyin": {
-      "id": "fes-al-qarawiyyin",
-      "title": {
-        "ar": "جامع القرويين",
-        "en": "fes al qarawiyyin"
-      },
-      "category": "landmark",
-      "metaDescription": {
-        "ar": "أقدم جامعة مستمرة في العالم وأحد أهم المراكز الروحية والعلمية في مدينة فاس التاريخية.",
-        "en": "أقدم جامعة مستمرة في العالم وأحد أهم المراكز الروحية والعلمية في مدينة فاس التاريخية."
-      },
-      "intro": {
-        "ar": "أقدم جامعة مستمرة في العالم وأحد أهم المراكز الروحية والعلمية في مدينة فاس التاريخية.",
-        "en": "أقدم جامعة مستمرة في العالم وأحد أهم المراكز الروحية والعلمية في مدينة فاس التاريخية."
-      },
-      "sections": [
-        {
-          "title": {
-            "ar": "نبذة تاريخية",
-            "en": "Historical Overview"
-          },
-          "content": {
-            "ar": "أقدم جامعة مستمرة في العالم وأحد أهم المراكز الروحية والعلمية في مدينة فاس التاريخية.",
-            "en": "أقدم جامعة مستمرة في العالم وأحد أهم المراكز الروحية والعلمية في مدينة فاس التاريخية."
-          }
-        }
-      ],
-      "faqs": [],
-      "conclusion": {
-        "ar": "أقدم جامعة مستمرة في العالم وأحد أهم المراكز الروحية والعلمية في مدينة فاس التاريخية.",
-        "en": "أقدم جامعة مستمرة في العالم وأحد أهم المراكز الروحية والعلمية في مدينة فاس التاريخية."
-      },
-      "generatedImage": "/images/al-qarawiyyin.jpg"
-    },
-    "fes-bab-boujloud": {
-      "id": "fes-bab-boujloud",
-      "title": {
-        "ar": "باب بوجلود",
-        "en": "fes bab boujloud"
-      },
-      "category": "landmark",
-      "metaDescription": {
-        "ar": "المدخل الرئيسي الأزرق للمدينة القديمة في فاس، رمز العمارة المورسكية الجميلة.",
-        "en": "المدخل الرئيسي الأزرق للمدينة القديمة في فاس، رمز العمارة المورسكية الجميلة."
-      },
-      "intro": {
-        "ar": "المدخل الرئيسي الأزرق للمدينة القديمة في فاس، رمز العمارة المورسكية الجميلة.",
-        "en": "المدخل الرئيسي الأزرق للمدينة القديمة في فاس، رمز العمارة المورسكية الجميلة."
-      },
-      "sections": [
-        {
-          "title": {
-            "ar": "نبذة تاريخية",
-            "en": "Historical Overview"
-          },
-          "content": {
-            "ar": "المدخل الرئيسي الأزرق للمدينة القديمة في فاس، رمز العمارة المورسكية الجميلة.",
-            "en": "المدخل الرئيسي الأزرق للمدينة القديمة في فاس، رمز العمارة المورسكية الجميلة."
-          }
-        }
-      ],
-      "faqs": [],
-      "conclusion": {
-        "ar": "المدخل الرئيسي الأزرق للمدينة القديمة في فاس، رمز العمارة المورسكية الجميلة.",
-        "en": "المدخل الرئيسي الأزرق للمدينة القديمة في فاس، رمز العمارة المورسكية الجميلة."
-      },
-      "generatedImage": "/images/bab-boujloud.jpg"
-    },
-    "fes-chouara-tannery": {
-      "id": "fes-chouara-tannery",
-      "title": {
-        "ar": "دار الدبغ",
-        "en": "fes chouara tannery"
-      },
-      "category": "landmark",
-      "metaDescription": {
-        "ar": "أشهر دار لدباغة الجلود في فاس، حيث الألوان الزاهية والعمل اليدوي المتوارث منذ قرون.",
-        "en": "أشهر دار لدباغة الجلود في فاس، حيث الألوان الزاهية والعمل اليدوي المتوارث منذ قرون."
-      },
-      "intro": {
-        "ar": "أشهر دار لدباغة الجلود في فاس، حيث الألوان الزاهية والعمل اليدوي المتوارث منذ قرون.",
-        "en": "أشهر دار لدباغة الجلود في فاس، حيث الألوان الزاهية والعمل اليدوي المتوارث منذ قرون."
-      },
-      "sections": [
-        {
-          "title": {
-            "ar": "نبذة تاريخية",
-            "en": "Historical Overview"
-          },
-          "content": {
-            "ar": "أشهر دار لدباغة الجلود في فاس، حيث الألوان الزاهية والعمل اليدوي المتوارث منذ قرون.",
-            "en": "أشهر دار لدباغة الجلود في فاس، حيث الألوان الزاهية والعمل اليدوي المتوارث منذ قرون."
-          }
-        }
-      ],
-      "faqs": [],
-      "conclusion": {
-        "ar": "أشهر دار لدباغة الجلود في فاس، حيث الألوان الزاهية والعمل اليدوي المتوارث منذ قرون.",
-        "en": "أشهر دار لدباغة الجلود في فاس، حيث الألوان الزاهية والعمل اليدوي المتوارث منذ قرون."
-      },
-      "generatedImage": "/images/chouara.jpg"
-    },
-    "ifrane-lion": {
-      "id": "ifrane-lion",
-      "title": {
-        "ar": "أسد إيفران",
-        "en": "ifrane lion"
-      },
-      "category": "landmark",
-      "metaDescription": {
-        "ar": "تمثال حجري شهير يرمز لأسد الأطلس، يتوسط مدينة إيفران الملقبة بسويسرا المغرب.",
-        "en": "تمثال حجري شهير يرمز لأسد الأطلس، يتوسط مدينة إيفران الملقبة بسويسرا المغرب."
-      },
-      "intro": {
-        "ar": "تمثال حجري شهير يرمز لأسد الأطلس، يتوسط مدينة إيفران الملقبة بسويسرا المغرب.",
-        "en": "تمثال حجري شهير يرمز لأسد الأطلس، يتوسط مدينة إيفران الملقبة بسويسرا المغرب."
-      },
-      "sections": [
-        {
-          "title": {
-            "ar": "نبذة تاريخية",
-            "en": "Historical Overview"
-          },
-          "content": {
-            "ar": "تمثال حجري شهير يرمز لأسد الأطلس، يتوسط مدينة إيفران الملقبة بسويسرا المغرب.",
-            "en": "تمثال حجري شهير يرمز لأسد الأطلس، يتوسط مدينة إيفران الملقبة بسويسرا المغرب."
-          }
-        }
-      ],
-      "faqs": [],
-      "conclusion": {
-        "ar": "تمثال حجري شهير يرمز لأسد الأطلس، يتوسط مدينة إيفران الملقبة بسويسرا المغرب.",
-        "en": "تمثال حجري شهير يرمز لأسد الأطلس، يتوسط مدينة إيفران الملقبة بسويسرا المغرب."
-      },
-      "generatedImage": "/images/ifrane-lion.jpg"
-    },
-    "marrakech-bahia-palace": {
-      "id": "marrakech-bahia-palace",
-      "title": {
-        "ar": "قصر الباهية",
-        "en": "marrakech bahia palace"
-      },
-      "category": "landmark",
-      "metaDescription": {
-        "ar": "قصر أندلسي مغربي مذهل يعكس ترف وعظمة القرن التاسع عشر بحدائقه وزخارفه المعقدة.",
-        "en": "قصر أندلسي مغربي مذهل يعكس ترف وعظمة القرن التاسع عشر بحدائقه وزخارفه المعقدة."
-      },
-      "intro": {
-        "ar": "قصر أندلسي مغربي مذهل يعكس ترف وعظمة القرن التاسع عشر بحدائقه وزخارفه المعقدة.",
-        "en": "قصر أندلسي مغربي مذهل يعكس ترف وعظمة القرن التاسع عشر بحدائقه وزخارفه المعقدة."
-      },
-      "sections": [
-        {
-          "title": {
-            "ar": "نبذة تاريخية",
-            "en": "Historical Overview"
-          },
-          "content": {
-            "ar": "قصر أندلسي مغربي مذهل يعكس ترف وعظمة القرن التاسع عشر بحدائقه وزخارفه المعقدة.",
-            "en": "قصر أندلسي مغربي مذهل يعكس ترف وعظمة القرن التاسع عشر بحدائقه وزخارفه المعقدة."
-          }
-        }
-      ],
-      "faqs": [],
-      "conclusion": {
-        "ar": "قصر أندلسي مغربي مذهل يعكس ترف وعظمة القرن التاسع عشر بحدائقه وزخارفه المعقدة.",
-        "en": "قصر أندلسي مغربي مذهل يعكس ترف وعظمة القرن التاسع عشر بحدائقه وزخارفه المعقدة."
-      },
-      "generatedImage": "/images/bahia-palace.jpg"
-    },
-    "marrakech-ben-youssef": {
-      "id": "marrakech-ben-youssef",
-      "title": {
-        "ar": "مدرسة بن يوسف",
-        "en": "marrakech ben youssef"
-      },
-      "category": "landmark",
-      "metaDescription": {
-        "ar": "من أكبر المدارس التاريخية في المغرب الأقصى، تحفة تجمع بين تناسق الزليج وجمال النقش والمقرنصات.",
-        "en": "من أكبر المدارس التاريخية في المغرب الأقصى، تحفة تجمع بين تناسق الزليج وجمال النقش والمقرنصات."
-      },
-      "intro": {
-        "ar": "من أكبر المدارس التاريخية في المغرب الأقصى، تحفة تجمع بين تناسق الزليج وجمال النقش والمقرنصات.",
-        "en": "من أكبر المدارس التاريخية في المغرب الأقصى، تحفة تجمع بين تناسق الزليج وجمال النقش والمقرنصات."
-      },
-      "sections": [
-        {
-          "title": {
-            "ar": "نبذة تاريخية",
-            "en": "Historical Overview"
-          },
-          "content": {
-            "ar": "من أكبر المدارس التاريخية في المغرب الأقصى، تحفة تجمع بين تناسق الزليج وجمال النقش والمقرنصات.",
-            "en": "من أكبر المدارس التاريخية في المغرب الأقصى، تحفة تجمع بين تناسق الزليج وجمال النقش والمقرنصات."
-          }
-        }
-      ],
-      "faqs": [],
-      "conclusion": {
-        "ar": "من أكبر المدارس التاريخية في المغرب الأقصى، تحفة تجمع بين تناسق الزليج وجمال النقش والمقرنصات.",
-        "en": "من أكبر المدارس التاريخية في المغرب الأقصى، تحفة تجمع بين تناسق الزليج وجمال النقش والمقرنصات."
-      },
-      "generatedImage": "/images/ben-youssef.jpg"
-    },
-    "marrakech-el-badi-palace": {
-      "id": "marrakech-el-badi-palace",
-      "title": {
-        "ar": "قصر البديع",
-        "en": "marrakech el badi palace"
-      },
-      "category": "landmark",
-      "metaDescription": {
-        "ar": "أطلال قصر سعدي عظيم كان يُعتبر من عجائب الدنيا في زمانه، بناه أحمد المنصور الذهبي.",
-        "en": "أطلال قصر سعدي عظيم كان يُعتبر من عجائب الدنيا في زمانه، بناه أحمد المنصور الذهبي."
-      },
-      "intro": {
-        "ar": "أطلال قصر سعدي عظيم كان يُعتبر من عجائب الدنيا في زمانه، بناه أحمد المنصور الذهبي.",
-        "en": "أطلال قصر سعدي عظيم كان يُعتبر من عجائب الدنيا في زمانه، بناه أحمد المنصور الذهبي."
-      },
-      "sections": [
-        {
-          "title": {
-            "ar": "نبذة تاريخية",
-            "en": "Historical Overview"
-          },
-          "content": {
-            "ar": "أطلال قصر سعدي عظيم كان يُعتبر من عجائب الدنيا في زمانه، بناه أحمد المنصور الذهبي.",
-            "en": "أطلال قصر سعدي عظيم كان يُعتبر من عجائب الدنيا في زمانه، بناه أحمد المنصور الذهبي."
-          }
-        }
-      ],
-      "faqs": [],
-      "conclusion": {
-        "ar": "أطلال قصر سعدي عظيم كان يُعتبر من عجائب الدنيا في زمانه، بناه أحمد المنصور الذهبي.",
-        "en": "أطلال قصر سعدي عظيم كان يُعتبر من عجائب الدنيا في زمانه، بناه أحمد المنصور الذهبي."
-      },
-      "generatedImage": "/images/el-badi.jpg"
-    },
-    "marrakech-jemaa-el-fnaa": {
-      "id": "marrakech-jemaa-el-fnaa",
-      "title": {
-        "ar": "جامع الفنا",
-        "en": "marrakech jemaa el fnaa"
-      },
-      "category": "landmark",
-      "metaDescription": {
-        "ar": "الساحة النابضة بالحياة قلب مراكش، مسرح مفتوح يجمع رواة القصص، الموسيقيين، والمأكولات الشعبية.",
-        "en": "الساحة النابضة بالحياة قلب مراكش، مسرح مفتوح يجمع رواة القصص، الموسيقيين، والمأكولات الشعبية."
-      },
-      "intro": {
-        "ar": "الساحة النابضة بالحياة قلب مراكش، مسرح مفتوح يجمع رواة القصص، الموسيقيين، والمأكولات الشعبية.",
-        "en": "الساحة النابضة بالحياة قلب مراكش، مسرح مفتوح يجمع رواة القصص، الموسيقيين، والمأكولات الشعبية."
-      },
-      "sections": [
-        {
-          "title": {
-            "ar": "نبذة تاريخية",
-            "en": "Historical Overview"
-          },
-          "content": {
-            "ar": "الساحة النابضة بالحياة قلب مراكش، مسرح مفتوح يجمع رواة القصص، الموسيقيين، والمأكولات الشعبية.",
-            "en": "الساحة النابضة بالحياة قلب مراكش، مسرح مفتوح يجمع رواة القصص، الموسيقيين، والمأكولات الشعبية."
-          }
-        }
-      ],
-      "faqs": [],
-      "conclusion": {
-        "ar": "الساحة النابضة بالحياة قلب مراكش، مسرح مفتوح يجمع رواة القصص، الموسيقيين، والمأكولات الشعبية.",
-        "en": "الساحة النابضة بالحياة قلب مراكش، مسرح مفتوح يجمع رواة القصص، الموسيقيين، والمأكولات الشعبية."
-      },
-      "generatedImage": "/images/jemaa-el-fnaa.jpg"
-    },
-    "marrakech-majorelle": {
-      "id": "marrakech-majorelle",
-      "title": {
-        "ar": "حدائق ماجوريل",
-        "en": "marrakech majorelle"
-      },
-      "category": "landmark",
-      "metaDescription": {
-        "ar": "واحة استوائية ساحرة في قلب مراكش تمزج بين اللون الأزرق الماجوريل والنباتات النادرة.",
-        "en": "واحة استوائية ساحرة في قلب مراكش تمزج بين اللون الأزرق الماجوريل والنباتات النادرة."
-      },
-      "intro": {
-        "ar": "واحة استوائية ساحرة في قلب مراكش تمزج بين اللون الأزرق الماجوريل والنباتات النادرة.",
-        "en": "واحة استوائية ساحرة في قلب مراكش تمزج بين اللون الأزرق الماجوريل والنباتات النادرة."
-      },
-      "sections": [
-        {
-          "title": {
-            "ar": "نبذة تاريخية",
-            "en": "Historical Overview"
-          },
-          "content": {
-            "ar": "واحة استوائية ساحرة في قلب مراكش تمزج بين اللون الأزرق الماجوريل والنباتات النادرة.",
-            "en": "واحة استوائية ساحرة في قلب مراكش تمزج بين اللون الأزرق الماجوريل والنباتات النادرة."
-          }
-        }
-      ],
-      "faqs": [],
-      "conclusion": {
-        "ar": "واحة استوائية ساحرة في قلب مراكش تمزج بين اللون الأزرق الماجوريل والنباتات النادرة.",
-        "en": "واحة استوائية ساحرة في قلب مراكش تمزج بين اللون الأزرق الماجوريل والنباتات النادرة."
-      },
-      "generatedImage": "/images/majorelle.jpg"
-    },
-    "meknes-bab-mansour": {
-      "id": "meknes-bab-mansour",
-      "title": {
-        "ar": "باب المنصور لعلج",
-        "en": "meknes bab mansour"
-      },
-      "category": "landmark",
-      "metaDescription": {
-        "ar": "أضخم وأجمل أبواب المغرب، يزين مدخل العاصمة الإسماعيلية مكناس بنقوشه وزخارفه الأخاذة.",
-        "en": "أضخم وأجمل أبواب المغرب، يزين مدخل العاصمة الإسماعيلية مكناس بنقوشه وزخارفه الأخاذة."
-      },
-      "intro": {
-        "ar": "أضخم وأجمل أبواب المغرب، يزين مدخل العاصمة الإسماعيلية مكناس بنقوشه وزخارفه الأخاذة.",
-        "en": "أضخم وأجمل أبواب المغرب، يزين مدخل العاصمة الإسماعيلية مكناس بنقوشه وزخارفه الأخاذة."
-      },
-      "sections": [
-        {
-          "title": {
-            "ar": "نبذة تاريخية",
-            "en": "Historical Overview"
-          },
-          "content": {
-            "ar": "أضخم وأجمل أبواب المغرب، يزين مدخل العاصمة الإسماعيلية مكناس بنقوشه وزخارفه الأخاذة.",
-            "en": "أضخم وأجمل أبواب المغرب، يزين مدخل العاصمة الإسماعيلية مكناس بنقوشه وزخارفه الأخاذة."
-          }
-        }
-      ],
-      "faqs": [],
-      "conclusion": {
-        "ar": "أضخم وأجمل أبواب المغرب، يزين مدخل العاصمة الإسماعيلية مكناس بنقوشه وزخارفه الأخاذة.",
-        "en": "أضخم وأجمل أبواب المغرب، يزين مدخل العاصمة الإسماعيلية مكناس بنقوشه وزخارفه الأخاذة."
-      },
-      "generatedImage": "/images/bab-mansour.jpg"
-    },
-    "meknes-habs-qara": {
-      "id": "meknes-habs-qara",
-      "title": {
-        "ar": "حبس قرا",
-        "en": "meknes habs qara"
-      },
-      "category": "landmark",
-      "metaDescription": {
-        "ar": "سجن تاريخي غامض ومترامي الأطراف يقع تحت الأرض في قلب قصبة مكناس الإسماعيلية.",
-        "en": "سجن تاريخي غامض ومترامي الأطراف يقع تحت الأرض في قلب قصبة مكناس الإسماعيلية."
-      },
-      "intro": {
-        "ar": "سجن تاريخي غامض ومترامي الأطراف يقع تحت الأرض في قلب قصبة مكناس الإسماعيلية.",
-        "en": "سجن تاريخي غامض ومترامي الأطراف يقع تحت الأرض في قلب قصبة مكناس الإسماعيلية."
-      },
-      "sections": [
-        {
-          "title": {
-            "ar": "نبذة تاريخية",
-            "en": "Historical Overview"
-          },
-          "content": {
-            "ar": "سجن تاريخي غامض ومترامي الأطراف يقع تحت الأرض في قلب قصبة مكناس الإسماعيلية.",
-            "en": "سجن تاريخي غامض ومترامي الأطراف يقع تحت الأرض في قلب قصبة مكناس الإسماعيلية."
-          }
-        }
-      ],
-      "faqs": [],
-      "conclusion": {
-        "ar": "سجن تاريخي غامض ومترامي الأطراف يقع تحت الأرض في قلب قصبة مكناس الإسماعيلية.",
-        "en": "سجن تاريخي غامض ومترامي الأطراف يقع تحت الأرض في قلب قصبة مكناس الإسماعيلية."
-      },
-      "generatedImage": "/images/habs-qara.jpg"
-    },
-    "meknes-sahrij-souani": {
-      "id": "meknes-sahrij-souani",
-      "title": {
-        "ar": "صهريج السواني",
-        "en": "meknes sahrij souani"
-      },
-      "category": "landmark",
-      "metaDescription": {
-        "ar": "خزان مائي عظيم وبنية تحتية تاريخية أمر ببنائها السلطان المولى إسماعيل لتزويد مكناس بالمياه.",
-        "en": "خزان مائي عظيم وبنية تحتية تاريخية أمر ببنائها السلطان المولى إسماعيل لتزويد مكناس بالمياه."
-      },
-      "intro": {
-        "ar": "خزان مائي عظيم وبنية تحتية تاريخية أمر ببنائها السلطان المولى إسماعيل لتزويد مكناس بالمياه.",
-        "en": "خزان مائي عظيم وبنية تحتية تاريخية أمر ببنائها السلطان المولى إسماعيل لتزويد مكناس بالمياه."
-      },
-      "sections": [
-        {
-          "title": {
-            "ar": "نبذة تاريخية",
-            "en": "Historical Overview"
-          },
-          "content": {
-            "ar": "خزان مائي عظيم وبنية تحتية تاريخية أمر ببنائها السلطان المولى إسماعيل لتزويد مكناس بالمياه.",
-            "en": "خزان مائي عظيم وبنية تحتية تاريخية أمر ببنائها السلطان المولى إسماعيل لتزويد مكناس بالمياه."
-          }
-        }
-      ],
-      "faqs": [],
-      "conclusion": {
-        "ar": "خزان مائي عظيم وبنية تحتية تاريخية أمر ببنائها السلطان المولى إسماعيل لتزويد مكناس بالمياه.",
-        "en": "خزان مائي عظيم وبنية تحتية تاريخية أمر ببنائها السلطان المولى إسماعيل لتزويد مكناس بالمياه."
-      },
-      "generatedImage": "/images/sahrij-souani.jpg"
-    },
-    "meknes-volubilis": {
-      "id": "meknes-volubilis",
-      "title": {
-        "ar": "وليلي",
-        "en": "meknes volubilis"
-      },
-      "category": "landmark",
-      "metaDescription": {
-        "ar": "أهم المواقع الأثرية الرومانية في المغرب، تتميز بفسيفسائها البديعة ومعابدها التاريخية.",
-        "en": "أهم المواقع الأثرية الرومانية في المغرب، تتميز بفسيفسائها البديعة ومعابدها التاريخية."
-      },
-      "intro": {
-        "ar": "أهم المواقع الأثرية الرومانية في المغرب، تتميز بفسيفسائها البديعة ومعابدها التاريخية.",
-        "en": "أهم المواقع الأثرية الرومانية في المغرب، تتميز بفسيفسائها البديعة ومعابدها التاريخية."
-      },
-      "sections": [
-        {
-          "title": {
-            "ar": "نبذة تاريخية",
-            "en": "Historical Overview"
-          },
-          "content": {
-            "ar": "أهم المواقع الأثرية الرومانية في المغرب، تتميز بفسيفسائها البديعة ومعابدها التاريخية.",
-            "en": "أهم المواقع الأثرية الرومانية في المغرب، تتميز بفسيفسائها البديعة ومعابدها التاريخية."
-          }
-        }
-      ],
-      "faqs": [],
-      "conclusion": {
-        "ar": "أهم المواقع الأثرية الرومانية في المغرب، تتميز بفسيفسائها البديعة ومعابدها التاريخية.",
-        "en": "أهم المواقع الأثرية الرومانية في المغرب، تتميز بفسيفسائها البديعة ومعابدها التاريخية."
-      },
-      "generatedImage": "/images/volubilis.jpg"
-    },
-    "ouzoud-falls": {
-      "id": "ouzoud-falls",
-      "title": {
-        "ar": "شلالات أوزود",
-        "en": "ouzoud falls"
-      },
-      "category": "landmark",
-      "metaDescription": {
-        "ar": "أعلى وأجمل شلالات المغرب، جنة طبيعية مخفية في جبال الأطلس المتوسط.",
-        "en": "أعلى وأجمل شلالات المغرب، جنة طبيعية مخفية في جبال الأطلس المتوسط."
-      },
-      "intro": {
-        "ar": "أعلى وأجمل شلالات المغرب، جنة طبيعية مخفية في جبال الأطلس المتوسط.",
-        "en": "أعلى وأجمل شلالات المغرب، جنة طبيعية مخفية في جبال الأطلس المتوسط."
-      },
-      "sections": [
-        {
-          "title": {
-            "ar": "نبذة تاريخية",
-            "en": "Historical Overview"
-          },
-          "content": {
-            "ar": "أعلى وأجمل شلالات المغرب، جنة طبيعية مخفية في جبال الأطلس المتوسط.",
-            "en": "أعلى وأجمل شلالات المغرب، جنة طبيعية مخفية في جبال الأطلس المتوسط."
-          }
-        }
-      ],
-      "faqs": [],
-      "conclusion": {
-        "ar": "أعلى وأجمل شلالات المغرب، جنة طبيعية مخفية في جبال الأطلس المتوسط.",
-        "en": "أعلى وأجمل شلالات المغرب، جنة طبيعية مخفية في جبال الأطلس المتوسط."
-      },
-      "generatedImage": "/images/ouzoud.jpg"
-    },
-    "rabat-chellah": {
-      "id": "rabat-chellah",
-      "title": {
-        "ar": "موقع شالة",
-        "en": "rabat chellah"
-      },
-      "category": "landmark",
-      "metaDescription": {
-        "ar": "مدينة أثرية تعانق الآثار الرومانية والإسلامية المرينية، حيث الهدوء وأعشاش طيور اللقلق.",
-        "en": "مدينة أثرية تعانق الآثار الرومانية والإسلامية المرينية، حيث الهدوء وأعشاش طيور اللقلق."
-      },
-      "intro": {
-        "ar": "مدينة أثرية تعانق الآثار الرومانية والإسلامية المرينية، حيث الهدوء وأعشاش طيور اللقلق.",
-        "en": "مدينة أثرية تعانق الآثار الرومانية والإسلامية المرينية، حيث الهدوء وأعشاش طيور اللقلق."
-      },
-      "sections": [
-        {
-          "title": {
-            "ar": "نبذة تاريخية",
-            "en": "Historical Overview"
-          },
-          "content": {
-            "ar": "مدينة أثرية تعانق الآثار الرومانية والإسلامية المرينية، حيث الهدوء وأعشاش طيور اللقلق.",
-            "en": "مدينة أثرية تعانق الآثار الرومانية والإسلامية المرينية، حيث الهدوء وأعشاش طيور اللقلق."
-          }
-        }
-      ],
-      "faqs": [],
-      "conclusion": {
-        "ar": "مدينة أثرية تعانق الآثار الرومانية والإسلامية المرينية، حيث الهدوء وأعشاش طيور اللقلق.",
-        "en": "مدينة أثرية تعانق الآثار الرومانية والإسلامية المرينية، حيث الهدوء وأعشاش طيور اللقلق."
-      },
-      "generatedImage": "/images/chellah.jpg"
-    },
-    "rabat-hassan-tower": {
-      "id": "rabat-hassan-tower",
-      "title": {
-        "ar": "صومعة حسان",
-        "en": "rabat hassan tower"
-      },
-      "category": "landmark",
-      "metaDescription": {
-        "ar": "مئذنة غير مكتملة لمسجد تاريخي بناه الموحدون في الرباط، تعتبر رمزاً شاهقاً للمدينة.",
-        "en": "مئذنة غير مكتملة لمسجد تاريخي بناه الموحدون في الرباط، تعتبر رمزاً شاهقاً للمدينة."
-      },
-      "intro": {
-        "ar": "مئذنة غير مكتملة لمسجد تاريخي بناه الموحدون في الرباط، تعتبر رمزاً شاهقاً للمدينة.",
-        "en": "مئذنة غير مكتملة لمسجد تاريخي بناه الموحدون في الرباط، تعتبر رمزاً شاهقاً للمدينة."
-      },
-      "sections": [
-        {
-          "title": {
-            "ar": "نبذة تاريخية",
-            "en": "Historical Overview"
-          },
-          "content": {
-            "ar": "مئذنة غير مكتملة لمسجد تاريخي بناه الموحدون في الرباط، تعتبر رمزاً شاهقاً للمدينة.",
-            "en": "مئذنة غير مكتملة لمسجد تاريخي بناه الموحدون في الرباط، تعتبر رمزاً شاهقاً للمدينة."
-          }
-        }
-      ],
-      "faqs": [],
-      "conclusion": {
-        "ar": "مئذنة غير مكتملة لمسجد تاريخي بناه الموحدون في الرباط، تعتبر رمزاً شاهقاً للمدينة.",
-        "en": "مئذنة غير مكتملة لمسجد تاريخي بناه الموحدون في الرباط، تعتبر رمزاً شاهقاً للمدينة."
-      },
-      "generatedImage": "/images/hassan-tower.jpg"
-    },
-    "rabat-kasbah-oudaya": {
-      "id": "rabat-kasbah-oudaya",
-      "title": {
-        "ar": "قصبة الوداية",
-        "en": "rabat kasbah oudaya"
-      },
-      "category": "landmark",
-      "metaDescription": {
-        "ar": "قلعة تاريخية بيضاء وزرقاء تقع على مصب نهر أبي رقراق، تتميز بحدائقها الأندلسية العبقة.",
-        "en": "قلعة تاريخية بيضاء وزرقاء تقع على مصب نهر أبي رقراق، تتميز بحدائقها الأندلسية العبقة."
-      },
-      "intro": {
-        "ar": "قلعة تاريخية بيضاء وزرقاء تقع على مصب نهر أبي رقراق، تتميز بحدائقها الأندلسية العبقة.",
-        "en": "قلعة تاريخية بيضاء وزرقاء تقع على مصب نهر أبي رقراق، تتميز بحدائقها الأندلسية العبقة."
-      },
-      "sections": [
-        {
-          "title": {
-            "ar": "نبذة تاريخية",
-            "en": "Historical Overview"
-          },
-          "content": {
-            "ar": "قلعة تاريخية بيضاء وزرقاء تقع على مصب نهر أبي رقراق، تتميز بحدائقها الأندلسية العبقة.",
-            "en": "قلعة تاريخية بيضاء وزرقاء تقع على مصب نهر أبي رقراق، تتميز بحدائقها الأندلسية العبقة."
-          }
-        }
-      ],
-      "faqs": [],
-      "conclusion": {
-        "ar": "قلعة تاريخية بيضاء وزرقاء تقع على مصب نهر أبي رقراق، تتميز بحدائقها الأندلسية العبقة.",
-        "en": "قلعة تاريخية بيضاء وزرقاء تقع على مصب نهر أبي رقراق، تتميز بحدائقها الأندلسية العبقة."
-      },
-      "generatedImage": "/images/kasbah-oudaya.jpg"
-    },
-    "rabat-mohammed-v-mausoleum": {
-      "id": "rabat-mohammed-v-mausoleum",
-      "title": {
-        "ar": "ضريح محمد الخامس",
-        "en": "rabat mohammed v mausoleum"
-      },
-      "category": "landmark",
-      "metaDescription": {
-        "ar": "تحفة معمارية مغربية معاصرة تضم رفات الملك محمد الخامس والملك الحسن الثاني طيب الله ثراهما.",
-        "en": "تحفة معمارية مغربية معاصرة تضم رفات الملك محمد الخامس والملك الحسن الثاني طيب الله ثراهما."
-      },
-      "intro": {
-        "ar": "تحفة معمارية مغربية معاصرة تضم رفات الملك محمد الخامس والملك الحسن الثاني طيب الله ثراهما.",
-        "en": "تحفة معمارية مغربية معاصرة تضم رفات الملك محمد الخامس والملك الحسن الثاني طيب الله ثراهما."
-      },
-      "sections": [
-        {
-          "title": {
-            "ar": "نبذة تاريخية",
-            "en": "Historical Overview"
-          },
-          "content": {
-            "ar": "تحفة معمارية مغربية معاصرة تضم رفات الملك محمد الخامس والملك الحسن الثاني طيب الله ثراهما.",
-            "en": "تحفة معمارية مغربية معاصرة تضم رفات الملك محمد الخامس والملك الحسن الثاني طيب الله ثراهما."
-          }
-        }
-      ],
-      "faqs": [],
-      "conclusion": {
-        "ar": "تحفة معمارية مغربية معاصرة تضم رفات الملك محمد الخامس والملك الحسن الثاني طيب الله ثراهما.",
-        "en": "تحفة معمارية مغربية معاصرة تضم رفات الملك محمد الخامس والملك الحسن الثاني طيب الله ثراهما."
-      },
-      "generatedImage": "/images/mohammed-v.jpg"
-    },
-    "safi-ksar-el-bahr": {
-      "id": "safi-ksar-el-bahr",
-      "title": {
-        "ar": "قصر البحر بآسفي",
-        "en": "safi ksar el bahr"
-      },
-      "category": "landmark",
-      "metaDescription": {
-        "ar": "حصن برتغالي عتيد يطل بشموخ على أمواج المحيط الأطلسي لمدينة آسفي العريقة.",
-        "en": "حصن برتغالي عتيد يطل بشموخ على أمواج المحيط الأطلسي لمدينة آسفي العريقة."
-      },
-      "intro": {
-        "ar": "حصن برتغالي عتيد يطل بشموخ على أمواج المحيط الأطلسي لمدينة آسفي العريقة.",
-        "en": "حصن برتغالي عتيد يطل بشموخ على أمواج المحيط الأطلسي لمدينة آسفي العريقة."
-      },
-      "sections": [
-        {
-          "title": {
-            "ar": "نبذة تاريخية",
-            "en": "Historical Overview"
-          },
-          "content": {
-            "ar": "حصن برتغالي عتيد يطل بشموخ على أمواج المحيط الأطلسي لمدينة آسفي العريقة.",
-            "en": "حصن برتغالي عتيد يطل بشموخ على أمواج المحيط الأطلسي لمدينة آسفي العريقة."
-          }
-        }
-      ],
-      "faqs": [],
-      "conclusion": {
-        "ar": "حصن برتغالي عتيد يطل بشموخ على أمواج المحيط الأطلسي لمدينة آسفي العريقة.",
-        "en": "حصن برتغالي عتيد يطل بشموخ على أمواج المحيط الأطلسي لمدينة آسفي العريقة."
-      },
-      "generatedImage": "/images/ksar-el-bahr.jpg"
-    },
-    "tangier-hercules-cave": {
-      "id": "tangier-hercules-cave",
-      "title": {
-        "ar": "مغارة هرقل",
-        "en": "tangier hercules cave"
-      },
-      "category": "landmark",
-      "metaDescription": {
-        "ar": "مغارة أسطورية ذات فتحة على شكل خريطة إفريقيا، تقع بالقرب من مدينة طنجة.",
-        "en": "مغارة أسطورية ذات فتحة على شكل خريطة إفريقيا، تقع بالقرب من مدينة طنجة."
-      },
-      "intro": {
-        "ar": "مغارة أسطورية ذات فتحة على شكل خريطة إفريقيا، تقع بالقرب من مدينة طنجة.",
-        "en": "مغارة أسطورية ذات فتحة على شكل خريطة إفريقيا، تقع بالقرب من مدينة طنجة."
-      },
-      "sections": [
-        {
-          "title": {
-            "ar": "نبذة تاريخية",
-            "en": "Historical Overview"
-          },
-          "content": {
-            "ar": "مغارة أسطورية ذات فتحة على شكل خريطة إفريقيا، تقع بالقرب من مدينة طنجة.",
-            "en": "مغارة أسطورية ذات فتحة على شكل خريطة إفريقيا، تقع بالقرب من مدينة طنجة."
-          }
-        }
-      ],
-      "faqs": [],
-      "conclusion": {
-        "ar": "مغارة أسطورية ذات فتحة على شكل خريطة إفريقيا، تقع بالقرب من مدينة طنجة.",
-        "en": "مغارة أسطورية ذات فتحة على شكل خريطة إفريقيا، تقع بالقرب من مدينة طنجة."
-      },
-      "generatedImage": "/images/hercules-cave.jpg"
-    }
-  }
+  "articles": {}
 }
