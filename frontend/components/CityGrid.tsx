@@ -5,8 +5,10 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Search, MapPin, Wind, Mountain, Sun, Waves, Building2, Home, Landmark, Filter, X, ChevronRight, Info, Globe, Compass, Trees as Tree, Tent, BookOpen, Crown } from 'lucide-react';
 import { moroccoRegions, Location, ZoneType, ClimateType } from '../data/morocco-geography';
 import { getArticle } from '../data/moroverse-content';
-import ArticleReader from './ArticleReader';
 import { generateArticleSchema } from '../utils/seo';
+import generatedContent from '../data/generated-content.json';
+import ArticleReader from './ArticleReader';
+const dynamicCities = generatedContent.cities;
 
 const SoulIcon = ({ soul, className }: { soul: string; className?: string }) => {
     switch (soul) {
@@ -46,9 +48,19 @@ export default function CityGrid({ lang }: { lang: 'en' | 'ar' }) {
 
     // Flatten all locations
     const allLocations = useMemo(() => {
-        return moroccoRegions.flatMap(region =>
+        const regionsLocations = moroccoRegions.flatMap(region =>
             region.provinces.map(loc => ({ ...loc, regionName: region.name }))
         ) as ExtendedLocation[];
+
+        // Merge dynamic cities that match the type interface loosely
+        const dynamicLocations = dynamicCities.map((c: any) => ({
+            ...c,
+            regionName: c.regionName || { en: 'Generated', ar: 'مُضاف' },
+            province: 'Generated',
+            regionId: 'all' // Generic fallback for new dynamic cities without strictly mapped regionIds
+        })) as ExtendedLocation[];
+
+        return [...regionsLocations, ...dynamicLocations];
     }, []);
 
     // Filter logic

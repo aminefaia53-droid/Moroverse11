@@ -5,6 +5,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { BookOpen, Crown, Shield, Compass, Palette, Sparkles, MapPin, Search, X } from 'lucide-react';
 import { HistoricalFigure, moroccoFigures } from '../data/morocco-figures';
 import { getArticle } from '../data/moroverse-content';
+import generatedContent from '../data/generated-content.json';
+const dynamicFigures = generatedContent.figures as HistoricalFigure[];
 import ArticleReader from './ArticleReader';
 
 const CategoryIcon = ({ category, className }: { category: HistoricalFigure['category']; className?: string }) => {
@@ -25,12 +27,12 @@ export default function HistoricalFiguresGrid({ lang }: { lang: 'en' | 'ar' }) {
     const [showFullArticle, setShowFullArticle] = useState(false);
 
     const categories = useMemo(() => {
-        const cats = new Set(moroccoFigures.map(f => f.category));
+        const cats = new Set([...moroccoFigures, ...dynamicFigures].map(f => f.category));
         return Array.from(cats);
     }, []);
 
     const filteredFigures = useMemo(() => {
-        return moroccoFigures.filter(f => {
+        return [...moroccoFigures, ...dynamicFigures].filter(f => {
             const matchesCategory = !selectedCategory || f.category === selectedCategory;
             const matchesSearch =
                 f.name.en.toLowerCase().includes(searchQuery.toLowerCase()) ||

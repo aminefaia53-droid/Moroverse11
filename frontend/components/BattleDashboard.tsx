@@ -6,6 +6,7 @@ import { Swords, Calendar, Shield, MapPin, Users, Target, Info, Quote, Activity,
 import { getArticle } from '../data/moroverse-content';
 import ArticleReader from './ArticleReader';
 import { generateArticleSchema } from '../utils/seo';
+import generatedContent from '../data/generated-content.json';
 
 interface Battle {
     id: string;
@@ -24,7 +25,7 @@ interface Battle {
     casualties?: { en: string; ar: string };
 }
 
-const battles: Battle[] = [
+const staticBattles: Battle[] = [
     // --- FOUNDATIONAL & ANCIENT ---
     {
         id: 'aedemon-revolt',
@@ -360,6 +361,11 @@ const battles: Battle[] = [
         impact: { en: 'Secured the strategic Amgala point.', ar: 'تأمين نقطة أمقالة الاستراتيجية.' }
     }
 ];
+
+const dynamicBattles = generatedContent.battles as Battle[];
+const battles: Battle[] = [...staticBattles, ...dynamicBattles];
+
+type EraType = Battle['era'] | 'All';
 
 const eras = [
     { id: 'All', en: 'All Eras', ar: 'كل العصور' },

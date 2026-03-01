@@ -3,10 +3,13 @@
 import React, { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Building2, Landmark as LandmarkIcon, Crown, History, Mountain, Waves, Shield, X, Compass, Info, MapPin, ChevronRight, TowerControl as Tower, BookOpen, Search } from 'lucide-react';
-import { Landmark, moroccoLandmarks } from '../data/morocco-landmarks';
+import { Landmark } from '../data/morocco-landmarks';
+import generatedContent from '../data/generated-content.json';
 import { getArticle } from '../data/moroverse-content';
 import ArticleReader from './ArticleReader';
 import { generateArticleSchema } from '../utils/seo';
+
+const dynamicLandmarks: Landmark[] = generatedContent.landmarks as Landmark[];
 
 const LandmarkSoulIcon = ({ soul, className }: { soul: Landmark['visualSoul']; className?: string }) => {
     switch (soul) {
@@ -28,13 +31,13 @@ export default function LandmarkGrid({ lang }: { lang: 'en' | 'ar' }) {
     const [showFullArticle, setShowFullArticle] = useState(false);
 
     const cities = useMemo(() => {
-        const allCities = moroccoLandmarks.map(l => l.city);
+        const allCities = dynamicLandmarks.map(l => l.city);
         const unique = Array.from(new Set(allCities.map(c => c.en))).map(en => allCities.find(c => c.en === en)!);
         return unique;
     }, []);
 
     const filteredLandmarks = useMemo(() => {
-        return moroccoLandmarks.filter(l => {
+        return dynamicLandmarks.filter(l => {
             const matchesCity = !selectedCity || l.city.en === selectedCity;
             const matchesSearch =
                 l.name.en.toLowerCase().includes(searchQuery.toLowerCase()) ||
