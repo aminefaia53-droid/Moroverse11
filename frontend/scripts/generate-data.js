@@ -190,27 +190,41 @@ function generateData() {
 
     // 2. Process Manifest (Preparation of Spaces)
     manifest.cities.forEach(cityNode => {
-        cityNode.landmarks.forEach(landmarkName => {
+        cityNode.landmarks.forEach(landmarkNode => {
+            const landmarkName = landmarkNode.ar;
+            const landmarkNameEn = landmarkNode.en;
+
             // Priority: Try to find file by city_en-landmark_en slug
-            const landmarkSlug = slugify(landmarkName);
+            const landmarkSlug = slugify(landmarkNameEn);
             const citySlug = cityNode.name.en.toLowerCase();
             const expectedId = `${citySlug}-${landmarkSlug}`;
 
-            // Try to find if any file exists for this landmark (either direct or expected)
+            // Try to find if any file exists for this landmark
+            // Match order: 
+            // 1. Exact ID match (rabat-hassan-tower)
+            // 2. Frontmatter title contains the Arabic name
+            // 3. Slug contains the landmark name (English or Arabic)
             const fileData = fileMap[expectedId] || Object.values(fileMap).find(f =>
-                f.meta.title === landmarkName || f.id === expectedId || f.id === landmarkSlug
+                (f.meta && f.meta.title && f.meta.title.includes(landmarkName)) ||
+                f.id === expectedId ||
+                f.id.includes(landmarkSlug) ||
+                f.id.includes(slugify(landmarkName))
             );
 
             if (fileData) {
                 const { meta, body, id } = fileData;
                 const city = detectCity(id, meta);
                 const { intro, sections, conclusion } = bodyToArticle(body, meta.description);
+                const cleanIntro = intro.replace(/[#*`]/g, '').slice(0, 160) + '...';
 
                 const article = {
                     id,
-                    title: { ar: meta.title || landmarkName, en: meta.titleEn || id.replace(/-/g, ' ') },
+                    title: { ar: meta.title || landmarkName, en: meta.titleEn || landmarkNameEn || id.replace(/-/g, ' ') },
                     category: 'landmark',
-                    metaDescription: { ar: meta.description || '', en: meta.descriptionEn || '' },
+                    metaDescription: {
+                        ar: meta.description || cleanIntro,
+                        en: meta.descriptionEn || cleanIntro
+                    },
                     intro: { ar: intro, en: intro },
                     sections,
                     conclusion: { ar: conclusion, en: conclusion },
@@ -237,7 +251,7 @@ function generateData() {
                 const id = expectedId;
                 generatedData.landmarks.push({
                     id,
-                    name: { ar: landmarkName, en: landmarkName },
+                    name: { ar: landmarkName, en: landmarkNameEn },
                     desc: {
                         ar: `هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...`,
                         en: `This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles...`
