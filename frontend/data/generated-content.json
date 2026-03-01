@@ -2573,6 +2573,110 @@
       },
       "visualSoul": "Ruin",
       "isPending": true
+    },
+    {
+      "id": "safi-ksar-el-bahr",
+      "name": {
+        "ar": "قصر البحر",
+        "en": "Ksar el Bahr"
+      },
+      "desc": {
+        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
+        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+      },
+      "imageUrl": null,
+      "city": {
+        "ar": "آسفي",
+        "en": "Safi"
+      },
+      "foundation": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "history": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "visualSoul": "Ruin",
+      "isPending": true
+    },
+    {
+      "id": "safi-safi-medina",
+      "name": {
+        "ar": "المدينة القديمة",
+        "en": "Safi Medina"
+      },
+      "desc": {
+        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
+        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+      },
+      "imageUrl": null,
+      "city": {
+        "ar": "آسفي",
+        "en": "Safi"
+      },
+      "foundation": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "history": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "visualSoul": "Ruin",
+      "isPending": true
+    },
+    {
+      "id": "safi-potters-hill",
+      "name": {
+        "ar": "تل الفخارين",
+        "en": "Potters Hill"
+      },
+      "desc": {
+        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
+        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+      },
+      "imageUrl": null,
+      "city": {
+        "ar": "آسفي",
+        "en": "Safi"
+      },
+      "foundation": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "history": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "visualSoul": "Ruin",
+      "isPending": true
+    },
+    {
+      "id": "safi-st-catherine-cathedral",
+      "name": {
+        "ar": "كاتدرائية القديسة كاترين",
+        "en": "St Catherine Cathedral"
+      },
+      "desc": {
+        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
+        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+      },
+      "imageUrl": null,
+      "city": {
+        "ar": "آسفي",
+        "en": "Safi"
+      },
+      "foundation": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "history": {
+        "ar": "قيد التوثيق",
+        "en": "Pending"
+      },
+      "visualSoul": "Ruin",
+      "isPending": true
     }
   ],
   "cities": [],

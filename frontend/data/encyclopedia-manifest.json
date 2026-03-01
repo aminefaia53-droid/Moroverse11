@@ -491,6 +491,30 @@
                     "en": "Dakhla Lighthouse"
                 }
             ]
+        },
+        {
+            "name": {
+                "ar": "آسفي",
+                "en": "Safi"
+            },
+            "landmarks": [
+                {
+                    "ar": "قصر البحر",
+                    "en": "Ksar el Bahr"
+                },
+                {
+                    "ar": "المدينة القديمة",
+                    "en": "Safi Medina"
+                },
+                {
+                    "ar": "تل الفخارين",
+                    "en": "Potters Hill"
+                },
+                {
+                    "ar": "كاتدرائية القديسة كاترين",
+                    "en": "St Catherine Cathedral"
+                }
+            ]
         }
     ]
 }
