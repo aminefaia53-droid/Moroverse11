@@ -33,8 +33,6 @@ export const metadata = {
   description: "استكشف عمق التاريخ المغربي وروعة حضارته في بوابة زمنية متطورة. معارك، مدن، معالم، وشخصيات تاريخية — كلها موثّقة في MoroVerse.",
   keywords: "تاريخ المغرب, مدن مغربية, معارك مغربية, المرابطون, وليلي, فاس, مراكش, ابن بطوطة, فاطمة الفهرية",
   manifest: "/manifest.json",
-  themeColor: "#8b0000",
-  viewport: "width=device-width, initial-scale=1, maximum-scale=5",
   robots: "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
   authors: [{ name: "Mohamed Amine El Amiri" }],
   creator: "MoroVerse Royal Digital Archive",
@@ -71,6 +69,13 @@ export const metadata = {
   alternates: {
     canonical: "https://moroverse.vercel.app",
   },
+};
+
+export const viewport = {
+  themeColor: '#8b0000',
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
 };
 
 import { LanguageProvider } from "../context/LanguageContext";

@@ -1,3 +1,8 @@
+// This file is auto-populated at build time from generated-content.json
+// Do not add manual articles here — use frontend/content/posts/*.md instead
+
+import generatedData from './generated-content.json';
+
 export interface ArticleSection {
     title: { en: string; ar: string };
     content: { en: string; ar: string };
@@ -19,18 +24,32 @@ export interface MoroArticle {
     conclusion: { en: string; ar: string };
     videoUrl?: string;
     gallery?: string[];
-    generatedImage?: string; // Phase 3 Original Content
+    generatedImage?: string;
 }
 
-export const moroverseArticles: Record<string, MoroArticle> = {};
+// Load all articles from the build-time generated JSON
+export const moroverseArticles: Record<string, MoroArticle> =
+    (generatedData as any).articles || {};
 
-export const getArticle = (id: string, nameAr: string, nameEn: string, category: 'battle' | 'landmark' | 'city' | 'figure'): MoroArticle => {
-    return moroverseArticles[id] || {
+/**
+ * Get article by ID. Falls back to a minimal stub if not found.
+ */
+export const getArticle = (
+    id: string,
+    nameAr: string,
+    nameEn: string,
+    category: 'battle' | 'landmark' | 'city' | 'figure'
+): MoroArticle => {
+    const found = moroverseArticles[id];
+    if (found) return found as MoroArticle;
+
+    // Minimal stub — shown only if article isn't in the JSON yet
+    return {
         id,
         title: { ar: nameAr, en: nameEn },
         category,
         metaDescription: { ar: '', en: '' },
-        intro: { ar: 'محتوى قيد التطوير...', en: 'Content under development...' },
+        intro: { ar: 'قيد الإعداد...', en: 'Coming soon...' },
         sections: [],
         faqs: [],
         conclusion: { ar: '', en: '' }
