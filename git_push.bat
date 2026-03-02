@@ -1,4 +1,4 @@
 @echo off
-git add .
-git commit -m "fix md posts support"
-git push origin main
+git add -A
+git commit -m "deploy"
+git push --force origin main
