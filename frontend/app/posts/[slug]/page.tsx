@@ -1,55 +1,59 @@
 import fs from 'fs';
 import path from 'path';
+import matter from 'gray-matter';
+import { marked } from 'marked';
 import type { Metadata } from 'next';
 
-// Slug → article meta mapping
-const ARTICLE_META: Record<string, { title: string; description: string; keywords: string; image?: string }> = {
-    'tazenakht-forgotten-village': { title: 'تازناخت — القرية المنسية في ظل الأطلس | MoroVerse', description: 'اكتشف سر قرية تازناخت، عاصمة الزربية المغربية المنسية في ظلال الأطلس الصغير. تاريخ عريق ونسيج جميل.', keywords: 'تازناخت, زرابي مغربية, أطلس صغير, ورزازات, حرف يدوية' },
-    'agbalou-nkardous-resistence': { title: 'أغبالو نكردوس — معقل المقاومة | MoroVerse', description: 'قصة أغبالو نكردوس، معقل المقاومة المجيدة في أعالي جبال أطلس أزيلال. اكتشف أسرار هذه القرية البطولية.', keywords: 'أغبالو نكردوس, مقاومة مغربية, أطلس, تادلة أزيلال' },
-    'sidi-bou-othmane-battle-1912': { title: 'معركة سيدي بوعثمان 1912 | MoroVerse', description: 'معركة سيدي بوعثمان 1912، الملحمة التي خلّدت صمود رجال الجنوب في مواجهة الجيش الفرنسي الغازي.', keywords: 'سيدي بوعثمان, معركة 1912, مغرب, استعمار, مراكش' },
-    'el-hri-battle-1914': { title: 'معركة لهري 1914 — مقبرة الغزاة | MoroVerse', description: 'كيف حقق موحى أوحمو الزياني انتصاراً أسطورياً في معركة لهري 1914، محولاً إياها إلى مقبرة للجيش الفرنسي.', keywords: 'لهري, معركة 1914, موحى أوحمو الزياني, مقاومة, أطلس' },
-    'battle-of-zallaqa-1086': { title: 'معركة الزلاقة 1086 — انتصار المرابطين | MoroVerse', description: 'اكتشف كيف أنقذ يوسف بن تاشفين الأندلس في معركة الزلاقة الخالدة سنة 1086م.', keywords: 'الزلاقة, 1086, يوسف بن تاشفين, المرابطون, الأندلس' },
-    'battle-of-wadi-al-makhazin-1578': { title: 'معركة وادي المخازن 1578 — الملوك الثلاثة | MoroVerse', description: 'معركة الملوك الثلاثة في وادي المخازن 1578، الانتصار الساحق الذي أعاد رسم خريطة المتوسط.', keywords: 'وادي المخازن, 1578, معركة الملوك الثلاثة, السعديون, البرتغال' },
-    'battle-of-isly-1844': { title: 'معركة إيسلي 1844 | MoroVerse', description: 'وقائع معركة إيسلي 1844 وأثرها على مسيرة المغرب في مواجهة التوسع الفرنسي في القرن التاسع عشر.', keywords: 'إيسلي, 1844, محمد الرابع, فرنسا, مغرب' },
-    'volubilis-roman-ruins': { title: 'وليلي — المدينة الرومانية المغربية | MoroVerse', description: 'وليلي، درة المغرب الأثرية ومدينة الزيتون والفسيفساء الرومانية المصنفة من اليونيسكو.', keywords: 'وليلي, مكناس, رومان, أثار مغرب, يونيسكو' },
-    'ait-benhaddou-kasbah': { title: 'قصبة أيت بن حدو — أيقونة السينما العالمية | MoroVerse', description: 'قصبة أيت بن حدو، التراث الطيني العالمي المصنّف من اليونيسكو ومسرح كبريات الأفلام العالمية.', keywords: 'أيت بن حدو, ورزازات, قصبة, يونيسكو, سينما عالمية' },
-    'tinmel-mosque': { title: 'مسجد تينمل — معقل الموحدين | MoroVerse', description: 'مسجد تينمل، التحفة المعمارية المنسية في قلب جبال الأطلس الكبير وأصل دولة الموحدين العظيمة.', keywords: 'تينمل, مسجد, الموحدون, أطلس كبير, مغرب' },
-    'fatima-al-fihriya': { title: 'فاطمة الفهرية — مؤسسة أول جامعة في العالم | MoroVerse', description: 'قصة فاطمة الفهرية الملهمة، مؤسسة جامعة القرويين بفاس، أقدم جامعة في العالم لا تزال تعمل.', keywords: 'فاطمة الفهرية, جامعة القرويين, فاس, إدريسيون, المرأة المغربية' },
-    'ibn-battuta': { title: 'ابن بطوطة — أعظم رحالة في التاريخ | MoroVerse', description: 'الرحلة الأسطورية لابن بطوطة ابن طنجة الذي طاف 44 دولة على مدى 29 عاماً ليصف العالم الوسيط.', keywords: 'ابن بطوطة, طنجة, رحلات, جغرافيا, مغرب' },
-    'yusuf-ibn-tashfin': { title: 'يوسف بن تاشفين — مؤسس مراكش | MoroVerse', description: 'سيرة يوسف بن تاشفين، مؤسس مراكش والإمبراطورية المرابطية الكبرى ومنقذ الأندلس الإسلامية.', keywords: 'يوسف بن تاشفين, مراكش, المرابطون, الأندلس الإسلامية' },
-    'marrakech-city': { title: 'مراكش — البهجة الحمراء | MoroVerse', description: 'دليل شامل عن مراكش، المدينة الملكية الحمراء وقلب السياحة الثقافية في المغرب.', keywords: 'مراكش, جامع الفنا, مدينة حمراء, سياحة مغرب, كوتوبية' },
-    'fes-city': { title: 'فاس — عاصمة الثقافة والروح | MoroVerse', description: 'فاس العريقة، عاصمة الثقافة والعلم وأكبر مدينة عتيقة في العالم، مهد الحضارة المغربية.', keywords: 'فاس, فاس البالي, يونيسكو, القرويين, حرف تقليدية' },
-    'sahara-morocco-merzouga': { title: 'صحراء مرزوكة — جنة الكثبان الذهبية | MoroVerse', description: 'استكشف سحر كثبان مرزوقة الرملية في الصحراء المغربية الكبرى تحت سماء ملأى بالنجوم.', keywords: 'مرزوقة, الصحراء المغربية, إرق شبي, سياحة صحراوية, نجوم ليل' },
-};
-
-// Generate static routes at build time
+// Generate static routes at build time - reads BOTH .md from posts/ AND .html from content/
 export async function generateStaticParams() {
-    const contentDir = path.join(process.cwd(), 'content');
-    if (!fs.existsSync(contentDir)) return [];
+    const params: { slug: string }[] = [];
 
-    const files = fs.readdirSync(contentDir);
-    return files
-        .filter(file => file.endsWith('.html'))
-        .map(file => ({
-            slug: file.replace('.html', '')
-        }));
+    // 1. .md files from content/posts/
+    const postsDir = path.join(process.cwd(), 'content', 'posts');
+    if (fs.existsSync(postsDir)) {
+        const mdFiles = fs.readdirSync(postsDir).filter(f => f.endsWith('.md'));
+        mdFiles.forEach(file => params.push({ slug: file.replace('.md', '') }));
+    }
+
+    // 2. .html files from content/ (legacy)
+    const contentDir = path.join(process.cwd(), 'content');
+    if (fs.existsSync(contentDir)) {
+        const htmlFiles = fs.readdirSync(contentDir).filter(f => f.endsWith('.html'));
+        htmlFiles.forEach(file => {
+            const slug = file.replace('.html', '');
+            if (!params.find(p => p.slug === slug)) params.push({ slug });
+        });
+    }
+
+    return params;
 }
 
-// Generate dynamic metadata for each article
+// Generate metadata
 export async function generateMetadata(props: { params: Promise<{ slug: string }> }): Promise<Metadata> {
     const params = await props.params;
     const slug = params.slug;
-    const meta = ARTICLE_META[slug];
 
-    const title = meta?.title ?? `${slug.replace(/-/g, ' ')} | MoroVerse`;
-    const description = meta?.description ?? `اكتشف ${slug.replace(/-/g, ' ')} في موسوعة MoroVerse الرقمية للتاريخ المغربي.`;
-    const imageUrl = `https://moroverse.vercel.app/hero-bg.png`;
+    // Try to get title from .md frontmatter
+    const postsDir = path.join(process.cwd(), 'content', 'posts');
+    const mdPath = path.join(postsDir, `${slug}.md`);
+    let title = `${slug.replace(/-/g, ' ')} | MoroVerse`;
+    let description = `اكتشف ${slug.replace(/-/g, ' ')} في موسوعة MoroVerse الرقمية للتاريخ المغربي.`;
+    let imageUrl = `https://moroverse.vercel.app/hero-bg.png`;
+
+    if (fs.existsSync(mdPath)) {
+        const raw = fs.readFileSync(mdPath, 'utf8');
+        const { data } = matter(raw);
+        if (data.title) title = `${data.title} | MoroVerse`;
+        if (data.description) description = data.description;
+        if (data.image) imageUrl = data.image;
+    }
+
     const canonicalUrl = `https://moroverse.vercel.app/posts/${slug}`;
 
     return {
         title,
         description,
-        keywords: meta?.keywords ?? 'تاريخ المغرب, موسوعة مغربية, MoroVerse',
+        keywords: 'تاريخ المغرب, موسوعة مغربية, MoroVerse',
         robots: 'index, follow',
         alternates: { canonical: canonicalUrl },
         openGraph: {
@@ -70,7 +74,7 @@ export async function generateMetadata(props: { params: Promise<{ slug: string }
     };
 }
 
-// Next 15+ compatible page component
+// Main page component
 export default async function PostPage(props: {
     params: Promise<{ slug: string }>,
     searchParams: Promise<{ lang?: string }>
@@ -80,20 +84,36 @@ export default async function PostPage(props: {
     const slug = params.slug;
     const lang = searchParams.lang === 'en' ? 'en' : 'ar';
 
-    const contentDir = lang === 'en' ? path.join(process.cwd(), 'content', 'en') : path.join(process.cwd(), 'content');
-    const filePath = path.join(contentDir, `${slug}.html`);
+    let content = '<h1 style="color:#D4AF37;text-align:center;margin:5rem auto;">عذراً، المقال غير موجود</h1>';
+    let articleTitle = '';
+    let articleImage = '';
+    let articleCity = '';
 
-    let content = lang === 'ar'
-        ? '<h1 style="color:#D4AF37;text-align:center;margin:5rem auto;">عذراً، المقال غير موجود</h1>'
-        : '<h1 style="color:#D4AF37;text-align:center;margin:5rem auto;">Sorry, article not found</h1>';
+    // === Priority 1: .md file from content/posts/ ===
+    const postsDir = path.join(process.cwd(), 'content', 'posts');
+    const mdPath = path.join(postsDir, `${slug}.md`);
 
-    if (fs.existsSync(filePath)) {
-        content = fs.readFileSync(filePath, 'utf8');
-    } else if (lang === 'en') {
-        // Fallback to Arabic if English not found
-        const fallbackPath = path.join(process.cwd(), 'content', `${slug}.html`);
-        if (fs.existsSync(fallbackPath)) {
-            content = fs.readFileSync(fallbackPath, 'utf8');
+    if (fs.existsSync(mdPath)) {
+        const raw = fs.readFileSync(mdPath, 'utf8');
+        const { data, content: mdContent } = matter(raw);
+        articleTitle = data.title || '';
+        articleImage = data.image || '';
+        articleCity = data.city || '';
+        content = await marked(mdContent);
+    } else {
+        // === Priority 2: Legacy .html file from content/ ===
+        const contentDir = lang === 'en'
+            ? path.join(process.cwd(), 'content', 'en')
+            : path.join(process.cwd(), 'content');
+        const htmlPath = path.join(contentDir, `${slug}.html`);
+
+        if (fs.existsSync(htmlPath)) {
+            content = fs.readFileSync(htmlPath, 'utf8');
+        } else if (lang === 'en') {
+            const fallbackPath = path.join(process.cwd(), 'content', `${slug}.html`);
+            if (fs.existsSync(fallbackPath)) {
+                content = fs.readFileSync(fallbackPath, 'utf8');
+            }
         }
     }
 
@@ -108,6 +128,26 @@ export default async function PostPage(props: {
                     {lang === 'ar' ? '← العودة إلى MoroVerse' : '← Back to MoroVerse'}
                 </a>
             </div>
+
+            {/* Hero image from frontmatter */}
+            {articleImage && (
+                <div className="container mx-auto px-4 lg:px-20 mb-8 relative z-10">
+                    <div className="relative w-full h-64 md:h-96 rounded-2xl overflow-hidden border border-[#c5a059]/30">
+                        <img
+                            src={articleImage}
+                            alt={articleTitle || slug}
+                            className="w-full h-full object-cover"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
+                        {(articleTitle || articleCity) && (
+                            <div className="absolute bottom-6 right-6 text-right">
+                                {articleTitle && <h1 className="text-2xl md:text-4xl font-black text-[#c5a059] drop-shadow-lg">{articleTitle}</h1>}
+                                {articleCity && <p className="text-white/70 text-sm font-bold uppercase tracking-widest mt-1">{articleCity}</p>}
+                            </div>
+                        )}
+                    </div>
+                </div>
+            )}
 
             <div className="container mx-auto px-4 lg:px-20 relative z-10">
                 <div
