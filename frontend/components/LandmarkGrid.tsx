@@ -122,7 +122,7 @@ export default function LandmarkGrid({ lang }: { lang: 'en' | 'ar' }) {
                             initial={{ opacity: 0, scale: 0.9, y: 40 }}
                             animate={{ opacity: 1, scale: 1, y: 0 }}
                             exit={{ opacity: 0, scale: 0.9, y: 40 }}
-                            className="relative w-full max-w-4xl bg-black/90 rounded-xl shadow-[0_30px_60px_-15px_rgba(0,0,0,0.8),0_0_40px_rgba(197,160,89,0.15)] border border-[#c5a059]/30 overflow-hidden"
+                            className="relative w-full max-w-4xl max-h-[90vh] overflow-y-auto bg-black/90 rounded-xl shadow-[0_30px_60px_-15px_rgba(0,0,0,0.8),0_0_40px_rgba(197,160,89,0.15)] border border-[#c5a059]/30"
                         >
                             {/* Header Visual */}
                             <div className="h-80 bg-black/50 border-b border-[#c5a059]/30 flex flex-col items-center justify-start relative overflow-hidden">
@@ -201,7 +201,7 @@ export default function LandmarkGrid({ lang }: { lang: 'en' | 'ar' }) {
                                     </div>
                                     <button
                                         disabled={selectedLandmark.isPending}
-                                        onClick={() => !selectedLandmark.isPending && router.push(`/archive/${selectedLandmark.id}?lang=${lang}`)}
+                                        onClick={() => !selectedLandmark.isPending && router.push(`/posts/${selectedLandmark.id}?lang=${lang}`)}
                                         className={`w-full py-5 rounded-[32px] ${selectedLandmark.isPending ? 'bg-white/5 text-white/20 border border-white/10' : 'bg-primary text-white shadow-[0_10px_20px_rgba(139,0,0,0.3)] hover:scale-105 hover:shadow-[0_0_20px_rgba(197,160,89,0.8)]'} text-xs font-black uppercase tracking-[0.2em] flex items-center justify-center gap-3 transition-all mt-8 group`}
                                     >
                                         {selectedLandmark.isPending ? <Lock className="w-5 h-5" /> : <Compass className="w-5 h-5 animate-pulse" />}
