@@ -8,7 +8,7 @@ import { getArticle } from '../data/moroverse-content';
 import generatedContent from '../data/generated-content.json';
 const dynamicFigures = generatedContent.figures as HistoricalFigure[];
 import ArticleReader from './ArticleReader';
-import { type LangCode } from '../context/LanguageContext';
+import { LangCode } from '../types/language';
 import TranslatedText from './TranslatedText';
 
 const CategoryIcon = ({ category, className }: { category: HistoricalFigure['category']; className?: string }) => {

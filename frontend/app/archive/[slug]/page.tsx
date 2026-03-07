@@ -2,6 +2,7 @@ import { Metadata } from 'next';
 import { getArticle, moroverseArticles } from '../../../data/moroverse-content';
 import { getMetaTags, generateArticleSchema } from '../../../utils/seo';
 import ArticleReaderPage from './ArticleReaderPage';
+import { LangCode, SUPPORTED_LANGUAGES } from '../../../types/language';
 
 interface Props {
     params: { slug: string };
@@ -15,8 +16,9 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params, searchParams }: Props): Promise<Metadata> {
-    const lang = searchParams.lang === 'en' ? 'en' : 'ar';
-    const article = getArticle(params.slug, params.slug, params.slug, 'battle'); // Fallback logic in getArticle
+    const rawLang = searchParams.lang;
+    const lang = (SUPPORTED_LANGUAGES.find(l => l.code === rawLang)?.code as LangCode) || 'ar';
+    const article = getArticle(params.slug, params.slug, params.slug, 'battle');
     const meta = getMetaTags(article, lang);
 
     return {
@@ -28,7 +30,8 @@ export async function generateMetadata({ params, searchParams }: Props): Promise
 }
 
 export default function Page({ params, searchParams }: Props) {
-    const lang = searchParams.lang === 'en' ? 'en' : 'ar';
+    const rawLang = searchParams.lang;
+    const lang = (SUPPORTED_LANGUAGES.find(l => l.code === rawLang)?.code as LangCode) || 'ar';
     const article = getArticle(params.slug, params.slug, params.slug, 'battle');
     const schema = generateArticleSchema(article, lang);
 

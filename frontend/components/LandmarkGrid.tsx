@@ -8,7 +8,7 @@ import { Landmark } from '../data/morocco-landmarks';
 import generatedContent from '../data/generated-content.json';
 import { generateArticleSchema, getMetaTags } from '../utils/seo';
 import { getArticle } from '../data/moroverse-content';
-import { type LangCode } from '../context/LanguageContext';
+import { LangCode } from '../types/language';
 import TranslatedText from './TranslatedText';
 
 const dynamicLandmarks: Landmark[] = generatedContent.landmarks as Landmark[];

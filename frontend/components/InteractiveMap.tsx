@@ -12,8 +12,10 @@ import {
 } from 'lucide-react';
 import { moroccoRegions, Region, Location } from '../data/morocco-geography';
 
+import { LangCode } from '../types/language';
+
 interface InteractiveMapProps {
-    lang: 'en' | 'ar';
+    lang: LangCode;
     onExplore: (cityName: string) => void;
     onLocationEvent?: (event: { name: string, region: string, type: 'city' | 'battle', pos: { x: number, y: number } }) => void;
     onRegionHover?: (regionId: string | null) => void;
@@ -31,10 +33,15 @@ export default function InteractiveMap({ lang, onExplore, onLocationEvent, onReg
                 // Calculate viewport-relative coordinates
                 const x = rect.left + (parseFloat(loc.coords.left) / 100) * rect.width;
                 const y = rect.top + (parseFloat(loc.coords.top) / 100) * rect.height;
-                onLocationEvent({ name: loc.name[lang], region: region.name[lang], type: 'city', pos: { x, y } });
+                onLocationEvent({
+                    name: lang === 'en' ? loc.name.en : loc.name.ar,
+                    region: lang === 'en' ? region.name.en : region.name.ar,
+                    type: 'city',
+                    pos: { x, y }
+                });
             }
         }
-        onExplore(loc.name[lang]);
+        onExplore(lang === 'en' ? loc.name.en : loc.name.ar);
     };
 
     return (
@@ -98,7 +105,7 @@ export default function InteractiveMap({ lang, onExplore, onLocationEvent, onReg
                             animate={{ y: 0 }}
                             className="text-4xl font-serif text-foreground mb-2"
                         >
-                            {selectedRegion.name[lang]}
+                            {lang === 'en' ? selectedRegion.name.en : selectedRegion.name.ar}
                         </motion.h4>
                         <p className="text-foreground/40 mb-12 italic uppercase tracking-[0.4em] text-[10px]">{selectedRegion.capital} Capital</p>
 
@@ -113,8 +120,12 @@ export default function InteractiveMap({ lang, onExplore, onLocationEvent, onReg
                                     onClick={() => handleLocationClick(loc, selectedRegion)}
                                     className="p-8 rounded-[30px] bg-white border border-foreground/5 cursor-pointer group transition-all text-center shadow-lg hover:border-primary/30 hover:shadow-xl"
                                 >
-                                    <h5 className="text-lg font-bold text-foreground group-hover:text-primary transition-colors">{loc.name[lang]}</h5>
-                                    <p className="text-xs text-ivory/40 mt-3 line-clamp-2 leading-relaxed">{loc.history[lang]}</p>
+                                    <h5 className="text-lg font-bold text-foreground group-hover:text-primary transition-colors">
+                                        {lang === 'en' ? loc.name.en : loc.name.ar}
+                                    </h5>
+                                    <p className="text-xs text-ivory/40 mt-3 line-clamp-2 leading-relaxed">
+                                        {lang === 'en' ? loc.history.en : loc.history.ar}
+                                    </p>
                                 </motion.div>
                             ))}
                         </div>

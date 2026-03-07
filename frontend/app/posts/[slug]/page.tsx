@@ -3,6 +3,7 @@ import path from 'path';
 import matter from 'gray-matter';
 import { marked } from 'marked';
 import type { Metadata } from 'next';
+import { LangCode, SUPPORTED_LANGUAGES } from '../../../types/language';
 
 // Generate static routes at build time - reads BOTH .md from posts/ AND .html from content/
 export async function generateStaticParams() {
@@ -82,7 +83,8 @@ export default async function PostPage(props: {
     const params = await props.params;
     const searchParams = await props.searchParams;
     const slug = params.slug;
-    const lang = searchParams.lang === 'en' ? 'en' : 'ar';
+    const rawLang = searchParams.lang;
+    const lang = (SUPPORTED_LANGUAGES.find(l => l.code === rawLang)?.code as LangCode) || 'ar';
 
     let content = '<h1 style="color:#D4AF37;text-align:center;margin:5rem auto;">عذراً، المقال غير موجود</h1>';
     let articleTitle = '';

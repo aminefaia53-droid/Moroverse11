@@ -1,7 +1,8 @@
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
-import { useLanguage, SUPPORTED_LANGUAGES, type LangCode } from '../../context/LanguageContext';
+import { useLanguage } from '../../context/LanguageContext';
+import { LangCode, SUPPORTED_LANGUAGES } from '../../types/language';
 import { Globe, ChevronDown } from 'lucide-react';
 
 export default function LanguageSwitcher() {

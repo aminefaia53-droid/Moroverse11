@@ -378,7 +378,9 @@ const eras = [
     { id: 'Territorial', en: 'Territorial Integrity', ar: 'ملحمة الصحراء' }
 ];
 
-export default function BattleDashboard({ lang }: { lang: 'en' | 'ar' }) {
+import { LangCode } from '../types/language';
+
+export default function BattleDashboard({ lang }: { lang: LangCode }) {
     const [filter, setFilter] = useState('All');
     const [searchQuery, setSearchQuery] = useState('');
     const [selectedBattle, setSelectedBattle] = useState<Battle | null>(null);
@@ -435,7 +437,7 @@ export default function BattleDashboard({ lang }: { lang: 'en' | 'ar' }) {
                         {selectedBattle && (
                             <script
                                 type="application/ld+json"
-                                dangerouslySetInnerHTML={{ __html: JSON.stringify(generateArticleSchema(getArticle(selectedBattle.id, selectedBattle.name.ar, selectedBattle.name.en, 'battle'), lang)) }}
+                                dangerouslySetInnerHTML={{ __html: JSON.stringify(generateArticleSchema(getArticle(selectedBattle.id, selectedBattle.name.ar, selectedBattle.name.en, 'battle'), lang as string)) }}
                             />
                         )}
                         <Swords className="w-10 h-10 text-primary animate-pulse" />
@@ -506,13 +508,15 @@ export default function BattleDashboard({ lang }: { lang: 'en' | 'ar' }) {
                                     </h4>
                                     <div className="flex items-center gap-2 text-gold-royal/80">
                                         <MapPin className="w-3.5 h-3.5" />
-                                        <span className="text-[9px] uppercase font-black tracking-widest text-white/90">{b.location[lang]}</span>
+                                        <span className="text-[9px] uppercase font-black tracking-widest text-white/90">
+                                            {lang === 'en' ? b.location.en : b.location.ar}
+                                        </span>
                                     </div>
                                 </div>
 
                                 <div className="space-y-6">
                                     <p className="text-[15px] text-white leading-relaxed line-clamp-2 italic drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
-                                        "{b.desc[lang]}"
+                                        "{lang === 'en' ? b.desc.en : b.desc.ar}"
                                     </p>
                                     <div className="flex items-center justify-between pt-6 border-t border-foreground/5">
                                         <div className="flex items-center gap-2">
@@ -562,7 +566,9 @@ export default function BattleDashboard({ lang }: { lang: 'en' | 'ar' }) {
                                 </div>
                                 <div className="relative z-10 space-y-4">
                                     <span className="text-gold-sand text-[9px] font-black uppercase tracking-[0.5em]">{selectedBattle.era} ERA</span>
-                                    <h2 className="text-white text-5xl font-serif font-black uppercase leading-none">{selectedBattle.name[lang]}</h2>
+                                    <h2 className="text-white text-5xl font-serif font-black uppercase leading-none">
+                                        {lang === 'en' ? selectedBattle.name.en : selectedBattle.name.ar}
+                                    </h2>
                                     <div className="flex flex-col pt-4">
                                         <span className="text-white/30 text-[9px] uppercase font-black">Timeline</span>
                                         <span className="text-gold-sand text-3xl font-display">{selectedBattle.year}</span>
@@ -578,7 +584,9 @@ export default function BattleDashboard({ lang }: { lang: 'en' | 'ar' }) {
                                                 <MapPin className="w-4 h-4" />
                                                 <h4 className="text-[10px] font-black uppercase tracking-widest">{lang === 'ar' ? 'الموقع الجغرافي' : 'LOCATION'}</h4>
                                             </div>
-                                            <p className="text-xl font-bold text-white/90">{selectedBattle.location[lang]}</p>
+                                            <p className="text-xl font-bold text-white/90">
+                                                {lang === 'en' ? selectedBattle.location.en : selectedBattle.location.ar}
+                                            </p>
                                         </div>
 
                                         <div className="space-y-3">
@@ -588,10 +596,10 @@ export default function BattleDashboard({ lang }: { lang: 'en' | 'ar' }) {
                                             </div>
                                             <div className="space-y-3">
                                                 <p className="text-base">
-                                                    <span className="text-white/40 font-black text-[9px] uppercase mr-2">Military:</span> {selectedBattle.combatants[lang]}
+                                                    <span className="text-white/40 font-black text-[9px] uppercase mr-2">Military:</span> {lang === 'en' ? selectedBattle.combatants.en : selectedBattle.combatants.ar}
                                                 </p>
                                                 <p className="text-base">
-                                                    <span className="text-white/40 font-black text-[9px] uppercase mr-2">Command:</span> <span className="text-primary font-bold">{selectedBattle.leaders[lang]}</span>
+                                                    <span className="text-white/40 font-black text-[9px] uppercase mr-2">Command:</span> <span className="text-primary font-bold">{lang === 'en' ? selectedBattle.leaders.en : selectedBattle.leaders.ar}</span>
                                                 </p>
                                             </div>
                                         </div>
@@ -601,7 +609,9 @@ export default function BattleDashboard({ lang }: { lang: 'en' | 'ar' }) {
                                                 <Activity className="w-4 h-4" />
                                                 <h4 className="text-[10px] font-black uppercase tracking-widest">{lang === 'ar' ? 'الخسائر' : 'CASUALTIES'}</h4>
                                             </div>
-                                            <p className="text-base text-white/60">{selectedBattle.casualties?.[lang] || (lang === 'ar' ? 'غير مسجلة بدقة' : 'Not recorded in logs')}</p>
+                                            <p className="text-base text-white/60">
+                                                {lang === 'en' ? (selectedBattle.casualties?.en || 'Not recorded in logs') : (selectedBattle.casualties?.ar || 'غير مسجلة بدقة')}
+                                            </p>
                                         </div>
                                     </div>
 
@@ -612,7 +622,7 @@ export default function BattleDashboard({ lang }: { lang: 'en' | 'ar' }) {
                                                 <h4 className="text-[10px] font-black uppercase tracking-widest">{lang === 'ar' ? 'النهج التكتيكي' : 'TACTICAL APPROACH'}</h4>
                                             </div>
                                             <div className="p-6 bg-emerald-500/10 rounded-xl border-l-4 border-emerald-500 italic text-base text-emerald-400 leading-relaxed">
-                                                "{selectedBattle.tactics[lang]}"
+                                                "{lang === 'en' ? selectedBattle.tactics.en : selectedBattle.tactics.ar}"
                                             </div>
                                         </div>
 
@@ -622,14 +632,14 @@ export default function BattleDashboard({ lang }: { lang: 'en' | 'ar' }) {
                                                 <h4 className="text-[10px] font-black uppercase tracking-widest">{lang === 'ar' ? 'الأثر التاريخي' : 'HISTORICAL LEGACY'}</h4>
                                             </div>
                                             <p className="text-base text-white/70 leading-relaxed">
-                                                {selectedBattle.impact[lang]}
+                                                {lang === 'en' ? selectedBattle.impact.en : selectedBattle.impact.ar}
                                             </p>
                                         </div>
 
                                         <div className="p-8 bg-black/40 rounded-xl border border-white/5">
                                             <span className="text-[9px] font-black text-white/40 uppercase tracking-widest block mb-1">Outcome</span>
                                             <p className="text-xl font-black text-primary uppercase">
-                                                {selectedBattle.outcome[lang]}
+                                                {lang === 'en' ? selectedBattle.outcome.en : selectedBattle.outcome.ar}
                                             </p>
                                         </div>
 

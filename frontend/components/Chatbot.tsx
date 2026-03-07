@@ -9,8 +9,10 @@ interface Message {
     text: string;
 }
 
+import { LangCode } from '../types/language';
+
 interface ChatbotProps {
-    lang: 'en' | 'ar';
+    lang: LangCode;
     externalTrigger?: { text: string; id: number };
 }
 
