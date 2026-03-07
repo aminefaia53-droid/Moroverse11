@@ -134,24 +134,24 @@ export default function EditorPage() {
     useEffect(() => { fetchItems(); }, [fetchItems]);
 
     useEffect(() => {
-        setSelectedEntityEn(''); setSelectedEntityAr('');
-        setCityEn(''); setCityAr('');
-        setDescEn(''); setDescAr(''); setImageUrl('');
+        setSelectedEntityAr('');
+        setCityAr('');
+        setDescAr(''); setImageUrl('');
         setMode('new');
     }, [category]);
 
     const handleEntityChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-        const enVal = e.target.value;
-        setSelectedEntityEn(enVal);
-        const matched = CATEGORY_ENTITIES[category]?.find((c: BilingualEntry) => c.en === enVal);
-        setSelectedEntityAr(matched?.ar || '');
+        const arVal = e.target.value;
+        setSelectedEntityAr(arVal);
+        const matched = CATEGORY_ENTITIES[category]?.find((c: BilingualEntry) => c.ar === arVal);
+        setSelectedEntityEn(matched?.en || '');
     };
 
     const handleCityChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-        const enVal = e.target.value;
-        setCityEn(enVal);
-        const matched = CATEGORY_ENTITIES['cities']?.find((c: BilingualEntry) => c.en === enVal);
-        setCityAr(matched?.ar || '');
+        const arVal = e.target.value;
+        setCityAr(arVal);
+        const matched = CATEGORY_ENTITIES['cities']?.find((c: BilingualEntry) => c.ar === arVal);
+        setCityEn(matched?.en || '');
     };
 
     const loadForEdit = (item: EntityItem) => {
@@ -168,14 +168,14 @@ export default function EditorPage() {
 
     const handleSave = async (e: React.FormEvent) => {
         e.preventDefault();
-        if (!selectedEntityEn) { alert('Please select an entity.'); return; }
+        if (!selectedEntityAr) { alert('الرجاء اختيار العنصر.'); return; }
         setStatus('saving');
         const payload = {
-            id: toId(selectedEntityEn),
+            id: toId(selectedEntityEn || selectedEntityAr),
             category,
             title: { en: selectedEntityEn, ar: selectedEntityAr },
             city: { en: cityEn, ar: cityAr },
-            description: { en: descEn, ar: descAr },
+            description: { en: descEn || '', ar: descAr },
             imageUrl,
             isPending: publishStatus === 'draft',
             dateAdded: new Date().toISOString(),
@@ -246,20 +246,8 @@ export default function EditorPage() {
                         onImageUpload={url => setImageUrl(url)}
                     />
 
-                    {/* Bilingual editors side-by-side */}
-                    <div className="flex flex-1 overflow-hidden divide-x divide-[#c5a059]/10">
-                        {/* English */}
-                        <div className="flex-1 flex flex-col overflow-hidden bg-[#080f1e]">
-                            <DragDropEditor
-                                textareaRef={textareaEnRef}
-                                value={descEn}
-                                onChange={setDescEn}
-                                dir="ltr"
-                                placeholder="Write the English description here... Drag & drop images directly into this area."
-                                label="English / الإنجليزية"
-                            />
-                        </div>
-                        {/* Arabic */}
+                    {/* Arabic Editor Only */}
+                    <div className="flex flex-1 overflow-hidden">
                         <div className="flex-1 flex flex-col overflow-hidden bg-[#060c18]">
                             <DragDropEditor
                                 textareaRef={textareaArRef}
@@ -267,7 +255,7 @@ export default function EditorPage() {
                                 onChange={setDescAr}
                                 dir="rtl"
                                 placeholder="اكتب الوصف العربي هنا... يمكنك سحب الصور وإفلاتها مباشرة."
-                                label="Arabic / العربية"
+                                label="البحث عن العظمة المغربية وكتابتها..."
                             />
                         </div>
                     </div>
@@ -321,15 +309,15 @@ export default function EditorPage() {
                             <label className="block text-xs font-bold text-gray-400 uppercase tracking-widest mb-2">
                                 {CATEGORY_LABELS[category]}
                             </label>
-                            <select value={selectedEntityEn} onChange={handleEntityChange} required
-                                className="w-full text-sm px-3 py-2 rounded-lg bg-[#112240] border border-[#c5a059]/20 text-white focus:ring-1 focus:ring-gold-royal outline-none">
-                                <option value="">— Select —</option>
+                            <select value={selectedEntityAr} onChange={handleEntityChange} required
+                                className="w-full text-sm px-3 py-2 rounded-lg bg-[#112240] border border-[#c5a059]/20 text-white focus:ring-1 focus:ring-gold-royal outline-none font-arabic" dir="rtl">
+                                <option value="">— اختر العنصر —</option>
                                 {categoryEntities.map((c: BilingualEntry) => (
-                                    <option key={c.en} value={c.en}>{c.en}</option>
+                                    <option key={c.en} value={c.ar}>{c.ar}</option>
                                 ))}
                             </select>
-                            {selectedEntityAr && (
-                                <div className="mt-1 text-xs text-gold-royal/70 font-arabic text-right px-1">{selectedEntityAr}</div>
+                            {selectedEntityEn && (
+                                <div className="mt-1 text-xs text-gold-royal/50 text-left px-1">{selectedEntityEn}</div>
                             )}
                         </div>
 
@@ -337,14 +325,14 @@ export default function EditorPage() {
                         {showCitySelector && (
                             <div>
                                 <label className="block text-xs font-bold text-gray-400 uppercase tracking-widest mb-2">Associated City</label>
-                                <select value={cityEn} onChange={handleCityChange}
-                                    className="w-full text-sm px-3 py-2 rounded-lg bg-[#112240] border border-[#c5a059]/20 text-white focus:ring-1 focus:ring-gold-royal outline-none">
-                                    <option value="">— Optional —</option>
+                                <select value={cityAr} onChange={handleCityChange}
+                                    className="w-full text-sm px-3 py-2 rounded-lg bg-[#112240] border border-[#c5a059]/20 text-white focus:ring-1 focus:ring-gold-royal outline-none font-arabic" dir="rtl">
+                                    <option value="">— اختياري —</option>
                                     {citiesEntities.map((c: BilingualEntry) => (
-                                        <option key={c.en} value={c.en}>{c.en}</option>
+                                        <option key={c.en} value={c.ar}>{c.ar}</option>
                                     ))}
                                 </select>
-                                {cityAr && <div className="mt-1 text-xs text-gold-royal/70 font-arabic text-right px-1">{cityAr}</div>}
+                                {cityEn && <div className="mt-1 text-xs text-gold-royal/50 text-left px-1">{cityEn}</div>}
                             </div>
                         )}
 
@@ -384,10 +372,7 @@ export default function EditorPage() {
                         <div className="border-t border-[#c5a059]/10 pt-4">
                             <div className="text-xs text-gray-600 space-y-1">
                                 <div className="flex justify-between">
-                                    <span>EN Words</span><span className="text-gray-400 font-bold">{descEn.trim().split(/\s+/).filter(Boolean).length}</span>
-                                </div>
-                                <div className="flex justify-between">
-                                    <span>AR Words</span><span className="text-gray-400 font-bold">{descAr.trim().split(/\s+/).filter(Boolean).length}</span>
+                                    <span>عدد الكلمات (AR)</span><span className="text-gray-400 font-bold">{descAr.trim().split(/\s+/).filter(Boolean).length}</span>
                                 </div>
                             </div>
                         </div>

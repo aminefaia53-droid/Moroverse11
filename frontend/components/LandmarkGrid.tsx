@@ -8,6 +8,8 @@ import { Landmark } from '../data/morocco-landmarks';
 import generatedContent from '../data/generated-content.json';
 import { generateArticleSchema, getMetaTags } from '../utils/seo';
 import { getArticle } from '../data/moroverse-content';
+import { type LangCode } from '../context/LanguageContext';
+import TranslatedText from './TranslatedText';
 
 const dynamicLandmarks: Landmark[] = generatedContent.landmarks as Landmark[];
 
@@ -24,7 +26,7 @@ const LandmarkSoulIcon = ({ soul, className }: { soul: Landmark['visualSoul']; c
     }
 };
 
-export default function LandmarkGrid({ lang }: { lang: 'en' | 'ar' }) {
+export default function LandmarkGrid({ lang }: { lang: LangCode }) {
     const router = useRouter();
     const [selectedCity, setSelectedCity] = useState<string | null>(null);
     const [searchQuery, setSearchQuery] = useState('');
@@ -86,7 +88,7 @@ export default function LandmarkGrid({ lang }: { lang: 'en' | 'ar' }) {
                         onClick={() => setSelectedCity(city.en)}
                         className={`px-6 py-2 rounded-2xl border text-[10px] font-black uppercase tracking-widest transition-all ${selectedCity === city.en ? 'bg-primary text-white border-primary shadow-[0_0_15px_rgba(197,160,89,0.4)]' : 'bg-black/30 text-white/50 border-white/5 hover:border-white/20 hover:text-white hover:bg-black/60'}`}
                     >
-                        {city[lang]}
+                        {city[lang] || city['en']}
                     </button>
                 ))}
             </div>
@@ -140,8 +142,12 @@ export default function LandmarkGrid({ lang }: { lang: 'en' | 'ar' }) {
                                     <div className="inline-block p-6 rounded-full bg-black shadow-[0_0_30px_rgba(197,160,89,0.3)] border border-[#c5a059] mb-6">
                                         <LandmarkSoulIcon soul={selectedLandmark?.visualSoul} className="w-12 h-12 text-[#c5a059]" />
                                     </div>
-                                    <h2 className="text-5xl font-black text-[#c5a059] font-arabic drop-shadow-md">{selectedLandmark?.name?.[lang]}</h2>
-                                    <p className="text-[11px] font-black text-white/80 uppercase tracking-[0.3em] mt-2">{selectedLandmark?.city?.[lang]}</p>
+                                    <h2 className="text-5xl font-black text-[#c5a059] font-arabic drop-shadow-md">
+                                        <TranslatedText arabicText={selectedLandmark?.name?.ar || ''} />
+                                    </h2>
+                                    <p className="text-[11px] font-black text-white/80 uppercase tracking-[0.3em] mt-2">
+                                        <TranslatedText arabicText={selectedLandmark?.city?.ar || ''} />
+                                    </p>
                                 </div>
                                 <button
                                     onClick={() => setSelectedLandmark(null)}
@@ -163,7 +169,7 @@ export default function LandmarkGrid({ lang }: { lang: 'en' | 'ar' }) {
                                         <div className="p-6 rounded-3xl bg-black/40 border border-[#c5a059]/20 space-y-4">
                                             <div className="flex justify-between items-center pb-4 border-b border-[#c5a059]/10">
                                                 <span className="text-[11px] font-bold text-white/50 uppercase">{lang === 'ar' ? 'تاريخ التأسيس' : 'FOUNDED'}</span>
-                                                <span className="text-sm font-black text-white">{selectedLandmark?.foundation?.[lang]}</span>
+                                                <span className="text-sm font-black text-white">{selectedLandmark?.foundation?.[lang] || selectedLandmark?.foundation?.['en']}</span>
                                             </div>
                                             <div className="flex justify-between items-center pt-2">
                                                 <span className="text-[11px] font-bold text-white/50 uppercase">{lang === 'ar' ? 'نمط العمارة' : 'STYLE'}</span>
@@ -178,7 +184,7 @@ export default function LandmarkGrid({ lang }: { lang: 'en' | 'ar' }) {
                                             {lang === 'ar' ? 'النبذة المعمارية والسيادية' : 'ARCHITECTURAL BRIEF'}
                                         </h4>
                                         <p className="text-lg text-white/90 leading-relaxed tracking-wide font-serif italic text-justify">
-                                            "{selectedLandmark?.history?.[lang]}"
+                                            <TranslatedText arabicText={selectedLandmark?.history?.ar || ''} />
                                         </p>
                                     </div>
                                 </div>
@@ -229,7 +235,7 @@ function LandmarkCard({
 }: {
     landmark: Landmark;
     idx: number;
-    lang: 'en' | 'ar';
+    lang: LangCode;
     onClick: (landmark: Landmark) => void
 }) {
     return (
@@ -288,18 +294,18 @@ function LandmarkCard({
                     <div className="space-y-4">
                         <div className="flex items-center gap-2">
                             <h3 className="text-3xl md:text-4xl font-black text-[#c5a059] drop-shadow-[0_4px_8px_rgba(0,0,0,0.8)] font-arabic leading-tight transform group-hover:translate-x-2 transition-transform duration-500">
-                                {landmark.name[lang]}
+                                <TranslatedText arabicText={landmark.name.ar} />
                             </h3>
                             {landmark.isPending && <Lock className="w-4 h-4 text-white/20" />}
                         </div>
                         <div className="flex items-center gap-3">
                             <MapPin className="w-4 h-4 text-[#c5a059]" />
                             <span className="text-xs font-bold text-white/90 uppercase tracking-widest drop-shadow-md">
-                                {landmark.city[lang]}
+                                <TranslatedText arabicText={landmark.city.ar} />
                             </span>
                         </div>
-                        <p className="text-sm text-white/60 line-clamp-2 italic font-medium opacity-0 group-hover:opacity-100 transition-all duration-700 translate-y-4 group-hover:translate-y-0 mt-4 max-w-[90%]">
-                            "{landmark.history[lang]}"
+                        <p className="text-sm text-white/60 line-clamp-2 italic font-medium opacity-0 group-hover:opacity-100 transition-all duration-700 translate-y-4 group-hover:translate-y-0 mt-4 max-w-[90%] font-arabic">
+                            <TranslatedText arabicText={landmark.history.ar} />
                         </p>
                     </div>
                 </div>

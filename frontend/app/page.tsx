@@ -16,6 +16,7 @@ import HistoricalFiguresGrid from "../components/HistoricalFiguresGrid";
 import AudioManager from "../utils/AudioManager";
 import MoroVerseLogo from '@/components/MoroVerseLogo';
 import { useLanguage } from "../context/LanguageContext";
+import LanguageSwitcher from "../components/ui/LanguageSwitcher";
 
 export default function Home() {
   const { lang, setLang } = useLanguage();
@@ -34,7 +35,7 @@ export default function Home() {
     return () => window.removeEventListener('click', handleFirstInteraction);
   }, []);
 
-  const t = {
+  const t = ({
     en: {
       welcome: "MoroVerse: The Imperial Horizon",
       subtitle: "A Majesty Beyond Shadows, Carved in Eternal Emerald",
@@ -65,7 +66,23 @@ export default function Home() {
         figuresDesc: "اكتشف الأعلام الذين سطروا أمجاد المملكة عبر العصور."
       }
     }
-  }[lang];
+  } as any)[lang] || ({
+    en: {
+      welcome: "MoroVerse: The Imperial Horizon",
+      subtitle: "A Majesty Beyond Shadows, Carved in Eternal Emerald",
+      cta: "Explore the Encyclopedia",
+      sections: {
+        encyclopedia: "Kingdom Encyclopedia",
+        encyclopediaDesc: "Explore the soul of every city, from the blue jewel in the north to the Atlantic pearl of the south.",
+        battles: "Epochs of Valor",
+        battlesDesc: "Where dynastic glory meets the infinite drift.",
+        landmarks: "Majestic Landmarks",
+        landmarksDesc: "Exploring the zenith of Moroccan architectural and historical heritage.",
+        figures: "Historical Figures",
+        figuresDesc: "Discover the luminaries who shaped the destiny of the Kingdom across the ages."
+      }
+    }
+  }).en;
 
   if (!isClient) return null;
 
@@ -127,12 +144,7 @@ export default function Home() {
           <h1 className="font-display text-lg md:text-2xl tracking-[0.4em] text-white font-black uppercase text-glow hidden md:block">MOROVERSE</h1>
         </div>
         <div className="flex items-center gap-4 md:gap-8 pr-[70px] md:pr-0">
-          <button
-            onClick={() => setLang(lang === 'en' ? 'ar' : 'en')}
-            className="font-bold text-[9px] md:text-[10px] tracking-widest text-primary/80 hover:text-primary transition-all px-4 py-2 md:px-8 md:py-3 rounded-full border border-primary/20 bg-black/40 backdrop-blur-md whitespace-nowrap hover:shadow-[0_0_15px_rgba(197,160,89,0.3)] hover:border-primary/50"
-          >
-            {lang === 'en' ? 'العربية' : 'English'}
-          </button>
+          <LanguageSwitcher />
         </div>
       </header>
 

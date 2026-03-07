@@ -8,6 +8,8 @@ import { getArticle } from '../data/moroverse-content';
 import generatedContent from '../data/generated-content.json';
 const dynamicFigures = generatedContent.figures as HistoricalFigure[];
 import ArticleReader from './ArticleReader';
+import { type LangCode } from '../context/LanguageContext';
+import TranslatedText from './TranslatedText';
 
 const CategoryIcon = ({ category, className }: { category: HistoricalFigure['category']; className?: string }) => {
     switch (category) {
@@ -20,7 +22,7 @@ const CategoryIcon = ({ category, className }: { category: HistoricalFigure['cat
     }
 };
 
-export default function HistoricalFiguresGrid({ lang }: { lang: 'en' | 'ar' }) {
+export default function HistoricalFiguresGrid({ lang }: { lang: LangCode }) {
     const [selectedCategory, setSelectedCategory] = useState<HistoricalFigure['category'] | null>(null);
     const [searchQuery, setSearchQuery] = useState('');
     const [selectedFigure, setSelectedFigure] = useState<HistoricalFigure | null>(null);
@@ -98,7 +100,7 @@ export default function HistoricalFiguresGrid({ lang }: { lang: 'en' | 'ar' }) {
                             }`}
                     >
                         <CategoryIcon category={cat} className="w-3 h-3" />
-                        {getCategoryLabel(cat, lang)}
+                        {getCategoryLabel(cat, lang === 'ar' ? 'ar' : 'en')}
                     </button>
                 ))}
             </div>
@@ -141,7 +143,7 @@ function FigureCard({
 }: {
     figure: HistoricalFigure;
     idx: number;
-    lang: 'en' | 'ar';
+    lang: LangCode;
     onClick: (figure: HistoricalFigure) => void;
 }) {
     return (
@@ -191,14 +193,14 @@ function FigureCard({
 
                     <div className="space-y-4">
                         <h3 className="text-4xl font-black text-[#c5a059] drop-shadow-[0_4px_8px_rgba(0,0,0,0.8)] font-arabic leading-tight transform group-hover:translate-x-2 transition-transform duration-500">
-                            {figure.name[lang]}
+                            <TranslatedText arabicText={figure.name.ar} />
                         </h3>
                         <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/40 backdrop-blur-md text-white group-hover:text-primary text-[10px] font-bold uppercase tracking-widest border border-white/10 transition-colors">
                             <Sparkles className="w-3 h-3 text-[#c5a059]" />
-                            {figure.specialty[lang]}
+                            <TranslatedText arabicText={figure.specialty.ar} />
                         </div>
-                        <p className="text-sm text-white/80 line-clamp-2 italic font-medium opacity-0 group-hover:opacity-100 transition-all duration-700 translate-y-4 group-hover:translate-y-0 mt-4 max-w-[90%]">
-                            {figure.shortBio[lang]}
+                        <p className="text-sm text-white/80 line-clamp-2 italic font-medium opacity-0 group-hover:opacity-100 transition-all duration-700 translate-y-4 group-hover:translate-y-0 mt-4 max-w-[90%] font-arabic">
+                            <TranslatedText arabicText={figure.shortBio.ar} />
                         </p>
                     </div>
                 </div>
