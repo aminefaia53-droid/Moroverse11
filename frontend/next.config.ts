@@ -18,6 +18,9 @@ const nextConfig: NextConfig = {
     ],
   },
   async rewrites() {
+    // Only rewrite to local backend during DEVELOPMENT, NEVER in PRODUCTION/VERCEL
+    if (process.env.NODE_ENV === 'production') return [];
+
     return [
       {
         source: '/api/:path*',

@@ -36,6 +36,30 @@ function DragDropEditor({
     const [dragging, setDragging] = useState(false);
     const [uploading, setUploading] = useState(false);
 
+    const compressImage = (file: File): Promise<Blob | File> => {
+        return new Promise((resolve) => {
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = (event) => {
+                const img = new Image();
+                img.src = event.target?.result as string;
+                img.onload = () => {
+                    const canvas = document.createElement('canvas');
+                    let width = img.width;
+                    let height = img.height;
+                    const max = 1200;
+                    if (width > height && width > max) { height *= max / width; width = max; }
+                    else if (height > max) { width *= max / height; height = max; }
+                    canvas.width = width;
+                    canvas.height = height;
+                    const ctx = canvas.getContext('2d');
+                    ctx?.drawImage(img, 0, 0, width, height);
+                    canvas.toBlob((blob) => resolve(blob || file), 'image/jpeg', 0.8);
+                };
+            };
+        });
+    };
+
     const handleDrop = async (e: DragEvent<HTMLDivElement>) => {
         e.preventDefault();
         setDragging(false);
@@ -43,9 +67,11 @@ function DragDropEditor({
         if (!file || !file.type.startsWith('image/')) return;
 
         setUploading(true);
-        const formData = new FormData();
-        formData.append('file', file);
         try {
+            const compressedBlob = await compressImage(file);
+            const formData = new FormData();
+            formData.append('file', compressedBlob, file.name);
+
             const res = await fetch('/api/admin/images/upload', { method: 'POST', body: formData });
             const data = await res.json();
             if (data.success) {
@@ -53,7 +79,12 @@ function DragDropEditor({
                 const cursor = ta?.selectionStart ?? value.length;
                 const inserted = `![${file.name}](${data.url})\n`;
                 onChange(value.substring(0, cursor) + inserted + value.substring(cursor));
+            } else {
+                alert(`Upload failed: ${data.message}${data.error ? ` (${data.error})` : ''}${data.hint ? `\nHint: ${data.hint}` : ''}`);
             }
+        } catch (e: any) {
+            console.error('Upload Error Client:', e);
+            alert('An error occurred during upload: ' + (e.message || 'Unknown error'));
         } finally {
             setUploading(false);
         }
@@ -238,11 +269,11 @@ export default function EditorPage() {
             <form id="editor-form" onSubmit={handleSave} className="flex flex-1 overflow-hidden">
                 {/* ——— LEFT: Writing area ——— */}
                 <div className="flex-1 flex flex-col overflow-hidden border-r border-[#c5a059]/20">
-                    {/* Rich Toolbar (shared — applies to EN editor) */}
+                    {/* Rich Toolbar (Targets Arabic editor for Moroccan local experience) */}
                     <RichToolbar
-                        textareaRef={textareaEnRef}
-                        value={descEn}
-                        onChange={setDescEn}
+                        textareaRef={textareaArRef}
+                        value={descAr}
+                        onChange={setDescAr}
                         onImageUpload={url => setImageUrl(url)}
                     />
 

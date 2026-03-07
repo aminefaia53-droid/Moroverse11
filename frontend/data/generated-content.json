@@ -7,23 +7,14 @@
         "en": "Hassan Tower"
       },
       "desc": {
-        "ar": "أهلاً بك في مقال جديد عن جمال المغرب! اليوم سنأخذك في رحلة إلى مدينة الرباط لنكتشف معاً صومعة حسان.\r\n\r\nتقف صومعة حسان شامخة كشاهد أبدي على عظمة الدولة الموحدية،...",
-        "en": "أهلاً بك في مقال جديد عن جمال المغرب! اليوم سنأخذك في رحلة إلى مدينة الرباط لنكتشف معاً صومعة حسان.\r\n\r\nتقف صومعة حسان شامخة كشاهد أبدي على عظمة الدولة الموحدية،..."
+        "ar": "",
+        "en": ""
       },
       "imageUrl": "https://images.unsplash.com/photo-1674227638969-56d64fba03e1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4ODUyMjR8MHwxfHNlYXJjaHwxfHwlRDglQjUlRDklODglRDklODUlRDglQjklRDglQTklMjAlRDglQUQlRDglQjMlRDglQTclRDklODYlMjBNb3JvY2NvfGVufDB8fHx8MTc3MjM3MDc0OHww&ixlib=rb-4.1.0&q=80&w=1080",
       "city": {
         "ar": "الرباط",
         "en": "Rabat"
       },
-      "foundation": {
-        "ar": "تاريخي",
-        "en": "Historical"
-      },
-      "history": {
-        "ar": "أهلاً بك في مقال جديد عن جمال المغرب! اليوم سنأخذك في رحلة إلى مدينة الرباط لنكتشف معاً صومعة حسان.\r\n\r\nتقف صومعة حسان شامخة كشاهد أبدي على عظمة الدولة الموحدية،...",
-        "en": "أهلاً بك في مقال جديد عن جمال المغرب! اليوم سنأخذك في رحلة إلى مدينة الرباط لنكتشف معاً صومعة حسان.\r\n\r\nتقف صومعة حسان شامخة كشاهد أبدي على عظمة الدولة الموحدية،..."
-      },
-      "visualSoul": "Ruin",
       "isPending": false
     },
     {
@@ -33,23 +24,14 @@
         "en": "Kasbah of the Udayas"
       },
       "desc": {
-        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
-        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+        "ar": "معلمة في الرباط بانتظار التوثيق.",
+        "en": "Landmark in Rabat awaiting documentation."
       },
       "imageUrl": null,
       "city": {
         "ar": "الرباط",
         "en": "Rabat"
       },
-      "foundation": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "history": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "visualSoul": "Ruin",
       "isPending": true
     },
     {
@@ -59,23 +41,14 @@
         "en": "Chellah"
       },
       "desc": {
-        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
-        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+        "ar": "معلمة في الرباط بانتظار التوثيق.",
+        "en": "Landmark in Rabat awaiting documentation."
       },
       "imageUrl": null,
       "city": {
         "ar": "الرباط",
         "en": "Rabat"
       },
-      "foundation": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "history": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "visualSoul": "Ruin",
       "isPending": true
     },
     {
@@ -85,23 +58,14 @@
         "en": "Mausoleum of Mohammed V"
       },
       "desc": {
-        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
-        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+        "ar": "معلمة في الرباط بانتظار التوثيق.",
+        "en": "Landmark in Rabat awaiting documentation."
       },
       "imageUrl": null,
       "city": {
         "ar": "الرباط",
         "en": "Rabat"
       },
-      "foundation": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "history": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "visualSoul": "Ruin",
       "isPending": true
     },
     {
@@ -111,23 +75,14 @@
         "en": "Botanical Test Garden"
       },
       "desc": {
-        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
-        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+        "ar": "معلمة في الرباط بانتظار التوثيق.",
+        "en": "Landmark in Rabat awaiting documentation."
       },
       "imageUrl": null,
       "city": {
         "ar": "الرباط",
         "en": "Rabat"
       },
-      "foundation": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "history": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "visualSoul": "Ruin",
       "isPending": true
     },
     {
@@ -137,23 +92,14 @@
         "en": "Mohammed VI Museum"
       },
       "desc": {
-        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
-        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+        "ar": "معلمة في الرباط بانتظار التوثيق.",
+        "en": "Landmark in Rabat awaiting documentation."
       },
       "imageUrl": null,
       "city": {
         "ar": "الرباط",
         "en": "Rabat"
       },
-      "foundation": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "history": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "visualSoul": "Ruin",
       "isPending": true
     },
     {
@@ -163,23 +109,14 @@
         "en": "Touarga Palace"
       },
       "desc": {
-        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
-        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+        "ar": "معلمة في الرباط بانتظار التوثيق.",
+        "en": "Landmark in Rabat awaiting documentation."
       },
       "imageUrl": null,
       "city": {
         "ar": "الرباط",
         "en": "Rabat"
       },
-      "foundation": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "history": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "visualSoul": "Ruin",
       "isPending": true
     },
     {
@@ -189,23 +126,14 @@
         "en": "Rabat Ville Station"
       },
       "desc": {
-        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
-        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+        "ar": "معلمة في الرباط بانتظار التوثيق.",
+        "en": "Landmark in Rabat awaiting documentation."
       },
       "imageUrl": null,
       "city": {
         "ar": "الرباط",
         "en": "Rabat"
       },
-      "foundation": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "history": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "visualSoul": "Ruin",
       "isPending": true
     },
     {
@@ -215,23 +143,14 @@
         "en": "St Peters Cathedral"
       },
       "desc": {
-        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
-        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+        "ar": "معلمة في الرباط بانتظار التوثيق.",
+        "en": "Landmark in Rabat awaiting documentation."
       },
       "imageUrl": null,
       "city": {
         "ar": "الرباط",
         "en": "Rabat"
       },
-      "foundation": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "history": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "visualSoul": "Ruin",
       "isPending": true
     },
     {
@@ -241,23 +160,14 @@
         "en": "Bab Rouah"
       },
       "desc": {
-        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
-        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+        "ar": "معلمة في الرباط بانتظار التوثيق.",
+        "en": "Landmark in Rabat awaiting documentation."
       },
       "imageUrl": null,
       "city": {
         "ar": "الرباط",
         "en": "Rabat"
       },
-      "foundation": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "history": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "visualSoul": "Ruin",
       "isPending": true
     },
     {
@@ -267,23 +177,14 @@
         "en": "Hassan II Mosque"
       },
       "desc": {
-        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
-        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+        "ar": "معلمة في الدار البيضاء بانتظار التوثيق.",
+        "en": "Landmark in Casablanca awaiting documentation."
       },
       "imageUrl": null,
       "city": {
         "ar": "الدار البيضاء",
         "en": "Casablanca"
       },
-      "foundation": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "history": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "visualSoul": "Ruin",
       "isPending": true
     },
     {
@@ -293,23 +194,14 @@
         "en": "Habous Quarter"
       },
       "desc": {
-        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
-        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+        "ar": "معلمة في الدار البيضاء بانتظار التوثيق.",
+        "en": "Landmark in Casablanca awaiting documentation."
       },
       "imageUrl": null,
       "city": {
         "ar": "الدار البيضاء",
         "en": "Casablanca"
       },
-      "foundation": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "history": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "visualSoul": "Ruin",
       "isPending": true
     },
     {
@@ -319,23 +211,14 @@
         "en": "Mahkama du Pacha"
       },
       "desc": {
-        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
-        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+        "ar": "معلمة في الدار البيضاء بانتظار التوثيق.",
+        "en": "Landmark in Casablanca awaiting documentation."
       },
       "imageUrl": null,
       "city": {
         "ar": "الدار البيضاء",
         "en": "Casablanca"
       },
-      "foundation": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "history": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "visualSoul": "Ruin",
       "isPending": true
     },
     {
@@ -345,23 +228,14 @@
         "en": "El Hank Lighthouse"
       },
       "desc": {
-        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
-        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+        "ar": "معلمة في الدار البيضاء بانتظار التوثيق.",
+        "en": "Landmark in Casablanca awaiting documentation."
       },
       "imageUrl": null,
       "city": {
         "ar": "الدار البيضاء",
         "en": "Casablanca"
       },
-      "foundation": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "history": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "visualSoul": "Ruin",
       "isPending": true
     },
     {
@@ -371,23 +245,14 @@
         "en": "Mohammed V Square"
       },
       "desc": {
-        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
-        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+        "ar": "معلمة في الدار البيضاء بانتظار التوثيق.",
+        "en": "Landmark in Casablanca awaiting documentation."
       },
       "imageUrl": null,
       "city": {
         "ar": "الدار البيضاء",
         "en": "Casablanca"
       },
-      "foundation": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "history": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "visualSoul": "Ruin",
       "isPending": true
     },
     {
@@ -397,23 +262,14 @@
         "en": "Arab League Park"
       },
       "desc": {
-        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
-        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+        "ar": "معلمة في الدار البيضاء بانتظار التوثيق.",
+        "en": "Landmark in Casablanca awaiting documentation."
       },
       "imageUrl": null,
       "city": {
         "ar": "الدار البيضاء",
         "en": "Casablanca"
       },
-      "foundation": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "history": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "visualSoul": "Ruin",
       "isPending": true
     },
     {
@@ -423,23 +279,14 @@
         "en": "Morocco Mall"
       },
       "desc": {
-        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
-        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+        "ar": "معلمة في الدار البيضاء بانتظار التوثيق.",
+        "en": "Landmark in Casablanca awaiting documentation."
       },
       "imageUrl": null,
       "city": {
         "ar": "الدار البيضاء",
         "en": "Casablanca"
       },
-      "foundation": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "history": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "visualSoul": "Ruin",
       "isPending": true
     },
     {
@@ -449,23 +296,14 @@
         "en": "Ould el Hamra Mosque"
       },
       "desc": {
-        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
-        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+        "ar": "معلمة في الدار البيضاء بانتظار التوثيق.",
+        "en": "Landmark in Casablanca awaiting documentation."
       },
       "imageUrl": null,
       "city": {
         "ar": "الدار البيضاء",
         "en": "Casablanca"
       },
-      "foundation": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "history": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "visualSoul": "Ruin",
       "isPending": true
     },
     {
@@ -475,23 +313,14 @@
         "en": "Sacred Heart Cathedral"
       },
       "desc": {
-        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
-        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+        "ar": "معلمة في الدار البيضاء بانتظار التوثيق.",
+        "en": "Landmark in Casablanca awaiting documentation."
       },
       "imageUrl": null,
       "city": {
         "ar": "الدار البيضاء",
         "en": "Casablanca"
       },
-      "foundation": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "history": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "visualSoul": "Ruin",
       "isPending": true
     },
     {
@@ -501,23 +330,14 @@
         "en": "Anfa Historic District"
       },
       "desc": {
-        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
-        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+        "ar": "معلمة في الدار البيضاء بانتظار التوثيق.",
+        "en": "Landmark in Casablanca awaiting documentation."
       },
       "imageUrl": null,
       "city": {
         "ar": "الدار البيضاء",
         "en": "Casablanca"
       },
-      "foundation": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "history": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "visualSoul": "Ruin",
       "isPending": true
     },
     {
@@ -527,23 +347,14 @@
         "en": "Jemaa el-Fnaa"
       },
       "desc": {
-        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
-        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+        "ar": "معلمة في مراكش بانتظار التوثيق.",
+        "en": "Landmark in Marrakech awaiting documentation."
       },
       "imageUrl": null,
       "city": {
         "ar": "مراكش",
         "en": "Marrakech"
       },
-      "foundation": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "history": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "visualSoul": "Ruin",
       "isPending": true
     },
     {
@@ -553,23 +364,14 @@
         "en": "Koutoubia Mosque"
       },
       "desc": {
-        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
-        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+        "ar": "معلمة في مراكش بانتظار التوثيق.",
+        "en": "Landmark in Marrakech awaiting documentation."
       },
       "imageUrl": null,
       "city": {
         "ar": "مراكش",
         "en": "Marrakech"
       },
-      "foundation": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "history": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "visualSoul": "Ruin",
       "isPending": true
     },
     {
@@ -579,23 +381,14 @@
         "en": "Bahia Palace"
       },
       "desc": {
-        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
-        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+        "ar": "معلمة في مراكش بانتظار التوثيق.",
+        "en": "Landmark in Marrakech awaiting documentation."
       },
       "imageUrl": null,
       "city": {
         "ar": "مراكش",
         "en": "Marrakech"
       },
-      "foundation": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "history": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "visualSoul": "Ruin",
       "isPending": true
     },
     {
@@ -605,23 +398,14 @@
         "en": "El Badi Palace"
       },
       "desc": {
-        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
-        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+        "ar": "معلمة في مراكش بانتظار التوثيق.",
+        "en": "Landmark in Marrakech awaiting documentation."
       },
       "imageUrl": null,
       "city": {
         "ar": "مراكش",
         "en": "Marrakech"
       },
-      "foundation": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "history": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "visualSoul": "Ruin",
       "isPending": true
     },
     {
@@ -631,23 +415,14 @@
         "en": "Menara Gardens"
       },
       "desc": {
-        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
-        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+        "ar": "معلمة في مراكش بانتظار التوثيق.",
+        "en": "Landmark in Marrakech awaiting documentation."
       },
       "imageUrl": null,
       "city": {
         "ar": "مراكش",
         "en": "Marrakech"
       },
-      "foundation": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "history": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "visualSoul": "Ruin",
       "isPending": true
     },
     {
@@ -657,23 +432,14 @@
         "en": "Majorelle Garden"
       },
       "desc": {
-        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
-        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+        "ar": "معلمة في مراكش بانتظار التوثيق.",
+        "en": "Landmark in Marrakech awaiting documentation."
       },
       "imageUrl": null,
       "city": {
         "ar": "مراكش",
         "en": "Marrakech"
       },
-      "foundation": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "history": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "visualSoul": "Ruin",
       "isPending": true
     },
     {
@@ -683,23 +449,14 @@
         "en": "Saadian Tombs"
       },
       "desc": {
-        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
-        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+        "ar": "معلمة في مراكش بانتظار التوثيق.",
+        "en": "Landmark in Marrakech awaiting documentation."
       },
       "imageUrl": null,
       "city": {
         "ar": "مراكش",
         "en": "Marrakech"
       },
-      "foundation": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "history": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "visualSoul": "Ruin",
       "isPending": true
     },
     {
@@ -709,23 +466,14 @@
         "en": "Ben Youssef Madrasa"
       },
       "desc": {
-        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
-        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+        "ar": "معلمة في مراكش بانتظار التوثيق.",
+        "en": "Landmark in Marrakech awaiting documentation."
       },
       "imageUrl": null,
       "city": {
         "ar": "مراكش",
         "en": "Marrakech"
       },
-      "foundation": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "history": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "visualSoul": "Ruin",
       "isPending": true
     },
     {
@@ -735,23 +483,14 @@
         "en": "Marrakech Museum"
       },
       "desc": {
-        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
-        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+        "ar": "معلمة في مراكش بانتظار التوثيق.",
+        "en": "Landmark in Marrakech awaiting documentation."
       },
       "imageUrl": null,
       "city": {
         "ar": "مراكش",
         "en": "Marrakech"
       },
-      "foundation": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "history": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "visualSoul": "Ruin",
       "isPending": true
     },
     {
@@ -761,23 +500,14 @@
         "en": "Bab Doukkala"
       },
       "desc": {
-        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
-        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+        "ar": "معلمة في مراكش بانتظار التوثيق.",
+        "en": "Landmark in Marrakech awaiting documentation."
       },
       "imageUrl": null,
       "city": {
         "ar": "مراكش",
         "en": "Marrakech"
       },
-      "foundation": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "history": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "visualSoul": "Ruin",
       "isPending": true
     },
     {
@@ -787,23 +517,14 @@
         "en": "Palmeraie"
       },
       "desc": {
-        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
-        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+        "ar": "معلمة في مراكش بانتظار التوثيق.",
+        "en": "Landmark in Marrakech awaiting documentation."
       },
       "imageUrl": null,
       "city": {
         "ar": "مراكش",
         "en": "Marrakech"
       },
-      "foundation": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "history": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "visualSoul": "Ruin",
       "isPending": true
     },
     {
@@ -813,23 +534,14 @@
         "en": "Al-Qarawiyyin Mosque"
       },
       "desc": {
-        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
-        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+        "ar": "معلمة في فاس بانتظار التوثيق.",
+        "en": "Landmark in Fes awaiting documentation."
       },
       "imageUrl": null,
       "city": {
         "ar": "فاس",
         "en": "Fes"
       },
-      "foundation": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "history": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "visualSoul": "Ruin",
       "isPending": true
     },
     {
@@ -839,23 +551,14 @@
         "en": "Fondouk Nejjarine"
       },
       "desc": {
-        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
-        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+        "ar": "معلمة في فاس بانتظار التوثيق.",
+        "en": "Landmark in Fes awaiting documentation."
       },
       "imageUrl": null,
       "city": {
         "ar": "فاس",
         "en": "Fes"
       },
-      "foundation": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "history": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "visualSoul": "Ruin",
       "isPending": true
     },
     {
@@ -865,23 +568,14 @@
         "en": "Al-Attarine Madrasa"
       },
       "desc": {
-        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
-        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+        "ar": "معلمة في فاس بانتظار التوثيق.",
+        "en": "Landmark in Fes awaiting documentation."
       },
       "imageUrl": null,
       "city": {
         "ar": "فاس",
         "en": "Fes"
       },
-      "foundation": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "history": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "visualSoul": "Ruin",
       "isPending": true
     },
     {
@@ -891,23 +585,14 @@
         "en": "Bou Inania Madrasa"
       },
       "desc": {
-        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
-        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+        "ar": "معلمة في فاس بانتظار التوثيق.",
+        "en": "Landmark in Fes awaiting documentation."
       },
       "imageUrl": null,
       "city": {
         "ar": "فاس",
         "en": "Fes"
       },
-      "foundation": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "history": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "visualSoul": "Ruin",
       "isPending": true
     },
     {
@@ -917,23 +602,14 @@
         "en": "Bab Bou Jeloud"
       },
       "desc": {
-        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
-        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+        "ar": "معلمة في فاس بانتظار التوثيق.",
+        "en": "Landmark in Fes awaiting documentation."
       },
       "imageUrl": null,
       "city": {
         "ar": "فاس",
         "en": "Fes"
       },
-      "foundation": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "history": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "visualSoul": "Ruin",
       "isPending": true
     },
     {
@@ -943,23 +619,14 @@
         "en": "Chouara Tannery"
       },
       "desc": {
-        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
-        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+        "ar": "معلمة في فاس بانتظار التوثيق.",
+        "en": "Landmark in Fes awaiting documentation."
       },
       "imageUrl": null,
       "city": {
         "ar": "فاس",
         "en": "Fes"
       },
-      "foundation": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "history": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "visualSoul": "Ruin",
       "isPending": true
     },
     {
@@ -969,23 +636,14 @@
         "en": "Zaouia Moulay Idriss II"
       },
       "desc": {
-        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
-        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+        "ar": "معلمة في فاس بانتظار التوثيق.",
+        "en": "Landmark in Fes awaiting documentation."
       },
       "imageUrl": null,
       "city": {
         "ar": "فاس",
         "en": "Fes"
       },
-      "foundation": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "history": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "visualSoul": "Ruin",
       "isPending": true
     },
     {
@@ -995,23 +653,14 @@
         "en": "Dar Batha Museum"
       },
       "desc": {
-        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
-        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+        "ar": "معلمة في فاس بانتظار التوثيق.",
+        "en": "Landmark in Fes awaiting documentation."
       },
       "imageUrl": null,
       "city": {
         "ar": "فاس",
         "en": "Fes"
       },
-      "foundation": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "history": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "visualSoul": "Ruin",
       "isPending": true
     },
     {
@@ -1021,23 +670,14 @@
         "en": "Fes el Bali Walls"
       },
       "desc": {
-        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
-        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+        "ar": "معلمة في فاس بانتظار التوثيق.",
+        "en": "Landmark in Fes awaiting documentation."
       },
       "imageUrl": null,
       "city": {
         "ar": "فاس",
         "en": "Fes"
       },
-      "foundation": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "history": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "visualSoul": "Ruin",
       "isPending": true
     },
     {
@@ -1047,23 +687,14 @@
         "en": "Fes Mellah"
       },
       "desc": {
-        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
-        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+        "ar": "معلمة في فاس بانتظار التوثيق.",
+        "en": "Landmark in Fes awaiting documentation."
       },
       "imageUrl": null,
       "city": {
         "ar": "فاس",
         "en": "Fes"
       },
-      "foundation": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "history": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "visualSoul": "Ruin",
       "isPending": true
     },
     {
@@ -1073,23 +704,14 @@
         "en": "Hercules Caves"
       },
       "desc": {
-        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
-        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+        "ar": "معلمة في طنجة بانتظار التوثيق.",
+        "en": "Landmark in Tangier awaiting documentation."
       },
       "imageUrl": null,
       "city": {
         "ar": "طنجة",
         "en": "Tangier"
       },
-      "foundation": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "history": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "visualSoul": "Ruin",
       "isPending": true
     },
     {
@@ -1099,23 +721,14 @@
         "en": "Kasbah of Tangier"
       },
       "desc": {
-        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
-        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+        "ar": "معلمة في طنجة بانتظار التوثيق.",
+        "en": "Landmark in Tangier awaiting documentation."
       },
       "imageUrl": null,
       "city": {
         "ar": "طنجة",
         "en": "Tangier"
       },
-      "foundation": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "history": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "visualSoul": "Ruin",
       "isPending": true
     },
     {
@@ -1125,23 +738,14 @@
         "en": "Cape Spartel"
       },
       "desc": {
-        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
-        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+        "ar": "معلمة في طنجة بانتظار التوثيق.",
+        "en": "Landmark in Tangier awaiting documentation."
       },
       "imageUrl": null,
       "city": {
         "ar": "طنجة",
         "en": "Tangier"
       },
-      "foundation": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "history": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "visualSoul": "Ruin",
       "isPending": true
     },
     {
@@ -1151,23 +755,14 @@
         "en": "Kasbah Museum"
       },
       "desc": {
-        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
-        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+        "ar": "معلمة في طنجة بانتظار التوثيق.",
+        "en": "Landmark in Tangier awaiting documentation."
       },
       "imageUrl": null,
       "city": {
         "ar": "طنجة",
         "en": "Tangier"
       },
-      "foundation": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "history": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "visualSoul": "Ruin",
       "isPending": true
     },
     {
@@ -1177,23 +772,14 @@
         "en": "Cafe Hafa"
       },
       "desc": {
-        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
-        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+        "ar": "معلمة في طنجة بانتظار التوثيق.",
+        "en": "Landmark in Tangier awaiting documentation."
       },
       "imageUrl": null,
       "city": {
         "ar": "طنجة",
         "en": "Tangier"
       },
-      "foundation": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "history": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "visualSoul": "Ruin",
       "isPending": true
     },
     {
@@ -1203,23 +789,14 @@
         "en": "Villa Harris"
       },
       "desc": {
-        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
-        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+        "ar": "معلمة في طنجة بانتظار التوثيق.",
+        "en": "Landmark in Tangier awaiting documentation."
       },
       "imageUrl": null,
       "city": {
         "ar": "طنجة",
         "en": "Tangier"
       },
-      "foundation": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "history": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "visualSoul": "Ruin",
       "isPending": true
     },
     {
@@ -1229,23 +806,14 @@
         "en": "Grand Socco"
       },
       "desc": {
-        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
-        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+        "ar": "معلمة في طنجة بانتظار التوثيق.",
+        "en": "Landmark in Tangier awaiting documentation."
       },
       "imageUrl": null,
       "city": {
         "ar": "طنجة",
         "en": "Tangier"
       },
-      "foundation": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "history": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "visualSoul": "Ruin",
       "isPending": true
     },
     {
@@ -1255,23 +823,14 @@
         "en": "Mendoubia Gardens"
       },
       "desc": {
-        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
-        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+        "ar": "معلمة في طنجة بانتظار التوثيق.",
+        "en": "Landmark in Tangier awaiting documentation."
       },
       "imageUrl": null,
       "city": {
         "ar": "طنجة",
         "en": "Tangier"
       },
-      "foundation": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "history": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "visualSoul": "Ruin",
       "isPending": true
     },
     {
@@ -1281,23 +840,14 @@
         "en": "Tangier Medina"
       },
       "desc": {
-        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
-        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+        "ar": "معلمة في طنجة بانتظار التوثيق.",
+        "en": "Landmark in Tangier awaiting documentation."
       },
       "imageUrl": null,
       "city": {
         "ar": "طنجة",
         "en": "Tangier"
       },
-      "foundation": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "history": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "visualSoul": "Ruin",
       "isPending": true
     },
     {
@@ -1307,23 +857,14 @@
         "en": "El Minzah Hotel"
       },
       "desc": {
-        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
-        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+        "ar": "معلمة في طنجة بانتظار التوثيق.",
+        "en": "Landmark in Tangier awaiting documentation."
       },
       "imageUrl": null,
       "city": {
         "ar": "طنجة",
         "en": "Tangier"
       },
-      "foundation": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "history": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "visualSoul": "Ruin",
       "isPending": true
     },
     {
@@ -1333,23 +874,14 @@
         "en": "Bab Mansour"
       },
       "desc": {
-        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
-        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+        "ar": "معلمة في مكناس بانتظار التوثيق.",
+        "en": "Landmark in Meknes awaiting documentation."
       },
       "imageUrl": null,
       "city": {
         "ar": "مكناس",
         "en": "Meknes"
       },
-      "foundation": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "history": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "visualSoul": "Ruin",
       "isPending": true
     },
     {
@@ -1359,23 +891,14 @@
         "en": "Mausoleum of Moulay Ismail"
       },
       "desc": {
-        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
-        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+        "ar": "معلمة في مكناس بانتظار التوثيق.",
+        "en": "Landmark in Meknes awaiting documentation."
       },
       "imageUrl": null,
       "city": {
         "ar": "مكناس",
         "en": "Meknes"
       },
-      "foundation": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "history": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "visualSoul": "Ruin",
       "isPending": true
     },
     {
@@ -1385,23 +908,14 @@
         "en": "Habs Qara"
       },
       "desc": {
-        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
-        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+        "ar": "معلمة في مكناس بانتظار التوثيق.",
+        "en": "Landmark in Meknes awaiting documentation."
       },
       "imageUrl": null,
       "city": {
         "ar": "مكناس",
         "en": "Meknes"
       },
-      "foundation": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "history": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "visualSoul": "Ruin",
       "isPending": true
     },
     {
@@ -1411,23 +925,14 @@
         "en": "Place El Hedim"
       },
       "desc": {
-        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
-        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+        "ar": "معلمة في مكناس بانتظار التوثيق.",
+        "en": "Landmark in Meknes awaiting documentation."
       },
       "imageUrl": null,
       "city": {
         "ar": "مكناس",
         "en": "Meknes"
       },
-      "foundation": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "history": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "visualSoul": "Ruin",
       "isPending": true
     },
     {
@@ -1437,23 +942,14 @@
         "en": "Bou Inania Madrasa Meknes"
       },
       "desc": {
-        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
-        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+        "ar": "معلمة في مكناس بانتظار التوثيق.",
+        "en": "Landmark in Meknes awaiting documentation."
       },
       "imageUrl": null,
       "city": {
         "ar": "مكناس",
         "en": "Meknes"
       },
-      "foundation": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "history": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "visualSoul": "Ruin",
       "isPending": true
     },
     {
@@ -1463,23 +959,14 @@
         "en": "Heri es-Souani"
       },
       "desc": {
-        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
-        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+        "ar": "معلمة في مكناس بانتظار التوثيق.",
+        "en": "Landmark in Meknes awaiting documentation."
       },
       "imageUrl": null,
       "city": {
         "ar": "مكناس",
         "en": "Meknes"
       },
-      "foundation": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "history": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "visualSoul": "Ruin",
       "isPending": true
     },
     {
@@ -1489,23 +976,14 @@
         "en": "Sahrij Swani"
       },
       "desc": {
-        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
-        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+        "ar": "معلمة في مكناس بانتظار التوثيق.",
+        "en": "Landmark in Meknes awaiting documentation."
       },
       "imageUrl": null,
       "city": {
         "ar": "مكناس",
         "en": "Meknes"
       },
-      "foundation": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "history": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "visualSoul": "Ruin",
       "isPending": true
     },
     {
@@ -1515,23 +993,14 @@
         "en": "El Mansour Palace"
       },
       "desc": {
-        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
-        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+        "ar": "معلمة في مكناس بانتظار التوثيق.",
+        "en": "Landmark in Meknes awaiting documentation."
       },
       "imageUrl": null,
       "city": {
         "ar": "مكناس",
         "en": "Meknes"
       },
-      "foundation": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "history": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "visualSoul": "Ruin",
       "isPending": true
     },
     {
@@ -1541,23 +1010,14 @@
         "en": "Volubilis"
       },
       "desc": {
-        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
-        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+        "ar": "معلمة في مكناس بانتظار التوثيق.",
+        "en": "Landmark in Meknes awaiting documentation."
       },
       "imageUrl": null,
       "city": {
         "ar": "مكناس",
         "en": "Meknes"
       },
-      "foundation": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "history": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "visualSoul": "Ruin",
       "isPending": true
     },
     {
@@ -1567,23 +1027,14 @@
         "en": "Moulay Idriss Zerhoun"
       },
       "desc": {
-        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
-        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+        "ar": "معلمة في مكناس بانتظار التوثيق.",
+        "en": "Landmark in Meknes awaiting documentation."
       },
       "imageUrl": null,
       "city": {
         "ar": "مكناس",
         "en": "Meknes"
       },
-      "foundation": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "history": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "visualSoul": "Ruin",
       "isPending": true
     },
     {
@@ -1593,23 +1044,14 @@
         "en": "Agadir Oufella"
       },
       "desc": {
-        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
-        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+        "ar": "معلمة في أكادير بانتظار التوثيق.",
+        "en": "Landmark in Agadir awaiting documentation."
       },
       "imageUrl": null,
       "city": {
         "ar": "أكادير",
         "en": "Agadir"
       },
-      "foundation": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "history": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "visualSoul": "Ruin",
       "isPending": true
     },
     {
@@ -1619,23 +1061,14 @@
         "en": "Souk el Had"
       },
       "desc": {
-        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
-        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+        "ar": "معلمة في أكادير بانتظار التوثيق.",
+        "en": "Landmark in Agadir awaiting documentation."
       },
       "imageUrl": null,
       "city": {
         "ar": "أكادير",
         "en": "Agadir"
       },
-      "foundation": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "history": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "visualSoul": "Ruin",
       "isPending": true
     },
     {
@@ -1645,23 +1078,14 @@
         "en": "Crocoparc"
       },
       "desc": {
-        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
-        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+        "ar": "معلمة في أكادير بانتظار التوثيق.",
+        "en": "Landmark in Agadir awaiting documentation."
       },
       "imageUrl": null,
       "city": {
         "ar": "أكادير",
         "en": "Agadir"
       },
-      "foundation": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "history": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "visualSoul": "Ruin",
       "isPending": true
     },
     {
@@ -1671,23 +1095,14 @@
         "en": "Vallee des Oiseaux"
       },
       "desc": {
-        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
-        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+        "ar": "معلمة في أكادير بانتظار التوثيق.",
+        "en": "Landmark in Agadir awaiting documentation."
       },
       "imageUrl": null,
       "city": {
         "ar": "أكادير",
         "en": "Agadir"
       },
-      "foundation": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "history": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "visualSoul": "Ruin",
       "isPending": true
     },
     {
@@ -1697,23 +1112,14 @@
         "en": "Agadir Marina"
       },
       "desc": {
-        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
-        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+        "ar": "معلمة في أكادير بانتظار التوثيق.",
+        "en": "Landmark in Agadir awaiting documentation."
       },
       "imageUrl": null,
       "city": {
         "ar": "أكادير",
         "en": "Agadir"
       },
-      "foundation": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "history": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "visualSoul": "Ruin",
       "isPending": true
     },
     {
@@ -1723,23 +1129,14 @@
         "en": "Place de l Espoir"
       },
       "desc": {
-        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
-        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+        "ar": "معلمة في أكادير بانتظار التوثيق.",
+        "en": "Landmark in Agadir awaiting documentation."
       },
       "imageUrl": null,
       "city": {
         "ar": "أكادير",
         "en": "Agadir"
       },
-      "foundation": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "history": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "visualSoul": "Ruin",
       "isPending": true
     },
     {
@@ -1749,23 +1146,14 @@
         "en": "Amazigh Museum"
       },
       "desc": {
-        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
-        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+        "ar": "معلمة في أكادير بانتظار التوثيق.",
+        "en": "Landmark in Agadir awaiting documentation."
       },
       "imageUrl": null,
       "city": {
         "ar": "أكادير",
         "en": "Agadir"
       },
-      "foundation": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "history": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "visualSoul": "Ruin",
       "isPending": true
     },
     {
@@ -1775,23 +1163,14 @@
         "en": "Agadir Bay"
       },
       "desc": {
-        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
-        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+        "ar": "معلمة في أكادير بانتظار التوثيق.",
+        "en": "Landmark in Agadir awaiting documentation."
       },
       "imageUrl": null,
       "city": {
         "ar": "أكادير",
         "en": "Agadir"
       },
-      "foundation": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "history": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "visualSoul": "Ruin",
       "isPending": true
     },
     {
@@ -1801,23 +1180,14 @@
         "en": "Outa el Hammam Square"
       },
       "desc": {
-        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
-        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+        "ar": "معلمة في شفشاون بانتظار التوثيق.",
+        "en": "Landmark in Chefchaouen awaiting documentation."
       },
       "imageUrl": null,
       "city": {
         "ar": "شفشاون",
         "en": "Chefchaouen"
       },
-      "foundation": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "history": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "visualSoul": "Ruin",
       "isPending": true
     },
     {
@@ -1827,23 +1197,14 @@
         "en": "Kasbah of Chefchaouen"
       },
       "desc": {
-        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
-        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+        "ar": "معلمة في شفشاون بانتظار التوثيق.",
+        "en": "Landmark in Chefchaouen awaiting documentation."
       },
       "imageUrl": null,
       "city": {
         "ar": "شفشاون",
         "en": "Chefchaouen"
       },
-      "foundation": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "history": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "visualSoul": "Ruin",
       "isPending": true
     },
     {
@@ -1853,23 +1214,14 @@
         "en": "Ras el Maa"
       },
       "desc": {
-        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
-        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+        "ar": "معلمة في شفشاون بانتظار التوثيق.",
+        "en": "Landmark in Chefchaouen awaiting documentation."
       },
       "imageUrl": null,
       "city": {
         "ar": "شفشاون",
         "en": "Chefchaouen"
       },
-      "foundation": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "history": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "visualSoul": "Ruin",
       "isPending": true
     },
     {
@@ -1879,23 +1231,14 @@
         "en": "Great Mosque"
       },
       "desc": {
-        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
-        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+        "ar": "معلمة في شفشاون بانتظار التوثيق.",
+        "en": "Landmark in Chefchaouen awaiting documentation."
       },
       "imageUrl": null,
       "city": {
         "ar": "شفشاون",
         "en": "Chefchaouen"
       },
-      "foundation": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "history": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "visualSoul": "Ruin",
       "isPending": true
     },
     {
@@ -1905,23 +1248,14 @@
         "en": "Blue Streets"
       },
       "desc": {
-        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
-        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+        "ar": "معلمة في شفشاون بانتظار التوثيق.",
+        "en": "Landmark in Chefchaouen awaiting documentation."
       },
       "imageUrl": null,
       "city": {
         "ar": "شفشاون",
         "en": "Chefchaouen"
       },
-      "foundation": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "history": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "visualSoul": "Ruin",
       "isPending": true
     },
     {
@@ -1931,23 +1265,14 @@
         "en": "Souika District"
       },
       "desc": {
-        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
-        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+        "ar": "معلمة في شفشاون بانتظار التوثيق.",
+        "en": "Landmark in Chefchaouen awaiting documentation."
       },
       "imageUrl": null,
       "city": {
         "ar": "شفشاون",
         "en": "Chefchaouen"
       },
-      "foundation": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "history": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "visualSoul": "Ruin",
       "isPending": true
     },
     {
@@ -1957,23 +1282,14 @@
         "en": "Rif Andalous"
       },
       "desc": {
-        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
-        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+        "ar": "معلمة في شفشاون بانتظار التوثيق.",
+        "en": "Landmark in Chefchaouen awaiting documentation."
       },
       "imageUrl": null,
       "city": {
         "ar": "شفشاون",
         "en": "Chefchaouen"
       },
-      "foundation": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "history": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "visualSoul": "Ruin",
       "isPending": true
     },
     {
@@ -1983,23 +1299,14 @@
         "en": "Tetouan Medina"
       },
       "desc": {
-        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
-        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+        "ar": "معلمة في تطوان بانتظار التوثيق.",
+        "en": "Landmark in Tetouan awaiting documentation."
       },
       "imageUrl": null,
       "city": {
         "ar": "تطوان",
         "en": "Tetouan"
       },
-      "foundation": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "history": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "visualSoul": "Ruin",
       "isPending": true
     },
     {
@@ -2009,23 +1316,14 @@
         "en": "Feddan Park"
       },
       "desc": {
-        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
-        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+        "ar": "معلمة في تطوان بانتظار التوثيق.",
+        "en": "Landmark in Tetouan awaiting documentation."
       },
       "imageUrl": null,
       "city": {
         "ar": "تطوان",
         "en": "Tetouan"
       },
-      "foundation": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "history": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "visualSoul": "Ruin",
       "isPending": true
     },
     {
@@ -2035,23 +1333,14 @@
         "en": "School of Arts and Crafts"
       },
       "desc": {
-        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
-        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+        "ar": "معلمة في تطوان بانتظار التوثيق.",
+        "en": "Landmark in Tetouan awaiting documentation."
       },
       "imageUrl": null,
       "city": {
         "ar": "تطوان",
         "en": "Tetouan"
       },
-      "foundation": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "history": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "visualSoul": "Ruin",
       "isPending": true
     },
     {
@@ -2061,23 +1350,14 @@
         "en": "Church of Our Lady of Victories"
       },
       "desc": {
-        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
-        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+        "ar": "معلمة في تطوان بانتظار التوثيق.",
+        "en": "Landmark in Tetouan awaiting documentation."
       },
       "imageUrl": null,
       "city": {
         "ar": "تطوان",
         "en": "Tetouan"
       },
-      "foundation": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "history": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "visualSoul": "Ruin",
       "isPending": true
     },
     {
@@ -2087,23 +1367,14 @@
         "en": "Tetouan Mellah"
       },
       "desc": {
-        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
-        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+        "ar": "معلمة في تطوان بانتظار التوثيق.",
+        "en": "Landmark in Tetouan awaiting documentation."
       },
       "imageUrl": null,
       "city": {
         "ar": "تطوان",
         "en": "Tetouan"
       },
-      "foundation": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "history": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "visualSoul": "Ruin",
       "isPending": true
     },
     {
@@ -2113,23 +1384,14 @@
         "en": "Jbel Dersa Kasbah"
       },
       "desc": {
-        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
-        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+        "ar": "معلمة في تطوان بانتظار التوثيق.",
+        "en": "Landmark in Tetouan awaiting documentation."
       },
       "imageUrl": null,
       "city": {
         "ar": "تطوان",
         "en": "Tetouan"
       },
-      "foundation": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "history": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "visualSoul": "Ruin",
       "isPending": true
     },
     {
@@ -2139,23 +1401,14 @@
         "en": "Skala du Port"
       },
       "desc": {
-        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
-        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+        "ar": "معلمة في الصويرة بانتظار التوثيق.",
+        "en": "Landmark in Essaouira awaiting documentation."
       },
       "imageUrl": null,
       "city": {
         "ar": "الصويرة",
         "en": "Essaouira"
       },
-      "foundation": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "history": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "visualSoul": "Ruin",
       "isPending": true
     },
     {
@@ -2165,23 +1418,14 @@
         "en": "Mogador Island"
       },
       "desc": {
-        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
-        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+        "ar": "معلمة في الصويرة بانتظار التوثيق.",
+        "en": "Landmark in Essaouira awaiting documentation."
       },
       "imageUrl": null,
       "city": {
         "ar": "الصويرة",
         "en": "Essaouira"
       },
-      "foundation": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "history": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "visualSoul": "Ruin",
       "isPending": true
     },
     {
@@ -2191,23 +1435,14 @@
         "en": "Moulay Hassan Square"
       },
       "desc": {
-        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
-        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+        "ar": "معلمة في الصويرة بانتظار التوثيق.",
+        "en": "Landmark in Essaouira awaiting documentation."
       },
       "imageUrl": null,
       "city": {
         "ar": "الصويرة",
         "en": "Essaouira"
       },
-      "foundation": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "history": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "visualSoul": "Ruin",
       "isPending": true
     },
     {
@@ -2217,23 +1452,14 @@
         "en": "Seven Gates"
       },
       "desc": {
-        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
-        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+        "ar": "معلمة في الصويرة بانتظار التوثيق.",
+        "en": "Landmark in Essaouira awaiting documentation."
       },
       "imageUrl": null,
       "city": {
         "ar": "الصويرة",
         "en": "Essaouira"
       },
-      "foundation": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "history": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "visualSoul": "Ruin",
       "isPending": true
     },
     {
@@ -2243,23 +1469,14 @@
         "en": "Essaouira Mellah"
       },
       "desc": {
-        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
-        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+        "ar": "معلمة في الصويرة بانتظار التوثيق.",
+        "en": "Landmark in Essaouira awaiting documentation."
       },
       "imageUrl": null,
       "city": {
         "ar": "الصويرة",
         "en": "Essaouira"
       },
-      "foundation": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "history": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "visualSoul": "Ruin",
       "isPending": true
     },
     {
@@ -2269,23 +1486,14 @@
         "en": "Essaouira Beach"
       },
       "desc": {
-        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
-        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+        "ar": "معلمة في الصويرة بانتظار التوثيق.",
+        "en": "Landmark in Essaouira awaiting documentation."
       },
       "imageUrl": null,
       "city": {
         "ar": "الصويرة",
         "en": "Essaouira"
       },
-      "foundation": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "history": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "visualSoul": "Ruin",
       "isPending": true
     },
     {
@@ -2295,23 +1503,14 @@
         "en": "Ait Benhaddou"
       },
       "desc": {
-        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
-        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+        "ar": "معلمة في ورزازات بانتظار التوثيق.",
+        "en": "Landmark in Ouarzazate awaiting documentation."
       },
       "imageUrl": null,
       "city": {
         "ar": "ورزازات",
         "en": "Ouarzazate"
       },
-      "foundation": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "history": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "visualSoul": "Ruin",
       "isPending": true
     },
     {
@@ -2321,23 +1520,14 @@
         "en": "Taourirt Kasbah"
       },
       "desc": {
-        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
-        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+        "ar": "معلمة في ورزازات بانتظار التوثيق.",
+        "en": "Landmark in Ouarzazate awaiting documentation."
       },
       "imageUrl": null,
       "city": {
         "ar": "ورزازات",
         "en": "Ouarzazate"
       },
-      "foundation": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "history": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "visualSoul": "Ruin",
       "isPending": true
     },
     {
@@ -2347,23 +1537,14 @@
         "en": "Atlas Studios"
       },
       "desc": {
-        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
-        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+        "ar": "معلمة في ورزازات بانتظار التوثيق.",
+        "en": "Landmark in Ouarzazate awaiting documentation."
       },
       "imageUrl": null,
       "city": {
         "ar": "ورزازات",
         "en": "Ouarzazate"
       },
-      "foundation": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "history": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "visualSoul": "Ruin",
       "isPending": true
     },
     {
@@ -2373,23 +1554,14 @@
         "en": "Fint Oasis"
       },
       "desc": {
-        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
-        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+        "ar": "معلمة في ورزازات بانتظار التوثيق.",
+        "en": "Landmark in Ouarzazate awaiting documentation."
       },
       "imageUrl": null,
       "city": {
         "ar": "ورزازات",
         "en": "Ouarzazate"
       },
-      "foundation": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "history": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "visualSoul": "Ruin",
       "isPending": true
     },
     {
@@ -2399,23 +1571,14 @@
         "en": "Mansour Eddahbi Dam"
       },
       "desc": {
-        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
-        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+        "ar": "معلمة في ورزازات بانتظار التوثيق.",
+        "en": "Landmark in Ouarzazate awaiting documentation."
       },
       "imageUrl": null,
       "city": {
         "ar": "ورزازات",
         "en": "Ouarzazate"
       },
-      "foundation": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "history": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "visualSoul": "Ruin",
       "isPending": true
     },
     {
@@ -2425,23 +1588,14 @@
         "en": "Mechouar Square"
       },
       "desc": {
-        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
-        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+        "ar": "معلمة في العيون والداخلة بانتظار التوثيق.",
+        "en": "Landmark in Sahara awaiting documentation."
       },
       "imageUrl": null,
       "city": {
         "ar": "العيون والداخلة",
         "en": "Sahara"
       },
-      "foundation": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "history": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "visualSoul": "Ruin",
       "isPending": true
     },
     {
@@ -2451,23 +1605,14 @@
         "en": "St Francis Church"
       },
       "desc": {
-        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
-        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+        "ar": "معلمة في العيون والداخلة بانتظار التوثيق.",
+        "en": "Landmark in Sahara awaiting documentation."
       },
       "imageUrl": null,
       "city": {
         "ar": "العيون والداخلة",
         "en": "Sahara"
       },
-      "foundation": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "history": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "visualSoul": "Ruin",
       "isPending": true
     },
     {
@@ -2477,23 +1622,14 @@
         "en": "Foum el Oued Beach"
       },
       "desc": {
-        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
-        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+        "ar": "معلمة في العيون والداخلة بانتظار التوثيق.",
+        "en": "Landmark in Sahara awaiting documentation."
       },
       "imageUrl": null,
       "city": {
         "ar": "العيون والداخلة",
         "en": "Sahara"
       },
-      "foundation": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "history": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "visualSoul": "Ruin",
       "isPending": true
     },
     {
@@ -2503,23 +1639,14 @@
         "en": "Dakhla Bay"
       },
       "desc": {
-        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
-        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+        "ar": "معلمة في العيون والداخلة بانتظار التوثيق.",
+        "en": "Landmark in Sahara awaiting documentation."
       },
       "imageUrl": null,
       "city": {
         "ar": "العيون والداخلة",
         "en": "Sahara"
       },
-      "foundation": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "history": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "visualSoul": "Ruin",
       "isPending": true
     },
     {
@@ -2529,23 +1656,14 @@
         "en": "Dragon Island"
       },
       "desc": {
-        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
-        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+        "ar": "معلمة في العيون والداخلة بانتظار التوثيق.",
+        "en": "Landmark in Sahara awaiting documentation."
       },
       "imageUrl": null,
       "city": {
         "ar": "العيون والداخلة",
         "en": "Sahara"
       },
-      "foundation": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "history": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "visualSoul": "Ruin",
       "isPending": true
     },
     {
@@ -2555,23 +1673,14 @@
         "en": "Dakhla Lighthouse"
       },
       "desc": {
-        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
-        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+        "ar": "معلمة في العيون والداخلة بانتظار التوثيق.",
+        "en": "Landmark in Sahara awaiting documentation."
       },
       "imageUrl": null,
       "city": {
         "ar": "العيون والداخلة",
         "en": "Sahara"
       },
-      "foundation": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "history": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "visualSoul": "Ruin",
       "isPending": true
     },
     {
@@ -2581,23 +1690,14 @@
         "en": "Ksar el Bahr"
       },
       "desc": {
-        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
-        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+        "ar": "معلمة في آسفي بانتظار التوثيق.",
+        "en": "Landmark in Safi awaiting documentation."
       },
       "imageUrl": null,
       "city": {
         "ar": "آسفي",
         "en": "Safi"
       },
-      "foundation": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "history": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "visualSoul": "Ruin",
       "isPending": true
     },
     {
@@ -2607,23 +1707,14 @@
         "en": "Safi Medina"
       },
       "desc": {
-        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
-        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+        "ar": "معلمة في آسفي بانتظار التوثيق.",
+        "en": "Landmark in Safi awaiting documentation."
       },
       "imageUrl": null,
       "city": {
         "ar": "آسفي",
         "en": "Safi"
       },
-      "foundation": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "history": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "visualSoul": "Ruin",
       "isPending": true
     },
     {
@@ -2633,23 +1724,14 @@
         "en": "Potters Hill"
       },
       "desc": {
-        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
-        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+        "ar": "معلمة في آسفي بانتظار التوثيق.",
+        "en": "Landmark in Safi awaiting documentation."
       },
       "imageUrl": null,
       "city": {
         "ar": "آسفي",
         "en": "Safi"
       },
-      "foundation": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "history": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "visualSoul": "Ruin",
       "isPending": true
     },
     {
@@ -2659,27 +1741,240 @@
         "en": "St Catherine Cathedral"
       },
       "desc": {
-        "ar": "هذه المعلمة ضمن قائمة الموسوعة الكبرى. بانتظار توثيق السجلات الملكية...",
-        "en": "This landmark is part of the Great Encyclopedia. Awaiting Royal Chronicles..."
+        "ar": "معلمة في آسفي بانتظار التوثيق.",
+        "en": "Landmark in Safi awaiting documentation."
       },
       "imageUrl": null,
       "city": {
         "ar": "آسفي",
         "en": "Safi"
       },
-      "foundation": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "history": {
-        "ar": "قيد التوثيق",
-        "en": "Pending"
-      },
-      "visualSoul": "Ruin",
       "isPending": true
     }
   ],
-  "cities": [],
+  "cities": [
+    {
+      "id": "rabat",
+      "name": {
+        "ar": "الرباط",
+        "en": "Rabat"
+      },
+      "desc": {
+        "ar": "مدينة مغربية عريقة.",
+        "en": "A historic Moroccan city."
+      },
+      "imageUrl": null,
+      "regionName": {
+        "ar": "المغرب",
+        "en": "Morocco"
+      },
+      "isPending": true
+    },
+    {
+      "id": "casablanca",
+      "name": {
+        "ar": "الدار البيضاء",
+        "en": "Casablanca"
+      },
+      "desc": {
+        "ar": "مدينة مغربية عريقة.",
+        "en": "A historic Moroccan city."
+      },
+      "imageUrl": null,
+      "regionName": {
+        "ar": "المغرب",
+        "en": "Morocco"
+      },
+      "isPending": true
+    },
+    {
+      "id": "marrakech",
+      "name": {
+        "ar": "مراكش",
+        "en": "Marrakech"
+      },
+      "desc": {
+        "ar": "مدينة مغربية عريقة.",
+        "en": "A historic Moroccan city."
+      },
+      "imageUrl": null,
+      "regionName": {
+        "ar": "المغرب",
+        "en": "Morocco"
+      },
+      "isPending": true
+    },
+    {
+      "id": "fes",
+      "name": {
+        "ar": "فاس",
+        "en": "Fes"
+      },
+      "desc": {
+        "ar": "مدينة مغربية عريقة.",
+        "en": "A historic Moroccan city."
+      },
+      "imageUrl": null,
+      "regionName": {
+        "ar": "المغرب",
+        "en": "Morocco"
+      },
+      "isPending": true
+    },
+    {
+      "id": "tangier",
+      "name": {
+        "ar": "طنجة",
+        "en": "Tangier"
+      },
+      "desc": {
+        "ar": "مدينة مغربية عريقة.",
+        "en": "A historic Moroccan city."
+      },
+      "imageUrl": null,
+      "regionName": {
+        "ar": "المغرب",
+        "en": "Morocco"
+      },
+      "isPending": true
+    },
+    {
+      "id": "meknes",
+      "name": {
+        "ar": "مكناس",
+        "en": "Meknes"
+      },
+      "desc": {
+        "ar": "مدينة مغربية عريقة.",
+        "en": "A historic Moroccan city."
+      },
+      "imageUrl": null,
+      "regionName": {
+        "ar": "المغرب",
+        "en": "Morocco"
+      },
+      "isPending": true
+    },
+    {
+      "id": "agadir",
+      "name": {
+        "ar": "أكادير",
+        "en": "Agadir"
+      },
+      "desc": {
+        "ar": "مدينة مغربية عريقة.",
+        "en": "A historic Moroccan city."
+      },
+      "imageUrl": null,
+      "regionName": {
+        "ar": "المغرب",
+        "en": "Morocco"
+      },
+      "isPending": true
+    },
+    {
+      "id": "chefchaouen",
+      "name": {
+        "ar": "شفشاون",
+        "en": "Chefchaouen"
+      },
+      "desc": {
+        "ar": "مدينة مغربية عريقة.",
+        "en": "A historic Moroccan city."
+      },
+      "imageUrl": null,
+      "regionName": {
+        "ar": "المغرب",
+        "en": "Morocco"
+      },
+      "isPending": true
+    },
+    {
+      "id": "tetouan",
+      "name": {
+        "ar": "تطوان",
+        "en": "Tetouan"
+      },
+      "desc": {
+        "ar": "مدينة مغربية عريقة.",
+        "en": "A historic Moroccan city."
+      },
+      "imageUrl": null,
+      "regionName": {
+        "ar": "المغرب",
+        "en": "Morocco"
+      },
+      "isPending": true
+    },
+    {
+      "id": "essaouira",
+      "name": {
+        "ar": "الصويرة",
+        "en": "Essaouira"
+      },
+      "desc": {
+        "ar": "مدينة مغربية عريقة.",
+        "en": "A historic Moroccan city."
+      },
+      "imageUrl": null,
+      "regionName": {
+        "ar": "المغرب",
+        "en": "Morocco"
+      },
+      "isPending": true
+    },
+    {
+      "id": "ouarzazate",
+      "name": {
+        "ar": "ورزازات",
+        "en": "Ouarzazate"
+      },
+      "desc": {
+        "ar": "مدينة مغربية عريقة.",
+        "en": "A historic Moroccan city."
+      },
+      "imageUrl": null,
+      "regionName": {
+        "ar": "المغرب",
+        "en": "Morocco"
+      },
+      "isPending": true
+    },
+    {
+      "id": "sahara",
+      "name": {
+        "ar": "العيون والداخلة",
+        "en": "Sahara"
+      },
+      "desc": {
+        "ar": "مدينة مغربية عريقة.",
+        "en": "A historic Moroccan city."
+      },
+      "imageUrl": null,
+      "regionName": {
+        "ar": "المغرب",
+        "en": "Morocco"
+      },
+      "isPending": true
+    },
+    {
+      "id": "safi",
+      "name": {
+        "ar": "آسفي",
+        "en": "Safi"
+      },
+      "desc": {
+        "ar": "مدينة مغربية عريقة.",
+        "en": "A historic Moroccan city."
+      },
+      "imageUrl": null,
+      "regionName": {
+        "ar": "المغرب",
+        "en": "Morocco"
+      },
+      "isPending": true
+    }
+  ],
   "battles": [],
   "figures": [],
   "articles": {
@@ -2691,48 +1986,28 @@
       },
       "category": "landmark",
       "metaDescription": {
-        "ar": "أهلاً بك في مقال جديد عن جمال المغرب! اليوم سنأخذك في رحلة إلى مدينة الرباط لنكتشف معاً صومعة حسان.\r\n\r\nتقف صومعة حسان شامخة كشاهد أبدي على عظمة الدولة الموحدية،...",
-        "en": "أهلاً بك في مقال جديد عن جمال المغرب! اليوم سنأخذك في رحلة إلى مدينة الرباط لنكتشف معاً صومعة حسان.\r\n\r\nتقف صومعة حسان شامخة كشاهد أبدي على عظمة الدولة الموحدية،..."
+        "ar": "",
+        "en": ""
       },
       "intro": {
-        "ar": "أهلاً بك في مقال جديد عن جمال المغرب! اليوم سنأخذك في رحلة إلى مدينة **الرباط** لنكتشف معاً **صومعة حسان**.\r\n\r\nتقف **صومعة حسان** شامخة كشاهد أبدي على عظمة الدولة الموحدية، وهي ليست مجرد بناء حجري، بل هي نبض تاريخي ينبض في قلب العاصمة المغربية، الرباط. هذه الصومعة، التي كانت يوماً ما مئذنة لأكبر مسجد عرفه المغرب، هي رمز للصمود والعبقرية المعمارية الإسلامية.",
-        "en": "أهلاً بك في مقال جديد عن جمال المغرب! اليوم سنأخذك في رحلة إلى مدينة **الرباط** لنكتشف معاً **صومعة حسان**.\r\n\r\nتقف **صومعة حسان** شامخة كشاهد أبدي على عظمة الدولة الموحدية، وهي ليست مجرد بناء حجري، بل هي نبض تاريخي ينبض في قلب العاصمة المغربية، الرباط. هذه الصومعة، التي كانت يوماً ما مئذنة لأكبر مسجد عرفه المغرب، هي رمز للصمود والعبقرية المعمارية الإسلامية."
+        "ar": "",
+        "en": ""
       },
       "sections": [
         {
           "title": {
-            "ar": "حلم السلطان يعقوب المنصور",
-            "en": "حلم السلطان يعقوب المنصور"
+            "ar": "نبذة",
+            "en": "Overview"
           },
           "content": {
-            "ar": "تعود فكرة بناء هذا الصرح العظيم إلى أواخر القرن الثاني عشر الميلادي، وتحديداً في عهد السلطان **أبي يوسف يعقوب المنصور الموحدي**. كان طموح السلطان أن يشيد مسجداً وضخماً يضاهي مساجد الشرق الإسلامي، وأن تكون صومعته هي الأعلى والأجمل.\r\n\r\nللأسف، لم يكتمل هذا الحلم. توفي المنصور عام 1199م قبل إتمام بناء المسجد والصومعة. ما نشاهده اليوم هو الجزء المنجز من المشروع الضخم، الذي اكتمل منه نحو 44 متراً من الارتفاع المقرر له أن يصل إلى حوالي 77 متراً.",
-            "en": "تعود فكرة بناء هذا الصرح العظيم إلى أواخر القرن الثاني عشر الميلادي، وتحديداً في عهد السلطان **أبي يوسف يعقوب المنصور الموحدي**. كان طموح السلطان أن يشيد مسجداً وضخماً يضاهي مساجد الشرق الإسلامي، وأن تكون صومعته هي الأعلى والأجمل.\r\n\r\nللأسف، لم يكتمل هذا الحلم. توفي المنصور عام 1199م قبل إتمام بناء المسجد والصومعة. ما نشاهده اليوم هو الجزء المنجز من المشروع الضخم، الذي اكتمل منه نحو 44 متراً من الارتفاع المقرر له أن يصل إلى حوالي 77 متراً."
-          }
-        },
-        {
-          "title": {
-            "ar": "تحفة معمارية فريدة",
-            "en": "تحفة معمارية فريدة"
-          },
-          "content": {
-            "ar": "على الرغم من كونها غير مكتملة، تظل صومعة حسان نموذجاً مبهراً لفن العمارة الموحدية. الصومعة مربعة الشكل، وتتميز بتفاصيلها الزخرفية الدقيقة التي تتناغم بين البساطة والقوة.\r\n\r\n**ما يميز الصومعة حقاً هو:**\r\n\r\n*   **الزخارف:** تتميز واجهاتها الأربعة بتنوع فريد في النقوش. تجد فيها أشكالاً هندسية معقدة، ونقوشاً نباتية (أرابيسك)، وكسوات من الحجارة المتشابكة التي تروي قصصاً من الإتقان الحرفي.\r\n*   **المواد:** بنيت الصومعة بالكامل من الحجارة الرملية الحمراء، التي تكتسب لوناً ذهبياً دافئاً تحت أشعة شمس الرباط.\r\n*   **التصميم الداخلي:** يمكن لزوارها الصعود إلى قمة الصومعة عبر منحدر داخلي بدلاً من السلالم التقليدية. هذا التصميم المائل كان يُعتقد أنه صُمم للسماح للمؤذن بركوب حصانه للوصول إلى الأعلى بسهولة، مما يعكس البراعة الهندسية لتلك الحقبة.",
-            "en": "على الرغم من كونها غير مكتملة، تظل صومعة حسان نموذجاً مبهراً لفن العمارة الموحدية. الصومعة مربعة الشكل، وتتميز بتفاصيلها الزخرفية الدقيقة التي تتناغم بين البساطة والقوة.\r\n\r\n**ما يميز الصومعة حقاً هو:**\r\n\r\n*   **الزخارف:** تتميز واجهاتها الأربعة بتنوع فريد في النقوش. تجد فيها أشكالاً هندسية معقدة، ونقوشاً نباتية (أرابيسك)، وكسوات من الحجارة المتشابكة التي تروي قصصاً من الإتقان الحرفي.\r\n*   **المواد:** بنيت الصومعة بالكامل من الحجارة الرملية الحمراء، التي تكتسب لوناً ذهبياً دافئاً تحت أشعة شمس الرباط.\r\n*   **التصميم الداخلي:** يمكن لزوارها الصعود إلى قمة الصومعة عبر منحدر داخلي بدلاً من السلالم التقليدية. هذا التصميم المائل كان يُعتقد أنه صُمم للسماح للمؤذن بركوب حصانه للوصول إلى الأعلى بسهولة، مما يعكس البراعة الهندسية لتلك الحقبة."
-          }
-        },
-        {
-          "title": {
-            "ar": "محيط تاريخي مهيب",
-            "en": "محيط تاريخي مهيب"
-          },
-          "content": {
-            "ar": "تقف صومعة حسان اليوم محاطة بـ **أطلال المسجد الكبير** الذي لم يكتمل، حيث يمكن رؤية الأعمدة المتبقية التي كانت تشكل قاعة الصلاة، مما يعطي الزائر تصوراً حقيقياً لحجم المشروع الطموح الذي كان يخطط له المنصور.\r\n\r\nبالقرب منها، يقع **ضريح محمد الخامس**، حيث يرقد ملك المغرب الراحل ووالد الملك الراحل الحسن الثاني، مع شقيقه الأمير مولاي عبد الله. هذا التناغم بين عظمة الماضي المتمثلة في الصومعة، وعظمة التاريخ المعاصر المتمثلة في الضريح، يجعل من ساحة حسان موقعاً ذا أهمية وطنية وثقافية لا تضاهى في الرباط.\r\n\r\nصومعة حسان ليست مجرد بقايا أثرية؛ إنها دعوة للتأمل في عظمة الحضارة الإسلامية في المغرب، ورمز لمدينة الرباط التي تجمع بين الحداثة والأصالة العريقة. زيارتها هي خطوة ضرورية لكل من يرغب في فهم روح هذا البلد.",
-            "en": "تقف صومعة حسان اليوم محاطة بـ **أطلال المسجد الكبير** الذي لم يكتمل، حيث يمكن رؤية الأعمدة المتبقية التي كانت تشكل قاعة الصلاة، مما يعطي الزائر تصوراً حقيقياً لحجم المشروع الطموح الذي كان يخطط له المنصور.\r\n\r\nبالقرب منها، يقع **ضريح محمد الخامس**، حيث يرقد ملك المغرب الراحل ووالد الملك الراحل الحسن الثاني، مع شقيقه الأمير مولاي عبد الله. هذا التناغم بين عظمة الماضي المتمثلة في الصومعة، وعظمة التاريخ المعاصر المتمثلة في الضريح، يجعل من ساحة حسان موقعاً ذا أهمية وطنية وثقافية لا تضاهى في الرباط.\r\n\r\nصومعة حسان ليست مجرد بقايا أثرية؛ إنها دعوة للتأمل في عظمة الحضارة الإسلامية في المغرب، ورمز لمدينة الرباط التي تجمع بين الحداثة والأصالة العريقة. زيارتها هي خطوة ضرورية لكل من يرغب في فهم روح هذا البلد."
+            "ar": "# صومعة حسان: شموخ التاريخ في قلب الرباط\r\n\r\nأهلاً بك في مقال جديد عن جمال المغرب! اليوم سنأخذك في رحلة إلى مدينة **الرباط** لنكتشف معاً **صومعة حسان**.\r\n\r\nتقف **صومعة حسان** شامخة كشاهد أبدي على عظمة الدولة الموحدية، وهي ليست مجرد بناء حجري، بل هي نبض تاريخي ينبض في قلب العاصمة المغربية، الرباط. هذه الصومعة، التي كانت يوماً ما مئذنة لأكبر مسجد عرفه المغرب، هي رمز للصمود والعبقرية المعمارية الإسلامية.\r\n\r\n## حلم السلطان يعقوب المنصور\r\n\r\nتعود فكرة بناء هذا الصرح العظيم إلى أواخر القرن الثاني عشر الميلادي، وتحديداً في عهد السلطان **أبي يوسف يعقوب المنصور الموحدي**. كان طموح السلطان أن يشيد مسجداً وضخماً يضاهي مساجد الشرق الإسلامي، وأن تكون صومعته هي الأعلى والأجمل.\r\n\r\nللأسف، لم يكتمل هذا الحلم. توفي المنصور عام 1199م قبل إتمام بناء المسجد والصومعة. ما نشاهده اليوم هو الجزء المنجز من المشروع الضخم، الذي اكتمل منه نحو 44 متراً من الارتفاع المقرر له أن يصل إلى حوالي 77 متراً.\r\n\r\n## تحفة معمارية فريدة\r\n\r\nعلى الرغم من كونها غير مكتملة، تظل صومعة حسان نموذجاً مبهراً لفن العمارة الموحدية. الصومعة مربعة الشكل، وتتميز بتفاصيلها الزخرفية الدقيقة التي تتناغم بين البساطة والقوة.\r\n\r\n**ما يميز الصومعة حقاً هو:**\r\n\r\n*   **الزخارف:** تتميز واجهاتها الأربعة بتنوع فريد في النقوش. تجد فيها أشكالاً هندسية معقدة، ونقوشاً نباتية (أرابيسك)، وكسوات من الحجارة المتشابكة التي تروي قصصاً من الإتقان الحرفي.\r\n*   **المواد:** بنيت الصومعة بالكامل من الحجارة الرملية الحمراء، التي تكتسب لوناً ذهبياً دافئاً تحت أشعة شمس الرباط.\r\n*   **التصميم الداخلي:** يمكن لزوارها الصعود إلى قمة الصومعة عبر منحدر داخلي بدلاً من السلالم التقليدية. هذا التصميم المائل كان يُعتقد أنه صُمم للسماح للمؤذن بركوب حصانه للوصول إلى الأعلى بسهولة، مما يعكس البراعة الهندسية لتلك الحقبة.\r\n\r\n## محيط تاريخي مهيب\r\n\r\nتقف صومعة حسان اليوم محاطة بـ **أطلال المسجد الكبير** الذي لم يكتمل، حيث يمكن رؤية الأعمدة المتبقية التي كانت تشكل قاعة الصلاة، مما يعطي الزائر تصوراً حقيقياً لحجم المشروع الطموح الذي كان يخطط له المنصور.\r\n\r\nبالقرب منها، يقع **ضريح محمد الخامس**، حيث يرقد ملك المغرب الراحل ووالد الملك الراحل الحسن الثاني، مع شقيقه الأمير مولاي عبد الله. هذا التناغم بين عظمة الماضي المتمثلة في الصومعة، وعظمة التاريخ المعاصر المتمثلة في الضريح، يجعل من ساحة حسان موقعاً ذا أهمية وطنية وثقافية لا تضاهى في الرباط.\r\n\r\nصومعة حسان ليست مجرد بقايا أثرية؛ إنها دعوة للتأمل في عظمة الحضارة الإسلامية في المغرب، ورمز لمدينة الرباط التي تجمع بين الحداثة والأصالة العريقة. زيارتها هي خطوة ضرورية لكل من يرغب في فهم روح هذا البلد.",
+            "en": "# صومعة حسان: شموخ التاريخ في قلب الرباط\r\n\r\nأهلاً بك في مقال جديد عن جمال المغرب! اليوم سنأخذك في رحلة إلى مدينة **الرباط** لنكتشف معاً **صومعة حسان**.\r\n\r\nتقف **صومعة حسان** شامخة كشاهد أبدي على عظمة الدولة الموحدية، وهي ليست مجرد بناء حجري، بل هي نبض تاريخي ينبض في قلب العاصمة المغربية، الرباط. هذه الصومعة، التي كانت يوماً ما مئذنة لأكبر مسجد عرفه المغرب، هي رمز للصمود والعبقرية المعمارية الإسلامية.\r\n\r\n## حلم السلطان يعقوب المنصور\r\n\r\nتعود فكرة بناء هذا الصرح العظيم إلى أواخر القرن الثاني عشر الميلادي، وتحديداً في عهد السلطان **أبي يوسف يعقوب المنصور الموحدي**. كان طموح السلطان أن يشيد مسجداً وضخماً يضاهي مساجد الشرق الإسلامي، وأن تكون صومعته هي الأعلى والأجمل.\r\n\r\nللأسف، لم يكتمل هذا الحلم. توفي المنصور عام 1199م قبل إتمام بناء المسجد والصومعة. ما نشاهده اليوم هو الجزء المنجز من المشروع الضخم، الذي اكتمل منه نحو 44 متراً من الارتفاع المقرر له أن يصل إلى حوالي 77 متراً.\r\n\r\n## تحفة معمارية فريدة\r\n\r\nعلى الرغم من كونها غير مكتملة، تظل صومعة حسان نموذجاً مبهراً لفن العمارة الموحدية. الصومعة مربعة الشكل، وتتميز بتفاصيلها الزخرفية الدقيقة التي تتناغم بين البساطة والقوة.\r\n\r\n**ما يميز الصومعة حقاً هو:**\r\n\r\n*   **الزخارف:** تتميز واجهاتها الأربعة بتنوع فريد في النقوش. تجد فيها أشكالاً هندسية معقدة، ونقوشاً نباتية (أرابيسك)، وكسوات من الحجارة المتشابكة التي تروي قصصاً من الإتقان الحرفي.\r\n*   **المواد:** بنيت الصومعة بالكامل من الحجارة الرملية الحمراء، التي تكتسب لوناً ذهبياً دافئاً تحت أشعة شمس الرباط.\r\n*   **التصميم الداخلي:** يمكن لزوارها الصعود إلى قمة الصومعة عبر منحدر داخلي بدلاً من السلالم التقليدية. هذا التصميم المائل كان يُعتقد أنه صُمم للسماح للمؤذن بركوب حصانه للوصول إلى الأعلى بسهولة، مما يعكس البراعة الهندسية لتلك الحقبة.\r\n\r\n## محيط تاريخي مهيب\r\n\r\nتقف صومعة حسان اليوم محاطة بـ **أطلال المسجد الكبير** الذي لم يكتمل، حيث يمكن رؤية الأعمدة المتبقية التي كانت تشكل قاعة الصلاة، مما يعطي الزائر تصوراً حقيقياً لحجم المشروع الطموح الذي كان يخطط له المنصور.\r\n\r\nبالقرب منها، يقع **ضريح محمد الخامس**، حيث يرقد ملك المغرب الراحل ووالد الملك الراحل الحسن الثاني، مع شقيقه الأمير مولاي عبد الله. هذا التناغم بين عظمة الماضي المتمثلة في الصومعة، وعظمة التاريخ المعاصر المتمثلة في الضريح، يجعل من ساحة حسان موقعاً ذا أهمية وطنية وثقافية لا تضاهى في الرباط.\r\n\r\nصومعة حسان ليست مجرد بقايا أثرية؛ إنها دعوة للتأمل في عظمة الحضارة الإسلامية في المغرب، ورمز لمدينة الرباط التي تجمع بين الحداثة والأصالة العريقة. زيارتها هي خطوة ضرورية لكل من يرغب في فهم روح هذا البلد."
           }
         }
       ],
       "conclusion": {
-        "ar": "أهلاً بك في مقال جديد عن جمال المغرب! اليوم سنأخذك في رحلة إلى مدينة **الرباط** لنكتشف معاً **صومعة حسان**.\r\n\r\nتقف **صومعة حسان** شامخة كشاهد أبدي على عظمة الدولة الموحدية، وهي ليست مجرد بناء حجري، بل هي نبض تاريخي ينبض في قلب العاصمة المغربية، الرباط. هذه الصومعة، التي كانت يوماً ما مئذنة لأكبر مسجد عرفه المغرب، هي رمز للصمود والعبقرية المعمارية الإسلامية.",
-        "en": "أهلاً بك في مقال جديد عن جمال المغرب! اليوم سنأخذك في رحلة إلى مدينة **الرباط** لنكتشف معاً **صومعة حسان**.\r\n\r\nتقف **صومعة حسان** شامخة كشاهد أبدي على عظمة الدولة الموحدية، وهي ليست مجرد بناء حجري، بل هي نبض تاريخي ينبض في قلب العاصمة المغربية، الرباط. هذه الصومعة، التي كانت يوماً ما مئذنة لأكبر مسجد عرفه المغرب، هي رمز للصمود والعبقرية المعمارية الإسلامية."
+        "ar": "",
+        "en": ""
       },
       "generatedImage": "https://images.unsplash.com/photo-1674227638969-56d64fba03e1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4ODUyMjR8MHwxfHNlYXJjaHwxfHwlRDglQjUlRDklODglRDklODUlRDglQjklRDglQTklMjAlRDglQUQlRDglQjMlRDglQTclRDklODYlMjBNb3JvY2NvfGVufDB8fHx8MTc3MjM3MDc0OHww&ixlib=rb-4.1.0&q=80&w=1080",
       "isPending": false

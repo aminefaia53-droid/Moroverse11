@@ -36,15 +36,40 @@ export default function ImageGalleryModal({ isOpen, onClose, onSelectImage }: Im
         }
     }, [isOpen]);
 
+    const compressImage = (file: File): Promise<Blob | File> => {
+        return new Promise((resolve) => {
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = (event) => {
+                const img = new Image();
+                img.src = event.target?.result as string;
+                img.onload = () => {
+                    const canvas = document.createElement('canvas');
+                    let width = img.width;
+                    let height = img.height;
+                    const max = 1200;
+                    if (width > height && width > max) { height *= max / width; width = max; }
+                    else if (height > max) { width *= max / height; height = max; }
+                    canvas.width = width;
+                    canvas.height = height;
+                    const ctx = canvas.getContext('2d');
+                    ctx?.drawImage(img, 0, 0, width, height);
+                    canvas.toBlob((blob) => resolve(blob || file), 'image/jpeg', 0.82);
+                };
+            };
+        });
+    };
+
     const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];
         if (!file) return;
 
         setIsUploading(true);
-        const formData = new FormData();
-        formData.append('file', file);
-
         try {
+            const compressedBlob = await compressImage(file);
+            const formData = new FormData();
+            formData.append('file', compressedBlob, file.name);
+
             const res = await fetch('/api/admin/images/upload', {
                 method: 'POST',
                 body: formData,
@@ -56,10 +81,11 @@ export default function ImageGalleryModal({ isOpen, onClose, onSelectImage }: Im
                 onSelectImage(data.url);
                 onClose();
             } else {
-                alert('Upload failed: ' + data.message);
+                alert(`Upload failed: ${data.message}${data.error ? ` (${data.error})` : ''}${data.hint ? `\nHint: ${data.hint}` : ''}`);
             }
-        } catch (e) {
-            alert('An error occurred during upload.');
+        } catch (e: any) {
+            console.error('Upload Error Client:', e);
+            alert('An error occurred during upload: ' + (e.message || 'Unknown error'));
         } finally {
             setIsUploading(false);
             if (fileInputRef.current) fileInputRef.current.value = ''; // Reset input
