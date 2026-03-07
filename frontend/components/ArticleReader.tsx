@@ -16,8 +16,13 @@ interface ArticleReaderProps {
 
 const FaqAccordionItem = ({ faq, isAr, lang }: { faq: any; isAr: boolean; lang: LangCode }) => {
     const [isOpen, setIsOpen] = useState(false);
-    const question = faq.question ? (faq.question[lang] || faq.question['ar']) : (faq.q?.[lang] || faq.q?.['ar']);
-    const answer = faq.answer ? (faq.answer[lang] || faq.answer['ar']) : (faq.a?.[lang] || faq.a?.['ar']);
+    const question = faq.question
+        ? (lang === 'en' ? faq.question.en : faq.question.ar)
+        : (faq.q ? (lang === 'en' ? faq.q.en : faq.q.ar) : '');
+
+    const answer = faq.answer
+        ? (lang === 'en' ? faq.answer.en : faq.answer.ar)
+        : (faq.a ? (lang === 'en' ? faq.a.en : faq.a.ar) : '');
 
     return (
         <div className="bg-black/30 border border-[#c5a059]/10 rounded-xl overflow-hidden hover:border-[#c5a059]/30 transition-all duration-300">

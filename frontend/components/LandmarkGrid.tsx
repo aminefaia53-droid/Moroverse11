@@ -36,7 +36,11 @@ export default function LandmarkGrid({ lang }: { lang: LangCode }) {
         const allCities = dynamicLandmarks.map(l => l.city);
         const unique = Array.from(new Set(allCities.map(c => c.en))).map(en => allCities.find(c => c.en === en)!);
         // Sort alphabetically but put Major cities first if desired (e.g. Rabat, Casablanca)
-        return unique.sort((a, b) => a[lang].localeCompare(b[lang]));
+        return unique.sort((a, b) => {
+            const valA = lang === 'en' ? a.en : a.ar;
+            const valB = lang === 'en' ? b.en : b.ar;
+            return valA.localeCompare(valB);
+        });
     }, [dynamicLandmarks]);
 
     const filteredLandmarks = useMemo(() => {
@@ -88,7 +92,7 @@ export default function LandmarkGrid({ lang }: { lang: LangCode }) {
                         onClick={() => setSelectedCity(city.en)}
                         className={`px-6 py-2 rounded-2xl border text-[10px] font-black uppercase tracking-widest transition-all ${selectedCity === city.en ? 'bg-primary text-white border-primary shadow-[0_0_15px_rgba(197,160,89,0.4)]' : 'bg-black/30 text-white/50 border-white/5 hover:border-white/20 hover:text-white hover:bg-black/60'}`}
                     >
-                        {city[lang] || city['en']}
+                        {lang === 'en' ? city.en : city.ar}
                     </button>
                 ))}
             </div>
@@ -169,7 +173,7 @@ export default function LandmarkGrid({ lang }: { lang: LangCode }) {
                                         <div className="p-6 rounded-3xl bg-black/40 border border-[#c5a059]/20 space-y-4">
                                             <div className="flex justify-between items-center pb-4 border-b border-[#c5a059]/10">
                                                 <span className="text-[11px] font-bold text-white/50 uppercase">{lang === 'ar' ? 'تاريخ التأسيس' : 'FOUNDED'}</span>
-                                                <span className="text-sm font-black text-white">{selectedLandmark?.foundation?.[lang] || selectedLandmark?.foundation?.['en']}</span>
+                                                <span className="text-sm font-black text-white">{lang === 'en' ? (selectedLandmark?.foundation?.en || '') : (selectedLandmark?.foundation?.ar || '')}</span>
                                             </div>
                                             <div className="flex justify-between items-center pt-2">
                                                 <span className="text-[11px] font-bold text-white/50 uppercase">{lang === 'ar' ? 'نمط العمارة' : 'STYLE'}</span>
@@ -249,7 +253,7 @@ function LandmarkCard({
             onClick={() => {
                 onClick(landmark);
                 window.dispatchEvent(new CustomEvent('moroverse-action', {
-                    detail: { type: 'landmark_click', payload: landmark.name[lang] }
+                    detail: { type: 'landmark_click', payload: lang === 'en' ? landmark.name.en : landmark.name.ar }
                 }));
             }}
             className="group cursor-pointer relative aspect-[4/5] md:aspect-square lg:aspect-[4/5] w-full"
@@ -261,7 +265,7 @@ function LandmarkCard({
                     {!landmark.isPending ? (
                         <img
                             src={`/images/${landmark.id}.jpg`}
-                            alt={landmark.name[lang]}
+                            alt={lang === 'en' ? landmark.name.en : landmark.name.ar}
                             className={`w-full h-full object-cover transition-all duration-1000 transform group-hover:scale-110 opacity-90 group-hover:opacity-100`}
                             onError={(e) => {
                                 e.currentTarget.style.display = 'none';

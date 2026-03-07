@@ -45,15 +45,16 @@ export default function HistoricalFiguresGrid({ lang }: { lang: LangCode }) {
         });
     }, [selectedCategory, searchQuery]);
 
-    const getCategoryLabel = (cat: HistoricalFigure['category'], lang: 'en' | 'ar') => {
-        const labels = {
+    const getCategoryLabel = (cat: HistoricalFigure['category'], currentLang: string) => {
+        const labels: Record<string, { en: string; ar: string }> = {
             'Science': { en: 'Science', ar: 'العلوم' },
             'Politics': { en: 'Politics', ar: 'السياسة' },
             'Resistance': { en: 'Resistance', ar: 'المقاومة' },
             'Exploration': { en: 'Exploration', ar: 'الاستكشاف' },
             'Arts': { en: 'Arts', ar: 'الفنون' }
         };
-        return labels[cat][lang];
+        const item = labels[cat] || labels['Science'];
+        return currentLang === 'en' ? item.en : item.ar;
     };
 
     return (
@@ -155,7 +156,7 @@ function FigureCard({
             transition={{ delay: idx * 0.1, duration: 0.5 }}
             onClick={() => {
                 window.dispatchEvent(new CustomEvent('moroverse-action', {
-                    detail: { type: 'figure_click', payload: figure.name[lang] }
+                    detail: { type: 'figure_click', payload: lang === 'en' ? figure.name.en : figure.name.ar }
                 }));
                 onClick(figure);
             }}
@@ -167,7 +168,7 @@ function FigureCard({
                 <div className="absolute inset-0 z-0">
                     <img
                         src={`/images/${figure.id}.jpg`}
-                        alt={figure.name[lang]}
+                        alt={lang === 'en' ? figure.name.en : figure.name.ar}
                         className={`w-full h-full object-cover transition-all duration-1000 transform group-hover:scale-110 opacity-90 group-hover:opacity-100`}
                         onError={(e) => {
                             e.currentTarget.style.display = 'none';
@@ -186,7 +187,7 @@ function FigureCard({
                         </div>
                         <div className="flex flex-col items-end gap-2">
                             <span className="px-4 py-1.5 rounded-full bg-black/60 backdrop-blur-md border border-[#c5a059]/40 text-[#c5a059] text-[10px] font-black uppercase tracking-[0.2em]">
-                                {figure.era[lang]}
+                                {lang === 'en' ? figure.era.en : figure.era.ar}
                             </span>
                         </div>
                     </div>

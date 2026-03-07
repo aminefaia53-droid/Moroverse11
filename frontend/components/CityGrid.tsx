@@ -142,7 +142,7 @@ export default function CityGrid({ lang }: { lang: LangCode }) {
                             onClick={() => setSelectedRegion(region.id)}
                             className={`px-4 py-2 rounded-xl border text-[9px] font-bold transition-all ${selectedRegion === region.id ? 'bg-primary/20 text-primary border-primary/50' : 'bg-black/30 text-white/50 border-white/5 hover:border-white/20 hover:text-white hover:bg-black/60'}`}
                         >
-                            {region.name[lang] || region.name['en']}
+                            {lang === 'en' ? region.name.en : region.name.ar}
                         </button>
                     ))}
                 </div>
@@ -231,7 +231,7 @@ export default function CityGrid({ lang }: { lang: LangCode }) {
                                         <div className="space-y-4">
                                             <div className="flex justify-between items-center py-3 border-b border-[#c5a059]/10">
                                                 <span className="text-[11px] font-bold text-white/50 uppercase">{lang === 'ar' ? 'الجهة' : 'REGION'}</span>
-                                                <span className="text-sm font-bold text-white">{selectedLocation?.regionName?.[lang] || selectedLocation?.regionName?.['en']}</span>
+                                                <span className="text-sm font-bold text-white">{lang === 'en' ? (selectedLocation?.regionName?.en || '') : (selectedLocation?.regionName?.ar || '')}</span>
                                             </div>
                                             <div className="flex justify-between items-center py-3 border-b border-[#c5a059]/10">
                                                 <span className="text-[11px] font-bold text-white/50 uppercase">{lang === 'ar' ? 'الإقليم' : 'PROVINCE'}</span>
@@ -258,7 +258,7 @@ export default function CityGrid({ lang }: { lang: LangCode }) {
                                             {lang === 'ar' ? 'أهم المعالم' : 'TOP LANDMARKS'}
                                         </h4>
                                         <div className="flex flex-wrap gap-2">
-                                            {selectedLocation.landmarks[lang] ? selectedLocation.landmarks[lang].map((landmark, i) => (
+                                            {((selectedLocation.landmarks as any)[lang] || (selectedLocation.landmarks as any)['ar']) ? ((selectedLocation.landmarks as any)[lang] || (selectedLocation.landmarks as any)['ar']).map((landmark: string, i: number) => (
                                                 <div key={i} className="px-4 py-3 rounded-2xl bg-black/60 border border-[#c5a059]/30 flex items-center gap-3 group hover:border-primary/60 transition-all">
                                                     <div className="w-2 h-2 rounded-full bg-[#c5a059]/60 group-hover:bg-primary" />
                                                     <span className="text-[11px] font-bold text-white/80">{landmark}</span>
@@ -325,7 +325,7 @@ function CityCard({
             onClick={() => {
                 onClick(loc);
                 window.dispatchEvent(new CustomEvent('moroverse-action', {
-                    detail: { type: 'city_click', payload: loc.name[lang] }
+                    detail: { type: 'city_click', payload: lang === 'en' ? loc.name.en : loc.name.ar }
                 }));
             }}
             className="group cursor-pointer relative aspect-video md:aspect-square lg:aspect-video w-full"
@@ -336,7 +336,7 @@ function CityCard({
                 <div className="absolute inset-0 z-0 bg-black">
                     <img
                         src={`/images/${loc.id}.jpg`}
-                        alt={loc.name[lang] || loc.name['en']}
+                        alt={lang === 'en' ? loc.name.en : loc.name.ar}
                         className={`w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110 opacity-50 group-hover:opacity-60`}
                         onError={(e) => {
                             e.currentTarget.style.display = 'none';
@@ -367,7 +367,7 @@ function CityCard({
                         <div className="flex items-center gap-3">
                             <div className="h-[2px] w-8 bg-[#c5a059] group-hover:w-16 transition-all duration-500" />
                             <span className="text-xs font-bold text-white/90 uppercase tracking-widest drop-shadow-md">
-                                {loc.regionName[lang] || loc.regionName['en']}
+                                {lang === 'en' ? loc.regionName.en : loc.regionName.ar}
                             </span>
                         </div>
                         <p className="text-sm text-white/80 line-clamp-1 italic font-medium opacity-0 group-hover:opacity-100 transition-all duration-700 translate-y-4 group-hover:translate-y-0 mt-4 max-w-[90%] font-arabic">
