@@ -107,10 +107,12 @@ export default function RichToolbar({ textareaRef, value, onChange, onImageUploa
     return (
         <div className="border-b border-gray-200 dark:border-[#c5a059]/20 bg-stone-50 dark:bg-[#0a192f]">
             <div className="flex items-center flex-wrap gap-0.5 px-2 py-1.5">
-                {tools.map((tool, i) =>
-                    tool.divider ? (
-                        <div key={i} className="w-px h-5 bg-gray-200 dark:bg-[#c5a059]/20 mx-1" />
-                    ) : (
+                {tools.map((tool, i) => {
+                    if (tool.divider) {
+                        return <div key={i} className="w-px h-5 bg-gray-200 dark:bg-[#c5a059]/20 mx-1" />;
+                    }
+                    const Icon = tool.icon as React.ElementType;
+                    return (
                         <button
                             key={i}
                             type="button"
@@ -118,10 +120,10 @@ export default function RichToolbar({ textareaRef, value, onChange, onImageUploa
                             onClick={tool.action}
                             className="p-1.5 rounded-md text-gray-500 hover:text-gold-royal hover:bg-gold-royal/10 dark:hover:bg-gold-royal/10 transition-colors"
                         >
-                            <tool.icon! className="w-4 h-4" />
+                            <Icon className="w-4 h-4" />
                         </button>
-                    )
-                )}
+                    );
+                })}
                 {/* Image upload from toolbar */}
                 <button
                     type="button"
