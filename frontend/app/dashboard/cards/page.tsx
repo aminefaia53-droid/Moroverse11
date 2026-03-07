@@ -73,8 +73,8 @@ export default function CardsControlPage() {
                             key={tab.id}
                             onClick={() => setActiveTab(tab.id)}
                             className={`px-6 py-4 text-sm font-bold uppercase tracking-wider transition-colors ${activeTab === tab.id
-                                    ? 'border-b-2 border-gold-royal text-gold-royal bg-white dark:bg-stone-900'
-                                    : 'text-gray-500 hover:bg-gray-100 dark:hover:bg-stone-800'
+                                ? 'border-b-2 border-gold-royal text-gold-royal bg-white dark:bg-stone-900'
+                                : 'text-gray-500 hover:bg-gray-100 dark:hover:bg-stone-800'
                                 }`}
                         >
                             {tab.label} ({data[tab.id]?.length || 0})
@@ -112,8 +112,8 @@ export default function CardsControlPage() {
 
                                     <div className="flex items-center gap-4 ml-6 shrink-0">
                                         <span className={`px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider ${!item.isPending
-                                                ? 'bg-green-100 text-green-700 border border-green-200 dark:bg-green-900/30 dark:text-green-400 dark:border-green-800'
-                                                : 'bg-yellow-100 text-yellow-700 border border-yellow-200 dark:bg-yellow-900/30 dark:text-yellow-400 dark:border-yellow-800'
+                                            ? 'bg-green-100 text-green-700 border border-green-200 dark:bg-green-900/30 dark:text-green-400 dark:border-green-800'
+                                            : 'bg-yellow-100 text-yellow-700 border border-yellow-200 dark:bg-yellow-900/30 dark:text-yellow-400 dark:border-yellow-800'
                                             }`}>
                                             {!item.isPending ? 'Visible on Site' : 'Hidden (Pending)'}
                                         </span>
@@ -122,8 +122,8 @@ export default function CardsControlPage() {
                                             onClick={() => toggleVisibility(activeTab, item.id, item.isPending)}
                                             title={!item.isPending ? 'Hide from Homepage' : 'Show on Homepage'}
                                             className={`p-2 rounded-lg transition-colors shadow-sm ${!item.isPending
-                                                    ? 'bg-stone-100 text-gray-700 hover:bg-stone-200 dark:bg-stone-800 dark:text-gray-300 dark:hover:bg-stone-700 border border-transparent'
-                                                    : 'bg-gold-royal text-white hover:bg-gold-light border border-gold-royal/50'
+                                                ? 'bg-stone-100 text-gray-700 hover:bg-stone-200 dark:bg-stone-800 dark:text-gray-300 dark:hover:bg-stone-700 border border-transparent'
+                                                : 'bg-gold-royal text-white hover:bg-gold-light border border-gold-royal/50'
                                                 }`}
                                         >
                                             {!item.isPending ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}

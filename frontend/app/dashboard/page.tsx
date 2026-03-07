@@ -12,7 +12,8 @@ export default function DashboardPage() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <Link href="/dashboard/editor" className="group block">
-                    <div className="bg-white dark:bg-stone-900 border border-gray-200 dark:border-stone-800 rounded-xl p-6 transition-all hover:border-gold-royal hover:shadow-lg hover:shadow-gold-royal/5 h-full">
+                    <div className="bg-white dark:bg-[#112240] border border-gray-200 dark:border-[#c5a059]/30 shadow-[0_4px_20px_rgba(0,0,0,0.05)] dark:shadow-[0_4px_20px_rgba(0,0,0,0.4)] rounded-xl p-6 transition-all hover:border-gold-royal hover:shadow-lg hover:shadow-gold-royal/20 h-full relative overflow-hidden group-hover:-translate-y-1">
+                        <div className="absolute top-0 right-0 w-32 h-32 bg-gold-royal/5 rounded-bl-[100px] pointer-events-none transition-transform group-hover:scale-110" />
                         <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-lg flex items-center justify-center mb-4">
                             <FileEdit className="w-6 h-6" />
                         </div>
@@ -27,7 +28,8 @@ export default function DashboardPage() {
                 </Link>
 
                 <Link href="/dashboard/cards" className="group block">
-                    <div className="bg-white dark:bg-stone-900 border border-gray-200 dark:border-stone-800 rounded-xl p-6 transition-all hover:border-gold-royal hover:shadow-lg hover:shadow-gold-royal/5 h-full">
+                    <div className="bg-white dark:bg-[#112240] border border-gray-200 dark:border-[#c5a059]/30 shadow-[0_4px_20px_rgba(0,0,0,0.05)] dark:shadow-[0_4px_20px_rgba(0,0,0,0.4)] rounded-xl p-6 transition-all hover:border-gold-royal hover:shadow-lg hover:shadow-gold-royal/20 h-full relative overflow-hidden group-hover:-translate-y-1">
+                        <div className="absolute top-0 right-0 w-32 h-32 bg-gold-royal/5 rounded-bl-[100px] pointer-events-none transition-transform group-hover:scale-110" />
                         <div className="w-12 h-12 bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400 rounded-lg flex items-center justify-center mb-4">
                             <PanelTop className="w-6 h-6" />
                         </div>

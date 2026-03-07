@@ -1,7 +1,9 @@
 'use client';
 
 import { useState } from 'react';
-import { Save, Image as ImageIcon, CheckCircle } from 'lucide-react';
+import { Save, Image as ImageIcon, CheckCircle, Search } from 'lucide-react';
+import MarkdownEditor from '../components/MarkdownEditor';
+import ImageGalleryModal from '../components/ImageGalleryModal';
 
 export default function EditorPage() {
     const [titleEn, setTitleEn] = useState('');
@@ -12,6 +14,7 @@ export default function EditorPage() {
     const [descEn, setDescEn] = useState('');
     const [descAr, setDescAr] = useState('');
     const [imageUrl, setImageUrl] = useState('');
+    const [isGalleryOpen, setIsGalleryOpen] = useState(false);
 
     const [status, setStatus] = useState<'idle' | 'saving' | 'success' | 'error'>('idle');
 
@@ -58,23 +61,23 @@ export default function EditorPage() {
 
             <form onSubmit={handleSave} className="space-y-8 font-outfit">
                 {/* Basic Info */}
-                <div className="bg-white dark:bg-stone-900 p-6 rounded-xl border border-gray-200 dark:border-stone-800 shadow-sm">
+                <div className="bg-white dark:bg-[#112240] p-6 rounded-xl border border-gray-200 dark:border-[#c5a059]/30 shadow-sm">
                     <h2 className="text-xl font-bold mb-4 text-gray-900 dark:text-white">Basic Information</h2>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
                             <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Title (English)</label>
-                            <input required value={titleEn} onChange={e => setTitleEn(e.target.value)} className="w-full px-4 py-2 border border-gray-300 dark:border-stone-700 rounded-lg dark:bg-stone-800 dark:text-white focus:ring-2 focus:ring-gold-royal" />
+                            <input required value={titleEn} onChange={e => setTitleEn(e.target.value)} className="w-full px-4 py-2 border border-gray-300 dark:border-[#c5a059]/20 rounded-lg dark:bg-[#0a192f] dark:text-white focus:ring-2 focus:ring-gold-royal" />
                         </div>
                         <div dir="rtl">
                             <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Title (Arabic)</label>
-                            <input required value={titleAr} onChange={e => setTitleAr(e.target.value)} className="w-full px-4 py-2 border border-gray-300 dark:border-stone-700 rounded-lg dark:bg-stone-800 dark:text-white focus:ring-2 focus:ring-gold-royal" />
+                            <input required value={titleAr} onChange={e => setTitleAr(e.target.value)} className="w-full px-4 py-2 border border-gray-300 dark:border-[#c5a059]/20 rounded-lg dark:bg-[#0a192f] dark:text-white focus:ring-2 focus:ring-gold-royal" />
                         </div>
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
                         <div>
                             <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Category</label>
-                            <select value={category} onChange={e => setCategory(e.target.value)} className="w-full px-4 py-2 border border-gray-300 dark:border-stone-700 rounded-lg dark:bg-stone-800 dark:text-white focus:ring-2 focus:ring-gold-royal">
+                            <select value={category} onChange={e => setCategory(e.target.value)} className="w-full px-4 py-2 border border-gray-300 dark:border-[#c5a059]/20 rounded-lg dark:bg-[#0a192f] dark:text-white focus:ring-2 focus:ring-gold-royal">
                                 <option value="cities">City</option>
                                 <option value="landmarks">Landmark</option>
                                 <option value="battles">Battle</option>
@@ -83,30 +86,40 @@ export default function EditorPage() {
                         </div>
                         <div>
                             <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Associated City (EN)</label>
-                            <input value={cityEn} onChange={e => setCityEn(e.target.value)} className="w-full px-4 py-2 border border-gray-300 dark:border-stone-700 rounded-lg dark:bg-stone-800 dark:text-white focus:ring-2 focus:ring-gold-royal" />
+                            <input value={cityEn} onChange={e => setCityEn(e.target.value)} className="w-full px-4 py-2 border border-gray-300 dark:border-[#c5a059]/20 rounded-lg dark:bg-[#0a192f] dark:text-white focus:ring-2 focus:ring-gold-royal" />
                         </div>
                         <div dir="rtl">
                             <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Associated City (AR)</label>
-                            <input value={cityAr} onChange={e => setCityAr(e.target.value)} className="w-full px-4 py-2 border border-gray-300 dark:border-stone-700 rounded-lg dark:bg-stone-800 dark:text-white focus:ring-2 focus:ring-gold-royal" />
+                            <input value={cityAr} onChange={e => setCityAr(e.target.value)} className="w-full px-4 py-2 border border-gray-300 dark:border-[#c5a059]/20 rounded-lg dark:bg-[#0a192f] dark:text-white focus:ring-2 focus:ring-gold-royal" />
                         </div>
                     </div>
                 </div>
 
                 {/* Media */}
-                <div className="bg-white dark:bg-stone-900 p-6 rounded-xl border border-gray-200 dark:border-stone-800 shadow-sm">
-                    <h2 className="text-xl font-bold mb-4 text-gray-900 dark:text-white flex items-center gap-2">
-                        <ImageIcon className="w-5 h-5" /> Cover Image
-                    </h2>
+                <div className="bg-white dark:bg-[#112240] p-6 rounded-xl border border-gray-200 dark:border-[#c5a059]/30 shadow-sm">
+                    <div className="flex justify-between items-center mb-4">
+                        <h2 className="text-xl font-bold text-gray-900 dark:text-white flex items-center gap-2">
+                            <ImageIcon className="w-5 h-5" /> Cover Image
+                        </h2>
+                        <button
+                            type="button"
+                            onClick={() => setIsGalleryOpen(true)}
+                            className="text-sm font-bold bg-gold-royal/10 text-gold-royal hover:bg-gold-royal/20 px-4 py-2 rounded-lg flex items-center gap-2 transition-colors"
+                        >
+                            <Search className="w-4 h-4" /> Browse Gallery
+                        </button>
+                    </div>
+
                     <div>
                         <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Image URL</label>
                         <input
                             value={imageUrl}
                             onChange={e => setImageUrl(e.target.value)}
-                            placeholder="https://images.unsplash.com/..."
-                            className="w-full px-4 py-2 border border-gray-300 dark:border-stone-700 rounded-lg dark:bg-stone-800 dark:text-white focus:ring-2 focus:ring-gold-royal mb-4"
+                            placeholder="https://images.unsplash.com/... or uploaded path"
+                            className="w-full px-4 py-2 border border-gray-300 dark:border-[#c5a059]/20 rounded-lg dark:bg-[#0a192f] dark:text-white focus:ring-2 focus:ring-gold-royal mb-4"
                         />
                         {imageUrl && (
-                            <div className="relative w-full h-48 rounded-lg overflow-hidden border border-gray-200 dark:border-stone-700">
+                            <div className="relative w-full h-48 rounded-lg overflow-hidden border border-gray-200 dark:border-[#c5a059]/20">
                                 <img src={imageUrl} alt="Preview" className="object-cover w-full h-full" />
                             </div>
                         )}
@@ -114,17 +127,22 @@ export default function EditorPage() {
                 </div>
 
                 {/* Content */}
-                <div className="bg-white dark:bg-stone-900 p-6 rounded-xl border border-gray-200 dark:border-stone-800 shadow-sm">
+                <div className="bg-white dark:bg-[#112240] p-6 rounded-xl border border-gray-200 dark:border-[#c5a059]/30 shadow-sm">
                     <h2 className="text-xl font-bold mb-4 text-gray-900 dark:text-white">Content Description</h2>
                     <div className="space-y-6">
-                        <div>
-                            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Description (English)</label>
-                            <textarea required value={descEn} onChange={e => setDescEn(e.target.value)} rows={6} className="w-full px-4 py-2 border border-gray-300 dark:border-stone-700 rounded-lg dark:bg-stone-800 dark:text-white focus:ring-2 focus:ring-gold-royal" placeholder="Write the history here..." />
-                        </div>
-                        <div dir="rtl">
-                            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Description (Arabic)</label>
-                            <textarea required value={descAr} onChange={e => setDescAr(e.target.value)} rows={6} className="w-full px-4 py-2 border border-gray-300 dark:border-stone-700 rounded-lg dark:bg-stone-800 dark:text-white focus:ring-2 focus:ring-gold-royal font-arabic" placeholder="اكتب التاريخ هنا..." />
-                        </div>
+                        <MarkdownEditor
+                            value={descEn}
+                            onChange={setDescEn}
+                            placeholder="Write the history here... (Supports Markdown: **bold**, *italic*)"
+                            label="English Description"
+                        />
+                        <MarkdownEditor
+                            value={descAr}
+                            onChange={setDescAr}
+                            dir="rtl"
+                            placeholder="اكتب التاريخ هنا... (يدعم التنسيق)"
+                            label="Arabic Description"
+                        />
                     </div>
                 </div>
 
@@ -146,6 +164,12 @@ export default function EditorPage() {
                     </button>
                 </div>
             </form>
+
+            <ImageGalleryModal
+                isOpen={isGalleryOpen}
+                onClose={() => setIsGalleryOpen(false)}
+                onSelectImage={(url) => setImageUrl(url)}
+            />
         </div>
     );
 }
