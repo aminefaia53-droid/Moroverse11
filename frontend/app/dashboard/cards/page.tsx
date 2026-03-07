@@ -65,16 +65,16 @@ export default function CardsControlPage() {
                 </div>
             </div>
 
-            <div className="bg-white dark:bg-stone-900 rounded-xl border border-gray-200 dark:border-stone-800 shadow-sm overflow-hidden font-outfit">
+            <div className="bg-white dark:bg-[#112240] rounded-xl border border-gray-200 dark:border-[#c5a059]/30 shadow-sm overflow-hidden font-outfit">
                 {/* Tabs */}
-                <div className="flex border-b border-gray-200 dark:border-stone-800 bg-stone-50 dark:bg-stone-900/50">
+                <div className="flex border-b border-gray-200 dark:border-[#c5a059]/30 bg-stone-50 dark:bg-[#0a192f]/50">
                     {tabs.map(tab => (
                         <button
                             key={tab.id}
                             onClick={() => setActiveTab(tab.id)}
                             className={`px-6 py-4 text-sm font-bold uppercase tracking-wider transition-colors ${activeTab === tab.id
-                                ? 'border-b-2 border-gold-royal text-gold-royal bg-white dark:bg-stone-900'
-                                : 'text-gray-500 hover:bg-gray-100 dark:hover:bg-stone-800'
+                                ? 'border-b-2 border-gold-royal text-gold-royal bg-white dark:bg-[#112240]'
+                                : 'text-gray-500 hover:bg-gray-100 dark:hover:bg-[#112240]/80'
                                 }`}
                         >
                             {tab.label} ({data[tab.id]?.length || 0})
@@ -87,11 +87,11 @@ export default function CardsControlPage() {
                     {currentItems.length === 0 ? (
                         <div className="p-8 text-center text-gray-500">No items found in this category.</div>
                     ) : (
-                        <div className="divide-y divide-gray-100 dark:divide-stone-800">
+                        <div className="divide-y divide-gray-100 dark:divide-[#c5a059]/20">
                             {currentItems.map((item: any) => (
-                                <div key={item.id} className="p-6 flex items-center justify-between hover:bg-stone-50 dark:hover:bg-stone-800/50 transition-colors">
+                                <div key={item.id} className="p-6 flex items-center justify-between hover:bg-stone-50 dark:hover:bg-[#0a192f]/50 transition-colors">
                                     <div className="flex items-center gap-6 flex-1 min-w-0">
-                                        <div className="w-16 h-16 shrink-0 rounded-lg overflow-hidden bg-gray-100 dark:bg-stone-800 border border-gray-200 dark:border-stone-700">
+                                        <div className="w-16 h-16 shrink-0 rounded-lg overflow-hidden bg-gray-100 dark:bg-[#0a192f] border border-gray-200 dark:border-[#c5a059]/20">
                                             {item.imageUrl ? (
                                                 <img src={item.imageUrl} alt={item.name.en} className="w-full h-full object-cover" />
                                             ) : (
@@ -122,7 +122,7 @@ export default function CardsControlPage() {
                                             onClick={() => toggleVisibility(activeTab, item.id, item.isPending)}
                                             title={!item.isPending ? 'Hide from Homepage' : 'Show on Homepage'}
                                             className={`p-2 rounded-lg transition-colors shadow-sm ${!item.isPending
-                                                ? 'bg-stone-100 text-gray-700 hover:bg-stone-200 dark:bg-stone-800 dark:text-gray-300 dark:hover:bg-stone-700 border border-transparent'
+                                                ? 'bg-stone-100 text-gray-700 hover:bg-stone-200 dark:bg-[#0a192f] dark:text-gray-300 dark:hover:bg-[#112240] border border-transparent'
                                                 : 'bg-gold-royal text-white hover:bg-gold-light border border-gold-royal/50'
                                                 }`}
                                         >

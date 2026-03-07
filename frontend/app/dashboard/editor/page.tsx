@@ -5,6 +5,26 @@ import { Save, Image as ImageIcon, CheckCircle, Search } from 'lucide-react';
 import MarkdownEditor from '../components/MarkdownEditor';
 import ImageGalleryModal from '../components/ImageGalleryModal';
 
+const MOROCCAN_CITIES = [
+    { en: '', ar: '--- إختر مدينة ---' },
+    { en: 'Marrakech', ar: 'مراكش' },
+    { en: 'Fez', ar: 'فاس' },
+    { en: 'Tangier', ar: 'طنجة' },
+    { en: 'Rabat', ar: 'الرباط' },
+    { en: 'Casablanca', ar: 'الدار البيضاء' },
+    { en: 'Meknes', ar: 'مكناس' },
+    { en: 'Chefchaouen', ar: 'شفشاون' },
+    { en: 'Agadir', ar: 'أكادير' },
+    { en: 'Ouarzazate', ar: 'ورزازات' },
+    { en: 'Essaouira', ar: 'الصويرة' },
+    { en: 'Tetouan', ar: 'تطوان' },
+    { en: 'Oujda', ar: 'وجدة' },
+    { en: 'Al Hoceima', ar: 'الحسيمة' },
+    { en: 'Dakhla', ar: 'الداخلة' },
+    { en: 'Laayoune', ar: 'العيون' },
+    { en: 'Tarfaya', ar: 'طرفاية' },
+];
+
 export default function EditorPage() {
     const [titleEn, setTitleEn] = useState('');
     const [titleAr, setTitleAr] = useState('');
@@ -17,6 +37,17 @@ export default function EditorPage() {
     const [isGalleryOpen, setIsGalleryOpen] = useState(false);
 
     const [status, setStatus] = useState<'idle' | 'saving' | 'success' | 'error'>('idle');
+
+    const handleCityChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        const selectedEn = e.target.value;
+        setCityEn(selectedEn);
+        const matched = MOROCCAN_CITIES.find(c => c.en === selectedEn);
+        if (matched) {
+            setCityAr(matched.ar);
+        } else {
+            setCityAr('');
+        }
+    };
 
     const handleSave = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -84,14 +115,34 @@ export default function EditorPage() {
                                 <option value="figures">Historical Figure</option>
                             </select>
                         </div>
-                        <div>
-                            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Associated City (EN)</label>
-                            <input value={cityEn} onChange={e => setCityEn(e.target.value)} className="w-full px-4 py-2 border border-gray-300 dark:border-[#c5a059]/20 rounded-lg dark:bg-[#0a192f] dark:text-white focus:ring-2 focus:ring-gold-royal" />
-                        </div>
-                        <div dir="rtl">
-                            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Associated City (AR)</label>
-                            <input value={cityAr} onChange={e => setCityAr(e.target.value)} className="w-full px-4 py-2 border border-gray-300 dark:border-[#c5a059]/20 rounded-lg dark:bg-[#0a192f] dark:text-white focus:ring-2 focus:ring-gold-royal" />
-                        </div>
+
+                        {/* Conditionally render city selector based on category */}
+                        {category !== 'figures' && (
+                            <>
+                                <div>
+                                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Associated City</label>
+                                    <select
+                                        value={cityEn}
+                                        onChange={handleCityChange}
+                                        className="w-full px-4 py-2 border border-gray-300 dark:border-[#c5a059]/20 rounded-lg dark:bg-[#0a192f] dark:text-white focus:ring-2 focus:ring-gold-royal"
+                                    >
+                                        {MOROCCAN_CITIES.map(c => (
+                                            <option key={c.en} value={c.en}>{c.en || '--- Select City ---'}</option>
+                                        ))}
+                                    </select>
+                                </div>
+                                <div dir="rtl">
+                                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">المدينة (تلقائي)</label>
+                                    <input
+                                        readOnly
+                                        disabled
+                                        value={cityAr}
+                                        className="w-full px-4 py-2 border border-gray-300 dark:border-[#c5a059]/20 rounded-lg bg-gray-100 dark:bg-[#112240] text-gray-500 dark:text-gray-400 cursor-not-allowed"
+                                    />
+                                    <p className="text-xs text-gray-500 mt-1">This field is automatically translated based on your English selection.</p>
+                                </div>
+                            </>
+                        )}
                     </div>
                 </div>
 
