@@ -1,0 +1,48 @@
+import { ArrowRight, FileEdit, PanelTop } from 'lucide-react';
+import Link from 'next/link';
+import PublishButton from './components/PublishButton';
+
+export default function DashboardPage() {
+    return (
+        <div className="p-8 max-w-5xl mx-auto" dir="ltr">
+            <h1 className="text-3xl font-bold font-cinzel mb-2 text-gray-900 dark:text-white">Welcome, Admin</h1>
+            <p className="text-gray-600 dark:text-gray-400 mb-8 font-outfit">
+                Manage Moroverse content and layout from this Blogger-style dashboard.
+            </p>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <Link href="/dashboard/editor" className="group block">
+                    <div className="bg-white dark:bg-stone-900 border border-gray-200 dark:border-stone-800 rounded-xl p-6 transition-all hover:border-gold-royal hover:shadow-lg hover:shadow-gold-royal/5 h-full">
+                        <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-lg flex items-center justify-center mb-4">
+                            <FileEdit className="w-6 h-6" />
+                        </div>
+                        <h3 className="text-xl font-bold mb-2 text-gray-900 dark:text-white group-hover:text-gold-royal transition-colors">Write Article</h3>
+                        <p className="text-gray-500 dark:text-gray-400 mb-4 text-sm leading-relaxed">
+                            Create and edit historic articles using the custom editor. Upload images and map stories to specific cities.
+                        </p>
+                        <div className="flex items-center text-sm font-medium text-gold-royal mt-auto">
+                            Go to Editor <ArrowRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
+                        </div>
+                    </div>
+                </Link>
+
+                <Link href="/dashboard/cards" className="group block">
+                    <div className="bg-white dark:bg-stone-900 border border-gray-200 dark:border-stone-800 rounded-xl p-6 transition-all hover:border-gold-royal hover:shadow-lg hover:shadow-gold-royal/5 h-full">
+                        <div className="w-12 h-12 bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400 rounded-lg flex items-center justify-center mb-4">
+                            <PanelTop className="w-6 h-6" />
+                        </div>
+                        <h3 className="text-xl font-bold mb-2 text-gray-900 dark:text-white group-hover:text-gold-royal transition-colors">Homepage Cards</h3>
+                        <p className="text-gray-500 dark:text-gray-400 mb-4 text-sm leading-relaxed">
+                            Control the content displayed on the main landing page cards. Assign key articles to get featured instantly.
+                        </p>
+                        <div className="flex items-center text-sm font-medium text-gold-royal mt-auto">
+                            Manage Cards <ArrowRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
+                        </div>
+                    </div>
+                </Link>
+            </div>
+
+            <PublishButton />
+        </div>
+    );
+}
