@@ -8,11 +8,11 @@ export function useSpatialAudio(theme: string | undefined) {
     const buffersRef = useRef<Record<string, AudioBuffer>>({});
 
     const AUDIO_URLS: Record<string, string> = {
-        winter: 'https://www.soundjay.com/nature/sounds/rain-01.mp3', // Base rain
-        thunder: 'https://www.soundjay.com/nature/sounds/thunder-01.mp3', // Spatial thunder
-        spring: 'https://www.soundjay.com/nature/sounds/birds-singing-1.mp3',
-        autumn: 'https://www.soundjay.com/nature/sounds/wind-1.mp3',
-        summer: 'https://www.soundjay.com/misc/sounds/cricket-chirping-1.mp3',
+        winter: '/audio/rain-thunder.mp3', // Base rain
+        thunder: '/audio/rain-thunder.mp3', // Spatial thunder
+        spring: '/audio/andalusi-city.mp3', // Reusing placeholder for now
+        autumn: '/audio/mysterious-merchich.mp3', // Reusing placeholder for now
+        summer: '/audio/epic-war.mp3', // Reusing placeholder for now
     };
 
     const initAudioContext = useCallback(() => {

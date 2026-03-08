@@ -12,7 +12,7 @@ class AudioManager {
         if (typeof window === 'undefined') return;
 
         if (!this.ambientSource) {
-            this.ambientSource = new Audio("https://cdn.pixabay.com/audio/2022/11/24/audio_336336336.mp3"); // placeholder for Moroccan Oud/Andalusian
+            this.ambientSource = new Audio("/audio/andalusi-city.mp3"); // local placeholder for Moroccan Oud/Andalusian
             this.ambientSource.loop = true;
             this.ambientSource.volume = 0.3;
         }

@@ -80,7 +80,7 @@ export default function WeatherOverlay() {
         return (
             <>
                 <SVGFilters />
-                <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden glass-overlay" style={exclusionMaskStyle}>
+                <div className="fixed inset-0 z-[-1] pointer-events-none overflow-hidden glass-overlay" style={exclusionMaskStyle}>
                     <div className="lightning-overlay" />
                     {/* Screen edge drips */}
                     {Array.from({ length: 25 }).map((_, i) => (
@@ -111,7 +111,7 @@ export default function WeatherOverlay() {
         return (
             <>
                 <SVGFilters />
-                <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden" style={exclusionMaskStyle}>
+                <div className="fixed inset-0 z-[-1] pointer-events-none overflow-hidden" style={exclusionMaskStyle}>
                     {/* Heat Haze at bottom */}
                     <div className="absolute bottom-0 w-full h-[40vh] heat-haze opacity-40 bg-gradient-to-t from-[#c5a059]/10 to-transparent" />
                     {/* Lens Flare */}
@@ -132,7 +132,7 @@ export default function WeatherOverlay() {
     if (resolvedTheme === 'spring') {
         const petalColors = ['#fbcfe8', '#fce7f3', '#fdf2f8', '#fda4af'];
         return (
-            <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden" style={exclusionMaskStyle}>
+            <div className="fixed inset-0 z-[-1] pointer-events-none overflow-hidden" style={exclusionMaskStyle}>
                 {leafParticles.map(p => {
                     // Wind direction based on mouse x position relative to screen center
                     const windForce = (mousePos.x / window.innerWidth - 0.5) * 200;
@@ -159,7 +159,7 @@ export default function WeatherOverlay() {
         const leafColors = ['#e8a045', '#d97706', '#b45309', '#f59e0b'];
         const leafShapes = ['🍂', '🍁'];
         return (
-            <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden" style={exclusionMaskStyle}>
+            <div className="fixed inset-0 z-[-1] pointer-events-none overflow-hidden" style={exclusionMaskStyle}>
                 {/* Fog layer */}
                 <div className="absolute bottom-0 w-full h-[45vh] fog-layer" />
                 {leafParticles.map(p => {

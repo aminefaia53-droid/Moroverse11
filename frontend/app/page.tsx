@@ -194,16 +194,16 @@ export default function Home() {
           transition={{ duration: 1, ease: "easeOut" }}
           className="relative z-40 max-w-4xl w-full text-center mx-auto px-4 flex flex-col items-center mt-20"
         >
-          <div className="inline-flex justify-center gap-3 mb-10 text-[var(--primary)] bg-[var(--background)]/20 backdrop-blur-md px-5 py-2 rounded-full border border-[var(--primary)]/10 shadow-xl mt-16">
-            <Crown className="w-3.5 h-3.5 md:w-4 md:h-4 opacity-70" />
-            <span className="text-[9px] md:text-[10px] font-bold tracking-[0.3em] uppercase opacity-70">The Moroccan Digital Archive</span>
-          </div>
-
-          <div className="flex flex-col items-center gap-6 mb-10">
+          <div className="flex flex-col items-center gap-6 mb-6 mt-16">
             <MoroVerseLogo className="w-14 h-14 md:w-20 md:h-20 drop-shadow-[0_0_20px_var(--glow-color)] transition-all duration-1000 opacity-90" />
             <h2 className="font-display text-3xl md:text-5xl text-[var(--foreground)] font-medium tracking-[0.7em] text-glow transition-colors duration-1000 uppercase" style={{ textShadow: '0 8px 32px rgba(0,0,0,0.9), 0 0 20px var(--glow-color)', opacity: 0.9 }}>
               MOROVERSE
             </h2>
+          </div>
+
+          <div className="inline-flex justify-center gap-3 mb-10 text-[var(--primary)] bg-[var(--background)]/20 backdrop-blur-md px-5 py-2 rounded-full border border-[var(--primary)]/10 shadow-xl">
+            <Crown className="w-3.5 h-3.5 md:w-4 md:h-4 opacity-70" />
+            <span className="text-[9px] md:text-[10px] font-bold tracking-[0.3em] uppercase opacity-70">The Moroccan Digital Archive</span>
           </div>
 
           <div className="space-y-4 mb-12 max-w-2xl">

@@ -11,7 +11,55 @@ import { getArticle } from '../data/moroverse-content';
 import { LangCode } from '../types/language';
 import TranslatedText from './TranslatedText';
 
-const rawLandmarks = (generatedContent.landmarks || []) as any[];
+const fallbackLandmarks = [
+    {
+        id: "hassan-silo",
+        name: { en: "Hassan's Silo", ar: "صومعة حسان" },
+        city: { en: "Rabat", ar: "الرباط" },
+        region: "Rabat-Salé-Kénitra",
+        type: "Landmark",
+        foundation: { en: "1195", ar: "1195" },
+        visualSoul: "Tower",
+        history: {
+            en: "An incomplete mosque in Rabat, representing the architectural zenith of the Almohad dynasty.",
+            ar: "صومعة مسجد غير مكتمل بالرباط، تمثل أوج العمارة الموحدية المغربية وتعتبر رمزاً سيادياً."
+        },
+        desc: { en: "", ar: "" },
+        isPending: false
+    },
+    {
+        id: "koutoubia",
+        name: { en: "Koutoubia Mosque", ar: "مسجد الكتبية" },
+        city: { en: "Marrakech", ar: "مراكش" },
+        region: "Marrakech-Safi",
+        type: "Landmark",
+        foundation: { en: "1147", ar: "1147" },
+        visualSoul: "Mosque",
+        history: {
+            en: "The largest mosque in Marrakech, renowned for its distinctive minaret and rich Moroccan-Andalusian history.",
+            ar: "أكبر مسجد في مراكش، اشتهر بصومعته المتميزة وتاريخه المرابطي والموحدي العريق."
+        },
+        desc: { en: "", ar: "" },
+        isPending: false
+    },
+    {
+        id: "volubilis",
+        name: { en: "Volubilis", ar: "وليلي" },
+        city: { en: "Meknes", ar: "مكناس" },
+        region: "Fès-Meknès",
+        type: "Landmark",
+        foundation: { en: "3rd century BC", ar: "القرن 3 قبل الميلاد" },
+        visualSoul: "Ruin",
+        history: {
+            en: "A partly excavated Berber-Roman city near Meknes, showcasing Morocco's ancient history.",
+            ar: "مدينة تاريخية وجزء من التراث العالمي، تعكس عراقة الحضارة المغربية منذ العصور المورية القديمة."
+        },
+        desc: { en: "", ar: "" },
+        isPending: false
+    }
+];
+
+const rawLandmarks = (generatedContent.landmarks && generatedContent.landmarks.length > 0) ? (generatedContent.landmarks as any[]) : fallbackLandmarks;
 const dynamicLandmarks: Landmark[] = rawLandmarks.map(l => ({
     ...l,
     foundation: l.foundation || { en: 'Historical', ar: 'تاريخي' },
