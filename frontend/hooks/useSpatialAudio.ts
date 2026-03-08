@@ -1,0 +1,122 @@
+'use client';
+
+import { useEffect, useRef, useCallback } from 'react';
+
+export function useSpatialAudio(theme: string | undefined) {
+    const audioContextRef = useRef<AudioContext | null>(null);
+    const sourcesRef = useRef<Record<string, { source: AudioBufferSourceNode; panner: PannerNode }>>({});
+    const buffersRef = useRef<Record<string, AudioBuffer>>({});
+
+    const AUDIO_URLS: Record<string, string> = {
+        winter: 'https://www.soundjay.com/nature/sounds/rain-01.mp3', // Base rain
+        thunder: 'https://www.soundjay.com/nature/sounds/thunder-01.mp3', // Spatial thunder
+        spring: 'https://www.soundjay.com/nature/sounds/birds-singing-1.mp3',
+        autumn: 'https://www.soundjay.com/nature/sounds/wind-1.mp3',
+        summer: 'https://www.soundjay.com/misc/sounds/cricket-chirping-1.mp3',
+    };
+
+    const initAudioContext = useCallback(() => {
+        if (!audioContextRef.current) {
+            audioContextRef.current = new (window.AudioContext || (window as any).webkitAudioContext)();
+        }
+        if (audioContextRef.current.state === 'suspended') {
+            audioContextRef.current.resume();
+        }
+        return audioContextRef.current;
+    }, []);
+
+    const loadBuffer = async (url: string) => {
+        if (buffersRef.current[url]) return buffersRef.current[url];
+        const response = await fetch(url);
+        const arrayBuffer = await response.arrayBuffer();
+        const ctx = initAudioContext();
+        const buffer = await ctx.decodeAudioData(arrayBuffer);
+        buffersRef.current[url] = buffer;
+        return buffer;
+    };
+
+    const playSpatialSound = useCallback(async (key: string, loop = true, volume = 0.2) => {
+        const url = AUDIO_URLS[key];
+        if (!url) return;
+
+        const ctx = initAudioContext();
+        const buffer = await loadBuffer(url);
+
+        // Cleanup existing if any
+        if (sourcesRef.current[key]) {
+            sourcesRef.current[key].source.stop();
+        }
+
+        const source = ctx.createBufferSource();
+        source.buffer = buffer;
+        source.loop = loop;
+
+        const panner = ctx.createPanner();
+        panner.panningModel = 'HRTF';
+        panner.distanceModel = 'inverse';
+
+        const gainNode = ctx.createGain();
+        gainNode.gain.value = volume;
+
+        source.connect(panner);
+        panner.connect(gainNode);
+        gainNode.connect(ctx.destination);
+
+        source.start();
+        sourcesRef.current[key] = { source, panner };
+        return panner;
+    }, [initAudioContext]);
+
+    // Handle random 3D thunder
+    useEffect(() => {
+        if (theme !== 'winter') return;
+
+        let thunderTimeout: NodeJS.Timeout;
+        const triggerThunder = async () => {
+            const panner = await playSpatialSound('thunder', false, 0.4);
+            if (panner) {
+                // Randomize position: x moves from -10 to 10
+                const startX = Math.random() > 0.5 ? -10 : 10;
+                panner.positionX.setValueAtTime(startX, audioContextRef.current!.currentTime);
+                panner.positionX.linearRampToValueAtTime(-startX, audioContextRef.current!.currentTime + 5);
+            }
+            thunderTimeout = setTimeout(triggerThunder, 10000 + Math.random() * 20000);
+        };
+
+        const timeout = setTimeout(triggerThunder, 5000);
+        return () => {
+            clearTimeout(timeout);
+            clearTimeout(thunderTimeout);
+        };
+    }, [theme, playSpatialSound]);
+
+    // Handle background loop
+    useEffect(() => {
+        if (!theme || !AUDIO_URLS[theme]) {
+            // Stop everything
+            Object.values(sourcesRef.current).forEach(s => s.source.stop());
+            sourcesRef.current = {};
+            return;
+        }
+
+        const startLoop = async () => {
+            await playSpatialSound(theme, true, 0.15);
+        };
+
+        const handleClick = () => {
+            startLoop();
+            window.removeEventListener('click', handleClick);
+        };
+
+        window.addEventListener('click', handleClick);
+        return () => {
+            window.removeEventListener('click', handleClick);
+            if (sourcesRef.current[theme]) {
+                sourcesRef.current[theme].source.stop();
+                delete sourcesRef.current[theme];
+            }
+        };
+    }, [theme, playSpatialSound]);
+
+    return { playSpatialSound };
+}

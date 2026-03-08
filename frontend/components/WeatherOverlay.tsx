@@ -1,23 +1,18 @@
 'use client';
 
-import React, { useEffect, useMemo, useRef } from 'react';
+import React, { useState, useEffect, useMemo, useRef } from 'react';
 import { useTheme } from 'next-themes';
+import { useSpatialAudio } from '../hooks/useSpatialAudio';
 
-// ──────────────────────────────────────────
-//  Pure CSS weather particles — zero JS load
-// ──────────────────────────────────────────
-
-const RAIN_COUNT = 80;
-const LEAF_COUNT = 18;
+const RAIN_COUNT = 100;
+const LEAF_COUNT = 20;
 
 interface Particle {
     id: number;
     left: string;
     duration: string;
     delay: string;
-    height?: string;
     size?: string;
-    color?: string;
 }
 
 function useParticles(count: number): Particle[] {
@@ -25,148 +20,162 @@ function useParticles(count: number): Particle[] {
         Array.from({ length: count }, (_, i) => ({
             id: i,
             left: `${Math.random() * 100}%`,
-            duration: `${0.6 + Math.random() * 0.8}s`,
-            delay: `${Math.random() * 3}s`,
-            height: `${10 + Math.random() * 15}px`,
-            size: `${10 + Math.random() * 8}px`,
-            color: '',
-        })),
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-        [count]);
+            duration: `${0.8 + Math.random() * 1.2}s`,
+            delay: `${Math.random() * 5}s`,
+            size: `${10 + Math.random() * 10}px`,
+        })), [count]);
 }
-
-// ── AMBIENT AUDIO ──────────────────────────
-
-const AUDIO_URLS: Record<string, string> = {
-    winter: 'https://www.soundjay.com/nature/sounds/rain-01.mp3',
-    spring: 'https://www.soundjay.com/nature/sounds/birds-singing-1.mp3',
-    autumn: 'https://www.soundjay.com/nature/sounds/wind-1.mp3',
-    summer: '',
-    dark: '',
-};
-
-function useAmbientAudio(theme: string | undefined) {
-    const audioRef = useRef<HTMLAudioElement | null>(null);
-
-    useEffect(() => {
-        const url = AUDIO_URLS[theme ?? ''];
-
-        // Stop previous
-        if (audioRef.current) {
-            audioRef.current.pause();
-            audioRef.current = null;
-        }
-
-        if (!url) return;
-
-        const audio = new Audio(url);
-        audio.loop = true;
-        audio.volume = 0.18;
-        // Only play after a user interaction (browser policy)
-        const tryPlay = () => {
-            audio.play().catch(() => {/* silently ignore if not allowed yet */ });
-        };
-        tryPlay();
-        window.addEventListener('click', tryPlay, { once: true });
-        audioRef.current = audio;
-
-        return () => {
-            audio.pause();
-            window.removeEventListener('click', tryPlay);
-        };
-    }, [theme]);
-}
-
-// ── MAIN COMPONENT ──────────────────────────
 
 export default function WeatherOverlay() {
     const { resolvedTheme } = useTheme();
     const rainParticles = useParticles(RAIN_COUNT);
     const leafParticles = useParticles(LEAF_COUNT);
+    const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+    const [scrollPos, setScrollPos] = useState(0);
+    const containerRef = useRef<HTMLDivElement>(null);
 
-    useAmbientAudio(resolvedTheme);
+    // 3D Audio hook
+    useSpatialAudio(resolvedTheme);
+
+    useEffect(() => {
+        const handleMouseMove = (e: MouseEvent) => setMousePos({ x: e.clientX, y: e.clientY });
+        const handleScroll = () => setScrollPos(window.scrollY);
+        window.addEventListener('mousemove', handleMouseMove);
+        window.addEventListener('scroll', handleScroll);
+        return () => {
+            window.removeEventListener('mousemove', handleMouseMove);
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, []);
 
     if (!resolvedTheme) return null;
 
-    // ── WINTER: rain + lightning ──
+    // ── COMMON FILTERS ──────────────────────────
+    const maskStyle: React.CSSProperties = {
+        WebkitMaskImage: 'radial-gradient(circle at 50% 15%, transparent 100px, black 300px), radial-gradient(circle at 50% 50%, transparent 150px, black 400px)',
+        maskImage: 'radial-gradient(circle at 50% 15%, transparent 100px, black 300px), radial-gradient(circle at 50% 50%, transparent 150px, black 400px)',
+        maskComposite: 'intersect',
+        WebkitMaskComposite: 'destination-in'
+    };
+
+    const SVGFilters = () => (
+        <svg className="hidden">
+            <defs>
+                <filter id="heathaze">
+                    <feTurbulence type="fractalNoise" baseFrequency="0.01 0.05" numOctaves="2" seed="2">
+                        <animate attributeName="seed" from="1" to="100" dur="10s" repeatCount="indefinite" />
+                    </feTurbulence>
+                    <feDisplacementMap in="SourceGraphic" scale="15" />
+                </filter>
+            </defs>
+        </svg>
+    );
+
+    // ── WINTER: Rain Threads + Glass Drip + Lightning ──
     if (resolvedTheme === 'winter') {
         return (
-            <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden">
-                {/* Lightning */}
-                <div className="lightning-overlay" />
-                {/* Rain drops */}
-                {rainParticles.map(p => (
-                    <div
-                        key={p.id}
-                        className="rain-particle"
-                        style={{
+            <>
+                <SVGFilters />
+                <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden glass-overlay" style={maskStyle}>
+                    <div className="lightning-overlay" />
+                    {/* Screen edge drips */}
+                    {Array.from({ length: 15 }).map((_, i) => (
+                        <div key={`drip-${i}`} className="drip-particle" style={{
+                            left: `${Math.random() * 100}%`,
+                            animationDuration: `${3 + Math.random() * 5}s`,
+                            animationDelay: `${Math.random() * 10}s`
+                        }} />
+                    ))}
+                    {/* Rain threads */}
+                    {rainParticles.map(p => (
+                        <div key={p.id} className="rain-particle" style={{
                             left: p.left,
-                            top: '-15px',
-                            height: p.height,
+                            height: '80px',
                             animationDuration: p.duration,
                             animationDelay: p.delay,
-                        }}
-                    />
-                ))}
-            </div>
+                            opacity: 0.4
+                        }} />
+                    ))}
+                </div>
+            </>
         );
     }
 
-    // ── SPRING: cherry blossom petals ──
-    if (resolvedTheme === 'spring') {
-        const petalColors = ['#f9a8d4', '#fbcfe8', '#fce7f3', '#d9f99d', '#bbf7d0'];
+    // ── SUMMER: Heat Haze + Lens Flare ──
+    if (resolvedTheme === 'summer') {
         return (
-            <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden">
+            <>
+                <SVGFilters />
+                <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden" style={maskStyle}>
+                    {/* Heat Haze at bottom */}
+                    <div className="absolute bottom-0 w-full h-[30vh] heat-haze opacity-30 bg-gradient-to-t from-white/10 to-transparent" />
+                    {/* Lens Flare */}
+                    <div className="absolute w-[400px] h-[400px] bg-yellow-400/5 rounded-full blur-[100px]"
+                        style={{
+                            left: mousePos.x,
+                            top: mousePos.y,
+                            transform: 'translate(-50%, -50%)',
+                            transition: 'left 0.8s ease-out, top 0.8s ease-out'
+                        }}
+                    />
+                </div>
+            </>
+        );
+    }
+
+    // ── SPRING: Interactive Petals ──
+    if (resolvedTheme === 'spring') {
+        const petalColors = ['#fbcfe8', '#fce7f3', '#d9f99d', '#bbf7d0'];
+        return (
+            <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden" style={maskStyle}>
                 {leafParticles.map(p => {
-                    const color = petalColors[p.id % petalColors.length];
+                    const dx = (mousePos.x / window.innerWidth - 0.5) * 40;
                     return (
-                        <div
-                            key={p.id}
-                            className="leaf-particle"
-                            style={{
-                                left: p.left,
-                                top: '-20px',
-                                width: '8px',
-                                height: '8px',
-                                borderRadius: '50% 0 50% 0',
-                                backgroundColor: color,
-                                animationDuration: `${3 + Math.random() * 4}s`,
-                                animationDelay: `${Math.random() * 5}s`,
-                                opacity: 0.7,
-                            }}
-                        />
+                        <div key={p.id} className="leaf-particle" style={{
+                            left: `calc(${p.left} + ${dx}px)`,
+                            top: '-20px',
+                            width: '10px', height: '10px',
+                            borderRadius: '50% 0 50% 0',
+                            backgroundColor: petalColors[p.id % petalColors.length],
+                            animationDuration: `${4 + Math.random() * 4}s`,
+                            animationDelay: p.delay,
+                            opacity: 0.6,
+                            transition: 'left 1s ease-out'
+                        }} />
                     );
                 })}
             </div>
         );
     }
 
-    // ── AUTUMN: golden falling leaves ──
+    // ── AUTUMN: Scroll-Reactive Leaves + Fog ──
     if (resolvedTheme === 'autumn') {
-        const leafColors = ['#e8a045', '#d97706', '#b45309', '#d4691e', '#f59e0b'];
-        const leafShapes = ['🍂', '🍁', '🍃'];
+        const leafColors = ['#e8a045', '#d97706', '#b45309', '#f59e0b'];
+        const leafShapes = ['🍂', '🍁'];
         return (
-            <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden">
-                {leafParticles.map(p => (
-                    <div
-                        key={p.id}
-                        className="leaf-particle text-xl select-none"
-                        style={{
+            <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden" style={maskStyle}>
+                {/* Fog layer */}
+                <div className="absolute bottom-0 w-full h-[40vh] fog-layer" />
+                {leafParticles.map(p => {
+                    // Reverse scroll physics: faster fall when scrolling up, lift when scrolling down
+                    const scrollLift = scrollPos * 0.1;
+                    return (
+                        <div key={p.id} className="leaf-particle text-2xl select-none" style={{
                             left: p.left,
-                            top: '-30px',
-                            fontSize: `${14 + (p.id % 4) * 5}px`,
+                            top: `calc(-40px - ${scrollLift % 150}px)`,
                             color: leafColors[p.id % leafColors.length],
-                            animationDuration: `${4 + Math.random() * 5}s`,
-                            animationDelay: `${Math.random() * 6}s`,
-                        }}
-                    >
-                        {leafShapes[p.id % leafShapes.length]}
-                    </div>
-                ))}
+                            animationDuration: `${5 + Math.random() * 6}s`,
+                            animationDelay: p.delay,
+                            transform: `rotate(${scrollPos * 0.2}deg)`,
+                            transition: 'top 0.4s ease-out'
+                        }}>
+                            {leafShapes[p.id % leafShapes.length]}
+                        </div>
+                    );
+                })}
             </div>
         );
     }
 
-    // Dark/Summer → no overlay
     return null;
 }
