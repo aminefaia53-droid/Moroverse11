@@ -341,6 +341,23 @@
       "isPending": true
     },
     {
+      "id": "casablanca-merchich-region",
+      "name": {
+        "ar": "منطقة مرشيش (مديونة)",
+        "en": "Merchich Region"
+      },
+      "desc": {
+        "ar": "معلمة في الدار البيضاء بانتظار التوثيق.",
+        "en": "Landmark in Casablanca awaiting documentation."
+      },
+      "imageUrl": null,
+      "city": {
+        "ar": "الدار البيضاء",
+        "en": "Casablanca"
+      },
+      "isPending": true
+    },
+    {
       "id": "marrakech-jemaa-el-fnaa",
       "name": {
         "ar": "ساحة جامع الفنا",
