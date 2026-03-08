@@ -33,7 +33,7 @@ const LANDMARKS_EN = ['Koutoubia', 'Ait Benhaddou', 'Volubilis', '9 Avril Square
 
 // ── COMPONENT ────────────────────────────────────────────────────────────────
 
-export default function SmartSidebar() {
+export default function SmartSidebar({ isHeaderTrigger = false }: { isHeaderTrigger?: boolean }) {
     const { theme, setTheme } = useTheme();
     const { lang } = useLanguage();
     const [isOpen, setIsOpen] = useState(false);
@@ -41,11 +41,22 @@ export default function SmartSidebar() {
     const [showLandmarks, setShowLandmarks] = useState(false);
     const [mounted, setMounted] = useState(false);
 
-    React.useEffect(() => setMounted(true), []);
+    React.useEffect(() => {
+        setMounted(true);
+        // Sync open state via custom event to allow header trigger to control the main panel
+        const handleToggle = () => setIsOpen(v => !v);
+        window.addEventListener('toggle-sidebar', handleToggle);
+        return () => window.removeEventListener('toggle-sidebar', handleToggle);
+    }, []);
+
     if (!mounted) return null;
 
     const isRtl = lang === 'ar';
     const lbl = (ar: string, en: string) => isRtl ? ar : en;
+
+    const triggerSidebar = () => {
+        window.dispatchEvent(new CustomEvent('toggle-sidebar'));
+    };
 
     const scrollTo = (id: string) => {
         document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
@@ -60,26 +71,31 @@ export default function SmartSidebar() {
             : 'transform 0.3s ease-in',                              // quick out
     };
 
+    if (isHeaderTrigger) {
+        return (
+            <button
+                onClick={triggerSidebar}
+                className="flex items-center justify-center p-1.5 rounded-lg text-primary/60 hover:text-primary hover:bg-primary/10 transition-all"
+                title={lbl('القائمة', 'Menu')}
+            >
+                <SlidersHorizontal className="w-3.5 h-3.5 md:w-4 md:h-4" />
+            </button>
+        );
+    }
+
     return (
         <>
-            {/* ── ALWAYS-VISIBLE TRIGGER BUTTON ── */}
-            <button
-                onClick={() => setIsOpen(v => !v)}
-                aria-label="Toggle Sidebar"
-                className={`
-                    fixed top-4 z-[60]
-                    ${isRtl ? 'right-4 rounded-xl' : 'left-4 rounded-xl'}
-                    w-10 h-10
-                    flex items-center justify-center
-                    bg-[var(--glass-bg)] backdrop-blur-md
-                    border border-[var(--primary)]/30
-                    text-[var(--primary)]
-                    hover:bg-[var(--primary)] hover:text-[var(--background)]
-                    transition-all duration-200 shadow-[0_0_20px_rgba(0,0,0,0.6)]
-                `}
-            >
-                {isOpen ? <X className="w-4 h-4" /> : <SlidersHorizontal className="w-4 h-4" />}
-            </button>
+            {/* Always rendered but hidden trigger if not in header-mode - though we use events now */}
+            {!isHeaderTrigger && (
+                <button
+                    onClick={() => setIsOpen(v => !v)}
+                    aria-label="Toggle Sidebar"
+                    className={`
+                        fixed top-[72px] z-[60] opacity-0 pointer-events-none
+                        ${isRtl ? 'right-4' : 'left-4'}
+                    `}
+                />
+            )}
 
             {/* ── DIMPANEL BACKDROP ── */}
             {isOpen && (

@@ -146,18 +146,23 @@ export default function Home() {
         </div>
       </div>
 
-      <header className="fixed top-0 w-full z-50 py-3 px-4 md:py-3.5 md:px-10 flex justify-between items-center bg-[#1a0404]/80 backdrop-blur-xl border-b border-primary/5 shadow-[0_4px_24px_rgba(0,0,0,0.5)]">
-        <div className="flex items-center gap-3 md:gap-4 shrink-0">
-          <MoroVerseLogo className="w-6 h-6 md:w-8 md:h-8" />
-          <h1 className="font-display text-[10px] md:text-sm tracking-[0.6em] text-white/80 font-medium uppercase hidden md:block" style={{ letterSpacing: '0.6em', opacity: 0.85 }}>MOROVERSE</h1>
+      <header className="fixed top-0 w-full z-50 py-2.5 px-4 md:py-3 md:px-10 flex justify-between items-center bg-[#1a0404]/80 backdrop-blur-xl border-b border-primary/5 shadow-[0_4px_24px_rgba(0,0,0,0.5)]">
+        <div className="flex items-center gap-3 shrink-0">
+          <div className="flex items-center gap-2">
+            <MoroVerseLogo className="w-5 h-5 md:w-7 md:h-7" />
+            <h1 className="font-display text-[9px] md:text-xs tracking-[0.6em] text-white/70 font-medium uppercase" style={{ letterSpacing: '0.6em' }}>MOROVERSE</h1>
+          </div>
+          {/* Integrated Sidebar Trigger - Harmonized with Logo */}
+          <div className="h-4 w-[1px] bg-primary/20 mx-1 hidden md:block"></div>
+          <SmartSidebar isHeaderTrigger={true} />
         </div>
         <div className="flex items-center gap-4 md:gap-8">
           <LanguageSwitcher />
         </div>
       </header>
 
-      {/* Smart Sidebar */}
-      <SmartSidebar />
+      {/* Smart Sidebar Panel is rendered here, but trigger is in header */}
+      <SmartSidebar isHeaderTrigger={false} />
 
       {/* Hero Section */}
       <section className="relative h-screen flex flex-col justify-center items-center z-20 px-4">
@@ -187,9 +192,9 @@ export default function Home() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, ease: "easeOut" }}
-          className="relative z-40 max-w-4xl w-full text-center mx-auto px-4 flex flex-col items-center"
+          className="relative z-40 max-w-4xl w-full text-center mx-auto px-4 flex flex-col items-center mt-20"
         >
-          <div className="inline-flex justify-center gap-3 mb-10 text-[var(--primary)] bg-[var(--background)]/20 backdrop-blur-md px-5 py-2 rounded-full border border-[var(--primary)]/10 shadow-xl">
+          <div className="inline-flex justify-center gap-3 mb-10 text-[var(--primary)] bg-[var(--background)]/20 backdrop-blur-md px-5 py-2 rounded-full border border-[var(--primary)]/10 shadow-xl mt-16">
             <Crown className="w-3.5 h-3.5 md:w-4 md:h-4 opacity-70" />
             <span className="text-[9px] md:text-[10px] font-bold tracking-[0.3em] uppercase opacity-70">The Moroccan Digital Archive</span>
           </div>
