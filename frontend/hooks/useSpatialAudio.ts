@@ -35,7 +35,7 @@ export function useSpatialAudio(theme: string | undefined) {
         return buffer;
     };
 
-    const playSpatialSound = useCallback(async (key: string, loop = true, volume = 0.2) => {
+    const playSpatialSound = useCallback(async (key: string, loop = true, volume = 0.2, pannerModel: PanningModelType = 'HRTF') => {
         const url = AUDIO_URLS[key];
         if (!url) return;
 
@@ -52,7 +52,7 @@ export function useSpatialAudio(theme: string | undefined) {
         source.loop = loop;
 
         const panner = ctx.createPanner();
-        panner.panningModel = 'HRTF';
+        panner.panningModel = pannerModel;
         panner.distanceModel = 'inverse';
 
         const gainNode = ctx.createGain();
@@ -73,17 +73,24 @@ export function useSpatialAudio(theme: string | undefined) {
 
         let thunderTimeout: NodeJS.Timeout;
         const triggerThunder = async () => {
-            const panner = await playSpatialSound('thunder', false, 0.4);
+            const panner = await playSpatialSound('thunder', false, 0.5, 'HRTF');
             if (panner) {
-                // Randomize position: x moves from -10 to 10
-                const startX = Math.random() > 0.5 ? -10 : 10;
-                panner.positionX.setValueAtTime(startX, audioContextRef.current!.currentTime);
-                panner.positionX.linearRampToValueAtTime(-startX, audioContextRef.current!.currentTime + 5);
+                // Sweep from right to left
+                const startX = 15;
+                const endX = -15;
+                const duration = 6;
+                const now = audioContextRef.current!.currentTime;
+
+                panner.positionX.setValueAtTime(startX, now);
+                panner.positionY.setValueAtTime(5, now);
+                panner.positionZ.setValueAtTime(-5, now);
+
+                panner.positionX.linearRampToValueAtTime(endX, now + duration);
             }
-            thunderTimeout = setTimeout(triggerThunder, 10000 + Math.random() * 20000);
+            thunderTimeout = setTimeout(triggerThunder, 12000 + Math.random() * 20000);
         };
 
-        const timeout = setTimeout(triggerThunder, 5000);
+        const timeout = setTimeout(triggerThunder, 4000);
         return () => {
             clearTimeout(timeout);
             clearTimeout(thunderTimeout);
@@ -100,7 +107,14 @@ export function useSpatialAudio(theme: string | undefined) {
         }
 
         const startLoop = async () => {
-            await playSpatialSound(theme, true, 0.15);
+            // Adjust volumes per season
+            let volume = 0.15;
+            if (theme === 'summer') volume = 0.05; // Quiet cicadas
+            if (theme === 'spring') volume = 0.12; // Soft birds
+            if (theme === 'autumn') volume = 0.18; // Present wind
+            if (theme === 'winter') volume = 0.12; // Base rain
+
+            await playSpatialSound(theme, true, volume, 'equalpower');
         };
 
         const handleClick = () => {

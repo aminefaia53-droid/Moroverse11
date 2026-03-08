@@ -47,13 +47,14 @@
 }
 
 .spring {
-  --background: #022c22;
-  --foreground: #ecfccb;
-  --primary: #d9f99d;
-  --secondary: #064e3b;
+  /* Warmer, comforting forest lighting */
+  --background: #062b1a;
+  --foreground: #fcfdfa;
+  --primary: #fda4af;
+  --secondary: #065f46;
   --glow-intensity: 0.6;
-  --glow-color: rgba(217, 249, 157, 0.3);
-  --glass-bg: rgba(2, 44, 34, 0.75);
+  --glow-color: rgba(253, 164, 175, 0.3);
+  --glass-bg: rgba(6, 43, 26, 0.75);
 }
 
 .autumn {
@@ -125,12 +126,16 @@ body {
 
 @keyframes glass-drip {
   0% {
-    transform: translateY(-10%) scaleY(1);
-    opacity: 0.5;
+    transform: translateY(-20%) scaleY(1);
+    opacity: 0;
+  }
+
+  10% {
+    opacity: 0.6;
   }
 
   100% {
-    transform: translateY(120%) scaleY(0.8);
+    transform: translateY(120%) scaleY(0.7);
     opacity: 0;
   }
 }
@@ -197,6 +202,30 @@ body {
 
   100% {
     transform: translateY(105vh) rotate(360deg) translateX(-10px);
+    opacity: 0;
+  }
+}
+
+@keyframes petal-flutter {
+  0% {
+    transform: translateY(-20px) rotate(0deg) translateX(0);
+    opacity: 0;
+  }
+
+  15% {
+    opacity: 0.8;
+  }
+
+  50% {
+    transform: translateY(40vh) rotate(90deg) translateX(40px);
+  }
+
+  85% {
+    opacity: 0.6;
+  }
+
+  100% {
+    transform: translateY(100vh) rotate(180deg) translateX(-20px);
     opacity: 0;
   }
 }
