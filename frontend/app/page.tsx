@@ -146,10 +146,10 @@ export default function Home() {
         </div>
       </div>
 
-      <header className="fixed top-0 w-full z-50 py-3 px-4 md:py-4 md:px-12 flex justify-between items-center bg-[#1a0404]/80 backdrop-blur-xl border-b border-primary/10 shadow-[0_4px_20px_rgba(0,0,0,0.4)]">
-        <div className="flex items-center gap-2.5 md:gap-3 shrink-0">
-          <MoroVerseLogo className="w-7 h-7 md:w-9 md:h-9" />
-          <h1 className="font-display text-base md:text-lg tracking-[0.55em] text-white/90 font-semibold uppercase hidden md:block" style={{ letterSpacing: '0.5em' }}>MOROVERSE</h1>
+      <header className="fixed top-0 w-full z-50 py-3 px-4 md:py-3.5 md:px-10 flex justify-between items-center bg-[#1a0404]/80 backdrop-blur-xl border-b border-primary/5 shadow-[0_4px_24px_rgba(0,0,0,0.5)]">
+        <div className="flex items-center gap-3 md:gap-4 shrink-0">
+          <MoroVerseLogo className="w-6 h-6 md:w-8 md:h-8" />
+          <h1 className="font-display text-[10px] md:text-sm tracking-[0.6em] text-white/80 font-medium uppercase hidden md:block" style={{ letterSpacing: '0.6em', opacity: 0.85 }}>MOROVERSE</h1>
         </div>
         <div className="flex items-center gap-4 md:gap-8">
           <LanguageSwitcher />
@@ -160,19 +160,15 @@ export default function Home() {
       <SmartSidebar />
 
       {/* Hero Section */}
-      <section className="relative h-screen flex flex-col justify-center items-center md:items-start z-20 px-4 md:px-24">
+      <section className="relative h-screen flex flex-col justify-center items-center z-20 px-4">
 
         {/* Glowing Majestic Central Flag */}
-        <div className="absolute inset-0 flex items-center justify-center md:pl-[20%] pointer-events-none mt-16 md:mt-0">
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none mt-16 md:mt-0 opacity-40">
           <div className="relative">
             {/* Massive Glow Behind Flag */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] md:w-[600px] md:h-[600px] bg-[var(--primary)]/20 rounded-full blur-[80px] md:blur-[120px]"></div>
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[200px] h-[200px] md:w-[400px] md:h-[400px] bg-[var(--secondary)]/40 rounded-full blur-[60px] md:blur-[100px]"></div>
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] md:w-[600px] md:h-[600px] bg-[var(--primary)]/10 rounded-full blur-[80px] md:blur-[120px]"></div>
 
-            {/* The Flag Pole */}
-            <div className="absolute top-[10%] bottom-[-20%] left-[8%] w-1 md:w-2 bg-gradient-to-b from-slate-300 via-slate-400 to-transparent rounded-full shadow-2xl z-20"></div>
-
-            <svg viewBox="0 0 900 600" className="w-[85vw] md:w-[800px] h-auto max-w-full drop-shadow-[0_20px_40px_rgba(0,0,0,0.6)] animate-flag-flutter z-30 relative ml-8 md:ml-12 mt-4 md:mt-8 origin-left">
+            <svg viewBox="0 0 900 600" className="w-[85vw] md:w-[800px] h-auto max-w-full drop-shadow-[0_20px_40px_rgba(0,0,0,0.6)] animate-flag-flutter z-30 relative mt-4 md:mt-8 origin-left">
               <rect width="900" height="600" fill="#c1272d" rx="20" />
               <path
                 d="M450,165 L482,264 L586,264 L502,325 L534,424 L450,363 L366,424 L398,325 L314,264 L418,264 Z"
@@ -191,26 +187,30 @@ export default function Home() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, ease: "easeOut" }}
-          className="relative z-40 max-w-3xl w-full text-center mx-auto px-4"
+          className="relative z-40 max-w-4xl w-full text-center mx-auto px-4 flex flex-col items-center"
         >
-          <div className="inline-flex justify-center gap-4 mb-8 text-[var(--primary)] bg-[var(--background)]/40 backdrop-blur-md px-6 py-2.5 rounded-full border border-[var(--primary)]/20 shadow-xl">
-            <Crown className="w-4 h-4 md:w-5 md:h-5" />
-            <span className="text-[10px] md:text-xs font-bold tracking-widest uppercase">The Moroccan Digital Archive</span>
+          <div className="inline-flex justify-center gap-3 mb-10 text-[var(--primary)] bg-[var(--background)]/20 backdrop-blur-md px-5 py-2 rounded-full border border-[var(--primary)]/10 shadow-xl">
+            <Crown className="w-3.5 h-3.5 md:w-4 md:h-4 opacity-70" />
+            <span className="text-[9px] md:text-[10px] font-bold tracking-[0.3em] uppercase opacity-70">The Moroccan Digital Archive</span>
           </div>
 
-          <div className="flex flex-col items-center gap-4 mb-8">
-            <MoroVerseLogo className="w-16 h-16 md:w-24 md:h-24 drop-shadow-[0_0_20px_var(--glow-color)] transition-all duration-1000" />
-            <h2 className="font-display text-4xl md:text-6xl text-[var(--foreground)] font-semibold tracking-[0.5em] text-glow transition-colors duration-1000 uppercase" style={{ textShadow: '0 8px 24px rgba(0,0,0,0.8), 0 0 30px var(--glow-color)' }}>
+          <div className="flex flex-col items-center gap-6 mb-10">
+            <MoroVerseLogo className="w-14 h-14 md:w-20 md:h-20 drop-shadow-[0_0_20px_var(--glow-color)] transition-all duration-1000 opacity-90" />
+            <h2 className="font-display text-3xl md:text-5xl text-[var(--foreground)] font-medium tracking-[0.7em] text-glow transition-colors duration-1000 uppercase" style={{ textShadow: '0 8px 32px rgba(0,0,0,0.9), 0 0 20px var(--glow-color)', opacity: 0.9 }}>
               MOROVERSE
             </h2>
           </div>
 
-          <p className="text-sm md:text-lg text-[var(--primary)] font-medium mb-10 tracking-wide leading-relaxed bg-[var(--background)]/30 py-4 px-6 rounded-2xl backdrop-blur-sm border border-[var(--primary)]/15 transition-all duration-1000 mx-auto max-w-xl">
-            <span className="text-[var(--foreground)] font-bold block mb-1.5 font-arabic">{lang === 'ar' ? 'تاريخ عريق يرحب بكم' : 'AI Meets Authenticity'}</span>
-            <span className="text-[var(--foreground)]/70 text-sm">{lang === 'ar' ? 'اكتشف عبق التاريخ وروعة المكان في بوابة زمنية متطورة' : 'Explore the soul and beauty of the Kingdom through an advanced time portal'}</span>
-          </p>
+          <div className="space-y-4 mb-12 max-w-2xl">
+            <h3 className="text-xl md:text-3xl text-[var(--foreground)] font-bold font-arabic drop-shadow-md">
+              {lang === 'ar' ? 'تاريخ عريق يرحب بكم' : 'AI Meets Authenticity'}
+            </h3>
+            <p className="text-xs md:text-base text-[var(--primary)]/80 font-medium tracking-wide leading-relaxed bg-[var(--background)]/10 py-4 px-8 rounded-2xl backdrop-blur-[2px] border border-[var(--primary)]/5">
+              {lang === 'ar' ? 'اكتشف عبق التاريخ وروعة المكان في بوابة زمنية متطورة' : 'Explore the soul and beauty of the Kingdom through an advanced time portal'}
+            </p>
+          </div>
 
-          <button className="mx-auto px-10 md:px-14 py-4 md:py-5 bg-gradient-to-r from-[var(--secondary)] to-[var(--background)] text-[var(--foreground)] font-bold text-xs md:text-sm tracking-[0.3em] uppercase transition-all duration-500 rounded-full shadow-[0_10px_30px_rgba(0,0,0,0.5)] hover:shadow-[0_0_30px_var(--glow-color)] border border-[var(--primary)]/20 flex items-center gap-3 group">
+          <button className="px-12 md:px-16 py-4 md:py-5 bg-gradient-to-r from-[var(--secondary)] to-[var(--background)] text-[var(--foreground)] font-bold text-[10px] md:text-xs tracking-[0.4em] uppercase transition-all duration-500 rounded-full shadow-2xl hover:shadow-[0_0_40px_var(--glow-color)] border border-[var(--primary)]/20 flex items-center gap-3 group">
             <Compass className="w-4 h-4 text-[var(--primary)] group-hover:text-[var(--foreground)] transition-colors" />
             {t.cta}
           </button>
