@@ -67,9 +67,9 @@ export default function SmartSidebar() {
                 onClick={() => setIsOpen(v => !v)}
                 aria-label="Toggle Sidebar"
                 className={`
-                    fixed top-1/2 -translate-y-1/2 z-[60]
+                    fixed top-[68px] z-[60]
                     ${isRtl ? 'right-0 rounded-l-xl' : 'left-0 rounded-r-xl'}
-                    w-10 h-14
+                    w-10 h-12
                     flex items-center justify-center
                     bg-[var(--glass-bg)] backdrop-blur-md
                     border border-[var(--primary)]/40

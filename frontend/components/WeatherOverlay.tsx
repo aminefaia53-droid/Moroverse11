@@ -91,7 +91,7 @@ export default function WeatherOverlay() {
     // ── WINTER: rain + lightning ──
     if (resolvedTheme === 'winter') {
         return (
-            <div className="fixed inset-0 z-40 pointer-events-none overflow-hidden">
+            <div className="fixed inset-0 z-10 pointer-events-none overflow-hidden">
                 {/* Lightning */}
                 <div className="lightning-overlay" />
                 {/* Rain drops */}
@@ -116,7 +116,7 @@ export default function WeatherOverlay() {
     if (resolvedTheme === 'spring') {
         const petalColors = ['#f9a8d4', '#fbcfe8', '#fce7f3', '#d9f99d', '#bbf7d0'];
         return (
-            <div className="fixed inset-0 z-40 pointer-events-none overflow-hidden">
+            <div className="fixed inset-0 z-10 pointer-events-none overflow-hidden">
                 {leafParticles.map(p => {
                     const color = petalColors[p.id % petalColors.length];
                     return (
@@ -146,7 +146,7 @@ export default function WeatherOverlay() {
         const leafColors = ['#e8a045', '#d97706', '#b45309', '#d4691e', '#f59e0b'];
         const leafShapes = ['🍂', '🍁', '🍃'];
         return (
-            <div className="fixed inset-0 z-40 pointer-events-none overflow-hidden">
+            <div className="fixed inset-0 z-10 pointer-events-none overflow-hidden">
                 {leafParticles.map(p => (
                     <div
                         key={p.id}

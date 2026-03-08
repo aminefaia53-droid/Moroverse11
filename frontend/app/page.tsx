@@ -146,12 +146,12 @@ export default function Home() {
         </div>
       </div>
 
-      <header className="fixed top-0 w-full z-50 py-4 px-4 md:py-6 md:px-12 flex justify-between items-center bg-[#1a0404]/90 backdrop-blur-xl border-b border-primary/20 shadow-[0_10px_30px_rgba(0,0,0,0.5)]">
-        <div className="flex items-center gap-3 md:gap-4 shrink-0">
-          <MoroVerseLogo className="w-8 h-8 md:w-10 md:h-10" />
-          <h1 className="font-display text-lg md:text-2xl tracking-[0.4em] text-white font-black uppercase text-glow hidden md:block">MOROVERSE</h1>
+      <header className="fixed top-0 w-full z-50 py-3 px-4 md:py-4 md:px-12 flex justify-between items-center bg-[#1a0404]/80 backdrop-blur-xl border-b border-primary/10 shadow-[0_4px_20px_rgba(0,0,0,0.4)]">
+        <div className="flex items-center gap-2.5 md:gap-3 shrink-0">
+          <MoroVerseLogo className="w-7 h-7 md:w-9 md:h-9" />
+          <h1 className="font-display text-base md:text-lg tracking-[0.55em] text-white/90 font-semibold uppercase hidden md:block" style={{ letterSpacing: '0.5em' }}>MOROVERSE</h1>
         </div>
-        <div className="flex items-center gap-4 md:gap-8 pr-[70px] md:pr-0">
+        <div className="flex items-center gap-4 md:gap-8">
           <LanguageSwitcher />
         </div>
       </header>
@@ -186,31 +186,32 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Left Aligned Content overlapping the cinematic background */}
+        {/* Centered Hero Content */}
         <motion.div
-          initial={{ opacity: 0, x: -50 }}
-          animate={{ opacity: 1, x: 0 }}
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, ease: "easeOut" }}
-          className="relative z-40 max-w-3xl w-full text-center md:text-left px-2 md:px-0"
+          className="relative z-40 max-w-3xl w-full text-center mx-auto px-4"
         >
-          <div className="inline-flex justify-center gap-4 mb-6 md:mb-10 text-[var(--primary)] bg-[var(--background)]/40 backdrop-blur-md px-6 py-3 rounded-full border border-[var(--primary)]/20 shadow-xl mx-auto md:mx-0">
-            <Crown className="w-5 h-5 md:w-6 md:h-6" />
+          <div className="inline-flex justify-center gap-4 mb-8 text-[var(--primary)] bg-[var(--background)]/40 backdrop-blur-md px-6 py-2.5 rounded-full border border-[var(--primary)]/20 shadow-xl">
+            <Crown className="w-4 h-4 md:w-5 md:h-5" />
             <span className="text-[10px] md:text-xs font-bold tracking-widest uppercase">The Moroccan Digital Archive</span>
           </div>
 
-          <div className="flex flex-col items-center md:flex-row md:items-center gap-4 md:gap-8 mb-4 md:mb-8">
-            <MoroVerseLogo className="w-20 h-20 md:w-32 md:h-32 drop-shadow-[0_0_20px_var(--glow-color)] transition-all duration-1000" />
-            <h2 className="hero-title-responsive font-display text-[var(--foreground)] font-black text-glow transition-colors duration-1000" style={{ textShadow: '0 10px 30px rgba(0,0,0,0.8), 0 0 40px var(--glow-color)' }}>
+          <div className="flex flex-col items-center gap-4 mb-8">
+            <MoroVerseLogo className="w-16 h-16 md:w-24 md:h-24 drop-shadow-[0_0_20px_var(--glow-color)] transition-all duration-1000" />
+            <h2 className="font-display text-4xl md:text-6xl text-[var(--foreground)] font-semibold tracking-[0.5em] text-glow transition-colors duration-1000 uppercase" style={{ textShadow: '0 8px 24px rgba(0,0,0,0.8), 0 0 30px var(--glow-color)' }}>
               MOROVERSE
             </h2>
           </div>
 
-          <p className="text-base md:text-2xl text-[var(--primary)] font-medium mb-10 md:mb-12 tracking-wide leading-relaxed uppercase drop-shadow-[0_4px_8px_rgba(0,0,0,0.9)] border-[var(--primary)] bg-[var(--background)]/30 p-4 rounded-xl backdrop-blur-sm text-center md:text-left md:border-l-4 md:pl-6 md:rounded-r-xl transition-all duration-1000">
-            <span className="text-[var(--foreground)] font-bold block mb-2 drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)] font-arabic">{lang === 'ar' ? 'تاريخ عريق يرحب بكم' : 'AI Meets Authenticity'}</span>
-            <span className="drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">{lang === 'ar' ? 'اكتشف عبق التاريخ وروعة المكان في بوابة زمنية متطورة' : 'Explore the soul and beauty of the Kingdom through an advanced time portal'}</span>
+          <p className="text-sm md:text-lg text-[var(--primary)] font-medium mb-10 tracking-wide leading-relaxed bg-[var(--background)]/30 py-4 px-6 rounded-2xl backdrop-blur-sm border border-[var(--primary)]/15 transition-all duration-1000 mx-auto max-w-xl">
+            <span className="text-[var(--foreground)] font-bold block mb-1.5 font-arabic">{lang === 'ar' ? 'تاريخ عريق يرحب بكم' : 'AI Meets Authenticity'}</span>
+            <span className="text-[var(--foreground)]/70 text-sm">{lang === 'ar' ? 'اكتشف عبق التاريخ وروعة المكان في بوابة زمنية متطورة' : 'Explore the soul and beauty of the Kingdom through an advanced time portal'}</span>
           </p>
-          <button className="px-12 md:px-16 py-5 md:py-6 bg-gradient-to-r from-[var(--secondary)] to-[var(--background)] text-[var(--foreground)] font-black text-xs md:text-sm tracking-[0.3em] uppercase transition-all duration-500 rounded-full shadow-[0_10px_30px_rgba(0,0,0,0.5)] hover:shadow-[0_0_30px_var(--glow-color)] border border-[var(--primary)]/10 flex items-center gap-4 group mx-auto md:mx-0">
-            <Compass className="w-5 h-5 text-[var(--primary)] group-hover:text-[var(--foreground)] transition-colors animate-pulse" />
+
+          <button className="mx-auto px-10 md:px-14 py-4 md:py-5 bg-gradient-to-r from-[var(--secondary)] to-[var(--background)] text-[var(--foreground)] font-bold text-xs md:text-sm tracking-[0.3em] uppercase transition-all duration-500 rounded-full shadow-[0_10px_30px_rgba(0,0,0,0.5)] hover:shadow-[0_0_30px_var(--glow-color)] border border-[var(--primary)]/20 flex items-center gap-3 group">
+            <Compass className="w-4 h-4 text-[var(--primary)] group-hover:text-[var(--foreground)] transition-colors" />
             {t.cta}
           </button>
         </motion.div>
