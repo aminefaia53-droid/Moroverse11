@@ -10,6 +10,7 @@ import { Globe, Crown, Sparkles, MapPin, Building2, Camera, Music, Palmtree, Wav
 import BattleDashboard from "../components/BattleDashboard";
 import CityGrid from "../components/CityGrid";
 import LandmarkGrid from "../components/LandmarkGrid";
+import TourismGrid from "../components/TourismGrid";
 import HistoricalFiguresGrid from "../components/HistoricalFiguresGrid";
 
 // Utils
@@ -47,6 +48,8 @@ export default function Home() {
         battlesDesc: "Where dynastic glory meets the infinite drift.",
         landmarks: "Majestic Landmarks",
         landmarksDesc: "Exploring the zenith of Moroccan architectural and historical heritage.",
+        tourism: "Elevated Journeys",
+        tourismDesc: "Experience the Kingdom through tailored immersive adventures.",
         figures: "Historical Figures",
         figuresDesc: "Discover the luminaries who shaped the destiny of the Kingdom across the ages."
       }
@@ -62,6 +65,8 @@ export default function Home() {
         battlesDesc: "حيث تلتقي الأمجاد السلالية بالانجراف اللامتناهي.",
         landmarks: "معالم مغربية",
         landmarksDesc: "استكشاف ذروة التراث المعماري والتاريخي للمملكة المغربية.",
+        tourism: "رحلات النخبة",
+        tourismDesc: "اكتشف تنوع المملكة من خلال تجارب سياحية مصممة بعناية لتأسرك.",
         figures: "شخصيات تاريخية",
         figuresDesc: "اكتشف الأعلام الذين سطروا أمجاد المملكة عبر العصور."
       }
@@ -78,6 +83,8 @@ export default function Home() {
         battlesDesc: "Where dynastic glory meets the infinite drift.",
         landmarks: "Majestic Landmarks",
         landmarksDesc: "Exploring the zenith of Moroccan architectural and historical heritage.",
+        tourism: "Elevated Journeys",
+        tourismDesc: "Experience the Kingdom through tailored immersive adventures.",
         figures: "Historical Figures",
         figuresDesc: "Discover the luminaries who shaped the destiny of the Kingdom across the ages."
       }
@@ -259,6 +266,34 @@ export default function Home() {
           </motion.div>
 
           <LandmarkGrid lang={lang} />
+        </div>
+      </section>
+
+      {/* Tourism Types */}
+      <section className="py-48 px-10 relative z-20">
+        <div className="max-w-7xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, ease: "easeOut" }}
+            viewport={{ once: true }}
+            className="mb-24 text-center space-y-8"
+          >
+            <h3 className="text-5xl md:text-7xl font-serif text-primary uppercase tracking-normal md:tracking-[0.4em] font-black drop-shadow-sm leading-tight">
+              {lang === 'ar' ? (
+                <span className="font-arabic text-primary/80">{t.sections.tourism}</span>
+              ) : (
+                t.sections.tourism
+              )}
+            </h3>
+            <p className="text-white/60 max-w-4xl mx-auto text-xl font-light tracking-wide leading-relaxed uppercase drop-shadow-md">
+              {t.sections.tourismDesc}
+            </p>
+            <div className="w-64 h-1.5 bg-primary/20 mx-auto rounded-full" />
+          </motion.div>
+
+          {/* Grid Render */}
+          <TourismGrid lang={lang} />
         </div>
       </section>
 
