@@ -23,16 +23,21 @@
         "ar": "قصبة الأوداية",
         "en": "Kasbah of the Udayas"
       },
-      "desc": {
-        "ar": "معلمة في الرباط بانتظار التوثيق.",
-        "en": "Landmark in Rabat awaiting documentation."
+      "foundation": {
+        "ar": "1150 م (العصر الموحدي)",
+        "en": "1150 AD (Almohad Era)"
+      },
+      "visualSoul": "Fortress",
+      "history": {
+        "ar": "قلعة عسكرية وتاريخية تقع عند مصب نهر أبي رقراق، شيدها الموحدون في القرن الثاني عشر لتكون حصناً دفاعياً ومركزاً للانطلاق نحو الأندلس.",
+        "en": "A historic military citadel at the mouth of the Bou Regreg river, built by the Almohads in the 12th century as a defensive bastion and a gateway to Al-Andalus."
       },
       "imageUrl": null,
       "city": {
         "ar": "الرباط",
         "en": "Rabat"
       },
-      "isPending": true
+      "isPending": false
     },
     {
       "id": "rabat-chellah",
@@ -40,16 +45,21 @@
         "ar": "شالة",
         "en": "Chellah"
       },
-      "desc": {
-        "ar": "معلمة في الرباط بانتظار التوثيق.",
-        "en": "Landmark in Rabat awaiting documentation."
+      "foundation": {
+        "ar": "القرن السادس قبل الميلاد (روماني/مريني)",
+        "en": "6th Century BC (Roman/Marinid Era)"
+      },
+      "visualSoul": "Ruin",
+      "history": {
+        "ar": "موقع أثري يجمع بين أطلال مدينة سلا كولونيا الرومانية والتاريخ الإسلامي المريني، حيث تحولت إلى ضريح ملكي ومقبرة محصنة في القرن الرابع عشر.",
+        "en": "An archaeological site blending Roman Sala Colonia ruins with Marinid Islamic history, transformed into a royal necropolis and fortified cemetery in the 14th century."
       },
       "imageUrl": null,
       "city": {
         "ar": "الرباط",
         "en": "Rabat"
       },
-      "isPending": true
+      "isPending": false
     },
     {
       "id": "rabat-mausoleum-of-mohammed-v",
@@ -57,16 +67,21 @@
         "ar": "ضريح محمد الخامس",
         "en": "Mausoleum of Mohammed V"
       },
-      "desc": {
-        "ar": "معلمة في الرباط بانتظار التوثيق.",
-        "en": "Landmark in Rabat awaiting documentation."
+      "foundation": {
+        "ar": "1971 م",
+        "en": "1971 AD"
+      },
+      "visualSoul": "Palace",
+      "history": {
+        "ar": "تحفة معمارية مغربية حديثة تضم رفات الملكين محمد الخامس والحسن الثاني، وتعتبر رمزاً لاستقلال المغرب وسيادته وتفرد صنّاعه.",
+        "en": "A masterpiece of modern Moroccan architecture housing the remains of Kings Mohammed V and Hassan II, symbolizing independence and sovereign craftsmanship."
       },
       "imageUrl": null,
       "city": {
         "ar": "الرباط",
         "en": "Rabat"
       },
-      "isPending": true
+      "isPending": false
     },
     {
       "id": "rabat-botanical-test-garden",
