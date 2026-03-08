@@ -1,6 +1,7 @@
 import { ArrowRight, FileEdit, PanelTop } from 'lucide-react';
 import Link from 'next/link';
 import PublishButton from './components/PublishButton';
+import PingTest from './components/PingTest';
 
 export default function DashboardPage() {
     return (
@@ -45,6 +46,7 @@ export default function DashboardPage() {
             </div>
 
             <PublishButton />
+            <PingTest />
         </div>
     );
 }

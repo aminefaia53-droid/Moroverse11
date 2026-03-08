@@ -73,8 +73,8 @@ export async function POST(request: Request) {
         const updatedContent = JSON.stringify(db, null, 2);
 
         // 2. Save (GitHub first if available, then local)
-        if (githubToken && githubSha) {
-            await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${pathInRepo}`, {
+        if (githubToken) {
+            const putRes = await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${pathInRepo}`, {
                 method: 'PUT',
                 headers: {
                     'Authorization': `token ${githubToken}`,
@@ -84,11 +84,17 @@ export async function POST(request: Request) {
                 body: JSON.stringify({
                     message: `content: update ${id} via Royal Editor`,
                     content: Buffer.from(updatedContent).toString('base64'),
-                    sha: githubSha,
+                    sha: githubSha || undefined, // undefined for new file
                     branch
                 })
             });
-            return NextResponse.json({ success: true, message: 'Content saved to GitHub', persistence: 'github' });
+            if (putRes.ok) {
+                return NextResponse.json({ success: true, message: 'Content saved to GitHub', persistence: 'github' });
+            } else {
+                const errData = await putRes.json();
+                console.error('GitHub Save Error:', errData);
+                // Fallback to local if GitHub put fails (e.g. branch mismatch)
+            }
         }
 
         try {

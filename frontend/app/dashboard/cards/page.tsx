@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { Eye, EyeOff, Trash2, ShieldAlert } from 'lucide-react';
+import { CATEGORY_ENTITIES } from '../data/moroverse-entities';
 
 export default function CardsControlPage() {
     const [data, setData] = useState<Record<string, any[]>>({ cities: [], landmarks: [], battles: [], figures: [] });
@@ -77,7 +78,7 @@ export default function CardsControlPage() {
                                 : 'text-gray-500 hover:bg-gray-100 dark:hover:bg-[#112240]/80'
                                 }`}
                         >
-                            {tab.label} ({data[tab.id]?.length || 0})
+                            {tab.label} ({data[tab.id]?.length || 0} / {CATEGORY_ENTITIES[tab.id]?.length || 0})
                         </button>
                     ))}
                 </div>

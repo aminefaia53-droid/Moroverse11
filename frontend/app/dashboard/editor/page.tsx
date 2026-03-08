@@ -19,7 +19,8 @@ interface EntityItem {
 }
 
 function toId(str: string) {
-    return str.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+    const lat = str.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+    return lat || `entry-${Date.now()}`;
 }
 
 // ——— Simple textarea with drag-drop support ———
@@ -148,6 +149,37 @@ export default function EditorPage() {
     const [isPreviewOpen, setIsPreviewOpen] = useState(false);
     const [status, setStatus] = useState<'idle' | 'saving' | 'success' | 'error'>('idle');
     const [loadingItems, setLoadingItems] = useState(false);
+    const [showEnglish, setShowEnglish] = useState(false);
+    const [isTranslating, setIsTranslating] = useState(false);
+
+    const handleTranslate = async () => {
+        if (!descAr && !selectedEntityAr) { alert('الرجاء كتابة نص أو عنوان عربي أولاً للترجمة.'); return; }
+        setIsTranslating(true);
+        try {
+            // Translate Title if needed
+            if (selectedEntityAr && !selectedEntityEn) {
+                const resT = await fetch(`https://api.mymemory.translated.net/get?q=${encodeURIComponent(selectedEntityAr)}&langpair=ar|en`);
+                const dataT = await resT.json();
+                if (dataT.responseData?.translatedText) {
+                    setSelectedEntityEn(dataT.responseData.translatedText);
+                }
+            }
+
+            // Translate Content if needed
+            if (descAr) {
+                const resC = await fetch(`https://api.mymemory.translated.net/get?q=${encodeURIComponent(descAr)}&langpair=ar|en`);
+                const dataC = await resC.json();
+                if (dataC.responseData?.translatedText) {
+                    setDescEn(dataC.responseData.translatedText);
+                    setShowEnglish(true);
+                }
+            }
+        } catch (e) {
+            alert('فشلت الترجمة التلقائية. يرجى المحاولة لاحقاً.');
+        } finally {
+            setIsTranslating(false);
+        }
+    };
 
     const textareaEnRef = useRef<HTMLTextAreaElement>(null);
     const textareaArRef = useRef<HTMLTextAreaElement>(null);
@@ -215,9 +247,19 @@ export default function EditorPage() {
             const res = await fetch('/api/admin/content', {
                 method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload)
             });
-            if (res.ok) { setStatus('success'); fetchItems(); setTimeout(() => setStatus('idle'), 3000); }
-            else setStatus('error');
-        } catch { setStatus('error'); }
+            const result = await res.json();
+            if (res.ok && result.success) {
+                setStatus('success');
+                fetchItems();
+                setTimeout(() => setStatus('idle'), 3000);
+            } else {
+                setStatus('error');
+                alert(`خطأ في الحفظ: ${result.message || 'فشل الاتصال بالسيرفر'}`);
+            }
+        } catch (err: any) {
+            setStatus('error');
+            alert(`حدث خطأ غير متوقع: ${err.message}`);
+        }
     };
 
     const categoryEntities = CATEGORY_ENTITIES[category] || [];
@@ -257,7 +299,7 @@ export default function EditorPage() {
                         className="flex items-center gap-2 text-sm font-bold text-gold-royal border border-gold-royal/30 px-4 py-2 rounded-lg hover:bg-gold-royal/10 transition-colors">
                         <Eye className="w-4 h-4" /> Preview
                     </button>
-                    <button form="editor-form" type="submit" disabled={status === 'saving' || !selectedEntityEn}
+                    <button form="editor-form" type="submit" disabled={status === 'saving' || !selectedEntityAr}
                         className="flex items-center gap-2 text-sm font-bold bg-gold-royal hover:bg-gold-light text-white px-5 py-2 rounded-lg transition-colors disabled:opacity-50 shadow-md">
                         {status === 'saving' ? <Loader2 className="w-4 h-4 animate-spin" /> : <Save className="w-4 h-4" />}
                         {status === 'saving' ? 'Saving…' : mode === 'edit' ? 'Update' : 'Save Draft'}
@@ -289,6 +331,19 @@ export default function EditorPage() {
                                 label="البحث عن العظمة المغربية وكتابتها..."
                             />
                         </div>
+
+                        {showEnglish && (
+                            <div className="flex-1 flex flex-col overflow-hidden bg-[#0a192f] border-l border-[#c5a059]/20 animate-in slide-in-from-right duration-300">
+                                <DragDropEditor
+                                    textareaRef={textareaEnRef}
+                                    value={descEn}
+                                    onChange={setDescEn}
+                                    dir="ltr"
+                                    placeholder="English description will appear here..."
+                                    label="English Content (Preview/Edit)"
+                                />
+                            </div>
+                        )}
                     </div>
                 </div>
 
@@ -400,11 +455,27 @@ export default function EditorPage() {
                         </div>
 
                         {/* Word count */}
-                        <div className="border-t border-[#c5a059]/10 pt-4">
-                            <div className="text-xs text-gray-600 space-y-1">
+                        <div className="border-t border-[#c5a059]/10 pt-4 space-y-3">
+                            <button type="button" onClick={handleTranslate} disabled={isTranslating}
+                                className="w-full py-2 px-3 rounded-lg text-xs font-bold bg-[#112240] text-gold-royal border border-gold-royal/30 hover:bg-gold-royal/10 transition-all flex items-center justify-center gap-2">
+                                {isTranslating ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <div className="w-3 hot-3 border border-current rounded-full flex items-center justify-center text-[8px]">T</div>}
+                                {isTranslating ? 'Translating...' : 'Translate to English'}
+                            </button>
+
+                            <button type="button" onClick={() => setShowEnglish(!showEnglish)}
+                                className={`w-full py-2 px-3 rounded-lg text-xs font-bold border transition-all flex items-center justify-center gap-2 ${showEnglish ? 'bg-gold-royal text-white border-gold-royal' : 'bg-[#112240] text-gray-400 border-[#c5a059]/10'}`}>
+                                <Eye className="w-3.5 h-3.5" /> {showEnglish ? 'Hide English' : 'Show English'}
+                            </button>
+
+                            <div className="text-xs text-gray-600 space-y-1 pt-2">
                                 <div className="flex justify-between">
-                                    <span>عدد الكلمات (AR)</span><span className="text-gray-400 font-bold">{descAr.trim().split(/\s+/).filter(Boolean).length}</span>
+                                    <span>كلمات (AR)</span><span className="text-gray-400 font-bold">{descAr.trim().split(/\s+/).filter(Boolean).length}</span>
                                 </div>
+                                {showEnglish && (
+                                    <div className="flex justify-between">
+                                        <span>Words (EN)</span><span className="text-gray-400 font-bold">{descEn.trim().split(/\s+/).filter(Boolean).length}</span>
+                                    </div>
+                                )}
                             </div>
                         </div>
                     </div>
