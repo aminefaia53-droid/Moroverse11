@@ -11,7 +11,13 @@ import { getArticle } from '../data/moroverse-content';
 import { LangCode } from '../types/language';
 import TranslatedText from './TranslatedText';
 
-const dynamicLandmarks: Landmark[] = generatedContent.landmarks as Landmark[];
+const rawLandmarks = generatedContent.landmarks as any[];
+const dynamicLandmarks: Landmark[] = rawLandmarks.map(l => ({
+    ...l,
+    foundation: l.foundation || { en: 'Historical', ar: 'تاريخي' },
+    history: l.history || l.desc || { en: '', ar: '' },
+    visualSoul: l.visualSoul || 'Mosque'
+})) as Landmark[];
 
 const LandmarkSoulIcon = ({ soul, className }: { soul: Landmark['visualSoul']; className?: string }) => {
     switch (soul) {
