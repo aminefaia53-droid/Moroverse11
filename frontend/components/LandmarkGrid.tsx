@@ -11,7 +11,7 @@ import { getArticle } from '../data/moroverse-content';
 import { LangCode } from '../types/language';
 import TranslatedText from './TranslatedText';
 
-const rawLandmarks = generatedContent.landmarks as any[];
+const rawLandmarks = (generatedContent.landmarks || []) as any[];
 const dynamicLandmarks: Landmark[] = rawLandmarks.map(l => ({
     ...l,
     foundation: l.foundation || { en: 'Historical', ar: 'تاريخي' },
