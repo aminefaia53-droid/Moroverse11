@@ -5,27 +5,32 @@ import MoroVerseAssistant from "../components/MoroVerseAssistant";
 const outfit = Outfit({
   variable: "--font-outfit",
   subsets: ["latin"],
+  display: "swap",
 });
 
 const cinzel = Cinzel({
   variable: "--font-cinzel",
   subsets: ["latin"],
+  display: "swap",
 });
 
 const playfair = Playfair_Display({
   variable: "--font-playfair",
   subsets: ["latin"],
+  display: "swap",
 });
 
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
+  display: "swap",
 });
 
 const cairo = Cairo({
   variable: "--font-arabic",
   weight: ["300", "400", "500", "600", "700", "800", "900"],
   subsets: ["arabic", "latin"],
+  display: "swap",
 });
 
 export const metadata = {

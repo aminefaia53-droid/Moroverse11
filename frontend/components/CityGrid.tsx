@@ -319,17 +319,18 @@ function CityCard({
     return (
         <motion.div
             layout
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, rotateX: -90, z: -100 }}
+            animate={{ opacity: 1, rotateX: 0, z: 0 }}
             exit={{ opacity: 0, scale: 0.9 }}
-            transition={{ delay: idx % 10 * 0.05 }}
+            transition={{ type: "spring", stiffness: 100, damping: 20, delay: idx % 10 * 0.1 }}
+            style={{ transformStyle: 'preserve-3d', perspective: '1000px', transformOrigin: "top center" }}
             onClick={() => {
                 onClick(loc);
                 window.dispatchEvent(new CustomEvent('moroverse-action', {
                     detail: { type: 'city_click', payload: lang === 'en' ? loc.name.en : loc.name.ar }
                 }));
             }}
-            className="group cursor-pointer relative aspect-video md:aspect-square lg:aspect-video w-full"
+            className="group cursor-pointer relative aspect-video md:aspect-square lg:aspect-video w-full weather-card-fx"
         >
             <div className="relative h-full w-full rounded-xl border-2 border-[#c5a059]/20 hover:border-[#c5a059]/80 transition-all duration-700 overflow-hidden shadow-2xl glass-card-elite group-hover:shadow-[0_20px_60px_rgba(197,160,89,0.25)]">
 
@@ -338,14 +339,20 @@ function CityCard({
                     <img
                         src={`/images/${loc.id}.jpg`}
                         alt={lang === 'en' ? loc.name.en : loc.name.ar}
-                        className={`w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110 opacity-50 group-hover:opacity-60`}
+                        className={`w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110 opacity-40 group-hover:opacity-60`}
                         onError={(e) => {
                             e.currentTarget.style.display = 'none';
                         }}
                     />
-                    {/* Multi-layered Cinematic Gradient */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent opacity-80" />
-                    <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-transparent opacity-40" />
+                    {/* Zellij Pattern Overlay */}
+                    <div className="absolute inset-0 opacity-[0.08] mix-blend-overlay pointer-events-none transition-opacity duration-700 group-hover:opacity-[0.15]" style={{ backgroundImage: "url('https://www.transparenttextures.com/patterns/arabesque.png')" }} />
+
+                    {/* Multi-layered Cinematic Gradient based on Climate/Region */}
+                    <div className={`absolute inset-0 bg-gradient-to-t opacity-90 transition-opacity duration-700 ${loc.climate === 'Coastal' || loc.climate === 'Mediterranean' ? 'from-[#0b1f38] via-black/60 to-transparent' :
+                        loc.climate === 'Saharan' ? 'from-[#4a1c0d] via-black/60 to-transparent' :
+                            'from-[#2a0808] via-black/60 to-transparent'
+                        }`} />
+                    <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-transparent opacity-60" />
                 </div>
 
                 {/* Card Content Overlay */}

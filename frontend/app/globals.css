@@ -171,6 +171,47 @@ body {
   animation: glass-drip ease-in infinite;
 }
 
+/* Card Weather FX */
+.winter .weather-card-fx::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background-image:
+    radial-gradient(1px 40px at 5% -10%, rgba(255, 255, 255, 0.4), transparent),
+    radial-gradient(2px 30px at 95% -10%, rgba(255, 255, 255, 0.3), transparent);
+  background-size: 100% 200%;
+  animation: card-drip 4s infinite linear;
+  opacity: 0;
+  transition: opacity 0.5s;
+  z-index: 50;
+}
+
+.winter .weather-card-fx:hover::after {
+  opacity: 1;
+}
+
+@keyframes card-drip {
+  0% {
+    background-position: 0% -100%;
+    opacity: 0;
+  }
+
+  10% {
+    opacity: 0.8;
+  }
+
+  90% {
+    opacity: 0.8;
+  }
+
+  100% {
+    background-position: 0% 100%;
+    opacity: 0;
+  }
+}
+
 /* UI Avoidance Mask */
 .weather-mask {
   mask-image: radial-gradient(circle at center, transparent 0%, black 100%);

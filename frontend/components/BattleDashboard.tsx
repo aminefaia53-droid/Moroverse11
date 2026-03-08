@@ -470,24 +470,25 @@ export default function BattleDashboard({ lang }: { lang: LangCode }) {
                     {displayBattles.map((b, idx) => (
                         <motion.div
                             key={b.id}
-                            initial={{ opacity: 0, scale: 0.9, y: 30 }}
-                            animate={{ opacity: 1, scale: 1, y: 0 }}
+                            initial={{ opacity: 0, rotateY: 90, z: -100 }}
+                            animate={{ opacity: 1, rotateY: 0, z: 0 }}
                             exit={{ opacity: 0, scale: 0.95 }}
-                            transition={{ duration: 0.5, delay: idx * 0.03 }}
+                            transition={{ type: "spring", stiffness: 100, damping: 20, delay: idx * 0.05 }}
+                            style={{ transformStyle: 'preserve-3d', perspective: '1000px', transformOrigin: "left center" }}
                             onClick={() => setSelectedBattle(b)}
-                            className="group relative h-[480px] rounded-xl overflow-hidden glass-card-elite hover:bg-black/80 border border-primary/50 hover:border-primary transition-all duration-700 cursor-pointer shadow-xl hover:shadow-2xl hover:shadow-[0_0_30px_rgba(197,160,89,0.4)]"
+                            className="group relative h-[480px] rounded-xl overflow-hidden glass-card-elite hover:bg-black/80 border border-primary/50 hover:border-primary transition-all duration-700 cursor-pointer shadow-xl hover:shadow-2xl hover:shadow-[0_0_30px_rgba(197,160,89,0.4)] weather-card-fx"
                         >
-                            {/* Visual Layer */}
-                            <div className="absolute inset-0 z-0">
-                                <div className={`absolute inset-0 bg-gradient-to-br opacity-[0.05] group-hover:opacity-20 transition-opacity duration-1000 ${b.era === 'Modern Resistance' || b.era === 'Liberation' ? 'from-amber-600' :
-                                    b.era === 'Imperial' ? 'from-star-red' :
-                                        b.era === 'Ancient' || b.era === 'Islamic' ? 'from-slate-600' : 'from-emerald-700'
+                            {/* Visual Layer (Parchment & Smoke) */}
+                            <div className="absolute inset-0 z-0 bg-[#0f0a05]">
+                                <div className="absolute inset-0 opacity-[0.15] mix-blend-overlay pointer-events-none transition-opacity duration-1000 group-hover:opacity-[0.25]" style={{ backgroundImage: "url('https://www.transparenttextures.com/patterns/parchment.png')" }} />
+                                {/* Dynamic Era Overlay */}
+                                <div className={`absolute inset-0 bg-gradient-to-br opacity-40 group-hover:opacity-60 transition-opacity duration-1000 ${b.era === 'Modern Resistance' || b.era === 'Liberation' ? 'from-amber-900/60' :
+                                    b.era === 'Imperial' ? 'from-red-900/60' :
+                                        b.era === 'Ancient' || b.era === 'Islamic' ? 'from-stone-800/60' : 'from-emerald-900/60'
                                     } to-transparent`} />
-                                <div className="absolute inset-0 grid grid-cols-10 grid-rows-10 opacity-5">
-                                    {Array.from({ length: 100 }).map((_, i) => (
-                                        <div key={i} className="border-[0.2px] border-foreground/10" />
-                                    ))}
-                                </div>
+                                {/* Gunpowder / Smoke effect in corners */}
+                                <div className="absolute -top-32 -left-32 w-64 h-64 bg-black rounded-full blur-[80px] opacity-80 group-hover:opacity-100 transition-opacity duration-1000" />
+                                <div className="absolute -bottom-32 -right-32 w-64 h-64 bg-[#3a0b0b] rounded-full blur-[80px] opacity-50 group-hover:opacity-70 transition-opacity duration-1000" />
                             </div>
 
                             <div className="absolute inset-0 p-10 flex flex-col justify-between z-10">
