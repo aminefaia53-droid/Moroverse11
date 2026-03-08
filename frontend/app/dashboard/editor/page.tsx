@@ -5,9 +5,7 @@ import { Save, Search, PlusCircle, Edit3, Loader2, Eye, CheckCircle, UploadCloud
 import RichToolbar from '../components/RichToolbar';
 import ImageGalleryModal from '../components/ImageGalleryModal';
 import LivePreviewModal from '../components/LivePreviewModal';
-import { CATEGORY_ENTITIES, CATEGORY_LABELS, type BilingualEntry } from '../data/moroverse-entities';
-
-type Category = 'cities' | 'landmarks' | 'battles' | 'figures';
+import { CATEGORY_ENTITIES, CATEGORY_LABELS, type Category, type BilingualEntry } from '../data/moroverse-entities';
 
 interface EntityItem {
     id: string;
@@ -203,20 +201,6 @@ export default function EditorPage() {
         setMode('new');
     }, [category]);
 
-    const handleEntityChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-        const arVal = e.target.value;
-        setSelectedEntityAr(arVal);
-        const matched = CATEGORY_ENTITIES[category]?.find((c: BilingualEntry) => c.ar === arVal);
-        setSelectedEntityEn(matched?.en || '');
-    };
-
-    const handleCityChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-        const arVal = e.target.value;
-        setCityAr(arVal);
-        const matched = CATEGORY_ENTITIES['cities']?.find((c: BilingualEntry) => c.ar === arVal);
-        setCityEn(matched?.en || '');
-    };
-
     const loadForEdit = (item: EntityItem) => {
         setMode('edit');
         setSelectedEntityEn(item.name.en);
@@ -229,20 +213,96 @@ export default function EditorPage() {
         setSearchQuery('');
     };
 
+    // Auto-fill logic when selecting an Arabic Entity (Auto-Fill Knowledge)
+    const handleEntityChange = async (e: React.ChangeEvent<HTMLSelectElement>) => {
+        const arVal = e.target.value;
+        setSelectedEntityAr(arVal);
+
+        const matched = CATEGORY_ENTITIES[category]?.find((c: BilingualEntry) => c.ar === arVal);
+        setSelectedEntityEn(matched?.en || '');
+
+        // Elite Tours Auto-Fill functionality
+        if (category === 'elite_tours' && matched?.en) {
+            try {
+                // We'll search our local static data or Headless API to pre-fill known fields
+                // Simulating auto-fill from a known knowledge-base source
+
+                // For demonstration, map specific hardcoded entries mentioned by the User
+                if (matched.en === 'Merchich Region') {
+                    setDescAr('منطقة الأسرار والغموض بضواحي الدار البيضاء، تعتبر من الوجهات غير المستكشفة في السياحة السوداء.');
+                    setDescEn('A region of secrets and mystery on the outskirts of Casablanca, considered an unexplored destination in Dark Tourism.');
+                    setCityAr('الدار البيضاء'); setCityEn('Casablanca');
+                } else if (matched.en === 'Kara Prison') {
+                    setDescAr('سجن ضخم تحت الأرض بني في القرن الثامن عشر، يحيط به الغموض والتاريخ المظلم أسفل مدينة مكناس.');
+                    setDescEn('A massive underground prison built in the 18th century, wrapped in myths and dark history beneath Meknes.');
+                    setCityAr('مكناس'); setCityEn('Meknes');
+                } else if (matched.en === 'Agadir Ruins') {
+                    setDescAr('البقايا الحزينة للقصبة القديمة التي تحفظ ذاكرة زلزال عام 1960 المدمر.');
+                    setDescEn('The somber remains of the old Kasbah, preserving the memory of the devastating 1960 earthquake.');
+                    setCityAr('أكادير'); setCityEn('Agadir');
+                }
+            } catch (err) {
+                console.log('Autofill failed', err);
+            }
+        }
+    };
+
+    const handleCityChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        const arVal = e.target.value;
+        setCityAr(arVal);
+        const matched = CATEGORY_ENTITIES['cities']?.find((c: BilingualEntry) => c.ar === arVal);
+        setCityEn(matched?.en || '');
+    };
+
     const handleSave = async (e: React.FormEvent) => {
         e.preventDefault();
-        if (!selectedEntityAr) { alert('الرجاء اختيار العنصر.'); return; }
+        if (!selectedEntityAr && mode === 'new') { alert('الرجاء اختيار العنصر.'); return; }
+
+        // For Elite Tours we let them type free-form titles if it's not in the dropdown
+        const finalTitleAr = selectedEntityAr || (category === 'elite_tours' ? document.getElementById('elite-title-ar')?.nodeValue : '');
+        const finalTitleEn = selectedEntityEn || (category === 'elite_tours' ? document.getElementById('elite-title-en')?.nodeValue : '');
+
+        if (!finalTitleAr) { alert('الرجاء إدخال أو اختيار عنوان.'); return; }
+
         setStatus('saving');
         const payload = {
-            id: toId(selectedEntityEn || selectedEntityAr),
+            id: toId(finalTitleEn || finalTitleAr as string),
             category,
-            title: { en: selectedEntityEn, ar: selectedEntityAr },
+            title: { en: finalTitleEn, ar: finalTitleAr },
             city: { en: cityEn, ar: cityAr },
             description: { en: descEn || '', ar: descAr },
             imageUrl,
             isPending: publishStatus === 'draft',
             dateAdded: new Date().toISOString(),
         };
+
+        // Specific push flow for Elite Tours to Headless WP simulation/sync
+        if (category === 'elite_tours') {
+            try {
+                // If the user has a WP endpoint
+                const wpUrl = process.env.NEXT_PUBLIC_WP_URL;
+                if (wpUrl && wpUrl !== '') {
+                    // Just pushing async to the background
+                    fetch(`${wpUrl}/wp-json/wp/v2/destinations`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${process.env.WP_CONTENT_TOKEN || ''}` },
+                        body: JSON.stringify({
+                            title: finalTitleEn,
+                            status: 'publish',
+                            acf: {
+                                title_ar: finalTitleAr,
+                                description_en: descEn,
+                                description_ar: descAr,
+                                image_url: imageUrl
+                            }
+                        })
+                    }).catch(e => console.log('WP sync warning:', e));
+                }
+            } catch (err) {
+                console.log('WP Sync failed', err);
+            }
+        }
+
         try {
             const res = await fetch('/api/admin/content', {
                 method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload)

@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { Globe, Crown, Sparkles, MapPin, Building2, Camera, Music, Palmtree, Waves, Mountain, Tent, Sunset, Compass } from "lucide-react";
+import { Globe, Crown, Sparkles, MapPin, Building2, Camera, Music, Palmtree, Waves, Mountain, Tent, Sunset, Compass, MoveRight } from "lucide-react";
 
 // Components
 import BattleDashboard from "../components/BattleDashboard";
@@ -12,6 +12,7 @@ import CityGrid from "../components/CityGrid";
 import LandmarkGrid from "../components/LandmarkGrid";
 import TourismGrid from "../components/TourismGrid";
 import HistoricalFiguresGrid from "../components/HistoricalFiguresGrid";
+import SmartSidebar from "../components/SmartSidebar";
 
 // Utils
 import AudioManager from "../utils/AudioManager";
@@ -22,19 +23,6 @@ import LanguageSwitcher from "../components/ui/LanguageSwitcher";
 export default function Home() {
   const { lang, setLang } = useLanguage();
   const [isClient, setIsClient] = useState(false);
-
-  useEffect(() => {
-    setIsClient(true);
-    AudioManager.instance.init();
-
-    const handleFirstInteraction = () => {
-      AudioManager.instance.enableAudio();
-      window.removeEventListener('click', handleFirstInteraction);
-    };
-    window.addEventListener('click', handleFirstInteraction);
-
-    return () => window.removeEventListener('click', handleFirstInteraction);
-  }, []);
 
   const t = ({
     en: {
@@ -90,6 +78,19 @@ export default function Home() {
       }
     }
   }).en;
+
+  useEffect(() => {
+    setIsClient(true);
+    AudioManager.instance.init();
+
+    const handleFirstInteraction = () => {
+      AudioManager.instance.enableAudio();
+      window.removeEventListener('click', handleFirstInteraction);
+    };
+    window.addEventListener('click', handleFirstInteraction);
+
+    return () => window.removeEventListener('click', handleFirstInteraction);
+  }, []);
 
   if (!isClient) return null;
 
@@ -155,6 +156,9 @@ export default function Home() {
         </div>
       </header>
 
+      {/* Smart Sidebar */}
+      <SmartSidebar />
+
       {/* Hero Section */}
       <section className="relative h-screen flex flex-col justify-center items-center md:items-start z-20 px-4 md:px-24">
 
@@ -162,8 +166,8 @@ export default function Home() {
         <div className="absolute inset-0 flex items-center justify-center md:pl-[20%] pointer-events-none mt-16 md:mt-0">
           <div className="relative">
             {/* Massive Glow Behind Flag */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] md:w-[600px] md:h-[600px] bg-primary/20 rounded-full blur-[80px] md:blur-[120px]"></div>
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[200px] h-[200px] md:w-[400px] md:h-[400px] bg-secondary/40 rounded-full blur-[60px] md:blur-[100px]"></div>
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] md:w-[600px] md:h-[600px] bg-[var(--primary)]/20 rounded-full blur-[80px] md:blur-[120px]"></div>
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[200px] h-[200px] md:w-[400px] md:h-[400px] bg-[var(--secondary)]/40 rounded-full blur-[60px] md:blur-[100px]"></div>
 
             {/* The Flag Pole */}
             <div className="absolute top-[10%] bottom-[-20%] left-[8%] w-1 md:w-2 bg-gradient-to-b from-slate-300 via-slate-400 to-transparent rounded-full shadow-2xl z-20"></div>
@@ -189,40 +193,40 @@ export default function Home() {
           transition={{ duration: 1, ease: "easeOut" }}
           className="relative z-40 max-w-3xl w-full text-center md:text-left px-2 md:px-0"
         >
-          <div className="inline-flex justify-center gap-4 mb-6 md:mb-10 text-primary bg-black/40 backdrop-blur-md px-6 py-3 rounded-full border border-primary/20 shadow-xl mx-auto md:mx-0">
+          <div className="inline-flex justify-center gap-4 mb-6 md:mb-10 text-[var(--primary)] bg-[var(--background)]/40 backdrop-blur-md px-6 py-3 rounded-full border border-[var(--primary)]/20 shadow-xl mx-auto md:mx-0">
             <Crown className="w-5 h-5 md:w-6 md:h-6" />
             <span className="text-[10px] md:text-xs font-bold tracking-widest uppercase">The Moroccan Digital Archive</span>
           </div>
 
           <div className="flex flex-col items-center md:flex-row md:items-center gap-4 md:gap-8 mb-4 md:mb-8">
-            <MoroVerseLogo className="w-20 h-20 md:w-32 md:h-32 drop-shadow-[0_0_20px_rgba(197,160,89,0.5)]" />
-            <h2 className="hero-title-responsive font-display text-white font-black text-glow" style={{ textShadow: '0 10px 30px rgba(0,0,0,0.8), 0 0 40px rgba(197, 160, 89, 0.4)' }}>
+            <MoroVerseLogo className="w-20 h-20 md:w-32 md:h-32 drop-shadow-[0_0_20px_var(--glow-color)] transition-all duration-1000" />
+            <h2 className="hero-title-responsive font-display text-[var(--foreground)] font-black text-glow transition-colors duration-1000" style={{ textShadow: '0 10px 30px rgba(0,0,0,0.8), 0 0 40px var(--glow-color)' }}>
               MOROVERSE
             </h2>
           </div>
 
-          <p className="text-base md:text-2xl text-primary font-medium mb-10 md:mb-12 tracking-wide leading-relaxed uppercase drop-shadow-[0_4px_8px_rgba(0,0,0,0.9)] border-primary bg-black/30 p-4 rounded-xl backdrop-blur-sm text-center md:text-left md:border-l-4 md:pl-6 md:rounded-r-xl">
-            <span className="text-white font-bold block mb-2 drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)] font-arabic">{lang === 'ar' ? 'تاريخ عريق يرحب بكم' : 'AI Meets Authenticity'}</span>
+          <p className="text-base md:text-2xl text-[var(--primary)] font-medium mb-10 md:mb-12 tracking-wide leading-relaxed uppercase drop-shadow-[0_4px_8px_rgba(0,0,0,0.9)] border-[var(--primary)] bg-[var(--background)]/30 p-4 rounded-xl backdrop-blur-sm text-center md:text-left md:border-l-4 md:pl-6 md:rounded-r-xl transition-all duration-1000">
+            <span className="text-[var(--foreground)] font-bold block mb-2 drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)] font-arabic">{lang === 'ar' ? 'تاريخ عريق يرحب بكم' : 'AI Meets Authenticity'}</span>
             <span className="drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">{lang === 'ar' ? 'اكتشف عبق التاريخ وروعة المكان في بوابة زمنية متطورة' : 'Explore the soul and beauty of the Kingdom through an advanced time portal'}</span>
           </p>
-          <button className="px-12 md:px-16 py-5 md:py-6 bg-gradient-to-r from-[#8b0000] to-[#500000] text-white font-black text-xs md:text-sm tracking-[0.3em] uppercase hover:from-primary hover:to-primary transition-all duration-500 rounded-full shadow-[0_10px_30px_rgba(139,0,0,0.5)] hover:shadow-[0_0_30px_rgba(197,160,89,0.8)] border border-white/10 flex items-center gap-4 group mx-auto md:mx-0">
-            <Compass className="w-5 h-5 text-primary group-hover:text-white transition-colors animate-pulse" />
+          <button className="px-12 md:px-16 py-5 md:py-6 bg-gradient-to-r from-[var(--secondary)] to-[var(--background)] text-[var(--foreground)] font-black text-xs md:text-sm tracking-[0.3em] uppercase transition-all duration-500 rounded-full shadow-[0_10px_30px_rgba(0,0,0,0.5)] hover:shadow-[0_0_30px_var(--glow-color)] border border-[var(--primary)]/10 flex items-center gap-4 group mx-auto md:mx-0">
+            <Compass className="w-5 h-5 text-[var(--primary)] group-hover:text-[var(--foreground)] transition-colors animate-pulse" />
             {t.cta}
           </button>
         </motion.div>
       </section>
 
       {/* City Encyclopedia */}
-      <section className="py-48 px-10 relative z-20">
+      <section id="encyclopedia" className="py-48 px-10 relative z-20">
         <div className="max-w-7xl mx-auto">
           <div className="mb-24 text-center space-y-8">
-            <h3 className="text-4xl md:text-6xl font-serif text-primary uppercase tracking-normal md:tracking-[0.3em] font-black text-glow drop-shadow-[0_5px_15px_rgba(0,0,0,0.5)] leading-tight">
+            <h3 className="text-4xl md:text-6xl font-serif text-[var(--primary)] uppercase tracking-normal md:tracking-[0.3em] font-black text-glow drop-shadow-[0_5px_15px_rgba(0,0,0,0.5)] leading-tight transition-colors duration-1000">
               {t.sections.encyclopedia}
             </h3>
-            <p className="text-white/60 max-w-4xl mx-auto text-xl font-light tracking-wide leading-relaxed uppercase drop-shadow-md">
+            <p className="text-[var(--foreground)]/60 max-w-4xl mx-auto text-xl font-light tracking-wide leading-relaxed uppercase drop-shadow-md transition-colors duration-1000">
               {t.sections.encyclopediaDesc}
             </p>
-            <div className="w-64 h-1 bg-primary/20 mx-auto" />
+            <div className="w-64 h-1 bg-[var(--primary)]/20 mx-auto transition-colors duration-1000" />
           </div>
 
           <CityGrid lang={lang} />
@@ -230,12 +234,12 @@ export default function Home() {
       </section>
 
       {/* Chronicles */}
-      <section className="py-48 px-10 relative z-20">
+      <section id="battles" className="py-48 px-10 relative z-20">
         <div className="max-w-7xl mx-auto">
           <div className="mb-24 text-center space-y-8">
-            <h3 className="text-4xl md:text-6xl font-serif text-primary uppercase tracking-normal md:tracking-[0.3em] font-black text-glow drop-shadow-[0_5px_15px_rgba(0,0,0,0.5)] leading-tight">{t.sections.battles}</h3>
-            <p className="text-white/60 max-w-4xl mx-auto text-xl font-light tracking-wide leading-relaxed uppercase drop-shadow-md">{t.sections.battlesDesc}</p>
-            <div className="w-64 h-1 bg-primary/20 mx-auto" />
+            <h3 className="text-4xl md:text-6xl font-serif text-[var(--primary)] uppercase tracking-normal md:tracking-[0.3em] font-black text-glow drop-shadow-[0_5px_15px_rgba(0,0,0,0.5)] leading-tight transition-colors duration-1000">{t.sections.battles}</h3>
+            <p className="text-[var(--foreground)]/60 max-w-4xl mx-auto text-xl font-light tracking-wide leading-relaxed uppercase drop-shadow-md transition-colors duration-1000">{t.sections.battlesDesc}</p>
+            <div className="w-64 h-1 bg-[var(--primary)]/20 mx-auto transition-colors duration-1000" />
           </div>
 
           <BattleDashboard lang={lang} />
@@ -243,7 +247,7 @@ export default function Home() {
       </section>
 
       {/* Majestic Landmarks */}
-      <section className="py-48 px-10 relative z-20 bg-black/20 backdrop-blur-md">
+      <section className="py-48 px-10 relative z-20 bg-[var(--background)]/20 backdrop-blur-md transition-colors duration-1000">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
@@ -252,17 +256,17 @@ export default function Home() {
             viewport={{ once: true }}
             className="mb-24 text-center space-y-8"
           >
-            <h3 className="text-5xl md:text-7xl font-serif text-primary uppercase tracking-normal md:tracking-wider font-black drop-shadow-sm text-glow leading-tight">
+            <h3 className="text-5xl md:text-7xl font-serif text-[var(--primary)] uppercase tracking-normal md:tracking-wider font-black drop-shadow-sm text-glow leading-tight transition-colors duration-1000">
               {lang === 'ar' ? (
-                <span className="font-arabic text-primary/80">معالم مغربية</span>
+                <span className="font-arabic text-[var(--primary)]/80">معالم مغربية</span>
               ) : (
                 "Majestic Landmarks"
               )}
             </h3>
-            <p className="text-white/60 max-w-4xl mx-auto text-xl font-light tracking-wide leading-relaxed uppercase drop-shadow-md">
+            <p className="text-[var(--foreground)]/60 max-w-4xl mx-auto text-xl font-light tracking-wide leading-relaxed uppercase drop-shadow-md transition-colors duration-1000">
               {t.sections.landmarksDesc}
             </p>
-            <div className="w-64 h-1.5 bg-primary/20 mx-auto rounded-full" />
+            <div className="w-64 h-1.5 bg-[var(--primary)]/20 mx-auto rounded-full transition-colors duration-1000" />
           </motion.div>
 
           <LandmarkGrid lang={lang} />
@@ -270,7 +274,7 @@ export default function Home() {
       </section>
 
       {/* Tourism Types */}
-      <section className="py-48 px-10 relative z-20">
+      <section id="elite-tours" className="py-48 px-10 relative z-20">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 50 }}

@@ -136,17 +136,27 @@ export const MOROCCAN_FIGURES: BilingualEntry[] = [
     { en: 'Mohammed al-Sheikh', ar: 'محمد الشيخ' },
 ];
 
-// ——————————————————— CATEGORY ENTITY MAP ———————————————————
-export const CATEGORY_ENTITIES: Record<string, BilingualEntry[]> = {
+// ——————————————————— MAP & META ———————————————————
+export type Category = 'cities' | 'landmarks' | 'battles' | 'figures' | 'elite_tours';
+
+export const CATEGORY_LABELS: Record<Category, string> = {
+    cities: 'Cities / المدن',
+    landmarks: 'Landmarks / المعالم',
+    battles: 'Battles / المعارك',
+    figures: 'Figures / الشخصيات',
+    elite_tours: 'Elite Tours / رحلات النخبة'
+};
+
+export const CATEGORY_ENTITIES: Record<Category, BilingualEntry[]> = {
     cities: MOROCCAN_CITIES,
     landmarks: MOROCCAN_LANDMARKS,
     battles: MOROCCAN_BATTLES,
     figures: MOROCCAN_FIGURES,
-};
-
-export const CATEGORY_LABELS: Record<string, string> = {
-    cities: 'City',
-    landmarks: 'Landmark',
-    battles: 'Battle',
-    figures: 'Historical Figure',
+    elite_tours: [
+        { en: 'Merchich Region', ar: 'منطقة مرشيش' },
+        { en: 'Kara Prison', ar: 'سجن قارة' },
+        { en: 'Agadir Ruins', ar: 'أطلال زلزال أكادير' },
+        { en: 'Erg Chebbi Dunes', ar: 'كثبان عرق الشبي' },
+        { en: 'Ouarzazate Studios', ar: 'استوديوهات ورزازات' }
+    ]
 };

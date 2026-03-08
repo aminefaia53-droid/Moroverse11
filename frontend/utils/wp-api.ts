@@ -95,3 +95,55 @@ export async function fetchTourismDestinations(type: TourismType): Promise<Desti
     await new Promise(resolve => setTimeout(resolve, 400));
     return results;
 }
+
+// Function to push new Elite Tours to Headless WP
+export async function pushTourismDestination(data: {
+    titleEn: string;
+    titleAr: string;
+    descEn: string;
+    descAr: string;
+    imageUrl?: string;
+    cityEn: string;
+    cityAr: string;
+}) {
+    const wpUrl = process.env.NEXT_PUBLIC_WP_URL;
+    const token = process.env.WP_CONTENT_TOKEN;
+
+    if (!wpUrl) {
+        console.warn('WP Push Skipped: NEXT_PUBLIC_WP_URL is not defined in env variables.');
+        return { success: false, message: 'WP URL not configured' };
+    }
+
+    try {
+        const response = await fetch(`${wpUrl}/wp-json/wp/v2/destinations`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token || ''}`
+            },
+            body: JSON.stringify({
+                title: data.titleEn || data.titleAr,
+                status: 'publish', // Or 'draft' depending on workflow
+                acf: {
+                    title_ar: data.titleAr,
+                    description_en: data.descEn,
+                    description_ar: data.descAr,
+                    image_url: data.imageUrl || '',
+                    city_en: data.cityEn,
+                    city_ar: data.cityAr
+                }
+            })
+        });
+
+        if (!response.ok) {
+            const errData = await response.json();
+            throw new Error(errData.message || 'Failed to push to WordPress');
+        }
+
+        const responseData = await response.json();
+        return { success: true, data: responseData };
+    } catch (error: any) {
+        console.error('WP Push Error:', error);
+        return { success: false, message: error.message };
+    }
+}

@@ -80,20 +80,24 @@ export const viewport = {
 
 import { LanguageProvider } from "../context/LanguageContext";
 
+import { ThemeProvider } from "../components/ThemeProvider";
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ar" dir="rtl">
+    <html lang="ar" dir="rtl" suppressHydrationWarning>
       <body
         className={`${outfit.variable} ${cinzel.variable} ${playfair.variable} ${inter.variable} ${cairo.variable} antialiased selection:bg-gold-royal/30 selection:text-gold-royal`}
       >
-        <LanguageProvider>
-          {children}
-          <MoroVerseAssistant />
-        </LanguageProvider>
+        <ThemeProvider>
+          <LanguageProvider>
+            {children}
+            <MoroVerseAssistant />
+          </LanguageProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

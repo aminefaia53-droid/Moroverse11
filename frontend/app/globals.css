@@ -21,14 +21,41 @@
   --font-arabic: 'Cairo', sans-serif;
 }
 
-:root {
-  --background: #000000;
-  /* Cinematic deep pure black */
+:root,
+.summer {
+  --background: #1a0404;
+  /* Warm deep sunset/desert red */
   --foreground: #ffffff;
   --primary: #c5a059;
-  /* Matte Gold as primary action color */
+  /* Matte Gold */
   --secondary: #8b0000;
-  /* Royal deep red */
+  --glow-intensity: 0.8;
+  --glow-color: rgba(197, 160, 89, 0.4);
+  --glass-bg: rgba(40, 10, 10, 0.7);
+}
+
+.dark {
+  --background: #020617;
+  /* Deep abyssal blue/slate */
+  --foreground: #f8fafc;
+  --primary: #94a3b8;
+  /* Silver/Steel instead of Gold */
+  --secondary: #0f172a;
+  --glow-intensity: 0.3;
+  --glow-color: rgba(148, 163, 184, 0.2);
+  --glass-bg: rgba(15, 23, 42, 0.8);
+}
+
+.spring {
+  --background: #022c22;
+  /* Deep forest/olive green */
+  --foreground: #ecfccb;
+  --primary: #d9f99d;
+  /* Bright lime/leaf */
+  --secondary: #064e3b;
+  --glow-intensity: 0.6;
+  --glow-color: rgba(217, 249, 157, 0.3);
+  --glass-bg: rgba(2, 44, 34, 0.75);
 }
 
 body {
