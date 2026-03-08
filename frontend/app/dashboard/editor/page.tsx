@@ -149,6 +149,8 @@ export default function EditorPage() {
     const [loadingItems, setLoadingItems] = useState(false);
     const [showEnglish, setShowEnglish] = useState(false);
     const [isTranslating, setIsTranslating] = useState(false);
+    const [eliteSearchQuery, setEliteSearchQuery] = useState('');
+    const [showEliteDropdown, setShowEliteDropdown] = useState(false);
 
     const handleTranslate = async () => {
         if (!descAr && !selectedEntityAr) { alert('الرجاء كتابة نص أو عنوان عربي أولاً للترجمة.'); return; }
@@ -455,15 +457,67 @@ export default function EditorPage() {
                             <label className="block text-xs font-bold text-gray-400 uppercase tracking-widest mb-2">
                                 {CATEGORY_LABELS[category]}
                             </label>
-                            <select value={selectedEntityAr} onChange={handleEntityChange} required
-                                className="w-full text-sm px-3 py-2 rounded-lg bg-[#112240] border border-[#c5a059]/20 text-white focus:ring-1 focus:ring-gold-royal outline-none font-arabic" dir="rtl">
-                                <option value="">— اختر العنصر —</option>
-                                {categoryEntities.map((c: BilingualEntry) => (
-                                    <option key={c.en} value={c.ar}>{c.ar}</option>
-                                ))}
-                            </select>
-                            {selectedEntityEn && (
-                                <div className="mt-1 text-xs text-gold-royal/50 text-left px-1">{selectedEntityEn}</div>
+
+                            {/* ── Elite Tours: real-time search input ── */}
+                            {category === 'elite_tours' ? (
+                                <div className="relative">
+                                    <input
+                                        type="text"
+                                        value={eliteSearchQuery || selectedEntityAr}
+                                        onChange={e => {
+                                            const v = e.target.value;
+                                            setEliteSearchQuery(v);
+                                            setSelectedEntityAr(v);
+                                            setShowEliteDropdown(v.length >= 2);
+                                        }}
+                                        onFocus={() => eliteSearchQuery.length >= 2 && setShowEliteDropdown(true)}
+                                        onBlur={() => setTimeout(() => setShowEliteDropdown(false), 200)}
+                                        placeholder="اكتب اسم الوجهة... (مر، قا، أج)"
+                                        dir="rtl"
+                                        className="w-full text-sm px-3 py-2 rounded-lg bg-[#112240] border border-[#c5a059]/20 text-white placeholder-gray-600 focus:ring-1 focus:ring-gold-royal outline-none font-arabic mb-1"
+                                    />
+                                    {showEliteDropdown && (() => {
+                                        const q = eliteSearchQuery.trim();
+                                        const matches = CATEGORY_ENTITIES['elite_tours'].filter(
+                                            e => e.ar.includes(q) || e.en.toLowerCase().includes(q.toLowerCase())
+                                        );
+                                        return matches.length > 0 ? (
+                                            <div className="absolute z-30 top-full left-0 right-0 bg-[#0a192f] border border-[#c5a059]/30 rounded-lg shadow-xl max-h-40 overflow-y-auto">
+                                                {matches.map(m => (
+                                                    <button key={m.en} type="button"
+                                                        onMouseDown={() => {
+                                                            // trigger full auto-fill via the existing handler
+                                                            handleEntityChange({ target: { value: m.ar } } as React.ChangeEvent<HTMLSelectElement>);
+                                                            setEliteSearchQuery(m.ar);
+                                                            setShowEliteDropdown(false);
+                                                        }}
+                                                        className="w-full text-right px-3 py-2 text-sm hover:bg-[#112240] text-white font-arabic border-b border-[#c5a059]/10 last:border-0"
+                                                    >
+                                                        <div className="font-bold text-gold-royal">{m.ar}</div>
+                                                        <div className="text-xs text-gray-500">{m.en}</div>
+                                                    </button>
+                                                ))}
+                                            </div>
+                                        ) : null;
+                                    })()}
+                                    {selectedEntityEn && (
+                                        <div className="mt-1 text-xs text-gold-royal/50 text-left px-1">{selectedEntityEn}</div>
+                                    )}
+                                </div>
+                            ) : (
+                                /* ── Standard dropdown for other categories ── */
+                                <>
+                                    <select value={selectedEntityAr} onChange={handleEntityChange} required
+                                        className="w-full text-sm px-3 py-2 rounded-lg bg-[#112240] border border-[#c5a059]/20 text-white focus:ring-1 focus:ring-gold-royal outline-none font-arabic" dir="rtl">
+                                        <option value="">— اختر العنصر —</option>
+                                        {categoryEntities.map((c: BilingualEntry) => (
+                                            <option key={c.en} value={c.ar}>{c.ar}</option>
+                                        ))}
+                                    </select>
+                                    {selectedEntityEn && (
+                                        <div className="mt-1 text-xs text-gold-royal/50 text-left px-1">{selectedEntityEn}</div>
+                                    )}
+                                </>
                             )}
                         </div>
 

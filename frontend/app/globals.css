@@ -48,14 +48,32 @@
 
 .spring {
   --background: #022c22;
-  /* Deep forest/olive green */
   --foreground: #ecfccb;
   --primary: #d9f99d;
-  /* Bright lime/leaf */
   --secondary: #064e3b;
   --glow-intensity: 0.6;
   --glow-color: rgba(217, 249, 157, 0.3);
   --glass-bg: rgba(2, 44, 34, 0.75);
+}
+
+.autumn {
+  --background: #1a0d00;
+  --foreground: #fff8f0;
+  --primary: #e8a045;
+  --secondary: #7c2d00;
+  --glow-intensity: 0.7;
+  --glow-color: rgba(232, 160, 69, 0.4);
+  --glass-bg: rgba(40, 15, 0, 0.75);
+}
+
+.winter {
+  --background: #06111f;
+  --foreground: #e8f4fd;
+  --primary: #7eb8d4;
+  --secondary: #0f2d4a;
+  --glow-intensity: 0.4;
+  --glow-color: rgba(126, 184, 212, 0.25);
+  --glass-bg: rgba(10, 20, 40, 0.8);
 }
 
 body {
@@ -64,7 +82,79 @@ body {
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
-  transition: background-color 0.8s ease;
+  transition: background-color 0.8s ease, color 0.8s ease;
+}
+
+/* ======= WEATHER PARTICLE ANIMATIONS ======= */
+@keyframes rain-fall {
+  0% {
+    transform: translateY(-10px) translateX(0);
+    opacity: 0.8;
+  }
+
+  100% {
+    transform: translateY(100vh) translateX(-20px);
+    opacity: 0;
+  }
+}
+
+@keyframes leaf-fall {
+  0% {
+    transform: translateY(-10px) rotate(0deg) translateX(0);
+    opacity: 0.9;
+  }
+
+  50% {
+    transform: translateY(50vh) rotate(180deg) translateX(30px);
+    opacity: 0.7;
+  }
+
+  100% {
+    transform: translateY(105vh) rotate(360deg) translateX(-10px);
+    opacity: 0;
+  }
+}
+
+@keyframes lightning-flash {
+
+  0%,
+  90%,
+  100% {
+    opacity: 0;
+  }
+
+  92%,
+  96% {
+    opacity: 0.06;
+  }
+
+  94% {
+    opacity: 0.12;
+  }
+}
+
+.rain-particle {
+  position: absolute;
+  width: 1.5px;
+  border-radius: 99px;
+  background: linear-gradient(to bottom, transparent, rgba(126, 184, 212, 0.6));
+  animation: rain-fall linear infinite;
+  pointer-events: none;
+}
+
+.leaf-particle {
+  position: absolute;
+  pointer-events: none;
+  animation: leaf-fall ease-in-out infinite;
+}
+
+.lightning-overlay {
+  position: fixed;
+  inset: 0;
+  background: white;
+  pointer-events: none;
+  z-index: 48;
+  animation: lightning-flash 8s infinite;
 }
 
 /* Glassmorphism Elite - Cinematic Edition */
