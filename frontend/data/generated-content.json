@@ -2104,7 +2104,7 @@
         "ar": "معلمة في تطوان بانتظار التوثيق.",
         "en": "Landmark in Tetouan awaiting documentation."
       },
-      "imageUrl": "https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?q=80&w=1080&auto=format&fit=crop",
+      "imageUrl": "",
       "city": {
         "ar": "تطوان",
         "en": "Tetouan"
@@ -2118,7 +2118,9 @@
         "ar": "عصور قديمة",
         "en": "Ancient Era"
       },
-      "visualSoul": "Mosque"
+      "visualSoul": "Mosque",
+      "videoUrl": null,
+      "seo": {}
     },
     {
       "id": "tetouan-jbel-dersa-kasbah",
