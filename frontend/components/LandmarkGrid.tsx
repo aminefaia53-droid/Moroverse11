@@ -2,6 +2,7 @@
 
 import React, { useState, useMemo } from 'react';
 import { useRouter } from 'next/navigation';
+import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Building2, Landmark as LandmarkIcon, Crown, History, Mountain, Waves, Shield, X, Compass, Info, MapPin, ChevronRight, TowerControl as Tower, BookOpen, Search, Lock, Sparkles, ShieldCheck } from 'lucide-react';
 import { Landmark } from '../data/morocco-landmarks';
@@ -235,12 +236,26 @@ export default function LandmarkGrid({ lang }: { lang: LangCode }) {
                             ) : (
                                 <>
                                     {/* Header Visual */}
-                                    <div className="h-[400px] bg-black/50 border-b border-[#c5a059]/30 flex flex-col items-center justify-start relative overflow-hidden">
-                                        <div className="absolute inset-0 opacity-[0.05] pointer-events-none" style={{ backgroundImage: "url('https://www.transparenttextures.com/patterns/arabesque.png')" }} />
-                                        <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent z-10" />
-                                        <div className="absolute inset-0 opacity-10 flex items-center justify-center pointer-events-none">
+                                    <div className="h-[450px] bg-black flex flex-col items-center justify-start relative overflow-hidden">
+                                        <div className="absolute inset-0 z-0">
+                                            {selectedLandmark.imageUrl && (
+                                                <Image
+                                                    src={selectedLandmark.imageUrl}
+                                                    alt={lang === 'en' ? selectedLandmark.name.en : selectedLandmark.name.ar}
+                                                    fill
+                                                    className="object-cover opacity-60 cinematic-filter"
+                                                    style={{ filter: 'sepia(0.2) contrast(1.1) brightness(0.7) saturate(1.2)' }}
+                                                    unoptimized
+                                                />
+                                            )}
+                                            <div className="absolute inset-0 bg-gradient-to-t from-[#080808] via-[#080808]/40 to-transparent z-10" />
+                                            <div className="absolute inset-0 opacity-[0.05] pointer-events-none z-10" style={{ backgroundImage: "url('https://www.transparenttextures.com/patterns/arabesque.png')" }} />
+                                        </div>
+
+                                        <div className="absolute inset-0 opacity-10 flex items-center justify-center pointer-events-none z-10">
                                             <LandmarkSoulIcon soul={selectedLandmark.visualSoul} className="w-[600px] h-[600px] text-primary" />
                                         </div>
+
                                         <div className="relative z-20 text-center pt-24 px-8">
                                             <script
                                                 type="application/ld+json"
@@ -383,26 +398,29 @@ function LandmarkCard({
             viewport={{ once: true, margin: "-50px" }}
             style={{ transformStyle: 'preserve-3d', perspective: '1000px' }}
             onClick={() => {
+                console.log("Card Clicked:", landmark.id);
                 onClick(landmark);
                 window.dispatchEvent(new CustomEvent('moroverse-action', {
                     detail: { type: 'landmark_click', payload: lang === 'en' ? landmark.name.en : landmark.name.ar }
                 }));
             }}
-            className="group cursor-pointer relative aspect-[4/5] md:aspect-square lg:aspect-[4/5] w-full weather-card-fx"
+            className="group cursor-pointer relative aspect-[4/5] md:aspect-square lg:aspect-[4/5] w-full weather-card-fx z-10"
         >
-            <div className="relative h-full w-full rounded-xl border-2 border-[#c5a059]/20 hover:border-[#c5a059]/80 transition-all duration-700 overflow-hidden shadow-2xl glass-card-elite group-hover:shadow-[0_20px_60px_rgba(197,160,89,0.25)]">
+            <div className="relative h-full w-full rounded-xl border-2 border-[#c5a059]/20 hover:border-[#c5a059]/80 transition-all duration-700 overflow-hidden shadow-2xl glass-card-elite group-hover:shadow-[0_20px_60px_rgba(197,160,89,0.25)] pointer-events-auto">
 
                 {/* Cinematic Background Image */}
                 <div className="absolute inset-0 z-0">
                     {!landmark.isPending ? (
                         <div className="relative h-full w-full">
-                            <img
-                                src={`/images/${landmark.id}.jpg`}
+                            <Image
+                                src={landmark.imageUrl || `/images/${landmark.id}.jpg`}
                                 alt={lang === 'en' ? landmark.name.en : landmark.name.ar}
-                                className={`w-full h-full object-cover transition-all duration-1000 transform group-hover:scale-105 opacity-80 group-hover:opacity-100`}
-                                onError={(e) => {
-                                    e.currentTarget.style.display = 'none';
+                                fill
+                                className={`object-cover transition-all duration-1000 transform group-hover:scale-105 opacity-80 group-hover:opacity-100 cinematic-filter`}
+                                style={{
+                                    filter: 'sepia(0.2) contrast(1.1) brightness(0.85) saturate(1.2)'
                                 }}
+                                unoptimized={!!landmark.imageUrl && landmark.imageUrl.startsWith('http')}
                             />
                             {/* Document Texture Overlay */}
                             <div className="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/arabesque.png')] pointer-events-none" />

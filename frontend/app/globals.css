@@ -23,8 +23,8 @@
 
 :root,
 .summer {
-  --background: #1a0404;
-  /* Warm deep sunset/desert red */
+  --background: #002366 !important;
+  /* Royal Blue for emergency verification */
   --foreground: #ffffff;
   --primary: #c5a059;
   /* Matte Gold */
