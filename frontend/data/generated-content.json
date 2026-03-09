@@ -2230,7 +2230,9 @@
         "ar": "عصور قديمة",
         "en": "Ancient Era"
       },
-      "visualSoul": "Mosque"
+      "visualSoul": "Mosque",
+      "videoUrl": null,
+      "seo": {}
     },
     {
       "id": "essaouira-seven-gates",
