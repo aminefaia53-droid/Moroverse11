@@ -4,6 +4,7 @@ import React, { useState, useMemo } from 'react';
 import { useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Building2, Landmark as LandmarkIcon, Crown, History, Mountain, Waves, Shield, X, Compass, Info, MapPin, ChevronRight, TowerControl as Tower, BookOpen, Search, Lock, Sparkles, ShieldCheck } from 'lucide-react';
+import ShareButton from './ShareButton';
 import { Landmark } from '../data/morocco-landmarks';
 import generatedContent from '../data/generated-content.json';
 import { generateArticleSchema, getMetaTags } from '../utils/seo';
@@ -280,13 +281,23 @@ export default function LandmarkGrid({ lang }: { lang: LangCode }) {
                                                 </p>
                                             </div>
                                         </div>
-                                        <button
-                                            onClick={() => setSelectedLandmark(null)}
-                                            className="absolute top-8 left-8 z-30 p-4 rounded-2xl bg-black/80 border border-[#c5a059]/50 text-[#c5a059] hover:bg-[#c5a059] hover:text-black transition-all shadow-2xl flex items-center gap-3 text-[10px] font-black uppercase tracking-[0.2em]"
-                                        >
-                                            <X className="w-5 h-5" />
-                                            <span className="hidden md:inline">{lang === 'ar' ? 'إغلاق' : 'Close'}</span>
-                                        </button>
+                                        <div className="absolute top-8 left-8 z-30 flex items-center gap-3">
+                                            <button
+                                                onClick={() => setSelectedLandmark(null)}
+                                                className="p-4 rounded-2xl bg-black/80 border border-[#c5a059]/50 text-[#c5a059] hover:bg-[#c5a059] hover:text-black transition-all shadow-2xl flex items-center gap-3 text-[10px] font-black uppercase tracking-[0.2em]"
+                                            >
+                                                <X className="w-5 h-5" />
+                                                <span className="hidden md:inline">{lang === 'ar' ? 'إغلاق' : 'Close'}</span>
+                                            </button>
+                                            <ShareButton
+                                                id={selectedLandmark.id}
+                                                title={selectedLandmark.name.ar}
+                                                description={typeof selectedLandmark.history === 'object' ? selectedLandmark.history.ar : ''}
+                                                imageUrl={(selectedLandmark as any).imageUrl}
+                                                slug={(selectedLandmark as any).seo?.slug}
+                                                size="md"
+                                            />
+                                        </div>
                                     </div>
 
                                     {/* Data Content */}
@@ -431,7 +442,17 @@ function LandmarkCard({
                         <Shield className="w-3 h-3 text-[#c5a059]/60" />
                         <span className="text-[8px] font-black text-[#c5a059]/60 uppercase tracking-[0.3em]">Royal Archive Unit-7v</span>
                     </div>
-                    <div className="w-6 h-6 border-t border-r border-[#c5a059]/40" />
+                    <div className="flex items-center gap-2">
+                        <ShareButton
+                            id={landmark.id}
+                            title={landmark.name.ar}
+                            description={typeof landmark.history === 'object' ? landmark.history.ar : ''}
+                            imageUrl={(landmark as any).imageUrl}
+                            slug={(landmark as any).seo?.slug}
+                            size="sm"
+                        />
+                        <div className="w-6 h-6 border-t border-r border-[#c5a059]/40" />
+                    </div>
                 </div>
 
                 {/* Card Content Overlay (High Glassmorphism) */}
