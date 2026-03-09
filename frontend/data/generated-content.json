@@ -542,7 +542,7 @@
         "ar": "معلمة في مراكش بانتظار التوثيق.",
         "en": "Landmark in Marrakech awaiting documentation."
       },
-      "imageUrl": "https://images.unsplash.com/photo-1539020140153-e479b8c22e70?q=80&w=1080&auto=format&fit=crop",
+      "imageUrl": "",
       "city": {
         "ar": "مراكش",
         "en": "Marrakech"
@@ -556,7 +556,9 @@
         "ar": "عصور قديمة",
         "en": "Ancient Era"
       },
-      "visualSoul": "Mosque"
+      "visualSoul": "Mosque",
+      "videoUrl": null,
+      "seo": {}
     },
     {
       "id": "marrakech-koutoubia-mosque",
