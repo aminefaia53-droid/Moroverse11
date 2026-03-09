@@ -32,25 +32,17 @@
         "ar": "شالة",
         "en": "Chellah"
       },
-      "desc": {
-        "ar": "معلمة في الرباط بانتظار التوثيق.",
-        "en": "Landmark in Rabat awaiting documentation."
-      },
-      "imageUrl": "https://images.unsplash.com/photo-1549733059-d81615d862e?q=80&w=1080&auto=format&fit=crop",
+      "imageUrl": "/images/uploads/1773025958043-81df6232c0194e0eda91d42c3f7f734e29c5253e61a61a0e8eb880a851291287-(1).png",
       "city": {
         "ar": "الرباط",
         "en": "Rabat"
       },
       "isPending": false,
-      "history": {
-        "ar": "معلمة في الرباط بانتظار التوثيق.",
-        "en": "Landmark in Rabat awaiting documentation."
-      },
       "foundation": {
-        "ar": "عصور قديمة",
-        "en": "Ancient Era"
+        "en": "Historical",
+        "ar": "تاريخي"
       },
-      "visualSoul": "Mosque"
+      "visualSoul": "Monument"
     },
     {
       "id": "rabat-mausoleum-of-mohammed-v",
