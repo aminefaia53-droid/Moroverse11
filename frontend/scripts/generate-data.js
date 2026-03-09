@@ -69,6 +69,50 @@ function generateData() {
     const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
     if (!fs.existsSync(contentDir)) fs.mkdirSync(contentDir, { recursive: true });
 
+    // ─── CRITICAL: Load existing data to preserve manual edits ───────────────
+    // This prevents Vercel builds from wiping out Dashboard edits (images, SEO, etc.)
+    let existingData = { landmarks: [], cities: [], battles: [], figures: [], articles: {} };
+    if (fs.existsSync(outputFile)) {
+        try {
+            existingData = JSON.parse(fs.readFileSync(outputFile, 'utf8'));
+            console.log('[INFO] Loaded existing data — manual edits (images, SEO, videos) will be preserved.');
+        } catch (e) {
+            console.warn('[WARN] Could not parse existing data file. Starting fresh.');
+        }
+    }
+
+    // Build lookup maps for fast merging
+    const existingLandmarks = {};
+    (existingData.landmarks || []).forEach(l => { existingLandmarks[l.id] = l; });
+    const existingCities = {};
+    (existingData.cities || []).forEach(c => { existingCities[c.id] = c; });
+    const existingBattles = {};
+    (existingData.battles || []).forEach(b => { existingBattles[b.id] = b; });
+    const existingFigures = {};
+    (existingData.figures || []).forEach(f => { existingFigures[f.id] = f; });
+
+    // Helper: merge new scaffold with existing manual edits
+    function mergeEntry(newEntry, existing) {
+        if (!existing) return newEntry;
+        return {
+            ...newEntry,
+            // Preserve manual edits from Dashboard — never overwrite these with scaffold defaults
+            imageUrl: existing.imageUrl !== undefined ? existing.imageUrl : newEntry.imageUrl,
+            videoUrl: existing.videoUrl !== undefined ? existing.videoUrl : newEntry.videoUrl,
+            history: existing.history !== undefined ? existing.history : newEntry.history,
+            foundation: existing.foundation !== undefined ? existing.foundation : newEntry.foundation,
+            seo: existing.seo !== undefined ? existing.seo : newEntry.seo,
+            // If manually unlocked, keep it unlocked
+            isPending: existing.isPending === false ? false : newEntry.isPending,
+            // desc: keep existing if set (not just awaiting documentation default)
+            desc: (existing.desc && existing.desc.ar && !existing.desc.ar.includes('بانتظار'))
+                ? existing.desc
+                : newEntry.desc,
+            // history: keep richer version
+            ...(existing.history && (existing.history.ar || existing.history.en) ? { history: existing.history } : {}),
+        };
+    }
+
     const files = fs.readdirSync(contentDir).filter(f => f.endsWith('.md'));
     const fileMap = {};
     files.forEach(file => {
@@ -86,15 +130,15 @@ function generateData() {
         const cityNameEn = cityNode.name.en;
         const cityId = slugify(cityNameEn);
 
-        // Add City
-        generatedData.cities.push({
+        const newCity = {
             id: cityId,
             name: { ar: cityNameAr, en: cityNameEn },
             desc: { ar: `مدينة مغربية عريقة.`, en: `A historic Moroccan city.` },
             imageUrl: null,
             regionName: { ar: 'المغرب', en: 'Morocco' },
             isPending: true
-        });
+        };
+        generatedData.cities.push(mergeEntry(newCity, existingCities[cityId]));
         preStagedCount++;
 
         // Add Landmarks
@@ -116,18 +160,20 @@ function generateData() {
                     category: 'landmark', metaDescription: { ar: meta.description, en: meta.descriptionEn || '' },
                     intro, sections, conclusion, generatedImage: meta.image || null, isPending: false
                 };
-                generatedData.landmarks.push({
+                const newLandmark = {
                     id, name: { ar: meta.title, en: meta.titleEn || nameEn },
                     desc: { ar: meta.description, en: meta.descriptionEn || '' },
                     imageUrl: meta.image || null, city: { ar: cityNameAr, en: cityNameEn }, isPending: false
-                });
+                };
+                generatedData.landmarks.push(mergeEntry(newLandmark, existingLandmarks[id]));
                 delete fileMap[id];
             } else {
-                generatedData.landmarks.push({
+                const newLandmark = {
                     id: expectedId, name: { ar: nameAr, en: nameEn },
                     desc: { ar: `معلمة في ${cityNameAr} بانتظار التوثيق.`, en: `Landmark in ${cityNameEn} awaiting documentation.` },
                     imageUrl: null, city: { ar: cityNameAr, en: cityNameEn }, isPending: true
-                });
+                };
+                generatedData.landmarks.push(mergeEntry(newLandmark, existingLandmarks[expectedId]));
                 preStagedCount++;
             }
         });
@@ -135,6 +181,7 @@ function generateData() {
 
     // 2. Process Figures & Battles
     ['figures', 'battles'].forEach(cat => {
+        const existingMap = cat === 'battles' ? existingBattles : existingFigures;
         (manifest[cat] || []).forEach(node => {
             const nameAr = node.ar;
             const nameEn = node.en;
@@ -145,18 +192,26 @@ function generateData() {
                 const { meta, body, id: fileId } = fileData;
                 const { intro, sections, conclusion } = bodyToArticle(body, meta.description);
                 generatedData.articles[fileId] = { id: fileId, title: { ar: meta.title, en: meta.titleEn || nameEn }, category: cat.slice(0, -1), isPending: false, intro, sections, conclusion };
-                const entry = { id: fileId, name: { ar: meta.title, en: meta.titleEn || nameEn }, desc: { ar: meta.description, en: '' }, imageUrl: meta.image || null, isPending: false };
-                generatedData[cat].push(entry);
+                const newEntry = { id: fileId, name: { ar: meta.title, en: meta.titleEn || nameEn }, desc: { ar: meta.description, en: '' }, imageUrl: meta.image || null, isPending: false };
+                generatedData[cat].push(mergeEntry(newEntry, existingMap[fileId]));
                 delete fileMap[fileId];
             } else {
-                generatedData[cat].push({
+                const newEntry = {
                     id, name: { ar: nameAr, en: nameEn },
                     desc: { ar: 'بانتظار السجلات الملكية.', en: 'Awaiting Royal Chronicles.' },
                     imageUrl: null, isPending: true
-                });
+                };
+                generatedData[cat].push(mergeEntry(newEntry, existingMap[id]));
                 preStagedCount++;
             }
         });
+    });
+
+    // Also preserve articles from existing data that aren't regenerated
+    Object.keys(existingData.articles || {}).forEach(key => {
+        if (!generatedData.articles[key]) {
+            generatedData.articles[key] = existingData.articles[key];
+        }
     });
 
     fs.writeFileSync(outputFile, JSON.stringify(generatedData, null, 2), 'utf8');
@@ -164,3 +219,4 @@ function generateData() {
 }
 
 generateData();
+
