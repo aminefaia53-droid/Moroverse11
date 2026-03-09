@@ -2,7 +2,6 @@
 
 import React, { useState, useMemo } from 'react';
 import { useRouter } from 'next/navigation';
-import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Building2, Landmark as LandmarkIcon, Crown, History, Mountain, Waves, Shield, X, Compass, Info, MapPin, ChevronRight, TowerControl as Tower, BookOpen, Search, Lock, Sparkles, ShieldCheck } from 'lucide-react';
 import { Landmark } from '../data/morocco-landmarks';
@@ -239,13 +238,14 @@ export default function LandmarkGrid({ lang }: { lang: LangCode }) {
                                     <div className="h-[450px] bg-black flex flex-col items-center justify-start relative overflow-hidden">
                                         <div className="absolute inset-0 z-0">
                                             {selectedLandmark.imageUrl && (
-                                                <Image
+                                                <img
                                                     src={selectedLandmark.imageUrl}
                                                     alt={lang === 'en' ? selectedLandmark.name.en : selectedLandmark.name.ar}
-                                                    fill
-                                                    className="object-cover opacity-60 cinematic-filter"
+                                                    className="w-full h-full object-cover opacity-60 cinematic-filter"
                                                     style={{ filter: 'sepia(0.2) contrast(1.1) brightness(0.7) saturate(1.2)' }}
-                                                    unoptimized
+                                                    onError={(e) => {
+                                                        e.currentTarget.style.display = 'none';
+                                                    }}
                                                 />
                                             )}
                                             <div className="absolute inset-0 bg-gradient-to-t from-[#080808] via-[#080808]/40 to-transparent z-10" />
@@ -412,15 +412,16 @@ function LandmarkCard({
                 <div className="absolute inset-0 z-0">
                     {!landmark.isPending ? (
                         <div className="relative h-full w-full">
-                            <Image
+                            <img
                                 src={landmark.imageUrl || `/images/${landmark.id}.jpg`}
                                 alt={lang === 'en' ? landmark.name.en : landmark.name.ar}
-                                fill
-                                className={`object-cover transition-all duration-1000 transform group-hover:scale-105 opacity-80 group-hover:opacity-100 cinematic-filter`}
+                                className={`w-full h-full object-cover transition-all duration-1000 transform group-hover:scale-105 opacity-80 group-hover:opacity-100 cinematic-filter`}
                                 style={{
                                     filter: 'sepia(0.2) contrast(1.1) brightness(0.85) saturate(1.2)'
                                 }}
-                                unoptimized={!!landmark.imageUrl && landmark.imageUrl.startsWith('http')}
+                                onError={(e) => {
+                                    e.currentTarget.style.display = 'none';
+                                }}
                             />
                             {/* Document Texture Overlay */}
                             <div className="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/arabesque.png')] pointer-events-none" />

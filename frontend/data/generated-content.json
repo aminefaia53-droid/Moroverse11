@@ -23,14 +23,9 @@
         "ar": "قصبة الأوداية",
         "en": "Kasbah of the Udayas"
       },
-      "foundation": {
-        "ar": "1150 م (العصر الموحدي)",
-        "en": "1150 AD (Almohad Era)"
-      },
-      "visualSoul": "Fortress",
-      "history": {
-        "ar": "قلعة عسكرية وتاريخية تقع عند مصب نهر أبي رقراق، شيدها الموحدون في القرن الثاني عشر لتكون حصناً دفاعياً ومركزاً للانطلاق نحو الأندلس.",
-        "en": "A historic military citadel at the mouth of the Bou Regreg river, built by the Almohads in the 12th century as a defensive bastion and a gateway to Al-Andalus."
+      "desc": {
+        "ar": "معلمة في الرباط بانتظار التوثيق.",
+        "en": "Landmark in Rabat awaiting documentation."
       },
       "imageUrl": "https://images.unsplash.com/photo-1549733059-d81615d862e?q=80&w=1080&auto=format&fit=crop",
       "city": {
@@ -45,14 +40,9 @@
         "ar": "شالة",
         "en": "Chellah"
       },
-      "foundation": {
-        "ar": "القرن السادس قبل الميلاد (روماني/مريني)",
-        "en": "6th Century BC (Roman/Marinid Era)"
-      },
-      "visualSoul": "Ruin",
-      "history": {
-        "ar": "موقع أثري يجمع بين أطلال مدينة سلا كولونيا الرومانية والتاريخ الإسلامي المريني، حيث تحولت إلى ضريح ملكي ومقبرة محصنة في القرن الرابع عشر.",
-        "en": "An archaeological site blending Roman Sala Colonia ruins with Marinid Islamic history, transformed into a royal necropolis and fortified cemetery in the 14th century."
+      "desc": {
+        "ar": "معلمة في الرباط بانتظار التوثيق.",
+        "en": "Landmark in Rabat awaiting documentation."
       },
       "imageUrl": "https://images.unsplash.com/photo-1549733059-d81615d862e?q=80&w=1080&auto=format&fit=crop",
       "city": {
@@ -67,14 +57,9 @@
         "ar": "ضريح محمد الخامس",
         "en": "Mausoleum of Mohammed V"
       },
-      "foundation": {
-        "ar": "1971 م",
-        "en": "1971 AD"
-      },
-      "visualSoul": "Palace",
-      "history": {
-        "ar": "تحفة معمارية مغربية حديثة تضم رفات الملكين محمد الخامس والحسن الثاني، وتعتبر رمزاً لاستقلال المغرب وسيادته وتفرد صنّاعه.",
-        "en": "A masterpiece of modern Moroccan architecture housing the remains of Kings Mohammed V and Hassan II, symbolizing independence and sovereign craftsmanship."
+      "desc": {
+        "ar": "معلمة في الرباط بانتظار التوثيق.",
+        "en": "Landmark in Rabat awaiting documentation."
       },
       "imageUrl": "https://images.unsplash.com/photo-1549733059-d81615d862e?q=80&w=1080&auto=format&fit=crop",
       "city": {
@@ -98,7 +83,7 @@
         "ar": "الرباط",
         "en": "Rabat"
       },
-      "isPending": true
+      "isPending": false
     },
     {
       "id": "rabat-mohammed-vi-museum",
@@ -115,7 +100,7 @@
         "ar": "الرباط",
         "en": "Rabat"
       },
-      "isPending": true
+      "isPending": false
     },
     {
       "id": "rabat-touarga-palace",
@@ -132,7 +117,7 @@
         "ar": "الرباط",
         "en": "Rabat"
       },
-      "isPending": true
+      "isPending": false
     },
     {
       "id": "rabat-rabat-ville-station",
@@ -149,7 +134,7 @@
         "ar": "الرباط",
         "en": "Rabat"
       },
-      "isPending": true
+      "isPending": false
     },
     {
       "id": "rabat-st-peters-cathedral",
@@ -166,7 +151,7 @@
         "ar": "الرباط",
         "en": "Rabat"
       },
-      "isPending": true
+      "isPending": false
     },
     {
       "id": "rabat-bab-rouah",
@@ -183,7 +168,7 @@
         "ar": "الرباط",
         "en": "Rabat"
       },
-      "isPending": true
+      "isPending": false
     },
     {
       "id": "casablanca-hassan-ii-mosque",
@@ -200,7 +185,7 @@
         "ar": "الدار البيضاء",
         "en": "Casablanca"
       },
-      "isPending": true
+      "isPending": false
     },
     {
       "id": "casablanca-habous-quarter",
@@ -217,7 +202,7 @@
         "ar": "الدار البيضاء",
         "en": "Casablanca"
       },
-      "isPending": true
+      "isPending": false
     },
     {
       "id": "casablanca-mahkama-du-pacha",
@@ -234,7 +219,7 @@
         "ar": "الدار البيضاء",
         "en": "Casablanca"
       },
-      "isPending": true
+      "isPending": false
     },
     {
       "id": "casablanca-el-hank-lighthouse",
@@ -251,7 +236,7 @@
         "ar": "الدار البيضاء",
         "en": "Casablanca"
       },
-      "isPending": true
+      "isPending": false
     },
     {
       "id": "casablanca-mohammed-v-square",
@@ -268,7 +253,7 @@
         "ar": "الدار البيضاء",
         "en": "Casablanca"
       },
-      "isPending": true
+      "isPending": false
     },
     {
       "id": "casablanca-arab-league-park",
@@ -285,7 +270,7 @@
         "ar": "الدار البيضاء",
         "en": "Casablanca"
       },
-      "isPending": true
+      "isPending": false
     },
     {
       "id": "casablanca-morocco-mall",
@@ -302,7 +287,7 @@
         "ar": "الدار البيضاء",
         "en": "Casablanca"
       },
-      "isPending": true
+      "isPending": false
     },
     {
       "id": "casablanca-ould-el-hamra-mosque",
@@ -319,7 +304,7 @@
         "ar": "الدار البيضاء",
         "en": "Casablanca"
       },
-      "isPending": true
+      "isPending": false
     },
     {
       "id": "casablanca-sacred-heart-cathedral",
@@ -336,7 +321,7 @@
         "ar": "الدار البيضاء",
         "en": "Casablanca"
       },
-      "isPending": true
+      "isPending": false
     },
     {
       "id": "casablanca-anfa-historic-district",
@@ -353,7 +338,7 @@
         "ar": "الدار البيضاء",
         "en": "Casablanca"
       },
-      "isPending": true
+      "isPending": false
     },
     {
       "id": "casablanca-merchich-region",
@@ -370,7 +355,7 @@
         "ar": "الدار البيضاء",
         "en": "Casablanca"
       },
-      "isPending": true
+      "isPending": false
     },
     {
       "id": "marrakech-jemaa-el-fnaa",
@@ -382,12 +367,12 @@
         "ar": "معلمة في مراكش بانتظار التوثيق.",
         "en": "Landmark in Marrakech awaiting documentation."
       },
-      "imageUrl": "https://images.unsplash.com/photo-1548013146-72479768bbaa?q=80&w=1080&auto=format&fit=crop",
+      "imageUrl": "https://images.unsplash.com/photo-1539020140153-e479b8c22e70?q=80&w=1080&auto=format&fit=crop",
       "city": {
         "ar": "مراكش",
         "en": "Marrakech"
       },
-      "isPending": true
+      "isPending": false
     },
     {
       "id": "marrakech-koutoubia-mosque",
@@ -399,12 +384,12 @@
         "ar": "معلمة في مراكش بانتظار التوثيق.",
         "en": "Landmark in Marrakech awaiting documentation."
       },
-      "imageUrl": "https://images.unsplash.com/photo-1548013146-72479768bbaa?q=80&w=1080&auto=format&fit=crop",
+      "imageUrl": "https://images.unsplash.com/photo-1539020140153-e479b8c22e70?q=80&w=1080&auto=format&fit=crop",
       "city": {
         "ar": "مراكش",
         "en": "Marrakech"
       },
-      "isPending": true
+      "isPending": false
     },
     {
       "id": "marrakech-bahia-palace",
@@ -416,12 +401,12 @@
         "ar": "معلمة في مراكش بانتظار التوثيق.",
         "en": "Landmark in Marrakech awaiting documentation."
       },
-      "imageUrl": "https://images.unsplash.com/photo-1548013146-72479768bbaa?q=80&w=1080&auto=format&fit=crop",
+      "imageUrl": "https://images.unsplash.com/photo-1539020140153-e479b8c22e70?q=80&w=1080&auto=format&fit=crop",
       "city": {
         "ar": "مراكش",
         "en": "Marrakech"
       },
-      "isPending": true
+      "isPending": false
     },
     {
       "id": "marrakech-el-badi-palace",
@@ -433,12 +418,12 @@
         "ar": "معلمة في مراكش بانتظار التوثيق.",
         "en": "Landmark in Marrakech awaiting documentation."
       },
-      "imageUrl": "https://images.unsplash.com/photo-1548013146-72479768bbaa?q=80&w=1080&auto=format&fit=crop",
+      "imageUrl": "https://images.unsplash.com/photo-1539020140153-e479b8c22e70?q=80&w=1080&auto=format&fit=crop",
       "city": {
         "ar": "مراكش",
         "en": "Marrakech"
       },
-      "isPending": true
+      "isPending": false
     },
     {
       "id": "marrakech-menara-gardens",
@@ -450,12 +435,12 @@
         "ar": "معلمة في مراكش بانتظار التوثيق.",
         "en": "Landmark in Marrakech awaiting documentation."
       },
-      "imageUrl": "https://images.unsplash.com/photo-1548013146-72479768bbaa?q=80&w=1080&auto=format&fit=crop",
+      "imageUrl": "https://images.unsplash.com/photo-1539020140153-e479b8c22e70?q=80&w=1080&auto=format&fit=crop",
       "city": {
         "ar": "مراكش",
         "en": "Marrakech"
       },
-      "isPending": true
+      "isPending": false
     },
     {
       "id": "marrakech-majorelle-garden",
@@ -467,12 +452,12 @@
         "ar": "معلمة في مراكش بانتظار التوثيق.",
         "en": "Landmark in Marrakech awaiting documentation."
       },
-      "imageUrl": "https://images.unsplash.com/photo-1528127269322-539801943592?q=80&w=1080&auto=format&fit=crop",
+      "imageUrl": "https://images.unsplash.com/photo-1539020140153-e479b8c22e70?q=80&w=1080&auto=format&fit=crop",
       "city": {
         "ar": "مراكش",
         "en": "Marrakech"
       },
-      "isPending": true
+      "isPending": false
     },
     {
       "id": "marrakech-saadian-tombs",
@@ -484,12 +469,12 @@
         "ar": "معلمة في مراكش بانتظار التوثيق.",
         "en": "Landmark in Marrakech awaiting documentation."
       },
-      "imageUrl": "https://images.unsplash.com/photo-1548013146-72479768bbaa?q=80&w=1080&auto=format&fit=crop",
+      "imageUrl": "https://images.unsplash.com/photo-1539020140153-e479b8c22e70?q=80&w=1080&auto=format&fit=crop",
       "city": {
         "ar": "مراكش",
         "en": "Marrakech"
       },
-      "isPending": true
+      "isPending": false
     },
     {
       "id": "marrakech-ben-youssef-madrasa",
@@ -501,12 +486,12 @@
         "ar": "معلمة في مراكش بانتظار التوثيق.",
         "en": "Landmark in Marrakech awaiting documentation."
       },
-      "imageUrl": "https://images.unsplash.com/photo-1548013146-72479768bbaa?q=80&w=1080&auto=format&fit=crop",
+      "imageUrl": "https://images.unsplash.com/photo-1539020140153-e479b8c22e70?q=80&w=1080&auto=format&fit=crop",
       "city": {
         "ar": "مراكش",
         "en": "Marrakech"
       },
-      "isPending": true
+      "isPending": false
     },
     {
       "id": "marrakech-marrakech-museum",
@@ -518,12 +503,12 @@
         "ar": "معلمة في مراكش بانتظار التوثيق.",
         "en": "Landmark in Marrakech awaiting documentation."
       },
-      "imageUrl": "https://images.unsplash.com/photo-1548013146-72479768bbaa?q=80&w=1080&auto=format&fit=crop",
+      "imageUrl": "https://images.unsplash.com/photo-1539020140153-e479b8c22e70?q=80&w=1080&auto=format&fit=crop",
       "city": {
         "ar": "مراكش",
         "en": "Marrakech"
       },
-      "isPending": true
+      "isPending": false
     },
     {
       "id": "marrakech-bab-doukkala",
@@ -535,12 +520,12 @@
         "ar": "معلمة في مراكش بانتظار التوثيق.",
         "en": "Landmark in Marrakech awaiting documentation."
       },
-      "imageUrl": "https://images.unsplash.com/photo-1548013146-72479768bbaa?q=80&w=1080&auto=format&fit=crop",
+      "imageUrl": "https://images.unsplash.com/photo-1539020140153-e479b8c22e70?q=80&w=1080&auto=format&fit=crop",
       "city": {
         "ar": "مراكش",
         "en": "Marrakech"
       },
-      "isPending": true
+      "isPending": false
     },
     {
       "id": "marrakech-palmeraie",
@@ -552,12 +537,12 @@
         "ar": "معلمة في مراكش بانتظار التوثيق.",
         "en": "Landmark in Marrakech awaiting documentation."
       },
-      "imageUrl": "https://images.unsplash.com/photo-1548013146-72479768bbaa?q=80&w=1080&auto=format&fit=crop",
+      "imageUrl": "https://images.unsplash.com/photo-1539020140153-e479b8c22e70?q=80&w=1080&auto=format&fit=crop",
       "city": {
         "ar": "مراكش",
         "en": "Marrakech"
       },
-      "isPending": true
+      "isPending": false
     },
     {
       "id": "fes-al-qarawiyyin-mosque",
@@ -569,12 +554,12 @@
         "ar": "معلمة في فاس بانتظار التوثيق.",
         "en": "Landmark in Fes awaiting documentation."
       },
-      "imageUrl": "https://images.unsplash.com/photo-1584617415442-f87f2e468d60?q=80&w=1080&auto=format&fit=crop",
+      "imageUrl": "https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?q=80&w=1080&auto=format&fit=crop",
       "city": {
         "ar": "فاس",
         "en": "Fes"
       },
-      "isPending": true
+      "isPending": false
     },
     {
       "id": "fes-fondouk-nejjarine",
@@ -586,12 +571,12 @@
         "ar": "معلمة في فاس بانتظار التوثيق.",
         "en": "Landmark in Fes awaiting documentation."
       },
-      "imageUrl": "https://images.unsplash.com/photo-1584617415442-f87f2e468d60?q=80&w=1080&auto=format&fit=crop",
+      "imageUrl": "https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?q=80&w=1080&auto=format&fit=crop",
       "city": {
         "ar": "فاس",
         "en": "Fes"
       },
-      "isPending": true
+      "isPending": false
     },
     {
       "id": "fes-al-attarine-madrasa",
@@ -603,12 +588,12 @@
         "ar": "معلمة في فاس بانتظار التوثيق.",
         "en": "Landmark in Fes awaiting documentation."
       },
-      "imageUrl": "https://images.unsplash.com/photo-1584617415442-f87f2e468d60?q=80&w=1080&auto=format&fit=crop",
+      "imageUrl": "https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?q=80&w=1080&auto=format&fit=crop",
       "city": {
         "ar": "فاس",
         "en": "Fes"
       },
-      "isPending": true
+      "isPending": false
     },
     {
       "id": "fes-bou-inania-madrasa",
@@ -620,12 +605,12 @@
         "ar": "معلمة في فاس بانتظار التوثيق.",
         "en": "Landmark in Fes awaiting documentation."
       },
-      "imageUrl": "https://images.unsplash.com/photo-1584617415442-f87f2e468d60?q=80&w=1080&auto=format&fit=crop",
+      "imageUrl": "https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?q=80&w=1080&auto=format&fit=crop",
       "city": {
         "ar": "فاس",
         "en": "Fes"
       },
-      "isPending": true
+      "isPending": false
     },
     {
       "id": "fes-bab-bou-jeloud",
@@ -637,12 +622,12 @@
         "ar": "معلمة في فاس بانتظار التوثيق.",
         "en": "Landmark in Fes awaiting documentation."
       },
-      "imageUrl": "https://images.unsplash.com/photo-1584617415442-f87f2e468d60?q=80&w=1080&auto=format&fit=crop",
+      "imageUrl": "https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?q=80&w=1080&auto=format&fit=crop",
       "city": {
         "ar": "فاس",
         "en": "Fes"
       },
-      "isPending": true
+      "isPending": false
     },
     {
       "id": "fes-chouara-tannery",
@@ -654,12 +639,12 @@
         "ar": "معلمة في فاس بانتظار التوثيق.",
         "en": "Landmark in Fes awaiting documentation."
       },
-      "imageUrl": "https://images.unsplash.com/photo-1584617415442-f87f2e468d60?q=80&w=1080&auto=format&fit=crop",
+      "imageUrl": "https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?q=80&w=1080&auto=format&fit=crop",
       "city": {
         "ar": "فاس",
         "en": "Fes"
       },
-      "isPending": true
+      "isPending": false
     },
     {
       "id": "fes-zaouia-moulay-idriss-ii",
@@ -671,12 +656,12 @@
         "ar": "معلمة في فاس بانتظار التوثيق.",
         "en": "Landmark in Fes awaiting documentation."
       },
-      "imageUrl": "https://images.unsplash.com/photo-1584617415442-f87f2e468d60?q=80&w=1080&auto=format&fit=crop",
+      "imageUrl": "https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?q=80&w=1080&auto=format&fit=crop",
       "city": {
         "ar": "فاس",
         "en": "Fes"
       },
-      "isPending": true
+      "isPending": false
     },
     {
       "id": "fes-dar-batha-museum",
@@ -688,12 +673,12 @@
         "ar": "معلمة في فاس بانتظار التوثيق.",
         "en": "Landmark in Fes awaiting documentation."
       },
-      "imageUrl": "https://images.unsplash.com/photo-1584617415442-f87f2e468d60?q=80&w=1080&auto=format&fit=crop",
+      "imageUrl": "https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?q=80&w=1080&auto=format&fit=crop",
       "city": {
         "ar": "فاس",
         "en": "Fes"
       },
-      "isPending": true
+      "isPending": false
     },
     {
       "id": "fes-fes-el-bali-walls",
@@ -705,12 +690,12 @@
         "ar": "معلمة في فاس بانتظار التوثيق.",
         "en": "Landmark in Fes awaiting documentation."
       },
-      "imageUrl": "https://images.unsplash.com/photo-1584617415442-f87f2e468d60?q=80&w=1080&auto=format&fit=crop",
+      "imageUrl": "https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?q=80&w=1080&auto=format&fit=crop",
       "city": {
         "ar": "فاس",
         "en": "Fes"
       },
-      "isPending": true
+      "isPending": false
     },
     {
       "id": "fes-fes-mellah",
@@ -722,12 +707,12 @@
         "ar": "معلمة في فاس بانتظار التوثيق.",
         "en": "Landmark in Fes awaiting documentation."
       },
-      "imageUrl": "https://images.unsplash.com/photo-1584617415442-f87f2e468d60?q=80&w=1080&auto=format&fit=crop",
+      "imageUrl": "https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?q=80&w=1080&auto=format&fit=crop",
       "city": {
         "ar": "فاس",
         "en": "Fes"
       },
-      "isPending": true
+      "isPending": false
     },
     {
       "id": "tangier-hercules-caves",
@@ -739,12 +724,12 @@
         "ar": "معلمة في طنجة بانتظار التوثيق.",
         "en": "Landmark in Tangier awaiting documentation."
       },
-      "imageUrl": "https://images.unsplash.com/photo-1580227974557-41a69074094e?q=80&w=1080&auto=format&fit=crop",
+      "imageUrl": "https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?q=80&w=1080&auto=format&fit=crop",
       "city": {
         "ar": "طنجة",
         "en": "Tangier"
       },
-      "isPending": true
+      "isPending": false
     },
     {
       "id": "tangier-kasbah-of-tangier",
@@ -756,12 +741,12 @@
         "ar": "معلمة في طنجة بانتظار التوثيق.",
         "en": "Landmark in Tangier awaiting documentation."
       },
-      "imageUrl": "https://images.unsplash.com/photo-1580227974557-41a69074094e?q=80&w=1080&auto=format&fit=crop",
+      "imageUrl": "https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?q=80&w=1080&auto=format&fit=crop",
       "city": {
         "ar": "طنجة",
         "en": "Tangier"
       },
-      "isPending": true
+      "isPending": false
     },
     {
       "id": "tangier-cape-spartel",
@@ -773,12 +758,12 @@
         "ar": "معلمة في طنجة بانتظار التوثيق.",
         "en": "Landmark in Tangier awaiting documentation."
       },
-      "imageUrl": "https://images.unsplash.com/photo-1580227974557-41a69074094e?q=80&w=1080&auto=format&fit=crop",
+      "imageUrl": "https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?q=80&w=1080&auto=format&fit=crop",
       "city": {
         "ar": "طنجة",
         "en": "Tangier"
       },
-      "isPending": true
+      "isPending": false
     },
     {
       "id": "tangier-kasbah-museum",
@@ -790,12 +775,12 @@
         "ar": "معلمة في طنجة بانتظار التوثيق.",
         "en": "Landmark in Tangier awaiting documentation."
       },
-      "imageUrl": "https://images.unsplash.com/photo-1580227974557-41a69074094e?q=80&w=1080&auto=format&fit=crop",
+      "imageUrl": "https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?q=80&w=1080&auto=format&fit=crop",
       "city": {
         "ar": "طنجة",
         "en": "Tangier"
       },
-      "isPending": true
+      "isPending": false
     },
     {
       "id": "tangier-cafe-hafa",
@@ -807,12 +792,12 @@
         "ar": "معلمة في طنجة بانتظار التوثيق.",
         "en": "Landmark in Tangier awaiting documentation."
       },
-      "imageUrl": "https://images.unsplash.com/photo-1580227974557-41a69074094e?q=80&w=1080&auto=format&fit=crop",
+      "imageUrl": "https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?q=80&w=1080&auto=format&fit=crop",
       "city": {
         "ar": "طنجة",
         "en": "Tangier"
       },
-      "isPending": true
+      "isPending": false
     },
     {
       "id": "tangier-villa-harris",
@@ -824,12 +809,12 @@
         "ar": "معلمة في طنجة بانتظار التوثيق.",
         "en": "Landmark in Tangier awaiting documentation."
       },
-      "imageUrl": "https://images.unsplash.com/photo-1580227974557-41a69074094e?q=80&w=1080&auto=format&fit=crop",
+      "imageUrl": "https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?q=80&w=1080&auto=format&fit=crop",
       "city": {
         "ar": "طنجة",
         "en": "Tangier"
       },
-      "isPending": true
+      "isPending": false
     },
     {
       "id": "tangier-grand-socco",
@@ -841,12 +826,12 @@
         "ar": "معلمة في طنجة بانتظار التوثيق.",
         "en": "Landmark in Tangier awaiting documentation."
       },
-      "imageUrl": "https://images.unsplash.com/photo-1580227974557-41a69074094e?q=80&w=1080&auto=format&fit=crop",
+      "imageUrl": "https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?q=80&w=1080&auto=format&fit=crop",
       "city": {
         "ar": "طنجة",
         "en": "Tangier"
       },
-      "isPending": true
+      "isPending": false
     },
     {
       "id": "tangier-mendoubia-gardens",
@@ -858,12 +843,12 @@
         "ar": "معلمة في طنجة بانتظار التوثيق.",
         "en": "Landmark in Tangier awaiting documentation."
       },
-      "imageUrl": "https://images.unsplash.com/photo-1580227974557-41a69074094e?q=80&w=1080&auto=format&fit=crop",
+      "imageUrl": "https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?q=80&w=1080&auto=format&fit=crop",
       "city": {
         "ar": "طنجة",
         "en": "Tangier"
       },
-      "isPending": true
+      "isPending": false
     },
     {
       "id": "tangier-tangier-medina",
@@ -875,12 +860,12 @@
         "ar": "معلمة في طنجة بانتظار التوثيق.",
         "en": "Landmark in Tangier awaiting documentation."
       },
-      "imageUrl": "https://images.unsplash.com/photo-1580227974557-41a69074094e?q=80&w=1080&auto=format&fit=crop",
+      "imageUrl": "https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?q=80&w=1080&auto=format&fit=crop",
       "city": {
         "ar": "طنجة",
         "en": "Tangier"
       },
-      "isPending": true
+      "isPending": false
     },
     {
       "id": "tangier-el-minzah-hotel",
@@ -892,12 +877,12 @@
         "ar": "معلمة في طنجة بانتظار التوثيق.",
         "en": "Landmark in Tangier awaiting documentation."
       },
-      "imageUrl": "https://images.unsplash.com/photo-1580227974557-41a69074094e?q=80&w=1080&auto=format&fit=crop",
+      "imageUrl": "https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?q=80&w=1080&auto=format&fit=crop",
       "city": {
         "ar": "طنجة",
         "en": "Tangier"
       },
-      "isPending": true
+      "isPending": false
     },
     {
       "id": "meknes-bab-mansour",
@@ -909,12 +894,12 @@
         "ar": "معلمة في مكناس بانتظار التوثيق.",
         "en": "Landmark in Meknes awaiting documentation."
       },
-      "imageUrl": "https://images.unsplash.com/photo-1549733059-d81615d862e?q=80&w=1080&auto=format&fit=crop",
+      "imageUrl": "https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?q=80&w=1080&auto=format&fit=crop",
       "city": {
         "ar": "مكناس",
         "en": "Meknes"
       },
-      "isPending": true
+      "isPending": false
     },
     {
       "id": "meknes-mausoleum-of-moulay-ismail",
@@ -926,12 +911,12 @@
         "ar": "معلمة في مكناس بانتظار التوثيق.",
         "en": "Landmark in Meknes awaiting documentation."
       },
-      "imageUrl": "https://images.unsplash.com/photo-1549733059-d81615d862e?q=80&w=1080&auto=format&fit=crop",
+      "imageUrl": "https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?q=80&w=1080&auto=format&fit=crop",
       "city": {
         "ar": "مكناس",
         "en": "Meknes"
       },
-      "isPending": true
+      "isPending": false
     },
     {
       "id": "meknes-habs-qara",
@@ -943,12 +928,12 @@
         "ar": "معلمة في مكناس بانتظار التوثيق.",
         "en": "Landmark in Meknes awaiting documentation."
       },
-      "imageUrl": "https://images.unsplash.com/photo-1549733059-d81615d862e?q=80&w=1080&auto=format&fit=crop",
+      "imageUrl": "https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?q=80&w=1080&auto=format&fit=crop",
       "city": {
         "ar": "مكناس",
         "en": "Meknes"
       },
-      "isPending": true
+      "isPending": false
     },
     {
       "id": "meknes-place-el-hedim",
@@ -960,12 +945,12 @@
         "ar": "معلمة في مكناس بانتظار التوثيق.",
         "en": "Landmark in Meknes awaiting documentation."
       },
-      "imageUrl": "https://images.unsplash.com/photo-1549733059-d81615d862e?q=80&w=1080&auto=format&fit=crop",
+      "imageUrl": "https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?q=80&w=1080&auto=format&fit=crop",
       "city": {
         "ar": "مكناس",
         "en": "Meknes"
       },
-      "isPending": true
+      "isPending": false
     },
     {
       "id": "meknes-bou-inania-madrasa-meknes",
@@ -977,12 +962,12 @@
         "ar": "معلمة في مكناس بانتظار التوثيق.",
         "en": "Landmark in Meknes awaiting documentation."
       },
-      "imageUrl": "https://images.unsplash.com/photo-1549733059-d81615d862e?q=80&w=1080&auto=format&fit=crop",
+      "imageUrl": "https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?q=80&w=1080&auto=format&fit=crop",
       "city": {
         "ar": "مكناس",
         "en": "Meknes"
       },
-      "isPending": true
+      "isPending": false
     },
     {
       "id": "meknes-heri-es-souani",
@@ -994,12 +979,12 @@
         "ar": "معلمة في مكناس بانتظار التوثيق.",
         "en": "Landmark in Meknes awaiting documentation."
       },
-      "imageUrl": "https://images.unsplash.com/photo-1549733059-d81615d862e?q=80&w=1080&auto=format&fit=crop",
+      "imageUrl": "https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?q=80&w=1080&auto=format&fit=crop",
       "city": {
         "ar": "مكناس",
         "en": "Meknes"
       },
-      "isPending": true
+      "isPending": false
     },
     {
       "id": "meknes-sahrij-swani",
@@ -1011,12 +996,12 @@
         "ar": "معلمة في مكناس بانتظار التوثيق.",
         "en": "Landmark in Meknes awaiting documentation."
       },
-      "imageUrl": "https://images.unsplash.com/photo-1549733059-d81615d862e?q=80&w=1080&auto=format&fit=crop",
+      "imageUrl": "https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?q=80&w=1080&auto=format&fit=crop",
       "city": {
         "ar": "مكناس",
         "en": "Meknes"
       },
-      "isPending": true
+      "isPending": false
     },
     {
       "id": "meknes-el-mansour-palace",
@@ -1028,12 +1013,12 @@
         "ar": "معلمة في مكناس بانتظار التوثيق.",
         "en": "Landmark in Meknes awaiting documentation."
       },
-      "imageUrl": "https://images.unsplash.com/photo-1549733059-d81615d862e?q=80&w=1080&auto=format&fit=crop",
+      "imageUrl": "https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?q=80&w=1080&auto=format&fit=crop",
       "city": {
         "ar": "مكناس",
         "en": "Meknes"
       },
-      "isPending": true
+      "isPending": false
     },
     {
       "id": "meknes-volubilis",
@@ -1045,12 +1030,12 @@
         "ar": "معلمة في مكناس بانتظار التوثيق.",
         "en": "Landmark in Meknes awaiting documentation."
       },
-      "imageUrl": "https://images.unsplash.com/photo-1549733059-d81615d862e?q=80&w=1080&auto=format&fit=crop",
+      "imageUrl": "https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?q=80&w=1080&auto=format&fit=crop",
       "city": {
         "ar": "مكناس",
         "en": "Meknes"
       },
-      "isPending": true
+      "isPending": false
     },
     {
       "id": "meknes-moulay-idriss-zerhoun",
@@ -1062,12 +1047,12 @@
         "ar": "معلمة في مكناس بانتظار التوثيق.",
         "en": "Landmark in Meknes awaiting documentation."
       },
-      "imageUrl": "https://images.unsplash.com/photo-1549733059-d81615d862e?q=80&w=1080&auto=format&fit=crop",
+      "imageUrl": "https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?q=80&w=1080&auto=format&fit=crop",
       "city": {
         "ar": "مكناس",
         "en": "Meknes"
       },
-      "isPending": true
+      "isPending": false
     },
     {
       "id": "agadir-agadir-oufella",
@@ -1079,12 +1064,12 @@
         "ar": "معلمة في أكادير بانتظار التوثيق.",
         "en": "Landmark in Agadir awaiting documentation."
       },
-      "imageUrl": "https://images.unsplash.com/photo-1533116548767-463879f725fb?q=80&w=1080&auto=format&fit=crop",
+      "imageUrl": "https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?q=80&w=1080&auto=format&fit=crop",
       "city": {
         "ar": "أكادير",
         "en": "Agadir"
       },
-      "isPending": true
+      "isPending": false
     },
     {
       "id": "agadir-souk-el-had",
@@ -1096,12 +1081,12 @@
         "ar": "معلمة في أكادير بانتظار التوثيق.",
         "en": "Landmark in Agadir awaiting documentation."
       },
-      "imageUrl": "https://images.unsplash.com/photo-1533116548767-463879f725fb?q=80&w=1080&auto=format&fit=crop",
+      "imageUrl": "https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?q=80&w=1080&auto=format&fit=crop",
       "city": {
         "ar": "أكادير",
         "en": "Agadir"
       },
-      "isPending": true
+      "isPending": false
     },
     {
       "id": "agadir-crocoparc",
@@ -1113,12 +1098,12 @@
         "ar": "معلمة في أكادير بانتظار التوثيق.",
         "en": "Landmark in Agadir awaiting documentation."
       },
-      "imageUrl": "https://images.unsplash.com/photo-1533116548767-463879f725fb?q=80&w=1080&auto=format&fit=crop",
+      "imageUrl": "https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?q=80&w=1080&auto=format&fit=crop",
       "city": {
         "ar": "أكادير",
         "en": "Agadir"
       },
-      "isPending": true
+      "isPending": false
     },
     {
       "id": "agadir-vallee-des-oiseaux",
@@ -1130,12 +1115,12 @@
         "ar": "معلمة في أكادير بانتظار التوثيق.",
         "en": "Landmark in Agadir awaiting documentation."
       },
-      "imageUrl": "https://images.unsplash.com/photo-1533116548767-463879f725fb?q=80&w=1080&auto=format&fit=crop",
+      "imageUrl": "https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?q=80&w=1080&auto=format&fit=crop",
       "city": {
         "ar": "أكادير",
         "en": "Agadir"
       },
-      "isPending": true
+      "isPending": false
     },
     {
       "id": "agadir-agadir-marina",
@@ -1147,12 +1132,12 @@
         "ar": "معلمة في أكادير بانتظار التوثيق.",
         "en": "Landmark in Agadir awaiting documentation."
       },
-      "imageUrl": "https://images.unsplash.com/photo-1533116548767-463879f725fb?q=80&w=1080&auto=format&fit=crop",
+      "imageUrl": "https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?q=80&w=1080&auto=format&fit=crop",
       "city": {
         "ar": "أكادير",
         "en": "Agadir"
       },
-      "isPending": true
+      "isPending": false
     },
     {
       "id": "agadir-place-de-l-espoir",
@@ -1164,12 +1149,12 @@
         "ar": "معلمة في أكادير بانتظار التوثيق.",
         "en": "Landmark in Agadir awaiting documentation."
       },
-      "imageUrl": "https://images.unsplash.com/photo-1533116548767-463879f725fb?q=80&w=1080&auto=format&fit=crop",
+      "imageUrl": "https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?q=80&w=1080&auto=format&fit=crop",
       "city": {
         "ar": "أكادير",
         "en": "Agadir"
       },
-      "isPending": true
+      "isPending": false
     },
     {
       "id": "agadir-amazigh-museum",
@@ -1181,12 +1166,12 @@
         "ar": "معلمة في أكادير بانتظار التوثيق.",
         "en": "Landmark in Agadir awaiting documentation."
       },
-      "imageUrl": "https://images.unsplash.com/photo-1533116548767-463879f725fb?q=80&w=1080&auto=format&fit=crop",
+      "imageUrl": "https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?q=80&w=1080&auto=format&fit=crop",
       "city": {
         "ar": "أكادير",
         "en": "Agadir"
       },
-      "isPending": true
+      "isPending": false
     },
     {
       "id": "agadir-agadir-bay",
@@ -1198,12 +1183,12 @@
         "ar": "معلمة في أكادير بانتظار التوثيق.",
         "en": "Landmark in Agadir awaiting documentation."
       },
-      "imageUrl": "https://images.unsplash.com/photo-1533116548767-463879f725fb?q=80&w=1080&auto=format&fit=crop",
+      "imageUrl": "https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?q=80&w=1080&auto=format&fit=crop",
       "city": {
         "ar": "أكادير",
         "en": "Agadir"
       },
-      "isPending": true
+      "isPending": false
     },
     {
       "id": "chefchaouen-outa-el-hammam-square",
@@ -1215,12 +1200,12 @@
         "ar": "معلمة في شفشاون بانتظار التوثيق.",
         "en": "Landmark in Chefchaouen awaiting documentation."
       },
-      "imageUrl": "https://images.unsplash.com/photo-1528127269322-539801943592?q=80&w=1080&auto=format&fit=crop",
+      "imageUrl": "https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?q=80&w=1080&auto=format&fit=crop",
       "city": {
         "ar": "شفشاون",
         "en": "Chefchaouen"
       },
-      "isPending": true
+      "isPending": false
     },
     {
       "id": "chefchaouen-kasbah-of-chefchaouen",
@@ -1232,12 +1217,12 @@
         "ar": "معلمة في شفشاون بانتظار التوثيق.",
         "en": "Landmark in Chefchaouen awaiting documentation."
       },
-      "imageUrl": "https://images.unsplash.com/photo-1528127269322-539801943592?q=80&w=1080&auto=format&fit=crop",
+      "imageUrl": "https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?q=80&w=1080&auto=format&fit=crop",
       "city": {
         "ar": "شفشاون",
         "en": "Chefchaouen"
       },
-      "isPending": true
+      "isPending": false
     },
     {
       "id": "chefchaouen-ras-el-maa",
@@ -1249,12 +1234,12 @@
         "ar": "معلمة في شفشاون بانتظار التوثيق.",
         "en": "Landmark in Chefchaouen awaiting documentation."
       },
-      "imageUrl": "https://images.unsplash.com/photo-1528127269322-539801943592?q=80&w=1080&auto=format&fit=crop",
+      "imageUrl": "https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?q=80&w=1080&auto=format&fit=crop",
       "city": {
         "ar": "شفشاون",
         "en": "Chefchaouen"
       },
-      "isPending": true
+      "isPending": false
     },
     {
       "id": "chefchaouen-great-mosque",
@@ -1266,12 +1251,12 @@
         "ar": "معلمة في شفشاون بانتظار التوثيق.",
         "en": "Landmark in Chefchaouen awaiting documentation."
       },
-      "imageUrl": "https://images.unsplash.com/photo-1528127269322-539801943592?q=80&w=1080&auto=format&fit=crop",
+      "imageUrl": "https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?q=80&w=1080&auto=format&fit=crop",
       "city": {
         "ar": "شفشاون",
         "en": "Chefchaouen"
       },
-      "isPending": true
+      "isPending": false
     },
     {
       "id": "chefchaouen-blue-streets",
@@ -1283,12 +1268,12 @@
         "ar": "معلمة في شفشاون بانتظار التوثيق.",
         "en": "Landmark in Chefchaouen awaiting documentation."
       },
-      "imageUrl": "https://images.unsplash.com/photo-1528127269322-539801943592?q=80&w=1080&auto=format&fit=crop",
+      "imageUrl": "https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?q=80&w=1080&auto=format&fit=crop",
       "city": {
         "ar": "شفشاون",
         "en": "Chefchaouen"
       },
-      "isPending": true
+      "isPending": false
     },
     {
       "id": "chefchaouen-souika-district",
@@ -1300,12 +1285,12 @@
         "ar": "معلمة في شفشاون بانتظار التوثيق.",
         "en": "Landmark in Chefchaouen awaiting documentation."
       },
-      "imageUrl": "https://images.unsplash.com/photo-1528127269322-539801943592?q=80&w=1080&auto=format&fit=crop",
+      "imageUrl": "https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?q=80&w=1080&auto=format&fit=crop",
       "city": {
         "ar": "شفشاون",
         "en": "Chefchaouen"
       },
-      "isPending": true
+      "isPending": false
     },
     {
       "id": "chefchaouen-rif-andalous",
@@ -1317,12 +1302,12 @@
         "ar": "معلمة في شفشاون بانتظار التوثيق.",
         "en": "Landmark in Chefchaouen awaiting documentation."
       },
-      "imageUrl": "https://images.unsplash.com/photo-1528127269322-539801943592?q=80&w=1080&auto=format&fit=crop",
+      "imageUrl": "https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?q=80&w=1080&auto=format&fit=crop",
       "city": {
         "ar": "شفشاون",
         "en": "Chefchaouen"
       },
-      "isPending": true
+      "isPending": false
     },
     {
       "id": "tetouan-tetouan-medina",
@@ -1334,12 +1319,12 @@
         "ar": "معلمة في تطوان بانتظار التوثيق.",
         "en": "Landmark in Tetouan awaiting documentation."
       },
-      "imageUrl": "https://images.unsplash.com/photo-1580227974557-41a69074094e?q=80&w=1080&auto=format&fit=crop",
+      "imageUrl": "https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?q=80&w=1080&auto=format&fit=crop",
       "city": {
         "ar": "تطوان",
         "en": "Tetouan"
       },
-      "isPending": true
+      "isPending": false
     },
     {
       "id": "tetouan-feddan-park",
@@ -1351,12 +1336,12 @@
         "ar": "معلمة في تطوان بانتظار التوثيق.",
         "en": "Landmark in Tetouan awaiting documentation."
       },
-      "imageUrl": "https://images.unsplash.com/photo-1580227974557-41a69074094e?q=80&w=1080&auto=format&fit=crop",
+      "imageUrl": "https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?q=80&w=1080&auto=format&fit=crop",
       "city": {
         "ar": "تطوان",
         "en": "Tetouan"
       },
-      "isPending": true
+      "isPending": false
     },
     {
       "id": "tetouan-school-of-arts-and-crafts",
@@ -1368,12 +1353,12 @@
         "ar": "معلمة في تطوان بانتظار التوثيق.",
         "en": "Landmark in Tetouan awaiting documentation."
       },
-      "imageUrl": "https://images.unsplash.com/photo-1580227974557-41a69074094e?q=80&w=1080&auto=format&fit=crop",
+      "imageUrl": "https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?q=80&w=1080&auto=format&fit=crop",
       "city": {
         "ar": "تطوان",
         "en": "Tetouan"
       },
-      "isPending": true
+      "isPending": false
     },
     {
       "id": "tetouan-church-of-our-lady-of-victories",
@@ -1385,12 +1370,12 @@
         "ar": "معلمة في تطوان بانتظار التوثيق.",
         "en": "Landmark in Tetouan awaiting documentation."
       },
-      "imageUrl": "https://images.unsplash.com/photo-1580227974557-41a69074094e?q=80&w=1080&auto=format&fit=crop",
+      "imageUrl": "https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?q=80&w=1080&auto=format&fit=crop",
       "city": {
         "ar": "تطوان",
         "en": "Tetouan"
       },
-      "isPending": true
+      "isPending": false
     },
     {
       "id": "tetouan-tetouan-mellah",
@@ -1402,12 +1387,12 @@
         "ar": "معلمة في تطوان بانتظار التوثيق.",
         "en": "Landmark in Tetouan awaiting documentation."
       },
-      "imageUrl": "https://images.unsplash.com/photo-1580227974557-41a69074094e?q=80&w=1080&auto=format&fit=crop",
+      "imageUrl": "https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?q=80&w=1080&auto=format&fit=crop",
       "city": {
         "ar": "تطوان",
         "en": "Tetouan"
       },
-      "isPending": true
+      "isPending": false
     },
     {
       "id": "tetouan-jbel-dersa-kasbah",
@@ -1419,12 +1404,12 @@
         "ar": "معلمة في تطوان بانتظار التوثيق.",
         "en": "Landmark in Tetouan awaiting documentation."
       },
-      "imageUrl": "https://images.unsplash.com/photo-1580227974557-41a69074094e?q=80&w=1080&auto=format&fit=crop",
+      "imageUrl": "https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?q=80&w=1080&auto=format&fit=crop",
       "city": {
         "ar": "تطوان",
         "en": "Tetouan"
       },
-      "isPending": true
+      "isPending": false
     },
     {
       "id": "essaouira-skala-du-port",
@@ -1441,7 +1426,7 @@
         "ar": "الصويرة",
         "en": "Essaouira"
       },
-      "isPending": true
+      "isPending": false
     },
     {
       "id": "essaouira-mogador-island",
@@ -1458,7 +1443,7 @@
         "ar": "الصويرة",
         "en": "Essaouira"
       },
-      "isPending": true
+      "isPending": false
     },
     {
       "id": "essaouira-moulay-hassan-square",
@@ -1475,7 +1460,7 @@
         "ar": "الصويرة",
         "en": "Essaouira"
       },
-      "isPending": true
+      "isPending": false
     },
     {
       "id": "essaouira-seven-gates",
@@ -1492,7 +1477,7 @@
         "ar": "الصويرة",
         "en": "Essaouira"
       },
-      "isPending": true
+      "isPending": false
     },
     {
       "id": "essaouira-essaouira-mellah",
@@ -1509,7 +1494,7 @@
         "ar": "الصويرة",
         "en": "Essaouira"
       },
-      "isPending": true
+      "isPending": false
     },
     {
       "id": "essaouira-essaouira-beach",
@@ -1526,7 +1511,7 @@
         "ar": "الصويرة",
         "en": "Essaouira"
       },
-      "isPending": true
+      "isPending": false
     },
     {
       "id": "ouarzazate-ait-benhaddou",
@@ -1538,12 +1523,12 @@
         "ar": "معلمة في ورزازات بانتظار التوثيق.",
         "en": "Landmark in Ouarzazate awaiting documentation."
       },
-      "imageUrl": "https://images.unsplash.com/photo-1559586111-94eb09bf2bb5?q=80&w=1080&auto=format&fit=crop",
+      "imageUrl": "https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?q=80&w=1080&auto=format&fit=crop",
       "city": {
         "ar": "ورزازات",
         "en": "Ouarzazate"
       },
-      "isPending": true
+      "isPending": false
     },
     {
       "id": "ouarzazate-taourirt-kasbah",
@@ -1555,12 +1540,12 @@
         "ar": "معلمة في ورزازات بانتظار التوثيق.",
         "en": "Landmark in Ouarzazate awaiting documentation."
       },
-      "imageUrl": "https://images.unsplash.com/photo-1559586111-94eb09bf2bb5?q=80&w=1080&auto=format&fit=crop",
+      "imageUrl": "https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?q=80&w=1080&auto=format&fit=crop",
       "city": {
         "ar": "ورزازات",
         "en": "Ouarzazate"
       },
-      "isPending": true
+      "isPending": false
     },
     {
       "id": "ouarzazate-atlas-studios",
@@ -1572,12 +1557,12 @@
         "ar": "معلمة في ورزازات بانتظار التوثيق.",
         "en": "Landmark in Ouarzazate awaiting documentation."
       },
-      "imageUrl": "https://images.unsplash.com/photo-1559586111-94eb09bf2bb5?q=80&w=1080&auto=format&fit=crop",
+      "imageUrl": "https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?q=80&w=1080&auto=format&fit=crop",
       "city": {
         "ar": "ورزازات",
         "en": "Ouarzazate"
       },
-      "isPending": true
+      "isPending": false
     },
     {
       "id": "ouarzazate-fint-oasis",
@@ -1589,12 +1574,12 @@
         "ar": "معلمة في ورزازات بانتظار التوثيق.",
         "en": "Landmark in Ouarzazate awaiting documentation."
       },
-      "imageUrl": "https://images.unsplash.com/photo-1559586111-94eb09bf2bb5?q=80&w=1080&auto=format&fit=crop",
+      "imageUrl": "https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?q=80&w=1080&auto=format&fit=crop",
       "city": {
         "ar": "ورزازات",
         "en": "Ouarzazate"
       },
-      "isPending": true
+      "isPending": false
     },
     {
       "id": "ouarzazate-mansour-eddahbi-dam",
@@ -1606,12 +1591,12 @@
         "ar": "معلمة في ورزازات بانتظار التوثيق.",
         "en": "Landmark in Ouarzazate awaiting documentation."
       },
-      "imageUrl": "https://images.unsplash.com/photo-1559586111-94eb09bf2bb5?q=80&w=1080&auto=format&fit=crop",
+      "imageUrl": "https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?q=80&w=1080&auto=format&fit=crop",
       "city": {
         "ar": "ورزازات",
         "en": "Ouarzazate"
       },
-      "isPending": true
+      "isPending": false
     },
     {
       "id": "sahara-mechouar-square",
@@ -1623,12 +1608,12 @@
         "ar": "معلمة في العيون والداخلة بانتظار التوثيق.",
         "en": "Landmark in Sahara awaiting documentation."
       },
-      "imageUrl": "https://images.unsplash.com/photo-1559586111-94eb09bf2bb5?q=80&w=1080&auto=format&fit=crop",
+      "imageUrl": "https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?q=80&w=1080&auto=format&fit=crop",
       "city": {
         "ar": "العيون والداخلة",
         "en": "Sahara"
       },
-      "isPending": true
+      "isPending": false
     },
     {
       "id": "sahara-st-francis-church",
@@ -1640,12 +1625,12 @@
         "ar": "معلمة في العيون والداخلة بانتظار التوثيق.",
         "en": "Landmark in Sahara awaiting documentation."
       },
-      "imageUrl": "https://images.unsplash.com/photo-1559586111-94eb09bf2bb5?q=80&w=1080&auto=format&fit=crop",
+      "imageUrl": "https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?q=80&w=1080&auto=format&fit=crop",
       "city": {
         "ar": "العيون والداخلة",
         "en": "Sahara"
       },
-      "isPending": true
+      "isPending": false
     },
     {
       "id": "sahara-foum-el-oued-beach",
@@ -1657,12 +1642,12 @@
         "ar": "معلمة في العيون والداخلة بانتظار التوثيق.",
         "en": "Landmark in Sahara awaiting documentation."
       },
-      "imageUrl": "https://images.unsplash.com/photo-1559586111-94eb09bf2bb5?q=80&w=1080&auto=format&fit=crop",
+      "imageUrl": "https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?q=80&w=1080&auto=format&fit=crop",
       "city": {
         "ar": "العيون والداخلة",
         "en": "Sahara"
       },
-      "isPending": true
+      "isPending": false
     },
     {
       "id": "sahara-dakhla-bay",
@@ -1674,12 +1659,12 @@
         "ar": "معلمة في العيون والداخلة بانتظار التوثيق.",
         "en": "Landmark in Sahara awaiting documentation."
       },
-      "imageUrl": "https://images.unsplash.com/photo-1559586111-94eb09bf2bb5?q=80&w=1080&auto=format&fit=crop",
+      "imageUrl": "https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?q=80&w=1080&auto=format&fit=crop",
       "city": {
         "ar": "العيون والداخلة",
         "en": "Sahara"
       },
-      "isPending": true
+      "isPending": false
     },
     {
       "id": "sahara-dragon-island",
@@ -1691,12 +1676,12 @@
         "ar": "معلمة في العيون والداخلة بانتظار التوثيق.",
         "en": "Landmark in Sahara awaiting documentation."
       },
-      "imageUrl": "https://images.unsplash.com/photo-1559586111-94eb09bf2bb5?q=80&w=1080&auto=format&fit=crop",
+      "imageUrl": "https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?q=80&w=1080&auto=format&fit=crop",
       "city": {
         "ar": "العيون والداخلة",
         "en": "Sahara"
       },
-      "isPending": true
+      "isPending": false
     },
     {
       "id": "sahara-dakhla-lighthouse",
@@ -1708,12 +1693,12 @@
         "ar": "معلمة في العيون والداخلة بانتظار التوثيق.",
         "en": "Landmark in Sahara awaiting documentation."
       },
-      "imageUrl": "https://images.unsplash.com/photo-1559586111-94eb09bf2bb5?q=80&w=1080&auto=format&fit=crop",
+      "imageUrl": "https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?q=80&w=1080&auto=format&fit=crop",
       "city": {
         "ar": "العيون والداخلة",
         "en": "Sahara"
       },
-      "isPending": true
+      "isPending": false
     },
     {
       "id": "safi-ksar-el-bahr",
@@ -1730,7 +1715,7 @@
         "ar": "آسفي",
         "en": "Safi"
       },
-      "isPending": true
+      "isPending": false
     },
     {
       "id": "safi-safi-medina",
@@ -1747,7 +1732,7 @@
         "ar": "آسفي",
         "en": "Safi"
       },
-      "isPending": true
+      "isPending": false
     },
     {
       "id": "safi-potters-hill",
@@ -1764,7 +1749,7 @@
         "ar": "آسفي",
         "en": "Safi"
       },
-      "isPending": true
+      "isPending": false
     },
     {
       "id": "safi-st-catherine-cathedral",
@@ -1781,7 +1766,7 @@
         "ar": "آسفي",
         "en": "Safi"
       },
-      "isPending": true
+      "isPending": false
     }
   ],
   "cities": [
@@ -1795,12 +1780,12 @@
         "ar": "مدينة مغربية عريقة.",
         "en": "A historic Moroccan city."
       },
-      "imageUrl": "https://images.unsplash.com/photo-1549733059-d81615d862e?q=80&w=1080&auto=format&fit=crop",
+      "imageUrl": null,
       "regionName": {
         "ar": "المغرب",
         "en": "Morocco"
       },
-      "isPending": false
+      "isPending": true
     },
     {
       "id": "casablanca",
@@ -1812,12 +1797,12 @@
         "ar": "مدينة مغربية عريقة.",
         "en": "A historic Moroccan city."
       },
-      "imageUrl": "https://images.unsplash.com/photo-1559586111-94eb09bf2bb5?q=80&w=1080&auto=format&fit=crop",
+      "imageUrl": null,
       "regionName": {
         "ar": "المغرب",
         "en": "Morocco"
       },
-      "isPending": false
+      "isPending": true
     },
     {
       "id": "marrakech",
@@ -1829,12 +1814,12 @@
         "ar": "مدينة مغربية عريقة.",
         "en": "A historic Moroccan city."
       },
-      "imageUrl": "https://images.unsplash.com/photo-1548013146-72479768bbaa?q=80&w=1080&auto=format&fit=crop",
+      "imageUrl": null,
       "regionName": {
         "ar": "المغرب",
         "en": "Morocco"
       },
-      "isPending": false
+      "isPending": true
     },
     {
       "id": "fes",
@@ -1846,12 +1831,12 @@
         "ar": "مدينة مغربية عريقة.",
         "en": "A historic Moroccan city."
       },
-      "imageUrl": "https://images.unsplash.com/photo-1584617415442-f87f2e468d60?q=80&w=1080&auto=format&fit=crop",
+      "imageUrl": null,
       "regionName": {
         "ar": "المغرب",
         "en": "Morocco"
       },
-      "isPending": false
+      "isPending": true
     },
     {
       "id": "tangier",
@@ -1863,12 +1848,12 @@
         "ar": "مدينة مغربية عريقة.",
         "en": "A historic Moroccan city."
       },
-      "imageUrl": "https://images.unsplash.com/photo-1580227974557-41a69074094e?q=80&w=1080&auto=format&fit=crop",
+      "imageUrl": null,
       "regionName": {
         "ar": "المغرب",
         "en": "Morocco"
       },
-      "isPending": false
+      "isPending": true
     },
     {
       "id": "meknes",
@@ -1880,12 +1865,12 @@
         "ar": "مدينة مغربية عريقة.",
         "en": "A historic Moroccan city."
       },
-      "imageUrl": "https://images.unsplash.com/photo-1549733059-d81615d862e?q=80&w=1080&auto=format&fit=crop",
+      "imageUrl": null,
       "regionName": {
         "ar": "المغرب",
         "en": "Morocco"
       },
-      "isPending": false
+      "isPending": true
     },
     {
       "id": "agadir",
@@ -1897,12 +1882,12 @@
         "ar": "مدينة مغربية عريقة.",
         "en": "A historic Moroccan city."
       },
-      "imageUrl": "https://images.unsplash.com/photo-1533116548767-463879f725fb?q=80&w=1080&auto=format&fit=crop",
+      "imageUrl": null,
       "regionName": {
         "ar": "المغرب",
         "en": "Morocco"
       },
-      "isPending": false
+      "isPending": true
     },
     {
       "id": "chefchaouen",
@@ -1914,12 +1899,12 @@
         "ar": "مدينة مغربية عريقة.",
         "en": "A historic Moroccan city."
       },
-      "imageUrl": "https://images.unsplash.com/photo-1528127269322-539801943592?q=80&w=1080&auto=format&fit=crop",
+      "imageUrl": null,
       "regionName": {
         "ar": "المغرب",
         "en": "Morocco"
       },
-      "isPending": false
+      "isPending": true
     },
     {
       "id": "tetouan",
@@ -1931,12 +1916,12 @@
         "ar": "مدينة مغربية عريقة.",
         "en": "A historic Moroccan city."
       },
-      "imageUrl": "https://images.unsplash.com/photo-1580227974557-41a69074094e?q=80&w=1080&auto=format&fit=crop",
+      "imageUrl": null,
       "regionName": {
         "ar": "المغرب",
         "en": "Morocco"
       },
-      "isPending": false
+      "isPending": true
     },
     {
       "id": "essaouira",
@@ -1948,12 +1933,12 @@
         "ar": "مدينة مغربية عريقة.",
         "en": "A historic Moroccan city."
       },
-      "imageUrl": "https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?q=80&w=1080&auto=format&fit=crop",
+      "imageUrl": null,
       "regionName": {
         "ar": "المغرب",
         "en": "Morocco"
       },
-      "isPending": false
+      "isPending": true
     },
     {
       "id": "ouarzazate",
@@ -1965,12 +1950,12 @@
         "ar": "مدينة مغربية عريقة.",
         "en": "A historic Moroccan city."
       },
-      "imageUrl": "https://images.unsplash.com/photo-1559586111-94eb09bf2bb5?q=80&w=1080&auto=format&fit=crop",
+      "imageUrl": null,
       "regionName": {
         "ar": "المغرب",
         "en": "Morocco"
       },
-      "isPending": false
+      "isPending": true
     },
     {
       "id": "sahara",
@@ -1982,12 +1967,12 @@
         "ar": "مدينة مغربية عريقة.",
         "en": "A historic Moroccan city."
       },
-      "imageUrl": "https://images.unsplash.com/photo-1559586111-94eb09bf2bb5?q=80&w=1080&auto=format&fit=crop",
+      "imageUrl": null,
       "regionName": {
         "ar": "المغرب",
         "en": "Morocco"
       },
-      "isPending": false
+      "isPending": true
     },
     {
       "id": "safi",
@@ -1999,61 +1984,15 @@
         "ar": "مدينة مغربية عريقة.",
         "en": "A historic Moroccan city."
       },
-      "imageUrl": "https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?q=80&w=1080&auto=format&fit=crop",
+      "imageUrl": null,
       "regionName": {
         "ar": "المغرب",
         "en": "Morocco"
       },
-      "isPending": false
+      "isPending": true
     }
   ],
-  "battles": [
-    {
-      "id": "battle-zallaqa",
-      "name": {
-        "ar": "معركة الزلاقة",
-        "en": "Battle of Sagrajas"
-      },
-      "year": "1086 AD",
-      "visualStyle": "Epic Oil Painting",
-      "imageUrl": "/battle_zallaqa_epic.png",
-      "isPending": false,
-      "history": {
-        "ar": "انتصار ساحق للمرابطين بقيادة يوسف بن تاشفين، وحّد بلاد المغرب والأندلس.",
-        "en": "A decisive Almoravid victory led by Yusuf ibn Tashfin, uniting Morocco and Al-Andalus."
-      }
-    },
-    {
-      "id": "battle-three-kings",
-      "name": {
-        "ar": "معركة الملوك الثلاثة",
-        "en": "Battle of the Three Kings"
-      },
-      "year": "1578 AD",
-      "visualStyle": "Renaissance Masterpiece",
-      "imageUrl": "/battle_three_kings_epic.png",
-      "isPending": false,
-      "history": {
-        "ar": "معركة وادي المخازن الشهيرة التي أنهت الأطماع البرتغالية في المغرب.",
-        "en": "The famous Battle of Wadi al-Makhazin that ended Portuguese ambitions in Morocco."
-      }
-    },
-    {
-      "id": "battle-isly",
-      "name": {
-        "ar": "معركة إيسلي",
-        "en": "Battle of Isly"
-      },
-      "year": "1844 AD",
-      "visualStyle": "19th Century Drama",
-      "imageUrl": "/battle_isly_epic.png",
-      "isPending": false,
-      "history": {
-        "ar": "مواجهة بطولية للجيش المغربي ضد القوات الفرنسية دفاعاً عن السيادة والجزائر.",
-        "en": "A heroic confrontation of the Moroccan army against French forces in defense of sovereignty and Algeria."
-      }
-    }
-  ],
+  "battles": [],
   "figures": [],
   "articles": {
     "rabat-hassan-tower": {
