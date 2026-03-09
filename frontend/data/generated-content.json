@@ -30,7 +30,7 @@
         "ar": "معلمة في الرباط بانتظار التوثيق.",
         "en": "Landmark in Rabat awaiting documentation."
       },
-      "imageUrl": "https://images.unsplash.com/photo-1549733059-d81615d862e?q=80&w=1080&auto=format&fit=crop",
+      "imageUrl": "/images/uploads/1773072845488-189773fce094d6185daa27ce851728f8.jpg",
       "city": {
         "ar": "الرباط",
         "en": "Rabat"
@@ -44,7 +44,9 @@
         "ar": "عصور قديمة",
         "en": "Ancient Era"
       },
-      "visualSoul": "Mosque"
+      "visualSoul": "Mosque",
+      "videoUrl": null,
+      "seo": {}
     },
     {
       "id": "rabat-chellah",
