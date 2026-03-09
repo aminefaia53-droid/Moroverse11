@@ -6,13 +6,16 @@
         "ar": "صومعة حسان: شموخ التاريخ في قلب الرباط",
         "en": "Hassan Tower"
       },
+      "desc": {
+        "ar": "",
+        "en": ""
+      },
       "imageUrl": null,
-      "isPending": false,
-      "visualSoul": "Monument",
       "city": {
         "ar": "الرباط",
         "en": "Rabat"
       },
+      "isPending": false,
       "foundation": {
         "en": "Historical",
         "ar": "تاريخي"
@@ -41,8 +44,7 @@
       "foundation": {
         "ar": "عصور قديمة",
         "en": "Ancient Era"
-      },
-      "visualSoul": "Mosque"
+      }
     },
     {
       "id": "rabat-chellah",
@@ -50,18 +52,21 @@
         "ar": "شالة",
         "en": "Chellah"
       },
+      "desc": {
+        "ar": "معلمة في الرباط بانتظار التوثيق.",
+        "en": "Landmark in Rabat awaiting documentation."
+      },
       "imageUrl": "",
       "city": {
         "ar": "الرباط",
         "en": "Rabat"
       },
       "isPending": false,
+      "videoUrl": null,
       "foundation": {
         "en": "Historical",
         "ar": "تاريخي"
       },
-      "visualSoul": "Monument",
-      "videoUrl": null,
       "seo": {}
     },
     {
@@ -87,8 +92,7 @@
       "foundation": {
         "ar": "عصور قديمة",
         "en": "Ancient Era"
-      },
-      "visualSoul": "Mosque"
+      }
     },
     {
       "id": "rabat-botanical-test-garden",
@@ -113,8 +117,7 @@
       "foundation": {
         "ar": "عصور قديمة",
         "en": "Ancient Era"
-      },
-      "visualSoul": "Mosque"
+      }
     },
     {
       "id": "rabat-mohammed-vi-museum",
@@ -139,8 +142,7 @@
       "foundation": {
         "ar": "عصور قديمة",
         "en": "Ancient Era"
-      },
-      "visualSoul": "Mosque"
+      }
     },
     {
       "id": "rabat-touarga-palace",
@@ -165,8 +167,7 @@
       "foundation": {
         "ar": "عصور قديمة",
         "en": "Ancient Era"
-      },
-      "visualSoul": "Mosque"
+      }
     },
     {
       "id": "rabat-rabat-ville-station",
@@ -191,8 +192,7 @@
       "foundation": {
         "ar": "عصور قديمة",
         "en": "Ancient Era"
-      },
-      "visualSoul": "Mosque"
+      }
     },
     {
       "id": "rabat-st-peters-cathedral",
@@ -217,8 +217,7 @@
       "foundation": {
         "ar": "عصور قديمة",
         "en": "Ancient Era"
-      },
-      "visualSoul": "Mosque"
+      }
     },
     {
       "id": "rabat-bab-rouah",
@@ -243,8 +242,7 @@
       "foundation": {
         "ar": "عصور قديمة",
         "en": "Ancient Era"
-      },
-      "visualSoul": "Mosque"
+      }
     },
     {
       "id": "casablanca-hassan-ii-mosque",
@@ -269,8 +267,7 @@
       "foundation": {
         "ar": "عصور قديمة",
         "en": "Ancient Era"
-      },
-      "visualSoul": "Mosque"
+      }
     },
     {
       "id": "casablanca-habous-quarter",
@@ -295,8 +292,7 @@
       "foundation": {
         "ar": "عصور قديمة",
         "en": "Ancient Era"
-      },
-      "visualSoul": "Mosque"
+      }
     },
     {
       "id": "casablanca-mahkama-du-pacha",
@@ -321,8 +317,7 @@
       "foundation": {
         "ar": "عصور قديمة",
         "en": "Ancient Era"
-      },
-      "visualSoul": "Mosque"
+      }
     },
     {
       "id": "casablanca-el-hank-lighthouse",
@@ -347,8 +342,7 @@
       "foundation": {
         "ar": "عصور قديمة",
         "en": "Ancient Era"
-      },
-      "visualSoul": "Mosque"
+      }
     },
     {
       "id": "casablanca-mohammed-v-square",
@@ -373,8 +367,7 @@
       "foundation": {
         "ar": "عصور قديمة",
         "en": "Ancient Era"
-      },
-      "visualSoul": "Mosque"
+      }
     },
     {
       "id": "casablanca-arab-league-park",
@@ -399,8 +392,7 @@
       "foundation": {
         "ar": "عصور قديمة",
         "en": "Ancient Era"
-      },
-      "visualSoul": "Mosque"
+      }
     },
     {
       "id": "casablanca-morocco-mall",
@@ -425,8 +417,7 @@
       "foundation": {
         "ar": "عصور قديمة",
         "en": "Ancient Era"
-      },
-      "visualSoul": "Mosque"
+      }
     },
     {
       "id": "casablanca-ould-el-hamra-mosque",
@@ -451,8 +442,7 @@
       "foundation": {
         "ar": "عصور قديمة",
         "en": "Ancient Era"
-      },
-      "visualSoul": "Mosque"
+      }
     },
     {
       "id": "casablanca-sacred-heart-cathedral",
@@ -477,8 +467,7 @@
       "foundation": {
         "ar": "عصور قديمة",
         "en": "Ancient Era"
-      },
-      "visualSoul": "Mosque"
+      }
     },
     {
       "id": "casablanca-anfa-historic-district",
@@ -503,8 +492,7 @@
       "foundation": {
         "ar": "عصور قديمة",
         "en": "Ancient Era"
-      },
-      "visualSoul": "Mosque"
+      }
     },
     {
       "id": "casablanca-merchich-region",
@@ -529,8 +517,7 @@
       "foundation": {
         "ar": "عصور قديمة",
         "en": "Ancient Era"
-      },
-      "visualSoul": "Mosque"
+      }
     },
     {
       "id": "marrakech-jemaa-el-fnaa",
@@ -548,6 +535,7 @@
         "en": "Marrakech"
       },
       "isPending": false,
+      "videoUrl": null,
       "history": {
         "ar": "معلمة في مراكش بانتظار التوثيق.",
         "en": "Landmark in Marrakech awaiting documentation."
@@ -556,8 +544,6 @@
         "ar": "عصور قديمة",
         "en": "Ancient Era"
       },
-      "visualSoul": "Mosque",
-      "videoUrl": null,
       "seo": {}
     },
     {
@@ -583,8 +569,7 @@
       "foundation": {
         "ar": "عصور قديمة",
         "en": "Ancient Era"
-      },
-      "visualSoul": "Mosque"
+      }
     },
     {
       "id": "marrakech-bahia-palace",
@@ -609,8 +594,7 @@
       "foundation": {
         "ar": "عصور قديمة",
         "en": "Ancient Era"
-      },
-      "visualSoul": "Mosque"
+      }
     },
     {
       "id": "marrakech-el-badi-palace",
@@ -635,8 +619,7 @@
       "foundation": {
         "ar": "عصور قديمة",
         "en": "Ancient Era"
-      },
-      "visualSoul": "Mosque"
+      }
     },
     {
       "id": "marrakech-menara-gardens",
@@ -661,8 +644,7 @@
       "foundation": {
         "ar": "عصور قديمة",
         "en": "Ancient Era"
-      },
-      "visualSoul": "Mosque"
+      }
     },
     {
       "id": "marrakech-majorelle-garden",
@@ -687,8 +669,7 @@
       "foundation": {
         "ar": "عصور قديمة",
         "en": "Ancient Era"
-      },
-      "visualSoul": "Mosque"
+      }
     },
     {
       "id": "marrakech-saadian-tombs",
@@ -713,8 +694,7 @@
       "foundation": {
         "ar": "عصور قديمة",
         "en": "Ancient Era"
-      },
-      "visualSoul": "Mosque"
+      }
     },
     {
       "id": "marrakech-ben-youssef-madrasa",
@@ -739,8 +719,7 @@
       "foundation": {
         "ar": "عصور قديمة",
         "en": "Ancient Era"
-      },
-      "visualSoul": "Mosque"
+      }
     },
     {
       "id": "marrakech-marrakech-museum",
@@ -765,8 +744,7 @@
       "foundation": {
         "ar": "عصور قديمة",
         "en": "Ancient Era"
-      },
-      "visualSoul": "Mosque"
+      }
     },
     {
       "id": "marrakech-bab-doukkala",
@@ -791,8 +769,7 @@
       "foundation": {
         "ar": "عصور قديمة",
         "en": "Ancient Era"
-      },
-      "visualSoul": "Mosque"
+      }
     },
     {
       "id": "marrakech-palmeraie",
@@ -817,8 +794,7 @@
       "foundation": {
         "ar": "عصور قديمة",
         "en": "Ancient Era"
-      },
-      "visualSoul": "Mosque"
+      }
     },
     {
       "id": "fes-al-qarawiyyin-mosque",
@@ -843,8 +819,7 @@
       "foundation": {
         "ar": "عصور قديمة",
         "en": "Ancient Era"
-      },
-      "visualSoul": "Mosque"
+      }
     },
     {
       "id": "fes-fondouk-nejjarine",
@@ -869,8 +844,7 @@
       "foundation": {
         "ar": "عصور قديمة",
         "en": "Ancient Era"
-      },
-      "visualSoul": "Mosque"
+      }
     },
     {
       "id": "fes-al-attarine-madrasa",
@@ -895,8 +869,7 @@
       "foundation": {
         "ar": "عصور قديمة",
         "en": "Ancient Era"
-      },
-      "visualSoul": "Mosque"
+      }
     },
     {
       "id": "fes-bou-inania-madrasa",
@@ -921,8 +894,7 @@
       "foundation": {
         "ar": "عصور قديمة",
         "en": "Ancient Era"
-      },
-      "visualSoul": "Mosque"
+      }
     },
     {
       "id": "fes-bab-bou-jeloud",
@@ -947,8 +919,7 @@
       "foundation": {
         "ar": "عصور قديمة",
         "en": "Ancient Era"
-      },
-      "visualSoul": "Mosque"
+      }
     },
     {
       "id": "fes-chouara-tannery",
@@ -973,8 +944,7 @@
       "foundation": {
         "ar": "عصور قديمة",
         "en": "Ancient Era"
-      },
-      "visualSoul": "Mosque"
+      }
     },
     {
       "id": "fes-zaouia-moulay-idriss-ii",
@@ -999,8 +969,7 @@
       "foundation": {
         "ar": "عصور قديمة",
         "en": "Ancient Era"
-      },
-      "visualSoul": "Mosque"
+      }
     },
     {
       "id": "fes-dar-batha-museum",
@@ -1025,8 +994,7 @@
       "foundation": {
         "ar": "عصور قديمة",
         "en": "Ancient Era"
-      },
-      "visualSoul": "Mosque"
+      }
     },
     {
       "id": "fes-fes-el-bali-walls",
@@ -1051,8 +1019,7 @@
       "foundation": {
         "ar": "عصور قديمة",
         "en": "Ancient Era"
-      },
-      "visualSoul": "Mosque"
+      }
     },
     {
       "id": "fes-fes-mellah",
@@ -1077,8 +1044,7 @@
       "foundation": {
         "ar": "عصور قديمة",
         "en": "Ancient Era"
-      },
-      "visualSoul": "Mosque"
+      }
     },
     {
       "id": "tangier-hercules-caves",
@@ -1103,8 +1069,7 @@
       "foundation": {
         "ar": "عصور قديمة",
         "en": "Ancient Era"
-      },
-      "visualSoul": "Mosque"
+      }
     },
     {
       "id": "tangier-kasbah-of-tangier",
@@ -1129,8 +1094,7 @@
       "foundation": {
         "ar": "عصور قديمة",
         "en": "Ancient Era"
-      },
-      "visualSoul": "Mosque"
+      }
     },
     {
       "id": "tangier-cape-spartel",
@@ -1155,8 +1119,7 @@
       "foundation": {
         "ar": "عصور قديمة",
         "en": "Ancient Era"
-      },
-      "visualSoul": "Mosque"
+      }
     },
     {
       "id": "tangier-kasbah-museum",
@@ -1181,8 +1144,7 @@
       "foundation": {
         "ar": "عصور قديمة",
         "en": "Ancient Era"
-      },
-      "visualSoul": "Mosque"
+      }
     },
     {
       "id": "tangier-cafe-hafa",
@@ -1207,8 +1169,7 @@
       "foundation": {
         "ar": "عصور قديمة",
         "en": "Ancient Era"
-      },
-      "visualSoul": "Mosque"
+      }
     },
     {
       "id": "tangier-villa-harris",
@@ -1233,8 +1194,7 @@
       "foundation": {
         "ar": "عصور قديمة",
         "en": "Ancient Era"
-      },
-      "visualSoul": "Mosque"
+      }
     },
     {
       "id": "tangier-grand-socco",
@@ -1259,8 +1219,7 @@
       "foundation": {
         "ar": "عصور قديمة",
         "en": "Ancient Era"
-      },
-      "visualSoul": "Mosque"
+      }
     },
     {
       "id": "tangier-mendoubia-gardens",
@@ -1285,8 +1244,7 @@
       "foundation": {
         "ar": "عصور قديمة",
         "en": "Ancient Era"
-      },
-      "visualSoul": "Mosque"
+      }
     },
     {
       "id": "tangier-tangier-medina",
@@ -1311,8 +1269,7 @@
       "foundation": {
         "ar": "عصور قديمة",
         "en": "Ancient Era"
-      },
-      "visualSoul": "Mosque"
+      }
     },
     {
       "id": "tangier-el-minzah-hotel",
@@ -1337,8 +1294,7 @@
       "foundation": {
         "ar": "عصور قديمة",
         "en": "Ancient Era"
-      },
-      "visualSoul": "Mosque"
+      }
     },
     {
       "id": "meknes-bab-mansour",
@@ -1363,8 +1319,7 @@
       "foundation": {
         "ar": "عصور قديمة",
         "en": "Ancient Era"
-      },
-      "visualSoul": "Mosque"
+      }
     },
     {
       "id": "meknes-mausoleum-of-moulay-ismail",
@@ -1389,8 +1344,7 @@
       "foundation": {
         "ar": "عصور قديمة",
         "en": "Ancient Era"
-      },
-      "visualSoul": "Mosque"
+      }
     },
     {
       "id": "meknes-habs-qara",
@@ -1415,8 +1369,7 @@
       "foundation": {
         "ar": "عصور قديمة",
         "en": "Ancient Era"
-      },
-      "visualSoul": "Mosque"
+      }
     },
     {
       "id": "meknes-place-el-hedim",
@@ -1441,8 +1394,7 @@
       "foundation": {
         "ar": "عصور قديمة",
         "en": "Ancient Era"
-      },
-      "visualSoul": "Mosque"
+      }
     },
     {
       "id": "meknes-bou-inania-madrasa-meknes",
@@ -1467,8 +1419,7 @@
       "foundation": {
         "ar": "عصور قديمة",
         "en": "Ancient Era"
-      },
-      "visualSoul": "Mosque"
+      }
     },
     {
       "id": "meknes-heri-es-souani",
@@ -1493,8 +1444,7 @@
       "foundation": {
         "ar": "عصور قديمة",
         "en": "Ancient Era"
-      },
-      "visualSoul": "Mosque"
+      }
     },
     {
       "id": "meknes-sahrij-swani",
@@ -1519,8 +1469,7 @@
       "foundation": {
         "ar": "عصور قديمة",
         "en": "Ancient Era"
-      },
-      "visualSoul": "Mosque"
+      }
     },
     {
       "id": "meknes-el-mansour-palace",
@@ -1545,8 +1494,7 @@
       "foundation": {
         "ar": "عصور قديمة",
         "en": "Ancient Era"
-      },
-      "visualSoul": "Mosque"
+      }
     },
     {
       "id": "meknes-volubilis",
@@ -1571,8 +1519,7 @@
       "foundation": {
         "ar": "عصور قديمة",
         "en": "Ancient Era"
-      },
-      "visualSoul": "Mosque"
+      }
     },
     {
       "id": "meknes-moulay-idriss-zerhoun",
@@ -1597,8 +1544,7 @@
       "foundation": {
         "ar": "عصور قديمة",
         "en": "Ancient Era"
-      },
-      "visualSoul": "Mosque"
+      }
     },
     {
       "id": "agadir-agadir-oufella",
@@ -1623,8 +1569,7 @@
       "foundation": {
         "ar": "عصور قديمة",
         "en": "Ancient Era"
-      },
-      "visualSoul": "Mosque"
+      }
     },
     {
       "id": "agadir-souk-el-had",
@@ -1649,8 +1594,7 @@
       "foundation": {
         "ar": "عصور قديمة",
         "en": "Ancient Era"
-      },
-      "visualSoul": "Mosque"
+      }
     },
     {
       "id": "agadir-crocoparc",
@@ -1675,8 +1619,7 @@
       "foundation": {
         "ar": "عصور قديمة",
         "en": "Ancient Era"
-      },
-      "visualSoul": "Mosque"
+      }
     },
     {
       "id": "agadir-vallee-des-oiseaux",
@@ -1701,8 +1644,7 @@
       "foundation": {
         "ar": "عصور قديمة",
         "en": "Ancient Era"
-      },
-      "visualSoul": "Mosque"
+      }
     },
     {
       "id": "agadir-agadir-marina",
@@ -1727,8 +1669,7 @@
       "foundation": {
         "ar": "عصور قديمة",
         "en": "Ancient Era"
-      },
-      "visualSoul": "Mosque"
+      }
     },
     {
       "id": "agadir-place-de-l-espoir",
@@ -1753,8 +1694,7 @@
       "foundation": {
         "ar": "عصور قديمة",
         "en": "Ancient Era"
-      },
-      "visualSoul": "Mosque"
+      }
     },
     {
       "id": "agadir-amazigh-museum",
@@ -1779,8 +1719,7 @@
       "foundation": {
         "ar": "عصور قديمة",
         "en": "Ancient Era"
-      },
-      "visualSoul": "Mosque"
+      }
     },
     {
       "id": "agadir-agadir-bay",
@@ -1805,8 +1744,7 @@
       "foundation": {
         "ar": "عصور قديمة",
         "en": "Ancient Era"
-      },
-      "visualSoul": "Mosque"
+      }
     },
     {
       "id": "chefchaouen-outa-el-hammam-square",
@@ -1831,8 +1769,7 @@
       "foundation": {
         "ar": "عصور قديمة",
         "en": "Ancient Era"
-      },
-      "visualSoul": "Mosque"
+      }
     },
     {
       "id": "chefchaouen-kasbah-of-chefchaouen",
@@ -1857,8 +1794,7 @@
       "foundation": {
         "ar": "عصور قديمة",
         "en": "Ancient Era"
-      },
-      "visualSoul": "Mosque"
+      }
     },
     {
       "id": "chefchaouen-ras-el-maa",
@@ -1883,8 +1819,7 @@
       "foundation": {
         "ar": "عصور قديمة",
         "en": "Ancient Era"
-      },
-      "visualSoul": "Mosque"
+      }
     },
     {
       "id": "chefchaouen-great-mosque",
@@ -1909,8 +1844,7 @@
       "foundation": {
         "ar": "عصور قديمة",
         "en": "Ancient Era"
-      },
-      "visualSoul": "Mosque"
+      }
     },
     {
       "id": "chefchaouen-blue-streets",
@@ -1935,8 +1869,7 @@
       "foundation": {
         "ar": "عصور قديمة",
         "en": "Ancient Era"
-      },
-      "visualSoul": "Mosque"
+      }
     },
     {
       "id": "chefchaouen-souika-district",
@@ -1961,8 +1894,7 @@
       "foundation": {
         "ar": "عصور قديمة",
         "en": "Ancient Era"
-      },
-      "visualSoul": "Mosque"
+      }
     },
     {
       "id": "chefchaouen-rif-andalous",
@@ -1987,8 +1919,7 @@
       "foundation": {
         "ar": "عصور قديمة",
         "en": "Ancient Era"
-      },
-      "visualSoul": "Mosque"
+      }
     },
     {
       "id": "tetouan-tetouan-medina",
@@ -2013,8 +1944,7 @@
       "foundation": {
         "ar": "عصور قديمة",
         "en": "Ancient Era"
-      },
-      "visualSoul": "Mosque"
+      }
     },
     {
       "id": "tetouan-feddan-park",
@@ -2039,8 +1969,7 @@
       "foundation": {
         "ar": "عصور قديمة",
         "en": "Ancient Era"
-      },
-      "visualSoul": "Mosque"
+      }
     },
     {
       "id": "tetouan-school-of-arts-and-crafts",
@@ -2065,8 +1994,7 @@
       "foundation": {
         "ar": "عصور قديمة",
         "en": "Ancient Era"
-      },
-      "visualSoul": "Mosque"
+      }
     },
     {
       "id": "tetouan-church-of-our-lady-of-victories",
@@ -2091,8 +2019,7 @@
       "foundation": {
         "ar": "عصور قديمة",
         "en": "Ancient Era"
-      },
-      "visualSoul": "Mosque"
+      }
     },
     {
       "id": "tetouan-tetouan-mellah",
@@ -2110,6 +2037,7 @@
         "en": "Tetouan"
       },
       "isPending": false,
+      "videoUrl": null,
       "history": {
         "ar": "معلمة في تطوان بانتظار التوثيق.",
         "en": "Landmark in Tetouan awaiting documentation."
@@ -2118,8 +2046,6 @@
         "ar": "عصور قديمة",
         "en": "Ancient Era"
       },
-      "visualSoul": "Mosque",
-      "videoUrl": null,
       "seo": {}
     },
     {
@@ -2145,8 +2071,7 @@
       "foundation": {
         "ar": "عصور قديمة",
         "en": "Ancient Era"
-      },
-      "visualSoul": "Mosque"
+      }
     },
     {
       "id": "essaouira-skala-du-port",
@@ -2171,8 +2096,7 @@
       "foundation": {
         "ar": "عصور قديمة",
         "en": "Ancient Era"
-      },
-      "visualSoul": "Mosque"
+      }
     },
     {
       "id": "essaouira-mogador-island",
@@ -2197,8 +2121,7 @@
       "foundation": {
         "ar": "عصور قديمة",
         "en": "Ancient Era"
-      },
-      "visualSoul": "Mosque"
+      }
     },
     {
       "id": "essaouira-moulay-hassan-square",
@@ -2223,8 +2146,7 @@
       "foundation": {
         "ar": "عصور قديمة",
         "en": "Ancient Era"
-      },
-      "visualSoul": "Mosque"
+      }
     },
     {
       "id": "essaouira-seven-gates",
@@ -2249,8 +2171,7 @@
       "foundation": {
         "ar": "عصور قديمة",
         "en": "Ancient Era"
-      },
-      "visualSoul": "Mosque"
+      }
     },
     {
       "id": "essaouira-essaouira-mellah",
@@ -2275,8 +2196,7 @@
       "foundation": {
         "ar": "عصور قديمة",
         "en": "Ancient Era"
-      },
-      "visualSoul": "Mosque"
+      }
     },
     {
       "id": "essaouira-essaouira-beach",
@@ -2301,8 +2221,7 @@
       "foundation": {
         "ar": "عصور قديمة",
         "en": "Ancient Era"
-      },
-      "visualSoul": "Mosque"
+      }
     },
     {
       "id": "ouarzazate-ait-benhaddou",
@@ -2327,8 +2246,7 @@
       "foundation": {
         "ar": "عصور قديمة",
         "en": "Ancient Era"
-      },
-      "visualSoul": "Mosque"
+      }
     },
     {
       "id": "ouarzazate-taourirt-kasbah",
@@ -2353,8 +2271,7 @@
       "foundation": {
         "ar": "عصور قديمة",
         "en": "Ancient Era"
-      },
-      "visualSoul": "Mosque"
+      }
     },
     {
       "id": "ouarzazate-atlas-studios",
@@ -2379,8 +2296,7 @@
       "foundation": {
         "ar": "عصور قديمة",
         "en": "Ancient Era"
-      },
-      "visualSoul": "Mosque"
+      }
     },
     {
       "id": "ouarzazate-fint-oasis",
@@ -2405,8 +2321,7 @@
       "foundation": {
         "ar": "عصور قديمة",
         "en": "Ancient Era"
-      },
-      "visualSoul": "Mosque"
+      }
     },
     {
       "id": "ouarzazate-mansour-eddahbi-dam",
@@ -2431,8 +2346,7 @@
       "foundation": {
         "ar": "عصور قديمة",
         "en": "Ancient Era"
-      },
-      "visualSoul": "Mosque"
+      }
     },
     {
       "id": "sahara-mechouar-square",
@@ -2457,8 +2371,7 @@
       "foundation": {
         "ar": "عصور قديمة",
         "en": "Ancient Era"
-      },
-      "visualSoul": "Mosque"
+      }
     },
     {
       "id": "sahara-st-francis-church",
@@ -2483,8 +2396,7 @@
       "foundation": {
         "ar": "عصور قديمة",
         "en": "Ancient Era"
-      },
-      "visualSoul": "Mosque"
+      }
     },
     {
       "id": "sahara-foum-el-oued-beach",
@@ -2509,8 +2421,7 @@
       "foundation": {
         "ar": "عصور قديمة",
         "en": "Ancient Era"
-      },
-      "visualSoul": "Mosque"
+      }
     },
     {
       "id": "sahara-dakhla-bay",
@@ -2528,6 +2439,7 @@
         "en": "Sahara"
       },
       "isPending": false,
+      "videoUrl": null,
       "history": {
         "ar": "معلمة في العيون والداخلة بانتظار التوثيق.",
         "en": "Landmark in Sahara awaiting documentation."
@@ -2536,8 +2448,6 @@
         "ar": "عصور قديمة",
         "en": "Ancient Era"
       },
-      "visualSoul": "Mosque",
-      "videoUrl": null,
       "seo": {}
     },
     {
@@ -2556,6 +2466,7 @@
         "en": "Sahara"
       },
       "isPending": false,
+      "videoUrl": null,
       "history": {
         "ar": "معلمة في العيون والداخلة بانتظار التوثيق.",
         "en": "Landmark in Sahara awaiting documentation."
@@ -2564,8 +2475,6 @@
         "ar": "عصور قديمة",
         "en": "Ancient Era"
       },
-      "visualSoul": "Mosque",
-      "videoUrl": null,
       "seo": {}
     },
     {
@@ -2584,6 +2493,7 @@
         "en": "Sahara"
       },
       "isPending": false,
+      "videoUrl": null,
       "history": {
         "ar": "معلمة في العيون والداخلة بانتظار التوثيق.",
         "en": "Landmark in Sahara awaiting documentation."
@@ -2592,8 +2502,6 @@
         "ar": "عصور قديمة",
         "en": "Ancient Era"
       },
-      "visualSoul": "Mosque",
-      "videoUrl": null,
       "seo": {}
     },
     {
@@ -2612,6 +2520,7 @@
         "en": "Safi"
       },
       "isPending": false,
+      "videoUrl": null,
       "history": {
         "ar": "معلمة في آسفي بانتظار التوثيق.",
         "en": "Landmark in Safi awaiting documentation."
@@ -2620,8 +2529,6 @@
         "ar": "عصور قديمة",
         "en": "Ancient Era"
       },
-      "visualSoul": "Mosque",
-      "videoUrl": null,
       "seo": {}
     },
     {
@@ -2640,6 +2547,7 @@
         "en": "Safi"
       },
       "isPending": false,
+      "videoUrl": null,
       "history": {
         "ar": "معلمة في آسفي بانتظار التوثيق.",
         "en": "Landmark in Safi awaiting documentation."
@@ -2648,8 +2556,6 @@
         "ar": "عصور قديمة",
         "en": "Ancient Era"
       },
-      "visualSoul": "Mosque",
-      "videoUrl": null,
       "seo": {}
     },
     {
@@ -2668,6 +2574,7 @@
         "en": "Safi"
       },
       "isPending": false,
+      "videoUrl": null,
       "history": {
         "ar": "معلمة في آسفي بانتظار التوثيق.",
         "en": "Landmark in Safi awaiting documentation."
@@ -2676,8 +2583,6 @@
         "ar": "عصور قديمة",
         "en": "Ancient Era"
       },
-      "visualSoul": "Mosque",
-      "videoUrl": null,
       "seo": {}
     },
     {
@@ -2696,6 +2601,7 @@
         "en": "Safi"
       },
       "isPending": false,
+      "videoUrl": null,
       "history": {
         "ar": "معلمة في آسفي بانتظار التوثيق.",
         "en": "Landmark in Safi awaiting documentation."
@@ -2704,8 +2610,6 @@
         "ar": "عصور قديمة",
         "en": "Ancient Era"
       },
-      "visualSoul": "Mosque",
-      "videoUrl": null,
       "seo": {}
     }
   ],

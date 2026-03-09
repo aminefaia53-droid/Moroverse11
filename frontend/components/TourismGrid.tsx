@@ -6,6 +6,7 @@ import { Compass, Tent, Palmtree, Film, History, ChevronRight } from 'lucide-rea
 import { LangCode } from '../types/language';
 import { TourismType } from '../utils/wp-api';
 import TourismModal from './TourismModal';
+import ShareButton from './ShareButton';
 
 interface TourismCardProps {
     type: TourismType;
@@ -98,23 +99,40 @@ export default function TourismGrid({ lang }: { lang: LangCode }) {
                             onClick={() => setSelectedType(tInfo)}
                         >
                             {/* Abstract/Cinematic Background Placeholder */}
-                            <div className="absolute inset-0 z-0 bg-black/80">
-                                <div className="absolute inset-0 opacity-20 bg-[url('https://www.transparenttextures.com/patterns/arabesque.png')]" />
-                                {/* Soft pulsing color gradient based on type */}
-                                <div className={`absolute inset-0 opacity-40 mix-blend-overlay transition-opacity duration-700 group-hover:opacity-70 bg-gradient-to-tr ${tInfo.type === 'dark' ? 'from-slate-900 to-[#1a1a1a]' :
+                            <div className="absolute inset-0 z-0 bg-black">
+                                <img
+                                    src={tInfo.imageBg}
+                                    alt={lang === 'en' ? tInfo.title.en : tInfo.title.ar}
+                                    className="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-110 opacity-40 group-hover:opacity-60"
+                                />
+                                <div className="absolute inset-0 z-[2] bg-black/60">
+                                    <div className="absolute inset-0 opacity-20 bg-[url('https://www.transparenttextures.com/patterns/arabesque.png')]" />
+                                    {/* Soft pulsing color gradient based on type */}
+                                    <div className={`absolute inset-0 opacity-60 mix-blend-overlay transition-opacity duration-700 group-hover:opacity-80 bg-gradient-to-tr ${tInfo.type === 'dark' ? 'from-slate-900 to-[#1a1a1a]' :
                                         tInfo.type === 'cultural' ? 'from-[#8b0000] to-orange-900' :
                                             tInfo.type === 'beach' ? 'from-cyan-900 to-blue-900' :
                                                 tInfo.type === 'cinematic' ? 'from-amber-900 to-yellow-900' :
                                                     'from-emerald-900 to-green-900'
-                                    }`} />
+                                        }`} />
+                                </div>
                             </div>
 
                             {/* Content */}
                             <div className={`relative z-10 p-8 h-full flex flex-col justify-between ${lang === 'ar' ? 'items-end text-right' : 'items-start text-left'}`}>
 
                                 {/* Top Icon */}
-                                <div className="p-4 rounded-2xl bg-black/40 backdrop-blur-md border border-[#c5a059]/30 text-[#c5a059] group-hover:scale-110 group-hover:bg-[#c5a059] group-hover:text-black transition-all duration-500 shadow-[0_0_20px_rgba(197,160,89,0.2)]">
-                                    {tInfo.icon}
+                                <div className="flex items-start justify-between w-full">
+                                    <div className="p-4 rounded-2xl bg-black/40 backdrop-blur-md border border-[#c5a059]/30 text-[#c5a059] group-hover:scale-110 group-hover:bg-[#c5a059] group-hover:text-black transition-all duration-500 shadow-[0_0_20px_rgba(197,160,89,0.2)]">
+                                        {tInfo.icon}
+                                    </div>
+                                    <div className="z-20">
+                                        <ShareButton
+                                            title={lang === 'en' ? tInfo.title.en : tInfo.title.ar}
+                                            description={lang === 'en' ? tInfo.definition.en : tInfo.definition.ar}
+                                            imageUrl={tInfo.imageBg}
+                                            id={tInfo.type}
+                                        />
+                                    </div>
                                 </div>
 
                                 {/* Bottom Texts */}

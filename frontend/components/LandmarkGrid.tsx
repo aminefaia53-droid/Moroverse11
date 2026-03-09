@@ -244,7 +244,7 @@ export default function LandmarkGrid({ lang }: { lang: LangCode }) {
                                                 <img
                                                     src={selectedLandmark.imageUrl}
                                                     alt={lang === 'en' ? selectedLandmark.name.en : selectedLandmark.name.ar}
-                                                    className="w-full h-full object-cover opacity-60 cinematic-filter"
+                                                    className="w-full h-full object-cover object-center transition-transform duration-300 ease-out opacity-60 cinematic-filter"
                                                     style={{ filter: 'sepia(0.2) contrast(1.1) brightness(0.7) saturate(1.2)' }}
                                                     onError={(e) => {
                                                         e.currentTarget.style.display = 'none';
@@ -421,16 +421,12 @@ function LandmarkCard({
         >
             <div className="relative h-full w-full rounded-xl border-2 border-[#c5a059]/20 hover:border-[#c5a059]/80 transition-all duration-700 overflow-hidden shadow-2xl glass-card-elite group-hover:shadow-[0_20px_60px_rgba(197,160,89,0.25)] pointer-events-auto">
 
-                {/* Bulletproof Background Image via CSS background-image */}
-                <div
-                    className="absolute inset-0 z-[1]"
-                    style={{
-                        backgroundImage: `url('${landmark.imageUrl || 'https://images.unsplash.com/photo-1549733059-d81615d862e?q=80&w=1080&auto=format&fit=crop'}')`,
-                        backgroundSize: 'cover',
-                        backgroundPosition: 'center',
-                        backgroundRepeat: 'no-repeat',
-                        filter: 'sepia(0.2) contrast(1.1) brightness(0.85) saturate(1.2)',
-                    }}
+                {/* Bulletproof Background Image using img tag for correct object-fit/-position */}
+                <img
+                    src={landmark.imageUrl || 'https://images.unsplash.com/photo-1549733059-d81615d862e?q=80&w=1080&auto=format&fit=crop'}
+                    alt={lang === 'en' ? landmark.name.en : landmark.name.ar}
+                    className="absolute inset-0 z-[1] w-full h-full object-cover object-center transition-transform duration-300 ease-out"
+                    style={{ filter: 'sepia(0.2) contrast(1.1) brightness(0.85) saturate(1.2)' }}
                 />
                 {/* Cinematic gradient overlay */}
                 <div className="absolute inset-0 z-[2] bg-gradient-to-t from-black via-black/40 to-transparent opacity-90" />

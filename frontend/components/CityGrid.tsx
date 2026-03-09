@@ -11,6 +11,7 @@ import TranslatedText from './TranslatedText';
 import { generateArticleSchema } from '../utils/seo';
 import generatedContent from '../data/generated-content.json';
 import ArticleReader from './ArticleReader';
+import ShareButton from './ShareButton';
 const dynamicCities = generatedContent.cities;
 
 const SoulIcon = ({ soul, className }: { soul: string; className?: string }) => {
@@ -339,7 +340,7 @@ function CityCard({
                     <img
                         src={`/images/${loc.id}.jpg`}
                         alt={lang === 'en' ? loc.name.en : loc.name.ar}
-                        className={`w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110 opacity-40 group-hover:opacity-60`}
+                        className={`w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-110 opacity-40 group-hover:opacity-60`}
                         onError={(e) => {
                             e.currentTarget.style.display = 'none';
                         }}
@@ -362,6 +363,13 @@ function CityCard({
                             <SoulIcon soul={loc.visualSoul} className="w-6 h-6 text-[#c5a059]" />
                         </div>
                         <div className="flex flex-col items-end gap-2">
+                            <div className="z-20">
+                                <ShareButton
+                                    title={lang === 'en' ? loc.name.en : loc.name.ar}
+                                    description={lang === 'en' ? (loc.history.en || loc.history.ar) : loc.history.ar}
+                                    id={loc.id}
+                                />
+                            </div>
                             <span className="px-4 py-1.5 rounded-full bg-black/60 backdrop-blur-md border border-[#c5a059]/40 text-[#c5a059] text-[9px] font-black uppercase tracking-[0.2em]">
                                 {loc.type}
                             </span>

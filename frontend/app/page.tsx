@@ -13,6 +13,7 @@ import LandmarkGrid from "../components/LandmarkGrid";
 import TourismGrid from "../components/TourismGrid";
 import HistoricalFiguresGrid from "../components/HistoricalFiguresGrid";
 import SmartSidebar from "../components/SmartSidebar";
+import CommunityPulse from "../components/community/CommunityPulse";
 
 // Utils
 import AudioManager from "../utils/AudioManager";
@@ -163,6 +164,9 @@ export default function Home() {
 
       {/* Smart Sidebar Panel is rendered here, but trigger is in header */}
       <SmartSidebar isHeaderTrigger={false} />
+
+      {/* Community Pulse Sidebar (Visible on desktop) */}
+      <CommunityPulse />
 
       {/* Hero Section */}
       <section className="relative h-screen flex flex-col justify-center items-center z-20 px-4">

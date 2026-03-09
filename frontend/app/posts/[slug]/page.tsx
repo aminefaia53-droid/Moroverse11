@@ -4,6 +4,7 @@ import matter from 'gray-matter';
 import { marked } from 'marked';
 import type { Metadata } from 'next';
 import { LangCode, SUPPORTED_LANGUAGES } from '../../../types/language';
+import VisitorComments from '../../../components/community/VisitorComments';
 
 // Generate static routes at build time - reads BOTH .md from posts/ AND .html from content/
 export async function generateStaticParams() {
@@ -157,6 +158,11 @@ export default async function PostPage(props: {
                     style={{ lineHeight: '1.9' }}
                     dangerouslySetInnerHTML={{ __html: content }}
                 />
+            </div>
+
+            {/* Social Heritage Hub Integration */}
+            <div className="container mx-auto mt-12 relative z-10">
+                <VisitorComments entityId={slug} entityName={articleTitle || slug} />
             </div>
         </main>
     );

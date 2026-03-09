@@ -74,19 +74,13 @@ export async function POST(request: NextRequest) {
 
         if (!db[category]) db[category] = [];
 
-        // 2. Build the updated landmark entry preserving all existing fields
+        // 2. Build the updated entity entry preserving all existing fields
         const existing = db[category].find((l: any) => l.id === id) || {};
         const updatedEntry = {
             ...existing,
+            ...landmark,
             id,
             isPending: false, // Always unlock
-            name: landmark.name ?? existing.name,
-            city: landmark.city ?? existing.city,
-            history: landmark.history ?? existing.history,
-            foundation: landmark.foundation ?? existing.foundation,
-            imageUrl: landmark.imageUrl ?? existing.imageUrl ?? null,
-            videoUrl: landmark.videoUrl ?? existing.videoUrl ?? null,
-            visualSoul: existing.visualSoul || 'Monument',
             seo: {
                 ...(existing.seo || {}),
                 ...(landmark.seo || {}),
@@ -98,7 +92,7 @@ export async function POST(request: NextRequest) {
         else db[category].unshift(updatedEntry);
 
         const updatedJson = JSON.stringify(db, null, 2);
-        const commitMsg = `content: update landmark "${updatedEntry.name?.en || id}" via Dashboard`;
+        const commitMsg = `content: update ${category} "${updatedEntry.name?.en || id}" via Dashboard`;
 
         // 3. Save: try GitHub first (triggers Vercel rebuild), fallback to local
         let persistence = 'local';

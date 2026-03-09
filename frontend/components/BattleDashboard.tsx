@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Swords, Calendar, Shield, MapPin, Users, Target, Info, Quote, Activity, ChevronRight, X, Layers, BookOpen, Crown, Search, Compass } from 'lucide-react';
 import { getArticle } from '../data/moroverse-content';
 import ArticleReader from './ArticleReader';
+import ShareButton from './ShareButton';
 import { generateArticleSchema } from '../utils/seo';
 import generatedContent from '../data/generated-content.json';
 
@@ -23,6 +24,8 @@ interface Battle {
     tactics: { en: string; ar: string };
     impact: { en: string; ar: string };
     casualties?: { en: string; ar: string };
+    imageUrl?: string;
+    videoUrl?: string;
 }
 
 const staticBattles: Battle[] = [
@@ -480,6 +483,14 @@ export default function BattleDashboard({ lang }: { lang: LangCode }) {
                         >
                             {/* Visual Layer (Parchment & Smoke) */}
                             <div className="absolute inset-0 z-0 bg-[#0f0a05]">
+                                {b.imageUrl && (
+                                    <img
+                                        src={b.imageUrl}
+                                        alt={lang === 'en' ? b.name.en : b.name.ar}
+                                        className="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-110 opacity-30 group-hover:opacity-50"
+                                        onError={(e) => { e.currentTarget.style.display = 'none'; }}
+                                    />
+                                )}
                                 <div className="absolute inset-0 opacity-[0.15] mix-blend-overlay pointer-events-none transition-opacity duration-1000 group-hover:opacity-[0.25]" style={{ backgroundImage: "url('https://www.transparenttextures.com/patterns/parchment.png')" }} />
                                 {/* Dynamic Era Overlay */}
                                 <div className={`absolute inset-0 bg-gradient-to-br opacity-40 group-hover:opacity-60 transition-opacity duration-1000 ${b.era === 'Modern Resistance' || b.era === 'Liberation' ? 'from-amber-900/60' :
@@ -493,7 +504,7 @@ export default function BattleDashboard({ lang }: { lang: LangCode }) {
 
                             <div className="absolute inset-0 p-10 flex flex-col justify-between z-10">
                                 <div className="space-y-6">
-                                    <div className="flex items-center justify-between">
+                                    <div className="flex items-center justify-between z-20">
                                         <div className="flex items-center gap-3">
                                             <span className="px-5 py-1.5 bg-primary/10 text-primary text-[10px] font-black rounded-full border border-primary/20 tracking-widest">
                                                 {b.year}
@@ -503,6 +514,12 @@ export default function BattleDashboard({ lang }: { lang: LangCode }) {
                                                 {b.era}
                                             </span>
                                         </div>
+                                        <ShareButton
+                                            title={lang === 'en' ? b.name.en : b.name.ar}
+                                            description={lang === 'en' ? b.desc.en : b.desc.ar}
+                                            imageUrl={b.imageUrl}
+                                            id={b.id}
+                                        />
                                     </div>
                                     <h4 className="text-4xl font-serif text-primary font-black uppercase leading-tight drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] transition-colors font-arabic">
                                         {lang === 'ar' ? b.name.ar : b.name.en}

@@ -4,28 +4,58 @@ import { useState, useEffect, useCallback, useRef } from 'react';
 import {
     Search, Save, Upload, Video, Globe, Tag, FileText,
     ImageOff, Loader2, CheckCircle, X, ChevronDown, ChevronUp,
-    Film, MapPin, Calendar, BookOpen, Hash
+    Film, MapPin, Calendar, BookOpen, Hash, Swords, Building2, Landmark, Users
 } from 'lucide-react';
 
 // ── Types ──────────────────────────────────────────────────────
-interface LandmarkEntry {
+type CategoryType = 'cities' | 'landmarks' | 'battles' | 'figures';
+
+interface EntityEntry {
     id: string;
     name: { ar: string; en: string };
-    city?: { ar: string; en: string };
-    history?: { ar: string; en: string };
-    foundation?: { ar: string; en: string };
+
+    // Shared / Varying
+    history?: { ar: string; en: string }; // For cities/landmarks/figures
+    desc?: { ar: string; en: string }; // For battles
     imageUrl?: string | null;
     videoUrl?: string | null;
     isPending?: boolean;
+
+    // Landmark specific
+    city?: { ar: string; en: string };
+    foundation?: { ar: string; en: string };
+
+    // City specific
+    regionName?: { ar: string; en: string };
+    type?: string;
+    climate?: string;
+
+    // Battle specific
+    location?: { ar: string; en: string };
+    era?: string;
+    year?: string;
+    dynasty?: string;
+    combatants?: { ar: string; en: string };
+    leaders?: { ar: string; en: string };
+    tactics?: { ar: string; en: string };
+    outcome?: { ar: string; en: string };
+    impact?: { ar: string; en: string };
+
     seo?: {
         metaTitle?: string;
         metaDescription?: string;
         slug?: string;
         altText?: string;
     };
+    visualSoul?: string;
 }
 
-interface SaveStatus { [id: string]: 'idle' | 'saving' | 'success' | 'error'; }
+interface DBData {
+    cities: EntityEntry[];
+    landmarks: EntityEntry[];
+    battles: EntityEntry[];
+    figures: EntityEntry[];
+}
 
 // ── Image Upload Helper ─────────────────────────────────────────
 async function uploadImageFile(file: File): Promise<string | null> {
@@ -36,10 +66,10 @@ async function uploadImageFile(file: File): Promise<string | null> {
     return data.success ? data.url : null;
 }
 
-// ── Individual Landmark Card Editor ─────────────────────────────
-function LandmarkEditor({ landmark, onSaved }: { landmark: LandmarkEntry; onSaved: (updated: LandmarkEntry) => void }) {
+// ── Individual Entity Editor ─────────────────────────────
+function EntityEditor({ entity, category, onSaved }: { entity: EntityEntry; category: CategoryType, onSaved: (updated: EntityEntry, cat: CategoryType) => void }) {
     const [expanded, setExpanded] = useState(false);
-    const [draft, setDraft] = useState<LandmarkEntry>(landmark);
+    const [draft, setDraft] = useState<EntityEntry>(entity);
     const [status, setStatus] = useState<'idle' | 'saving' | 'success' | 'error'>('idle');
     const [serverMessage, setServerMessage] = useState('');
     const [uploadingImg, setUploadingImg] = useState(false);
@@ -56,7 +86,7 @@ function LandmarkEditor({ landmark, onSaved }: { landmark: LandmarkEntry; onSave
         try {
             const url = await uploadImageFile(file);
             if (url) set('imageUrl', url);
-        } catch { alert('رفع الصورة فشل'); }
+        } catch { alert('Image upload failed / رفع الصورة فشل'); }
         finally { setUploadingImg(false); }
     };
 
@@ -64,29 +94,27 @@ function LandmarkEditor({ landmark, onSaved }: { landmark: LandmarkEntry; onSave
         setStatus('saving');
         setServerMessage('');
         try {
-            // Call the dedicated /api/update-content endpoint which auto-pushes to GitHub
             const res = await fetch('/api/update-content', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
                     id: draft.id,
-                    category: 'landmarks',
-                    landmark: draft,
+                    category: category,
+                    landmark: draft, // Using 'landmark' payload name for backward compatibility in the API
                 }),
             });
             const result = await res.json();
             if (res.ok && result.success) {
                 setStatus('success');
                 setServerMessage(result.message);
-                onSaved(draft);
-                // Keep success message visible — don't auto-reset until user clicks again
+                onSaved(draft, category);
             } else {
                 setStatus('error');
-                setServerMessage(result.message || 'فشل الحفظ — تحقق من GITHUB_TOKEN في Vercel.');
+                setServerMessage(result.message || 'Save failed / فشل الحفظ');
             }
         } catch (err: any) {
             setStatus('error');
-            setServerMessage(`خطأ غير متوقع: ${err.message}`);
+            setServerMessage(`Unexpected error / خطأ غير متوقع: ${err.message}`);
         }
     };
 
@@ -97,19 +125,20 @@ function LandmarkEditor({ landmark, onSaved }: { landmark: LandmarkEntry; onSave
                 className="flex items-center gap-4 px-5 py-4 cursor-pointer hover:bg-[#112240]/60 transition-colors"
                 onClick={() => setExpanded(e => !e)}
             >
-                {/* Thumbnail */}
                 <div className="w-14 h-14 rounded-lg overflow-hidden bg-[#112240] shrink-0 relative border border-[#c5a059]/20">
                     {draft.imageUrl ? (
-                        <img src={draft.imageUrl} alt="" className="w-full h-full object-cover" onError={e => { e.currentTarget.style.display = 'none'; }} />
+                        <img src={draft.imageUrl} alt="" className="w-full h-full object-cover object-center transition-transform duration-300 ease-out" onError={e => { e.currentTarget.style.display = 'none'; }} />
                     ) : (
                         <div className="w-full h-full flex items-center justify-center"><ImageOff className="w-5 h-5 text-gray-600" /></div>
                     )}
                 </div>
 
                 <div className="flex-1 min-w-0">
-                    <div className="font-bold text-white truncate">{draft.name.en || draft.name.ar}</div>
-                    <div className="text-xs text-gray-500 font-arabic truncate">{draft.name.ar}</div>
+                    <div className="font-bold text-white truncate">{draft.name?.en || draft.name?.ar}</div>
+                    <div className="text-xs text-gray-500 font-arabic truncate">{draft.name?.ar}</div>
                     {draft.city && <div className="text-[10px] text-gold-royal/60 flex items-center gap-1 mt-0.5"><MapPin className="w-2.5 h-2.5" />{draft.city.en}</div>}
+                    {draft.regionName && <div className="text-[10px] text-gold-royal/60 flex items-center gap-1 mt-0.5"><MapPin className="w-2.5 h-2.5" />{draft.regionName.en}</div>}
+                    {draft.year && <div className="text-[10px] text-gold-royal/60 flex items-center gap-1 mt-0.5"><Calendar className="w-2.5 h-2.5" />{draft.year} {draft.era && `— ${draft.era}`}</div>}
                 </div>
 
                 <div className="flex items-center gap-3 shrink-0">
@@ -129,7 +158,6 @@ function LandmarkEditor({ landmark, onSaved }: { landmark: LandmarkEntry; onSave
                             <Upload className="w-3 h-3" /> Media Management
                         </h4>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            {/* Cover Image */}
                             <div>
                                 <label className="text-xs text-gray-400 font-bold uppercase tracking-widest mb-1.5 block">صورة الواجهة (Cover Image)</label>
                                 <div className="flex gap-2 mb-2">
@@ -151,8 +179,8 @@ function LandmarkEditor({ landmark, onSaved }: { landmark: LandmarkEntry; onSave
                                     <input ref={imgInputRef} type="file" accept="image/*" className="hidden" onChange={handleImageUpload} />
                                 </div>
                                 {draft.imageUrl && (
-                                    <div className="rounded-lg overflow-hidden aspect-video border border-[#c5a059]/20 relative">
-                                        <img src={draft.imageUrl} alt="Cover" className="w-full h-full object-cover" />
+                                    <div className="rounded-lg overflow-hidden aspect-[16/9] border border-[#c5a059]/20 relative">
+                                        <img src={draft.imageUrl} alt="Cover" className="w-full h-full object-cover object-center transition-transform duration-300 ease-out" />
                                         <button onClick={() => set('imageUrl', '')} className="absolute top-2 right-2 p-1 rounded-full bg-black/60 text-white hover:bg-red-600 transition-colors">
                                             <X className="w-3 h-3" />
                                         </button>
@@ -160,7 +188,6 @@ function LandmarkEditor({ landmark, onSaved }: { landmark: LandmarkEntry; onSave
                                 )}
                             </div>
 
-                            {/* Video URL */}
                             <div>
                                 <label className="text-xs text-gray-400 font-bold uppercase tracking-widest mb-1.5 block flex items-center gap-1.5">
                                     <Film className="w-3 h-3" /> فيديو المقال (YouTube / MP4)
@@ -191,50 +218,89 @@ function LandmarkEditor({ landmark, onSaved }: { landmark: LandmarkEntry; onSave
                     {/* ── Section: Data Identity ── */}
                     <div>
                         <h4 className="text-[10px] font-black text-gold-royal uppercase tracking-[0.3em] mb-3 flex items-center gap-2">
-                            <BookOpen className="w-3 h-3" /> Data Identity
+                            <BookOpen className="w-3 h-3" /> Data Identity ({category})
                         </h4>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div>
                                 <label className="text-xs text-gray-400 font-bold uppercase tracking-widest mb-1 block">الاسم (عربي)</label>
-                                <input value={draft.name.ar} onChange={e => setNested('name', 'ar', e.target.value)}
+                                <input value={draft.name?.ar || ''} onChange={e => setNested('name', 'ar', e.target.value)}
                                     className="w-full text-sm px-3 py-2 rounded-lg bg-[#112240] border border-[#c5a059]/20 text-white focus:ring-1 focus:ring-gold-royal outline-none font-arabic" dir="rtl" />
                             </div>
                             <div>
                                 <label className="text-xs text-gray-400 font-bold uppercase tracking-widest mb-1 block">Name (English)</label>
-                                <input value={draft.name.en} onChange={e => setNested('name', 'en', e.target.value)}
+                                <input value={draft.name?.en || ''} onChange={e => setNested('name', 'en', e.target.value)}
                                     className="w-full text-sm px-3 py-2 rounded-lg bg-[#112240] border border-[#c5a059]/20 text-white focus:ring-1 focus:ring-gold-royal outline-none" />
                             </div>
-                            <div>
-                                <label className="text-xs text-gray-400 font-bold uppercase tracking-widest mb-1 block flex items-center gap-1.5"><Calendar className="w-3 h-3" /> تاريخ التأسيس</label>
-                                <div className="flex gap-2">
-                                    <input value={draft.foundation?.ar || ''} onChange={e => setNested('foundation', 'ar', e.target.value)}
-                                        placeholder="عربي" dir="rtl"
-                                        className="flex-1 text-xs px-3 py-2 rounded-lg bg-[#112240] border border-[#c5a059]/20 text-white focus:ring-1 focus:ring-gold-royal outline-none font-arabic" />
-                                    <input value={draft.foundation?.en || ''} onChange={e => setNested('foundation', 'en', e.target.value)}
-                                        placeholder="English"
-                                        className="flex-1 text-xs px-3 py-2 rounded-lg bg-[#112240] border border-[#c5a059]/20 text-white focus:ring-1 focus:ring-gold-royal outline-none" />
-                                </div>
-                            </div>
-                            <div>
-                                <label className="text-xs text-gray-400 font-bold uppercase tracking-widest mb-1 block flex items-center gap-1.5"><MapPin className="w-3 h-3" /> المدينة</label>
-                                <div className="flex gap-2">
-                                    <input value={draft.city?.ar || ''} onChange={e => setNested('city', 'ar', e.target.value)}
-                                        placeholder="عربي" dir="rtl"
-                                        className="flex-1 text-xs px-3 py-2 rounded-lg bg-[#112240] border border-[#c5a059]/20 text-white focus:ring-1 focus:ring-gold-royal outline-none font-arabic" />
-                                    <input value={draft.city?.en || ''} onChange={e => setNested('city', 'en', e.target.value)}
-                                        placeholder="English"
-                                        className="flex-1 text-xs px-3 py-2 rounded-lg bg-[#112240] border border-[#c5a059]/20 text-white focus:ring-1 focus:ring-gold-royal outline-none" />
-                                </div>
-                            </div>
-                            <div className="md:col-span-2">
+
+                            {/* Category Specific Fields */}
+
+                            {/* Landmarks */}
+                            {category === 'landmarks' && (
+                                <>
+                                    <div>
+                                        <label className="text-xs text-gray-400 font-bold uppercase tracking-widest mb-1 block flex items-center gap-1.5"><Calendar className="w-3 h-3" /> تاريخ التأسيس</label>
+                                        <div className="flex gap-2">
+                                            <input value={draft.foundation?.ar || ''} onChange={e => setNested('foundation', 'ar', e.target.value)} placeholder="عربي" dir="rtl" className="flex-1 text-xs px-3 py-2 rounded-lg bg-[#112240] border border-[#c5a059]/20 text-white focus:ring-1 focus:ring-gold-royal outline-none font-arabic" />
+                                            <input value={draft.foundation?.en || ''} onChange={e => setNested('foundation', 'en', e.target.value)} placeholder="English" className="flex-1 text-xs px-3 py-2 rounded-lg bg-[#112240] border border-[#c5a059]/20 text-white focus:ring-1 focus:ring-gold-royal outline-none" />
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <label className="text-xs text-gray-400 font-bold uppercase tracking-widest mb-1 block flex items-center gap-1.5"><MapPin className="w-3 h-3" /> المدينة</label>
+                                        <div className="flex gap-2">
+                                            <input value={draft.city?.ar || ''} onChange={e => setNested('city', 'ar', e.target.value)} placeholder="عربي" dir="rtl" className="flex-1 text-xs px-3 py-2 rounded-lg bg-[#112240] border border-[#c5a059]/20 text-white focus:ring-1 focus:ring-gold-royal outline-none font-arabic" />
+                                            <input value={draft.city?.en || ''} onChange={e => setNested('city', 'en', e.target.value)} placeholder="English" className="flex-1 text-xs px-3 py-2 rounded-lg bg-[#112240] border border-[#c5a059]/20 text-white focus:ring-1 focus:ring-gold-royal outline-none" />
+                                        </div>
+                                    </div>
+                                </>
+                            )}
+
+                            {/* Cities */}
+                            {category === 'cities' && (
+                                <>
+                                    <div>
+                                        <label className="text-xs text-gray-400 font-bold uppercase tracking-widest mb-1 block flex items-center gap-1.5"><MapPin className="w-3 h-3" /> الجهة (Region)</label>
+                                        <div className="flex gap-2">
+                                            <input value={draft.regionName?.ar || ''} onChange={e => setNested('regionName', 'ar', e.target.value)} placeholder="عربي" dir="rtl" className="flex-1 text-xs px-3 py-2 rounded-lg bg-[#112240] border border-[#c5a059]/20 text-white focus:ring-1 focus:ring-gold-royal outline-none font-arabic" />
+                                            <input value={draft.regionName?.en || ''} onChange={e => setNested('regionName', 'en', e.target.value)} placeholder="English" className="flex-1 text-xs px-3 py-2 rounded-lg bg-[#112240] border border-[#c5a059]/20 text-white focus:ring-1 focus:ring-gold-royal outline-none" />
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <label className="text-xs text-gray-400 font-bold uppercase tracking-widest mb-1 block flex items-center gap-1.5"> نوع المدينة</label>
+                                        <input value={draft.type || ''} onChange={e => set('type', e.target.value)} placeholder="Major City" className="w-full text-xs px-3 py-2 rounded-lg bg-[#112240] border border-[#c5a059]/20 text-white focus:ring-1 focus:ring-gold-royal outline-none" />
+                                    </div>
+                                </>
+                            )}
+
+                            {/* Battles */}
+                            {category === 'battles' && (
+                                <>
+                                    <div>
+                                        <label className="text-xs text-gray-400 font-bold uppercase tracking-widest mb-1 block flex items-center gap-1.5"><Calendar className="w-3 h-3" /> السنه و العصر (Year & Era)</label>
+                                        <div className="flex gap-2">
+                                            <input value={draft.year || ''} onChange={e => set('year', e.target.value)} placeholder="1578" className="flex-1 text-xs px-3 py-2 rounded-lg bg-[#112240] border border-[#c5a059]/20 text-white focus:ring-1 focus:ring-gold-royal outline-none font-arabic" />
+                                            <input value={draft.era || ''} onChange={e => set('era', e.target.value)} placeholder="Imperial" className="flex-1 text-xs px-3 py-2 rounded-lg bg-[#112240] border border-[#c5a059]/20 text-white focus:ring-1 focus:ring-gold-royal outline-none" />
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <label className="text-xs text-gray-400 font-bold uppercase tracking-widest mb-1 block flex items-center gap-1.5"><MapPin className="w-3 h-3" /> الموقع</label>
+                                        <div className="flex gap-2">
+                                            <input value={draft.location?.ar || ''} onChange={e => setNested('location', 'ar', e.target.value)} placeholder="عربي" dir="rtl" className="flex-1 text-xs px-3 py-2 rounded-lg bg-[#112240] border border-[#c5a059]/20 text-white focus:ring-1 focus:ring-gold-royal outline-none font-arabic" />
+                                            <input value={draft.location?.en || ''} onChange={e => setNested('location', 'en', e.target.value)} placeholder="English" className="flex-1 text-xs px-3 py-2 rounded-lg bg-[#112240] border border-[#c5a059]/20 text-white focus:ring-1 focus:ring-gold-royal outline-none" />
+                                        </div>
+                                    </div>
+                                </>
+                            )}
+
+                            {/* Description / History */}
+                            <div className="md:col-span-2 mt-2">
                                 <label className="text-xs text-gray-400 font-bold uppercase tracking-widest mb-1 block">الملخص التاريخي (عربي)</label>
-                                <textarea value={draft.history?.ar || ''} onChange={e => setNested('history', 'ar', e.target.value)}
+                                <textarea value={(category === 'battles' ? draft.desc?.ar : draft.history?.ar) || ''} onChange={e => setNested(category === 'battles' ? 'desc' : 'history', 'ar', e.target.value)}
                                     rows={3} dir="rtl"
                                     className="w-full text-sm px-3 py-2 rounded-lg bg-[#112240] border border-[#c5a059]/20 text-white focus:ring-1 focus:ring-gold-royal outline-none resize-none font-arabic" />
                             </div>
                             <div className="md:col-span-2">
                                 <label className="text-xs text-gray-400 font-bold uppercase tracking-widest mb-1 block">Historical Summary (English)</label>
-                                <textarea value={draft.history?.en || ''} onChange={e => setNested('history', 'en', e.target.value)}
+                                <textarea value={(category === 'battles' ? draft.desc?.en : draft.history?.en) || ''} onChange={e => setNested(category === 'battles' ? 'desc' : 'history', 'en', e.target.value)}
                                     rows={3}
                                     className="w-full text-sm px-3 py-2 rounded-lg bg-[#112240] border border-[#c5a059]/20 text-white focus:ring-1 focus:ring-gold-royal outline-none resize-none" />
                             </div>
@@ -302,12 +368,8 @@ function LandmarkEditor({ landmark, onSaved }: { landmark: LandmarkEntry; onSave
 
                     {/* ── Save Button + Server Message ── */}
                     <div className="flex flex-col gap-3 pt-2 border-t border-[#c5a059]/10">
-                        {/* Server Message Banner */}
                         {serverMessage && (
-                            <div className={`w-full rounded-xl px-4 py-3 text-sm font-bold flex items-center gap-2 ${status === 'success'
-                                    ? 'bg-green-900/40 border border-green-500/40 text-green-300'
-                                    : 'bg-red-900/40 border border-red-500/40 text-red-300'
-                                }`} dir="rtl">
+                            <div className={`w-full rounded-xl px-4 py-3 text-sm font-bold flex items-center gap-2 ${status === 'success' ? 'bg-green-900/40 border border-green-500/40 text-green-300' : 'bg-red-900/40 border border-red-500/40 text-red-300'}`} dir="rtl">
                                 {status === 'success' ? <CheckCircle className="w-4 h-4 shrink-0" /> : <X className="w-4 h-4 shrink-0" />}
                                 {serverMessage}
                             </div>
@@ -329,52 +391,64 @@ function LandmarkEditor({ landmark, onSaved }: { landmark: LandmarkEntry; onSave
     );
 }
 
-// ── Main Landmark Manager Page ─────────────────────────────────
-export default function LandmarkManagerPage() {
-    const [landmarks, setLandmarks] = useState<LandmarkEntry[]>([]);
+// ── Main Content Manager Page ─────────────────────────────────
+export default function ContentManagerPage() {
+    const [dbData, setDbData] = useState<DBData | null>(null);
     const [loading, setLoading] = useState(true);
+    const [activeTab, setActiveTab] = useState<CategoryType>('cities');
     const [search, setSearch] = useState('');
-    const [cityFilter, setCityFilter] = useState('');
 
-    const loadLandmarks = useCallback(async () => {
+    const loadData = useCallback(async () => {
         setLoading(true);
         try {
             const res = await fetch('/api/admin/content');
             const data = await res.json();
-            if (data.success && data.data?.landmarks) {
-                setLandmarks(data.data.landmarks);
+            if (data.success && data.data) {
+                setDbData(data.data as DBData);
             }
         } finally {
             setLoading(false);
         }
     }, []);
 
-    useEffect(() => { loadLandmarks(); }, [loadLandmarks]);
+    useEffect(() => { loadData(); }, [loadData]);
 
-    const handleSaved = (updated: LandmarkEntry) => {
-        setLandmarks(prev => prev.map(lm => lm.id === updated.id ? updated : lm));
+    const handleSaved = (updated: EntityEntry, category: CategoryType) => {
+        setDbData(prev => {
+            if (!prev) return prev;
+            return {
+                ...prev,
+                [category]: (prev[category] || []).map((item: any) => item.id === updated.id ? updated : item)
+            };
+        });
     };
 
-    const cities = Array.from(new Set(landmarks.map(l => l.city?.en).filter(Boolean)));
-    const filtered = landmarks.filter(lm => {
-        const matchSearch = !search ||
-            lm.name.en.toLowerCase().includes(search.toLowerCase()) ||
-            lm.name.ar.includes(search);
-        const matchCity = !cityFilter || lm.city?.en === cityFilter;
-        return matchSearch && matchCity;
+    const currentList = dbData ? (dbData[activeTab] || []) : [];
+
+    const filtered = currentList.filter((entry: EntityEntry) => {
+        if (!search) return true;
+        const q = search.toLowerCase();
+        return entry.name?.en?.toLowerCase().includes(q) || entry.name?.ar?.includes(q) || entry.id?.toLowerCase().includes(q);
     });
 
-    const withImage = landmarks.filter(l => l.imageUrl).length;
+    const withImage = filtered.filter((l: any) => l.imageUrl).length;
+
+    const tabs: { id: CategoryType; label: string; icon: React.ReactNode }[] = [
+        { id: 'cities', label: 'Cities', icon: <Building2 className="w-4 h-4" /> },
+        { id: 'landmarks', label: 'Landmarks', icon: <Landmark className="w-4 h-4" /> },
+        { id: 'battles', label: 'Elite Battles', icon: <Swords className="w-4 h-4" /> },
+        { id: 'figures', label: 'Historical Figures', icon: <Users className="w-4 h-4" /> },
+    ];
 
     return (
         <div className="min-h-screen bg-[#050d1a] text-white font-outfit" dir="ltr">
             {/* ── Header ── */}
-            <div className="sticky top-0 z-50 bg-[#0a192f] border-b border-[#c5a059]/30 px-6 py-4 shadow-xl">
-                <div className="max-w-6xl mx-auto flex flex-col md:flex-row md:items-center gap-4">
+            <div className="sticky top-0 z-50 bg-[#0a192f] border-b border-[#c5a059]/30 shadow-xl">
+                <div className="max-w-6xl mx-auto px-6 py-4 flex flex-col md:flex-row md:items-center gap-4">
                     <div>
-                        <h1 className="text-xl font-black text-white font-cinzel">🗂 Landmark Manager</h1>
+                        <h1 className="text-xl font-black text-white font-cinzel text-gold-royal">👑 Content Manager</h1>
                         <p className="text-xs text-gray-500 mt-0.5">
-                            {loading ? 'Loading...' : `${filtered.length} landmarks · ${withImage}/${landmarks.length} with images`}
+                            {loading ? 'Loading...' : `${filtered.length} entries · ${withImage}/${filtered.length} with images`}
                         </p>
                     </div>
                     <div className="flex-1 flex flex-col md:flex-row gap-3">
@@ -383,46 +457,42 @@ export default function LandmarkManagerPage() {
                             <input
                                 value={search}
                                 onChange={e => setSearch(e.target.value)}
-                                placeholder="Search landmarks..."
+                                placeholder="Search by name or id..."
                                 className="w-full pl-9 pr-4 py-2 text-sm rounded-lg bg-[#112240] border border-[#c5a059]/20 text-white placeholder-gray-600 focus:ring-1 focus:ring-gold-royal outline-none"
                             />
                         </div>
-                        <select
-                            value={cityFilter}
-                            onChange={e => setCityFilter(e.target.value)}
-                            className="text-sm px-3 py-2 rounded-lg bg-[#112240] border border-[#c5a059]/20 text-white focus:ring-1 focus:ring-gold-royal outline-none"
-                        >
-                            <option value="">All Cities</option>
-                            {cities.map(c => <option key={c} value={c}>{c}</option>)}
-                        </select>
                     </div>
+                </div>
+
+                {/* ── Tabs ── */}
+                <div className="max-w-6xl mx-auto px-6 flex gap-2 overflow-x-auto no-scrollbar pb-[-1px]">
+                    {tabs.map(tab => (
+                        <button
+                            key={tab.id}
+                            onClick={() => setActiveTab(tab.id)}
+                            className={`flex items-center gap-2 px-5 py-3 text-sm font-bold border-b-2 transition-colors whitespace-nowrap ${activeTab === tab.id
+                                    ? 'border-gold-royal text-gold-royal bg-gold-royal/5'
+                                    : 'border-transparent text-gray-500 hover:text-white hover:bg-white/5'
+                                }`}
+                        >
+                            {tab.icon} {tab.label}
+                        </button>
+                    ))}
                 </div>
             </div>
 
-            {/* ── Stats Bar ── */}
-            <div className="max-w-6xl mx-auto px-6 py-4">
-                <div className="grid grid-cols-3 gap-4 mb-6">
-                    {[
-                        { label: 'Total Landmarks', value: landmarks.length, color: 'text-white' },
-                        { label: 'With Images', value: withImage, color: 'text-green-400' },
-                        { label: 'Missing Images', value: landmarks.length - withImage, color: 'text-red-400' },
-                    ].map(stat => (
-                        <div key={stat.label} className="bg-[#0a192f] rounded-xl p-4 border border-[#c5a059]/10 text-center">
-                            <div className={`text-2xl font-black ${stat.color}`}>{stat.value}</div>
-                            <div className="text-[10px] text-gray-500 uppercase tracking-widest mt-1">{stat.label}</div>
-                        </div>
-                    ))}
-                </div>
-
-                {/* ── Landmark List ── */}
+            {/* ── Main Area ── */}
+            <div className="max-w-6xl mx-auto px-6 py-8">
                 {loading ? (
                     <div className="flex justify-center py-20"><Loader2 className="w-8 h-8 animate-spin text-gold-royal" /></div>
                 ) : filtered.length === 0 ? (
-                    <div className="text-center py-20 text-gray-600">No landmarks found.</div>
+                    <div className="text-center py-20 text-gray-600 border border-dashed border-gray-700 rounded-xl">
+                        No {activeTab} found matching "{search}".
+                    </div>
                 ) : (
                     <div className="space-y-3">
-                        {filtered.map(lm => (
-                            <LandmarkEditor key={lm.id} landmark={lm} onSaved={handleSaved} />
+                        {filtered.map((entry: EntityEntry) => (
+                            <EntityEditor key={entry.id} entity={entry} category={activeTab} onSaved={handleSaved} />
                         ))}
                     </div>
                 )}
