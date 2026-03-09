@@ -1378,7 +1378,7 @@
         "ar": "معلمة في مكناس بانتظار التوثيق.",
         "en": "Landmark in Meknes awaiting documentation."
       },
-      "imageUrl": "https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?q=80&w=1080&auto=format&fit=crop",
+      "imageUrl": "",
       "city": {
         "ar": "مكناس",
         "en": "Meknes"
@@ -1392,7 +1392,9 @@
         "ar": "عصور قديمة",
         "en": "Ancient Era"
       },
-      "visualSoul": "Mosque"
+      "visualSoul": "Mosque",
+      "videoUrl": null,
+      "seo": {}
     },
     {
       "id": "meknes-habs-qara",
