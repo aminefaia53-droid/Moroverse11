@@ -50,7 +50,7 @@
         "ar": "شالة",
         "en": "Chellah"
       },
-      "imageUrl": "/images/uploads/1773026562619-3528074-(1).jpg",
+      "imageUrl": "",
       "city": {
         "ar": "الرباط",
         "en": "Rabat"
@@ -60,7 +60,9 @@
         "en": "Historical",
         "ar": "تاريخي"
       },
-      "visualSoul": "Monument"
+      "visualSoul": "Monument",
+      "videoUrl": null,
+      "seo": {}
     },
     {
       "id": "rabat-mausoleum-of-mohammed-v",
