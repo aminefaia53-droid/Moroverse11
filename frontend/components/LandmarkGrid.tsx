@@ -62,9 +62,11 @@ const fallbackLandmarks = [
 const rawLandmarks = (generatedContent.landmarks && generatedContent.landmarks.length > 0) ? (generatedContent.landmarks as any[]) : fallbackLandmarks;
 const dynamicLandmarks: Landmark[] = rawLandmarks.map(l => ({
     ...l,
+    isPending: false, // FORCE-UNLOCK: Never display lock icons
     foundation: l.foundation || { en: 'Historical', ar: 'تاريخي' },
-    history: l.history || l.desc || { en: '', ar: '' },
-    visualSoul: l.visualSoul || 'Mosque'
+    history: l.history || l.desc || { en: 'A historic Moroccan landmark.', ar: 'معلمة تاريخية مغربية.' },
+    visualSoul: l.visualSoul || 'Mosque',
+    imageUrl: l.imageUrl || 'https://images.unsplash.com/photo-1549733059-d81615d862e?q=80&w=1080&auto=format&fit=crop'
 })) as Landmark[];
 
 const LandmarkSoulIcon = ({ soul, className }: { soul: Landmark['visualSoul']; className?: string }) => {
@@ -408,44 +410,20 @@ function LandmarkCard({
         >
             <div className="relative h-full w-full rounded-xl border-2 border-[#c5a059]/20 hover:border-[#c5a059]/80 transition-all duration-700 overflow-hidden shadow-2xl glass-card-elite group-hover:shadow-[0_20px_60px_rgba(197,160,89,0.25)] pointer-events-auto">
 
-                {/* Cinematic Background Image */}
-                <div className="absolute inset-0 z-0">
-                    {!landmark.isPending ? (
-                        <div className="relative h-full w-full">
-                            <img
-                                src={landmark.imageUrl || `/images/${landmark.id}.jpg`}
-                                alt={lang === 'en' ? landmark.name.en : landmark.name.ar}
-                                className={`w-full h-full object-cover transition-all duration-1000 transform group-hover:scale-105 opacity-80 group-hover:opacity-100 cinematic-filter`}
-                                style={{
-                                    filter: 'sepia(0.2) contrast(1.1) brightness(0.85) saturate(1.2)'
-                                }}
-                                onError={(e) => {
-                                    e.currentTarget.style.display = 'none';
-                                }}
-                            />
-                            {/* Document Texture Overlay */}
-                            <div className="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/arabesque.png')] pointer-events-none" />
-                        </div>
-                    ) : (
-                        <div className="w-full h-full bg-[#0a0a0a] flex items-center justify-center overflow-hidden">
-                            <div className="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/arabesque.png')] scale-150" />
-                            <div className="absolute inset-0 bg-gradient-to-br from-[#c5a059]/15 via-transparent to-black/80" />
-                            <div className="relative flex flex-col items-center gap-6">
-                                <div className="w-28 h-28 rounded-full border-2 border-dashed border-[#c5a059]/30 flex items-center justify-center animate-spin-slow">
-                                    <div className="absolute inset-0 bg-[#c5a059]/5 rounded-full animate-pulse" />
-                                    <Lock className="w-10 h-10 text-[#c5a059]/40" />
-                                </div>
-                                <div className="text-center space-y-2">
-                                    <div className="text-xs font-black text-[#c5a059] uppercase tracking-[0.5em] opacity-60">Identity Record</div>
-                                    <div className="text-[9px] font-bold text-white/30 uppercase tracking-widest">Sovereign Archive System</div>
-                                </div>
-                            </div>
-                        </div>
-                    )}
-                    {/* Multi-layered Cinematic Gradient */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-90" />
-                    <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-transparent opacity-40" />
-                </div>
+                {/* Bulletproof Background Image via CSS background-image */}
+                <div
+                    className="absolute inset-0 z-[1]"
+                    style={{
+                        backgroundImage: `url('${landmark.imageUrl || 'https://images.unsplash.com/photo-1549733059-d81615d862e?q=80&w=1080&auto=format&fit=crop'}')`,
+                        backgroundSize: 'cover',
+                        backgroundPosition: 'center',
+                        backgroundRepeat: 'no-repeat',
+                        filter: 'sepia(0.2) contrast(1.1) brightness(0.85) saturate(1.2)',
+                    }}
+                />
+                {/* Cinematic gradient overlay */}
+                <div className="absolute inset-0 z-[2] bg-gradient-to-t from-black via-black/40 to-transparent opacity-90" />
+                <div className="absolute inset-0 z-[2] bg-gradient-to-b from-black/60 via-transparent to-transparent opacity-40" />
 
                 {/* Top Document Bar */}
                 <div className="absolute top-0 inset-x-0 z-20 p-4 flex justify-between items-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">

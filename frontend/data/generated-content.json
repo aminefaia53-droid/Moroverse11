@@ -15,7 +15,16 @@
         "ar": "الرباط",
         "en": "Rabat"
       },
-      "isPending": false
+      "isPending": false,
+      "history": {
+        "ar": "",
+        "en": ""
+      },
+      "foundation": {
+        "ar": "عصور قديمة",
+        "en": "Ancient Era"
+      },
+      "visualSoul": "Mosque"
     },
     {
       "id": "rabat-kasbah-of-the-udayas",
@@ -32,7 +41,16 @@
         "ar": "الرباط",
         "en": "Rabat"
       },
-      "isPending": false
+      "isPending": false,
+      "history": {
+        "ar": "معلمة في الرباط بانتظار التوثيق.",
+        "en": "Landmark in Rabat awaiting documentation."
+      },
+      "foundation": {
+        "ar": "عصور قديمة",
+        "en": "Ancient Era"
+      },
+      "visualSoul": "Mosque"
     },
     {
       "id": "rabat-chellah",
@@ -49,7 +67,16 @@
         "ar": "الرباط",
         "en": "Rabat"
       },
-      "isPending": false
+      "isPending": false,
+      "history": {
+        "ar": "معلمة في الرباط بانتظار التوثيق.",
+        "en": "Landmark in Rabat awaiting documentation."
+      },
+      "foundation": {
+        "ar": "عصور قديمة",
+        "en": "Ancient Era"
+      },
+      "visualSoul": "Mosque"
     },
     {
       "id": "rabat-mausoleum-of-mohammed-v",
@@ -66,7 +93,16 @@
         "ar": "الرباط",
         "en": "Rabat"
       },
-      "isPending": false
+      "isPending": false,
+      "history": {
+        "ar": "معلمة في الرباط بانتظار التوثيق.",
+        "en": "Landmark in Rabat awaiting documentation."
+      },
+      "foundation": {
+        "ar": "عصور قديمة",
+        "en": "Ancient Era"
+      },
+      "visualSoul": "Mosque"
     },
     {
       "id": "rabat-botanical-test-garden",
@@ -83,7 +119,16 @@
         "ar": "الرباط",
         "en": "Rabat"
       },
-      "isPending": false
+      "isPending": false,
+      "history": {
+        "ar": "معلمة في الرباط بانتظار التوثيق.",
+        "en": "Landmark in Rabat awaiting documentation."
+      },
+      "foundation": {
+        "ar": "عصور قديمة",
+        "en": "Ancient Era"
+      },
+      "visualSoul": "Mosque"
     },
     {
       "id": "rabat-mohammed-vi-museum",
@@ -100,7 +145,16 @@
         "ar": "الرباط",
         "en": "Rabat"
       },
-      "isPending": false
+      "isPending": false,
+      "history": {
+        "ar": "معلمة في الرباط بانتظار التوثيق.",
+        "en": "Landmark in Rabat awaiting documentation."
+      },
+      "foundation": {
+        "ar": "عصور قديمة",
+        "en": "Ancient Era"
+      },
+      "visualSoul": "Mosque"
     },
     {
       "id": "rabat-touarga-palace",
@@ -117,7 +171,16 @@
         "ar": "الرباط",
         "en": "Rabat"
       },
-      "isPending": false
+      "isPending": false,
+      "history": {
+        "ar": "معلمة في الرباط بانتظار التوثيق.",
+        "en": "Landmark in Rabat awaiting documentation."
+      },
+      "foundation": {
+        "ar": "عصور قديمة",
+        "en": "Ancient Era"
+      },
+      "visualSoul": "Mosque"
     },
     {
       "id": "rabat-rabat-ville-station",
@@ -134,7 +197,16 @@
         "ar": "الرباط",
         "en": "Rabat"
       },
-      "isPending": false
+      "isPending": false,
+      "history": {
+        "ar": "معلمة في الرباط بانتظار التوثيق.",
+        "en": "Landmark in Rabat awaiting documentation."
+      },
+      "foundation": {
+        "ar": "عصور قديمة",
+        "en": "Ancient Era"
+      },
+      "visualSoul": "Mosque"
     },
     {
       "id": "rabat-st-peters-cathedral",
@@ -151,7 +223,16 @@
         "ar": "الرباط",
         "en": "Rabat"
       },
-      "isPending": false
+      "isPending": false,
+      "history": {
+        "ar": "معلمة في الرباط بانتظار التوثيق.",
+        "en": "Landmark in Rabat awaiting documentation."
+      },
+      "foundation": {
+        "ar": "عصور قديمة",
+        "en": "Ancient Era"
+      },
+      "visualSoul": "Mosque"
     },
     {
       "id": "rabat-bab-rouah",
@@ -168,7 +249,16 @@
         "ar": "الرباط",
         "en": "Rabat"
       },
-      "isPending": false
+      "isPending": false,
+      "history": {
+        "ar": "معلمة في الرباط بانتظار التوثيق.",
+        "en": "Landmark in Rabat awaiting documentation."
+      },
+      "foundation": {
+        "ar": "عصور قديمة",
+        "en": "Ancient Era"
+      },
+      "visualSoul": "Mosque"
     },
     {
       "id": "casablanca-hassan-ii-mosque",
@@ -185,7 +275,16 @@
         "ar": "الدار البيضاء",
         "en": "Casablanca"
       },
-      "isPending": false
+      "isPending": false,
+      "history": {
+        "ar": "معلمة في الدار البيضاء بانتظار التوثيق.",
+        "en": "Landmark in Casablanca awaiting documentation."
+      },
+      "foundation": {
+        "ar": "عصور قديمة",
+        "en": "Ancient Era"
+      },
+      "visualSoul": "Mosque"
     },
     {
       "id": "casablanca-habous-quarter",
@@ -202,7 +301,16 @@
         "ar": "الدار البيضاء",
         "en": "Casablanca"
       },
-      "isPending": false
+      "isPending": false,
+      "history": {
+        "ar": "معلمة في الدار البيضاء بانتظار التوثيق.",
+        "en": "Landmark in Casablanca awaiting documentation."
+      },
+      "foundation": {
+        "ar": "عصور قديمة",
+        "en": "Ancient Era"
+      },
+      "visualSoul": "Mosque"
     },
     {
       "id": "casablanca-mahkama-du-pacha",
@@ -219,7 +327,16 @@
         "ar": "الدار البيضاء",
         "en": "Casablanca"
       },
-      "isPending": false
+      "isPending": false,
+      "history": {
+        "ar": "معلمة في الدار البيضاء بانتظار التوثيق.",
+        "en": "Landmark in Casablanca awaiting documentation."
+      },
+      "foundation": {
+        "ar": "عصور قديمة",
+        "en": "Ancient Era"
+      },
+      "visualSoul": "Mosque"
     },
     {
       "id": "casablanca-el-hank-lighthouse",
@@ -236,7 +353,16 @@
         "ar": "الدار البيضاء",
         "en": "Casablanca"
       },
-      "isPending": false
+      "isPending": false,
+      "history": {
+        "ar": "معلمة في الدار البيضاء بانتظار التوثيق.",
+        "en": "Landmark in Casablanca awaiting documentation."
+      },
+      "foundation": {
+        "ar": "عصور قديمة",
+        "en": "Ancient Era"
+      },
+      "visualSoul": "Mosque"
     },
     {
       "id": "casablanca-mohammed-v-square",
@@ -253,7 +379,16 @@
         "ar": "الدار البيضاء",
         "en": "Casablanca"
       },
-      "isPending": false
+      "isPending": false,
+      "history": {
+        "ar": "معلمة في الدار البيضاء بانتظار التوثيق.",
+        "en": "Landmark in Casablanca awaiting documentation."
+      },
+      "foundation": {
+        "ar": "عصور قديمة",
+        "en": "Ancient Era"
+      },
+      "visualSoul": "Mosque"
     },
     {
       "id": "casablanca-arab-league-park",
@@ -270,7 +405,16 @@
         "ar": "الدار البيضاء",
         "en": "Casablanca"
       },
-      "isPending": false
+      "isPending": false,
+      "history": {
+        "ar": "معلمة في الدار البيضاء بانتظار التوثيق.",
+        "en": "Landmark in Casablanca awaiting documentation."
+      },
+      "foundation": {
+        "ar": "عصور قديمة",
+        "en": "Ancient Era"
+      },
+      "visualSoul": "Mosque"
     },
     {
       "id": "casablanca-morocco-mall",
@@ -287,7 +431,16 @@
         "ar": "الدار البيضاء",
         "en": "Casablanca"
       },
-      "isPending": false
+      "isPending": false,
+      "history": {
+        "ar": "معلمة في الدار البيضاء بانتظار التوثيق.",
+        "en": "Landmark in Casablanca awaiting documentation."
+      },
+      "foundation": {
+        "ar": "عصور قديمة",
+        "en": "Ancient Era"
+      },
+      "visualSoul": "Mosque"
     },
     {
       "id": "casablanca-ould-el-hamra-mosque",
@@ -304,7 +457,16 @@
         "ar": "الدار البيضاء",
         "en": "Casablanca"
       },
-      "isPending": false
+      "isPending": false,
+      "history": {
+        "ar": "معلمة في الدار البيضاء بانتظار التوثيق.",
+        "en": "Landmark in Casablanca awaiting documentation."
+      },
+      "foundation": {
+        "ar": "عصور قديمة",
+        "en": "Ancient Era"
+      },
+      "visualSoul": "Mosque"
     },
     {
       "id": "casablanca-sacred-heart-cathedral",
@@ -321,7 +483,16 @@
         "ar": "الدار البيضاء",
         "en": "Casablanca"
       },
-      "isPending": false
+      "isPending": false,
+      "history": {
+        "ar": "معلمة في الدار البيضاء بانتظار التوثيق.",
+        "en": "Landmark in Casablanca awaiting documentation."
+      },
+      "foundation": {
+        "ar": "عصور قديمة",
+        "en": "Ancient Era"
+      },
+      "visualSoul": "Mosque"
     },
     {
       "id": "casablanca-anfa-historic-district",
@@ -338,7 +509,16 @@
         "ar": "الدار البيضاء",
         "en": "Casablanca"
       },
-      "isPending": false
+      "isPending": false,
+      "history": {
+        "ar": "معلمة في الدار البيضاء بانتظار التوثيق.",
+        "en": "Landmark in Casablanca awaiting documentation."
+      },
+      "foundation": {
+        "ar": "عصور قديمة",
+        "en": "Ancient Era"
+      },
+      "visualSoul": "Mosque"
     },
     {
       "id": "casablanca-merchich-region",
@@ -355,7 +535,16 @@
         "ar": "الدار البيضاء",
         "en": "Casablanca"
       },
-      "isPending": false
+      "isPending": false,
+      "history": {
+        "ar": "معلمة في الدار البيضاء بانتظار التوثيق.",
+        "en": "Landmark in Casablanca awaiting documentation."
+      },
+      "foundation": {
+        "ar": "عصور قديمة",
+        "en": "Ancient Era"
+      },
+      "visualSoul": "Mosque"
     },
     {
       "id": "marrakech-jemaa-el-fnaa",
@@ -372,7 +561,16 @@
         "ar": "مراكش",
         "en": "Marrakech"
       },
-      "isPending": false
+      "isPending": false,
+      "history": {
+        "ar": "معلمة في مراكش بانتظار التوثيق.",
+        "en": "Landmark in Marrakech awaiting documentation."
+      },
+      "foundation": {
+        "ar": "عصور قديمة",
+        "en": "Ancient Era"
+      },
+      "visualSoul": "Mosque"
     },
     {
       "id": "marrakech-koutoubia-mosque",
@@ -389,7 +587,16 @@
         "ar": "مراكش",
         "en": "Marrakech"
       },
-      "isPending": false
+      "isPending": false,
+      "history": {
+        "ar": "معلمة في مراكش بانتظار التوثيق.",
+        "en": "Landmark in Marrakech awaiting documentation."
+      },
+      "foundation": {
+        "ar": "عصور قديمة",
+        "en": "Ancient Era"
+      },
+      "visualSoul": "Mosque"
     },
     {
       "id": "marrakech-bahia-palace",
@@ -406,7 +613,16 @@
         "ar": "مراكش",
         "en": "Marrakech"
       },
-      "isPending": false
+      "isPending": false,
+      "history": {
+        "ar": "معلمة في مراكش بانتظار التوثيق.",
+        "en": "Landmark in Marrakech awaiting documentation."
+      },
+      "foundation": {
+        "ar": "عصور قديمة",
+        "en": "Ancient Era"
+      },
+      "visualSoul": "Mosque"
     },
     {
       "id": "marrakech-el-badi-palace",
@@ -423,7 +639,16 @@
         "ar": "مراكش",
         "en": "Marrakech"
       },
-      "isPending": false
+      "isPending": false,
+      "history": {
+        "ar": "معلمة في مراكش بانتظار التوثيق.",
+        "en": "Landmark in Marrakech awaiting documentation."
+      },
+      "foundation": {
+        "ar": "عصور قديمة",
+        "en": "Ancient Era"
+      },
+      "visualSoul": "Mosque"
     },
     {
       "id": "marrakech-menara-gardens",
@@ -440,7 +665,16 @@
         "ar": "مراكش",
         "en": "Marrakech"
       },
-      "isPending": false
+      "isPending": false,
+      "history": {
+        "ar": "معلمة في مراكش بانتظار التوثيق.",
+        "en": "Landmark in Marrakech awaiting documentation."
+      },
+      "foundation": {
+        "ar": "عصور قديمة",
+        "en": "Ancient Era"
+      },
+      "visualSoul": "Mosque"
     },
     {
       "id": "marrakech-majorelle-garden",
@@ -457,7 +691,16 @@
         "ar": "مراكش",
         "en": "Marrakech"
       },
-      "isPending": false
+      "isPending": false,
+      "history": {
+        "ar": "معلمة في مراكش بانتظار التوثيق.",
+        "en": "Landmark in Marrakech awaiting documentation."
+      },
+      "foundation": {
+        "ar": "عصور قديمة",
+        "en": "Ancient Era"
+      },
+      "visualSoul": "Mosque"
     },
     {
       "id": "marrakech-saadian-tombs",
@@ -474,7 +717,16 @@
         "ar": "مراكش",
         "en": "Marrakech"
       },
-      "isPending": false
+      "isPending": false,
+      "history": {
+        "ar": "معلمة في مراكش بانتظار التوثيق.",
+        "en": "Landmark in Marrakech awaiting documentation."
+      },
+      "foundation": {
+        "ar": "عصور قديمة",
+        "en": "Ancient Era"
+      },
+      "visualSoul": "Mosque"
     },
     {
       "id": "marrakech-ben-youssef-madrasa",
@@ -491,7 +743,16 @@
         "ar": "مراكش",
         "en": "Marrakech"
       },
-      "isPending": false
+      "isPending": false,
+      "history": {
+        "ar": "معلمة في مراكش بانتظار التوثيق.",
+        "en": "Landmark in Marrakech awaiting documentation."
+      },
+      "foundation": {
+        "ar": "عصور قديمة",
+        "en": "Ancient Era"
+      },
+      "visualSoul": "Mosque"
     },
     {
       "id": "marrakech-marrakech-museum",
@@ -508,7 +769,16 @@
         "ar": "مراكش",
         "en": "Marrakech"
       },
-      "isPending": false
+      "isPending": false,
+      "history": {
+        "ar": "معلمة في مراكش بانتظار التوثيق.",
+        "en": "Landmark in Marrakech awaiting documentation."
+      },
+      "foundation": {
+        "ar": "عصور قديمة",
+        "en": "Ancient Era"
+      },
+      "visualSoul": "Mosque"
     },
     {
       "id": "marrakech-bab-doukkala",
@@ -525,7 +795,16 @@
         "ar": "مراكش",
         "en": "Marrakech"
       },
-      "isPending": false
+      "isPending": false,
+      "history": {
+        "ar": "معلمة في مراكش بانتظار التوثيق.",
+        "en": "Landmark in Marrakech awaiting documentation."
+      },
+      "foundation": {
+        "ar": "عصور قديمة",
+        "en": "Ancient Era"
+      },
+      "visualSoul": "Mosque"
     },
     {
       "id": "marrakech-palmeraie",
@@ -542,7 +821,16 @@
         "ar": "مراكش",
         "en": "Marrakech"
       },
-      "isPending": false
+      "isPending": false,
+      "history": {
+        "ar": "معلمة في مراكش بانتظار التوثيق.",
+        "en": "Landmark in Marrakech awaiting documentation."
+      },
+      "foundation": {
+        "ar": "عصور قديمة",
+        "en": "Ancient Era"
+      },
+      "visualSoul": "Mosque"
     },
     {
       "id": "fes-al-qarawiyyin-mosque",
@@ -559,7 +847,16 @@
         "ar": "فاس",
         "en": "Fes"
       },
-      "isPending": false
+      "isPending": false,
+      "history": {
+        "ar": "معلمة في فاس بانتظار التوثيق.",
+        "en": "Landmark in Fes awaiting documentation."
+      },
+      "foundation": {
+        "ar": "عصور قديمة",
+        "en": "Ancient Era"
+      },
+      "visualSoul": "Mosque"
     },
     {
       "id": "fes-fondouk-nejjarine",
@@ -576,7 +873,16 @@
         "ar": "فاس",
         "en": "Fes"
       },
-      "isPending": false
+      "isPending": false,
+      "history": {
+        "ar": "معلمة في فاس بانتظار التوثيق.",
+        "en": "Landmark in Fes awaiting documentation."
+      },
+      "foundation": {
+        "ar": "عصور قديمة",
+        "en": "Ancient Era"
+      },
+      "visualSoul": "Mosque"
     },
     {
       "id": "fes-al-attarine-madrasa",
@@ -593,7 +899,16 @@
         "ar": "فاس",
         "en": "Fes"
       },
-      "isPending": false
+      "isPending": false,
+      "history": {
+        "ar": "معلمة في فاس بانتظار التوثيق.",
+        "en": "Landmark in Fes awaiting documentation."
+      },
+      "foundation": {
+        "ar": "عصور قديمة",
+        "en": "Ancient Era"
+      },
+      "visualSoul": "Mosque"
     },
     {
       "id": "fes-bou-inania-madrasa",
@@ -610,7 +925,16 @@
         "ar": "فاس",
         "en": "Fes"
       },
-      "isPending": false
+      "isPending": false,
+      "history": {
+        "ar": "معلمة في فاس بانتظار التوثيق.",
+        "en": "Landmark in Fes awaiting documentation."
+      },
+      "foundation": {
+        "ar": "عصور قديمة",
+        "en": "Ancient Era"
+      },
+      "visualSoul": "Mosque"
     },
     {
       "id": "fes-bab-bou-jeloud",
@@ -627,7 +951,16 @@
         "ar": "فاس",
         "en": "Fes"
       },
-      "isPending": false
+      "isPending": false,
+      "history": {
+        "ar": "معلمة في فاس بانتظار التوثيق.",
+        "en": "Landmark in Fes awaiting documentation."
+      },
+      "foundation": {
+        "ar": "عصور قديمة",
+        "en": "Ancient Era"
+      },
+      "visualSoul": "Mosque"
     },
     {
       "id": "fes-chouara-tannery",
@@ -644,7 +977,16 @@
         "ar": "فاس",
         "en": "Fes"
       },
-      "isPending": false
+      "isPending": false,
+      "history": {
+        "ar": "معلمة في فاس بانتظار التوثيق.",
+        "en": "Landmark in Fes awaiting documentation."
+      },
+      "foundation": {
+        "ar": "عصور قديمة",
+        "en": "Ancient Era"
+      },
+      "visualSoul": "Mosque"
     },
     {
       "id": "fes-zaouia-moulay-idriss-ii",
@@ -661,7 +1003,16 @@
         "ar": "فاس",
         "en": "Fes"
       },
-      "isPending": false
+      "isPending": false,
+      "history": {
+        "ar": "معلمة في فاس بانتظار التوثيق.",
+        "en": "Landmark in Fes awaiting documentation."
+      },
+      "foundation": {
+        "ar": "عصور قديمة",
+        "en": "Ancient Era"
+      },
+      "visualSoul": "Mosque"
     },
     {
       "id": "fes-dar-batha-museum",
@@ -678,7 +1029,16 @@
         "ar": "فاس",
         "en": "Fes"
       },
-      "isPending": false
+      "isPending": false,
+      "history": {
+        "ar": "معلمة في فاس بانتظار التوثيق.",
+        "en": "Landmark in Fes awaiting documentation."
+      },
+      "foundation": {
+        "ar": "عصور قديمة",
+        "en": "Ancient Era"
+      },
+      "visualSoul": "Mosque"
     },
     {
       "id": "fes-fes-el-bali-walls",
@@ -695,7 +1055,16 @@
         "ar": "فاس",
         "en": "Fes"
       },
-      "isPending": false
+      "isPending": false,
+      "history": {
+        "ar": "معلمة في فاس بانتظار التوثيق.",
+        "en": "Landmark in Fes awaiting documentation."
+      },
+      "foundation": {
+        "ar": "عصور قديمة",
+        "en": "Ancient Era"
+      },
+      "visualSoul": "Mosque"
     },
     {
       "id": "fes-fes-mellah",
@@ -712,7 +1081,16 @@
         "ar": "فاس",
         "en": "Fes"
       },
-      "isPending": false
+      "isPending": false,
+      "history": {
+        "ar": "معلمة في فاس بانتظار التوثيق.",
+        "en": "Landmark in Fes awaiting documentation."
+      },
+      "foundation": {
+        "ar": "عصور قديمة",
+        "en": "Ancient Era"
+      },
+      "visualSoul": "Mosque"
     },
     {
       "id": "tangier-hercules-caves",
@@ -729,7 +1107,16 @@
         "ar": "طنجة",
         "en": "Tangier"
       },
-      "isPending": false
+      "isPending": false,
+      "history": {
+        "ar": "معلمة في طنجة بانتظار التوثيق.",
+        "en": "Landmark in Tangier awaiting documentation."
+      },
+      "foundation": {
+        "ar": "عصور قديمة",
+        "en": "Ancient Era"
+      },
+      "visualSoul": "Mosque"
     },
     {
       "id": "tangier-kasbah-of-tangier",
@@ -746,7 +1133,16 @@
         "ar": "طنجة",
         "en": "Tangier"
       },
-      "isPending": false
+      "isPending": false,
+      "history": {
+        "ar": "معلمة في طنجة بانتظار التوثيق.",
+        "en": "Landmark in Tangier awaiting documentation."
+      },
+      "foundation": {
+        "ar": "عصور قديمة",
+        "en": "Ancient Era"
+      },
+      "visualSoul": "Mosque"
     },
     {
       "id": "tangier-cape-spartel",
@@ -763,7 +1159,16 @@
         "ar": "طنجة",
         "en": "Tangier"
       },
-      "isPending": false
+      "isPending": false,
+      "history": {
+        "ar": "معلمة في طنجة بانتظار التوثيق.",
+        "en": "Landmark in Tangier awaiting documentation."
+      },
+      "foundation": {
+        "ar": "عصور قديمة",
+        "en": "Ancient Era"
+      },
+      "visualSoul": "Mosque"
     },
     {
       "id": "tangier-kasbah-museum",
@@ -780,7 +1185,16 @@
         "ar": "طنجة",
         "en": "Tangier"
       },
-      "isPending": false
+      "isPending": false,
+      "history": {
+        "ar": "معلمة في طنجة بانتظار التوثيق.",
+        "en": "Landmark in Tangier awaiting documentation."
+      },
+      "foundation": {
+        "ar": "عصور قديمة",
+        "en": "Ancient Era"
+      },
+      "visualSoul": "Mosque"
     },
     {
       "id": "tangier-cafe-hafa",
@@ -797,7 +1211,16 @@
         "ar": "طنجة",
         "en": "Tangier"
       },
-      "isPending": false
+      "isPending": false,
+      "history": {
+        "ar": "معلمة في طنجة بانتظار التوثيق.",
+        "en": "Landmark in Tangier awaiting documentation."
+      },
+      "foundation": {
+        "ar": "عصور قديمة",
+        "en": "Ancient Era"
+      },
+      "visualSoul": "Mosque"
     },
     {
       "id": "tangier-villa-harris",
@@ -814,7 +1237,16 @@
         "ar": "طنجة",
         "en": "Tangier"
       },
-      "isPending": false
+      "isPending": false,
+      "history": {
+        "ar": "معلمة في طنجة بانتظار التوثيق.",
+        "en": "Landmark in Tangier awaiting documentation."
+      },
+      "foundation": {
+        "ar": "عصور قديمة",
+        "en": "Ancient Era"
+      },
+      "visualSoul": "Mosque"
     },
     {
       "id": "tangier-grand-socco",
@@ -831,7 +1263,16 @@
         "ar": "طنجة",
         "en": "Tangier"
       },
-      "isPending": false
+      "isPending": false,
+      "history": {
+        "ar": "معلمة في طنجة بانتظار التوثيق.",
+        "en": "Landmark in Tangier awaiting documentation."
+      },
+      "foundation": {
+        "ar": "عصور قديمة",
+        "en": "Ancient Era"
+      },
+      "visualSoul": "Mosque"
     },
     {
       "id": "tangier-mendoubia-gardens",
@@ -848,7 +1289,16 @@
         "ar": "طنجة",
         "en": "Tangier"
       },
-      "isPending": false
+      "isPending": false,
+      "history": {
+        "ar": "معلمة في طنجة بانتظار التوثيق.",
+        "en": "Landmark in Tangier awaiting documentation."
+      },
+      "foundation": {
+        "ar": "عصور قديمة",
+        "en": "Ancient Era"
+      },
+      "visualSoul": "Mosque"
     },
     {
       "id": "tangier-tangier-medina",
@@ -865,7 +1315,16 @@
         "ar": "طنجة",
         "en": "Tangier"
       },
-      "isPending": false
+      "isPending": false,
+      "history": {
+        "ar": "معلمة في طنجة بانتظار التوثيق.",
+        "en": "Landmark in Tangier awaiting documentation."
+      },
+      "foundation": {
+        "ar": "عصور قديمة",
+        "en": "Ancient Era"
+      },
+      "visualSoul": "Mosque"
     },
     {
       "id": "tangier-el-minzah-hotel",
@@ -882,7 +1341,16 @@
         "ar": "طنجة",
         "en": "Tangier"
       },
-      "isPending": false
+      "isPending": false,
+      "history": {
+        "ar": "معلمة في طنجة بانتظار التوثيق.",
+        "en": "Landmark in Tangier awaiting documentation."
+      },
+      "foundation": {
+        "ar": "عصور قديمة",
+        "en": "Ancient Era"
+      },
+      "visualSoul": "Mosque"
     },
     {
       "id": "meknes-bab-mansour",
@@ -899,7 +1367,16 @@
         "ar": "مكناس",
         "en": "Meknes"
       },
-      "isPending": false
+      "isPending": false,
+      "history": {
+        "ar": "معلمة في مكناس بانتظار التوثيق.",
+        "en": "Landmark in Meknes awaiting documentation."
+      },
+      "foundation": {
+        "ar": "عصور قديمة",
+        "en": "Ancient Era"
+      },
+      "visualSoul": "Mosque"
     },
     {
       "id": "meknes-mausoleum-of-moulay-ismail",
@@ -916,7 +1393,16 @@
         "ar": "مكناس",
         "en": "Meknes"
       },
-      "isPending": false
+      "isPending": false,
+      "history": {
+        "ar": "معلمة في مكناس بانتظار التوثيق.",
+        "en": "Landmark in Meknes awaiting documentation."
+      },
+      "foundation": {
+        "ar": "عصور قديمة",
+        "en": "Ancient Era"
+      },
+      "visualSoul": "Mosque"
     },
     {
       "id": "meknes-habs-qara",
@@ -933,7 +1419,16 @@
         "ar": "مكناس",
         "en": "Meknes"
       },
-      "isPending": false
+      "isPending": false,
+      "history": {
+        "ar": "معلمة في مكناس بانتظار التوثيق.",
+        "en": "Landmark in Meknes awaiting documentation."
+      },
+      "foundation": {
+        "ar": "عصور قديمة",
+        "en": "Ancient Era"
+      },
+      "visualSoul": "Mosque"
     },
     {
       "id": "meknes-place-el-hedim",
@@ -950,7 +1445,16 @@
         "ar": "مكناس",
         "en": "Meknes"
       },
-      "isPending": false
+      "isPending": false,
+      "history": {
+        "ar": "معلمة في مكناس بانتظار التوثيق.",
+        "en": "Landmark in Meknes awaiting documentation."
+      },
+      "foundation": {
+        "ar": "عصور قديمة",
+        "en": "Ancient Era"
+      },
+      "visualSoul": "Mosque"
     },
     {
       "id": "meknes-bou-inania-madrasa-meknes",
@@ -967,7 +1471,16 @@
         "ar": "مكناس",
         "en": "Meknes"
       },
-      "isPending": false
+      "isPending": false,
+      "history": {
+        "ar": "معلمة في مكناس بانتظار التوثيق.",
+        "en": "Landmark in Meknes awaiting documentation."
+      },
+      "foundation": {
+        "ar": "عصور قديمة",
+        "en": "Ancient Era"
+      },
+      "visualSoul": "Mosque"
     },
     {
       "id": "meknes-heri-es-souani",
@@ -984,7 +1497,16 @@
         "ar": "مكناس",
         "en": "Meknes"
       },
-      "isPending": false
+      "isPending": false,
+      "history": {
+        "ar": "معلمة في مكناس بانتظار التوثيق.",
+        "en": "Landmark in Meknes awaiting documentation."
+      },
+      "foundation": {
+        "ar": "عصور قديمة",
+        "en": "Ancient Era"
+      },
+      "visualSoul": "Mosque"
     },
     {
       "id": "meknes-sahrij-swani",
@@ -1001,7 +1523,16 @@
         "ar": "مكناس",
         "en": "Meknes"
       },
-      "isPending": false
+      "isPending": false,
+      "history": {
+        "ar": "معلمة في مكناس بانتظار التوثيق.",
+        "en": "Landmark in Meknes awaiting documentation."
+      },
+      "foundation": {
+        "ar": "عصور قديمة",
+        "en": "Ancient Era"
+      },
+      "visualSoul": "Mosque"
     },
     {
       "id": "meknes-el-mansour-palace",
@@ -1018,7 +1549,16 @@
         "ar": "مكناس",
         "en": "Meknes"
       },
-      "isPending": false
+      "isPending": false,
+      "history": {
+        "ar": "معلمة في مكناس بانتظار التوثيق.",
+        "en": "Landmark in Meknes awaiting documentation."
+      },
+      "foundation": {
+        "ar": "عصور قديمة",
+        "en": "Ancient Era"
+      },
+      "visualSoul": "Mosque"
     },
     {
       "id": "meknes-volubilis",
@@ -1035,7 +1575,16 @@
         "ar": "مكناس",
         "en": "Meknes"
       },
-      "isPending": false
+      "isPending": false,
+      "history": {
+        "ar": "معلمة في مكناس بانتظار التوثيق.",
+        "en": "Landmark in Meknes awaiting documentation."
+      },
+      "foundation": {
+        "ar": "عصور قديمة",
+        "en": "Ancient Era"
+      },
+      "visualSoul": "Mosque"
     },
     {
       "id": "meknes-moulay-idriss-zerhoun",
@@ -1052,7 +1601,16 @@
         "ar": "مكناس",
         "en": "Meknes"
       },
-      "isPending": false
+      "isPending": false,
+      "history": {
+        "ar": "معلمة في مكناس بانتظار التوثيق.",
+        "en": "Landmark in Meknes awaiting documentation."
+      },
+      "foundation": {
+        "ar": "عصور قديمة",
+        "en": "Ancient Era"
+      },
+      "visualSoul": "Mosque"
     },
     {
       "id": "agadir-agadir-oufella",
@@ -1069,7 +1627,16 @@
         "ar": "أكادير",
         "en": "Agadir"
       },
-      "isPending": false
+      "isPending": false,
+      "history": {
+        "ar": "معلمة في أكادير بانتظار التوثيق.",
+        "en": "Landmark in Agadir awaiting documentation."
+      },
+      "foundation": {
+        "ar": "عصور قديمة",
+        "en": "Ancient Era"
+      },
+      "visualSoul": "Mosque"
     },
     {
       "id": "agadir-souk-el-had",
@@ -1086,7 +1653,16 @@
         "ar": "أكادير",
         "en": "Agadir"
       },
-      "isPending": false
+      "isPending": false,
+      "history": {
+        "ar": "معلمة في أكادير بانتظار التوثيق.",
+        "en": "Landmark in Agadir awaiting documentation."
+      },
+      "foundation": {
+        "ar": "عصور قديمة",
+        "en": "Ancient Era"
+      },
+      "visualSoul": "Mosque"
     },
     {
       "id": "agadir-crocoparc",
@@ -1103,7 +1679,16 @@
         "ar": "أكادير",
         "en": "Agadir"
       },
-      "isPending": false
+      "isPending": false,
+      "history": {
+        "ar": "معلمة في أكادير بانتظار التوثيق.",
+        "en": "Landmark in Agadir awaiting documentation."
+      },
+      "foundation": {
+        "ar": "عصور قديمة",
+        "en": "Ancient Era"
+      },
+      "visualSoul": "Mosque"
     },
     {
       "id": "agadir-vallee-des-oiseaux",
@@ -1120,7 +1705,16 @@
         "ar": "أكادير",
         "en": "Agadir"
       },
-      "isPending": false
+      "isPending": false,
+      "history": {
+        "ar": "معلمة في أكادير بانتظار التوثيق.",
+        "en": "Landmark in Agadir awaiting documentation."
+      },
+      "foundation": {
+        "ar": "عصور قديمة",
+        "en": "Ancient Era"
+      },
+      "visualSoul": "Mosque"
     },
     {
       "id": "agadir-agadir-marina",
@@ -1137,7 +1731,16 @@
         "ar": "أكادير",
         "en": "Agadir"
       },
-      "isPending": false
+      "isPending": false,
+      "history": {
+        "ar": "معلمة في أكادير بانتظار التوثيق.",
+        "en": "Landmark in Agadir awaiting documentation."
+      },
+      "foundation": {
+        "ar": "عصور قديمة",
+        "en": "Ancient Era"
+      },
+      "visualSoul": "Mosque"
     },
     {
       "id": "agadir-place-de-l-espoir",
@@ -1154,7 +1757,16 @@
         "ar": "أكادير",
         "en": "Agadir"
       },
-      "isPending": false
+      "isPending": false,
+      "history": {
+        "ar": "معلمة في أكادير بانتظار التوثيق.",
+        "en": "Landmark in Agadir awaiting documentation."
+      },
+      "foundation": {
+        "ar": "عصور قديمة",
+        "en": "Ancient Era"
+      },
+      "visualSoul": "Mosque"
     },
     {
       "id": "agadir-amazigh-museum",
@@ -1171,7 +1783,16 @@
         "ar": "أكادير",
         "en": "Agadir"
       },
-      "isPending": false
+      "isPending": false,
+      "history": {
+        "ar": "معلمة في أكادير بانتظار التوثيق.",
+        "en": "Landmark in Agadir awaiting documentation."
+      },
+      "foundation": {
+        "ar": "عصور قديمة",
+        "en": "Ancient Era"
+      },
+      "visualSoul": "Mosque"
     },
     {
       "id": "agadir-agadir-bay",
@@ -1188,7 +1809,16 @@
         "ar": "أكادير",
         "en": "Agadir"
       },
-      "isPending": false
+      "isPending": false,
+      "history": {
+        "ar": "معلمة في أكادير بانتظار التوثيق.",
+        "en": "Landmark in Agadir awaiting documentation."
+      },
+      "foundation": {
+        "ar": "عصور قديمة",
+        "en": "Ancient Era"
+      },
+      "visualSoul": "Mosque"
     },
     {
       "id": "chefchaouen-outa-el-hammam-square",
@@ -1205,7 +1835,16 @@
         "ar": "شفشاون",
         "en": "Chefchaouen"
       },
-      "isPending": false
+      "isPending": false,
+      "history": {
+        "ar": "معلمة في شفشاون بانتظار التوثيق.",
+        "en": "Landmark in Chefchaouen awaiting documentation."
+      },
+      "foundation": {
+        "ar": "عصور قديمة",
+        "en": "Ancient Era"
+      },
+      "visualSoul": "Mosque"
     },
     {
       "id": "chefchaouen-kasbah-of-chefchaouen",
@@ -1222,7 +1861,16 @@
         "ar": "شفشاون",
         "en": "Chefchaouen"
       },
-      "isPending": false
+      "isPending": false,
+      "history": {
+        "ar": "معلمة في شفشاون بانتظار التوثيق.",
+        "en": "Landmark in Chefchaouen awaiting documentation."
+      },
+      "foundation": {
+        "ar": "عصور قديمة",
+        "en": "Ancient Era"
+      },
+      "visualSoul": "Mosque"
     },
     {
       "id": "chefchaouen-ras-el-maa",
@@ -1239,7 +1887,16 @@
         "ar": "شفشاون",
         "en": "Chefchaouen"
       },
-      "isPending": false
+      "isPending": false,
+      "history": {
+        "ar": "معلمة في شفشاون بانتظار التوثيق.",
+        "en": "Landmark in Chefchaouen awaiting documentation."
+      },
+      "foundation": {
+        "ar": "عصور قديمة",
+        "en": "Ancient Era"
+      },
+      "visualSoul": "Mosque"
     },
     {
       "id": "chefchaouen-great-mosque",
@@ -1256,7 +1913,16 @@
         "ar": "شفشاون",
         "en": "Chefchaouen"
       },
-      "isPending": false
+      "isPending": false,
+      "history": {
+        "ar": "معلمة في شفشاون بانتظار التوثيق.",
+        "en": "Landmark in Chefchaouen awaiting documentation."
+      },
+      "foundation": {
+        "ar": "عصور قديمة",
+        "en": "Ancient Era"
+      },
+      "visualSoul": "Mosque"
     },
     {
       "id": "chefchaouen-blue-streets",
@@ -1273,7 +1939,16 @@
         "ar": "شفشاون",
         "en": "Chefchaouen"
       },
-      "isPending": false
+      "isPending": false,
+      "history": {
+        "ar": "معلمة في شفشاون بانتظار التوثيق.",
+        "en": "Landmark in Chefchaouen awaiting documentation."
+      },
+      "foundation": {
+        "ar": "عصور قديمة",
+        "en": "Ancient Era"
+      },
+      "visualSoul": "Mosque"
     },
     {
       "id": "chefchaouen-souika-district",
@@ -1290,7 +1965,16 @@
         "ar": "شفشاون",
         "en": "Chefchaouen"
       },
-      "isPending": false
+      "isPending": false,
+      "history": {
+        "ar": "معلمة في شفشاون بانتظار التوثيق.",
+        "en": "Landmark in Chefchaouen awaiting documentation."
+      },
+      "foundation": {
+        "ar": "عصور قديمة",
+        "en": "Ancient Era"
+      },
+      "visualSoul": "Mosque"
     },
     {
       "id": "chefchaouen-rif-andalous",
@@ -1307,7 +1991,16 @@
         "ar": "شفشاون",
         "en": "Chefchaouen"
       },
-      "isPending": false
+      "isPending": false,
+      "history": {
+        "ar": "معلمة في شفشاون بانتظار التوثيق.",
+        "en": "Landmark in Chefchaouen awaiting documentation."
+      },
+      "foundation": {
+        "ar": "عصور قديمة",
+        "en": "Ancient Era"
+      },
+      "visualSoul": "Mosque"
     },
     {
       "id": "tetouan-tetouan-medina",
@@ -1324,7 +2017,16 @@
         "ar": "تطوان",
         "en": "Tetouan"
       },
-      "isPending": false
+      "isPending": false,
+      "history": {
+        "ar": "معلمة في تطوان بانتظار التوثيق.",
+        "en": "Landmark in Tetouan awaiting documentation."
+      },
+      "foundation": {
+        "ar": "عصور قديمة",
+        "en": "Ancient Era"
+      },
+      "visualSoul": "Mosque"
     },
     {
       "id": "tetouan-feddan-park",
@@ -1341,7 +2043,16 @@
         "ar": "تطوان",
         "en": "Tetouan"
       },
-      "isPending": false
+      "isPending": false,
+      "history": {
+        "ar": "معلمة في تطوان بانتظار التوثيق.",
+        "en": "Landmark in Tetouan awaiting documentation."
+      },
+      "foundation": {
+        "ar": "عصور قديمة",
+        "en": "Ancient Era"
+      },
+      "visualSoul": "Mosque"
     },
     {
       "id": "tetouan-school-of-arts-and-crafts",
@@ -1358,7 +2069,16 @@
         "ar": "تطوان",
         "en": "Tetouan"
       },
-      "isPending": false
+      "isPending": false,
+      "history": {
+        "ar": "معلمة في تطوان بانتظار التوثيق.",
+        "en": "Landmark in Tetouan awaiting documentation."
+      },
+      "foundation": {
+        "ar": "عصور قديمة",
+        "en": "Ancient Era"
+      },
+      "visualSoul": "Mosque"
     },
     {
       "id": "tetouan-church-of-our-lady-of-victories",
@@ -1375,7 +2095,16 @@
         "ar": "تطوان",
         "en": "Tetouan"
       },
-      "isPending": false
+      "isPending": false,
+      "history": {
+        "ar": "معلمة في تطوان بانتظار التوثيق.",
+        "en": "Landmark in Tetouan awaiting documentation."
+      },
+      "foundation": {
+        "ar": "عصور قديمة",
+        "en": "Ancient Era"
+      },
+      "visualSoul": "Mosque"
     },
     {
       "id": "tetouan-tetouan-mellah",
@@ -1392,7 +2121,16 @@
         "ar": "تطوان",
         "en": "Tetouan"
       },
-      "isPending": false
+      "isPending": false,
+      "history": {
+        "ar": "معلمة في تطوان بانتظار التوثيق.",
+        "en": "Landmark in Tetouan awaiting documentation."
+      },
+      "foundation": {
+        "ar": "عصور قديمة",
+        "en": "Ancient Era"
+      },
+      "visualSoul": "Mosque"
     },
     {
       "id": "tetouan-jbel-dersa-kasbah",
@@ -1409,7 +2147,16 @@
         "ar": "تطوان",
         "en": "Tetouan"
       },
-      "isPending": false
+      "isPending": false,
+      "history": {
+        "ar": "معلمة في تطوان بانتظار التوثيق.",
+        "en": "Landmark in Tetouan awaiting documentation."
+      },
+      "foundation": {
+        "ar": "عصور قديمة",
+        "en": "Ancient Era"
+      },
+      "visualSoul": "Mosque"
     },
     {
       "id": "essaouira-skala-du-port",
@@ -1426,7 +2173,16 @@
         "ar": "الصويرة",
         "en": "Essaouira"
       },
-      "isPending": false
+      "isPending": false,
+      "history": {
+        "ar": "معلمة في الصويرة بانتظار التوثيق.",
+        "en": "Landmark in Essaouira awaiting documentation."
+      },
+      "foundation": {
+        "ar": "عصور قديمة",
+        "en": "Ancient Era"
+      },
+      "visualSoul": "Mosque"
     },
     {
       "id": "essaouira-mogador-island",
@@ -1443,7 +2199,16 @@
         "ar": "الصويرة",
         "en": "Essaouira"
       },
-      "isPending": false
+      "isPending": false,
+      "history": {
+        "ar": "معلمة في الصويرة بانتظار التوثيق.",
+        "en": "Landmark in Essaouira awaiting documentation."
+      },
+      "foundation": {
+        "ar": "عصور قديمة",
+        "en": "Ancient Era"
+      },
+      "visualSoul": "Mosque"
     },
     {
       "id": "essaouira-moulay-hassan-square",
@@ -1460,7 +2225,16 @@
         "ar": "الصويرة",
         "en": "Essaouira"
       },
-      "isPending": false
+      "isPending": false,
+      "history": {
+        "ar": "معلمة في الصويرة بانتظار التوثيق.",
+        "en": "Landmark in Essaouira awaiting documentation."
+      },
+      "foundation": {
+        "ar": "عصور قديمة",
+        "en": "Ancient Era"
+      },
+      "visualSoul": "Mosque"
     },
     {
       "id": "essaouira-seven-gates",
@@ -1477,7 +2251,16 @@
         "ar": "الصويرة",
         "en": "Essaouira"
       },
-      "isPending": false
+      "isPending": false,
+      "history": {
+        "ar": "معلمة في الصويرة بانتظار التوثيق.",
+        "en": "Landmark in Essaouira awaiting documentation."
+      },
+      "foundation": {
+        "ar": "عصور قديمة",
+        "en": "Ancient Era"
+      },
+      "visualSoul": "Mosque"
     },
     {
       "id": "essaouira-essaouira-mellah",
@@ -1494,7 +2277,16 @@
         "ar": "الصويرة",
         "en": "Essaouira"
       },
-      "isPending": false
+      "isPending": false,
+      "history": {
+        "ar": "معلمة في الصويرة بانتظار التوثيق.",
+        "en": "Landmark in Essaouira awaiting documentation."
+      },
+      "foundation": {
+        "ar": "عصور قديمة",
+        "en": "Ancient Era"
+      },
+      "visualSoul": "Mosque"
     },
     {
       "id": "essaouira-essaouira-beach",
@@ -1511,7 +2303,16 @@
         "ar": "الصويرة",
         "en": "Essaouira"
       },
-      "isPending": false
+      "isPending": false,
+      "history": {
+        "ar": "معلمة في الصويرة بانتظار التوثيق.",
+        "en": "Landmark in Essaouira awaiting documentation."
+      },
+      "foundation": {
+        "ar": "عصور قديمة",
+        "en": "Ancient Era"
+      },
+      "visualSoul": "Mosque"
     },
     {
       "id": "ouarzazate-ait-benhaddou",
@@ -1528,7 +2329,16 @@
         "ar": "ورزازات",
         "en": "Ouarzazate"
       },
-      "isPending": false
+      "isPending": false,
+      "history": {
+        "ar": "معلمة في ورزازات بانتظار التوثيق.",
+        "en": "Landmark in Ouarzazate awaiting documentation."
+      },
+      "foundation": {
+        "ar": "عصور قديمة",
+        "en": "Ancient Era"
+      },
+      "visualSoul": "Mosque"
     },
     {
       "id": "ouarzazate-taourirt-kasbah",
@@ -1545,7 +2355,16 @@
         "ar": "ورزازات",
         "en": "Ouarzazate"
       },
-      "isPending": false
+      "isPending": false,
+      "history": {
+        "ar": "معلمة في ورزازات بانتظار التوثيق.",
+        "en": "Landmark in Ouarzazate awaiting documentation."
+      },
+      "foundation": {
+        "ar": "عصور قديمة",
+        "en": "Ancient Era"
+      },
+      "visualSoul": "Mosque"
     },
     {
       "id": "ouarzazate-atlas-studios",
@@ -1562,7 +2381,16 @@
         "ar": "ورزازات",
         "en": "Ouarzazate"
       },
-      "isPending": false
+      "isPending": false,
+      "history": {
+        "ar": "معلمة في ورزازات بانتظار التوثيق.",
+        "en": "Landmark in Ouarzazate awaiting documentation."
+      },
+      "foundation": {
+        "ar": "عصور قديمة",
+        "en": "Ancient Era"
+      },
+      "visualSoul": "Mosque"
     },
     {
       "id": "ouarzazate-fint-oasis",
@@ -1579,7 +2407,16 @@
         "ar": "ورزازات",
         "en": "Ouarzazate"
       },
-      "isPending": false
+      "isPending": false,
+      "history": {
+        "ar": "معلمة في ورزازات بانتظار التوثيق.",
+        "en": "Landmark in Ouarzazate awaiting documentation."
+      },
+      "foundation": {
+        "ar": "عصور قديمة",
+        "en": "Ancient Era"
+      },
+      "visualSoul": "Mosque"
     },
     {
       "id": "ouarzazate-mansour-eddahbi-dam",
@@ -1596,7 +2433,16 @@
         "ar": "ورزازات",
         "en": "Ouarzazate"
       },
-      "isPending": false
+      "isPending": false,
+      "history": {
+        "ar": "معلمة في ورزازات بانتظار التوثيق.",
+        "en": "Landmark in Ouarzazate awaiting documentation."
+      },
+      "foundation": {
+        "ar": "عصور قديمة",
+        "en": "Ancient Era"
+      },
+      "visualSoul": "Mosque"
     },
     {
       "id": "sahara-mechouar-square",
@@ -1613,7 +2459,16 @@
         "ar": "العيون والداخلة",
         "en": "Sahara"
       },
-      "isPending": false
+      "isPending": false,
+      "history": {
+        "ar": "معلمة في العيون والداخلة بانتظار التوثيق.",
+        "en": "Landmark in Sahara awaiting documentation."
+      },
+      "foundation": {
+        "ar": "عصور قديمة",
+        "en": "Ancient Era"
+      },
+      "visualSoul": "Mosque"
     },
     {
       "id": "sahara-st-francis-church",
@@ -1630,7 +2485,16 @@
         "ar": "العيون والداخلة",
         "en": "Sahara"
       },
-      "isPending": false
+      "isPending": false,
+      "history": {
+        "ar": "معلمة في العيون والداخلة بانتظار التوثيق.",
+        "en": "Landmark in Sahara awaiting documentation."
+      },
+      "foundation": {
+        "ar": "عصور قديمة",
+        "en": "Ancient Era"
+      },
+      "visualSoul": "Mosque"
     },
     {
       "id": "sahara-foum-el-oued-beach",
@@ -1647,7 +2511,16 @@
         "ar": "العيون والداخلة",
         "en": "Sahara"
       },
-      "isPending": false
+      "isPending": false,
+      "history": {
+        "ar": "معلمة في العيون والداخلة بانتظار التوثيق.",
+        "en": "Landmark in Sahara awaiting documentation."
+      },
+      "foundation": {
+        "ar": "عصور قديمة",
+        "en": "Ancient Era"
+      },
+      "visualSoul": "Mosque"
     },
     {
       "id": "sahara-dakhla-bay",
@@ -1664,7 +2537,16 @@
         "ar": "العيون والداخلة",
         "en": "Sahara"
       },
-      "isPending": false
+      "isPending": false,
+      "history": {
+        "ar": "معلمة في العيون والداخلة بانتظار التوثيق.",
+        "en": "Landmark in Sahara awaiting documentation."
+      },
+      "foundation": {
+        "ar": "عصور قديمة",
+        "en": "Ancient Era"
+      },
+      "visualSoul": "Mosque"
     },
     {
       "id": "sahara-dragon-island",
@@ -1681,7 +2563,16 @@
         "ar": "العيون والداخلة",
         "en": "Sahara"
       },
-      "isPending": false
+      "isPending": false,
+      "history": {
+        "ar": "معلمة في العيون والداخلة بانتظار التوثيق.",
+        "en": "Landmark in Sahara awaiting documentation."
+      },
+      "foundation": {
+        "ar": "عصور قديمة",
+        "en": "Ancient Era"
+      },
+      "visualSoul": "Mosque"
     },
     {
       "id": "sahara-dakhla-lighthouse",
@@ -1698,7 +2589,16 @@
         "ar": "العيون والداخلة",
         "en": "Sahara"
       },
-      "isPending": false
+      "isPending": false,
+      "history": {
+        "ar": "معلمة في العيون والداخلة بانتظار التوثيق.",
+        "en": "Landmark in Sahara awaiting documentation."
+      },
+      "foundation": {
+        "ar": "عصور قديمة",
+        "en": "Ancient Era"
+      },
+      "visualSoul": "Mosque"
     },
     {
       "id": "safi-ksar-el-bahr",
@@ -1715,7 +2615,16 @@
         "ar": "آسفي",
         "en": "Safi"
       },
-      "isPending": false
+      "isPending": false,
+      "history": {
+        "ar": "معلمة في آسفي بانتظار التوثيق.",
+        "en": "Landmark in Safi awaiting documentation."
+      },
+      "foundation": {
+        "ar": "عصور قديمة",
+        "en": "Ancient Era"
+      },
+      "visualSoul": "Mosque"
     },
     {
       "id": "safi-safi-medina",
@@ -1732,7 +2641,16 @@
         "ar": "آسفي",
         "en": "Safi"
       },
-      "isPending": false
+      "isPending": false,
+      "history": {
+        "ar": "معلمة في آسفي بانتظار التوثيق.",
+        "en": "Landmark in Safi awaiting documentation."
+      },
+      "foundation": {
+        "ar": "عصور قديمة",
+        "en": "Ancient Era"
+      },
+      "visualSoul": "Mosque"
     },
     {
       "id": "safi-potters-hill",
@@ -1749,7 +2667,16 @@
         "ar": "آسفي",
         "en": "Safi"
       },
-      "isPending": false
+      "isPending": false,
+      "history": {
+        "ar": "معلمة في آسفي بانتظار التوثيق.",
+        "en": "Landmark in Safi awaiting documentation."
+      },
+      "foundation": {
+        "ar": "عصور قديمة",
+        "en": "Ancient Era"
+      },
+      "visualSoul": "Mosque"
     },
     {
       "id": "safi-st-catherine-cathedral",
@@ -1766,7 +2693,16 @@
         "ar": "آسفي",
         "en": "Safi"
       },
-      "isPending": false
+      "isPending": false,
+      "history": {
+        "ar": "معلمة في آسفي بانتظار التوثيق.",
+        "en": "Landmark in Safi awaiting documentation."
+      },
+      "foundation": {
+        "ar": "عصور قديمة",
+        "en": "Ancient Era"
+      },
+      "visualSoul": "Mosque"
     }
   ],
   "cities": [
