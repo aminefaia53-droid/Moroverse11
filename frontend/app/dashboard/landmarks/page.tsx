@@ -41,6 +41,7 @@ function LandmarkEditor({ landmark, onSaved }: { landmark: LandmarkEntry; onSave
     const [expanded, setExpanded] = useState(false);
     const [draft, setDraft] = useState<LandmarkEntry>(landmark);
     const [status, setStatus] = useState<'idle' | 'saving' | 'success' | 'error'>('idle');
+    const [serverMessage, setServerMessage] = useState('');
     const [uploadingImg, setUploadingImg] = useState(false);
     const imgInputRef = useRef<HTMLInputElement>(null);
 
@@ -61,35 +62,31 @@ function LandmarkEditor({ landmark, onSaved }: { landmark: LandmarkEntry; onSave
 
     const handleSave = async () => {
         setStatus('saving');
-        // Save via existing content API which auto-pushes to GitHub
+        setServerMessage('');
         try {
-            const payload = {
-                id: draft.id,
-                category: 'landmarks',
-                title: draft.name,
-                city: draft.city,
-                description: draft.history,
-                imageUrl: draft.imageUrl,
-                videoUrl: draft.videoUrl,
-                foundation: draft.foundation,
-                isPending: false,
-                seo: draft.seo,
-            };
-            const res = await fetch('/api/admin/content', {
+            // Call the dedicated /api/update-content endpoint which auto-pushes to GitHub
+            const res = await fetch('/api/update-content', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(payload),
+                body: JSON.stringify({
+                    id: draft.id,
+                    category: 'landmarks',
+                    landmark: draft,
+                }),
             });
             const result = await res.json();
             if (res.ok && result.success) {
                 setStatus('success');
+                setServerMessage(result.message);
                 onSaved(draft);
-                setTimeout(() => setStatus('idle'), 3000);
+                // Keep success message visible — don't auto-reset until user clicks again
             } else {
                 setStatus('error');
+                setServerMessage(result.message || 'فشل الحفظ — تحقق من GITHUB_TOKEN في Vercel.');
             }
-        } catch {
+        } catch (err: any) {
             setStatus('error');
+            setServerMessage(`خطأ غير متوقع: ${err.message}`);
         }
     };
 
@@ -303,16 +300,28 @@ function LandmarkEditor({ landmark, onSaved }: { landmark: LandmarkEntry; onSave
                         </div>
                     </div>
 
-                    {/* ── Save Button ── */}
-                    <div className="flex justify-end pt-2 border-t border-[#c5a059]/10">
-                        <button
-                            onClick={handleSave}
-                            disabled={status === 'saving'}
-                            className="flex items-center gap-2 px-6 py-2.5 rounded-xl bg-gold-royal hover:bg-yellow-500 text-black font-black text-sm transition-all shadow-lg disabled:opacity-50"
-                        >
-                            {status === 'saving' ? <Loader2 className="w-4 h-4 animate-spin" /> : <Save className="w-4 h-4" />}
-                            {status === 'saving' ? 'جارٍ الحفظ والرفع...' : status === 'success' ? '✓ تم الحفظ' : 'حفظ ورفع للموقع الحي'}
-                        </button>
+                    {/* ── Save Button + Server Message ── */}
+                    <div className="flex flex-col gap-3 pt-2 border-t border-[#c5a059]/10">
+                        {/* Server Message Banner */}
+                        {serverMessage && (
+                            <div className={`w-full rounded-xl px-4 py-3 text-sm font-bold flex items-center gap-2 ${status === 'success'
+                                    ? 'bg-green-900/40 border border-green-500/40 text-green-300'
+                                    : 'bg-red-900/40 border border-red-500/40 text-red-300'
+                                }`} dir="rtl">
+                                {status === 'success' ? <CheckCircle className="w-4 h-4 shrink-0" /> : <X className="w-4 h-4 shrink-0" />}
+                                {serverMessage}
+                            </div>
+                        )}
+                        <div className="flex justify-end">
+                            <button
+                                onClick={handleSave}
+                                disabled={status === 'saving'}
+                                className="flex items-center gap-2 px-6 py-2.5 rounded-xl bg-gold-royal hover:bg-yellow-500 text-black font-black text-sm transition-all shadow-lg disabled:opacity-50"
+                            >
+                                {status === 'saving' ? <Loader2 className="w-4 h-4 animate-spin" /> : <Save className="w-4 h-4" />}
+                                {status === 'saving' ? 'جارٍ الحفظ والرفع...' : status === 'success' ? '✓ تم — حفظ مرة أخرى' : 'حفظ ورفع للموقع الحي'}
+                            </button>
+                        </div>
                     </div>
                 </div>
             )}
