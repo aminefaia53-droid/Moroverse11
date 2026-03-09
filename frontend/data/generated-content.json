@@ -1,6 +1,24 @@
 {
   "landmarks": [
     {
+      "id": "rabat-hassan-tower",
+      "name": {
+        "ar": "صومعة حسان: شموخ التاريخ في قلب الرباط",
+        "en": "Hassan Tower"
+      },
+      "imageUrl": null,
+      "isPending": false,
+      "visualSoul": "Monument",
+      "city": {
+        "ar": "الرباط",
+        "en": "Rabat"
+      },
+      "foundation": {
+        "en": "Historical",
+        "ar": "تاريخي"
+      }
+    },
+    {
       "id": "rabat-kasbah-of-the-udayas",
       "name": {
         "ar": "قصبة الأوداية",
