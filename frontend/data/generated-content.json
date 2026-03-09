@@ -6,7 +6,7 @@
         "ar": "صومعة حسان: شموخ التاريخ في قلب الرباط",
         "en": "Hassan Tower"
       },
-      "imageUrl": null,
+      "imageUrl": "/images/uploads/1773072732710-0300d1a06a7c3ed28922d2a0140afb8b.jpg",
       "isPending": false,
       "visualSoul": "Monument",
       "city": {
@@ -16,7 +16,9 @@
       "foundation": {
         "en": "Historical",
         "ar": "تاريخي"
-      }
+      },
+      "videoUrl": null,
+      "seo": {}
     },
     {
       "id": "rabat-kasbah-of-the-udayas",
