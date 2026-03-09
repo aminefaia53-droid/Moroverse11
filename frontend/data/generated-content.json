@@ -2676,7 +2676,7 @@
         "ar": "معلمة في آسفي بانتظار التوثيق.",
         "en": "Landmark in Safi awaiting documentation."
       },
-      "imageUrl": "https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?q=80&w=1080&auto=format&fit=crop",
+      "imageUrl": "",
       "city": {
         "ar": "آسفي",
         "en": "Safi"
@@ -2690,7 +2690,9 @@
         "ar": "عصور قديمة",
         "en": "Ancient Era"
       },
-      "visualSoul": "Mosque"
+      "visualSoul": "Mosque",
+      "videoUrl": null,
+      "seo": {}
     }
   ],
   "cities": [
