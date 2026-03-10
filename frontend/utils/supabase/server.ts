@@ -4,9 +4,24 @@ import { cookies } from 'next/headers'
 export async function createClient() {
     const cookieStore = await cookies()
 
+    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+    const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+
+    if (!supabaseUrl || !supabaseKey) {
+        console.warn("Supabase environment variables missing. Auth will fail.");
+        // Return a dummy/failing client or handle gracefully
+        // We'll pass dummy to satisfy types, but it won't work for db calls
+        return createServerClient("https://dummy.supabase.co", "dummy-key", {
+            cookies: {
+                getAll() { return [] },
+                setAll() { }
+            }
+        });
+    }
+
     return createServerClient(
-        process.env.NEXT_PUBLIC_SUPABASE_URL!,
-        process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+        supabaseUrl,
+        supabaseKey,
         {
             cookies: {
                 getAll() {
