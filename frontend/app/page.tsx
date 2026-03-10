@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { Globe, Crown, Sparkles, MapPin, Building2, Camera, Music, Palmtree, Waves, Mountain, Tent, Sunset, Compass, MoveRight } from "lucide-react";
+import { Globe, Crown, Sparkles, MapPin, Building2, Camera, Music, Palmtree, Waves, Mountain, Tent, Sunset, Compass, MoveRight, Activity } from "lucide-react";
 
 // Components
 import BattleDashboard from "../components/BattleDashboard";
@@ -104,12 +104,12 @@ export default function Home() {
       <div className="fixed inset-0 z-0 hero-radial-glow overflow-hidden">
 
         {/* Dynamic Subtle Landscape Overlay */}
-        <div className="absolute inset-0 landscape-zoom opacity-20 mix-blend-overlay transition-opacity duration-1000">
+        <div className="absolute inset-0 landscape-zoom opacity-20 md:mix-blend-overlay transition-opacity duration-1000 will-change-transform">
           <Image
             src="/hero-bg.png"
             alt="MoroVerse Landscape"
             fill
-            className="object-cover object-center"
+            className="object-cover object-center transform-gpu"
             priority
           />
         </div>
@@ -122,17 +122,17 @@ export default function Home() {
           </svg>
 
           {/* Middle Glowing Dune */}
-          <svg viewBox="0 0 1440 320" preserveAspectRatio="none" className="absolute bottom-0 w-full h-[85%] text-[#aa3a18] opacity-90 z-20 mix-blend-screen drop-shadow-[0_-10px_30px_rgba(197,160,89,0.3)]">
+          <svg viewBox="0 0 1440 320" preserveAspectRatio="none" className="absolute bottom-0 w-full h-[85%] text-[#aa3a18] opacity-90 z-20 mix-blend-screen drop-shadow-none md:drop-shadow-[0_-10px_30px_rgba(197,160,89,0.3)]">
             <path fill="currentColor" fillOpacity="1" d="M0,224L60,234.7C120,245,240,267,360,256C480,245,600,203,720,186.7C840,171,960,181,1080,202.7C1200,224,1320,256,1380,272L1440,288L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path>
           </svg>
 
           {/* Front Golden Sand Dune */}
-          <svg viewBox="0 0 1440 320" preserveAspectRatio="none" className="absolute bottom-0 w-full h-[60%] text-[#C5A059] z-30 drop-shadow-[0_-5px_15px_rgba(0,0,0,0.5)]">
+          <svg viewBox="0 0 1440 320" preserveAspectRatio="none" className="absolute bottom-0 w-full h-[60%] text-[#C5A059] z-30 drop-shadow-md md:drop-shadow-[0_-5px_15px_rgba(0,0,0,0.5)]">
             <path fill="currentColor" fillOpacity="1" d="M0,96L80,117.3C160,139,320,181,480,186.7C640,192,800,160,960,144C1120,128,1280,128,1360,128L1440,128L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z"></path>
           </svg>
 
           {/* Camel Parallax Effect walking on the middle dune */}
-          <div className="absolute bottom-[20%] md:bottom-[30%] w-[200vw] h-32 pointer-events-none z-20 opacity-60 animate-camel-tread flex items-end drop-shadow-[0_5px_5px_rgba(0,0,0,0.5)]">
+          <div className="absolute bottom-[20%] md:bottom-[30%] w-[200vw] h-32 pointer-events-none z-20 opacity-60 animate-camel-tread flex items-end drop-shadow-none md:drop-shadow-[0_5px_5px_rgba(0,0,0,0.5)] will-change-transform">
             {[...Array(6)].map((_, i) => (
               <div key={i} className="flex-shrink-0 w-1/6 flex justify-around px-4">
                 <svg viewBox="0 0 100 100" className="w-16 h-16 md:w-24 md:h-24 fill-[#3a0b0b]">
@@ -157,7 +157,15 @@ export default function Home() {
           <div className="h-4 w-[1px] bg-primary/20 mx-1 hidden md:block"></div>
           <SmartSidebar isHeaderTrigger={true} />
         </div>
-        <div className="flex items-center gap-4 md:gap-8">
+        <div className="flex items-center gap-3 md:gap-8">
+          {/* Direct Community Button for Mobile & Desktop */}
+          <Link href="/community" className="flex items-center gap-1.5 text-[var(--primary)] hover:text-[var(--background)] transition-colors bg-[var(--primary)]/10 hover:bg-[var(--primary)]/90 px-3 py-1.5 rounded-full border border-[var(--primary)]/20 shadow-[0_0_10px_rgba(197,160,89,0.2)]">
+            <Activity className="w-3 h-3 md:w-4 md:h-4 animate-pulse" />
+            <span className="text-[9px] md:text-[10px] font-bold tracking-wider uppercase font-arabic">
+              {lang === 'ar' ? 'نبض المجتمع' : 'Community'}
+            </span>
+          </Link>
+
           <LanguageSwitcher />
         </div>
       </header>
@@ -175,9 +183,9 @@ export default function Home() {
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none mt-16 md:mt-0 opacity-40">
           <div className="relative">
             {/* Massive Glow Behind Flag */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] md:w-[600px] md:h-[600px] bg-[var(--primary)]/10 rounded-full blur-[80px] md:blur-[120px]"></div>
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] md:w-[600px] md:h-[600px] bg-[var(--primary)]/10 rounded-full blur-[40px] md:blur-[120px] will-change-transform"></div>
 
-            <svg viewBox="0 0 900 600" className="w-[85vw] md:w-[800px] h-auto max-w-full drop-shadow-[0_20px_40px_rgba(0,0,0,0.6)] animate-flag-flutter z-30 relative mt-4 md:mt-8 origin-left">
+            <svg viewBox="0 0 900 600" className="w-[85vw] md:w-[800px] h-auto max-w-full drop-shadow-[0_10px_20px_rgba(0,0,0,0.4)] md:drop-shadow-[0_20px_40px_rgba(0,0,0,0.6)] animate-flag-flutter z-30 relative mt-4 md:mt-8 origin-left will-change-transform">
               <rect width="900" height="600" fill="#c1272d" rx="20" />
               <path
                 d="M450,165 L482,264 L586,264 L502,325 L534,424 L450,363 L366,424 L398,325 L314,264 L418,264 Z"
@@ -185,7 +193,7 @@ export default function Home() {
                 stroke="#006233"
                 strokeWidth="28"
                 strokeLinejoin="round"
-                className="filter drop-shadow-[0_0_15px_rgba(0,98,51,0.5)]"
+                className="filter drop-shadow-[0_0_10px_rgba(0,98,51,0.3)] md:drop-shadow-[0_0_15px_rgba(0,98,51,0.5)]"
               />
             </svg>
           </div>
