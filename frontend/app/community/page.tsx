@@ -1,17 +1,20 @@
 "use client";
 
+// Prevent Next.js static prerendering — Leaflet requires `window` which is browser-only
+export const dynamic = "force-dynamic";
+
 import React, { useState } from "react";
-import dynamic from "next/dynamic";
+import nextDynamic from "next/dynamic";
 import { useLanguage } from "../../context/LanguageContext";
 import SmartPostBox from "../../components/community/SmartPostBox";
 import Post from "../../components/community/Post";
 import SmartSidebar from "../../components/SmartSidebar";
 import MoroVerseLogo from "../../components/MoroVerseLogo";
 import LogoutBtn from "../../components/auth/LogoutBtn";
-import { ALL_CITIES } from "../../components/community/FeedMap";
+import { ALL_CITIES } from "../../data/morocco-geo";
 
 // Dynamically import map to avoid SSR issues with Leaflet
-const FeedMap = dynamic(() => import("../../components/community/FeedMap"), { ssr: false });
+const FeedMap = nextDynamic(() => import("../../components/community/FeedMap"), { ssr: false });
 
 const MOCK_POSTS = [
     {
