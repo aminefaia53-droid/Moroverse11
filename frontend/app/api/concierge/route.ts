@@ -46,10 +46,10 @@ export async function POST(req: NextRequest) {
             });
         }
 
-        console.log("CONCIERGE_DEBUG: Sending request to Gemini v1 Stable with Embedded Prompt. apiKey present:", !!apiKey);
+        console.log("CONCIERGE_DEBUG: Sending request to Gemini v1 Stable (flash-latest). apiKey present:", !!apiKey);
 
         const response = await fetch(
-            `https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent?key=${apiKey}`,
+            `https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash-latest:generateContent?key=${apiKey}`,
             {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
