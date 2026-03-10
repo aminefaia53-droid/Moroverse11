@@ -2,14 +2,28 @@
 
 import React, { useEffect, useState } from "react";
 import { MapContainer, TileLayer, GeoJSON, useMap } from "react-leaflet";
+import * as L from "leaflet";
 import { useLanguage } from "../../context/LanguageContext";
 import moroccoRegionsGeoJSON from "../../data/morocco-regions-geo";
 
 function MapController({ center, zoom }: { center: [number, number]; zoom: number }) {
     const map = useMap();
+
     useEffect(() => {
         map.flyTo(center, zoom, { duration: 1.2 });
     }, [center, zoom, map]);
+
+    useEffect(() => {
+        const handleFlyToBounds = (e: Event) => {
+            const { bounds } = (e as CustomEvent).detail;
+            if (bounds) {
+                map.flyToBounds(bounds, { padding: [50, 50], duration: 1.5 });
+            }
+        };
+        window.addEventListener('map-fly-to-bounds', handleFlyToBounds);
+        return () => window.removeEventListener('map-fly-to-bounds', handleFlyToBounds);
+    }, [map]);
+
     return null;
 }
 
@@ -71,8 +85,33 @@ export default function FeedMap({
 }: FeedMapProps) {
     const { lang } = useLanguage();
     const isAr = lang === "ar";
+    const [highlightedCityIds, setHighlightedCityIds] = useState<string[]>([]);
 
     const mapCenter: [number, number] = [29.0, -9.5];
+
+    useEffect(() => {
+        const handleConciergeCommand = (e: Event) => {
+            const { cities } = (e as CustomEvent).detail;
+            if (!cities || cities.length === 0) return;
+
+            setHighlightedCityIds(cities);
+
+            const targetFeatures = moroccoRegionsGeoJSON.features.filter(f =>
+                cities.includes(regionToCityId(f.properties?.NAME_1))
+            );
+
+            if (targetFeatures.length > 0) {
+                const tempLayer = L.geoJSON({ type: "FeatureCollection", features: targetFeatures } as any);
+                const bounds = tempLayer.getBounds();
+                window.dispatchEvent(new CustomEvent('map-fly-to-bounds', { detail: { bounds } }));
+            }
+
+            setTimeout(() => setHighlightedCityIds([]), 10000);
+        };
+
+        window.addEventListener('concierge-map-command', handleConciergeCommand);
+        return () => window.removeEventListener('concierge-map-command', handleConciergeCommand);
+    }, []);
 
     const onEachFeature = (feature: any, layer: any) => {
         const regionName = feature.properties?.NAME_1 ?? "";
@@ -85,7 +124,13 @@ export default function FeedMap({
             mouseout: (e: any) => {
                 const cityId = regionToCityId(regionName);
                 const isSelected = selectedCityId && cityId === selectedCityId;
-                e.target.setStyle(isSelected ? selectedStyle : baseStyle);
+                const isAIHighlighted = highlightedCityIds.includes(cityId);
+
+                if (isAIHighlighted) {
+                    e.target.setStyle({ ...selectedStyle, fillOpacity: 0.5, weight: 3 });
+                } else {
+                    e.target.setStyle(isSelected ? selectedStyle : baseStyle);
+                }
             },
             click: (e: any) => {
                 const cityId = regionToCityId(regionName);
@@ -127,26 +172,27 @@ export default function FeedMap({
             >
                 <MapController center={mapCenter} zoom={5} />
 
-                {/* Dark no-label base tile */}
                 <TileLayer
                     attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a>'
                     url="https://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}{r}.png"
                 />
 
-                {/* Vector GeoJSON layer — all 12 Moroccan regions */}
                 <GeoJSON
-                    key={selectedCityId ?? "none"}
+                    key={`${selectedCityId}-${highlightedCityIds.join(',')}`}
                     data={moroccoRegionsGeoJSON as any}
                     style={(feature) => {
                         const regionName = feature?.properties?.NAME_1 ?? "";
-                        const isSelected = !!selectedCityId && regionToCityId(regionName) === selectedCityId;
+                        const cityId = regionToCityId(regionName);
+                        const isSelected = !!selectedCityId && cityId === selectedCityId;
+                        const isAIHighlighted = highlightedCityIds.includes(cityId);
+
+                        if (isAIHighlighted) return { ...selectedStyle, fillOpacity: 0.5, weight: 3 };
                         return isSelected ? selectedStyle : baseStyle;
                     }}
                     onEachFeature={onEachFeature}
                 />
             </MapContainer>
 
-            {/* Minimal legend */}
             <div className="absolute bottom-4 left-4 z-[9999] bg-black/60 rounded-xl p-3 flex flex-col gap-1.5 text-[10px] border border-[#C5A059]/20">
                 <div className="flex items-center gap-2">
                     <span className="w-4 h-3 shrink-0 rounded-sm border border-[#D4AF37]/60 bg-[#D4AF37]/20" />
@@ -154,7 +200,6 @@ export default function FeedMap({
                 </div>
             </div>
 
-            {/* Reset to full Morocco */}
             {selectedCityId && (
                 <button
                     onClick={() => onCitySelect(null)}

@@ -1,211 +1,225 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { motion, useAnimation, useMotionValue, useTransform, AnimatePresence } from 'framer-motion';
-
 import { useLanguage } from '../context/LanguageContext';
+import { Mic, MicOff, Send, X, Loader2 } from 'lucide-react';
 
-// Types for Assistant State
-type Emotion = 'neutral' | 'happy' | 'concerned' | 'impressed';
-type Outfit = 'modern' | 'traditional';
+type Emotion = 'neutral' | 'happy' | 'concerned' | 'impressed' | 'listening' | 'thinking';
+type HistoryEntry = { role: 'user' | 'model'; text: string };
+
+// Utility: Speak text aloud using Web Speech API
+function speakText(text: string, lang: string) {
+    if (typeof window === 'undefined' || !window.speechSynthesis) return;
+    window.speechSynthesis.cancel(); // Stop any previous speech
+    const utterance = new SpeechSynthesisUtterance(text);
+    // Prefer Arabic voice, then French, then any available
+    const voices = window.speechSynthesis.getVoices();
+    const preferred = voices.find(v => lang === 'ar' ? v.lang.startsWith('ar') : lang === 'fr' ? v.lang.startsWith('fr') : v.lang.startsWith('en'));
+    if (preferred) utterance.voice = preferred;
+    utterance.rate = 0.92;
+    utterance.pitch = 1.05;
+    window.speechSynthesis.speak(utterance);
+}
 
 export default function MoroVerseAssistant() {
     const { lang, t } = useLanguage();
-    // Use an effect to set initial message once lang is available
     const [message, setMessage] = useState<string>("");
-
-    useEffect(() => {
-        if (!message) {
-            setMessage(t('assistant.welcome'));
-        }
-    }, [lang, t]);
     const [emotion, setEmotion] = useState<Emotion>('happy');
-    const [outfit, setOutfit] = useState<Outfit>('traditional');
     const [isHovered, setIsHovered] = useState(false);
     const [showBubble, setShowBubble] = useState(true);
+    const [showChat, setShowChat] = useState(false);
+    const [inputText, setInputText] = useState('');
+    const [isListening, setIsListening] = useState(false);
+    const [isThinking, setIsThinking] = useState(false);
+    const [history, setHistory] = useState<HistoryEntry[]>([]);
 
-    // Animation Controls
+    const containerRef = useRef<HTMLDivElement>(null);
+    const inputRef = useRef<HTMLInputElement>(null);
+    const recognitionRef = useRef<any>(null);
     const containerControls = useAnimation();
-
-    // Mouse Tracking Values
     const mouseX = useMotionValue(0);
     const mouseY = useMotionValue(0);
-    const containerRef = useRef<HTMLDivElement>(null);
 
-    // Look-at Constraints (Eye/Head mapping)
     const eyeX = useTransform(mouseX, [0, typeof window !== 'undefined' ? window.innerWidth : 1000], [-3, 3]);
     const eyeY = useTransform(mouseY, [0, typeof window !== 'undefined' ? window.innerHeight : 800], [-3, 3]);
     const headRotateX = useTransform(mouseY, [0, typeof window !== 'undefined' ? window.innerHeight : 800], [-10, 10]);
     const headRotateY = useTransform(mouseX, [0, typeof window !== 'undefined' ? window.innerWidth : 1000], [-15, 15]);
 
-    // 1. Context & AI Reasoning (Event Listeners)
+    // Set welcome message
     useEffect(() => {
-        // Welcome Message Auto-hide
+        if (!message) setMessage(t('assistant.welcome'));
+    }, [lang, t]);
+
+    // Auto-hide initial bubble
+    useEffect(() => {
         const timer = setTimeout(() => {
-            setShowBubble(false);
-            setEmotion('neutral');
-        }, 12000);
+            if (!showChat) {
+                setShowBubble(false);
+                setEmotion('neutral');
+            }
+        }, 10000);
+        return () => clearTimeout(timer);
+    }, []);
 
-        // Custom Event Listener for Morocco Actions
+    // Listen for moroverse-action events (city/landmark clicks from map)
+    useEffect(() => {
         const handleAction = (e: Event) => {
-            const customEvent = e as CustomEvent;
-            const { type, payload } = customEvent.detail;
-
+            const { type, payload } = (e as CustomEvent).detail;
             setShowBubble(true);
-
             switch (type) {
                 case 'city_click':
                     setEmotion('happy');
-                    setOutfit('traditional');
                     setMessage(t('assistant.cityClick')(payload));
                     break;
                 case 'landmark_click':
                     setEmotion('impressed');
-                    setOutfit('traditional');
                     setMessage(t('assistant.landmarkClick')(payload));
                     break;
                 case 'figure_click':
                     setEmotion('impressed');
                     setMessage(t('assistant.figureClick')(payload));
                     break;
-                case 'image_loaded':
-                    setEmotion('happy');
-                    setMessage(t('assistant.imageLoaded')(payload));
-                    break;
             }
-
-            // Auto-hide after 6 seconds
-            setTimeout(() => {
-                setShowBubble(false);
-                setEmotion('neutral');
-            }, 6000);
+            setTimeout(() => { setShowBubble(false); setEmotion('neutral'); }, 6000);
         };
-
         window.addEventListener('moroverse-action', handleAction);
-
-        // Listen to the specific image loaded event from the hook
-        const handleImageLoaded = (e: Event) => {
-            const customEvent = e as CustomEvent;
-            const { entity } = customEvent.detail;
-
-            // Re-use the handleAction logic but with new type
-            handleAction(new CustomEvent('moroverse-action', {
-                detail: { type: 'image_loaded', payload: entity }
-            }) as Event);
-        };
-        window.addEventListener('moroverse-image-loaded', handleImageLoaded);
-
-        return () => {
-            clearTimeout(timer);
-            window.removeEventListener('moroverse-action', handleAction);
-            window.removeEventListener('moroverse-image-loaded', handleImageLoaded);
-        };
+        return () => window.removeEventListener('moroverse-action', handleAction);
     }, []);
 
-    // 2. Emotion Logic (Scroll Speed Detector)
+    // Scroll speed emotion detector
     useEffect(() => {
-        let lastScrollY = window.scrollY;
-        let ticking = false;
-
-        const handleScroll = () => {
-            if (!ticking) {
-                window.requestAnimationFrame(() => {
-                    const currentScrollY = window.scrollY;
-                    const delta = Math.abs(currentScrollY - lastScrollY);
-
-                    // If scrolling too fast (> 150px per tick)
-                    if (delta > 150) {
-                        setEmotion('concerned');
-                        setShowBubble(true);
-                        setMessage(t('assistant.slowDown'));
-
-                        setTimeout(() => {
-                            setShowBubble(false);
-                            setEmotion('neutral');
-                        }, 4000);
-                    }
-
-                    lastScrollY = currentScrollY;
-                    ticking = false;
-                });
-                ticking = true;
+        let lastY = window.scrollY;
+        const onScroll = () => {
+            const delta = Math.abs(window.scrollY - lastY);
+            if (delta > 150) {
+                setEmotion('concerned');
+                setShowBubble(true);
+                setMessage(t('assistant.slowDown'));
+                setTimeout(() => { setShowBubble(false); setEmotion('neutral'); }, 4000);
             }
+            lastY = window.scrollY;
         };
-
-        window.addEventListener('scroll', handleScroll, { passive: true });
-        return () => window.removeEventListener('scroll', handleScroll);
+        window.addEventListener('scroll', onScroll, { passive: true });
+        return () => window.removeEventListener('scroll', onScroll);
     }, []);
 
-    // 3. Pointer Tracking
+    // Pointer tracking
     useEffect(() => {
-        const handleMouseMove = (e: MouseEvent) => {
+        const onMove = (e: MouseEvent) => {
             mouseX.set(e.clientX);
             mouseY.set(e.clientY);
-
-            // Smart Collision Avoidance: Check if cursor is over a clickable element underneath
-            checkCollision(e.clientX, e.clientY);
+            if (!containerRef.current) return;
+            const rect = containerRef.current.getBoundingClientRect();
+            const isNear = e.clientX >= rect.left - 50 && e.clientX <= rect.right + 50 && e.clientY >= rect.top - 50 && e.clientY <= rect.bottom + 50;
+            containerRef.current.style.pointerEvents = 'none';
+            const under = document.elementFromPoint(e.clientX, e.clientY);
+            containerRef.current.style.pointerEvents = 'auto';
+            const clickable = under?.tagName === 'BUTTON' || under?.tagName === 'A' || under?.closest('button') || under?.closest('a') || under?.closest('.cursor-pointer');
+            setIsHovered(!!(isNear && clickable));
         };
-
-        window.addEventListener('mousemove', handleMouseMove);
-        return () => window.removeEventListener('mousemove', handleMouseMove);
+        window.addEventListener('mousemove', onMove);
+        return () => window.removeEventListener('mousemove', onMove);
     }, [mouseX, mouseY]);
 
-    // Smart Collision Avoidance Logic
-    const checkCollision = (x: number, y: number) => {
-        if (!containerRef.current) return;
+    // =========================================================
+    // AI CONCIERGE — Send message to /api/concierge
+    // =========================================================
+    const sendToConcierge = useCallback(async (userMessage: string) => {
+        if (!userMessage.trim()) return;
+        setIsThinking(true);
+        setEmotion('thinking');
+        setInputText('');
 
-        const rect = containerRef.current.getBoundingClientRect();
-        // If mouse is near the assistant widget (expanded hitbox)
-        const isNear = (
-            x >= rect.left - 50 &&
-            x <= rect.right + 50 &&
-            y >= rect.top - 50 &&
-            y <= rect.bottom + 50
-        );
+        const newHistory = [...history, { role: 'user' as const, text: userMessage }];
+        setHistory(newHistory);
 
-        // Temporarily disable pointer events to check what's underneath
-        containerRef.current.style.pointerEvents = 'none';
-        const elementUnderneath = document.elementFromPoint(x, y);
-        containerRef.current.style.pointerEvents = 'auto';
+        try {
+            const res = await fetch('/api/concierge', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ message: userMessage, history })
+            });
+            const data = await res.json();
+            const aiText: string = data.text ?? "أنا هنا، أعد السؤال مرة أخرى.";
+            const cities: string[] = data.cities ?? [];
 
-        const isClickableUnderneath = elementUnderneath?.tagName.toLowerCase() === 'button' ||
-            elementUnderneath?.tagName.toLowerCase() === 'a' ||
-            elementUnderneath?.closest('button') ||
-            elementUnderneath?.closest('a') ||
-            elementUnderneath?.closest('.cursor-pointer');
+            setHistory([...newHistory, { role: 'model', text: aiText }]);
+            setMessage(aiText);
+            setEmotion('happy');
+            setShowBubble(true);
 
-        if (isNear && isClickableUnderneath) {
-            setIsHovered(true);
-        } else if (!isNear) {
-            setIsHovered(false);
+            // Speak the response
+            speakText(aiText, lang);
+
+            // Dispatch map sync event with detected cities
+            if (cities.length > 0) {
+                window.dispatchEvent(new CustomEvent('concierge-map-command', {
+                    detail: { cities, primaryCity: cities[0] }
+                }));
+            }
+
+            setTimeout(() => { if (!showChat) { setShowBubble(false); setEmotion('neutral'); } }, 12000);
+        } catch (err) {
+            console.error("Concierge error:", err);
+            setMessage("عذراً، تعذر الاتصال بخدمة المساعد.");
+            setEmotion('concerned');
+        } finally {
+            setIsThinking(false);
         }
-    };
+    }, [history, lang, showChat]);
 
-    // Render Clothing based on state
-    const renderOutfitOptions = () => {
-        if (outfit === 'modern') {
-            // Moroccan Jellaba (Default)
-            return (
-                <g>
-                    <path d="M 15 100 Q 50 70 85 100 L 95 150 L 5 150 Z" fill="#f8f9fa" />
-                    <path d="M 40 100 L 50 150 L 60 100 Z" fill="none" stroke="#c5a059" strokeWidth="2" />
-                </g>
-            );
-        } else {
-            // Traditional Selham (Cloak)
-            return (
-                <g>
-                    <path d="M 15 100 Q 50 70 85 100 L 100 150 L 0 150 Z" fill="#006233" />
-                    <path d="M 40 100 L 50 150 L 60 100 Z" fill="#c1272d" opacity="0.8" />
-                    <path d="M 35 100 L 50 150 L 65 100 Z" fill="none" stroke="#c5a059" strokeWidth="1.5" />
-                </g>
-            );
+    // =========================================================
+    // VOICE INPUT — Web Speech API
+    // =========================================================
+    const startListening = useCallback(() => {
+        const SpeechRecognition = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
+        if (!SpeechRecognition) {
+            setMessage("المتصفح لا يدعم التعرف على الصوت.");
+            setShowBubble(true);
+            return;
         }
-    };
+        const recognition = new SpeechRecognition();
+        recognition.lang = lang === 'ar' ? 'ar-MA' : lang === 'fr' ? 'fr-FR' : 'en-US';
+        recognition.continuous = false;
+        recognition.interimResults = false;
+        recognition.onresult = (event: any) => {
+            const transcript = event.results[0][0].transcript;
+            setInputText(transcript);
+            sendToConcierge(transcript);
+        };
+        recognition.onerror = () => {
+            setIsListening(false);
+            setEmotion('concerned');
+        };
+        recognition.onend = () => setIsListening(false);
+        recognition.start();
+        recognitionRef.current = recognition;
+        setIsListening(true);
+        setEmotion('listening');
+        setShowBubble(true);
+        setMessage(lang === 'ar' ? 'أنا أسمعك... تكلم!' : lang === 'fr' ? "Je vous écoute..." : "I'm listening...");
+    }, [lang, sendToConcierge]);
 
+    const stopListening = useCallback(() => {
+        recognitionRef.current?.stop();
+        setIsListening(false);
+    }, []);
+
+    const handleRobotClick = useCallback(() => {
+        setShowChat(prev => !prev);
+        setShowBubble(true);
+        if (!showChat) {
+            setTimeout(() => inputRef.current?.focus(), 100);
+        }
+    }, [showChat]);
+
+    // =========================================================
+    // SVG RENDERING: Emotions & Outfit
+    // =========================================================
     const renderEmotionEyes = () => {
         switch (emotion) {
-            case 'happy':
+            case 'happy': case 'impressed':
                 return (
                     <g>
                         <path d="M 35 48 Q 40 43 45 48" stroke="#1e293b" strokeWidth="2" fill="none" strokeLinecap="round" />
@@ -217,27 +231,33 @@ export default function MoroVerseAssistant() {
                     <g>
                         <circle cx="40" cy="46" r="3" fill="#1e293b" />
                         <circle cx="60" cy="46" r="3" fill="#1e293b" />
-                        {/* Concerned Eyebrows */}
                         <path d="M 35 38 L 45 42" stroke="#1e293b" strokeWidth="2" strokeLinecap="round" />
                         <path d="M 65 38 L 55 42" stroke="#1e293b" strokeWidth="2" strokeLinecap="round" />
                     </g>
                 );
-            case 'impressed':
+            case 'listening':
                 return (
                     <g>
                         <circle cx="40" cy="46" r="4" fill="#006233" />
                         <circle cx="60" cy="46" r="4" fill="#006233" />
-                        {/* Raised Eyebrows */}
-                        <path d="M 35 38 Q 40 35 45 38" stroke="#1e293b" strokeWidth="2" strokeLinecap="round" />
-                        <path d="M 55 38 Q 60 35 65 38" stroke="#1e293b" strokeWidth="2" strokeLinecap="round" />
+                        <circle cx="40" cy="46" r="2" fill="#fff" opacity={0.6} />
+                        <circle cx="60" cy="46" r="2" fill="#fff" opacity={0.6} />
                     </g>
                 );
-            default: // Neutral
+            case 'thinking':
+                return (
+                    <g>
+                        <circle cx="40" cy="46" r="3" fill="#C5A059" />
+                        <circle cx="60" cy="46" r="3" fill="#C5A059" />
+                        <path d="M 35 40 Q 40 36 45 40" stroke="#1e293b" strokeWidth="1.5" strokeLinecap="round" />
+                        <path d="M 55 40 Q 60 36 65 40" stroke="#1e293b" strokeWidth="1.5" strokeLinecap="round" />
+                    </g>
+                );
+            default:
                 return (
                     <g>
                         <motion.circle cx="40" cy="46" r="3" fill="#1e293b" style={{ x: eyeX, y: eyeY }} />
                         <motion.circle cx="60" cy="46" r="3" fill="#1e293b" style={{ x: eyeX, y: eyeY }} />
-                        {/* Normal Eyebrows */}
                         <path d="M 35 40 Q 40 38 45 40" stroke="#1e293b" strokeWidth="2" strokeLinecap="round" />
                         <path d="M 55 40 Q 60 38 65 40" stroke="#1e293b" strokeWidth="2" strokeLinecap="round" />
                     </g>
@@ -246,16 +266,13 @@ export default function MoroVerseAssistant() {
     };
 
     const renderMouth = () => {
-        switch (emotion) {
-            case 'happy':
-                return <path d="M 40 65 Q 50 75 60 65" stroke="#1e293b" strokeWidth="2" fill="none" strokeLinecap="round" />;
-            case 'concerned':
-                return <path d="M 45 68 Q 50 65 55 68" stroke="#1e293b" strokeWidth="2" fill="none" strokeLinecap="round" />;
-            case 'impressed':
-                return <circle cx="50" cy="68" r="4" stroke="#1e293b" strokeWidth="2" fill="none" />;
-            default:
-                return <path d="M 45 65 L 55 65" stroke="#1e293b" strokeWidth="2" strokeLinecap="round" />;
-        }
+        if (emotion === 'happy' || emotion === 'impressed' || emotion === 'listening')
+            return <path d="M 40 65 Q 50 75 60 65" stroke="#1e293b" strokeWidth="2" fill="none" strokeLinecap="round" />;
+        if (emotion === 'concerned')
+            return <path d="M 45 68 Q 50 65 55 68" stroke="#1e293b" strokeWidth="2" fill="none" strokeLinecap="round" />;
+        if (emotion === 'thinking')
+            return <path d="M 42 66 Q 50 70 58 66" stroke="#C5A059" strokeWidth="2" fill="none" strokeLinecap="round" />;
+        return <path d="M 45 65 L 55 65" stroke="#1e293b" strokeWidth="2" strokeLinecap="round" />;
     };
 
     return (
@@ -264,74 +281,135 @@ export default function MoroVerseAssistant() {
             drag
             dragMomentum={false}
             initial={{ opacity: 0, y: 100 }}
-            animate={{
-                opacity: isHovered ? 0.3 : 1,
-                scale: isHovered ? 0.5 : 1,
-                y: 0
-            }}
+            animate={{ opacity: isHovered ? 0.3 : 1, scale: isHovered ? 0.5 : 1, y: 0 }}
             transition={{ type: 'spring', stiffness: 300, damping: 25 }}
             className={`fixed top-1.5 right-1 md:top-auto md:bottom-6 md:right-6 z-[9999] flex items-start md:items-end gap-2 md:gap-4 origin-top-right md:origin-bottom-right scale-50 md:scale-100 ${isHovered ? 'pointer-events-none' : 'pointer-events-auto cursor-grab active:cursor-grabbing'}`}
         >
             <AnimatePresence>
-                {showBubble && !isHovered && (
+                {/* ===== CHAT PANEL ===== */}
+                {showChat && !isHovered && (
                     <motion.div
+                        key="chat-panel"
+                        initial={{ opacity: 0, scale: 0.85, y: 20 }}
+                        animate={{ opacity: 1, scale: 1, y: 0 }}
+                        exit={{ opacity: 0, scale: 0.85, y: 20 }}
+                        className="bg-[#0a0a0a]/95 border border-[#C5A059]/30 rounded-3xl rounded-br-none shadow-[0_0_30px_rgba(197,160,89,0.2)] p-4 w-[280px] md:w-[320px] mb-2 flex flex-col gap-3"
+                    >
+                        {/* Header */}
+                        <div className="flex items-center justify-between">
+                            <div>
+                                <p className="text-[#C5A059] font-bold text-sm tracking-wide">علي — المستشار الملكي</p>
+                                <p className="text-white/40 text-[10px]">Imperial Concierge · Ali</p>
+                            </div>
+                            <button onClick={() => setShowChat(false)} className="text-white/30 hover:text-white transition-colors p-1">
+                                <X className="w-4 h-4" />
+                            </button>
+                        </div>
+
+                        {/* Conversation History */}
+                        {history.length > 0 && (
+                            <div className="max-h-40 overflow-y-auto space-y-2 pr-1 scrollbar-thin">
+                                {history.slice(-6).map((h, i) => (
+                                    <div key={i} className={`text-xs leading-relaxed px-3 py-2 rounded-2xl ${h.role === 'user' ? 'bg-[#C5A059]/15 text-[#C5A059] text-right ml-4' : 'bg-white/5 text-white/80 mr-4'}`} dir={lang === 'ar' ? 'rtl' : 'ltr'}>
+                                        {h.text}
+                                    </div>
+                                ))}
+                            </div>
+                        )}
+
+                        {/* Thinking indicator */}
+                        {isThinking && (
+                            <div className="flex items-center gap-2 text-[#C5A059]/60 text-xs px-2">
+                                <Loader2 className="w-3 h-3 animate-spin" />
+                                <span>{lang === 'ar' ? 'علي يفكر...' : 'Ali is thinking...'}</span>
+                            </div>
+                        )}
+
+                        {/* Input Row */}
+                        <div className="flex gap-2 items-center">
+                            <button
+                                onClick={isListening ? stopListening : startListening}
+                                className={`p-2.5 rounded-full border transition-all flex-shrink-0 ${isListening ? 'bg-red-600 border-red-500 text-white animate-pulse' : 'bg-[#C5A059]/10 border-[#C5A059]/30 text-[#C5A059] hover:bg-[#C5A059]/20'}`}
+                            >
+                                {isListening ? <MicOff className="w-4 h-4" /> : <Mic className="w-4 h-4" />}
+                            </button>
+                            <input
+                                ref={inputRef}
+                                type="text"
+                                value={inputText}
+                                onChange={e => setInputText(e.target.value)}
+                                onKeyDown={e => { if (e.key === 'Enter' && inputText.trim()) sendToConcierge(inputText); }}
+                                placeholder={lang === 'ar' ? 'اسألني عن المغرب...' : lang === 'fr' ? 'Posez votre question...' : 'Ask about Morocco...'}
+                                dir={lang === 'ar' ? 'rtl' : 'ltr'}
+                                className="flex-1 bg-white/5 border border-white/10 rounded-2xl px-3 py-2 text-xs text-white placeholder-white/30 outline-none focus:border-[#C5A059]/50 transition-colors"
+                                disabled={isThinking}
+                            />
+                            <button
+                                onClick={() => inputText.trim() && sendToConcierge(inputText)}
+                                disabled={!inputText.trim() || isThinking}
+                                className="p-2.5 rounded-full bg-[#C5A059] text-black disabled:opacity-30 hover:bg-[#D4AF37] transition-all flex-shrink-0"
+                            >
+                                <Send className="w-4 h-4" />
+                            </button>
+                        </div>
+                    </motion.div>
+                )}
+
+                {/* ===== SPEECH BUBBLE (passive mode) ===== */}
+                {showBubble && !showChat && !isHovered && (
+                    <motion.div
+                        key="speech-bubble"
                         initial={{ opacity: 0, scale: 0.8, x: 20 }}
                         animate={{ opacity: 1, scale: 1, x: 0 }}
                         exit={{ opacity: 0, scale: 0.8, x: 20 }}
                         className="assistant-bubble bg-white border-2 border-[#c5a059] shadow-[0_0_20px_rgba(197,160,89,0.5)] p-5 rounded-3xl rounded-tr-none md:rounded-tr-3xl md:rounded-br-none max-w-[200px] md:max-w-xs mt-10 md:mt-0 md:mb-10 mr-[-10px] md:mr-[-20px]"
                     >
-                        <p className={`text-base font-extrabold text-black leading-relaxed ${lang === 'ar' ? 'font-arabic text-right' : 'text-left'}`} dir={lang === 'ar' ? 'rtl' : 'ltr'}>
+                        <p className={`text-sm font-bold text-black leading-relaxed ${lang === 'ar' ? 'font-arabic text-right' : 'text-left'}`} dir={lang === 'ar' ? 'rtl' : 'ltr'}>
                             {message}
                         </p>
                     </motion.div>
                 )}
             </AnimatePresence>
 
-            {/* Avatar Container */}
+            {/* ===== AVATAR — click to open/close chat ===== */}
             <motion.div
-                className="w-28 h-28 relative rounded-full bg-slate-900 shadow-[0_0_30px_rgba(197,160,89,0.5)] border-4 border-[#c5a059] overflow-hidden"
-                style={{
-                    rotateX: headRotateX,
-                    rotateY: headRotateY,
-                    transformPerspective: 800
-                }}
+                onClick={handleRobotClick}
+                className="w-28 h-28 relative rounded-full bg-slate-900 shadow-[0_0_30px_rgba(197,160,89,0.5)] border-4 border-[#c5a059] overflow-hidden cursor-pointer select-none"
+                style={{ rotateX: headRotateX, rotateY: headRotateY, transformPerspective: 800 }}
+                whileTap={{ scale: 0.92 }}
+                title={lang === 'ar' ? 'انقر للتحدث مع علي' : 'Click to talk to Ali'}
             >
-                {/* SVG Avatar Engine: Moroccan Guide */}
+                {/* Listening ring */}
+                {isListening && (
+                    <motion.div
+                        className="absolute inset-0 rounded-full border-4 border-green-400"
+                        animate={{ scale: [1, 1.15, 1], opacity: [0.8, 0.3, 0.8] }}
+                        transition={{ repeat: Infinity, duration: 1.2 }}
+                    />
+                )}
+                {isThinking && (
+                    <motion.div
+                        className="absolute inset-0 rounded-full border-4 border-[#C5A059]"
+                        animate={{ scale: [1, 1.1, 1], opacity: [0.6, 0.2, 0.6] }}
+                        transition={{ repeat: Infinity, duration: 1.5 }}
+                    />
+                )}
+
                 <svg viewBox="0 0 100 100" className="w-full h-full transform scale-125 pt-4 drop-shadow-md">
-                    {/* Djellaba shoulders */}
+                    {/* Djellaba */}
                     <path d="M 20 100 Q 50 65 80 100" fill="#6d4c41" />
                     {/* Face */}
                     <circle cx="50" cy="50" r="25" fill="#e0ac69" />
-                    {/* Tarboush (Red Fez) */}
-                    <path d="M 32 30 L 68 30 L 62 10 L 38 10 Z" fill="#b71c1c" />
-                    <rect x="48" y="5" width="4" height="5" fill="#000000" />
-                    <path d="M 50 10 Q 60 15 65 25" stroke="#000000" strokeWidth="1.5" fill="none" />
-
-                    {/* Eyebrows */}
-                    <path d="M 38 48 Q 42 45 46 48" stroke="#3e2723" strokeWidth="2" fill="none" />
-                    <path d="M 54 48 Q 58 45 62 48" stroke="#3e2723" strokeWidth="2" fill="none" />
-
-                    {/* Eyes - Dynamic tracking */}
-                    <g style={{ transform: `translate(${eyeX}px, ${eyeY}px)` }}>
-                        <circle cx="42" cy="52" r="2.5" fill="#3e2723" />
-                        <circle cx="58" cy="52" r="2.5" fill="#3e2723" />
-                    </g>
-
-                    {/* Mustache/Beard */}
-                    <path d="M 42 62 Q 50 68 58 62 Q 50 72 42 62" fill="#3e2723" />
-
-
-                    {/* Tarbouche (Red Fez) */}
+                    {/* Tarbouche */}
                     <path d="M 32 25 L 34 5 L 66 5 L 68 25 Z" fill="#c1272d" />
-                    {/* Tarbouche Tassel */}
                     <path d="M 50 5 Q 55 -2 65 12 L 67 15" fill="none" stroke="#111827" strokeWidth="1.5" />
                     <circle cx="67" cy="15" r="2" fill="#111827" />
-
                     {/* Ears */}
                     <circle cx="28" cy="48" r="4" fill="#fbd38d" />
                     <circle cx="72" cy="48" r="4" fill="#fbd38d" />
-
-                    {/* Facial Features (Eyes & Mouth) */}
+                    {/* Mustache */}
+                    <path d="M 42 62 Q 50 68 58 62 Q 50 72 42 62" fill="#3e2723" />
+                    {/* Dynamic emotion eyes + mouth */}
                     {renderEmotionEyes()}
                     {renderMouth()}
                 </svg>
