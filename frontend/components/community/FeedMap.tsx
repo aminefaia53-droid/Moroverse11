@@ -1,35 +1,9 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
-import { MapContainer, TileLayer, Marker, Popup, CircleMarker, useMap } from "react-leaflet";
-import L from "leaflet";
+import React, { useEffect, useState } from "react";
+import { MapContainer, TileLayer, GeoJSON, useMap } from "react-leaflet";
 import { useLanguage } from "../../context/LanguageContext";
-
-// Icons are created lazily inside the component to avoid SSR issues
-// (Leaflet references `window` at import time on newer versions)
-function getIcon(color: string, size = 18) {
-    return new L.DivIcon({
-        className: "",
-        iconSize: [size, size],
-        iconAnchor: [size / 2, size / 2],
-        popupAnchor: [0, -(size / 2 + 4)],
-        html: `<div style="width:${size}px;height:${size}px;border-radius:50%;background:${color};border:3px solid rgba(255,255,255,0.85);box-shadow:0 0 12px ${color};cursor:pointer;transition:transform .2s" onmouseover="this.style.transform='scale(1.5)'" onmouseout="this.style.transform='scale(1)'"></div>`
-    });
-}
-
-function getLandmarkIcon(label: string) {
-    return new L.DivIcon({
-        className: "",
-        iconSize: [26, 26],
-        iconAnchor: [13, 13],
-        popupAnchor: [0, -16],
-        html: `<div title="${label}" style="width:26px;height:26px;border-radius:6px;background:#f97316;border:2px solid #fff;display:flex;align-items:center;justify-content:center;font-size:13px;cursor:pointer;box-shadow:0 0 12px #f97316aa">🏛</div>`
-    });
-}
-
-
-import { ALL_CITIES, LANDMARKS } from "../../data/morocco-geo";
-
+import moroccoRegionsGeoJSON from "../../data/morocco-regions-geo";
 
 function MapController({ center, zoom }: { center: [number, number]; zoom: number }) {
     const map = useMap();
@@ -47,131 +21,146 @@ interface FeedMapProps {
     showLandmarks?: boolean;
 }
 
+function regionToCityId(name: string): string {
+    const n = (name ?? "").toLowerCase();
+    if (n.includes("souss") || n.includes("agadir")) return "agadir";
+    if (n.includes("fès") || n.includes("fes") || n.includes("meknès") || n.includes("meknes")) return "fes";
+    if (n.includes("tanger") || n.includes("tangier") || n.includes("tétouan") || n.includes("hoceima")) return "tangier";
+    if (n.includes("rabat") || n.includes("salé") || n.includes("kénitra")) return "rabat";
+    if (n.includes("casablanca") || n.includes("settat")) return "casablanca";
+    if (n.includes("marrakech") || n.includes("safi")) return "marrakech";
+    if (n.includes("oriental") || n.includes("oujda")) return "oujda";
+    if (n.includes("laâyoune") || n.includes("laayoune") || n.includes("sakia")) return "laayoune";
+    if (n.includes("dakhla")) return "dakhla";
+    if (n.includes("béni mellal") || n.includes("beni mellal") || n.includes("khénifra")) return "beni_mellal";
+    if (n.includes("drâa") || n.includes("draa") || n.includes("tafilalet") || n.includes("ouarzazate")) return "ouarzazate";
+    if (n.includes("guelmim") || n.includes("noun")) return "guelmim";
+    return "marrakech";
+}
+
+const baseStyle = {
+    fillColor: "#C5A059",
+    fillOpacity: 0.05,
+    color: "#C5A059",
+    weight: 1,
+    dashArray: "4 4",
+    opacity: 0.35,
+};
+
+const hoverStyle = {
+    fillColor: "#D4AF37",
+    fillOpacity: 0.42,
+    color: "#D4AF37",
+    weight: 2.5,
+    dashArray: "",
+    opacity: 1,
+};
+
+const selectedStyle = {
+    fillColor: "#D4AF37",
+    fillOpacity: 0.28,
+    color: "#D4AF37",
+    weight: 2,
+    dashArray: "",
+    opacity: 0.9,
+};
+
 export default function FeedMap({
     onCitySelect,
-    onLandmarkSelect,
     selectedCityId,
-    selectedLandmarkId,
-    showLandmarks = true,
 }: FeedMapProps) {
     const { lang } = useLanguage();
     const isAr = lang === "ar";
 
-    const mapCenter: [number, number] = [29.0, -8.0]; // Proper center of Morocco including Sahara
-    const selectedCity = ALL_CITIES.find(c => c.id === selectedCityId);
-    const flyCenter: [number, number] = selectedCity
-        ? [selectedCity.lat, selectedCity.lng]
-        : mapCenter;
-    const flyZoom = selectedCity ? 9 : 5;
+    const mapCenter: [number, number] = [29.0, -9.5];
 
-    const typeColor = (type: string) => {
-        if (type === "imperial") return "#C5A059";
-        if (type === "major") return "#60a5fa";
-        if (type === "heritage") return "#a78bfa";
-        return "#38bdf8";
+    const onEachFeature = (feature: any, layer: any) => {
+        const regionName = feature.properties?.NAME_1 ?? "";
+
+        layer.on({
+            mouseover: (e: any) => {
+                e.target.setStyle(hoverStyle);
+                e.target.bringToFront();
+            },
+            mouseout: (e: any) => {
+                const cityId = regionToCityId(regionName);
+                const isSelected = selectedCityId && cityId === selectedCityId;
+                e.target.setStyle(isSelected ? selectedStyle : baseStyle);
+            },
+            click: (e: any) => {
+                const cityId = regionToCityId(regionName);
+                onCitySelect(cityId);
+                e.target._map.flyToBounds(e.target.getBounds(), {
+                    padding: [40, 40],
+                    duration: 1.1,
+                });
+            },
+        });
     };
 
     return (
-        <div className="relative w-full h-full rounded-2xl overflow-hidden shadow-2xl isolate">
+        <div className="relative w-full h-full rounded-2xl overflow-hidden shadow-2xl isolate feed-map-container">
+            <style dangerouslySetInnerHTML={{
+                __html: `
+                    .leaflet-control-attribution {
+                        opacity: 0.08 !important;
+                        transition: opacity 0.4s;
+                        font-size: 9px;
+                        background: transparent !important;
+                        color: rgba(255,255,255,0.4) !important;
+                    }
+                    .leaflet-control-attribution:hover { opacity: 0.65 !important; }
+                    .leaflet-interactive { cursor: pointer; }
+                    .feed-map-container .leaflet-container { background: #060606 !important; }
+                `
+            }} />
+
             <MapContainer
                 center={mapCenter}
                 zoom={5}
                 scrollWheelZoom={true}
+                inertia={true}
+                inertiaDeceleration={3000}
+                inertiaMaxSpeed={1500}
                 className="w-full h-full"
-                style={{ background: "#0a0a0a" }}
+                style={{ background: "#060606" }}
             >
-                <MapController center={flyCenter} zoom={flyZoom} />
+                <MapController center={mapCenter} zoom={5} />
+
+                {/* Dark no-label base tile */}
                 <TileLayer
                     attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a>'
-                    url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
+                    url="https://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}{r}.png"
                 />
 
-                {/* City Markers */}
-                {ALL_CITIES.map(city => (
-                    <CircleMarker
-                        key={city.id}
-                        center={[city.lat, city.lng]}
-                        radius={selectedCityId === city.id ? 12 : 8}
-                        pathOptions={{
-                            fillColor: selectedCityId === city.id ? "#facc15" : typeColor(city.type),
-                            fillOpacity: 0.9,
-                            color: "#fff",
-                            weight: selectedCityId === city.id ? 3 : 1.5,
-                        }}
-                        eventHandlers={{ click: () => onCitySelect(city.id) }}
-                    >
-                        <Popup>
-                            <div style={{ fontFamily: "system-ui", textAlign: "center", minWidth: 120 }}>
-                                <div style={{ fontWeight: "bold", fontSize: 14, color: "#1a1a1a", marginBottom: 4 }}>
-                                    {isAr ? city.nameAr : city.name}
-                                </div>
-                                <button
-                                    onClick={() => onCitySelect(city.id)}
-                                    style={{
-                                        background: "#C5A059", color: "#000", border: "none",
-                                        borderRadius: 6, padding: "4px 12px", fontSize: 11,
-                                        fontWeight: "bold", cursor: "pointer", letterSpacing: 1,
-                                        textTransform: "uppercase"
-                                    }}
-                                >
-                                    {isAr ? "عرض المنشورات" : "Show Posts"}
-                                </button>
-                            </div>
-                        </Popup>
-                    </CircleMarker>
-                ))}
-
-                {/* Landmark Markers  */}
-                {showLandmarks && LANDMARKS.map(landmark => (
-                    <Marker
-                        key={landmark.id}
-                        position={[landmark.lat, landmark.lng]}
-                        icon={getLandmarkIcon(isAr ? landmark.nameAr : landmark.name)}
-                        eventHandlers={{ click: () => onLandmarkSelect?.(landmark.id) }}
-                    >
-                        <Popup>
-                            <div style={{ fontFamily: "system-ui", textAlign: "center", minWidth: 140 }}>
-                                <div style={{ fontWeight: "bold", fontSize: 14, marginBottom: 4 }}>
-                                    {isAr ? landmark.nameAr : landmark.name}
-                                </div>
-                                <button
-                                    onClick={() => onLandmarkSelect?.(landmark.id)}
-                                    style={{
-                                        background: "#f97316", color: "#fff", border: "none",
-                                        borderRadius: 6, padding: "4px 12px", fontSize: 11,
-                                        fontWeight: "bold", cursor: "pointer", textTransform: "uppercase"
-                                    }}
-                                >
-                                    {isAr ? "اكتشف المعلم" : "Explore Landmark"}
-                                </button>
-                            </div>
-                        </Popup>
-                    </Marker>
-                ))}
+                {/* Vector GeoJSON layer — all 12 Moroccan regions */}
+                <GeoJSON
+                    key={selectedCityId ?? "none"}
+                    data={moroccoRegionsGeoJSON as any}
+                    style={(feature) => {
+                        const regionName = feature?.properties?.NAME_1 ?? "";
+                        const isSelected = !!selectedCityId && regionToCityId(regionName) === selectedCityId;
+                        return isSelected ? selectedStyle : baseStyle;
+                    }}
+                    onEachFeature={onEachFeature}
+                />
             </MapContainer>
 
-            {/* Legend */}
-            <div className="absolute bottom-4 left-4 z-[9999] bg-black/70 backdrop-blur-sm rounded-xl p-3 flex flex-col gap-1.5 text-[10px] border border-white/10">
-                {[
-                    { color: "#C5A059", label: isAr ? "مدن رئيسية" : "Imperial Cities" },
-                    { color: "#60a5fa", label: isAr ? "مدن كبرى" : "Major Cities" },
-                    { color: "#a78bfa", label: isAr ? "سياحية" : "Heritage Sites" },
-                    { color: "#f97316", label: isAr ? "معالم" : "Landmarks" },
-                ].map(item => (
-                    <div key={item.label} className="flex items-center gap-2">
-                        <span className="w-3 h-3 rounded-full shrink-0" style={{ background: item.color }}></span>
-                        <span className="text-white/80">{item.label}</span>
-                    </div>
-                ))}
+            {/* Minimal legend */}
+            <div className="absolute bottom-4 left-4 z-[9999] bg-black/60 rounded-xl p-3 flex flex-col gap-1.5 text-[10px] border border-[#C5A059]/20">
+                <div className="flex items-center gap-2">
+                    <span className="w-4 h-3 shrink-0 rounded-sm border border-[#D4AF37]/60 bg-[#D4AF37]/20" />
+                    <span className="text-white/70">{isAr ? "جهات المملكة" : "Morocco — Hover to explore"}</span>
+                </div>
             </div>
 
-            {/* Reset Button */}
+            {/* Reset to full Morocco */}
             {selectedCityId && (
                 <button
                     onClick={() => onCitySelect(null)}
-                    className="absolute top-3 right-3 z-[9999] bg-black/70 backdrop-blur-md border border-[#C5A059]/50 text-[#C5A059] px-3 py-1.5 rounded-lg text-xs font-bold uppercase tracking-wider hover:bg-[#C5A059] hover:text-black transition-all"
+                    className="absolute top-3 right-3 z-[9999] bg-black/70 border border-[#C5A059]/50 text-[#C5A059] px-3 py-1.5 rounded-lg text-xs font-bold uppercase tracking-wider hover:bg-[#C5A059] hover:text-black transition-all"
                 >
-                    {isAr ? "← العودة" : "← All Morocco"}
+                    {isAr ? "← عودة" : "← All Morocco"}
                 </button>
             )}
         </div>
