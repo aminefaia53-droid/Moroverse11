@@ -1,8 +1,9 @@
 "use client";
 
-import React, { useState } from "react";
-import { Heart, MessageSquare, Share2, MapPin, CheckCircle2 } from "lucide-react";
+import React, { useState, useEffect } from "react";
+import { Heart, MessageSquare, Share2, MapPin, CheckCircle2, Loader2 } from "lucide-react";
 import { useLanguage } from "../../context/LanguageContext";
+import { createClient } from "../../utils/supabase/client";
 
 interface PostProps {
     id: string;
@@ -19,14 +20,73 @@ interface PostProps {
 export default function Post({ post }: { post: PostProps }) {
     const { lang } = useLanguage();
     const isAr = lang === "ar";
+    const supabase = createClient();
 
     const [liked, setLiked] = useState(false);
     const [likeCount, setLikeCount] = useState(post.likes);
     const [shared, setShared] = useState(false);
+    const [loadingLike, setLoadingLike] = useState(false);
 
-    const handleLike = () => {
-        setLiked(!liked);
-        setLikeCount(prev => liked ? prev - 1 : prev + 1);
+    useEffect(() => {
+        const checkLikeStatus = async () => {
+            const { data: { user } } = await supabase.auth.getUser();
+            if (!user) return;
+
+            const { data } = await supabase
+                .from('post_likes')
+                .select('id')
+                .eq('post_id', post.id)
+                .eq('user_id', user.id)
+                .single();
+
+            if (data) setLiked(true);
+        };
+
+        checkLikeStatus();
+    }, [post.id, supabase]);
+
+    const handleLike = async () => {
+        setLoadingLike(true);
+        try {
+            const { data: { user } } = await supabase.auth.getUser();
+            if (!user) {
+                alert(isAr ? "يرجى تسجيل الدخول للإعجاب بالمنشور" : "Please login to like this post");
+                setLoadingLike(false);
+                return;
+            }
+
+            if (liked) {
+                // Unlike
+                const { error } = await supabase
+                    .from('post_likes')
+                    .delete()
+                    .eq('post_id', post.id)
+                    .eq('user_id', user.id);
+
+                if (!error) {
+                    setLiked(false);
+                    setLikeCount(prev => prev - 1);
+                    // Update post count
+                    await supabase.from('posts').update({ likes_count: likeCount - 1 }).eq('id', post.id);
+                }
+            } else {
+                // Like
+                const { error } = await supabase
+                    .from('post_likes')
+                    .insert({ post_id: post.id, user_id: user.id });
+
+                if (!error) {
+                    setLiked(true);
+                    setLikeCount(prev => prev + 1);
+                    // Update post count
+                    await supabase.from('posts').update({ likes_count: likeCount + 1 }).eq('id', post.id);
+                }
+            }
+        } catch (error) {
+            console.error("Error toggling like:", error);
+        } finally {
+            setLoadingLike(false);
+        }
     };
 
     const handleShare = async () => {
@@ -57,7 +117,7 @@ export default function Post({ post }: { post: PostProps }) {
             )}
 
             <div className="flex items-start gap-4">
-                <img src={post.user.avatar} alt={post.user.name} className="w-12 h-12 rounded-full border border-[#C5A059]/30 shrink-0" />
+                <img src={post.user.avatar} alt={post.user.name} className="w-12 h-12 rounded-full border border-[#C5A059]/30 shrink-0 object-cover" />
                 <div className="flex-1 overflow-hidden">
                     <div className="flex items-center justify-between mb-0.5">
                         <h4 className="font-bold text-white text-base truncate">{post.user.name}</h4>
@@ -69,11 +129,11 @@ export default function Post({ post }: { post: PostProps }) {
                         <span className="truncate">{post.location}</span>
                     </div>
 
-                    <p className="text-white/80 leading-relaxed mb-4 text-sm md:text-base">{post.content}</p>
+                    <p className="text-white/80 leading-relaxed mb-4 text-sm md:text-base whitespace-pre-wrap">{post.content}</p>
 
                     {post.image && (
                         <div className="mb-4 rounded-xl overflow-hidden border border-white/5 bg-black/50">
-                            <img src={post.image} alt="User experience" className="w-full max-h-[350px] object-cover" />
+                            <img src={post.image} alt="User experience" className="w-full max-h-[400px] object-cover" />
                         </div>
                     )}
 
@@ -81,9 +141,14 @@ export default function Post({ post }: { post: PostProps }) {
                         <div className="flex items-center gap-5">
                             <button
                                 onClick={handleLike}
+                                disabled={loadingLike}
                                 className={`flex items-center gap-2 transition-colors group ${liked ? "text-[#C5A059]" : "text-white/50 hover:text-[#C5A059]"}`}
                             >
-                                <Heart className={`w-5 h-5 transition-all ${liked ? "fill-[#C5A059] scale-110" : "group-hover:fill-[#C5A059]/20"}`} />
+                                {loadingLike ? (
+                                    <Loader2 className="w-5 h-5 animate-spin" />
+                                ) : (
+                                    <Heart className={`w-5 h-5 transition-all ${liked ? "fill-[#C5A059] scale-110" : "group-hover:fill-[#C5A059]/20"}`} />
+                                )}
                                 <span className="text-sm font-medium">{likeCount}</span>
                             </button>
                             <button className="flex items-center gap-2 text-white/50 hover:text-white transition-colors">

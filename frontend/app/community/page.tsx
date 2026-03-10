@@ -3,7 +3,7 @@
 // Prevent Next.js static prerendering — Leaflet requires `window` which is browser-only
 export const dynamic = "force-dynamic";
 
-import React, { useState } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import nextDynamic from "next/dynamic";
 import { useLanguage } from "../../context/LanguageContext";
 import SmartPostBox from "../../components/community/SmartPostBox";
@@ -12,92 +12,61 @@ import SmartSidebar from "../../components/SmartSidebar";
 import MoroVerseLogo from "../../components/MoroVerseLogo";
 import LogoutBtn from "../../components/auth/LogoutBtn";
 import { ALL_CITIES } from "../../data/morocco-geo";
+import { createClient } from "../../utils/supabase/client";
 
 // Dynamically import map to avoid SSR issues with Leaflet
 const FeedMap = nextDynamic(() => import("../../components/community/FeedMap"), { ssr: false });
 
-const MOCK_POSTS = [
-    {
-        id: "1",
-        user: { name: "Ahmed M.", avatar: "https://i.pravatar.cc/150?img=11" },
-        content: "Just witnessed the most breathtaking sunset over the Hassan Tower. The blend of history and nature is perfectly preserved here.",
-        contentAr: "شهدت للتو غروب شمس يحبس الأنفاس فوق صومعة حسان. مزيج التاريخ والطبيعة محفوظ بشكل مثالي هنا.",
-        location: "Rabat",
-        cityId: "rabat",
-        landmarkId: "hassan",
-        time: "2 hours ago",
-        likes: 342,
-        comments: 24,
-        image: "https://images.unsplash.com/photo-1539020140153-e479b8c22e70?auto=format&fit=crop&q=80",
-        isHighlyRecommended: true,
-    },
-    {
-        id: "2",
-        user: { name: "Sarah K.", avatar: "https://i.pravatar.cc/150?img=5" },
-        content: "Wandering through the blue alleys of Chefchaouen feels like walking in a dream. Pro tip: Wake up before 8 AM for photos without tourists!",
-        contentAr: "التجول في أزقة شفشاون الزرقاء يبدو وكأنه المشي في حلم. نصيحة للمحترفين: استيقظ قبل الثامنة صباحاً لالتقاط الصور بدون سياح!",
-        location: "Chefchaouen",
-        cityId: "chefchaouen",
-        time: "5 hours ago",
-        likes: 512,
-        comments: 89,
-        image: "https://images.unsplash.com/photo-1552604617-eea98aa27234?auto=format&fit=crop&q=80",
-        isHighlyRecommended: true,
-    },
-    {
-        id: "3",
-        user: { name: "Youssef T.", avatar: "https://i.pravatar.cc/150?img=33" },
-        content: "The Jemaa el-Fnaa square at night is an absolute sensory overload in the best way possible. The food, the music, the energy!",
-        contentAr: "ساحة جامع الفنا ليلاً هي عبارة عن جرعة زائدة للحواس بأفضل طريقة ممكنة. الطعام، الموسيقى، الطاقة!",
-        location: "Marrakech",
-        cityId: "marrakech",
-        landmarkId: "badii_palace",
-        time: "1 day ago",
-        likes: 189,
-        comments: 32,
-        image: "https://images.unsplash.com/photo-1597212720133-9e79af6e9e29?auto=format&fit=crop&q=80",
-    },
-    {
-        id: "4",
-        user: { name: "Fatima Z.", avatar: "https://i.pravatar.cc/150?img=25" },
-        content: "Aït Ben Haddou is like stepping into a dream from another century. The golden clay walls glow at sunrise — pure magic!",
-        contentAr: "أيت بنحدو كأنك تدخل إلى حلم من قرن آخر. الجدران الطينية الذهبية تتوهج عند الشروق — سحر خالص!",
-        location: "Ouarzazate",
-        cityId: "ouarzazate",
-        landmarkId: "ait_benhaddou",
-        time: "2 days ago",
-        likes: 423,
-        comments: 67,
-        image: "https://images.unsplash.com/photo-1490648785906-2a78e1d6f5c0?auto=format&fit=crop&q=80",
-        isHighlyRecommended: true,
-    },
-    {
-        id: "5",
-        user: { name: "Karim A.", avatar: "https://i.pravatar.cc/150?img=39" },
-        content: "The ancient Roman ruins at Volubilis are absolutely breathtaking. Don't miss the perfectly preserved mosaics!",
-        contentAr: "الآثار الرومانية القديمة في وليلي رائعة تماماً. لا تفوتك الفسيفساء المحفوظة بشكل مثالي!",
-        location: "Meknes",
-        cityId: "meknes",
-        landmarkId: "volubilis",
-        time: "3 days ago",
-        likes: 156,
-        comments: 18,
-    }
-];
-
 export default function CommunityPage() {
     const { lang } = useLanguage();
     const isAr = lang === 'ar';
+    const supabase = createClient();
 
     const [selectedCityId, setSelectedCityId] = useState<string | null>(null);
     const [selectedLandmarkId, setSelectedLandmarkId] = useState<string | null>(null);
+    const [posts, setPosts] = useState<any[]>([]);
+    const [loading, setLoading] = useState(true);
 
-    // Filter posts by city and/or landmark
-    const activePosts = MOCK_POSTS.filter(post => {
-        if (selectedLandmarkId) return post.landmarkId === selectedLandmarkId;
-        if (selectedCityId) return post.cityId === selectedCityId;
-        return true;
-    });
+    const fetchPosts = useCallback(async () => {
+        setLoading(true);
+        try {
+            let query = supabase
+                .from('posts')
+                .select('*, profiles(full_name, avatar_url)')
+                .order('created_at', { ascending: false });
+
+            if (selectedLandmarkId) {
+                query = query.eq('landmark_id', selectedLandmarkId);
+            } else if (selectedCityId) {
+                query = query.eq('city_id', selectedCityId);
+            }
+
+            const { data, error } = await query;
+            if (error) throw error;
+            setPosts(data || []);
+        } catch (error) {
+            console.error("Error fetching posts:", error);
+        } finally {
+            setLoading(false);
+        }
+    }, [selectedCityId, selectedLandmarkId, supabase]);
+
+    useEffect(() => {
+        fetchPosts();
+
+        // Real-time subscription
+        const channel = supabase
+            .channel('public:posts')
+            .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'posts' }, (payload) => {
+                // If it matches content filters, refresh or add
+                fetchPosts();
+            })
+            .subscribe();
+
+        return () => {
+            supabase.removeChannel(channel);
+        };
+    }, [fetchPosts, supabase]);
 
     const selectedCity = ALL_CITIES.find(c => c.id === selectedCityId);
 
@@ -132,7 +101,7 @@ export default function CommunityPage() {
                             </p>
                         </div>
 
-                        <SmartPostBox />
+                        <SmartPostBox onPostCreated={fetchPosts} selectedCityId={selectedCityId} />
 
                         <div className="flex justify-between items-center mb-4">
                             <h2 className="text-sm font-bold uppercase tracking-widest text-[#C5A059]/70">
@@ -154,13 +123,27 @@ export default function CommunityPage() {
                         </div>
 
                         <div className="space-y-4 overflow-y-auto pb-20" style={{ maxHeight: 'calc(100vh - 280px)' }}>
-                            {activePosts.length > 0 ? (
-                                activePosts.map(post => (
+                            {loading ? (
+                                <div className="flex justify-center py-20">
+                                    <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#C5A059]"></div>
+                                </div>
+                            ) : posts.length > 0 ? (
+                                posts.map(post => (
                                     <Post
                                         key={post.id}
                                         post={{
-                                            ...post,
-                                            content: isAr ? post.contentAr : post.content
+                                            id: post.id,
+                                            user: {
+                                                name: post.profiles?.full_name || "Unknown Traveler",
+                                                avatar: post.profiles?.avatar_url || "https://i.pravatar.cc/150?img=68"
+                                            },
+                                            content: post.content,
+                                            location: post.city_id ? (ALL_CITIES.find(c => c.id === post.city_id)?.name || post.city_id) : "Morocco",
+                                            time: new Date(post.created_at).toLocaleDateString(undefined, { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' }),
+                                            likes: post.likes_count || 0,
+                                            comments: post.comments_count || 0,
+                                            image: post.image_url,
+                                            isHighlyRecommended: post.is_highly_recommended
                                         }}
                                     />
                                 ))
