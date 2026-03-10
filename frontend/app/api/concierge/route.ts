@@ -22,30 +22,31 @@ export async function POST(req: NextRequest) {
             return NextResponse.json({ error: "GEMINI_API_KEY not configured" }, { status: 500 });
         }
 
-        // Build conversation history for Gemini
-        const contents = [
-            // Seed the conversation with system context via a user/model turn pair
-            {
+        // Build conversation history for Gemini with System Prompt prepended to the first user message
+        const contents = [];
+        const systemStyledPrompt = `SYSTEM_INSTRUCTION: ${SYSTEM_PROMPT}\n\n`;
+
+        if (history.length === 0) {
+            contents.push({
                 role: "user",
-                parts: [{ text: "Who are you and what can you do?" }]
-            },
-            {
-                role: "model",
-                parts: [{ text: "I am Mohamed Amine, the Imperial Concierge of MoroVerse. I have guided kings and travelers across the Kingdom of Morocco for decades. Ask me about any city, any route, or any hidden gem — I know them all by heart." }]
-            },
-            // Real conversation history
-            ...history.map((h: { role: string; text: string }) => ({
-                role: h.role === "user" ? "user" : "model",
-                parts: [{ text: h.text }]
-            })),
-            // Current user message
-            {
+                parts: [{ text: systemStyledPrompt + message }]
+            });
+        } else {
+            // Prepend to the very first message in history
+            history.forEach((h: { role: string; text: string }, idx: number) => {
+                contents.push({
+                    role: h.role === "user" ? "user" : "model",
+                    parts: [{ text: idx === 0 ? systemStyledPrompt + h.text : h.text }]
+                });
+            });
+            // Add the current message
+            contents.push({
                 role: "user",
                 parts: [{ text: message }]
-            }
-        ];
+            });
+        }
 
-        console.log("CONCIERGE_DEBUG: Sending request to Gemini v1 with apiKey present:", !!apiKey);
+        console.log("CONCIERGE_DEBUG: Sending request to Gemini v1 Stable with Embedded Prompt. apiKey present:", !!apiKey);
 
         const response = await fetch(
             `https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent?key=${apiKey}`,
@@ -53,9 +54,6 @@ export async function POST(req: NextRequest) {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
-                    system_instruction: {
-                        parts: [{ text: SYSTEM_PROMPT }]
-                    },
                     contents,
                     generationConfig: {
                         temperature: 0.8,
