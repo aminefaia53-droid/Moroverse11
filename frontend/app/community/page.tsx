@@ -90,8 +90,8 @@ export default function CommunityPage() {
             <main className="pt-24 pb-20 px-4 md:px-8 max-w-[1600px] mx-auto min-h-screen">
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
 
-                    {/* Feed Column */}
-                    <div className="lg:col-span-6 xl:col-span-5 flex flex-col order-2 lg:order-none">
+                    {/* Feed Column (Shows second on mobile) */}
+                    <div className="lg:col-span-6 xl:col-span-5 flex flex-col order-2">
                         <div className="mb-6">
                             <h1 className="text-3xl md:text-4xl font-serif text-[#C5A059] font-bold tracking-wider mb-1">
                                 {selectedCity ? (isAr ? selectedCity.nameAr : selectedCity.name) : (isAr ? 'الساحة الكبرى' : 'The Grand Plaza')}
@@ -161,8 +161,8 @@ export default function CommunityPage() {
                         </div>
                     </div>
 
-                    {/* Map Column */}
-                    <div className="lg:col-span-6 xl:col-span-7 h-[55vh] lg:h-[calc(100vh-120px)] sticky top-24 order-1 lg:order-none">
+                    {/* Map Column (Shows first on mobile) */}
+                    <div className="lg:col-span-6 xl:col-span-7 h-[40vh] md:h-[55vh] lg:h-[calc(100vh-120px)] sticky top-24 order-1">
                         <div className="w-full h-full rounded-2xl overflow-hidden relative shadow-[0_0_50px_rgba(197,160,89,0.1)] border border-[#C5A059]/20">
                             <FeedMap
                                 selectedCityId={selectedCityId}

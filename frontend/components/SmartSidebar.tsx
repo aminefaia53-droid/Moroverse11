@@ -6,9 +6,10 @@ import {
     Sun, Moon, Leaf, Snowflake, Wind,
     Compass, Map, Swords, Bookmark,
     X, ChevronDown, MapPin, Landmark,
-    SlidersHorizontal,
+    SlidersHorizontal, Activity
 } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
+import Link from 'next/link';
 
 // ── DATA ────────────────────────────────────────────────────────────────────
 
@@ -24,6 +25,7 @@ const QUICK_LINKS = [
     { id: 'elite-tours', icon: <Compass className="w-4 h-4" />, ar: 'رحلات النخبة', en: 'Elite Tours' },
     { id: 'encyclopedia', icon: <Map className="w-4 h-4" />, ar: 'الموسوعة', en: 'Encyclopedia' },
     { id: 'battles', icon: <Swords className="w-4 h-4" />, ar: 'المعارك', en: 'Battles' },
+    { id: 'community-link', href: '/community', icon: <Activity className="w-4 h-4" />, ar: 'نبض المجتمع', en: 'Community' },
 ];
 
 const CITIES = ['مراكش', 'فاس', 'شفشاون', 'الصويرة', 'طنجة', 'أكادير'];
@@ -159,15 +161,28 @@ export default function SmartSidebar({ isHeaderTrigger = false }: { isHeaderTrig
                         <Bookmark className="w-2.5 h-2.5" />{lbl('روابط سريعة', 'Quick Access')}
                     </p>
                     {QUICK_LINKS.map(link => (
-                        <button
-                            key={link.id}
-                            onClick={() => scrollTo(link.id)}
-                            dir={isRtl ? 'rtl' : 'ltr'}
-                            className="w-full flex items-center gap-2 px-2 py-1.5 rounded-lg text-xs text-[var(--foreground)]/75 hover:bg-[var(--primary)]/10 hover:text-[var(--primary)] transition-colors"
-                        >
-                            <span className="text-[var(--primary)]">{link.icon}</span>
-                            <span className={isRtl ? 'font-arabic' : 'font-outfit'}>{lbl(link.ar, link.en)}</span>
-                        </button>
+                        link.href ? (
+                            <Link
+                                key={link.id}
+                                href={link.href}
+                                onClick={() => setIsOpen(false)}
+                                dir={isRtl ? 'rtl' : 'ltr'}
+                                className="w-full flex items-center gap-2 px-2 py-1.5 rounded-lg text-xs text-[var(--foreground)]/75 hover:bg-[var(--primary)]/10 hover:text-[var(--primary)] transition-colors"
+                            >
+                                <span className="text-[var(--primary)]">{link.icon}</span>
+                                <span className={isRtl ? 'font-arabic' : 'font-outfit'}>{lbl(link.ar, link.en)}</span>
+                            </Link>
+                        ) : (
+                            <button
+                                key={link.id}
+                                onClick={() => scrollTo(link.id)}
+                                dir={isRtl ? 'rtl' : 'ltr'}
+                                className="w-full flex items-center gap-2 px-2 py-1.5 rounded-lg text-xs text-[var(--foreground)]/75 hover:bg-[var(--primary)]/10 hover:text-[var(--primary)] transition-colors"
+                            >
+                                <span className="text-[var(--primary)]">{link.icon}</span>
+                                <span className={isRtl ? 'font-arabic' : 'font-outfit'}>{lbl(link.ar, link.en)}</span>
+                            </button>
+                        )
                     ))}
                 </div>
 
