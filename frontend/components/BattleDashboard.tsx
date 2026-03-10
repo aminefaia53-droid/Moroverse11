@@ -419,7 +419,7 @@ export default function BattleDashboard({ lang }: { lang: LangCode }) {
                     type="text"
                     dir={lang === 'ar' ? 'rtl' : 'ltr'}
                     placeholder={lang === 'ar' ? 'بحث عن معركة أو عصر تاريخي...' : 'Search for a battle or historical era...'}
-                    className={`w-full ${lang === 'ar' ? 'pr-14 pl-12' : 'pl-14 pr-12'} py-5 rounded-[32px] bg-black/40 border border-[#c5a059]/20 focus:border-primary focus:bg-black/60 focus:ring-0 outline-none transition-all text-sm font-medium text-white placeholder-white/30 backdrop-blur-xl`}
+                    className={`w-full ${lang === 'ar' ? 'pr-14 pl-12' : 'pl-14 pr-12'} py-5 rounded-[32px] bg-black/40 border border-[#c5a059]/20 focus:border-primary focus:bg-black/60 focus:ring-0 outline-none transition-all text-sm font-medium text-white placeholder-white/30 backdrop-blur-sm`}
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                 />
@@ -567,7 +567,7 @@ export default function BattleDashboard({ lang }: { lang: LangCode }) {
                             initial={{ scale: 0.9, y: 100, opacity: 0 }}
                             animate={{ scale: 1, y: 0, opacity: 1 }}
                             exit={{ scale: 0.9, y: 100, opacity: 0 }}
-                            className="bg-black/95 w-full max-w-6xl h-full max-h-[85vh] rounded-xl overflow-hidden shadow-[0_30px_60px_-15px_rgba(0,0,0,0.8),0_0_40px_rgba(197,160,89,0.15)] border border-[#c5a059]/30 relative flex flex-col md:flex-row"
+                            className="bg-black/95 w-full max-w-6xl h-full max-h-[85vh] rounded-xl overflow-hidden shadow-2xl border border-[#c5a059]/30 relative flex flex-col md:flex-row"
                         >
                             <button
                                 onClick={() => setSelectedBattle(null)}
@@ -594,7 +594,7 @@ export default function BattleDashboard({ lang }: { lang: LangCode }) {
                                 </div>
                             </div>
 
-                            <div className="flex-1 bg-black/40 backdrop-blur-xl overflow-y-auto p-12 md:p-16 text-white/90 glass-card-elite">
+                            <div className="flex-1 bg-black/40 backdrop-blur-sm overflow-y-auto p-12 md:p-16 text-white/90 glass-card-elite">
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
                                     <div className="space-y-10">
                                         <div className="space-y-3">

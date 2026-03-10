@@ -23,7 +23,7 @@ export default function CommunityPulse() {
 
     return (
         <div className={`fixed top-24 ${isAr ? 'left-6' : 'right-6'} z-40 hidden xl:flex flex-col gap-4 w-72`}>
-            <div className="bg-black/30 backdrop-blur-xl border border-white/10 rounded-2xl p-4 shadow-[0_8px_32px_rgba(0,0,0,0.5)]">
+            <div className="bg-black/30 backdrop-blur-sm border border-white/10 rounded-2xl p-4 shadow-[0_8px_32px_rgba(0,0,0,0.5)]">
                 <div className="flex items-center gap-2 mb-4 text-[#C5A059]">
                     <Activity className="w-5 h-5 animate-pulse" />
                     <h3 className="font-display tracking-[0.2em] text-xs uppercase font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#C5A059] to-white">

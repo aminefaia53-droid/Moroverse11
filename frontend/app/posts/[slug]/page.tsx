@@ -154,7 +154,7 @@ export default async function PostPage(props: {
 
             <div className="container mx-auto px-4 lg:px-20 relative z-10">
                 <div
-                    className="bg-black/95 backdrop-blur-xl rounded-2xl border border-[#c5a059]/40 p-8 md:p-16 shadow-[0_0_50px_rgba(197,160,89,0.15)] text-white/90 prose prose-invert lg:prose-xl max-w-5xl mx-auto"
+                    className="bg-black/95 backdrop-blur-sm rounded-2xl border border-[#c5a059]/40 p-8 md:p-16 shadow-[0_0_50px_rgba(197,160,89,0.15)] text-white/90 prose prose-invert lg:prose-xl max-w-5xl mx-auto"
                     style={{ lineHeight: '1.9' }}
                     dangerouslySetInnerHTML={{ __html: content }}
                 />

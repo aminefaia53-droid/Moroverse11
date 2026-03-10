@@ -85,7 +85,7 @@ export default function ArticleReader({ article, isOpen, onClose }: ArticleReade
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
                         onClick={onClose}
-                        className="absolute inset-0 bg-gradient-to-br from-[#064e3b]/90 via-black/95 to-[#1a202c]/95 backdrop-blur-xl"
+                        className="absolute inset-0 bg-gradient-to-br from-[#064e3b]/90 via-black/95 to-[#1a202c]/95 backdrop-blur-sm"
                     />
 
                     <motion.div
@@ -93,7 +93,7 @@ export default function ArticleReader({ article, isOpen, onClose }: ArticleReade
                         animate={{ opacity: 1, scale: 1, y: 0 }}
                         exit={{ opacity: 0, scale: 0.95, y: 30 }}
                         transition={{ type: "spring", damping: 25, stiffness: 300 }}
-                        className="relative w-full max-w-5xl h-[95vh] rounded-xl shadow-[0_30px_60px_-15px_rgba(0,0,0,0.8),0_0_40px_rgba(197,160,89,0.15)] overflow-hidden flex flex-col glass-card-elite border border-[#c5a059]/20 bg-black/80"
+                        className="relative w-full max-w-5xl h-[95vh] rounded-xl shadow-2xl overflow-hidden flex flex-col glass-card-elite border border-[#c5a059]/20 bg-black/80"
                     >
                         <div className="absolute top-0 w-full z-50 p-4 flex justify-between items-start pointer-events-none">
                             <div className={`flex gap-3 pointer-events-auto ${isAr ? 'ml-auto text-right' : 'mr-auto text-left flex-row-reverse'}`}>

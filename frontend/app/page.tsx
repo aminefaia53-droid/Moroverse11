@@ -132,7 +132,7 @@ export default function Home() {
           </svg>
 
           {/* Camel Parallax Effect walking on the middle dune */}
-          <div className="absolute bottom-[20%] md:bottom-[30%] w-[200vw] h-32 pointer-events-none z-20 opacity-60 animate-camel-tread flex items-end drop-shadow-none md:drop-shadow-[0_5px_5px_rgba(0,0,0,0.5)] will-change-transform">
+          <div className="hidden md:flex absolute bottom-[20%] md:bottom-[30%] w-[200vw] h-32 pointer-events-none z-20 opacity-60 animate-camel-tread items-end drop-shadow-none md:drop-shadow-[0_5px_5px_rgba(0,0,0,0.5)] will-change-transform">
             {[...Array(6)].map((_, i) => (
               <div key={i} className="flex-shrink-0 w-1/6 flex justify-around px-4">
                 <svg viewBox="0 0 100 100" className="w-16 h-16 md:w-24 md:h-24 fill-[#3a0b0b]">
@@ -147,7 +147,7 @@ export default function Home() {
         </div>
       </div>
 
-      <header className="fixed top-0 w-full z-50 py-2.5 px-4 md:py-3 md:px-10 flex justify-between items-center bg-[#1a0404]/80 backdrop-blur-xl border-b border-primary/5 shadow-[0_4px_24px_rgba(0,0,0,0.5)]">
+      <header className="fixed top-0 w-full z-50 py-2.5 px-4 md:py-3 md:px-10 flex justify-between items-center bg-[#1a0404]/80 backdrop-blur-sm border-b border-primary/5 shadow-[0_4px_24px_rgba(0,0,0,0.5)]">
         <div className="flex items-center gap-3 shrink-0">
           <div className="flex items-center gap-2">
             <MoroVerseLogo className="w-5 h-5 md:w-7 md:h-7" />
@@ -346,7 +346,7 @@ export default function Home() {
         </div>
       </section>
 
-      <footer className="py-32 text-center border-t border-primary/20 relative z-20 bg-black/60 backdrop-blur-xl">
+      <footer className="py-32 text-center border-t border-primary/20 relative z-20 bg-black/60 backdrop-blur-sm">
         <Crown className="w-14 h-14 text-primary mx-auto mb-10 opacity-60 drop-shadow-[0_0_15px_rgba(197,160,89,0.5)]" />
 
         <div className="flex justify-center gap-12 mb-16 text-xs font-black uppercase tracking-[0.3em]">

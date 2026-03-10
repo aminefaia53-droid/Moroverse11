@@ -102,7 +102,7 @@ export default function CityGrid({ lang }: { lang: LangCode }) {
                             type="text"
                             dir={lang === 'ar' ? 'rtl' : 'ltr'}
                             placeholder={lang === 'ar' ? 'بحث عن مدينة أو دوار...' : 'Search for a city or douar...'}
-                            className={`w-full ${lang === 'ar' ? 'pr-14 pl-12' : 'pl-14 pr-12'} py-5 rounded-[32px] bg-black/40 border border-[#c5a059]/20 focus:border-primary focus:bg-black/60 focus:ring-0 outline-none transition-all text-sm font-medium text-white placeholder-white/30 backdrop-blur-xl`}
+                            className={`w-full ${lang === 'ar' ? 'pr-14 pl-12' : 'pl-14 pr-12'} py-5 rounded-[32px] bg-black/40 border border-[#c5a059]/20 focus:border-primary focus:bg-black/60 focus:ring-0 outline-none transition-all text-sm font-medium text-white placeholder-white/30 backdrop-blur-sm`}
                             value={searchQuery}
                             onChange={(e) => setSearchQuery(e.target.value)}
                         />
@@ -174,7 +174,7 @@ export default function CityGrid({ lang }: { lang: LangCode }) {
                             animate={{ opacity: 1 }}
                             exit={{ opacity: 0 }}
                             onClick={() => setSelectedLocation(null)}
-                            className="absolute inset-0 bg-black/85 backdrop-blur-xl cursor-pointer"
+                            className="absolute inset-0 bg-black/85 backdrop-blur-sm cursor-pointer"
                         />
 
                         <motion.div
@@ -182,7 +182,7 @@ export default function CityGrid({ lang }: { lang: LangCode }) {
                             animate={{ opacity: 1, scale: 1, y: 0 }}
                             exit={{ opacity: 0, scale: 0.9, y: 40 }}
                             onClick={(e) => e.stopPropagation()}
-                            className="relative w-full max-w-4xl bg-black/95 rounded-xl shadow-[0_30px_60px_-15px_rgba(0,0,0,0.8),0_0_40px_rgba(197,160,89,0.15)] border border-[#c5a059]/30 overflow-y-auto max-h-[90vh]"
+                            className="relative w-full max-w-4xl bg-black/95 rounded-xl shadow-2xl border border-[#c5a059]/30 overflow-y-auto max-h-[90vh]"
                         >
                             {/* Fact Sheet Header */}
                             <div className="relative h-80 bg-black/50 border-b border-[#c5a059]/30 flex flex-col items-center justify-start overflow-hidden">
@@ -359,7 +359,7 @@ function CityCard({
                 {/* Card Content Overlay */}
                 <div className="relative z-10 h-full p-8 flex flex-col justify-between">
                     <div className="flex justify-between items-start">
-                        <div className="p-4 rounded-full bg-black/60 backdrop-blur-xl border border-[#c5a059]/30 group-hover:border-[#c5a059] transition-all duration-500">
+                        <div className="p-4 rounded-full bg-black/60 backdrop-blur-sm border border-[#c5a059]/30 group-hover:border-[#c5a059] transition-all duration-500">
                             <SoulIcon soul={loc.visualSoul} className="w-6 h-6 text-[#c5a059]" />
                         </div>
                         <div className="flex flex-col items-end gap-2">

@@ -113,7 +113,7 @@ export default function SmartSidebar({ isHeaderTrigger = false }: { isHeaderTrig
                     fixed top-0 bottom-0 z-[58] w-56
                     ${isRtl ? 'right-0' : 'left-0'}
                     flex flex-col
-                    bg-[var(--glass-bg)] backdrop-blur-xl
+                    bg-[var(--glass-bg)] backdrop-blur-sm
                     border-[var(--primary)]/20
                     ${isRtl ? 'border-l' : 'border-r'}
                     shadow-[0_0_60px_rgba(0,0,0,0.9)]

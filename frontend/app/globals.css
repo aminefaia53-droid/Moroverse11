@@ -317,32 +317,31 @@ body {
 
 /* Glassmorphism Elite - Cinematic Edition */
 .glass-card-elite {
-  backdrop-filter: blur(25px) saturate(180%);
-  -webkit-backdrop-filter: blur(25px) saturate(180%);
-  background: rgba(26, 4, 4, 0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  background: rgba(26, 4, 4, 0.7);
   border: 1px solid rgba(197, 160, 89, 0.2);
   border-radius: 40px;
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 15px 30px -10px rgba(0, 0, 0, 0.4);
 }
 
 .moro-glass-ivory {
-  backdrop-filter: blur(30px) saturate(200%);
-  -webkit-backdrop-filter: blur(30px) saturate(200%);
-  background: rgba(40, 10, 10, 0.7);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  background: rgba(40, 10, 10, 0.8);
   border: 1px solid rgba(197, 160, 89, 0.3);
 }
 
 .moro-glass {
-  backdrop-filter: blur(20px) saturate(160%);
-  -webkit-backdrop-filter: blur(20px) saturate(160%);
-  background: rgba(30, 5, 5, 0.5);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  background: rgba(30, 5, 5, 0.6);
   border: 1px solid rgba(197, 160, 89, 0.15);
 }
 
 .shadow-royal {
   box-shadow:
-    0 30px 60px -12px rgba(0, 0, 0, 0.4),
-    0 18px 36px -18px rgba(0, 0, 0, 0.5),
+    0 15px 30px -10px rgba(0, 0, 0, 0.4),
     inset 0 0 0 1px rgba(197, 160, 89, 0.3);
 }
 
@@ -395,6 +394,15 @@ body {
   animation: ken-burns-atlas 60s infinite alternate ease-in-out;
 }
 
+/* Disable heavy animations on mobile for performance */
+@media (max-width: 768px) {
+  .landscape-zoom {
+    animation: none;
+    transform: scale(1.05);
+    /* Just set a static slight zoom */
+  }
+}
+
 @keyframes ken-burns {
   0% {
     transform: scale(1) translate(0, 0);
@@ -426,7 +434,7 @@ body {
 
 /* Text Glow Utility with Responsive Sizing */
 .text-glow {
-  text-shadow: 0 0 20px rgba(255, 255, 255, 0.8), 0 0 40px rgba(197, 160, 89, 0.3);
+  text-shadow: 0 0 20px rgba(197, 160, 89, 0.4);
   letter-spacing: 0.05em;
 }
 

@@ -121,7 +121,7 @@ export default function LandmarkGrid({ lang }: { lang: LangCode }) {
                     type="text"
                     dir={lang === 'ar' ? 'rtl' : 'ltr'}
                     placeholder={lang === 'ar' ? 'بحث عن معلم أو مدينة تاريخية...' : 'Search for a landmark or historic city...'}
-                    className={`w-full ${lang === 'ar' ? 'pr-14 pl-12' : 'pl-14 pr-12'} py-5 rounded-[32px] bg-black/40 border border-[#c5a059]/20 focus:border-primary focus:bg-black/60 focus:ring-0 outline-none transition-all text-sm font-medium text-white placeholder-white/30 backdrop-blur-xl`}
+                    className={`w-full ${lang === 'ar' ? 'pr-14 pl-12' : 'pl-14 pr-12'} py-5 rounded-[32px] bg-black/40 border border-[#c5a059]/20 focus:border-primary focus:bg-black/60 focus:ring-0 outline-none transition-all text-sm font-medium text-white placeholder-white/30 backdrop-blur-sm`}
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                 />
@@ -209,7 +209,7 @@ export default function LandmarkGrid({ lang }: { lang: LangCode }) {
                                         </div>
                                     </div>
 
-                                    <div className="max-w-xl p-8 rounded-3xl bg-black/60 border border-[#c5a059]/20 backdrop-blur-xl relative z-10">
+                                    <div className="max-w-xl p-8 rounded-3xl bg-black/60 border border-[#c5a059]/20 backdrop-blur-sm relative z-10">
                                         <p className="text-base md:text-lg text-white/70 leading-relaxed font-serif italic mb-8">
                                             {lang === 'ar'
                                                 ? 'يخضع هذا السجل حالياً لعملية التوثيق الملكي لضمان أقصى درجات الدقة التاريخية والجغرافية. سيتم الكشف عن المحتوى الكامل بمجرد اكتمال التدقيق من قبل هيئة الأرشيف السيادي.'
@@ -453,7 +453,7 @@ function LandmarkCard({
 
                 {/* Card Content Overlay (High Glassmorphism) */}
                 <div className="absolute inset-x-0 bottom-0 z-10 p-6 md:p-10 flex flex-col justify-end bg-gradient-to-t from-[#080808] via-[#080808]/90 to-transparent pt-32 translate-y-6 group-hover:translate-y-0 transition-transform duration-700 ease-out">
-                    <div className="absolute inset-0 bg-black/60 backdrop-blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" style={{ maskImage: 'linear-gradient(to top, black 40%, transparent)' }} />
+                    <div className="absolute inset-0 bg-black/60 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-700" style={{ maskImage: 'linear-gradient(to top, black 40%, transparent)' }} />
 
                     <div className="relative z-20">
                         <div className="flex justify-between items-end mb-6">

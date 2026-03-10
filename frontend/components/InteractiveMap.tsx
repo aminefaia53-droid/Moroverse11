@@ -134,7 +134,7 @@ export default function InteractiveMap({ lang, onExplore, onLocationEvent, onReg
             </AnimatePresence>
 
             {/* Map HUD */}
-            <div className="absolute bottom-10 left-10 flex items-center gap-5 bg-black/60 backdrop-blur-lg px-8 py-4 rounded-full border border-gold-royal/20 shadow-2xl">
+            <div className="absolute bottom-10 left-10 flex items-center gap-5 bg-black/60 backdrop-blur-sm px-8 py-4 rounded-full border border-gold-royal/20 shadow-2xl">
                 <MapIcon className="text-emerald-light w-6 h-6 animate-pulse" />
                 <span className="text-[10px] font-black tracking-[0.6em] uppercase text-ivory/90">Sovereign Atlas v1.2</span>
             </div>

@@ -97,7 +97,7 @@ export default function ShareButton({
             {/* Trigger button */}
             <button
                 onClick={handleMainClick}
-                className={`${btnSize} flex items-center justify-center rounded-full bg-black/40 backdrop-blur-xl border border-[#c5a059]/30 text-[#c5a059] hover:bg-[#c5a059]/20 hover:border-[#c5a059]/70 transition-all duration-300 hover:scale-110 shadow-[0_0_15px_rgba(197,160,89,0.15)] group/share`}
+                className={`${btnSize} flex items-center justify-center rounded-full bg-black/40 backdrop-blur-sm border border-[#c5a059]/30 text-[#c5a059] hover:bg-[#c5a059]/20 hover:border-[#c5a059]/70 transition-all duration-300 hover:scale-110 shadow-[0_0_15px_rgba(197,160,89,0.15)] group/share`}
                 title="مشاركة"
                 aria-label="شارك هذا المعلم"
             >

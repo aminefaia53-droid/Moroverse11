@@ -50,7 +50,7 @@ export default function TourismModal({ isOpen, onClose, lang, type, icon, title,
                         animate={{ opacity: 1, scale: 1, y: 0 }}
                         exit={{ opacity: 0, scale: 0.95, y: -20 }}
                         transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-                        className="relative w-full max-w-2xl bg-white/10 dark:bg-black/40 backdrop-blur-xl border border-white/20 dark:border-[#c5a059]/30 rounded-[2rem] shadow-[0_20px_60px_rgba(0,0,0,0.6),inset_0_1px_0_rgba(255,255,255,0.2)] overflow-hidden"
+                        className="relative w-full max-w-2xl bg-white/10 dark:bg-black/40 backdrop-blur-sm border border-white/20 dark:border-[#c5a059]/30 rounded-[2rem] shadow-[0_20px_60px_rgba(0,0,0,0.6),inset_0_1px_0_rgba(255,255,255,0.2)] overflow-hidden"
                     >
                         {/* Header Gradient */}
                         <div className="absolute top-0 inset-x-0 h-32 bg-gradient-to-b from-[#c5a059]/30 to-transparent pointer-events-none" />

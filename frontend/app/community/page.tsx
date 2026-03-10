@@ -75,7 +75,7 @@ export default function CommunityPage() {
             <div className="fixed inset-0 pointer-events-none opacity-[0.03]" style={{ backgroundImage: "url('https://www.transparenttextures.com/patterns/az-subtle.png')" }} />
 
             {/* Header */}
-            <header className="fixed top-0 w-full z-50 py-3 px-6 md:px-10 flex justify-between items-center bg-black/80 backdrop-blur-xl border-b border-[#C5A059]/10">
+            <header className="fixed top-0 w-full z-50 py-3 px-6 md:px-10 flex justify-between items-center bg-black/80 backdrop-blur-sm border-b border-[#C5A059]/10">
                 <a href={`/?lang=${lang}`} className="flex items-center gap-2 hover:opacity-80 transition-opacity">
                     <MoroVerseLogo className="w-6 h-6" />
                     <h1 className="font-display text-xs tracking-[0.6em] text-white/70 font-medium uppercase hidden md:block" style={{ letterSpacing: '0.6em' }}>MOROVERSE</h1>

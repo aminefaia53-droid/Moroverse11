@@ -80,7 +80,7 @@ export default function SmartPostBox({ onPostCreated, selectedCityId }: SmartPos
     };
 
     return (
-        <div className="bg-black/40 backdrop-blur-xl border border-white/10 rounded-2xl p-4 shadow-xl mb-6">
+        <div className="bg-black/40 backdrop-blur-sm border border-white/10 rounded-2xl p-4 shadow-xl mb-6">
             <div className="flex gap-3">
                 <div className="w-11 h-11 rounded-full overflow-hidden shrink-0 border-2 border-[#C5A059]/50 bg-[#C5A059]/10 flex items-center justify-center">
                     <span className="text-[#C5A059] text-lg font-bold">👤</span>
