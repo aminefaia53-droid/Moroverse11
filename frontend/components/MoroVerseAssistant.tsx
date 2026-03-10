@@ -127,29 +127,39 @@ export default function MoroVerseAssistant() {
     // =========================================================
     const sendToConcierge = useCallback(async (userMessage: string) => {
         if (!userMessage.trim()) return;
+        console.log("CONCIERGE_UI_DEBUG: Sending user message:", userMessage);
         setIsThinking(true);
         setEmotion('thinking');
         setInputText('');
 
-        const newHistory = [...history, { role: 'user' as const, text: userMessage }];
+        const userEntry: HistoryEntry = { role: 'user', text: userMessage };
+        const newHistory = [...history, userEntry];
         setHistory(newHistory);
+        console.log("CONCIERGE_UI_DEBUG: History updated locally.");
 
         try {
+            console.log("CONCIERGE_UI_DEBUG: Starting fetch /api/concierge...");
             const res = await fetch('/api/concierge', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ message: userMessage, history })
             });
 
+            console.log("CONCIERGE_UI_DEBUG: Response status:", res.status);
             const data = await res.json();
+            console.log("CONCIERGE_UI_DEBUG: Response data received:", data);
 
             if (!res.ok) {
-                console.error("CONCIERGE_API_ERROR:", data.error || "Unknown error");
-                throw new Error(data.error || "AI Service Error");
+                const errorText = data.error || "AI Service Error";
+                console.error("CONCIERGE_UI_DEBUG: Server returned error:", errorText);
+                throw new Error(errorText);
             }
 
             const aiText: string = data.text;
-            if (!aiText) throw new Error("Empty response from AI");
+            if (!aiText) {
+                console.error("CONCIERGE_UI_DEBUG: data.text is null or undefined.");
+                throw new Error("Empty response from AI");
+            }
 
             const cities: string[] = data.cities ?? [];
 
@@ -163,18 +173,26 @@ export default function MoroVerseAssistant() {
 
             // Dispatch map sync event with detected cities
             if (cities.length > 0) {
+                console.log("CONCIERGE_UI_DEBUG: Triggering map sync for cities:", cities);
                 window.dispatchEvent(new CustomEvent('concierge-map-command', {
                     detail: { cities, primaryCity: cities[0] }
                 }));
             }
 
             setTimeout(() => { if (!showChat) { setShowBubble(false); setEmotion('neutral'); } }, 12000);
-        } catch (err) {
-            console.error("Concierge error:", err);
-            setMessage("عذراً، تعذر الاتصال بخدمة المساعد.");
+        } catch (err: any) {
+            console.error("CONCIERGE_UI_CRITICAL_ERROR:", err);
+            const errorMsg = lang === 'ar'
+                ? `خطأ: ${err.message || 'فشل الاتصال بمحمد أمين'}`
+                : `Error: ${err.message || 'Failed to connect to Mohamed Amine'}`;
+
+            setHistory([...newHistory, { role: 'model', text: errorMsg }]);
+            setMessage(errorMsg);
             setEmotion('concerned');
+            setShowBubble(true);
         } finally {
             setIsThinking(false);
+            console.log("CONCIERGE_UI_DEBUG: Thinking state finished.");
         }
     }, [history, lang, showChat]);
 
@@ -348,7 +366,7 @@ export default function MoroVerseAssistant() {
                                 value={inputText}
                                 onChange={e => setInputText(e.target.value)}
                                 onKeyDown={e => { if (e.key === 'Enter' && inputText.trim()) sendToConcierge(inputText); }}
-                                placeholder={lang === 'ar' ? 'اسألني عن المغرب...' : lang === 'fr' ? 'Posez votre question...' : 'Ask about Morocco...'}
+                                placeholder={lang === 'ar' ? 'اسألني عن المغرب...' : lang === 'fr' ? 'Poseز votre question...' : 'Ask about Morocco...'}
                                 dir={lang === 'ar' ? 'rtl' : 'ltr'}
                                 className="flex-1 bg-white/5 border border-white/10 rounded-2xl px-3 py-2 text-xs text-white placeholder-white/30 outline-none focus:border-[#C5A059]/50 transition-colors"
                                 disabled={isThinking}

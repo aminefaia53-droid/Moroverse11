@@ -12,6 +12,7 @@ Rules you MUST follow:
 7. Known Moroccan cities you can reference: Marrakech, Fès, Tanger, Rabat, Casablanca, Agadir, Ouarzazate, Essaouira, Chefchaouen, Meknès, Tétouan, Oujda, Laâyoune, Dakhla, Errachidia, Midelt, Ifrane, Beni Mellal, Guelmim.`;
 
 export async function POST(req: NextRequest) {
+    console.log('CONCIERGE_ENV_DEBUG: Key detected:', !!process.env.GEMINI_API_KEY);
     try {
         const { message, history = [] } = await req.json();
 
