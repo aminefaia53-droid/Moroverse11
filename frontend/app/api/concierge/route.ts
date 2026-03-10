@@ -17,6 +17,7 @@ export async function POST(req: NextRequest) {
 
         const apiKey = process.env.GEMINI_API_KEY;
         if (!apiKey) {
+            console.error("CONCIERGE_ERROR: GEMINI_API_KEY is missing from environment variables.");
             return NextResponse.json({ error: "GEMINI_API_KEY not configured" }, { status: 500 });
         }
 
@@ -43,6 +44,8 @@ export async function POST(req: NextRequest) {
             }
         ];
 
+        console.log("CONCIERGE_DEBUG: Sending request to Gemini with apiKey present:", !!apiKey);
+
         const response = await fetch(
             `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`,
             {
@@ -62,14 +65,26 @@ export async function POST(req: NextRequest) {
             }
         );
 
+        console.log("CONCIERGE_DEBUG: Gemini Response Status:", response.status);
+
         if (!response.ok) {
             const err = await response.text();
-            console.error("Gemini API error:", err);
+            console.error("CONCIERGE_ERROR: Gemini API call failed:", err);
             return NextResponse.json({ error: "AI service unavailable" }, { status: 502 });
         }
 
         const data = await response.json();
-        const text = data?.candidates?.[0]?.content?.parts?.[0]?.text ?? "أنا معك، لكن لم أفهم سؤالك. هل يمكنك الإعادة؟";
+        console.log("CONCIERGE_DEBUG: Raw Gemini JSON length:", JSON.stringify(data).length);
+
+        // Robust extraction
+        let text = data?.candidates?.[0]?.content?.parts?.[0]?.text;
+
+        if (!text) {
+            console.warn("CONCIERGE_WARN: No text found in candidates, checking finishReason:", data?.candidates?.[0]?.finishReason);
+            text = "أنا معك، لكن لم أفهم سؤالك. هل يمكنك الإعادة؟";
+        }
+
+        console.log("CONCIERGE_DEBUG: Final response text:", text);
 
         // Extract mentioned Moroccan cities for map sync
         const CITY_MAP: Record<string, string> = {
@@ -105,7 +120,7 @@ export async function POST(req: NextRequest) {
         return NextResponse.json({ text, cities: mentionedCities });
 
     } catch (err) {
-        console.error("Concierge route error:", err);
+        console.error("CONCIERGE_CRITICAL: Route error:", err);
         return NextResponse.json({ error: "Internal server error" }, { status: 500 });
     }
 }

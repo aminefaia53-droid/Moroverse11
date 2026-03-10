@@ -140,8 +140,17 @@ export default function MoroVerseAssistant() {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ message: userMessage, history })
             });
+
             const data = await res.json();
-            const aiText: string = data.text ?? "أنا هنا، أعد السؤال مرة أخرى.";
+
+            if (!res.ok) {
+                console.error("CONCIERGE_API_ERROR:", data.error || "Unknown error");
+                throw new Error(data.error || "AI Service Error");
+            }
+
+            const aiText: string = data.text;
+            if (!aiText) throw new Error("Empty response from AI");
+
             const cities: string[] = data.cities ?? [];
 
             setHistory([...newHistory, { role: 'model', text: aiText }]);
