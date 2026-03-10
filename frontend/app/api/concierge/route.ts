@@ -61,7 +61,13 @@ export async function POST(req: NextRequest) {
                         temperature: 0.8,
                         maxOutputTokens: 300,
                         topP: 0.9,
-                    }
+                    },
+                    safetySettings: [
+                        { category: "HARM_CATEGORY_HARASSMENT", threshold: "BLOCK_NONE" },
+                        { category: "HARM_CATEGORY_HATE_SPEECH", threshold: "BLOCK_NONE" },
+                        { category: "HARM_CATEGORY_SEXUALLY_EXPLICIT", threshold: "BLOCK_NONE" },
+                        { category: "HARM_CATEGORY_DANGEROUS_CONTENT", threshold: "BLOCK_NONE" }
+                    ]
                 })
             }
         );
@@ -69,9 +75,9 @@ export async function POST(req: NextRequest) {
         console.log("CONCIERGE_DEBUG: Gemini Response Status:", response.status);
 
         if (!response.ok) {
-            const err = await response.text();
-            console.error("CONCIERGE_ERROR: Gemini API call failed:", err);
-            return NextResponse.json({ error: "AI service unavailable" }, { status: 502 });
+            const errorBody = await response.text();
+            console.error("CONCIERGE_ERROR: Gemini API call failed. Status:", response.status, "Body:", errorBody);
+            return NextResponse.json({ error: `AI service unavailable: ${errorBody}` }, { status: 502 });
         }
 
         const data = await response.json();
