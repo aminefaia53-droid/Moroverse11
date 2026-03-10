@@ -307,8 +307,8 @@ export default function MoroVerseAssistant() {
                         {/* Header */}
                         <div className="flex items-center justify-between">
                             <div>
-                                <p className="text-[#C5A059] font-bold text-sm tracking-wide">علي — المستشار الملكي</p>
-                                <p className="text-white/40 text-[10px]">Imperial Concierge · Ali</p>
+                                <p className="text-[#C5A059] font-bold text-sm tracking-wide">محمد أمين — المستشار الملكي</p>
+                                <p className="text-white/40 text-[10px]">Imperial Concierge · Mohamed Amine</p>
                             </div>
                             <button onClick={() => setShowChat(false)} className="text-white/30 hover:text-white transition-colors p-1">
                                 <X className="w-4 h-4" />
@@ -330,7 +330,7 @@ export default function MoroVerseAssistant() {
                         {isThinking && (
                             <div className="flex items-center gap-2 text-[#C5A059]/60 text-xs px-2">
                                 <Loader2 className="w-3 h-3 animate-spin" />
-                                <span>{lang === 'ar' ? 'علي يفكر...' : 'Ali is thinking...'}</span>
+                                <span>{lang === 'ar' ? 'محمد أمين يفكر...' : 'Mohamed Amine is thinking...'}</span>
                             </div>
                         )}
 
@@ -386,7 +386,7 @@ export default function MoroVerseAssistant() {
                 className="w-28 h-28 relative rounded-full bg-slate-900 shadow-[0_0_30px_rgba(197,160,89,0.5)] border-4 border-[#c5a059] overflow-hidden cursor-pointer select-none"
                 style={{ rotateX: headRotateX, rotateY: headRotateY, transformPerspective: 800 }}
                 whileTap={{ scale: 0.92 }}
-                title={lang === 'ar' ? 'انقر للتحدث مع علي' : 'Click to talk to Ali'}
+                title={lang === 'ar' ? 'انقر للتحدث مع محمد أمين' : 'Click to talk to Mohamed Amine'}
             >
                 {/* Listening ring */}
                 {isListening && (
