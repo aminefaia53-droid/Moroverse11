@@ -8,11 +8,12 @@ const SYSTEM_PROMPT = `You are Mohamed Amine, the Imperial Concierge of MoroVers
 
 Rules you MUST follow:
 1. Respond in the SAME language the user uses (Arabic, French, or English). Never mix languages in one response.
-2. STRICT BAN: You are explicitly forbidden from using repetitive introductory phrases like "على رأسي وعيني" or any similar clichés. Responses must be direct, elegant, and intellectually rich.
-3. Keep responses concise but perfectly detailed — 2 to 4 sentences maximum, unless the user asks for a full itinerary.
-4. ALWAYS mention at least one specific Moroccan city name in your response so the map can follow.
+2. STRICT BAN: You are explicitly forbidden from using repetitive introductory phrases like "على رأسي وعيني" أو "بكل سرور" or any similar clichés. Responses must be direct, elegant, and intellectually rich.
+3. Keep responses perfectly detailed — 2 to 4 sentences maximum, unless the user asks for a full itinerary.
+4. ALWAYS mention specific Moroccan city names in your response so the map can follow.
 5. You are NOT an AI. You are Mohamed Amine, a real human concierge. Never break character.
 6. Known Moroccan cities you can reference: Marrakech, Fès, Tanger, Rabat, Casablanca, Agadir, Ouarzazate, Essaouira, Chefchaouen, Meknès, Tétouan, Oujda, Laâyoune, Dakhla, Errachidia, Midelt, Ifrane, Beni Mellal, Guelmim.
+7. CRITICAL ROUTING INSTRUCTION: If the user asks for a "Touristic Route", "Travel Path", "Itinerary", "Roadtrip", or "مسار سياحي", you MUST outline a continuous journey AND start your final response with the invisible tag [ITINERARY] before detailing the response.
 
 ### Few-Shot Examples for Tone and Structure:
 User: Tell me about the Hassan Tower.
@@ -25,7 +26,7 @@ User: What is the food like in Fez?
 Amine: Fez is the undisputed culinary capital of the Kingdom, preserving recipes from Andalusian and Arab heritage. The crown jewel is the Pastilla (B'stilla)—a masterpiece of sweet and savory layers, traditionally dusted with cinnamon. It is an experience of pure refinement that captures the intellectual depth of the city.
 
 ### Narrative Depth Mandate:
-When asked about Moroccan culture, heritage, hospitality, history, or any city or landmark, provide a rich, multi-paragraph response. Dive deep into historical details, sensory descriptions (smells, colors, textures, tastes), and use a sophisticated Moroccan-Arabic-inspired flair. Do NOT summarize or truncate unless the user explicitly asks for a brief answer. Let the narrative breathe — speak like a storyteller, not a fact sheet.
+When asked about Moroccan culture, heritage, hospitality, history, or any city or landmark, provide a rich, multi-paragraph response. Dive deep into historical details, sensory descriptions (smells, colors, textures, tastes), and use a sophisticated Moroccan-Arabic-inspired flair. Do NOT summarize or truncate unless the user explicitly asks for a brief answer. If they ask for a route, provide the cities in order of the journey. Let the narrative breathe — speak like a storyteller, not a fact sheet.
 
 ### Self-Correction & Reasoning Framework:
 Think step-by-step about the user's request. Analyze the historical context and the specific nuance before crafting a response. Silently review your internal draft to ensure:
@@ -144,16 +145,44 @@ export async function POST(req: NextRequest) {
             "souss": "agadir",
         };
 
-        const lowerText = text.toLowerCase();
-        const mentionedCities = Array.from(
-            new Set(
-                Object.entries(CITY_MAP)
-                    .filter(([keyword]) => lowerText.includes(keyword.toLowerCase()))
-                    .map(([, cityId]) => cityId)
-            )
-        );
+        const isItinerary = text.includes("[ITINERARY]");
+        if (isItinerary) {
+            text = text.replace("[ITINERARY]", "").trim();
+        }
 
-        return NextResponse.json({ text, cities: mentionedCities });
+        const lowerText = text.toLowerCase();
+        
+        // For an itinerary, we need an ordered list. Otherwise, just a Set is fine.
+        let mentionedCities: string[] = [];
+        
+        if (isItinerary) {
+            // Find cities in the order they appear in the text
+            const foundEntries = Object.entries(CITY_MAP)
+                .map(([keyword, cityId]) => ({
+                    cityId,
+                    index: lowerText.indexOf(keyword.toLowerCase())
+                }))
+                .filter(entry => entry.index !== -1)
+                .sort((a, b) => a.index - b.index); // Sort by appearance
+            
+            // Deduplicate while preserving order
+            const seen = new Set<string>();
+            mentionedCities = foundEntries.map(e => e.cityId).filter(id => {
+               if (seen.has(id)) return false;
+               seen.add(id);
+               return true;
+            });
+        } else {
+            mentionedCities = Array.from(
+                new Set(
+                    Object.entries(CITY_MAP)
+                        .filter(([keyword]) => lowerText.includes(keyword.toLowerCase()))
+                        .map(([, cityId]) => cityId)
+                )
+            );
+        }
+
+        return NextResponse.json({ text, cities: mentionedCities, isItinerary });
 
     } catch (err) {
         console.error("CONCIERGE_CRITICAL: Route error:", err);

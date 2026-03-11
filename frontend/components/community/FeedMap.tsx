@@ -1,18 +1,14 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { MapContainer, TileLayer, GeoJSON, useMap, useMapEvents, Marker, Popup } from "react-leaflet";
+import { MapContainer, TileLayer, GeoJSON, useMap, useMapEvents, Marker, Popup, Polyline } from "react-leaflet";
 import * as L from "leaflet";
 import { useLanguage } from "../../context/LanguageContext";
 import moroccoRegionsGeoJSON from "../../data/morocco-regions-geo";
 import { createClient } from "../../utils/supabase/client";
 
-function MapController({ center, zoom }: { center: [number, number]; zoom: number }) {
+function MapController() {
     const map = useMap();
-
-    useEffect(() => {
-        map.flyTo(center, zoom, { duration: 1.2 });
-    }, [center, zoom, map]);
 
     useEffect(() => {
         const handleFlyToBounds = (e: Event) => {
@@ -21,8 +17,18 @@ function MapController({ center, zoom }: { center: [number, number]; zoom: numbe
                 map.flyToBounds(bounds, { padding: [50, 50], duration: 1.5 });
             }
         };
+        const handleFlyToTarget = (e: Event) => {
+            const { target, zoom } = (e as CustomEvent).detail;
+            if (target && zoom) {
+                map.flyTo(target, zoom, { duration: 1.5 });
+            }
+        };
         window.addEventListener('map-fly-to-bounds', handleFlyToBounds);
-        return () => window.removeEventListener('map-fly-to-bounds', handleFlyToBounds);
+        window.addEventListener('map-fly-to-target', handleFlyToTarget);
+        return () => {
+             window.removeEventListener('map-fly-to-bounds', handleFlyToBounds);
+             window.removeEventListener('map-fly-to-target', handleFlyToTarget);
+        };
     }, [map]);
 
     return null;
@@ -112,6 +118,7 @@ export default function FeedMap({
     const { lang } = useLanguage();
     const isAr = lang === "ar";
     const [highlightedCityIds, setHighlightedCityIds] = useState<string[]>([]);
+    const [itineraryPoints, setItineraryPoints] = useState<[number, number][]>([]);
     const [zoomLevel, setZoomLevel] = useState(5);
     const [pins, setPins] = useState<any[]>([]);
 
@@ -142,27 +149,71 @@ export default function FeedMap({
 
     useEffect(() => {
         const handleConciergeCommand = (e: Event) => {
-            const { cities } = (e as CustomEvent).detail;
+            const { cities, isItinerary } = (e as CustomEvent).detail;
             if (!cities || cities.length === 0) return;
 
             setHighlightedCityIds(cities);
 
-            const targetFeatures = moroccoRegionsGeoJSON.features.filter(f =>
-                cities.includes(regionToCityId(f.properties?.NAME_1))
-            );
+            if (isItinerary) {
+                // Find coordinates for the itinerary points
+                const points: [number, number][] = [];
+                const targetFeatures = moroccoRegionsGeoJSON.features.filter(f =>
+                    cities.includes(regionToCityId(f.properties?.NAME_1))
+                );
 
-            if (targetFeatures.length > 0) {
-                const tempLayer = L.geoJSON({ type: "FeatureCollection", features: targetFeatures } as any);
-                const bounds = tempLayer.getBounds();
-                window.dispatchEvent(new CustomEvent('map-fly-to-bounds', { detail: { bounds } }));
+                // For exact pins match
+                const runItinerary = () => {
+                    cities.forEach((cId: string) => {
+                        const pin = pins.find(p => p.id === cId);
+                        if (pin) {
+                             points.push([pin.lat, pin.lng]);
+                        }
+                    });
+                    
+                    if (points.length > 1) {
+                         setItineraryPoints(points);
+                         const polyline = L.polyline(points);
+                         window.dispatchEvent(new CustomEvent('map-fly-to-bounds', { detail: { bounds: polyline.getBounds() } }));
+                    } else if (targetFeatures.length > 0) {
+                        const tempLayer = L.geoJSON({ type: "FeatureCollection", features: targetFeatures } as any);
+                        window.dispatchEvent(new CustomEvent('map-fly-to-bounds', { detail: { bounds: tempLayer.getBounds() } }));
+                    }
+                };
+
+                // Wait for pins to load if not already
+                if (pins.length === 0) {
+                    setTimeout(runItinerary, 1000); 
+                } else {
+                    runItinerary();
+                }
+
+                // Clear after 20 seconds
+                setTimeout(() => {
+                     setHighlightedCityIds([]);
+                     setItineraryPoints([]);
+                }, 20000);
+            } else {
+                // Single point (or region) deep zoom
+                setItineraryPoints([]);
+                const mainPin = pins.find(p => p.id === cities[0]);
+                if (mainPin) {
+                    window.dispatchEvent(new CustomEvent('map-fly-to-target', { detail: { target: [mainPin.lat, mainPin.lng], zoom: 15 } }));
+                } else {
+                    const targetFeatures = moroccoRegionsGeoJSON.features.filter(f =>
+                        cities.includes(regionToCityId(f.properties?.NAME_1))
+                    );
+                    if (targetFeatures.length > 0) {
+                        const tempLayer = L.geoJSON({ type: "FeatureCollection", features: targetFeatures } as any);
+                        window.dispatchEvent(new CustomEvent('map-fly-to-bounds', { detail: { bounds: tempLayer.getBounds() } }));
+                    }
+                }
+                setTimeout(() => setHighlightedCityIds([]), 10000);
             }
-
-            setTimeout(() => setHighlightedCityIds([]), 10000);
         };
 
         window.addEventListener('concierge-map-command', handleConciergeCommand);
         return () => window.removeEventListener('concierge-map-command', handleConciergeCommand);
-    }, []);
+    }, [pins]);
 
     const onEachFeature = (feature: any, layer: any) => {
         const regionName = feature.properties?.NAME_1 ?? "";
@@ -233,15 +284,30 @@ export default function FeedMap({
                 className="w-full h-full"
                 style={{ background: "#020202" }}
             >
-                <MapController center={mapCenter} zoom={initialZoom} />
+                <MapController />
                 <ZoomTracker onZoomChange={setZoomLevel} />
 
-                {/* TOTAL REALISM: GOOGLE HYBRID SATELLITE (Imagery + Roads + Labels) */}
+                {/* TOTAL REALISM: MAPBOX SATELLITE STREETS */}
                 <TileLayer
-                    attribution='&copy; Google'
-                    url="https://mt1.google.com/vt/lyrs=y&x={x}&y={y}&z={z}"
+                    attribution='&copy; <a href="https://www.mapbox.com/about/maps/">Mapbox</a>'
+                    url={`https://api.mapbox.com/styles/v1/mapbox/satellite-streets-v12/tiles/256/{z}/{x}/{y}@2x?access_token=${process.env.NEXT_PUBLIC_MAPBOX_TOKEN}`}
                     maxZoom={19}
                 />
+
+                {itineraryPoints.length > 1 && (
+                    <Polyline 
+                        positions={itineraryPoints}
+                        pathOptions={{ 
+                            color: '#C5A059', 
+                            weight: 4, 
+                            opacity: 0.8, 
+                            dashArray: '10, 10', 
+                            lineCap: 'round', 
+                            lineJoin: 'round',
+                            className: 'animate-pulse'
+                        }}
+                    />
+                )}
 
                 <GeoJSON
                     key={`${selectedCityId}-${highlightedCityIds.join(',')}-${zoomLevel}`}

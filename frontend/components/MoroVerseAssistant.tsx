@@ -182,9 +182,9 @@ export default function MoroVerseAssistant() {
 
             // Dispatch map sync event with detected cities
             if (cities.length > 0) {
-                console.log("CONCIERGE_UI_DEBUG: Triggering map sync for cities:", cities);
+                console.log("CONCIERGE_UI_DEBUG: Triggering map sync for cities:", cities, "Is itinerary:", data.isItinerary);
                 window.dispatchEvent(new CustomEvent('concierge-map-command', {
-                    detail: { cities, primaryCity: cities[0] }
+                    detail: { cities, primaryCity: cities[0], isItinerary: data.isItinerary }
                 }));
             }
 
@@ -513,7 +513,7 @@ export default function MoroVerseAssistant() {
             {/* ===== AVATAR — click to open/close chat ===== */}
             <motion.div
                 onClick={handleRobotClick}
-                className="w-28 h-28 relative rounded-full bg-slate-900 border-4 border-[#c5a059] overflow-hidden cursor-pointer select-none"
+                className="w-28 h-28 relative rounded-full bg-slate-900 border-2 border-transparent hover:border-white/10 overflow-hidden cursor-pointer select-none"
                 style={{ rotateX: headRotateX, rotateY: headRotateY, transformPerspective: 800 }}
                 whileTap={{ scale: 0.92 }}
                 title={lang === 'ar' ? 'انقر للتحدث مع محمد أمين' : 'Click to talk to Mohamed Amine'}
