@@ -22,24 +22,27 @@ export async function POST(req: NextRequest) {
             return NextResponse.json({ error: "GEMINI_API_KEY not configured" }, { status: 500 });
         }
 
-        // Build conversation history for Gemini with System Prompt prepended to the first user message
+        // Emergency Protocol: Manual Prompt Injection
+        // Instead of system_instruction, we prefix the instructions to the user's message.
         const contents = [];
-        const systemStyledPrompt = `SYSTEM_INSTRUCTION: ${SYSTEM_PROMPT}\n\n`;
+        const fullPrompt = `${SYSTEM_PROMPT}\n\n[USER MESSAGE]: ${message}`;
 
         if (history.length === 0) {
+            // No history: Send everything as one user message
             contents.push({
                 role: "user",
-                parts: [{ text: systemStyledPrompt + message }]
+                parts: [{ text: fullPrompt }]
             });
         } else {
-            // Prepend to the very first message in history
+            // History exists: Prepend the instructions to the FIRST message in high-level context
+            // Note: Gemini stable expects the first message to be "user"
             history.forEach((h: { role: string; text: string }, idx: number) => {
                 contents.push({
                     role: h.role === "user" ? "user" : "model",
-                    parts: [{ text: idx === 0 ? systemStyledPrompt + h.text : h.text }]
+                    parts: [{ text: idx === 0 ? `${SYSTEM_PROMPT}\n\n${h.text}` : h.text }]
                 });
             });
-            // Add the current message
+            // Add current message
             contents.push({
                 role: "user",
                 parts: [{ text: message }]
