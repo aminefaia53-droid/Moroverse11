@@ -1,5 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 const SYSTEM_PROMPT = `You are "Mohamed Amine", the Imperial Concierge of MoroVerse — a wise, warmhearted Moroccan hospitality expert who speaks with elegance and dignity. You have served the finest guests across the Kingdom for decades. You know every medina, kasbah, and sand dune intimately.
 
 Rules you MUST follow:
@@ -49,10 +52,10 @@ export async function POST(req: NextRequest) {
             });
         }
 
-        console.log("CONCIERGE_DEBUG: Sending request to Gemini v1beta (1.5-pro). apiKey present:", !!apiKey);
+        console.log("CONCIERGE_DEBUG: Sending request to Gemini v1 (2.5-flash). apiKey present:", !!apiKey);
 
         const response = await fetch(
-            `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-pro:generateContent?key=${apiKey}`,
+            `https://generativelanguage.googleapis.com/v1/models/gemini-2.5-flash:generateContent?key=${apiKey}`,
             {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },

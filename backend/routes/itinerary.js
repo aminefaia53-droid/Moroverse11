@@ -22,7 +22,7 @@ router.post('/generate', async (req, res) => {
         if (API_KEY && API_KEY !== 'YOUR_GEMINI_API_KEY_HERE') {
             const { GoogleGenerativeAI } = require('@google/generative-ai');
             const genAI = new GoogleGenerativeAI(API_KEY);
-            const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
+            const model = genAI.getGenerativeModel({ model: 'gemini-2.5-flash' }, { apiVersion: 'v1' });
 
             const prompt = `You are Moro, an AI expert on Moroccan culture, history, and travel.
 Create a detailed 3-day travel itinerary for Morocco based on these cities: ${cities.join(', ')}.

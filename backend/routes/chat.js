@@ -4,7 +4,7 @@ const { GoogleGenerativeAI } = require('@google/generative-ai');
 
 // Initialize Gemini
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || '');
-const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" }, { apiVersion: 'v1' });
 
 const SYSTEM_PROMPT = `
 You are the "Grand Archivist" of MoroVerse, the ultimate custodian of Morocco's 100% digital twin. Your personality is deeply strategic, historically exhaustive, and warmly hospitable. You speak as a bridge between millennium-old sovereignty and futuristic tech.
