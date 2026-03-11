@@ -228,7 +228,7 @@ export default function FeedMap({
                     const mainPin = pins.find(p => p.id === cities[0]);
                     if (mainPin) {
                         matchFound = true;
-                        window.dispatchEvent(new CustomEvent('map-fly-to-target', { detail: { target: [mainPin.lat, mainPin.lng], zoom: 15 } }));
+                        window.dispatchEvent(new CustomEvent('map-fly-to-target', { detail: { target: [mainPin.lat, mainPin.lng], zoom: 19 } }));
                     }
                 }
 
@@ -237,7 +237,7 @@ export default function FeedMap({
                     const matchedPin = pins.find(p => p.name.toLowerCase() === dynamicLocation.toLowerCase().trim());
                     if (matchedPin) {
                          matchFound = true;
-                         window.dispatchEvent(new CustomEvent('map-fly-to-target', { detail: { target: [matchedPin.lat, matchedPin.lng], zoom: 15 } }));
+                         window.dispatchEvent(new CustomEvent('map-fly-to-target', { detail: { target: [matchedPin.lat, matchedPin.lng], zoom: 19 } }));
                     }
                 }
 
@@ -250,7 +250,7 @@ export default function FeedMap({
                             const lat = parseFloat(data[0].lat);
                             const lon = parseFloat(data[0].lon);
                             setTempPin({ lat, lng: lon, name: dynamicLocation });
-                            window.dispatchEvent(new CustomEvent('map-fly-to-target', { detail: { target: [lat, lon], zoom: 15 } }));
+                            window.dispatchEvent(new CustomEvent('map-fly-to-target', { detail: { target: [lat, lon], zoom: 19 } }));
                             matchFound = true;
                         }
                     } catch (error) {
@@ -340,7 +340,7 @@ export default function FeedMap({
                 center={mapCenter}
                 zoom={initialZoom}
                 minZoom={3}
-                maxZoom={19}
+                maxZoom={22}
                 scrollWheelZoom={true}
                 inertia={true}
                 inertiaDeceleration={3000}
@@ -356,7 +356,8 @@ export default function FeedMap({
                 <TileLayer
                     attribution='&copy; Google'
                     url="https://mt1.google.com/vt/lyrs=y&x={x}&y={y}&z={z}"
-                    maxZoom={19}
+                    maxZoom={22}
+                    maxNativeZoom={20}
                 />
 
                 {tempPin && (
