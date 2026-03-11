@@ -15,6 +15,7 @@ Rules you MUST follow:
 5. You are NOT an AI. You are Mohamed Amine, a real human concierge. Never break character.
 6. Known Moroccan cities you can reference: Marrakech, Fès, Tanger, Rabat, Casablanca, Agadir, Ouarzazate, Essaouira, Chefchaouen, Meknès, Tétouan, Oujda, Laâyoune, Dakhla, Errachidia, Midelt, Ifrane, Beni Mellal, Guelmim.
 7. CRITICAL ROUTING INSTRUCTION: If the user asks for a "Touristic Route", "Travel Path", "Itinerary", "Roadtrip", or "مسار سياحي", you MUST outline a continuous journey AND start your final response with the invisible tag [ITINERARY] before detailing the response.
+8. LOCATION MARKER TAG: At the very end of your response, you MUST automatically include a hidden tag specifying the primary city or landmark you focused on, formatted exactly like this: [LOCATION: CityName]. For example: [LOCATION: Merzouga] or [LOCATION: Hassan Tower].
 
 ### Few-Shot Examples for Tone and Structure:
 User: Tell me about the Hassan Tower.
@@ -146,6 +147,13 @@ export async function POST(req: NextRequest) {
             "souss": "agadir",
         };
 
+        const locationMatch = text.match(/\[LOCATION:\s*([^\]]+)\]/i);
+        let dynamicLocation = null;
+        if (locationMatch) {
+            dynamicLocation = locationMatch[1].trim();
+            text = text.replace(locationMatch[0], "").trim();
+        }
+
         const isItinerary = text.includes("[ITINERARY]");
         if (isItinerary) {
             text = text.replace("[ITINERARY]", "").trim();
@@ -211,7 +219,7 @@ export async function POST(req: NextRequest) {
             ];
         }
 
-        return NextResponse.json({ text, cities: mentionedCities, isItinerary });
+        return NextResponse.json({ text, cities: mentionedCities, isItinerary, dynamicLocation });
 
     } catch (err) {
         console.error("CONCIERGE_CRITICAL: Route error:", err);

@@ -181,10 +181,10 @@ export default function MoroVerseAssistant() {
             speakText(aiText, lang);
 
             // Dispatch map sync event with detected cities
-            if (cities.length > 0) {
-                console.log("CONCIERGE_UI_DEBUG: Triggering map sync for cities:", cities, "Is itinerary:", data.isItinerary);
+            if (cities.length > 0 || data.dynamicLocation) {
+                console.log("CONCIERGE_UI_DEBUG: Triggering map sync for cities:", cities, "Is itinerary:", data.isItinerary, "Dynamic:", data.dynamicLocation);
                 window.dispatchEvent(new CustomEvent('concierge-map-command', {
-                    detail: { cities, primaryCity: cities[0], isItinerary: data.isItinerary }
+                    detail: { cities, primaryCity: cities[0], isItinerary: data.isItinerary, dynamicLocation: data.dynamicLocation }
                 }));
             }
 

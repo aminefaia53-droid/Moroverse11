@@ -44,13 +44,13 @@ function ZoomTracker({ onZoomChange }: { onZoomChange: (z: number) => void }) {
 }
 
 const createCustomIcon = (type: string, isSelected: boolean) => {
-    const color = type === 'battle' ? '#ef4444' : type === 'landmark' ? '#C5A059' : '#0ea5e9';
+    const color = type === 'battle' ? '#ef4444' : type === 'temp' ? '#f59e0b' : '#C5A059';
     const size = isSelected ? 40 : 32;
 
     return L.divIcon({
         className: 'custom-map-pin',
         html: `
-            <div style="filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5)); transform: scale(${isSelected ? 1.2 : 1})">
+            <div style="filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5)); transform: scale(${isSelected ? 1.2 : 1})" class="${type === 'temp' ? 'animate-bounce' : ''}">
                 <svg width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M12 21C16 17 20 13.4183 20 9C20 4.58172 16.4183 1 12 1C7.58172 1 4 4.58172 4 9C4 13.4183 8 17 12 21Z" fill="${color}" stroke="white" stroke-width="1.5"/>
                     <circle cx="12" cy="9" r="3" fill="white" fill-opacity="0.8"/>
@@ -119,6 +119,7 @@ export default function FeedMap({
     const isAr = lang === "ar";
     const [highlightedCityIds, setHighlightedCityIds] = useState<string[]>([]);
     const [itineraryPoints, setItineraryPoints] = useState<[number, number][]>([]);
+    const [tempPin, setTempPin] = useState<{lat: number, lng: number, name: string} | null>(null);
     const [zoomLevel, setZoomLevel] = useState(5);
     const [pins, setPins] = useState<any[]>([]);
 
@@ -148,11 +149,15 @@ export default function FeedMap({
     }, []);
 
     useEffect(() => {
-        const handleConciergeCommand = (e: Event) => {
-            const { cities, isItinerary } = (e as CustomEvent).detail;
-            if (!cities || cities.length === 0) return;
+        const handleConciergeCommand = async (e: Event) => {
+            const { cities, isItinerary, dynamicLocation } = (e as CustomEvent).detail;
+            if ((!cities || cities.length === 0) && !dynamicLocation) return;
+            
+            setTempPin(null);
 
-            setHighlightedCityIds(cities);
+            if (cities && cities.length > 0) {
+                setHighlightedCityIds(cities);
+            }
 
             if (isItinerary) {
                 // Find coordinates for the itinerary points
@@ -191,23 +196,62 @@ export default function FeedMap({
                 setTimeout(() => {
                      setHighlightedCityIds([]);
                      setItineraryPoints([]);
+                     setTempPin(null);
                 }, 20000);
             } else {
-                // Single point (or region) deep zoom
                 setItineraryPoints([]);
-                const mainPin = pins.find(p => p.id === cities[0]);
-                if (mainPin) {
-                    window.dispatchEvent(new CustomEvent('map-fly-to-target', { detail: { target: [mainPin.lat, mainPin.lng], zoom: 15 } }));
-                } else {
+                let matchFound = false;
+
+                // Priority 1: Supabase DB pins via matched cities
+                if (cities && cities.length > 0) {
+                    const mainPin = pins.find(p => p.id === cities[0]);
+                    if (mainPin) {
+                        matchFound = true;
+                        window.dispatchEvent(new CustomEvent('map-fly-to-target', { detail: { target: [mainPin.lat, mainPin.lng], zoom: 15 } }));
+                    }
+                }
+
+                // Priority 2: Supabase DB pin via dynamicLocation name
+                if (!matchFound && dynamicLocation) {
+                    const matchedPin = pins.find(p => p.name.toLowerCase() === dynamicLocation.toLowerCase().trim());
+                    if (matchedPin) {
+                         matchFound = true;
+                         window.dispatchEvent(new CustomEvent('map-fly-to-target', { detail: { target: [matchedPin.lat, matchedPin.lng], zoom: 15 } }));
+                    }
+                }
+
+                // Priority 3: Nominatim Geocoding API if no Supabase pin matched
+                if (!matchFound && dynamicLocation) {
+                    try {
+                        const res = await fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(dynamicLocation + ', Morocco')}&limit=1`);
+                        const data = await res.json();
+                        if (data && data.length > 0) {
+                            const lat = parseFloat(data[0].lat);
+                            const lon = parseFloat(data[0].lon);
+                            setTempPin({ lat, lng: lon, name: dynamicLocation });
+                            window.dispatchEvent(new CustomEvent('map-fly-to-target', { detail: { target: [lat, lon], zoom: 15 } }));
+                            matchFound = true;
+                        }
+                    } catch (error) {
+                        console.error('MAP_ERROR: Nominatim error:', error);
+                    }
+                }
+
+                // Priority 4: GeoJSON bounds (e.g. Regions like Oriental)
+                if (!matchFound && cities && cities.length > 0) {
                     const targetFeatures = moroccoRegionsGeoJSON.features.filter(f =>
                         cities.includes(regionToCityId(f.properties?.NAME_1))
                     );
                     if (targetFeatures.length > 0) {
-                        const tempLayer = L.geoJSON({ type: "FeatureCollection", features: targetFeatures } as any);
-                        window.dispatchEvent(new CustomEvent('map-fly-to-bounds', { detail: { bounds: tempLayer.getBounds() } }));
+                         const tempLayer = L.geoJSON({ type: "FeatureCollection", features: targetFeatures } as any);
+                         window.dispatchEvent(new CustomEvent('map-fly-to-bounds', { detail: { bounds: tempLayer.getBounds() } }));
                     }
                 }
-                setTimeout(() => setHighlightedCityIds([]), 10000);
+
+                setTimeout(() => {
+                    setHighlightedCityIds([]);
+                    setTempPin(null);
+                }, 10000);
             }
         };
 
@@ -287,12 +331,28 @@ export default function FeedMap({
                 <MapController />
                 <ZoomTracker onZoomChange={setZoomLevel} />
 
-                {/* TOTAL REALISM: GOOGLE HYBRID SATELLITE (Imagery + Roads + Labels) */}
+                {/* TOTAL REALISM: ESRI WORLD IMAGERY */}
                 <TileLayer
-                    attribution='&copy; Google'
-                    url="https://mt1.google.com/vt/lyrs=y&x={x}&y={y}&z={z}"
+                    attribution='&copy; Esri'
+                    url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
                     maxZoom={19}
                 />
+
+                {tempPin && (
+                    <Marker
+                        position={[tempPin.lat, tempPin.lng]}
+                        icon={createCustomIcon('temp', true)}
+                    >
+                        <Popup className="pin-popup">
+                            <div className="p-2 min-w-[150px]">
+                                <h3 className="text-[#f59e0b] font-bold border-b border-[#f59e0b]/20 pb-1 mb-1">{tempPin.name}</h3>
+                                <p className="text-[10px] text-white/80 leading-tight">
+                                    {isAr ? "تم تحديد الموقع بواسطة الذكاء الاصطناعي." : "Location mapped by AI via Geocoding."}
+                                </p>
+                            </div>
+                        </Popup>
+                    </Marker>
+                )}
 
                 {itineraryPoints.length > 1 && (
                     <Polyline 
