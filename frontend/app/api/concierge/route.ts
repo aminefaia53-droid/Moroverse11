@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { createClient } from "@supabase/supabase-js";
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
@@ -150,6 +151,27 @@ export async function POST(req: NextRequest) {
             text = text.replace("[ITINERARY]", "").trim();
         }
 
+        // Fetch Supabase Pins to take priority
+        let dbPins: any[] = [];
+        const rawUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+        const rawKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+        if (rawUrl && rawUrl.startsWith('http') && rawKey && rawKey.length > 20) {
+            try {
+                const supabase = createClient(rawUrl, rawKey);
+                const { data } = await supabase.from('map_pins').select('id, name');
+                if (data) dbPins = data;
+            } catch (err) {
+                console.error("CONCIERGE_WARN: Failed to fetch Supabase pins", err);
+            }
+        }
+
+        const COMBINED_MAP: Record<string, string> = { ...CITY_MAP };
+        dbPins.forEach(pin => {
+            if (pin.name) {
+                COMBINED_MAP[pin.name.toLowerCase()] = pin.id;
+            }
+        });
+
         const lowerText = text.toLowerCase();
         
         // For an itinerary, we need an ordered list. Otherwise, just a Set is fine.
@@ -157,7 +179,7 @@ export async function POST(req: NextRequest) {
         
         if (isItinerary) {
             // Find cities in the order they appear in the text
-            const foundEntries = Object.entries(CITY_MAP)
+            const foundEntries = Object.entries(COMBINED_MAP)
                 .map(([keyword, cityId]) => ({
                     cityId,
                     index: lowerText.indexOf(keyword.toLowerCase())
@@ -173,13 +195,20 @@ export async function POST(req: NextRequest) {
                return true;
             });
         } else {
-            mentionedCities = Array.from(
-                new Set(
-                    Object.entries(CITY_MAP)
-                        .filter(([keyword]) => lowerText.includes(keyword.toLowerCase()))
-                        .map(([, cityId]) => cityId)
-                )
-            );
+            // Priority: if a DB pin matches, it should be at the front
+            const foundCities = Object.entries(COMBINED_MAP)
+                .filter(([keyword]) => lowerText.includes(keyword.toLowerCase()))
+                .map(([, cityId]) => cityId);
+            
+            // Deduplicate
+            const uniqueCities = Array.from(new Set(foundCities));
+            
+            // Re-order so DB custom pins appear first
+            const dbPinIds = new Set(dbPins.map(p => p.id));
+            mentionedCities = [
+                ...uniqueCities.filter(id => dbPinIds.has(id)),
+                ...uniqueCities.filter(id => !dbPinIds.has(id))
+            ];
         }
 
         return NextResponse.json({ text, cities: mentionedCities, isItinerary });
