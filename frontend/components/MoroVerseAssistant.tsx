@@ -32,6 +32,7 @@ export default function MoroVerseAssistant() {
     const [inputText, setInputText] = useState('');
     const [isListening, setIsListening] = useState(false);
     const [isThinking, setIsThinking] = useState(false);
+    const [isSendingVoice, setIsSendingVoice] = useState(false); // Visual 'Sending...' state for mobile
     const [history, setHistory] = useState<HistoryEntry[]>([]);
 
     const containerRef = useRef<HTMLDivElement>(null);
@@ -39,6 +40,9 @@ export default function MoroVerseAssistant() {
     const recognitionRef = useRef<any>(null);
     // Stable ref so voice onresult always calls the latest sendToConcierge (fixes stale closure bug)
     const sendToConciergeRef = useRef<(msg: string, isVoice?: boolean) => void>(() => { });
+    // Mobile safety net: stores last transcript so onend can submit if onresult didn't
+    const pendingTranscriptRef = useRef<string>('');
+    const submittedRef = useRef<boolean>(false); // Prevents double-submit
     const containerControls = useAnimation();
     const mouseX = useMotionValue(0);
     const mouseY = useMotionValue(0);
@@ -207,7 +211,7 @@ export default function MoroVerseAssistant() {
     }, [sendToConcierge]);
 
     // =========================================================
-    // VOICE INPUT — Web Speech API (hardened with permission pre-check)
+    // VOICE INPUT — Mobile-first Web Speech API
     // =========================================================
     const startListening = useCallback(async () => {
         const SpeechRecognition = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
@@ -222,47 +226,64 @@ export default function MoroVerseAssistant() {
             return;
         }
 
-        // Explicitly request microphone permission first to surface errors cleanly
-        try {
-            await navigator.mediaDevices.getUserMedia({ audio: true });
-        } catch (permErr) {
-            const msg = lang === 'ar'
-                ? 'تم رفض إذن الميكروفون. يرجى السماح بالوصول إليه في إعدادات المتصفح.'
-                : lang === 'fr'
-                    ? "Permission micro refusée. Autorisez l'accès dans les paramètres du navigateur."
-                    : "Microphone access denied. Please allow it in your browser settings.";
-            setMessage(msg);
-            setEmotion('concerned');
-            setShowBubble(true);
-            return;
+        // On mobile Safari, calling getUserMedia before SpeechRecognition can block it.
+        // Only do explicit permission check on desktop (non-touch) devices.
+        const isTouchDevice = navigator.maxTouchPoints > 0;
+        if (!isTouchDevice) {
+            try {
+                await navigator.mediaDevices.getUserMedia({ audio: true });
+            } catch (permErr) {
+                const msg = lang === 'ar'
+                    ? 'تم رفض إذن الميكروفون. يرجى السماح بالوصول إليه في إعدادات المتصفح.'
+                    : lang === 'fr'
+                        ? "Permission micro refusée. Autorisez l'accès dans les paramètres du navigateur."
+                        : "Microphone access denied. Please allow it in your browser settings.";
+                setMessage(msg);
+                setEmotion('concerned');
+                setShowBubble(true);
+                return;
+            }
         }
+
+        // Reset submission state for this session
+        pendingTranscriptRef.current = '';
+        submittedRef.current = false;
 
         const recognition = new SpeechRecognition();
         recognition.lang = lang === 'ar' ? 'ar-MA' : lang === 'fr' ? 'fr-FR' : 'en-US';
         recognition.continuous = false;
-        recognition.interimResults = false;
+        recognition.interimResults = false; // false = only final results, more reliable on mobile
         recognition.maxAlternatives = 1;
 
         recognition.onresult = (event: any) => {
-            // Only act on final results (isFinal=true), not intermediate partials
+            // Iterate all result sets (mobile sometimes batches them)
             for (let i = event.resultIndex; i < event.results.length; i++) {
-                if (event.results[i].isFinal) {
-                    const transcript = event.results[i][0].transcript.trim();
-                    console.log('VOICE_DEBUG: Final transcript received:', JSON.stringify(transcript));
-                    if (transcript) {
-                        setInputText(transcript);
-                        // Use the ref to guarantee we call the LATEST sendToConcierge (avoids stale closure)
-                        sendToConciergeRef.current(transcript, true);
-                    } else {
-                        console.warn('VOICE_DEBUG: Transcript was empty after trim — not submitting.');
-                    }
+                const result = event.results[i];
+                const transcript = result[0].transcript.trim();
+                console.log(`VOICE_DEBUG: result[${i}] isFinal=${result.isFinal} transcript=${JSON.stringify(transcript)}`);
+
+                // Always store the latest non-empty transcript as the pending one
+                if (transcript) {
+                    pendingTranscriptRef.current = transcript;
+                    setInputText(transcript);
+                }
+
+                // Submit immediately on final result (same path as text input)
+                if (result.isFinal && transcript && !submittedRef.current) {
+                    submittedRef.current = true;
+                    setIsSendingVoice(true);
+                    console.log('VOICE_DEBUG: Submitting final transcript:', JSON.stringify(transcript));
+                    sendToConciergeRef.current(transcript, true);
+                    setTimeout(() => setIsSendingVoice(false), 3000);
                 }
             }
         };
 
         recognition.onerror = (event: any) => {
             setIsListening(false);
+            setIsSendingVoice(false);
             setEmotion('concerned');
+            console.error('VOICE_DEBUG: onerror fired:', event.error);
             let errMsg = lang === 'ar'
                 ? `خطأ في التعرف على الصوت: ${event.error}`
                 : lang === 'fr'
@@ -271,21 +292,34 @@ export default function MoroVerseAssistant() {
 
             if (event.error === 'not-allowed' || event.error === 'permission-denied') {
                 errMsg = lang === 'ar'
-                    ? 'تم حجب الميكروفون. يرجى السماح بالوصول في إعدادات المتصفح.'
+                    ? '🎙️ تم حجب الميكروفون. اسمح بالوصول في إعدادات المتصفح.'
                     : lang === 'fr'
-                        ? "Micro bloqué. Autorisez l'accès dans les paramètres."
-                        : "Microphone blocked. Allow access in your browser settings.";
+                        ? "🎙️ Micro bloqué. Autorisez l'accès dans les paramètres."
+                        : "🎙️ Microphone blocked. Allow access in browser Settings > Site Settings.";
             } else if (event.error === 'no-speech') {
-                errMsg = lang === 'ar' ? 'لم أسمع شيئاً، حاول مرة أخرى.' : lang === 'fr' ? "Aucun son détecté. Réessayez." : "No speech detected. Please try again.";
+                errMsg = lang === 'ar' ? '🎙️ لم أسمع شيئاً، حاول مرة أخرى.' : lang === 'fr' ? "🎙️ Aucun son. Réessayez." : "🎙️ No speech detected. Tap mic and try again.";
             } else if (event.error === 'network') {
-                errMsg = lang === 'ar' ? 'مشكلة في الشبكة. تحقق من اتصالك.' : lang === 'fr' ? "Erreur réseau." : "Network error. Check your connection.";
+                errMsg = lang === 'ar' ? '🌐 مشكلة في الشبكة.' : lang === 'fr' ? "🌐 Erreur réseau." : "🌐 Network error. Check your connection.";
             }
 
             setMessage(errMsg);
             setShowBubble(true);
         };
 
-        recognition.onend = () => setIsListening(false);
+        // onend safety net: on some mobile browsers onresult fires AFTER onend.
+        // If we have a transcript that wasn't submitted yet, submit it here.
+        recognition.onend = () => {
+            setIsListening(false);
+            console.log(`VOICE_DEBUG: onend fired. pending="${pendingTranscriptRef.current}" submitted=${submittedRef.current}`);
+            if (pendingTranscriptRef.current && !submittedRef.current) {
+                const transcript = pendingTranscriptRef.current;
+                submittedRef.current = true;
+                setIsSendingVoice(true);
+                console.log('VOICE_DEBUG: onend fallback submitting:', JSON.stringify(transcript));
+                sendToConciergeRef.current(transcript, true);
+                setTimeout(() => setIsSendingVoice(false), 3000);
+            }
+        };
 
         recognition.start();
         recognitionRef.current = recognition;
@@ -293,7 +327,7 @@ export default function MoroVerseAssistant() {
         setEmotion('listening');
         setShowBubble(true);
         setMessage(lang === 'ar' ? '🎤 أنا أسمعك... تكلم!' : lang === 'fr' ? "🎤 Je vous écoute..." : "🎤 I'm listening... speak now!");
-    }, [lang, sendToConcierge]);
+    }, [lang]);
 
     const stopListening = useCallback(() => {
         recognitionRef.current?.stop();
@@ -411,11 +445,16 @@ export default function MoroVerseAssistant() {
                             </div>
                         )}
 
-                        {/* Thinking indicator */}
-                        {isThinking && (
+                        {/* Thinking / Sending Voice indicator */}
+                        {(isThinking || isSendingVoice) && (
                             <div className="flex items-center gap-2 text-[#C5A059]/60 text-xs px-2">
                                 <Loader2 className="w-3 h-3 animate-spin" />
-                                <span>{lang === 'ar' ? 'محمد أمين يفكر...' : 'Mohamed Amine is thinking...'}</span>
+                                <span>
+                                    {isSendingVoice && !isThinking
+                                        ? (lang === 'ar' ? '🎤 إرسال...' : lang === 'fr' ? '🎤 Envoi...' : '🎤 Sending...')
+                                        : (lang === 'ar' ? 'محمد أمين يفكر...' : 'Mohamed Amine is thinking...')
+                                    }
+                                </span>
                             </div>
                         )}
 
@@ -423,9 +462,15 @@ export default function MoroVerseAssistant() {
                         <div className="flex gap-2 items-center">
                             <button
                                 onClick={isListening ? stopListening : startListening}
-                                className={`p-2.5 rounded-full border transition-all flex-shrink-0 ${isListening ? 'bg-red-600 border-red-500 text-white animate-pulse' : 'bg-[#C5A059]/10 border-[#C5A059]/30 text-[#C5A059] hover:bg-[#C5A059]/20'}`}
+                                disabled={isSendingVoice}
+                                className={`p-2.5 rounded-full border transition-all flex-shrink-0 ${isSendingVoice
+                                        ? 'bg-[#C5A059]/40 border-[#C5A059] text-white animate-pulse cursor-wait'
+                                        : isListening
+                                            ? 'bg-red-600 border-red-500 text-white animate-pulse'
+                                            : 'bg-[#C5A059]/10 border-[#C5A059]/30 text-[#C5A059] hover:bg-[#C5A059]/20'
+                                    }`}
                             >
-                                {isListening ? <MicOff className="w-4 h-4" /> : <Mic className="w-4 h-4" />}
+                                {isSendingVoice ? <Loader2 className="w-4 h-4 animate-spin" /> : isListening ? <MicOff className="w-4 h-4" /> : <Mic className="w-4 h-4" />}
                             </button>
                             <input
                                 ref={inputRef}
