@@ -197,35 +197,83 @@ export default function MoroVerseAssistant() {
     }, [history, lang, showChat]);
 
     // =========================================================
-    // VOICE INPUT — Web Speech API
+    // VOICE INPUT — Web Speech API (hardened with permission pre-check)
     // =========================================================
-    const startListening = useCallback(() => {
+    const startListening = useCallback(async () => {
         const SpeechRecognition = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
         if (!SpeechRecognition) {
-            setMessage("المتصفح لا يدعم التعرف على الصوت.");
+            const msg = lang === 'ar'
+                ? 'متصفحك لا يدعم الأوامر الصوتية. استخدم Chrome أو Safari.'
+                : lang === 'fr'
+                    ? "Votre navigateur ne supporte pas la commande vocale. Utilisez Chrome."
+                    : "Your browser doesn't support voice commands. Please use Chrome or Safari.";
+            setMessage(msg);
             setShowBubble(true);
             return;
         }
+
+        // Explicitly request microphone permission first to surface errors cleanly
+        try {
+            await navigator.mediaDevices.getUserMedia({ audio: true });
+        } catch (permErr) {
+            const msg = lang === 'ar'
+                ? 'تم رفض إذن الميكروفون. يرجى السماح بالوصول إليه في إعدادات المتصفح.'
+                : lang === 'fr'
+                    ? "Permission micro refusée. Autorisez l'accès dans les paramètres du navigateur."
+                    : "Microphone access denied. Please allow it in your browser settings.";
+            setMessage(msg);
+            setEmotion('concerned');
+            setShowBubble(true);
+            return;
+        }
+
         const recognition = new SpeechRecognition();
         recognition.lang = lang === 'ar' ? 'ar-MA' : lang === 'fr' ? 'fr-FR' : 'en-US';
         recognition.continuous = false;
         recognition.interimResults = false;
+        recognition.maxAlternatives = 1;
+
         recognition.onresult = (event: any) => {
-            const transcript = event.results[0][0].transcript;
-            setInputText(transcript);
-            sendToConcierge(transcript);
+            const transcript = event.results[0][0].transcript.trim();
+            if (transcript) {
+                setInputText(transcript);
+                sendToConcierge(transcript);
+            }
         };
-        recognition.onerror = () => {
+
+        recognition.onerror = (event: any) => {
             setIsListening(false);
             setEmotion('concerned');
+            let errMsg = lang === 'ar'
+                ? `خطأ في التعرف على الصوت: ${event.error}`
+                : lang === 'fr'
+                    ? `Erreur vocale: ${event.error}`
+                    : `Voice error: ${event.error}`;
+
+            if (event.error === 'not-allowed' || event.error === 'permission-denied') {
+                errMsg = lang === 'ar'
+                    ? 'تم حجب الميكروفون. يرجى السماح بالوصول في إعدادات المتصفح.'
+                    : lang === 'fr'
+                        ? "Micro bloqué. Autorisez l'accès dans les paramètres."
+                        : "Microphone blocked. Allow access in your browser settings.";
+            } else if (event.error === 'no-speech') {
+                errMsg = lang === 'ar' ? 'لم أسمع شيئاً، حاول مرة أخرى.' : lang === 'fr' ? "Aucun son détecté. Réessayez." : "No speech detected. Please try again.";
+            } else if (event.error === 'network') {
+                errMsg = lang === 'ar' ? 'مشكلة في الشبكة. تحقق من اتصالك.' : lang === 'fr' ? "Erreur réseau." : "Network error. Check your connection.";
+            }
+
+            setMessage(errMsg);
+            setShowBubble(true);
         };
+
         recognition.onend = () => setIsListening(false);
+
         recognition.start();
         recognitionRef.current = recognition;
         setIsListening(true);
         setEmotion('listening');
         setShowBubble(true);
-        setMessage(lang === 'ar' ? 'أنا أسمعك... تكلم!' : lang === 'fr' ? "Je vous écoute..." : "I'm listening...");
+        setMessage(lang === 'ar' ? '🎤 أنا أسمعك... تكلم!' : lang === 'fr' ? "🎤 Je vous écoute..." : "🎤 I'm listening... speak now!");
     }, [lang, sendToConcierge]);
 
     const stopListening = useCallback(() => {
