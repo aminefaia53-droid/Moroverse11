@@ -82,30 +82,27 @@ function regionToCityId(name: string): string {
 }
 
 const baseStyle = {
-    fillColor: "#C5A059",
-    fillOpacity: 0.05,
-    color: "#C5A059",
-    weight: 1,
-    dashArray: "4 4",
-    opacity: 0.35,
+    fillColor: "transparent",
+    fillOpacity: 0,
+    color: "transparent",
+    weight: 0,
+    opacity: 0,
 };
 
 const hoverStyle = {
-    fillColor: "#D4AF37",
-    fillOpacity: 0.42,
-    color: "#D4AF37",
-    weight: 2.5,
-    dashArray: "",
-    opacity: 1,
+    fillColor: "transparent",
+    fillOpacity: 0,
+    color: "transparent",
+    weight: 0,
+    opacity: 0,
 };
 
 const selectedStyle = {
-    fillColor: "#D4AF37",
-    fillOpacity: 0.28,
-    color: "#D4AF37",
-    weight: 2,
-    dashArray: "",
-    opacity: 0.9,
+    fillColor: "transparent",
+    fillOpacity: 0,
+    color: "transparent",
+    weight: 0,
+    opacity: 0,
 };
 
 export default function FeedMap({
@@ -249,18 +246,13 @@ export default function FeedMap({
                 <GeoJSON
                     key={`${selectedCityId}-${highlightedCityIds.join(',')}-${zoomLevel}`}
                     data={moroccoRegionsGeoJSON as any}
-                    style={(feature) => {
-                        const regionName = feature?.properties?.NAME_1 ?? "";
-                        const cityId = regionToCityId(regionName);
-                        const isSelected = !!selectedCityId && cityId === selectedCityId;
-                        const isAIHighlighted = highlightedCityIds.includes(cityId);
-
-                        // Fade regions as we zoom in for realism (Digital Twin effect)
-                        const opacity = zoomLevel > 10 ? 0 : isSelected || isAIHighlighted ? 0.3 : 0.05;
-
-                        if (isAIHighlighted) return { ...selectedStyle, fillOpacity: opacity + 0.2, weight: 3, opacity: 1 };
-                        return { ...isSelected ? selectedStyle : baseStyle, fillOpacity: opacity, opacity: zoomLevel > 10 ? 0.1 : 0.35 };
-                    }}
+                    style={() => ({
+                        fillColor: "transparent",
+                        fillOpacity: 0,
+                        color: "transparent",
+                        weight: 0,
+                        opacity: 0,
+                    })}
                     onEachFeature={onEachFeature}
                 />
 
