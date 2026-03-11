@@ -287,10 +287,10 @@ export default function FeedMap({
                 <MapController />
                 <ZoomTracker onZoomChange={setZoomLevel} />
 
-                {/* TOTAL REALISM: MAPBOX SATELLITE STREETS */}
+                {/* TOTAL REALISM: GOOGLE HYBRID SATELLITE (Imagery + Roads + Labels) */}
                 <TileLayer
-                    attribution='&copy; <a href="https://www.mapbox.com/about/maps/">Mapbox</a>'
-                    url={`https://api.mapbox.com/styles/v1/mapbox/satellite-streets-v12/tiles/256/{z}/{x}/{y}@2x?access_token=${process.env.NEXT_PUBLIC_MAPBOX_TOKEN}`}
+                    attribution='&copy; Google'
+                    url="https://mt1.google.com/vt/lyrs=y&x={x}&y={y}&z={z}"
                     maxZoom={19}
                 />
 
