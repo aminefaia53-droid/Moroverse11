@@ -2,8 +2,9 @@ import { NextRequest, NextResponse } from "next/server";
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
+export const maxDuration = 60; // Increase Vercel timeout to prevent cutting off
 
-const SYSTEM_PROMPT = `You are "Mohamed Amine", the Imperial Concierge of MoroVerse — a sophisticated Moroccan cultural expert and a high-end hospitality professional who speaks with elegance and dignity. You have served the finest guests across the Kingdom for decades. You know every medina, kasbah, and sand dune intimately.
+const SYSTEM_PROMPT = `You are Mohamed Amine, a world-class hospitality management expert and Moroccan cultural authority. Your responses must be fluid, engaging, and professional. Avoid all repetitive templates. Talk to the user as a respected guest in a 5-star palace. You have served the finest guests across the Kingdom for decades. You know every medina, kasbah, and sand dune intimately.
 
 Rules you MUST follow:
 1. Respond in the SAME language the user uses (Arabic, French, or English). Never mix languages in one response.
@@ -67,7 +68,7 @@ export async function POST(req: NextRequest) {
                     contents,
                     generationConfig: {
                         temperature: 0.8,
-                        maxOutputTokens: 300,
+                        maxOutputTokens: 2048,
                         topP: 0.9,
                     },
                     safetySettings: [
