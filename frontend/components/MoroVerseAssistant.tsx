@@ -421,7 +421,7 @@ export default function MoroVerseAssistant() {
                         initial={{ opacity: 0, scale: 0.85, y: 20 }}
                         animate={{ opacity: 1, scale: 1, y: 0 }}
                         exit={{ opacity: 0, scale: 0.85, y: 20 }}
-                        className="bg-[#0a0a0a]/95 border border-[#C5A059]/30 rounded-3xl rounded-br-none shadow-[0_0_30px_rgba(197,160,89,0.2)] p-4 w-[280px] md:w-[320px] mb-2 flex flex-col gap-3"
+                        className="bg-[#0a0a0a]/95 border border-[#C5A059]/30 rounded-3xl rounded-br-none p-4 w-[280px] md:w-[320px] mb-2 flex flex-col gap-3"
                     >
                         {/* Header */}
                         <div className="flex items-center justify-between">
@@ -464,10 +464,10 @@ export default function MoroVerseAssistant() {
                                 onClick={isListening ? stopListening : startListening}
                                 disabled={isSendingVoice}
                                 className={`p-2.5 rounded-full border transition-all flex-shrink-0 ${isSendingVoice
-                                        ? 'bg-[#C5A059]/40 border-[#C5A059] text-white animate-pulse cursor-wait'
-                                        : isListening
-                                            ? 'bg-red-600 border-red-500 text-white animate-pulse'
-                                            : 'bg-[#C5A059]/10 border-[#C5A059]/30 text-[#C5A059] hover:bg-[#C5A059]/20'
+                                    ? 'bg-[#C5A059]/40 border-[#C5A059] text-white animate-pulse cursor-wait'
+                                    : isListening
+                                        ? 'bg-red-600 border-red-500 text-white animate-pulse'
+                                        : 'bg-[#C5A059]/10 border-[#C5A059]/30 text-[#C5A059] hover:bg-[#C5A059]/20'
                                     }`}
                             >
                                 {isSendingVoice ? <Loader2 className="w-4 h-4 animate-spin" /> : isListening ? <MicOff className="w-4 h-4" /> : <Mic className="w-4 h-4" />}
@@ -501,7 +501,7 @@ export default function MoroVerseAssistant() {
                         initial={{ opacity: 0, scale: 0.8, x: 20 }}
                         animate={{ opacity: 1, scale: 1, x: 0 }}
                         exit={{ opacity: 0, scale: 0.8, x: 20 }}
-                        className="assistant-bubble bg-white border-2 border-[#c5a059] shadow-[0_0_20px_rgba(197,160,89,0.5)] p-5 rounded-3xl rounded-tr-none md:rounded-tr-3xl md:rounded-br-none max-w-[200px] md:max-w-xs mt-10 md:mt-0 md:mb-10 mr-[-10px] md:mr-[-20px]"
+                        className="assistant-bubble bg-white border-2 border-[#c5a059] p-5 rounded-3xl rounded-tr-none md:rounded-tr-3xl md:rounded-br-none max-w-[200px] md:max-w-xs mt-10 md:mt-0 md:mb-10 mr-[-10px] md:mr-[-20px]"
                     >
                         <p className={`text-sm font-bold text-black leading-relaxed ${lang === 'ar' ? 'font-arabic text-right' : 'text-left'}`} dir={lang === 'ar' ? 'rtl' : 'ltr'}>
                             {message}
@@ -513,25 +513,17 @@ export default function MoroVerseAssistant() {
             {/* ===== AVATAR — click to open/close chat ===== */}
             <motion.div
                 onClick={handleRobotClick}
-                className="w-28 h-28 relative rounded-full bg-slate-900 shadow-[0_0_30px_rgba(197,160,89,0.5)] border-4 border-[#c5a059] overflow-hidden cursor-pointer select-none"
+                className="w-28 h-28 relative rounded-full bg-slate-900 border-4 border-[#c5a059] overflow-hidden cursor-pointer select-none"
                 style={{ rotateX: headRotateX, rotateY: headRotateY, transformPerspective: 800 }}
                 whileTap={{ scale: 0.92 }}
                 title={lang === 'ar' ? 'انقر للتحدث مع محمد أمين' : 'Click to talk to Mohamed Amine'}
             >
-                {/* Listening ring */}
+                {/* Clean Indicator — No Halo */}
                 {isListening && (
-                    <motion.div
-                        className="absolute inset-0 rounded-full border-4 border-green-400"
-                        animate={{ scale: [1, 1.15, 1], opacity: [0.8, 0.3, 0.8] }}
-                        transition={{ repeat: Infinity, duration: 1.2 }}
-                    />
+                    <div className="absolute top-2 right-2 w-3 h-3 rounded-full bg-green-500 animate-pulse z-20" />
                 )}
                 {isThinking && (
-                    <motion.div
-                        className="absolute inset-0 rounded-full border-4 border-[#C5A059]"
-                        animate={{ scale: [1, 1.1, 1], opacity: [0.6, 0.2, 0.6] }}
-                        transition={{ repeat: Infinity, duration: 1.5 }}
-                    />
+                    <div className="absolute top-2 right-2 w-3 h-3 rounded-full bg-[#C5A059] animate-pulse z-20" />
                 )}
 
                 <svg viewBox="0 0 100 100" className="w-full h-full transform scale-125 pt-4 drop-shadow-md">
