@@ -37,6 +37,8 @@ export default function MoroVerseAssistant() {
     const containerRef = useRef<HTMLDivElement>(null);
     const inputRef = useRef<HTMLInputElement>(null);
     const recognitionRef = useRef<any>(null);
+    // Stable ref so voice onresult always calls the latest sendToConcierge (fixes stale closure bug)
+    const sendToConciergeRef = useRef<(msg: string, isVoice?: boolean) => void>(() => { });
     const containerControls = useAnimation();
     const mouseX = useMotionValue(0);
     const mouseY = useMotionValue(0);
@@ -125,9 +127,12 @@ export default function MoroVerseAssistant() {
     // =========================================================
     // AI CONCIERGE — Send message to /api/concierge
     // =========================================================
-    const sendToConcierge = useCallback(async (userMessage: string) => {
-        if (!userMessage.trim()) return;
-        console.log("CONCIERGE_UI_DEBUG: Sending user message:", userMessage);
+    const sendToConcierge = useCallback(async (userMessage: string, isVoice = false) => {
+        if (!userMessage.trim()) {
+            console.warn('VOICE_DEBUG: sendToConcierge called with empty message — ignoring.');
+            return;
+        }
+        console.log(`CONCIERGE_UI_DEBUG: [${isVoice ? 'VOICE' : 'TEXT'}] Sending:`, userMessage);
         setIsThinking(true);
         setEmotion('thinking');
         setInputText('');
@@ -142,7 +147,7 @@ export default function MoroVerseAssistant() {
             const res = await fetch('/api/concierge', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ message: userMessage, history })
+                body: JSON.stringify({ message: userMessage, history, isVoice })
             });
 
             console.log("CONCIERGE_UI_DEBUG: Response status:", res.status);
@@ -196,6 +201,11 @@ export default function MoroVerseAssistant() {
         }
     }, [history, lang, showChat]);
 
+    // Keep the ref in sync so voice handler always has the latest version
+    useEffect(() => {
+        sendToConciergeRef.current = sendToConcierge;
+    }, [sendToConcierge]);
+
     // =========================================================
     // VOICE INPUT — Web Speech API (hardened with permission pre-check)
     // =========================================================
@@ -234,10 +244,19 @@ export default function MoroVerseAssistant() {
         recognition.maxAlternatives = 1;
 
         recognition.onresult = (event: any) => {
-            const transcript = event.results[0][0].transcript.trim();
-            if (transcript) {
-                setInputText(transcript);
-                sendToConcierge(transcript);
+            // Only act on final results (isFinal=true), not intermediate partials
+            for (let i = event.resultIndex; i < event.results.length; i++) {
+                if (event.results[i].isFinal) {
+                    const transcript = event.results[i][0].transcript.trim();
+                    console.log('VOICE_DEBUG: Final transcript received:', JSON.stringify(transcript));
+                    if (transcript) {
+                        setInputText(transcript);
+                        // Use the ref to guarantee we call the LATEST sendToConcierge (avoids stale closure)
+                        sendToConciergeRef.current(transcript, true);
+                    } else {
+                        console.warn('VOICE_DEBUG: Transcript was empty after trim — not submitting.');
+                    }
+                }
             }
         };
 

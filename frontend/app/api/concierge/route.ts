@@ -38,7 +38,8 @@ Your reasoning should be internal, but your final answer must reflect this absol
 export async function POST(req: NextRequest) {
     console.log('CONCIERGE_ENV_DEBUG: Key detected:', !!process.env.GEMINI_API_KEY);
     try {
-        const { message, history = [] } = await req.json();
+        const { message, history = [], isVoice = false } = await req.json();
+        console.log(`CONCIERGE_API_DEBUG: Received [${isVoice ? 'VOICE' : 'TEXT'}] message:`, JSON.stringify(message));
 
         const apiKey = process.env.GEMINI_API_KEY;
         if (!apiKey) {
@@ -46,10 +47,12 @@ export async function POST(req: NextRequest) {
             return NextResponse.json({ error: "GEMINI_API_KEY not configured" }, { status: 500 });
         }
 
-        // Emergency Protocol: Manual Prompt Injection
-        // Instead of system_instruction, we prefix the instructions to the user's message.
+        // If voice, inject Hakawati storyteller cue into the user message
+        const VOICE_ADDENDUM = `\n\n[HAKAWATI MODE - VOICE REQUEST]: The guest is speaking to you directly. Respond with extra warmth, oral storytelling flair, and detail. Act as a true Moroccan hakawati (storyteller). Make them feel they are sitting in a riad in Fès, listening to a master of the craft.`;
+
+        // Manual Prompt Injection: prefix system instructions to the user message
         const contents = [];
-        const fullPrompt = `${SYSTEM_PROMPT}\n\n[USER MESSAGE]: ${message}`;
+        const fullPrompt = `${SYSTEM_PROMPT}${isVoice ? VOICE_ADDENDUM : ''}\n\n[USER MESSAGE]: ${message}`;
 
         if (history.length === 0) {
             // No history: Send everything as one user message
