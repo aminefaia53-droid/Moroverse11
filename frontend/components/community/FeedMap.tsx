@@ -111,6 +111,24 @@ const selectedStyle = {
     opacity: 0,
 };
 
+const HARDCODED_PINS = [
+    { id: 'marrakech', name: 'Marrakech', lat: 31.6295, lng: -7.9811, category: 'city' },
+    { id: 'fes', name: 'Fez', lat: 34.0331, lng: -5.0003, category: 'city' },
+    { id: 'tangier', name: 'Tangier', lat: 35.7595, lng: -5.8340, category: 'city' },
+    { id: 'rabat', name: 'Rabat', lat: 34.0209, lng: -6.8416, category: 'city' },
+    { id: 'casablanca', name: 'Casablanca', lat: 33.5731, lng: -7.5898, category: 'city' },
+    { id: 'agadir', name: 'Agadir', lat: 30.4278, lng: -9.5981, category: 'city' },
+    { id: 'ouarzazate', name: 'Ouarzazate', lat: 30.9189, lng: -6.8934, category: 'city' },
+    { id: 'essaouira', name: 'Essaouira', lat: 31.5085, lng: -9.7595, category: 'city' },
+    { id: 'chefchaouen', name: 'Chefchaouen', lat: 35.1688, lng: -5.2636, category: 'city' },
+    { id: 'meknes', name: 'Meknes', lat: 33.8730, lng: -5.5407, category: 'city' },
+    { id: 'tetouan', name: 'Tetouan', lat: 35.5785, lng: -5.3684, category: 'city' },
+    { id: 'oujda', name: 'Oujda', lat: 34.6814, lng: -1.9086, category: 'city' },
+    { id: 'laayoune', name: 'Laayoune', lat: 27.1253, lng: -13.1625, category: 'city' },
+    { id: 'dakhla', name: 'Dakhla', lat: 23.6848, lng: -15.9579, category: 'city' },
+    { id: 'errachidia', name: 'Errachidia', lat: 31.9314, lng: -4.4244, category: 'city' }
+];
+
 export default function FeedMap({
     onCitySelect,
     selectedCityId,
@@ -121,7 +139,7 @@ export default function FeedMap({
     const [itineraryPoints, setItineraryPoints] = useState<[number, number][]>([]);
     const [tempPin, setTempPin] = useState<{lat: number, lng: number, name: string} | null>(null);
     const [zoomLevel, setZoomLevel] = useState(5);
-    const [pins, setPins] = useState<any[]>([]);
+    const [pins, setPins] = useState<any[]>(HARDCODED_PINS);
 
     // Geographically centered for all Morocco [lat, lng]
     const mapCenter: [number, number] = [31.7917, -7.0926];
@@ -136,13 +154,16 @@ export default function FeedMap({
                     .select('*');
 
                 if (error) throw error;
-                if (data) {
-                    console.log(`MAP_DEBUG: Fetched ${data.length} pins from Supabase`);
-                    setPins(data);
+                if (data && data.length > 0) {
+                    // Merge hardcoded with DB to ensure primary cities are always there, but use DB if present
+                    const dbIds = data.map((p: any) => p.id);
+                    const missingHardcoded = HARDCODED_PINS.filter(p => !dbIds.includes(p.id));
+                    setPins([...data, ...missingHardcoded]);
                 }
             } catch (err) {
-                console.error('MAP_ERROR: Failed to fetch pins:', err);
-                // Fallback to empty or static data if needed
+                console.error('MAP_ERROR: Failed to fetch pins, relying on hardcoded cache:', err);
+                // Fallback to static data
+                setPins(HARDCODED_PINS);
             }
         };
         fetchPins();
