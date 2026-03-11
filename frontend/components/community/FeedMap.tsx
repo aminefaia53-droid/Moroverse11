@@ -112,21 +112,21 @@ const selectedStyle = {
 };
 
 const HARDCODED_PINS = [
-    { id: 'marrakech', name: 'Marrakech', lat: 31.6295, lng: -7.9811, category: 'city' },
-    { id: 'fes', name: 'Fez', lat: 34.0331, lng: -5.0003, category: 'city' },
-    { id: 'tangier', name: 'Tangier', lat: 35.7595, lng: -5.8340, category: 'city' },
-    { id: 'rabat', name: 'Rabat', lat: 34.0209, lng: -6.8416, category: 'city' },
-    { id: 'casablanca', name: 'Casablanca', lat: 33.5731, lng: -7.5898, category: 'city' },
-    { id: 'agadir', name: 'Agadir', lat: 30.4278, lng: -9.5981, category: 'city' },
-    { id: 'ouarzazate', name: 'Ouarzazate', lat: 30.9189, lng: -6.8934, category: 'city' },
-    { id: 'essaouira', name: 'Essaouira', lat: 31.5085, lng: -9.7595, category: 'city' },
-    { id: 'chefchaouen', name: 'Chefchaouen', lat: 35.1688, lng: -5.2636, category: 'city' },
-    { id: 'meknes', name: 'Meknes', lat: 33.8730, lng: -5.5407, category: 'city' },
-    { id: 'tetouan', name: 'Tetouan', lat: 35.5785, lng: -5.3684, category: 'city' },
-    { id: 'oujda', name: 'Oujda', lat: 34.6814, lng: -1.9086, category: 'city' },
-    { id: 'laayoune', name: 'Laayoune', lat: 27.1253, lng: -13.1625, category: 'city' },
-    { id: 'dakhla', name: 'Dakhla', lat: 23.6848, lng: -15.9579, category: 'city' },
-    { id: 'errachidia', name: 'Errachidia', lat: 31.9314, lng: -4.4244, category: 'city' }
+    { id: 'marrakech', name: 'Marrakech', lat: 31.6295, lng: -7.9811, type: 'city' },
+    { id: 'fes', name: 'Fez', lat: 34.0331, lng: -5.0003, type: 'city' },
+    { id: 'tangier', name: 'Tangier', lat: 35.7595, lng: -5.8340, type: 'city' },
+    { id: 'rabat', name: 'Rabat', lat: 34.0209, lng: -6.8416, type: 'city' },
+    { id: 'casablanca', name: 'Casablanca', lat: 33.5731, lng: -7.5898, type: 'city' },
+    { id: 'agadir', name: 'Agadir', lat: 30.4278, lng: -9.5981, type: 'city' },
+    { id: 'ouarzazate', name: 'Ouarzazate', lat: 30.9189, lng: -6.8934, type: 'city' },
+    { id: 'essaouira', name: 'Essaouira', lat: 31.5085, lng: -9.7595, type: 'city' },
+    { id: 'chefchaouen', name: 'Chefchaouen', lat: 35.1688, lng: -5.2636, type: 'city' },
+    { id: 'meknes', name: 'Meknes', lat: 33.8730, lng: -5.5407, type: 'city' },
+    { id: 'tetouan', name: 'Tetouan', lat: 35.5785, lng: -5.3684, type: 'city' },
+    { id: 'oujda', name: 'Oujda', lat: 34.6814, lng: -1.9086, type: 'city' },
+    { id: 'laayoune', name: 'Laayoune', lat: 27.1253, lng: -13.1625, type: 'city' },
+    { id: 'dakhla', name: 'Dakhla', lat: 23.6848, lng: -15.9579, type: 'city' },
+    { id: 'errachidia', name: 'Errachidia', lat: 31.9314, lng: -4.4244, type: 'city' }
 ];
 
 export default function FeedMap({
@@ -352,10 +352,10 @@ export default function FeedMap({
                 <MapController />
                 <ZoomTracker onZoomChange={setZoomLevel} />
 
-                {/* TOTAL REALISM: ESRI WORLD IMAGERY */}
+                {/* TOTAL REALISM: GOOGLE HYBRID SATELLITE (Imagery + Roads + Labels) */}
                 <TileLayer
-                    attribution='&copy; Esri'
-                    url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
+                    attribution='&copy; Google'
+                    url="https://mt1.google.com/vt/lyrs=y&x={x}&y={y}&z={z}"
                     maxZoom={19}
                 />
 
@@ -391,7 +391,7 @@ export default function FeedMap({
                 )}
 
                 <GeoJSON
-                    key={`${selectedCityId}-${highlightedCityIds.join(',')}-${zoomLevel}`}
+                    key={`${selectedCityId}-${highlightedCityIds.join(',')}`}
                     data={moroccoRegionsGeoJSON as any}
                     style={() => ({
                         fillColor: "transparent",
