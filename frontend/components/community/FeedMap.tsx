@@ -118,7 +118,9 @@ export default function FeedMap({
     const [zoomLevel, setZoomLevel] = useState(5);
     const [pins, setPins] = useState<any[]>([]);
 
-    const mapCenter: [number, number] = [29.0, -9.5];
+    // Geographically centered for all Morocco [lat, lng]
+    const mapCenter: [number, number] = [31.7917, -7.0926];
+    const initialZoom = 6;
 
     useEffect(() => {
         const fetchPins = async () => {
@@ -223,29 +225,25 @@ export default function FeedMap({
 
             <MapContainer
                 center={mapCenter}
-                zoom={5}
-                minZoom={4}
-                maxZoom={18}
+                zoom={initialZoom}
+                minZoom={3}
+                maxZoom={19}
                 scrollWheelZoom={true}
                 inertia={true}
                 inertiaDeceleration={3000}
                 inertiaMaxSpeed={1500}
+                worldCopyJump={true}
                 className="w-full h-full"
                 style={{ background: "#020202" }}
             >
-                <MapController center={mapCenter} zoom={5} />
+                <MapController center={mapCenter} zoom={initialZoom} />
                 <ZoomTracker onZoomChange={setZoomLevel} />
 
-                {/* PHOTOREALISTIC SATELLITE TILES (Esri World Imagery) */}
+                {/* TOTAL REALISM: GOOGLE HYBRID SATELLITE (Imagery + Roads + Labels) */}
                 <TileLayer
-                    attribution='Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EBP, and the GIS User Community'
-                    url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
-                />
-
-                {/* Hybrid Label Layer (CartoDB Dark Matter with labels only) */}
-                <TileLayer
-                    url="https://{s}.basemaps.cartocdn.com/dark_only_labels/{z}/{x}/{y}{r}.png"
-                    opacity={0.8}
+                    attribution='&copy; Google'
+                    url="https://mt1.google.com/vt/lyrs=y&x={x}&y={y}&z={z}"
+                    maxZoom={19}
                 />
 
                 <GeoJSON
