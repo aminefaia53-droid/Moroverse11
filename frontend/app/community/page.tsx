@@ -3,16 +3,13 @@
 // Prevent Next.js static prerendering — Leaflet requires `window` which is browser-only
 export const dynamic = "force-dynamic";
 
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState } from "react";
 import nextDynamic from "next/dynamic";
 import { useLanguage } from "../../context/LanguageContext";
-import SmartPostBox from "../../components/community/SmartPostBox";
-import Post from "../../components/community/Post";
 import SmartSidebar from "../../components/SmartSidebar";
 import MoroVerseLogo from "../../components/MoroVerseLogo";
 import LogoutBtn from "../../components/auth/LogoutBtn";
-import { ALL_CITIES } from "../../data/morocco-geo";
-import { createClient } from "../../utils/supabase/client";
+import CommunityFeed from "../../components/community/CommunityFeed";
 
 // Dynamically import map to avoid SSR issues with Leaflet
 const FeedMap = nextDynamic(() => import("../../components/community/FeedMap"), { ssr: false });
@@ -20,55 +17,8 @@ const FeedMap = nextDynamic(() => import("../../components/community/FeedMap"), 
 export default function CommunityPage() {
     const { lang } = useLanguage();
     const isAr = lang === 'ar';
-    const supabase = createClient();
-
     const [selectedCityId, setSelectedCityId] = useState<string | null>(null);
     const [selectedLandmarkId, setSelectedLandmarkId] = useState<string | null>(null);
-    const [posts, setPosts] = useState<any[]>([]);
-    const [loading, setLoading] = useState(true);
-
-    const fetchPosts = useCallback(async () => {
-        setLoading(true);
-        try {
-            let query = supabase
-                .from('posts')
-                .select('*, profiles(full_name, avatar_url)')
-                .order('created_at', { ascending: false });
-
-            if (selectedLandmarkId) {
-                query = query.eq('landmark_id', selectedLandmarkId);
-            } else if (selectedCityId) {
-                query = query.eq('city_id', selectedCityId);
-            }
-
-            const { data, error } = await query;
-            if (error) throw error;
-            setPosts(data || []);
-        } catch (error) {
-            console.error("Error fetching posts:", error);
-        } finally {
-            setLoading(false);
-        }
-    }, [selectedCityId, selectedLandmarkId, supabase]);
-
-    useEffect(() => {
-        fetchPosts();
-
-        // Real-time subscription
-        const channel = supabase
-            .channel('public:posts')
-            .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'posts' }, (payload) => {
-                // If it matches content filters, refresh or add
-                fetchPosts();
-            })
-            .subscribe();
-
-        return () => {
-            supabase.removeChannel(channel);
-        };
-    }, [fetchPosts, supabase]);
-
-    const selectedCity = ALL_CITIES.find(c => c.id === selectedCityId);
 
     return (
         <div className={`min-h-screen bg-[#050505] text-white ${isAr ? 'font-arabic' : 'font-sans'}`} dir={isAr ? 'rtl' : 'ltr'}>
@@ -92,73 +42,14 @@ export default function CommunityPage() {
 
                     {/* Feed Column (Shows second on mobile) */}
                     <div className="lg:col-span-6 xl:col-span-5 flex flex-col order-2">
-                        <div className="mb-6">
-                            <h1 className="text-3xl md:text-4xl font-serif text-[#C5A059] font-bold tracking-wider mb-1">
-                                {selectedCity ? (isAr ? selectedCity.nameAr : selectedCity.name) : (isAr ? 'الساحة الكبرى' : 'The Grand Plaza')}
-                            </h1>
-                            <p className="text-white/50 text-sm">
-                                {isAr ? 'شارك تجربتك مع العالم' : 'Share your Moroccan journey with the world'}
-                            </p>
-                        </div>
-
-                        <SmartPostBox onPostCreated={fetchPosts} selectedCityId={selectedCityId} />
-
-                        <div className="flex justify-between items-center mb-4">
-                            <h2 className="text-sm font-bold uppercase tracking-widest text-[#C5A059]/70">
-                                {selectedLandmarkId
-                                    ? (isAr ? 'منشورات المعلم' : 'Landmark Posts')
-                                    : selectedCityId
-                                        ? (isAr ? 'مجتمع المدينة' : 'City Community')
-                                        : (isAr ? 'أحدث التجارب' : 'Latest Experiences')
-                                }
-                            </h2>
-                            {(selectedCityId || selectedLandmarkId) && (
-                                <button
-                                    onClick={() => { setSelectedCityId(null); setSelectedLandmarkId(null); }}
-                                    className="text-[#C5A059]/60 hover:text-[#C5A059] text-xs font-bold uppercase tracking-wider underline-offset-2 hover:underline"
-                                >
-                                    {isAr ? 'عرض الكل' : 'View All'}
-                                </button>
-                            )}
-                        </div>
-
-                        <div className="space-y-4 overflow-y-auto pb-20" style={{ maxHeight: 'calc(100vh - 280px)' }}>
-                            {loading ? (
-                                <div className="flex justify-center py-20">
-                                    <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#C5A059]"></div>
-                                </div>
-                            ) : posts.length > 0 ? (
-                                posts.map(post => (
-                                    <Post
-                                        key={post.id}
-                                        post={{
-                                            id: post.id,
-                                            user: {
-                                                name: post.profiles?.full_name || "Unknown Traveler",
-                                                avatar: post.profiles?.avatar_url || "https://i.pravatar.cc/150?img=68"
-                                            },
-                                            content: post.content,
-                                            location: post.city_id ? (ALL_CITIES.find(c => c.id === post.city_id)?.name || post.city_id) : "Morocco",
-                                            time: new Date(post.created_at).toLocaleDateString(undefined, { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' }),
-                                            likes: post.likes_count || 0,
-                                            comments: post.comments_count || 0,
-                                            image: post.image_url,
-                                            isHighlyRecommended: post.is_highly_recommended
-                                        }}
-                                    />
-                                ))
-                            ) : (
-                                <div className="text-center py-20 bg-white/5 rounded-2xl border border-white/10">
-                                    <p className="text-4xl mb-4">🏔️</p>
-                                    <p className="text-white/40 mb-4 font-medium">
-                                        {isAr ? 'لا توجد منشورات لهذا الاختيار بعد.' : 'No posts for this selection yet.'}
-                                    </p>
-                                    <p className="text-white/20 text-sm">
-                                        {isAr ? 'كن أول من يشارك تجربته!' : 'Be the first to share your experience!'}
-                                    </p>
-                                </div>
-                            )}
-                        </div>
+                        <CommunityFeed 
+                            selectedCityId={selectedCityId}
+                            selectedLandmarkId={selectedLandmarkId}
+                            onClearSelection={() => {
+                                setSelectedCityId(null);
+                                setSelectedLandmarkId(null);
+                            }}
+                        />
                     </div>
 
                     {/* Map Column (Shows first on mobile) */}

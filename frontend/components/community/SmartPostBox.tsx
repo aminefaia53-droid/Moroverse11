@@ -53,13 +53,38 @@ export default function SmartPostBox({ onPostCreated, selectedCityId }: SmartPos
             const selectedCity = ALL_CITIES.find(c => c.id === cityId);
             const cityName = selectedCity ? (isAr ? selectedCity.nameAr : selectedCity.name) : cityId;
 
-            const { error: insertError } = await supabase.from('posts').insert({
+            let finalImageUrl = null;
+
+            if (imagePreview) {
+                // Upload image to Storage if it's a blob/data URI
+                const fileInput = fileRef.current;
+                if (fileInput?.files && fileInput.files[0]) {
+                    const file = fileInput.files[0];
+                    const fileExt = file.name.split('.').pop();
+                    const fileName = `${Math.random()}.${fileExt}`;
+                    const filePath = `${user.id}/${fileName}`;
+                    
+                    const { error: uploadError } = await supabase.storage
+                        .from('community-media')
+                        .upload(filePath, file);
+
+                    if (!uploadError) {
+                        const { data: { publicUrl } } = supabase.storage
+                            .from('community-media')
+                            .getPublicUrl(filePath);
+                        finalImageUrl = publicUrl;
+                    }
+                }
+            }
+
+            const { error: insertError } = await supabase.from('community_posts').insert({
                 user_id: user.id,
                 content: content.trim(),
-                city_id: cityId || null,
-                image_url: imagePreview || null, // Use preview as data URL for now
-                likes_count: 0,
-                comments_count: 0,
+                location_name: cityName || null,
+                lat: selectedCity ? selectedCity.lat : null,
+                lng: selectedCity ? selectedCity.lng : null,
+                image_url: finalImageUrl,
+                likes_count: 0
             });
 
             if (insertError) throw insertError;

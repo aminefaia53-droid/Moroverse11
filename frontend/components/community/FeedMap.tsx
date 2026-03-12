@@ -44,7 +44,10 @@ function ZoomTracker({ onZoomChange }: { onZoomChange: (z: number) => void }) {
 }
 
 const createCustomIcon = (type: string, isSelected: boolean) => {
-    const color = type === 'battle' ? '#ef4444' : type === 'temp' ? '#f59e0b' : '#C5A059';
+    const color = type === 'battle' ? '#ef4444'
+        : type === 'temp' ? '#f59e0b'
+        : type === 'community' ? '#a855f7'
+        : '#C5A059';
     const size = isSelected ? 40 : 32;
 
     return L.divIcon({
@@ -53,7 +56,10 @@ const createCustomIcon = (type: string, isSelected: boolean) => {
             <div style="filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5)); transform: scale(${isSelected ? 1.2 : 1})" class="${type === 'temp' ? 'animate-bounce' : ''}">
                 <svg width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M12 21C16 17 20 13.4183 20 9C20 4.58172 16.4183 1 12 1C7.58172 1 4 4.58172 4 9C4 13.4183 8 17 12 21Z" fill="${color}" stroke="white" stroke-width="1.5"/>
-                    <circle cx="12" cy="9" r="3" fill="white" fill-opacity="0.8"/>
+                    ${type === 'community'
+                        ? `<text x="12" y="13" text-anchor="middle" font-size="7" fill="white" font-weight="bold" font-family="sans-serif">✍</text>`
+                        : `<circle cx="12" cy="9" r="3" fill="white" fill-opacity="0.8"/>`
+                    }
                 </svg>
             </div>
         `,
@@ -140,6 +146,7 @@ export default function FeedMap({
     const [tempPin, setTempPin] = useState<{lat: number, lng: number, name: string} | null>(null);
     const [zoomLevel, setZoomLevel] = useState(5);
     const [pins, setPins] = useState<any[]>(HARDCODED_PINS);
+    const [communityPins, setCommunityPins] = useState<any[]>([]);
 
     // Geographically centered for all Morocco [lat, lng]
     const mapCenter: [number, number] = [31.7917, -7.0926];
@@ -167,6 +174,31 @@ export default function FeedMap({
             }
         };
         fetchPins();
+
+        // Fetch community posts with geographic location
+        const fetchCommunityPins = async () => {
+            try {
+                const supabase = createClient();
+                const { data, error } = await supabase
+                    .from('community_posts')
+                    .select('id, content, location_name, lat, lng, likes_count, profiles(full_name, avatar_url)')
+                    .not('lat', 'is', null)
+                    .not('lng', 'is', null)
+                    .order('created_at', { ascending: false })
+                    .limit(50);
+
+                if (!error && data && data.length > 0) {
+                    setCommunityPins(data);
+                }
+            } catch (err) {
+                // Suppress: community_posts may not exist yet (SQL not run)
+            }
+        };
+        fetchCommunityPins();
+
+        // Refresh community pins every 60s
+        const interval = setInterval(fetchCommunityPins, 60000);
+        return () => clearInterval(interval);
     }, []);
 
     useEffect(() => {
@@ -444,6 +476,31 @@ export default function FeedMap({
                         </Marker>
                     );
                 })}
+
+                {/* LIVE COMMUNITY POST PINS (Purple) */}
+                {zoomLevel >= 7 && communityPins.map((post) => (
+                    <Marker
+                        key={`cp-${post.id}`}
+                        position={[post.lat, post.lng]}
+                        icon={createCustomIcon('community', false)}
+                    >
+                        <Popup className="pin-popup">
+                            <div className="p-2 min-w-[200px] max-w-[240px]">
+                                <div className="flex items-center gap-2 mb-2">
+                                    <img src={(post.profiles as any)?.avatar_url || 'https://i.pravatar.cc/40'} className="w-7 h-7 rounded-full border border-purple-400/50" />
+                                    <span className="text-xs font-bold text-purple-300">{(post.profiles as any)?.full_name || 'Heritage Traveler'}</span>
+                                </div>
+                                <p className="text-[11px] text-white/85 leading-snug mb-2 line-clamp-3">{post.content}</p>
+                                {post.location_name && (
+                                    <span className="text-[10px] text-purple-400 font-medium">📍 {post.location_name}</span>
+                                )}
+                                {(post.likes_count > 0) && (
+                                    <span className="text-[10px] text-white/40 ml-2">♥ {post.likes_count}</span>
+                                )}
+                            </div>
+                        </Popup>
+                    </Marker>
+                ))}
             </MapContainer>
 
             <div className="absolute bottom-4 left-4 z-[9999] bg-black/60 rounded-xl p-3 flex flex-col gap-1.5 text-[10px] border border-[#C5A059]/20">
@@ -451,6 +508,12 @@ export default function FeedMap({
                     <span className="w-4 h-3 shrink-0 rounded-sm border border-[#D4AF37]/60 bg-[#D4AF37]/20" />
                     <span className="text-white/70">{isAr ? "جهات المملكة" : "Morocco — Hover to explore"}</span>
                 </div>
+                {communityPins.length > 0 && (
+                    <div className="flex items-center gap-2">
+                        <span className="w-4 h-3 shrink-0 rounded-sm border border-purple-500/60 bg-purple-500/20" />
+                        <span className="text-white/70">{isAr ? "منشورات المجتمع" : `${communityPins.length} Community Posts`}</span>
+                    </div>
+                )}
             </div>
 
             {selectedCityId && (

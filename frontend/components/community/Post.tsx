@@ -33,7 +33,7 @@ export default function Post({ post }: { post: PostProps }) {
             if (!user) return;
 
             const { data } = await supabase
-                .from('post_likes')
+                .from('community_post_likes')
                 .select('id')
                 .eq('post_id', post.id)
                 .eq('user_id', user.id)
@@ -58,7 +58,7 @@ export default function Post({ post }: { post: PostProps }) {
             if (liked) {
                 // Unlike
                 const { error } = await supabase
-                    .from('post_likes')
+                    .from('community_post_likes')
                     .delete()
                     .eq('post_id', post.id)
                     .eq('user_id', user.id);
@@ -67,19 +67,19 @@ export default function Post({ post }: { post: PostProps }) {
                     setLiked(false);
                     setLikeCount(prev => prev - 1);
                     // Update post count
-                    await supabase.from('posts').update({ likes_count: likeCount - 1 }).eq('id', post.id);
+                    await supabase.from('community_posts').update({ likes_count: likeCount - 1 }).eq('id', post.id);
                 }
             } else {
                 // Like
                 const { error } = await supabase
-                    .from('post_likes')
+                    .from('community_post_likes')
                     .insert({ post_id: post.id, user_id: user.id });
 
                 if (!error) {
                     setLiked(true);
                     setLikeCount(prev => prev + 1);
                     // Update post count
-                    await supabase.from('posts').update({ likes_count: likeCount + 1 }).eq('id', post.id);
+                    await supabase.from('community_posts').update({ likes_count: likeCount + 1 }).eq('id', post.id);
                 }
             }
         } catch (error) {
