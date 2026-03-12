@@ -1,11 +1,14 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo, useCallback, useRef } from "react";
 import { MapContainer, TileLayer, GeoJSON, useMap, useMapEvents, Marker, Popup, Polyline } from "react-leaflet";
 import * as L from "leaflet";
+import Supercluster from 'supercluster';
 import { useLanguage } from "../../context/LanguageContext";
 import moroccoRegionsGeoJSON from "../../data/morocco-regions-geo";
-import { createClient } from "../../utils/supabase/client";
+// Removed direct Supabase client for DAL approach
+import { SocialService } from "../../services/SocialService";
+import { Post as PostType, ViewportBounds } from "../../types/social";
 
 function MapController() {
     const map = useMap();
@@ -34,19 +37,11 @@ function MapController() {
     return null;
 }
 
-function ZoomTracker({ onZoomChange }: { onZoomChange: (z: number) => void }) {
-    useMapEvents({
-        zoomend: (e) => {
-            onZoomChange(e.target.getZoom());
-        }
-    });
-    return null;
-}
-
 const createCustomIcon = (type: string, isSelected: boolean) => {
     const color = type === 'battle' ? '#ef4444'
         : type === 'temp' ? '#f59e0b'
         : type === 'community' ? '#a855f7'
+        : type === 'cluster' ? '#C5A059'
         : '#C5A059';
     const size = isSelected ? 40 : 32;
 
@@ -58,6 +53,8 @@ const createCustomIcon = (type: string, isSelected: boolean) => {
                     <path d="M12 21C16 17 20 13.4183 20 9C20 4.58172 16.4183 1 12 1C7.58172 1 4 4.58172 4 9C4 13.4183 8 17 12 21Z" fill="${color}" stroke="white" stroke-width="1.5"/>
                     ${type === 'community'
                         ? `<text x="12" y="13" text-anchor="middle" font-size="7" fill="white" font-weight="bold" font-family="sans-serif">✍</text>`
+                        : type === 'cluster' 
+                        ? `<circle cx="12" cy="9" r="3" fill="white" fill-opacity="0.8"/>`
                         : `<circle cx="12" cy="9" r="3" fill="white" fill-opacity="0.8"/>`
                     }
                 </svg>
@@ -68,12 +65,20 @@ const createCustomIcon = (type: string, isSelected: boolean) => {
     });
 };
 
+const clusterIcon = (count: number) => {
+    return L.divIcon({
+        html: `<div class="bg-[#C5A059] text-black font-bold w-10 h-10 rounded-full border-2 border-white flex items-center justify-center shadow-lg transform scale-100 hover:scale-110 transition-transform">${count}</div>`,
+        className: 'cluster-icon',
+        iconSize: [40, 40]
+    });
+};
+
 interface FeedMapProps {
     onCitySelect: (cityId: string | null) => void;
-    onLandmarkSelect?: (landmarkId: string | null) => void;
     selectedCityId: string | null;
-    selectedLandmarkId?: string | null;
-    showLandmarks?: boolean;
+    onLandmarkSelect: (landmarkId: string | null) => void;
+    selectedLandmarkId: string | null;
+    showLandmarks: boolean;
 }
 
 function regionToCityId(name: string): string {
@@ -93,30 +98,6 @@ function regionToCityId(name: string): string {
     return "marrakech";
 }
 
-const baseStyle = {
-    fillColor: "transparent",
-    fillOpacity: 0,
-    color: "transparent",
-    weight: 0,
-    opacity: 0,
-};
-
-const hoverStyle = {
-    fillColor: "transparent",
-    fillOpacity: 0,
-    color: "transparent",
-    weight: 0,
-    opacity: 0,
-};
-
-const selectedStyle = {
-    fillColor: "transparent",
-    fillOpacity: 0,
-    color: "transparent",
-    weight: 0,
-    opacity: 0,
-};
-
 const HARDCODED_PINS = [
     { id: 'marrakech', name: 'Marrakech', lat: 31.6295, lng: -7.9811, type: 'city' },
     { id: 'fes', name: 'Fez', lat: 34.0331, lng: -5.0003, type: 'city' },
@@ -135,71 +116,112 @@ const HARDCODED_PINS = [
     { id: 'errachidia', name: 'Errachidia', lat: 31.9314, lng: -4.4244, type: 'city' }
 ];
 
-export default function FeedMap({
-    onCitySelect,
-    selectedCityId,
-}: FeedMapProps) {
+export default function FeedMap({ onCitySelect, selectedCityId }: FeedMapProps) {
     const { lang } = useLanguage();
     const isAr = lang === "ar";
     const [highlightedCityIds, setHighlightedCityIds] = useState<string[]>([]);
     const [itineraryPoints, setItineraryPoints] = useState<[number, number][]>([]);
     const [tempPin, setTempPin] = useState<{lat: number, lng: number, name: string} | null>(null);
-    const [zoomLevel, setZoomLevel] = useState(5);
+    const [zoomLevel, setZoomLevel] = useState(6);
+    const [bounds, setBounds] = useState<ViewportBounds | null>(null);
     const [pins, setPins] = useState<any[]>(HARDCODED_PINS);
-    const [communityPins, setCommunityPins] = useState<any[]>([]);
+    const [communityPins, setCommunityPins] = useState<PostType[]>([]);
+    const [clusters, setClusters] = useState<any[]>([]);
 
-    // Geographically centered for all Morocco [lat, lng]
     const mapCenter: [number, number] = [31.7917, -7.0926];
     const initialZoom = 6;
 
-    useEffect(() => {
-        const fetchPins = async () => {
-            try {
-                const supabase = createClient();
-                const { data, error } = await supabase
-                    .from('map_pins')
-                    .select('*');
-
-                if (error) throw error;
-                if (data && data.length > 0) {
-                    // Merge hardcoded with DB to ensure primary cities are always there, but use DB if present
-                    const dbIds = data.map((p: any) => p.id);
-                    const missingHardcoded = HARDCODED_PINS.filter(p => !dbIds.includes(p.id));
-                    setPins([...data, ...missingHardcoded]);
-                }
-            } catch (err) {
-                console.error('MAP_ERROR: Failed to fetch pins, relying on hardcoded cache:', err);
-                // Fallback to static data
-                setPins(HARDCODED_PINS);
-            }
-        };
-        fetchPins();
-
-        // Fetch community posts with geographic location
-        const fetchCommunityPins = async () => {
-            try {
-                const supabase = createClient();
-                const { data, error } = await supabase
-                    .from('community_posts')
-                    .select('id, content, location_name, lat, lng, likes_count, profiles(full_name, avatar_url)')
-                    .not('lat', 'is', null)
-                    .not('lng', 'is', null)
-                    .order('created_at', { ascending: false })
-                    .limit(50);
-
-                if (!error && data && data.length > 0) {
-                    setCommunityPins(data);
-                }
-            } catch (err) {
-                // Suppress: community_posts may not exist yet (SQL not run)
-            }
-        };
-        fetchCommunityPins();
-
-        // Refresh community pins every 60s
-        const interval = setInterval(fetchCommunityPins, 60000);
-        return () => clearInterval(interval);
+    // Zero-Trust Data Fetching: Centralized DAL with Bounding Box
+    const fetchData = useCallback(async (currentBounds: ViewportBounds) => {
+        try {
+            // TODO: In Phase 2, map_pins will also be fetched via viewport bounds if size grows
+            const posts = await SocialService.getPosts(currentBounds);
+            setCommunityPins(posts);
+        } catch (err) {
+            console.error('MAP_CYBER_FORTRESS_ERROR:', err);
+        }
     }, []);
+
+    // Cluster Initialization (Military-Grade Performance)
+    const index = useMemo(() => {
+        const supercluster = new Supercluster({
+            radius: 40,
+            maxZoom: 16
+        });
+        
+        const communityPoints = communityPins.map(p => ({
+            type: 'Feature',
+            properties: { cluster: false, postId: p.id, type: 'community', post: p },
+            geometry: { type: 'Point', coordinates: [p.lng!, p.lat!] }
+        }));
+
+        const cityPoints = pins.map(p => ({
+            type: 'Feature',
+            properties: { cluster: false, pinId: p.id, type: p.type, pin: p },
+            geometry: { type: 'Point', coordinates: [p.lng, p.lat] }
+        }));
+
+        supercluster.load([...communityPoints, ...cityPoints] as any);
+        return supercluster;
+    }, [communityPins, pins]);
+
+    // Handle map interaction to trigger viewport-based loading
+    const MapEvents = () => {
+        useMapEvents({
+            moveend: (e) => {
+                const map = e.target;
+                const b = map.getBounds();
+                const newBounds = {
+                    minLat: b.getSouth(),
+                    minLng: b.getWest(),
+                    maxLat: b.getNorth(),
+                    maxLng: b.getEast()
+                };
+                setBounds(newBounds);
+                setZoomLevel(map.getZoom());
+                fetchData(newBounds);
+            }
+        });
+        return null;
+    };
+
+    const getSpiderifiedClusters = useCallback(() => {
+        if (!bounds) return [];
+        const bbox: [number, number, number, number] = [bounds.minLng, bounds.minLat, bounds.maxLng, bounds.maxLat];
+        const rawClusters = index.getClusters(bbox, zoomLevel);
+        
+        const finalMarkers: any[] = [];
+        rawClusters.forEach(c => {
+            const { cluster: isCluster, point_count: pointCount } = c.properties;
+            // Spiderfy if cluster exists at max index zoom (16) or if very close
+            if (isCluster && zoomLevel >= 16) {
+                const leaves = index.getLeaves(c.id as number, Infinity);
+                leaves.forEach((leaf, i) => {
+                    const angle = (i / leaves.length) * 2 * Math.PI;
+                    const idNum = typeof leaf.id === 'string' ? parseInt(leaf.id) : (leaf.id || 0);
+                    const radius = 0.0001 * (1 + i / (idNum + 1)); // Safe radial spread
+                    const [lng, lat] = leaf.geometry.coordinates;
+                    finalMarkers.push({
+                        ...leaf,
+                        geometry: {
+                            ...leaf.geometry,
+                            coordinates: [lng + Math.cos(angle) * radius, lat + Math.sin(angle) * radius]
+                        },
+                        properties: { ...leaf.properties, spider: true }
+                    });
+                });
+            } else {
+                finalMarkers.push(c);
+            }
+        });
+        return finalMarkers;
+    }, [index, zoomLevel, bounds]);
+
+    useEffect(() => {
+        if (bounds) {
+            setClusters(getSpiderifiedClusters());
+        }
+    }, [getSpiderifiedClusters, bounds]);
 
     useEffect(() => {
         const handleConciergeCommand = async (e: Event) => {
@@ -207,104 +229,40 @@ export default function FeedMap({
             if ((!cities || cities.length === 0) && !dynamicLocation) return;
             
             setTempPin(null);
-
-            if (cities && cities.length > 0) {
-                setHighlightedCityIds(cities);
-            }
+            if (cities && cities.length > 0) setHighlightedCityIds(cities);
 
             if (isItinerary) {
-                // Find coordinates for the itinerary points
                 const points: [number, number][] = [];
-                const targetFeatures = moroccoRegionsGeoJSON.features.filter(f =>
-                    cities.includes(regionToCityId(f.properties?.NAME_1))
-                );
-
-                // For exact pins match
-                const runItinerary = () => {
-                    cities.forEach((cId: string) => {
-                        const pin = pins.find(p => p.id === cId);
-                        if (pin) {
-                             points.push([pin.lat, pin.lng]);
-                        }
-                    });
-                    
-                    if (points.length > 1) {
-                         setItineraryPoints(points);
-                         const polyline = L.polyline(points);
-                         window.dispatchEvent(new CustomEvent('map-fly-to-bounds', { detail: { bounds: polyline.getBounds() } }));
-                    } else if (targetFeatures.length > 0) {
-                        const tempLayer = L.geoJSON({ type: "FeatureCollection", features: targetFeatures } as any);
-                        window.dispatchEvent(new CustomEvent('map-fly-to-bounds', { detail: { bounds: tempLayer.getBounds() } }));
-                    }
-                };
-
-                // Wait for pins to load if not already
-                if (pins.length === 0) {
-                    setTimeout(runItinerary, 1000); 
-                } else {
-                    runItinerary();
+                cities.forEach((cId: string) => {
+                    const pin = pins.find(p => p.id === cId);
+                    if (pin) points.push([pin.lat, pin.lng]);
+                });
+                
+                if (points.length > 1) {
+                     setItineraryPoints(points);
+                     const polyline = L.polyline(points);
+                     window.dispatchEvent(new CustomEvent('map-fly-to-bounds', { detail: { bounds: polyline.getBounds() } }));
                 }
-
-                // Clear after 20 seconds
-                setTimeout(() => {
-                     setHighlightedCityIds([]);
-                     setItineraryPoints([]);
-                     setTempPin(null);
-                }, 20000);
             } else {
                 setItineraryPoints([]);
-                let matchFound = false;
-
-                // Priority 1: Supabase DB pins via matched cities
-                if (cities && cities.length > 0) {
-                    const mainPin = pins.find(p => p.id === cities[0]);
-                    if (mainPin) {
-                        matchFound = true;
-                        window.dispatchEvent(new CustomEvent('map-fly-to-target', { detail: { target: [mainPin.lat, mainPin.lng], zoom: 19 } }));
-                    }
-                }
-
-                // Priority 2: Supabase DB pin via dynamicLocation name
-                if (!matchFound && dynamicLocation) {
-                    const matchedPin = pins.find(p => p.name.toLowerCase() === dynamicLocation.toLowerCase().trim());
-                    if (matchedPin) {
-                         matchFound = true;
-                         window.dispatchEvent(new CustomEvent('map-fly-to-target', { detail: { target: [matchedPin.lat, matchedPin.lng], zoom: 19 } }));
-                    }
-                }
-
-                // Priority 3: Nominatim Geocoding API if no Supabase pin matched
-                if (!matchFound && dynamicLocation) {
+                // Optimized deep-search for AI targets
+                const mainId = cities?.[0] as string | undefined;
+                const mainPin = pins.find(p => p.id === mainId || p.name.toLowerCase() === dynamicLocation?.toLowerCase().trim());
+                if (mainPin) {
+                    window.dispatchEvent(new CustomEvent('map-fly-to-target', { detail: { target: [mainPin.lat, mainPin.lng], zoom: 15 } }));
+                } else if (dynamicLocation) {
+                    // Fallback to geocoding only if DB fails
                     try {
                         const res = await fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(dynamicLocation + ', Morocco')}&limit=1`);
                         const data = await res.json();
-                        if (data && data.length > 0) {
+                        if (data?.[0]) {
                             const lat = parseFloat(data[0].lat);
                             const lon = parseFloat(data[0].lon);
                             setTempPin({ lat, lng: lon, name: dynamicLocation });
-                            window.dispatchEvent(new CustomEvent('map-fly-to-target', { detail: { target: [lat, lon], zoom: 19 } }));
-                            matchFound = true;
+                            window.dispatchEvent(new CustomEvent('map-fly-to-target', { detail: { target: [lat, lon], zoom: 15 } }));
                         }
-                    } catch (error) {
-                        console.error('MAP_ERROR: Nominatim error:', error);
-                    }
+                    } catch (err) {}
                 }
-
-                // Priority 4: GeoJSON bounds (e.g. Regions like Oriental)
-                if (!matchFound && cities && cities.length > 0) {
-                    const targetFeatures = moroccoRegionsGeoJSON.features.filter(f =>
-                        cities.includes(regionToCityId(f.properties?.NAME_1))
-                    );
-                    if (targetFeatures.length > 0) {
-                         const tempLayer = L.geoJSON({ type: "FeatureCollection", features: targetFeatures } as any);
-                         window.dispatchEvent(new CustomEvent('map-fly-to-bounds', { detail: { bounds: tempLayer.getBounds() } }));
-                    }
-                }
-
-                setTimeout(() => {
-                    setHighlightedCityIds([]);
-                    setTempPin(null);
-                }, 10000);
             }
         };
 
@@ -312,59 +270,30 @@ export default function FeedMap({
         return () => window.removeEventListener('concierge-map-command', handleConciergeCommand);
     }, [pins]);
 
-    const onEachFeature = (feature: any, layer: any) => {
+    const onEachFeature = useCallback((feature: any, layer: any) => {
         const regionName = feature.properties?.NAME_1 ?? "";
-
         layer.on({
-            mouseover: (e: any) => {
-                e.target.setStyle(hoverStyle);
-                e.target.bringToFront();
-            },
-            mouseout: (e: any) => {
-                const cityId = regionToCityId(regionName);
-                const isSelected = selectedCityId && cityId === selectedCityId;
-                const isAIHighlighted = highlightedCityIds.includes(cityId);
-
-                if (isAIHighlighted) {
-                    e.target.setStyle({ ...selectedStyle, fillOpacity: 0.5, weight: 3 });
-                } else {
-                    e.target.setStyle(isSelected ? selectedStyle : baseStyle);
-                }
-            },
             click: (e: any) => {
                 const cityId = regionToCityId(regionName);
                 onCitySelect(cityId);
-                e.target._map.flyToBounds(e.target.getBounds(), {
-                    padding: [40, 40],
-                    duration: 1.1,
-                });
+                e.target._map.flyToBounds(e.target.getBounds(), { padding: [40, 40], duration: 1.1 });
             },
         });
-    };
+    }, [onCitySelect]);
 
     return (
         <div className="relative w-full h-full rounded-2xl overflow-hidden shadow-2xl isolate feed-map-container">
             <style dangerouslySetInnerHTML={{
                 __html: `
-                    .leaflet-control-attribution {
-                        opacity: 0.08 !important;
-                        transition: opacity 0.4s;
-                        font-size: 9px;
-                        background: transparent !important;
-                        color: rgba(255,255,255,0.4) !important;
-                    }
-                    .leaflet-control-attribution:hover { opacity: 0.65 !important; }
-                    .leaflet-interactive { cursor: pointer; }
-                    .feed-map-container .leaflet-container { background: #020202 !important; }
-                    .custom-map-pin { transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+                    .leaflet-container { background: #020202 !important; }
+                    .custom-map-pin { transition: all 0.2s ease-out; }
                     .pin-popup .leaflet-popup-content-wrapper { 
                         background: rgba(10, 10, 10, 0.95);
                         backdrop-filter: blur(8px);
                         border: 1px solid rgba(197, 160, 89, 0.3);
                         color: white;
-                        border-radius: 16px;
+                        border-radius: 12px;
                     }
-                    .pin-popup .leaflet-popup-tip { background: rgba(10, 10, 10, 0.95); }
                 `
             }} />
 
@@ -373,157 +302,97 @@ export default function FeedMap({
                 zoom={initialZoom}
                 minZoom={3}
                 maxZoom={22}
-                scrollWheelZoom={true}
-                inertia={true}
-                inertiaDeceleration={3000}
-                inertiaMaxSpeed={1500}
-                worldCopyJump={true}
                 className="w-full h-full"
                 style={{ background: "#020202" }}
             >
                 <MapController />
-                <ZoomTracker onZoomChange={setZoomLevel} />
+                <MapEvents />
 
-                {/* TOTAL REALISM: GOOGLE HYBRID SATELLITE (Imagery + Roads + Labels) */}
                 <TileLayer
                     attribution='&copy; Google'
                     url="https://mt1.google.com/vt/lyrs=y&x={x}&y={y}&z={z}"
                     maxZoom={22}
-                    maxNativeZoom={20}
                 />
 
-                {tempPin && (
-                    <Marker
-                        position={[tempPin.lat, tempPin.lng]}
-                        icon={createCustomIcon('temp', true)}
-                    >
-                        <Popup className="pin-popup">
-                            <div className="p-2 min-w-[150px]">
-                                <h3 className="text-[#f59e0b] font-bold border-b border-[#f59e0b]/20 pb-1 mb-1">{tempPin.name}</h3>
-                                <p className="text-[10px] text-white/80 leading-tight">
-                                    {isAr ? "تم تحديد الموقع بواسطة الذكاء الاصطناعي." : "Location mapped by AI via Geocoding."}
-                                </p>
-                            </div>
-                        </Popup>
-                    </Marker>
-                )}
-
                 {itineraryPoints.length > 1 && (
-                    <Polyline 
-                        positions={itineraryPoints}
-                        pathOptions={{ 
-                            color: '#C5A059', 
-                            weight: 4, 
-                            opacity: 0.8, 
-                            dashArray: '10, 10', 
-                            lineCap: 'round', 
-                            lineJoin: 'round',
-                            className: 'animate-pulse'
-                        }}
-                    />
+                    <Polyline positions={itineraryPoints} pathOptions={{ color: '#C5A059', weight: 4, dashArray: '10, 10' }} />
                 )}
 
                 <GeoJSON
-                    key={`${selectedCityId}-${highlightedCityIds.join(',')}`}
                     data={moroccoRegionsGeoJSON as any}
-                    style={() => ({
-                        fillColor: "transparent",
-                        fillOpacity: 0,
-                        color: "transparent",
-                        weight: 0,
-                        opacity: 0,
-                    })}
+                    style={{ fillColor: "transparent", fillOpacity: 0, color: "transparent", weight: 0 }}
                     onEachFeature={onEachFeature}
                 />
 
-                {/* DYNAMIC SUPABASE PINS */}
-                {pins.map((pin) => {
-                    // Logic for revealing pins based on zoom
-                    const isVisible =
-                        (zoomLevel < 8 && pin.type === 'city') ||
-                        (zoomLevel >= 8 && zoomLevel < 12 && (pin.type === 'city' || pin.type === 'landmark' || pin.type === 'battle')) ||
-                        (zoomLevel >= 12);
+                {clusters.map(cluster => {
+                    const [longitude, latitude] = cluster.geometry.coordinates;
+                    const { cluster: isCluster, point_count: pointCount, type, pin, post } = cluster.properties;
 
-                    if (!isVisible) return null;
+                    if (isCluster) {
+                        return (
+                            <Marker
+                                key={`cluster-${cluster.id}`}
+                                position={[latitude, longitude]}
+                                icon={clusterIcon(pointCount)}
+                                eventHandlers={{
+                                    click: (e) => {
+                                        const expansionZoom = Math.min(index.getClusterExpansionZoom(cluster.id), 18);
+                                        e.target._map.setView([latitude, longitude], expansionZoom);
+                                    }
+                                }}
+                            />
+                        );
+                    }
 
-                    return (
-                        <Marker
-                            key={pin.id}
-                            position={[pin.lat, pin.lng]}
-                            icon={createCustomIcon(pin.type, selectedCityId === pin.id)}
-                            eventHandlers={{
-                                click: () => {
-                                    if (pin.type === 'city') onCitySelect(pin.id);
-                                }
-                            }}
-                        >
-                            <Popup className="pin-popup">
-                                <div className="p-2 min-w-[200px]">
-                                    {pin.imageUrl && (
-                                        <img src={pin.imageUrl} alt={pin.name} className="w-full h-24 object-cover rounded-lg mb-2 border border-[#C5A059]/30" />
-                                    )}
-                                    <h3 className="text-[#C5A059] font-bold border-b border-[#C5A059]/20 pb-1 mb-1">{pin.name}</h3>
-                                    <p className="text-[10px] text-white/80 leading-tight">
-                                        {pin.description || (isAr ? "معلمة مغربية أصيلة." : "Authentic Moroccan landmark.")}
-                                    </p>
-                                    {pin.externalUrl && (
-                                        <a href={pin.externalUrl} target="_blank" rel="noopener noreferrer" className="inline-block mt-2 text-[10px] text-[#C5A059] underline">
-                                            {isAr ? "عرض المزيد" : "View Details"}
-                                        </a>
-                                    )}
-                                </div>
-                            </Popup>
-                        </Marker>
-                    );
+                    if (type === 'community' && post) {
+                        return (
+                            <Marker key={`post-${post.id}`} position={[latitude, longitude]} icon={createCustomIcon('community', false)}>
+                                <Popup className="pin-popup">
+                                    <div className="p-2 min-w-[200px]">
+                                        <div className="flex items-center gap-2 mb-2">
+                                            <img src={post.profiles?.avatar_url || 'https://i.pravatar.cc/40'} className="w-7 h-7 rounded-full" />
+                                            <span className="text-xs font-bold text-[#C5A059]">{post.profiles?.full_name || 'Traveler'}</span>
+                                        </div>
+                                        <p className="text-[11px] leading-snug">{post.content}</p>
+                                    </div>
+                                </Popup>
+                            </Marker>
+                        );
+                    }
+
+                    if (pin) {
+                        return (
+                            <Marker
+                                key={`pin-${pin.id}`}
+                                position={[latitude, longitude]}
+                                icon={createCustomIcon(pin.type, selectedCityId === pin.id)}
+                                eventHandlers={{ click: () => { if (pin.type === 'city') onCitySelect(pin.id); } }}
+                            >
+                                <Popup className="pin-popup">
+                                    <div className="p-2 min-w-[200px]">
+                                        <h3 className="text-[#C5A059] font-bold border-b border-[#C5A059]/20 pb-1 mb-1">{pin.name}</h3>
+                                        <p className="text-[10px] text-white/80 leading-tight">{pin.description || (isAr ? "معلمة مغربية." : "Moroccan landmark.")}</p>
+                                    </div>
+                                </Popup>
+                            </Marker>
+                        );
+                    }
+
+                    return null;
                 })}
 
-                {/* LIVE COMMUNITY POST PINS (Purple) */}
-                {zoomLevel >= 7 && communityPins.map((post) => (
-                    <Marker
-                        key={`cp-${post.id}`}
-                        position={[post.lat, post.lng]}
-                        icon={createCustomIcon('community', false)}
-                    >
+                {tempPin && (
+                    <Marker position={[tempPin.lat, tempPin.lng]} icon={createCustomIcon('temp', true)}>
                         <Popup className="pin-popup">
-                            <div className="p-2 min-w-[200px] max-w-[240px]">
-                                <div className="flex items-center gap-2 mb-2">
-                                    <img src={(post.profiles as any)?.avatar_url || 'https://i.pravatar.cc/40'} className="w-7 h-7 rounded-full border border-purple-400/50" />
-                                    <span className="text-xs font-bold text-purple-300">{(post.profiles as any)?.full_name || 'Heritage Traveler'}</span>
-                                </div>
-                                <p className="text-[11px] text-white/85 leading-snug mb-2 line-clamp-3">{post.content}</p>
-                                {post.location_name && (
-                                    <span className="text-[10px] text-purple-400 font-medium">📍 {post.location_name}</span>
-                                )}
-                                {(post.likes_count > 0) && (
-                                    <span className="text-[10px] text-white/40 ml-2">♥ {post.likes_count}</span>
-                                )}
+                            <div className="p-2">
+                                <h3 className="text-[#f59e0b] font-bold">{tempPin.name}</h3>
+                                <p className="text-[10px]">{isAr ? "تم تحديد الموقع آلياً." : "Al-Mapped location."}</p>
                             </div>
                         </Popup>
                     </Marker>
-                ))}
-            </MapContainer>
-
-            <div className="absolute bottom-4 left-4 z-[9999] bg-black/60 rounded-xl p-3 flex flex-col gap-1.5 text-[10px] border border-[#C5A059]/20">
-                <div className="flex items-center gap-2">
-                    <span className="w-4 h-3 shrink-0 rounded-sm border border-[#D4AF37]/60 bg-[#D4AF37]/20" />
-                    <span className="text-white/70">{isAr ? "جهات المملكة" : "Morocco — Hover to explore"}</span>
-                </div>
-                {communityPins.length > 0 && (
-                    <div className="flex items-center gap-2">
-                        <span className="w-4 h-3 shrink-0 rounded-sm border border-purple-500/60 bg-purple-500/20" />
-                        <span className="text-white/70">{isAr ? "منشورات المجتمع" : `${communityPins.length} Community Posts`}</span>
-                    </div>
                 )}
-            </div>
-
-            {selectedCityId && (
-                <button
-                    onClick={() => onCitySelect(null)}
-                    className="absolute top-3 right-3 z-[9999] bg-black/70 border border-[#C5A059]/50 text-[#C5A059] px-3 py-1.5 rounded-lg text-xs font-bold uppercase tracking-wider hover:bg-[#C5A059] hover:text-black transition-all"
-                >
-                    {isAr ? "← عودة" : "← All Morocco"}
-                </button>
-            )}
+            </MapContainer>
         </div>
     );
 }
+

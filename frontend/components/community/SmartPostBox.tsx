@@ -11,6 +11,8 @@ interface SmartPostBoxProps {
     selectedCityId?: string | null;
 }
 
+import { SocialService } from "../../services/SocialService";
+
 export default function SmartPostBox({ onPostCreated, selectedCityId }: SmartPostBoxProps) {
     const { lang } = useLanguage();
     const isAr = lang === 'ar';
@@ -28,12 +30,54 @@ export default function SmartPostBox({ onPostCreated, selectedCityId }: SmartPos
     const handleImageSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];
         if (!file) return;
+        
+        // Show local preview
         const reader = new FileReader();
         reader.onload = (ev) => setImagePreview(ev.target?.result as string);
         reader.readAsDataURL(file);
-        // Store URL as data URL (for demo since we don't have Supabase Storage configured yet)
-        // In production, upload to Supabase Storage and store the public URL
-        setImageUrl(URL.createObjectURL(file));
+    };
+
+    const [detecting, setDetecting] = useState(false);
+
+    const handleGeolocation = () => {
+        if (!navigator.geolocation) {
+            setError(isAr ? 'متصفحك لا يدعم تحديد الموقع.' : 'Geolocation not supported by your browser.');
+            return;
+        }
+
+        setDetecting(true);
+        navigator.geolocation.getCurrentPosition(
+            async (position) => {
+                const { latitude, longitude } = position.coords;
+                // Reverse geocoding fallback to find nearest city or just set coordinates
+                try {
+                    const res = await fetch(`https://nominatim.openstreetmap.org/reverse?lat=${latitude}&lon=${longitude}&format=json`);
+                    const data = await res.json();
+                    const name = data.address.city || data.address.town || data.address.village || (isAr ? 'موقع محدد' : 'Detected Location');
+                    
+                    // Try to match with our ALL_CITIES
+                    const matchedCity = ALL_CITIES.find(c => 
+                        name.toLowerCase().includes(c.name.toLowerCase()) || 
+                        (c.nameAr && name.includes(c.nameAr))
+                    );
+
+                    if (matchedCity) {
+                        setCityId(matchedCity.id);
+                    } else {
+                        setCityId(name);
+                    }
+                } catch (err) {
+                    setCityId(isAr ? 'موقع محدد' : 'Detected Location');
+                }
+                setDetecting(false);
+            },
+            (err) => {
+                console.error(err);
+                setError(isAr ? 'تم رفض الوصول للموقع. يرجى الاختيار يدوياً.' : 'Location access denied. Please select manually.');
+                setDetecting(false);
+            },
+            { timeout: 10000 }
+        );
     };
 
     const handlePost = async () => {
@@ -42,7 +86,8 @@ export default function SmartPostBox({ onPostCreated, selectedCityId }: SmartPos
         setError(null);
 
         try {
-            const { data: { user } } = await supabase.auth.getUser();
+            const { data: { session } } = await supabase.auth.getSession();
+            const user = session?.user;
 
             if (!user) {
                 setError(isAr ? 'يجب تسجيل الدخول أولاً.' : 'You must be logged in to post.');
@@ -53,52 +98,53 @@ export default function SmartPostBox({ onPostCreated, selectedCityId }: SmartPos
             const selectedCity = ALL_CITIES.find(c => c.id === cityId);
             const cityName = selectedCity ? (isAr ? selectedCity.nameAr : selectedCity.name) : cityId;
 
-            let finalImageUrl = null;
+            // XSS Sanitization foundation
+            const sanitizedContent = content.replace(/<script\b[^>]*>([\s\S]*?)<\/script>/gim, "").trim();
 
+            let finalImageUrl = null;
             if (imagePreview) {
-                // Upload image to Storage if it's a blob/data URI
                 const fileInput = fileRef.current;
-                if (fileInput?.files && fileInput.files[0]) {
-                    const file = fileInput.files[0];
+                const file = fileInput?.files?.[0];
+                
+                if (file) {
+                    // MIME-type validation
+                    const validTypes = ['image/jpeg', 'image/png', 'image/webp', 'image/gif'];
+                    if (!validTypes.includes(file.type)) {
+                        throw new Error(isAr ? 'نوع الملف غير مدعوم.' : 'Invalid file type. Only images are allowed.');
+                    }
+
                     const fileExt = file.name.split('.').pop();
-                    const fileName = `${Math.random()}.${fileExt}`;
-                    const filePath = `${user.id}/${fileName}`;
+                    const fileName = `${Date.now()}-${Math.random().toString(36).substring(2, 9)}.${fileExt}`;
+                    const filePath = `posts/${user.id}/${fileName}`;
                     
                     const { error: uploadError } = await supabase.storage
                         .from('community-media')
                         .upload(filePath, file);
 
-                    if (!uploadError) {
-                        const { data: { publicUrl } } = supabase.storage
-                            .from('community-media')
-                            .getPublicUrl(filePath);
-                        finalImageUrl = publicUrl;
-                    }
+                    if (uploadError) throw new Error(isAr ? 'فشل رفع الصورة.' : 'Image upload failed.');
+
+                    const { data: { publicUrl } } = supabase.storage.from('community-media').getPublicUrl(filePath);
+                    finalImageUrl = publicUrl;
                 }
             }
 
-            const { error: insertError } = await supabase.from('community_posts').insert({
-                user_id: user.id,
-                content: content.trim(),
-                location_name: cityName || null,
-                lat: selectedCity ? selectedCity.lat : null,
-                lng: selectedCity ? selectedCity.lng : null,
-                image_url: finalImageUrl,
-                likes_count: 0
-            });
-
-            if (insertError) throw insertError;
+            await SocialService.createPost(
+                user.id,
+                sanitizedContent,
+                cityName || null,
+                selectedCity ? selectedCity.lat : null,
+                selectedCity ? selectedCity.lng : null,
+                finalImageUrl
+            );
 
             setContent("");
             setCityId(selectedCityId || "");
             setImagePreview(null);
-            setImageUrl("");
             setSuccess(true);
             setTimeout(() => setSuccess(false), 3000);
             onPostCreated?.();
         } catch (err: any) {
-            console.error(err);
-            setError(isAr ? 'حدث خطأ أثناء النشر.' : 'Error creating post.');
+            setError(err.message || (isAr ? 'حدث خطأ أثناء النشر.' : 'Error creating post.'));
         } finally {
             setPosting(false);
         }
@@ -142,27 +188,38 @@ export default function SmartPostBox({ onPostCreated, selectedCityId }: SmartPos
                             {/* Image upload */}
                             <input ref={fileRef} type="file" accept="image/*" className="hidden" onChange={handleImageSelect} />
                             <button
-                                onClick={() => fileRef.current?.click()}
-                                className="flex items-center gap-1.5 text-white/50 hover:text-[#C5A059] transition-colors py-1.5 px-3 rounded-xl hover:bg-white/5 text-sm"
+                                onClick={handleGeolocation}
+                                disabled={detecting}
+                                className={`flex items-center gap-1.5 py-1.5 px-3 rounded-xl transition-all text-sm ${detecting ? 'animate-pulse bg-white/5 text-[#C5A059]' : 'text-white/50 hover:text-[#C5A059] hover:bg-white/5'}`}
                             >
-                                <Camera className="w-4 h-4" />
-                                <span>{isAr ? 'صورة' : 'Photo'}</span>
+                                {detecting ? <Loader2 className="w-4 h-4 animate-spin" /> : <MapPin className="w-4 h-4" />}
+                                <span>{isAr ? 'تحديد تلقائي' : 'Auto-detect'}</span>
                             </button>
 
                             {/* City selector */}
                             <div className="flex items-center gap-1.5 text-[#C5A059] py-1 px-2 rounded-xl bg-[#C5A059]/10 border border-[#C5A059]/20">
-                                <MapPin className="w-4 h-4 shrink-0" />
                                 <select
                                     value={cityId}
                                     onChange={(e) => setCityId(e.target.value)}
                                     className="bg-transparent outline-none text-xs text-[#C5A059] max-w-[110px]"
                                 >
-                                    <option value="">{isAr ? 'اختر المدينة' : 'Select city'}</option>
-                                    {ALL_CITIES.map(city => (
-                                        <option key={city.id} value={city.id} className="bg-black text-white">
-                                            {isAr ? city.nameAr : city.name}
-                                        </option>
-                                    ))}
+                                    <optgroup label={isAr ? 'المدن الكبرى' : 'Popular Cities'}>
+                                        {ALL_CITIES.slice(0, 5).map(city => (
+                                            <option key={city.id} value={city.id} className="bg-black text-white">
+                                                {isAr ? city.nameAr : city.name}
+                                            </option>
+                                        ))}
+                                    </optgroup>
+                                    <optgroup label={isAr ? 'مدن مغربية' : 'Other Cities'}>
+                                        {ALL_CITIES.slice(5).map(city => (
+                                            <option key={city.id} value={city.id} className="bg-black text-white">
+                                                {isAr ? city.nameAr : city.name}
+                                            </option>
+                                        ))}
+                                    </optgroup>
+                                    {cityId && !ALL_CITIES.find(c => c.id === cityId) && (
+                                        <option value={cityId} className="bg-black text-white">{cityId}</option>
+                                    )}
                                 </select>
                             </div>
                         </div>

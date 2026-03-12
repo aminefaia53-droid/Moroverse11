@@ -1,25 +1,55 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { motion } from "framer-motion";
 import { Activity, MapPin, ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { useLanguage } from "../../context/LanguageContext";
+import { createClient } from "../../utils/supabase/client";
 
 export default function CommunityPulse() {
     const { lang } = useLanguage();
+    const isAr = lang === 'ar';
+    const supabase = createClient();
     const [posts, setPosts] = useState<any[]>([]);
 
-    useEffect(() => {
-        // Placeholder data until Supabase real-time is hooked up
-        setPosts([
-            { id: 1, user: "Ahmed M.", location: "Hassan Tower", time: "2 min ago", image: "https://images.unsplash.com/photo-1539020140153-e479b8c22e70?auto=format&fit=crop&q=80&w=200&h=200", tip: "Best time to visit is sunset!" },
-            { id: 2, user: "Sarah K.", location: "Chefchaouen", time: "15 min ago", image: "https://images.unsplash.com/photo-1552604617-eea98aa27234?auto=format&fit=crop&q=80&w=200&h=200", tip: "The blue hues are mesmerizing." },
-            { id: 3, user: "Youssef T.", location: "Merzouga", time: "1 hr ago", image: "https://images.unsplash.com/photo-1549474776-6d60cda24e93?auto=format&fit=crop&q=80&w=200&h=200", tip: "Incredible camel ride experience." },
-        ]);
-    }, []);
+    const fetchLatestPosts = useCallback(async () => {
+        try {
+            const { data, error } = await supabase
+                .from('community_posts')
+                .select('*, profiles(full_name, avatar_url)')
+                .order('created_at', { ascending: false })
+                .limit(10);
+            
+            if (!error && data) {
+                setPosts(data.map((p: any) => ({
+                    id: p.id,
+                    user: p.profiles?.full_name || 'Al-Maghribi',
+                    location: p.location_name || (isAr ? 'المغرب' : 'Morocco'),
+                    time: new Date(p.created_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+                    image: p.image_url || p.profiles?.avatar_url || "https://i.pravatar.cc/100",
+                    tip: p.content
+                })));
+            }
+        } catch (err) {
+            console.error(err);
+        }
+    }, [supabase, isAr]);
 
-    const isAr = lang === 'ar';
+    useEffect(() => {
+        fetchLatestPosts();
+
+        const channel = supabase
+            .channel('pulse:posts')
+            .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'community_posts' }, () => {
+                fetchLatestPosts();
+            })
+            .subscribe();
+
+        return () => {
+            supabase.removeChannel(channel);
+        };
+    }, [fetchLatestPosts, supabase]);
 
     return (
         <div className={`fixed top-24 ${isAr ? 'left-6' : 'right-6'} z-40 hidden xl:flex flex-col gap-4 w-72`}>

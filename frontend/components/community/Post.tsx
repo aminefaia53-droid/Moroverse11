@@ -9,11 +9,11 @@ interface PostProps {
     id: string;
     user: { name: string; avatar: string };
     content: string;
-    location: string;
+    location: string | null;
     time: string;
     likes: number;
     comments: number;
-    image?: string;
+    image?: string | null;
     isHighlyRecommended?: boolean;
 }
 
@@ -108,7 +108,8 @@ export default function Post({ post }: { post: PostProps }) {
     };
 
     return (
-        <div className="bg-black/40 backdrop-blur-sm border border-white/5 rounded-2xl p-5 shadow-xl mb-4 relative hover:border-white/10 transition-colors">
+        <div className="group bg-black/40 backdrop-blur-sm border border-white/5 rounded-2xl p-5 shadow-xl mb-4 relative hover:border-[#C5A059]/30 transition-all duration-300 hover:shadow-2xl hover:shadow-[#C5A059]/5 overflow-hidden">
+            <div className="absolute inset-0 pointer-events-none opacity-[0.02] group-hover:opacity-[0.04] transition-opacity" style={{ backgroundImage: "url('https://www.transparenttextures.com/patterns/az-subtle.png')" }} />
             {post.isHighlyRecommended && (
                 <div className={`absolute top-0 ${isAr ? "left-8" : "right-8"} bg-green-500/10 text-green-400 text-[10px] font-bold uppercase py-1 px-3 rounded-b-lg border border-green-500/20 flex items-center gap-1.5 backdrop-blur-md`}>
                     <CheckCircle2 className="w-3 h-3" />

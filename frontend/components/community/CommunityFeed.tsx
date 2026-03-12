@@ -1,9 +1,16 @@
 "use client";
 
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, useRef } from "react";
+import dynamic from "next/dynamic";
+
+const FixedSizeList = dynamic<any>(
+  () => import("react-window").then((mod: any) => mod.FixedSizeList || mod.default?.FixedSizeList),
+  { ssr: false }
+);
 import { useLanguage } from "../../context/LanguageContext";
-import { createClient } from "../../utils/supabase/client";
 import { ALL_CITIES } from "../../data/morocco-geo";
+import { SocialService } from "../../services/SocialService";
+import { Post as PostType } from "../../types/social";
 import SmartPostBox from "./SmartPostBox";
 import Post from "./Post";
 import MoroVerseStories from "./MoroVerseStories";
@@ -17,62 +24,84 @@ interface CommunityFeedProps {
 export default function CommunityFeed({ selectedCityId, selectedLandmarkId, onClearSelection }: CommunityFeedProps) {
     const { lang } = useLanguage();
     const isAr = lang === 'ar';
-    const supabase = createClient();
-
-    const [posts, setPosts] = useState<any[]>([]);
+    const containerRef = useRef<HTMLDivElement>(null);
+    const [posts, setPosts] = useState<PostType[]>([]);
     const [loading, setLoading] = useState(true);
+    const [listHeight, setListHeight] = useState(600);
 
     const fetchPosts = useCallback(async () => {
         setLoading(true);
         try {
-            let query = supabase
-                .from('community_posts')
-                .select('*, profiles(full_name, avatar_url, username)')
-                .order('created_at', { ascending: false });
+            // Filtering logic moved locally for now, 
+            // In a future step, this will use SocialService with ViewportBounds for map-syncing
+            let data = await SocialService.getPosts();
 
-            // Depending on the logic, you can filter by location Name or Lat/Lng bounding boxes
             if (selectedCityId) {
                 const city = ALL_CITIES.find(c => c.id === selectedCityId);
                 if (city) {
                     const nameAr = city.nameAr;
                     const nameEn = city.name;
-                    query = query.or(`location_name.eq.${nameEn},location_name.eq.${nameAr}`);
+                    data = data.filter(p => p.location_name === nameEn || p.location_name === nameAr);
                 }
             }
-
-            const { data, error } = await query;
-            if (error) {
-                 // Suppress if the table doesn't exist yet to avoid screen crashes before SQL is run
-                 if (error.code !== '42P01') throw error;
-            }
-            setPosts(data || []);
+            setPosts(data);
         } catch (error) {
             console.error("Error fetching community posts:", error);
         } finally {
             setLoading(false);
         }
-    }, [selectedCityId, selectedLandmarkId, supabase]);
+    }, [selectedCityId]);
 
     useEffect(() => {
         fetchPosts();
+        const subscription = SocialService.subscribeToPosts(() => fetchPosts());
 
-        // Real-time subscription to community_posts
-        const channel = supabase
-            .channel('public:community_posts')
-            .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'community_posts' }, () => {
-                fetchPosts();
-            })
-            .subscribe();
+        // Handle height responsiveness for virtualization
+        const updateHeight = () => {
+            if (containerRef.current) {
+                const rect = containerRef.current.getBoundingClientRect();
+                setListHeight(window.innerHeight - rect.top - 100);
+            }
+        };
+
+        window.addEventListener('resize', updateHeight);
+        updateHeight();
 
         return () => {
-            supabase.removeChannel(channel);
+            subscription.unsubscribe();
+            window.removeEventListener('resize', updateHeight);
         };
-    }, [fetchPosts, supabase]);
+    }, [fetchPosts]);
+
+    const Row = ({ index, style }: { index: number; style: React.CSSProperties }) => {
+        const post = posts[index];
+        return (
+            <div style={style} className="pr-2">
+                <Post
+                    key={post.id}
+                    post={{
+                        id: post.id,
+                        user: {
+                            name: post.profiles?.full_name || post.profiles?.username || "Unknown Traveler",
+                            avatar: post.profiles?.avatar_url || "https://i.pravatar.cc/150?img=68"
+                        },
+                        content: post.content,
+                        location: post.location_name || "Morocco",
+                        time: new Date(post.created_at).toLocaleDateString(undefined, { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' }),
+                        likes: post.likes_count || 0,
+                        comments: 0, // Simplified for performance audit phase
+                        image: post.image_url,
+                        isHighlyRecommended: post.likes_count > 10
+                    }}
+                />
+            </div>
+        );
+    };
 
     const selectedCity = ALL_CITIES.find(c => c.id === selectedCityId);
 
     return (
-        <div className="flex flex-col w-full h-full">
+        <div className="flex flex-col w-full h-full" ref={containerRef}>
             <div className="mb-6">
                 <h1 className="text-3xl md:text-4xl font-serif text-[#C5A059] font-bold tracking-wider mb-1">
                     {selectedCity ? (isAr ? selectedCity.nameAr : selectedCity.name) : (isAr ? 'مجتمع التراث' : 'Heritage Community')}
@@ -105,31 +134,21 @@ export default function CommunityFeed({ selectedCityId, selectedLandmarkId, onCl
                 )}
             </div>
 
-            <div className="space-y-4 overflow-y-auto pb-20" style={{ maxHeight: 'calc(100vh - 400px)' }}>
+            <div className="flex-1">
                 {loading ? (
                     <div className="flex justify-center py-20">
                         <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#C5A059]"></div>
                     </div>
                 ) : posts.length > 0 ? (
-                    posts.map(post => (
-                        <Post
-                            key={post.id}
-                            post={{
-                                id: post.id,
-                                user: {
-                                    name: post.profiles?.full_name || post.profiles?.username || "Unknown Traveler",
-                                    avatar: post.profiles?.avatar_url || "https://i.pravatar.cc/150?img=68"
-                                },
-                                content: post.content,
-                                location: post.location_name || "Morocco",
-                                time: new Date(post.created_at).toLocaleDateString(undefined, { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' }),
-                                likes: post.likes_count || 0,
-                                comments: post.comments_count || 0,
-                                image: post.image_url,
-                                isHighlyRecommended: post.likes_count > 10 // Mock recommendation logic based on likes
-                            }}
-                        />
-                    ))
+                    <FixedSizeList
+                        height={listHeight}
+                        itemCount={posts.length}
+                        itemSize={380} // Estimated post height, improved performance over variable list
+                        width="100%"
+                        className="scrollbar-hide"
+                    >
+                        {Row}
+                    </FixedSizeList>
                 ) : (
                     <div className="text-center py-16 bg-white/5 rounded-2xl border border-white/10">
                         <p className="text-4xl mb-4">🕌</p>
@@ -145,3 +164,4 @@ export default function CommunityFeed({ selectedCityId, selectedLandmarkId, onCl
         </div>
     );
 }
+

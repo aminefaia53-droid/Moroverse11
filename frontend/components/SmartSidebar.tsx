@@ -6,7 +6,7 @@ import {
     Sun, Moon, Leaf, Snowflake, Wind,
     Compass, Map, Swords, Bookmark,
     X, ChevronDown, MapPin, Landmark,
-    SlidersHorizontal, Activity
+    SlidersHorizontal, Activity, User
 } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import Link from 'next/link';
@@ -26,6 +26,7 @@ const QUICK_LINKS = [
     { id: 'encyclopedia', icon: <Map className="w-4 h-4" />, ar: 'الموسوعة', en: 'Encyclopedia' },
     { id: 'battles', icon: <Swords className="w-4 h-4" />, ar: 'المعارك', en: 'Battles' },
     { id: 'community-link', href: '/community', icon: <Activity className="w-4 h-4" />, ar: 'نبض المجتمع', en: 'Community' },
+    { id: 'profile-link', href: '/profile', icon: <User className="w-4 h-4" />, ar: 'الملف الشخصي', en: 'Profile' },
 ];
 
 const CITIES = ['مراكش', 'فاس', 'شفشاون', 'الصويرة', 'طنجة', 'أكادير'];

@@ -10,6 +10,7 @@ import SmartSidebar from "../../components/SmartSidebar";
 import MoroVerseLogo from "../../components/MoroVerseLogo";
 import LogoutBtn from "../../components/auth/LogoutBtn";
 import CommunityFeed from "../../components/community/CommunityFeed";
+import ErrorBoundary from "../../components/common/ErrorBoundary";
 
 // Dynamically import map to avoid SSR issues with Leaflet
 const FeedMap = nextDynamic(() => import("../../components/community/FeedMap"), { ssr: false });
@@ -42,26 +43,30 @@ export default function CommunityPage() {
 
                     {/* Feed Column (Shows second on mobile) */}
                     <div className="lg:col-span-6 xl:col-span-5 flex flex-col order-2">
-                        <CommunityFeed 
-                            selectedCityId={selectedCityId}
-                            selectedLandmarkId={selectedLandmarkId}
-                            onClearSelection={() => {
-                                setSelectedCityId(null);
-                                setSelectedLandmarkId(null);
-                            }}
-                        />
+                        <ErrorBoundary componentName="Community Feed">
+                            <CommunityFeed 
+                                selectedCityId={selectedCityId}
+                                selectedLandmarkId={selectedLandmarkId}
+                                onClearSelection={() => {
+                                    setSelectedCityId(null);
+                                    setSelectedLandmarkId(null);
+                                }}
+                            />
+                        </ErrorBoundary>
                     </div>
 
                     {/* Map Column (Shows first on mobile) */}
                     <div className="lg:col-span-6 xl:col-span-7 h-[40vh] md:h-[55vh] lg:h-[calc(100vh-120px)] sticky top-24 order-1">
                         <div className="w-full h-full rounded-2xl overflow-hidden relative shadow-[0_0_50px_rgba(197,160,89,0.1)] border border-[#C5A059]/20">
-                            <FeedMap
-                                selectedCityId={selectedCityId}
-                                onCitySelect={(id) => { setSelectedCityId(id); setSelectedLandmarkId(null); }}
-                                onLandmarkSelect={(id) => { setSelectedLandmarkId(id); setSelectedCityId(null); }}
-                                selectedLandmarkId={selectedLandmarkId}
-                                showLandmarks={true}
-                            />
+                            <ErrorBoundary componentName="Heritage Map">
+                                <FeedMap
+                                    selectedCityId={selectedCityId}
+                                    onCitySelect={(id) => { setSelectedCityId(id); setSelectedLandmarkId(null); }}
+                                    onLandmarkSelect={(id) => { setSelectedLandmarkId(id); setSelectedCityId(null); }}
+                                    selectedLandmarkId={selectedLandmarkId}
+                                    showLandmarks={true}
+                                />
+                            </ErrorBoundary>
                             {/* Gold corners */}
                             <div className="absolute top-0 left-0 w-10 h-10 border-t-2 border-l-2 border-[#C5A059]/60 pointer-events-none rounded-tl-xl z-20 m-2" />
                             <div className="absolute top-0 right-0 w-10 h-10 border-t-2 border-r-2 border-[#C5A059]/60 pointer-events-none rounded-tr-xl z-20 m-2" />
