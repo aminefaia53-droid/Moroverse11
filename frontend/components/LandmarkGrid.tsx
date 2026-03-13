@@ -233,10 +233,14 @@ function LandmarkCard({
 
                 {/* Bulletproof Background Image using img tag for correct object-fit/-position */}
                 <img
-                    src={landmark.imageUrl || 'https://images.unsplash.com/photo-1549733059-d81615d862e?q=80&w=1080&auto=format&fit=crop'}
+                    src={landmark.imageUrl || 'https://images.unsplash.com/photo-1539020140153-e479b8c22e70?q=80&w=1080&auto=format&fit=crop'}
                     alt={lang === 'en' ? landmark.name.en : landmark.name.ar}
                     className="absolute inset-0 z-[1] w-full h-full object-cover object-center transition-transform duration-300 ease-out"
                     style={{ filter: 'sepia(0.2) contrast(1.1) brightness(0.85) saturate(1.2)' }}
+                    onError={(e) => {
+                        e.currentTarget.onerror = null;
+                        e.currentTarget.src = 'https://images.unsplash.com/photo-1539020140153-e479b8c22e70?q=80&w=1080&auto=format&fit=crop';
+                    }}
                 />
                 {/* Cinematic gradient overlay */}
                 <div className="absolute inset-0 z-[2] bg-gradient-to-t from-black via-black/40 to-transparent opacity-90" />
