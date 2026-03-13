@@ -4,7 +4,7 @@ import { useState, useEffect, useCallback, useRef } from 'react';
 import {
     Search, Save, Upload, Video, Globe, Tag, FileText,
     ImageOff, Loader2, CheckCircle, X, ChevronDown, ChevronUp,
-    Film, MapPin, Calendar, BookOpen, Hash, Swords, Building2, Landmark, Users
+    Film, MapPin, Calendar, BookOpen, Hash, Swords, Building2, Landmark, Users, Box
 } from 'lucide-react';
 
 // ── Types ──────────────────────────────────────────────────────
@@ -19,7 +19,9 @@ interface EntityEntry {
     desc?: { ar: string; en: string }; // For battles
     imageUrl?: string | null;
     videoUrl?: string | null;
+    modelUrl?: string | null;
     isPending?: boolean;
+    location_type?: string;
 
     // Landmark specific
     city?: { ar: string; en: string };
@@ -66,6 +68,15 @@ async function uploadImageFile(file: File): Promise<string | null> {
     return data.success ? data.url : null;
 }
 
+// ── 3D Asset Upload Helper (GLB) ──────────────────────────────────
+async function uploadAssetFile(file: File): Promise<string | null> {
+    const formData = new FormData();
+    formData.append('file', file, file.name);
+    const res = await fetch('/api/admin/assets/upload', { method: 'POST', body: formData });
+    const data = await res.json();
+    return data.success ? data.url : null;
+}
+
 // ── Individual Entity Editor ─────────────────────────────
 function EntityEditor({ entity, category, onSaved }: { entity: EntityEntry; category: CategoryType, onSaved: (updated: EntityEntry, cat: CategoryType) => void }) {
     const [expanded, setExpanded] = useState(false);
@@ -73,7 +84,9 @@ function EntityEditor({ entity, category, onSaved }: { entity: EntityEntry; cate
     const [status, setStatus] = useState<'idle' | 'saving' | 'success' | 'error'>('idle');
     const [serverMessage, setServerMessage] = useState('');
     const [uploadingImg, setUploadingImg] = useState(false);
+    const [uploadingAsset, setUploadingAsset] = useState(false);
     const imgInputRef = useRef<HTMLInputElement>(null);
+    const assetInputRef = useRef<HTMLInputElement>(null);
 
     const set = (field: string, value: any) => setDraft(d => ({ ...d, [field]: value }));
     const setNested = (parent: string, field: string, value: string) =>
@@ -88,6 +101,20 @@ function EntityEditor({ entity, category, onSaved }: { entity: EntityEntry; cate
             if (url) set('imageUrl', url);
         } catch { alert('Image upload failed / رفع الصورة فشل'); }
         finally { setUploadingImg(false); }
+    };
+
+    const handleAssetUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+        const file = e.target.files?.[0];
+        if (!file) return;
+        setUploadingAsset(true);
+        try {
+            const url = await uploadAssetFile(file);
+            if (url) {
+                set('modelUrl', url);
+                set('location_type', 'monument'); // Auto-tag as monument for 3D activation
+            }
+        } catch { alert('3D asset upload failed / فشل رفع العنصر ثلاثي الأبعاد'); }
+        finally { setUploadingAsset(false); }
     };
 
     const handleSave = async () => {
@@ -188,32 +215,48 @@ function EntityEditor({ entity, category, onSaved }: { entity: EntityEntry; cate
                                 )}
                             </div>
 
-                            <div>
+                            </div>
+                        </div>
+
+                        {/* ── 3D Asset Management (Elite View) ── */}
+                        {(category === 'landmarks' || category === 'cities') && (
+                            <div className="mt-4 pt-4 border-t border-[#c5a059]/10">
                                 <label className="text-xs text-gray-400 font-bold uppercase tracking-widest mb-1.5 block flex items-center gap-1.5">
-                                    <Film className="w-3 h-3" /> فيديو المقال (YouTube / MP4)
+                                    <Box className="w-3.5 h-3.5 text-gold-royal" /> المجسم ثلاثي الأبعاد (Elite 3D Asset - .glb)
                                 </label>
-                                <input
-                                    value={draft.videoUrl || ''}
-                                    onChange={e => set('videoUrl', e.target.value)}
-                                    placeholder="https://youtube.com/watch?v=..."
-                                    className="w-full text-xs px-3 py-2 rounded-lg bg-[#112240] border border-[#c5a059]/20 text-white placeholder-gray-600 focus:ring-1 focus:ring-gold-royal outline-none mb-2"
-                                />
-                                {draft.videoUrl && (
-                                    <div className="aspect-video rounded-lg overflow-hidden border border-[#c5a059]/20 bg-black">
-                                        {draft.videoUrl.includes('youtube') || draft.videoUrl.includes('youtu.be') ? (
-                                            <iframe
-                                                src={`https://www.youtube.com/embed/${draft.videoUrl.split('v=')[1]?.split('&')[0] || draft.videoUrl.split('/').pop()}`}
-                                                className="w-full h-full"
-                                                allowFullScreen
-                                            />
-                                        ) : (
-                                            <video src={draft.videoUrl} controls className="w-full h-full" />
-                                        )}
+                                <div className="flex gap-2">
+                                    <input
+                                        value={draft.modelUrl || ''}
+                                        onChange={e => {
+                                            set('modelUrl', e.target.value);
+                                            if (e.target.value) set('location_type', 'monument');
+                                        }}
+                                        placeholder="https://... GLB URL"
+                                        className="flex-1 text-xs px-3 py-2 rounded-lg bg-[#112240] border border-[#c5a059]/20 text-white placeholder-gray-600 focus:ring-1 focus:ring-gold-royal outline-none"
+                                    />
+                                    <button
+                                        type="button"
+                                        onClick={() => assetInputRef.current?.click()}
+                                        disabled={uploadingAsset}
+                                        className="px-4 py-2 rounded-lg bg-gold-royal text-black hover:bg-yellow-500 transition-colors flex items-center gap-2 text-xs font-black shrink-0 shadow-lg"
+                                    >
+                                        {uploadingAsset ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <Upload className="w-3.5 h-3.5" />}
+                                        {uploadingAsset ? 'جاري الرفع...' : 'رفع GLB'}
+                                    </button>
+                                    <input ref={assetInputRef} type="file" accept=".glb" className="hidden" onChange={handleAssetUpload} />
+                                </div>
+                                {draft.modelUrl && (
+                                    <div className="mt-2 p-2 rounded-lg bg-gold-royal/5 border border-gold-royal/20 flex items-center justify-between">
+                                        <div className="flex items-center gap-2 text-[10px] text-gold-royal truncate">
+                                            <CheckCircle className="w-3 h-3" /> Asset Linked: {draft.modelUrl.split('/').pop()}
+                                        </div>
+                                        <button onClick={() => { set('modelUrl', ''); set('location_type', 'city'); }} className="text-red-400 hover:text-red-300 p-1">
+                                            <X className="w-3 h-3" />
+                                        </button>
                                     </div>
                                 )}
                             </div>
-                        </div>
-                    </div>
+                        )}
 
                     {/* ── Section: Data Identity ── */}
                     <div>

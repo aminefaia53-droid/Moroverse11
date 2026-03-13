@@ -102,6 +102,8 @@ function generateData() {
             history: existing.history !== undefined ? existing.history : newEntry.history,
             foundation: existing.foundation !== undefined ? existing.foundation : newEntry.foundation,
             seo: existing.seo !== undefined ? existing.seo : newEntry.seo,
+            modelUrl: existing.modelUrl !== undefined ? existing.modelUrl : newEntry.modelUrl,
+            location_type: existing.location_type !== undefined ? existing.location_type : newEntry.location_type,
             // If manually unlocked, keep it unlocked
             isPending: existing.isPending === false ? false : newEntry.isPending,
             // desc: keep existing if set (not just awaiting documentation default)

@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import fs from 'fs';
 import path from 'path';
+import { createClient } from '@/utils/supabase/server';
 
 // ─── GitHub Config ────────────────────────────────────────────────────────────
 const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
@@ -117,6 +118,52 @@ export async function POST(request: NextRequest) {
                 }
                 throw fsErr;
             }
+        }
+
+        // 4. Supabase DB Sync (Real-time Discovery Hub)
+        // Ensure the monument/city is reflected in the community_posts for the /explore map
+        try {
+            const supabase = await createClient();
+            const { data: { user } } = await supabase.auth.getUser();
+
+            if (user && (category === 'landmarks' || category === 'cities')) {
+                const locationName = updatedEntry.name?.en || updatedEntry.name?.ar || id;
+                
+                // Attempt to find existing post for this landmark/city to update, else insert
+                // We use location_name as a fuzzy linker for now.
+                const { data: existingPost } = await supabase
+                    .from('community_posts')
+                    .select('id')
+                    .eq('location_name', locationName)
+                    .limit(1)
+                    .single();
+
+                const postData = {
+                    content: updatedEntry.history?.en || updatedEntry.desc?.en || `Official heritage site: ${locationName}`,
+                    location_name: locationName,
+                    image_url: updatedEntry.imageUrl,
+                    model_url: updatedEntry.modelUrl,
+                    location_type: updatedEntry.location_type || (category === 'landmarks' ? 'monument' : 'city'),
+                    is_approved: true,
+                    user_id: user.id
+                };
+
+                if (existingPost) {
+                    await supabase
+                        .from('community_posts')
+                        .update(postData)
+                        .eq('id', existingPost.id);
+                    console.log(`[Supabase Sync] Updated existing post for ${locationName}`);
+                } else {
+                    await supabase
+                        .from('community_posts')
+                        .insert(postData);
+                    console.log(`[Supabase Sync] Created new official post for ${locationName}`);
+                }
+            }
+        } catch (dbErr) {
+            console.error('[Supabase Sync] Failed to sync to community_posts:', dbErr);
+            // We don't block the response here as GitHub/Local save succeeded
         }
 
         return NextResponse.json({
