@@ -60,8 +60,12 @@ const fallbackLandmarks = [
     }
 ];
 
-const rawLandmarks = (generatedContent.landmarks && generatedContent.landmarks.length > 0) ? (generatedContent.landmarks as any[]) : fallbackLandmarks;
-const dynamicLandmarks: Landmark[] = rawLandmarks.map(l => ({
+const staticLandmarks = fallbackLandmarks;
+const dynamicLandmarksData = (generatedContent.landmarks || []) as any[];
+// Bypass legacy block and merge just like Battles do.
+const mergedLandmarks = [...staticLandmarks, ...dynamicLandmarksData].filter((v, i, a) => a.findIndex(t => (t.id === v.id)) === i);
+
+const dynamicLandmarks: Landmark[] = mergedLandmarks.map(l => ({
     ...l,
     isPending: false, // FORCE-UNLOCK: Never display lock icons
     foundation: l.foundation || { en: 'Historical', ar: 'تاريخي' },
@@ -94,10 +98,14 @@ export default function LandmarkGrid({ lang }: { lang: LangCode }) {
     const handleLandmarkClick = (l: Landmark) => {
         const item: HeritageItem = {
             id: l.id,
+            slug: (l as any).seo?.slug || l.id,
             name: l.name,
             city: l.city,
             history: l.history,
+            foundation: l.foundation,
+            visualSoul: l.visualSoul,
             imageUrl: l.imageUrl || undefined,
+            isPending: l.isPending,
             type: 'landmark'
         };
         setSelectedHeritageItem(item);
