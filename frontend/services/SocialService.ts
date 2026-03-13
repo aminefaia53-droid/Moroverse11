@@ -123,7 +123,7 @@ export class SocialService {
     /**
      * Create a new community post with sanitized content, location tagging, and type.
      */
-    static async createPost(userId: string, content: string, cityName: string | null, lat: number | null, lng: number | null, imageUrl: string | null, locationType: string = 'city'): Promise<void> {
+    static async createPost(userId: string, content: string, cityName: string | null, lat: number | null, lng: number | null, imageUrl: string | null, locationType: string = 'city', modelUrl?: string | null): Promise<void> {
         // Geospatial Boundary Guard (Moroccan Territory)
         if (lat !== null && lng !== null) {
             const isWithinMorocco = lat >= 21.0 && lat <= 36.0 && lng >= -17.0 && lng <= -1.0;
@@ -132,6 +132,11 @@ export class SocialService {
             }
         }
 
+        // Null Safety: Only include model_url if locationType is 'monument' and modelUrl is a valid .glb URL
+        const safeModelUrl = (locationType === 'monument' && modelUrl && modelUrl.trim().length > 0)
+            ? modelUrl.trim()
+            : null;
+
         const { error } = await supabase.from('community_posts').insert({
             user_id: userId,
             content: content.trim(),
@@ -139,6 +144,7 @@ export class SocialService {
             lat,
             lng,
             image_url: imageUrl,
+            model_url: safeModelUrl,
             location_type: locationType,
             likes_count: 0
         });
