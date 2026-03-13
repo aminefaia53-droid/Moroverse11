@@ -8,6 +8,8 @@ import ArticleReader from './ArticleReader';
 import ShareButton from './ShareButton';
 import { generateArticleSchema } from '../utils/seo';
 import generatedContent from '../data/generated-content.json';
+import { LangCode } from '../types/language';
+import HeritageFactSheet, { HeritageItem } from './HeritageFactSheet';
 
 interface Battle {
     id: string;
@@ -381,13 +383,32 @@ const eras = [
     { id: 'Territorial', en: 'Territorial Integrity', ar: 'ملحمة الصحراء' }
 ];
 
-import { LangCode } from '../types/language';
-
 export default function BattleDashboard({ lang }: { lang: LangCode }) {
     const [filter, setFilter] = useState('All');
     const [searchQuery, setSearchQuery] = useState('');
-    const [selectedBattle, setSelectedBattle] = useState<Battle | null>(null);
-    const [showFullArticle, setShowFullArticle] = useState(false);
+    const [selectedHeritageItem, setSelectedHeritageItem] = useState<HeritageItem | null>(null);
+
+    const handleBattleClick = (b: Battle) => {
+        const item: HeritageItem = {
+            id: b.id,
+            name: b.name,
+            city: b.location,
+            history: b.desc,
+            imageUrl: b.imageUrl,
+            type: 'battle',
+            stats: {
+                year: b.year,
+                era: b.era,
+                combatants: b.combatants,
+                leaders: b.leaders,
+                outcome: b.outcome,
+                tactics: b.tactics,
+                impact: b.impact,
+                casualties: b.casualties
+            }
+        };
+        setSelectedHeritageItem(item);
+    };
 
     // Filter mapping logic
     const displayBattles = useMemo(() => {
@@ -437,12 +458,6 @@ export default function BattleDashboard({ lang }: { lang: LangCode }) {
             <div className="flex flex-col lg:flex-row items-center justify-between gap-10">
                 <div className="flex items-center gap-6 text-right">
                     <div className="p-5 bg-primary/10 rounded-3xl border border-primary/20 shadow-inner">
-                        {selectedBattle && (
-                            <script
-                                type="application/ld+json"
-                                dangerouslySetInnerHTML={{ __html: JSON.stringify(generateArticleSchema(getArticle(selectedBattle.id, selectedBattle.name.ar, selectedBattle.name.en, 'battle'), lang as string)) }}
-                            />
-                        )}
                         <Swords className="w-10 h-10 text-primary animate-pulse" />
                     </div>
                     <div>
@@ -478,7 +493,7 @@ export default function BattleDashboard({ lang }: { lang: LangCode }) {
                             exit={{ opacity: 0, scale: 0.95 }}
                             transition={{ type: "spring", stiffness: 100, damping: 20, delay: idx * 0.05 }}
                             style={{ transformStyle: 'preserve-3d', perspective: '1000px', transformOrigin: "left center" }}
-                            onClick={() => setSelectedBattle(b)}
+                            onClick={() => handleBattleClick(b)}
                             className="group relative h-[480px] rounded-xl overflow-hidden glass-card-elite hover:bg-black/80 border border-primary/50 hover:border-primary transition-all duration-700 cursor-pointer shadow-xl hover:shadow-2xl hover:shadow-[0_0_30px_rgba(197,160,89,0.4)] weather-card-fx"
                         >
                             {/* Visual Layer (Parchment & Smoke) */}
@@ -554,166 +569,12 @@ export default function BattleDashboard({ lang }: { lang: LangCode }) {
                 </AnimatePresence>
             </div>
 
-            {/* Fact Sheet Overlay - Remained similar but with refined data handling */}
-            <AnimatePresence>
-                {selectedBattle && (
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        className="fixed inset-0 z-[1000] flex items-center justify-center p-6 md:p-14 bg-black/60 backdrop-blur-2xl"
-                    >
-                        <motion.div
-                            initial={{ scale: 0.9, y: 100, opacity: 0 }}
-                            animate={{ scale: 1, y: 0, opacity: 1 }}
-                            exit={{ scale: 0.9, y: 100, opacity: 0 }}
-                            className="bg-black/95 w-full max-w-6xl h-full max-h-[85vh] rounded-xl overflow-hidden shadow-2xl border border-[#c5a059]/30 relative flex flex-col md:flex-row"
-                        >
-                            <button
-                                onClick={() => setSelectedBattle(null)}
-                                className="absolute top-8 right-8 z-50 p-4 bg-primary text-white rounded-full shadow-lg hover:scale-110 transition-transform"
-                            >
-                                <X className="w-5 h-5" />
-                            </button>
-
-                            <div className="md:w-1/3 bg-slate-900 relative overflow-hidden flex flex-col justify-end p-10">
-                                <div className="absolute inset-0 z-0 opacity-40">
-                                    <div className={`absolute inset-0 bg-gradient-to-b from-transparent to-black ${selectedBattle.era === 'Modern Resistance' || selectedBattle.era === 'Liberation' ? 'bg-amber-900/40' :
-                                        selectedBattle.era === 'Imperial' ? 'bg-star-red/40' : 'bg-emerald-900/40'
-                                        }`} />
-                                </div>
-                                <div className="relative z-10 space-y-4">
-                                    <span className="text-gold-sand text-[9px] font-black uppercase tracking-[0.5em]">{selectedBattle.era} ERA</span>
-                                    <h2 className="text-white text-5xl font-serif font-black uppercase leading-none">
-                                        {lang === 'en' ? selectedBattle.name.en : selectedBattle.name.ar}
-                                    </h2>
-                                    <div className="flex flex-col pt-4">
-                                        <span className="text-white/30 text-[9px] uppercase font-black">Timeline</span>
-                                        <span className="text-gold-sand text-3xl font-display">{selectedBattle.year}</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div className="flex-1 bg-black/40 backdrop-blur-sm overflow-y-auto p-12 md:p-16 text-white/90 glass-card-elite">
-                                <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-                                    <div className="space-y-10">
-                                        <div className="space-y-3">
-                                            <div className="flex items-center gap-2 text-primary">
-                                                <MapPin className="w-4 h-4" />
-                                                <h4 className="text-[10px] font-black uppercase tracking-widest">{lang === 'ar' ? 'الموقع الجغرافي' : 'LOCATION'}</h4>
-                                            </div>
-                                            <p className="text-xl font-bold text-white/90">
-                                                {lang === 'en' ? selectedBattle.location.en : selectedBattle.location.ar}
-                                            </p>
-                                        </div>
-
-                                        <div className="space-y-3">
-                                            <div className="flex items-center gap-2 text-primary">
-                                                <Users className="w-4 h-4" />
-                                                <h4 className="text-[10px] font-black uppercase tracking-widest">{lang === 'ar' ? 'الجبهات والقيادة' : 'FORCES & COMMAND'}</h4>
-                                            </div>
-                                            <div className="space-y-3">
-                                                <p className="text-base">
-                                                    <span className="text-white/40 font-black text-[9px] uppercase mr-2">Military:</span> {lang === 'en' ? selectedBattle.combatants.en : selectedBattle.combatants.ar}
-                                                </p>
-                                                <p className="text-base">
-                                                    <span className="text-white/40 font-black text-[9px] uppercase mr-2">Command:</span> <span className="text-primary font-bold">{lang === 'en' ? selectedBattle.leaders.en : selectedBattle.leaders.ar}</span>
-                                                </p>
-                                            </div>
-                                        </div>
-
-                                        <div className="space-y-3">
-                                            <div className="flex items-center gap-2 text-gold-royal">
-                                                <Activity className="w-4 h-4" />
-                                                <h4 className="text-[10px] font-black uppercase tracking-widest">{lang === 'ar' ? 'الخسائر' : 'CASUALTIES'}</h4>
-                                            </div>
-                                            <p className="text-base text-white/60">
-                                                {lang === 'en' ? (selectedBattle.casualties?.en || 'Not recorded in logs') : (selectedBattle.casualties?.ar || 'غير مسجلة بدقة')}
-                                            </p>
-                                        </div>
-                                    </div>
-
-                                    <div className="space-y-10">
-                                        <div className="space-y-3">
-                                            <div className="flex items-center gap-2 text-emerald-500">
-                                                <Target className="w-4 h-4" />
-                                                <h4 className="text-[10px] font-black uppercase tracking-widest">{lang === 'ar' ? 'النهج التكتيكي' : 'TACTICAL APPROACH'}</h4>
-                                            </div>
-                                            <div className="p-6 bg-emerald-500/10 rounded-xl border-l-4 border-emerald-500 italic text-base text-emerald-400 leading-relaxed">
-                                                "{lang === 'en' ? selectedBattle.tactics.en : selectedBattle.tactics.ar}"
-                                            </div>
-                                        </div>
-
-                                        <div className="space-y-3">
-                                            <div className="flex items-center gap-2 text-red-500">
-                                                <Quote className="w-4 h-4" />
-                                                <h4 className="text-[10px] font-black uppercase tracking-widest">{lang === 'ar' ? 'الأثر التاريخي' : 'HISTORICAL LEGACY'}</h4>
-                                            </div>
-                                            <p className="text-base text-white/70 leading-relaxed">
-                                                {lang === 'en' ? selectedBattle.impact.en : selectedBattle.impact.ar}
-                                            </p>
-                                        </div>
-
-                                        <div className="p-8 bg-black/40 rounded-xl border border-white/5">
-                                            <span className="text-[9px] font-black text-white/40 uppercase tracking-widest block mb-1">Outcome</span>
-                                            <p className="text-xl font-black text-primary uppercase">
-                                                {lang === 'en' ? selectedBattle.outcome.en : selectedBattle.outcome.ar}
-                                            </p>
-                                        </div>
-
-                                        {(() => {
-                                            // Slugs from content directory
-                                            const academicSlugs = [
-                                                'oued-sebou-maamora-1515',
-                                                'battle-of-bagdoura-741',
-                                                'battle-of-zallaqa-1086',
-                                                'battle-of-al-ark-1195',
-                                                'battle-of-las-navas-de-tolosa-1212',
-                                                'battle-of-dononiyah-1276',
-                                                'battle-of-wadi-al-makhazin-1578',
-                                                'battle-of-isly-1844',
-                                                'battle-of-tetouan-1860',
-                                                'sidi-bou-othmane-battle-1912',
-                                                'el-hri-battle-1914',
-                                                'battle-of-annual-1921',
-                                                'battle-of-bougafer-1933',
-                                                'battle-of-dcheira-1958',
-                                                'agbalou-nkardous-resistence',
-                                                'tazenakht-forgotten-village'
-                                            ];
-                                            const isAcademic = academicSlugs.includes(selectedBattle.id);
-                                            return (
-                                                <button
-                                                    onClick={() => {
-                                                        if (isAcademic) {
-                                                            window.location.href = '/posts/' + selectedBattle.id + '?lang=' + lang;
-                                                        } else {
-                                                            setShowFullArticle(true);
-                                                        }
-                                                    }}
-                                                    className="w-full py-5 rounded-xl bg-gradient-to-r from-[#8b0000] to-[#500000] text-white text-xs font-black uppercase tracking-[0.2em] flex items-center justify-center gap-3 shadow-[0_10px_30px_rgba(139,0,0,0.4)] hover:shadow-[0_0_30px_rgba(197,160,89,0.7)] hover:from-[#c5a059] hover:to-[#a08030] transition-all border border-white/10 group"
-                                                >
-                                                    <Compass className="w-5 h-5 animate-pulse" />
-                                                    {lang === 'ar' ? `سافر إلى عالم ${selectedBattle.name.ar}` : `Journey into ${selectedBattle.name.en}`}
-                                                </button>
-                                            );
-                                        })()}
-                                    </div>
-                                </div>
-                            </div>
-                        </motion.div>
-                    </motion.div>
-                )}
-            </AnimatePresence>
-
-            {/* FULL ARTICLE READER */}
-            {selectedBattle && (
-                <ArticleReader
-                    article={getArticle(selectedBattle.id, selectedBattle.name.ar, selectedBattle.name.en, 'battle')}
-                    isOpen={showFullArticle}
-                    onClose={() => setShowFullArticle(false)}
-                />
-            )}
+            <HeritageFactSheet
+                item={selectedHeritageItem}
+                isOpen={!!selectedHeritageItem}
+                onClose={() => setSelectedHeritageItem(null)}
+                lang={lang}
+            />
         </div>
     );
 }

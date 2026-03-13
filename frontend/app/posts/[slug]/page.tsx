@@ -5,6 +5,7 @@ import { marked } from 'marked';
 import type { Metadata } from 'next';
 import { LangCode, SUPPORTED_LANGUAGES } from '../../../types/language';
 import VisitorComments from '../../../components/community/VisitorComments';
+import { createClient } from '../../../utils/supabase/server';
 
 // Generate static routes at build time - reads BOTH .md from posts/ AND .html from content/
 export async function generateStaticParams() {
@@ -48,6 +49,21 @@ export async function generateMetadata(props: { params: Promise<{ slug: string }
         if (data.title) title = `${data.title} | MoroVerse`;
         if (data.description) description = data.description;
         if (data.image) imageUrl = data.image;
+    } else {
+        // Try Supabase for metadata
+        try {
+            const supabase = await createClient();
+            const { data: post } = await supabase
+                .from('community_posts')
+                .select('location_name, content, image_url')
+                .eq('id', slug)
+                .single();
+            if (post) {
+                title = `${post.location_name} | MoroVerse`;
+                if (post.content) description = post.content.substring(0, 160);
+                if (post.image_url) imageUrl = post.image_url;
+            }
+        } catch (e) {}
     }
 
     const canonicalUrl = `https://moroverse.vercel.app/posts/${slug}`;
@@ -112,10 +128,29 @@ export default async function PostPage(props: {
 
         if (fs.existsSync(htmlPath)) {
             content = fs.readFileSync(htmlPath, 'utf8');
-        } else if (lang === 'en') {
+        } else {
             const fallbackPath = path.join(process.cwd(), 'content', `${slug}.html`);
             if (fs.existsSync(fallbackPath)) {
                 content = fs.readFileSync(fallbackPath, 'utf8');
+            } else {
+                // === Priority 3: Supabase community_posts Table ===
+                try {
+                    const supabase = await createClient();
+                    const { data: post } = await supabase
+                        .from('community_posts')
+                        .select('*')
+                        .eq('id', slug)
+                        .single();
+
+                    if (post) {
+                        articleTitle = post.location_name || 'MoroVerse Discovery';
+                        articleImage = post.image_url || '';
+                        articleCity = post.location_name || '';
+                        content = post.content ? await marked(post.content) : '<p>No content available for this discovery.</p>';
+                    }
+                } catch (err) {
+                    console.warn('SUPABASE_DATA_NOT_FOUND', err);
+                }
             }
         }
     }

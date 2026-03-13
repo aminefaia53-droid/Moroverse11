@@ -3,6 +3,8 @@
 import React, { useState, useEffect } from "react";
 import dynamic from "next/dynamic";
 import ContentDiscoveryGrid from "@/components/community/ContentDiscoveryGrid";
+import HeritageFactSheet, { HeritageItem } from "@/components/HeritageFactSheet";
+import { useLanguage } from "@/context/LanguageContext";
 import { SocialService } from "@/services/SocialService";
 import { Post } from "@/types/social";
 import { LucideSearch, LucideMapPin } from "lucide-react";
@@ -10,10 +12,11 @@ import { LucideSearch, LucideMapPin } from "lucide-react";
 const ExploreMap = dynamic(() => import("@/components/community/ExploreMap"), { ssr: false });
 
 export default function ExploreBlogPage() {
+    const { lang } = useLanguage();
     const [posts, setPosts] = useState<Post[]>([]);
     const [isLoading, setIsLoading] = useState(true);
     const [selectedCity, setSelectedCity] = useState<string | undefined>(undefined);
-    const [activeLocation, setActiveLocation] = useState<Post | null>(null);
+    const [activeLocation, setActiveLocation] = useState<HeritageItem | null>(null);
 
     // Initial Load & SWR Pattern
     useEffect(() => {
@@ -40,7 +43,18 @@ export default function ExploreBlogPage() {
         if (typeof loc === 'string') {
             setSelectedCity(loc);
         } else {
-            setActiveLocation(loc);
+            // Map Post to HeritageItem with slug support for Deep Linking
+            const item: HeritageItem = {
+                id: loc.id,
+                name: { ar: loc.location_name || '', en: loc.location_name || '' },
+                city: { ar: loc.location_name || '', en: loc.location_name || '' },
+                history: loc.content || '',
+                imageUrl: loc.image_url || '',
+                type: 'post',
+                slug: (loc as any).slug // community_posts has slug but Post interface might miss it
+            };
+            setActiveLocation(item);
+            
             // Auto-Pan logic is handled via Global Events in ExploreMap
             window.dispatchEvent(new CustomEvent('map-fly-to-target', { 
                 detail: { target: [loc.lat, loc.lng], zoom: 15 } 
@@ -85,6 +99,13 @@ export default function ExploreBlogPage() {
                     onCardClick={handleLocationSelect} 
                 />
             </div>
+
+            <HeritageFactSheet 
+                item={activeLocation} 
+                isOpen={!!activeLocation} 
+                onClose={() => setActiveLocation(null)} 
+                lang={lang}
+            />
         </div>
     );
 }
