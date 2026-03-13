@@ -97,7 +97,7 @@ export default function LandmarkGrid({ lang }: { lang: LangCode }) {
             name: l.name,
             city: l.city,
             history: l.history,
-            imageUrl: l.imageUrl,
+            imageUrl: l.imageUrl || undefined,
             type: 'landmark'
         };
         setSelectedHeritageItem(item);

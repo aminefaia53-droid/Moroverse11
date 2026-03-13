@@ -394,7 +394,7 @@ export default function BattleDashboard({ lang }: { lang: LangCode }) {
             name: b.name,
             city: b.location,
             history: b.desc,
-            imageUrl: b.imageUrl,
+            imageUrl: b.imageUrl || undefined,
             type: 'battle',
             stats: {
                 year: b.year,
