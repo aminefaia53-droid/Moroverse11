@@ -503,7 +503,10 @@ export default function BattleDashboard({ lang }: { lang: LangCode }) {
                                         src={b.imageUrl}
                                         alt={lang === 'en' ? b.name.en : b.name.ar}
                                         className="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-110 opacity-30 group-hover:opacity-50"
-                                        onError={(e) => { e.currentTarget.style.display = 'none'; }}
+                                        onError={(e) => { 
+                                            e.currentTarget.onerror = null;
+                                            e.currentTarget.src = 'https://images.unsplash.com/photo-1539020140153-e479b8c22e70?q=80&w=1080&auto=format&fit=crop';
+                                        }}
                                     />
                                 )}
                                 <div className="absolute inset-0 opacity-[0.15] mix-blend-overlay pointer-events-none transition-opacity duration-1000 group-hover:opacity-[0.25]" style={{ backgroundImage: "url('https://www.transparenttextures.com/patterns/parchment.png')" }} />

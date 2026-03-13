@@ -71,7 +71,7 @@ const dynamicLandmarks: Landmark[] = mergedLandmarks.map(l => ({
     foundation: l.foundation || { en: 'Historical', ar: 'تاريخي' },
     history: l.history || l.desc || { en: 'A historic Moroccan landmark.', ar: 'معلمة تاريخية مغربية.' },
     visualSoul: l.visualSoul || 'Mosque',
-    imageUrl: l.imageUrl || 'https://images.unsplash.com/photo-1549733059-d81615d862e?q=80&w=1080&auto=format&fit=crop'
+    imageUrl: l.imageUrl || 'https://images.unsplash.com/photo-1539020140153-e479b8c22e70?q=80&w=1080&auto=format&fit=crop'
 })) as Landmark[];
 
 const LandmarkSoulIcon = ({ soul, className }: { soul: Landmark['visualSoul']; className?: string }) => {
