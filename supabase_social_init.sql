@@ -54,6 +54,7 @@ CREATE TABLE IF NOT EXISTS public.community_posts (
   user_id uuid REFERENCES public.profiles(id) ON DELETE CASCADE NOT NULL,
   content text NOT NULL,
   image_url text,
+  model_url text,
   location_name text,
   lat numeric,
   lng numeric,

@@ -24,3 +24,7 @@ $$ LANGUAGE plpgsql STABLE SECURITY DEFINER;
 
 -- 3. Index for Category Filtering
 CREATE INDEX IF NOT EXISTS community_posts_category_idx ON public.community_posts(location_type, is_approved);
+
+
+-- Add model_url for 3D viewing
+ALTER TABLE public.community_posts ADD COLUMN IF NOT EXISTS model_url text;

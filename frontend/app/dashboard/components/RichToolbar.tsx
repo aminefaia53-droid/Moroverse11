@@ -141,9 +141,9 @@ export default function RichToolbar({ textareaRef, value, onChange, onImageUploa
             <div className="flex items-center flex-wrap gap-0.5 px-2 py-1.5">
                 {tools.map((tool, i) => {
                     if (tool.divider) {
-                        return <div key={i} className="w-px h-5 bg-gray-200 dark:bg-[#c5a059]/20 mx-1" />;
+                        return <div key={`div-${i}`} className="w-px h-5 bg-gray-200 dark:bg-[#c5a059]/20 mx-1" />;
                     }
-                    const Icon = tool.icon as React.ElementType;
+                    if (!tool.icon) return null;
                     return (
                         <button
                             key={i}
@@ -152,7 +152,8 @@ export default function RichToolbar({ textareaRef, value, onChange, onImageUploa
                             onClick={tool.action}
                             className="p-1.5 rounded-md text-gray-500 hover:text-gold-royal hover:bg-gold-royal/10 dark:hover:bg-gold-royal/10 transition-colors"
                         >
-                            <Icon className="w-4 h-4" />
+                            {/* @ts-ignore */}
+                            <tool.icon className="w-4 h-4" />
                         </button>
                     );
                 })}

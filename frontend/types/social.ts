@@ -16,6 +16,7 @@ export interface Post {
     user_id: string;
     content: string;
     image_url: string | null;
+    model_url?: string | null;
     location_name: string | null;
     location_type: 'monument' | 'city' | 'hidden_gem';
     lat: number | null;

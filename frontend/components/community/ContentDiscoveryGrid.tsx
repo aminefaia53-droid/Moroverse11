@@ -2,7 +2,10 @@
 
 import React from "react";
 import { Post } from "../../types/social";
-import { LucideCompass, LucideHistory, LucideGem } from "lucide-react";
+import { LucideCompass, LucideHistory, LucideGem, LucideBox } from "lucide-react";
+import dynamic from "next/dynamic";
+
+const Monument3DViewer = dynamic(() => import("./Monument3DViewer"), { ssr: false });
 
 interface ContentDiscoveryGridProps {
     posts: Post[];
@@ -11,6 +14,20 @@ interface ContentDiscoveryGridProps {
 }
 
 export default function ContentDiscoveryGrid({ posts, isLoading, onCardClick }: ContentDiscoveryGridProps) {
+    const [active3DModel, setActive3DModel] = React.useState<{ url: string, name: string } | null>(null);
+
+    const handleView3D = (e: React.MouseEvent, post: Post) => {
+        e.stopPropagation();
+        if (post.model_url) {
+            setActive3DModel({ url: post.model_url, name: post.location_name || 'Monument' });
+            
+            // Dispatch event for AI Concierge sync
+            window.dispatchEvent(new CustomEvent('moroverse-3d-view-active', {
+                detail: { locationName: post.location_name, modelUrl: post.model_url }
+            }));
+        }
+    };
+
     if (isLoading) {
         return (
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 animate-pulse">
@@ -48,12 +65,25 @@ export default function ContentDiscoveryGrid({ posts, isLoading, onCardClick }: 
                                 <LucideCompass className="text-white/10" size={48} />
                             </div>
                         )}
-                        <div className="absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-black/90 to-transparent">
-                            <h3 className="text-white font-bold mb-1 truncate">{post.location_name}</h3>
-                            <div className="flex items-center justify-between text-[10px] text-white/60">
-                                <span>{post.profiles?.username}</span>
-                                <span className="text-[#C5A059]">Score: {post.profiles?.trust_score || 0}</span>
+                        <div className="absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-black/90 to-transparent flex flex-col gap-2">
+                            <div>
+                                <h3 className="text-white font-bold mb-1 truncate">{post.location_name}</h3>
+                                <div className="flex items-center justify-between text-[10px] text-white/60">
+                                    <span>{post.profiles?.username}</span>
+                                    <span className="text-[#C5A059]">Score: {post.profiles?.trust_score || 0}</span>
+                                </div>
                             </div>
+                            
+                            {/* Gatekeeper Logic: Only show 3D button if monument AND has a model_url */}
+                            {post.location_type === 'monument' && post.model_url && (
+                                <button
+                                    onClick={(e) => handleView3D(e, post)}
+                                    className="w-full mt-2 py-2 flex items-center justify-center gap-2 bg-[#C5A059]/20 hover:bg-[#C5A059] text-[#C5A059] hover:text-black border border-[#C5A059]/40 rounded-xl transition-all uppercase text-[10px] font-black tracking-widest backdrop-blur-sm shadow-[0_0_15px_rgba(197,160,89,0.2)]"
+                                >
+                                    <LucideBox size={14} className="animate-pulse" />
+                                    <span>View Elite 3D</span>
+                                </button>
+                            )}
                         </div>
                     </div>
                 ))}
@@ -69,6 +99,18 @@ export default function ContentDiscoveryGrid({ posts, isLoading, onCardClick }: 
             <CategorySection title="Historical Landmarks" icon={LucideHistory} data={categories.monument} />
             <CategorySection title="Urban Stories" icon={LucideCompass} data={categories.city} />
             <CategorySection title="Hidden Gems" icon={LucideGem} data={categories.hidden_gem} />
+            
+            {/* 3D Viewer Overlay */}
+            {active3DModel && (
+                <Monument3DViewer 
+                    modelUrl={active3DModel.url} 
+                    locationName={active3DModel.name}
+                    onClose={() => {
+                        setActive3DModel(null);
+                        window.dispatchEvent(new CustomEvent('moroverse-3d-view-closed'));
+                    }} 
+                />
+            )}
         </div>
     );
 }

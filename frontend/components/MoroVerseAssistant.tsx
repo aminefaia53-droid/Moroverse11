@@ -89,9 +89,39 @@ export default function MoroVerseAssistant() {
             }
             setTimeout(() => { setShowBubble(false); setEmotion('neutral'); }, 6000);
         };
+
+        const handle3DViewActive = (e: Event) => {
+            const { locationName } = (e as CustomEvent).detail;
+            setShowBubble(true);
+            setEmotion('impressed');
+            
+            // Contextual AI message for 3D View
+            const msg = lang === 'ar' 
+                ? `أنت الآن في وضع العرض الثلاثي الأبعاد النخبوي لـ ${locationName}. يمكنك تدوير المجسم وتكبيره لاستكشاف أدق التفاصيل المعمارية.`
+                : `You have entered the Elite 3D Stage for ${locationName}. You can rotate and zoom to explore its architectural details.`;
+            
+            setMessage(msg);
+            // Optionally, we could also send a hidden prompt to the concierge to prime its context here
+            // sendToConcierge(`The user is now looking at a 3D model of ${locationName}. Acknowledge this briefly.`, false);
+        };
+
+        const handle3DViewClosed = () => {
+            setShowBubble(true);
+            setEmotion('happy');
+            setMessage(lang === 'ar' ? 'تم الخروج من وضع العرض الثلاثي الأبعاد.' : 'Exited 3D view. How else can I help?');
+            setTimeout(() => { setShowBubble(false); setEmotion('neutral'); }, 4000);
+        };
+
         window.addEventListener('moroverse-action', handleAction);
-        return () => window.removeEventListener('moroverse-action', handleAction);
-    }, []);
+        window.addEventListener('moroverse-3d-view-active', handle3DViewActive);
+        window.addEventListener('moroverse-3d-view-closed', handle3DViewClosed);
+        
+        return () => {
+            window.removeEventListener('moroverse-action', handleAction);
+            window.removeEventListener('moroverse-3d-view-active', handle3DViewActive);
+            window.removeEventListener('moroverse-3d-view-closed', handle3DViewClosed);
+        };
+    }, [lang, t]);
 
     // Scroll speed emotion detector
     useEffect(() => {
