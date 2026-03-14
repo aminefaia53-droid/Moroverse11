@@ -309,7 +309,7 @@ export default function DynamicEncyclopediaDisplay({ category, lang, emptyMessag
                                     <div className="flex items-start justify-between">
                                         <div className="flex flex-col gap-1.5">
                                             {/* City UNESCO Badge */}
-                                            {category === 'city' && ['rabat', 'fez', 'marrakech', 'meknes', 'tetouan', 'essaouira', 'el-jadida', 'ouarzazate'].some(c => (item.id || '').toLowerCase().includes(c)) && (
+                                            {category === 'city' && ['rabat', 'fez', 'marrakech', 'meknes', 'tetouan', 'essaouira', 'el-jadida', 'ouarzazate'].some(c => String(item.id || '').toLowerCase().includes(c)) && (
                                                 <span className="px-2.5 py-1 bg-yellow-500/20 backdrop-blur-md border border-yellow-500/50 text-yellow-500 text-[10px] font-black uppercase tracking-[0.2em] rounded-full w-max shadow-[0_0_10px_rgba(234,179,8,0.2)] flex items-center gap-1.5">
                                                     <span className="w-1.5 h-1.5 rounded-full bg-yellow-400 animate-pulse"></span>
                                                     {isRTL ? 'تراث عالمي (يونسكو)' : 'UNESCO World Heritage'}
