@@ -1,10 +1,10 @@
 "use client";
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import HeritageFactSheet, { HeritageItem } from './HeritageFactSheet';
 import { LangCode } from '../types/language';
-import { Compass, MapPin, Loader2, Info, Box, Play, Swords, User, Building2, Globe } from 'lucide-react';
+import { Compass, MapPin, Loader2, Info, Box, Play, Swords, User, Building2, Globe, Search } from 'lucide-react';
 import ShareButton from './ShareButton';
 
 interface DynamicEncyclopediaDisplayProps {
@@ -34,6 +34,10 @@ function getSubCategoryLabel(item: any, category: string): { ar: string; en: str
         const type = item.type || '';
         return { ar: type, en: type };
     }
+    if (category === 'monument' || category === 'heritage') {
+        const customType = item.type || item.label || '';
+        if (customType) return typeof customType === 'string' ? { ar: customType, en: customType } : { ar: customType.ar || '', en: customType.en || customType.ar || '' };
+    }
     return null;
 }
 
@@ -56,6 +60,8 @@ export default function DynamicEncyclopediaDisplay({ category, lang, emptyMessag
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState<Error | null>(null);
     const [selectedItem, setSelectedItem] = useState<HeritageItem | null>(null);
+    const [searchQuery, setSearchQuery] = useState('');
+    const [heritageFilter, setHeritageFilter] = useState<'all' | 'unesco' | 'marginalized'>('all');
 
     const isRTL = lang === 'ar';
 
@@ -179,11 +185,74 @@ export default function DynamicEncyclopediaDisplay({ category, lang, emptyMessag
     const show3D = true; // Enabled for Sovereign Build
     // Early return removed to restore functionality
 
+    const filteredItems = useMemo(() => {
+        let result = items.filter(item => {
+            if (!searchQuery) return true;
+            const q = searchQuery.toLowerCase();
+            const getName = (n: any, l: string) => {
+                if (typeof n === 'string') return n;
+                const target = l as 'ar' | 'en';
+                return n?.[target] || n?.ar || n?.en || '';
+            };
+            const nameAr = getName(item.name, 'ar');
+            const nameEn = getName(item.name, 'en').toLowerCase();
+            return nameAr.includes(q) || nameEn.includes(q);
+        });
+
+        if (category === 'monument' && heritageFilter !== 'all') {
+            result = result.filter(item => {
+                if (heritageFilter === 'unesco') return item.status === 'unesco';
+                if (heritageFilter === 'marginalized') return item.status !== 'unesco' && item.status !== 'national';
+                return true;
+            });
+        }
+        return result;
+    }, [items, searchQuery, category, heritageFilter]);
+
     return (
         <div className="w-full">
+            {/* Search and Filters Bar */}
+            <div className="flex flex-col md:flex-row gap-4 mb-8">
+                <div className="relative flex-1">
+                    <Search className={`absolute ${isRTL ? 'right-4' : 'left-4'} top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500`} />
+                    <input
+                        type="text"
+                        placeholder={isRTL ? 'ابحث في الأرشيف السيادي...' : 'Search the Sovereign Archive...'}
+                        value={searchQuery}
+                        onChange={(e) => setSearchQuery(e.target.value)}
+                        className={`w-full bg-[#112240] border border-white/10 rounded-xl py-3.5 ${isRTL ? 'pr-12 pl-4' : 'pl-12 pr-4'} text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all font-arabic`}
+                        dir={isRTL ? 'rtl' : 'ltr'}
+                    />
+                </div>
+                
+                {/* Heritage Status Filter */}
+                {category === 'monument' && (
+                    <div className="flex gap-2 overflow-x-auto no-scrollbar pb-1">
+                        <button
+                            onClick={() => setHeritageFilter('all')}
+                            className={`shrink-0 px-4 py-3 rounded-xl border text-xs font-bold transition-all flex items-center gap-2 ${heritageFilter === 'all' ? 'bg-white/10 border-white/20 text-white' : 'bg-transparent border-white/5 text-gray-500 hover:text-white'}`}
+                        >
+                            الكل (All)
+                        </button>
+                        <button
+                            onClick={() => setHeritageFilter('unesco')}
+                            className={`shrink-0 px-4 py-3 rounded-xl border text-xs font-bold transition-all flex items-center gap-2 ${heritageFilter === 'unesco' ? 'bg-yellow-500/20 border-yellow-500/50 text-yellow-500 shadow-[0_0_10px_rgba(234,179,8,0.2)]' : 'bg-transparent border-white/5 text-gray-500 hover:text-yellow-500/70'}`}
+                        >
+                            <span className="w-2 h-2 rounded-full bg-yellow-500"></span> تراث يونسكو (UNESCO)
+                        </button>
+                        <button
+                            onClick={() => setHeritageFilter('marginalized')}
+                            className={`shrink-0 px-4 py-3 rounded-xl border text-xs font-bold transition-all flex items-center gap-2 ${heritageFilter === 'marginalized' ? 'bg-white/10 border-white/30 text-white shadow-[0_0_10px_rgba(255,255,255,0.1)]' : 'bg-transparent border-white/5 text-gray-500 hover:text-white/70'}`}
+                        >
+                            <span className="w-2 h-2 rounded-full bg-gray-400"></span> تراث مهمش (Marginalized)
+                        </button>
+                    </div>
+                )}
+            </div>
+
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                 <AnimatePresence mode="popLayout">
-                    {items.map((item, idx) => {
+                    {filteredItems.map((item, idx) => {
                         const getName = (n: any, l: string) => {
                             if (typeof n === 'string') return n;
                             const target = l as 'ar' | 'en';
@@ -237,7 +306,15 @@ export default function DynamicEncyclopediaDisplay({ category, lang, emptyMessag
                                     {/* Header: sub-category tag + share */}
                                     <div className="flex items-start justify-between">
                                         <div className="flex flex-col gap-1.5">
-                                            {/* Status Badge: UNESCO / National / Forgotten */}
+                                            {/* City UNESCO Badge */}
+                                            {category === 'city' && ['rabat', 'fez', 'marrakech', 'meknes', 'tetouan', 'essaouira', 'el-jadida', 'ouarzazate'].some(c => (item.id || '').toLowerCase().includes(c)) && (
+                                                <span className="px-2.5 py-1 bg-yellow-500/20 backdrop-blur-md border border-yellow-500/50 text-yellow-500 text-[10px] font-black uppercase tracking-[0.2em] rounded-full w-max shadow-[0_0_10px_rgba(234,179,8,0.2)] flex items-center gap-1.5">
+                                                    <span className="w-1.5 h-1.5 rounded-full bg-yellow-400 animate-pulse"></span>
+                                                    {isRTL ? 'تراث عالمي (يونسكو)' : 'UNESCO World Heritage'}
+                                                </span>
+                                            )}
+
+                                            {/* Status Badge: UNESCO / National / Forgotten (Monuments) */}
                                             {category === 'monument' && item.status && (
                                                 <span className={`px-2.5 py-1 backdrop-blur-md border text-[7px] font-black uppercase tracking-[0.2em] rounded-full w-max ${
                                                     item.status === 'unesco' 
