@@ -4,16 +4,51 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import HeritageFactSheet, { HeritageItem } from './HeritageFactSheet';
 import { LangCode } from '../types/language';
-import { Compass, MapPin, Loader2, Info } from 'lucide-react';
+import { Compass, MapPin, Loader2, Info, Box, Play, Swords, User, Building2, Globe } from 'lucide-react';
 import ShareButton from './ShareButton';
 
 interface DynamicEncyclopediaDisplayProps {
     category: 'city' | 'monument' | 'battle' | 'tourism' | 'figure';
     lang: LangCode;
-    emptyMessageConfig: {
-        en: string;
-        ar: string;
-    };
+    emptyMessageConfig: { en: string; ar: string; };
+}
+
+/** Derives the human-readable sub-category label for a card */
+function getSubCategoryLabel(item: any, category: string): { ar: string; en: string } | null {
+    if (category === 'city') {
+        const type = item.type?.toLowerCase?.() || '';
+        if (type.includes('douar') || type.includes('دوار')) return { ar: 'دوار', en: 'Douar' };
+        if (type.includes('province') || type.includes('region') || type.includes('إقليم')) return { ar: 'إقليم', en: 'Province' };
+        if (type.includes('commune') || type.includes('جماعة')) return { ar: 'جماعة', en: 'Commune' };
+        return { ar: 'مدينة', en: 'City' };
+    }
+    if (category === 'battle') {
+        const era = item.era || '';
+        return { ar: era, en: era };
+    }
+    if (category === 'figure') {
+        const field = item.field || '';
+        return { ar: field, en: field };
+    }
+    if (category === 'tourism') {
+        const type = item.type || '';
+        return { ar: type, en: type };
+    }
+    return null;
+}
+
+/** Returns the category icon component */
+function CategoryIcon({ category }: { category: string }) {
+    if (category === 'battle') return <Swords className="w-12 h-12 text-white/5" />;
+    if (category === 'figure') return <User className="w-12 h-12 text-white/5" />;
+    if (category === 'monument') return <Building2 className="w-12 h-12 text-white/5" />;
+    if (category === 'tourism') return <Globe className="w-12 h-12 text-white/5" />;
+    return <Compass className="w-12 h-12 text-white/5" />;
+}
+
+/** Whether 3D button should be shown (landmark/monument only) */
+function should3DButtonShow(category: string): boolean {
+    return category === 'monument';
 }
 
 export default function DynamicEncyclopediaDisplay({ category, lang, emptyMessageConfig }: DynamicEncyclopediaDisplayProps) {
@@ -35,7 +70,6 @@ export default function DynamicEncyclopediaDisplay({ category, lang, emptyMessag
                 const db = json.data;
 
                 if (isMounted) {
-                    // Map generic categories to Dashboard JSON arrays
                     if (category === 'city') setItems(db.cities || []);
                     else if (category === 'monument') setItems(db.landmarks || []);
                     else if (category === 'battle') setItems(db.battles || []);
@@ -52,7 +86,7 @@ export default function DynamicEncyclopediaDisplay({ category, lang, emptyMessag
         return () => { isMounted = false; };
     }, [category]);
 
-    const handleCardClick = (item: any) => {
+    const handleCardClick = (item: any, triggerTab?: 'video' | '3d') => {
         const heritageItem: HeritageItem = {
             id: item.id,
             slug: item.id,
@@ -96,6 +130,11 @@ export default function DynamicEncyclopediaDisplay({ category, lang, emptyMessag
             (heritageItem as any).modelInfo = { url: item.modelUrl };
         }
 
+        // If triggered from 3D button, we'll auto-open 3D viewer on the factsheet
+        if (triggerTab === '3d') {
+            (heritageItem as any)._autoOpen3D = true;
+        }
+
         setSelectedItem(heritageItem);
     };
 
@@ -129,6 +168,8 @@ export default function DynamicEncyclopediaDisplay({ category, lang, emptyMessag
         );
     }
 
+    const show3D = should3DButtonShow(category);
+
     return (
         <div className="w-full">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
@@ -137,14 +178,17 @@ export default function DynamicEncyclopediaDisplay({ category, lang, emptyMessag
                         const title = item.name?.[lang] || item.name?.ar || item.name?.en || item.name || '';
                         const desc = item.desc?.[lang] || item.desc?.ar || item.desc?.en || (typeof item.desc === 'string' ? item.desc : '');
                         const cityName = item.city?.[lang] || item.city?.ar || item.city?.en || item.city || item.regionName?.[lang] || item.regionName?.ar || '';
-                        
+                        const subLabel = getSubCategoryLabel(item, category);
+                        const hasVideo = !!item.videoUrl;
+                        const has3DModel = !!item.modelUrl;
+
                         return (
                             <motion.div
                                 key={item.id}
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 exit={{ opacity: 0, scale: 0.9 }}
-                                transition={{ delay: idx * 0.05 }}
+                                transition={{ delay: idx * 0.04 }}
                                 onClick={() => handleCardClick(item)}
                                 className="group relative aspect-[4/5] rounded-2xl overflow-hidden bg-[#0A0A0A] border border-white/10 hover:border-[#c5a059]/50 transition-all duration-500 cursor-pointer shadow-xl hover:shadow-[0_10px_40px_rgba(197,160,89,0.2)]"
                             >
@@ -157,27 +201,29 @@ export default function DynamicEncyclopediaDisplay({ category, lang, emptyMessag
                                     />
                                 ) : (
                                     <div className="absolute inset-0 bg-gradient-to-br from-[#1A1A1A] to-[#0A0A0A] flex items-center justify-center">
-                                        <Compass className="w-16 h-16 text-white/5" />
+                                        <CategoryIcon category={category} />
                                     </div>
                                 )}
 
-                                {/* Cinematic Gradient Overlays */}
+                                {/* Gradient Overlays */}
                                 <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent" />
                                 <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-transparent opacity-60" />
 
-                                {/* Content Overlays */}
-                                <div className="absolute inset-0 p-6 flex flex-col justify-between z-10">
-                                    {/* Header (Share + Badges) */}
+                                {/* Content Layer */}
+                                <div className="absolute inset-0 p-5 flex flex-col justify-between z-10">
+                                    {/* Header: sub-category tag + share */}
                                     <div className="flex items-start justify-between">
-                                        <div className="flex flex-col gap-2">
-                                            {item.era && (
-                                                <span className="px-3 py-1 bg-black/60 backdrop-blur-md border border-[#c5a059]/30 text-[#c5a059] text-[9px] font-black uppercase tracking-[0.2em] rounded-full fit-content w-max">
-                                                    {item.era}
+                                        <div className="flex flex-col gap-1.5">
+                                            {/* Sub-Category Classification Label */}
+                                            {subLabel && (subLabel.ar || subLabel.en) && (
+                                                <span className="px-2.5 py-1 bg-black/70 backdrop-blur-md border border-[#c5a059]/40 text-[#c5a059] text-[8px] font-black uppercase tracking-[0.25em] rounded-full w-max">
+                                                    {isRTL ? subLabel.ar : subLabel.en}
                                                 </span>
                                             )}
-                                            {item.field && (
-                                                <span className="px-3 py-1 bg-black/60 backdrop-blur-md border border-[#c5a059]/30 text-[#c5a059] text-[9px] font-black uppercase tracking-[0.2em] rounded-full fit-content w-max">
-                                                    {item.field}
+                                            {/* Era or Field badge */}
+                                            {item.era && category !== 'city' && (
+                                                <span className="px-2.5 py-1 bg-black/60 backdrop-blur-md border border-white/10 text-white/50 text-[8px] font-black uppercase tracking-[0.2em] rounded-full w-max">
+                                                    {item.era}
                                                 </span>
                                             )}
                                         </div>
@@ -187,37 +233,75 @@ export default function DynamicEncyclopediaDisplay({ category, lang, emptyMessag
                                     </div>
 
                                     {/* Bottom Info */}
-                                    <div className="space-y-4">
-                                        <div className="space-y-2">
-                                            <h3 className="text-2xl font-black text-[#c5a059] leading-tight font-arabic drop-shadow-lg transform group-hover:translate-x-2 transition-transform duration-500">
+                                    <div className="space-y-3">
+                                        <div className="space-y-1.5">
+                                            <h3 className="text-xl font-black text-[#c5a059] leading-tight font-arabic drop-shadow-lg transform group-hover:translate-x-1 transition-transform duration-500">
                                                 {title}
                                             </h3>
                                             {(cityName || item.year || item.foundation?.en) && (
-                                                <div className="flex items-center gap-3 text-white/60">
+                                                <div className="flex items-center gap-2 text-white/60">
                                                     {cityName && (
-                                                        <div className="flex items-center gap-1.5">
-                                                            <MapPin className="w-3.5 h-3.5" />
-                                                            <span className="text-[9px] uppercase font-black tracking-widest">{cityName}</span>
+                                                        <div className="flex items-center gap-1">
+                                                            <MapPin className="w-3 h-3" />
+                                                            <span className="text-[8px] uppercase font-black tracking-widest">{cityName}</span>
                                                         </div>
                                                     )}
                                                     {cityName && (item.year || item.foundation?.en) && <span className="w-1 h-1 rounded-full bg-white/20" />}
                                                     {(item.year || item.foundation?.en) && (
-                                                        <span className="text-[9px] uppercase font-black tracking-widest text-primary">{item.year || item.foundation?.en}</span>
+                                                        <span className="text-[8px] uppercase font-black tracking-widest text-primary">
+                                                            {item.year || item.foundation?.en}
+                                                        </span>
                                                     )}
                                                 </div>
                                             )}
                                         </div>
 
-                                        {/* Excerpt */}
-                                        <p className="text-sm text-white/70 line-clamp-2 italic font-arabic opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-4 group-hover:translate-y-0">
+                                        {/* Description excerpt */}
+                                        <p className="text-xs text-white/70 line-clamp-2 italic font-arabic opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-2 group-hover:translate-y-0">
                                             {typeof desc === 'string' ? desc : ''}
                                         </p>
 
-                                        {/* Quick visual attributes */}
-                                        <div className="flex items-center gap-2 pt-4 border-t border-white/10">
-                                            {item.modelUrl && <span className="w-2 h-2 rounded-full bg-[#c5a059] animate-pulse shadow-[0_0_10px_#c5a059]" title="3D Elite Available" />}
-                                            {item.videoUrl && <span className="w-2 h-2 rounded-full bg-red-500 shadow-[0_0_10px_rgba(239,68,68,0.5)]" title="Cinematic Media Hub" />}
-                                            {item.gallery && item.gallery.length > 0 && <span className="w-2 h-2 rounded-full bg-blue-400 shadow-[0_0_10px_rgba(96,165,250,0.5)]" title="Gallery Available" />}
+                                        {/* ──── SOVEREIGN ACTION BUTTONS ──── */}
+                                        <div
+                                            className="flex items-center gap-2 pt-3 border-t border-white/10"
+                                            onClick={e => e.stopPropagation()}
+                                        >
+                                            {/* Watch Video — ALWAYS visible on ALL cards */}
+                                            <button
+                                                onClick={() => handleCardClick(item, 'video')}
+                                                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[8px] font-black uppercase tracking-[0.15em] transition-all duration-300 border ${
+                                                    hasVideo
+                                                        ? 'bg-red-900/60 border-red-500/50 text-red-400 hover:bg-red-600 hover:text-white hover:border-red-400 shadow-[0_0_10px_rgba(239,68,68,0.3)]'
+                                                        : 'bg-white/5 border-white/10 text-white/30 cursor-default opacity-60'
+                                                }`}
+                                                title={hasVideo ? (isRTL ? 'مشاهدة الفيلم الوثائقي' : 'Watch Documentary') : (isRTL ? 'لا يوجد فيديو بعد' : 'No video yet')}
+                                            >
+                                                <Play className="w-2.5 h-2.5" />
+                                                {isRTL ? 'الفيديو' : 'Video'}
+                                            </button>
+
+                                            {/* Elite 3D — ONLY for Architectural Heritage (monument) category */}
+                                            {show3D && (
+                                                <button
+                                                    onClick={() => handleCardClick(item, '3d')}
+                                                    className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[8px] font-black uppercase tracking-[0.15em] transition-all duration-300 border ${
+                                                        has3DModel
+                                                            ? 'bg-[#c5a059]/20 border-[#c5a059]/50 text-[#c5a059] hover:bg-[#c5a059] hover:text-black shadow-[0_0_10px_rgba(197,160,89,0.3)]'
+                                                            : 'bg-white/5 border-white/10 text-white/30 cursor-default opacity-60'
+                                                    }`}
+                                                    title={has3DModel ? (isRTL ? 'العرض الثلاثي الأبعاد' : 'Elite 3D Viewer') : (isRTL ? 'لا يوجد نموذج ثلاثي الأبعاد بعد' : 'No 3D model yet')}
+                                                >
+                                                    <Box className="w-2.5 h-2.5" />
+                                                    {isRTL ? 'ثلاثي الأبعاد' : '3D View'}
+                                                </button>
+                                            )}
+
+                                            {/* Activity label for tourism */}
+                                            {category === 'tourism' && item.best_time && (
+                                                <span className="text-[7px] text-white/30 uppercase tracking-widest font-black ml-auto">
+                                                    {item.best_time}
+                                                </span>
+                                            )}
                                         </div>
                                     </div>
                                 </div>

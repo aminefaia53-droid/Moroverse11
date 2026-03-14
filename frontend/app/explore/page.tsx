@@ -5,9 +5,8 @@ import dynamic from "next/dynamic";
 import ContentDiscoveryGrid from "@/components/community/ContentDiscoveryGrid";
 import HeritageFactSheet, { HeritageItem } from "@/components/HeritageFactSheet";
 import { useLanguage } from "@/context/LanguageContext";
-import { SocialService } from "@/services/SocialService";
-import { Post } from "@/types/social";
 import { useEncyclopedia } from "@/hooks/useEncyclopedia";
+import { Post } from "@/types/social";
 import { 
     LucideSearch, LucideMapPin, Map, Landmark, Swords, Users, Compass 
 } from "lucide-react";
@@ -15,11 +14,11 @@ import {
 const ExploreMap = dynamic(() => import("@/components/community/ExploreMap"), { ssr: false });
 
 const PILLARS = [
-    { id: 'heritage', icon: Landmark, en: 'Heritage', ar: 'التراث والمعالم' },
-    { id: 'geography', icon: Map, en: 'Geography', ar: 'الجغرافيا والمدن' },
-    { id: 'chronicles', icon: Swords, en: 'Chronicles', ar: 'السجلات والمعارك' },
-    { id: 'biographies', icon: Users, en: 'Biographies', ar: 'السير والشخصيات' },
-    { id: 'tourism', icon: Compass, en: 'Specialized Tourism', ar: 'السياحة المتخصصة' }
+    { id: 'heritage', icon: Landmark, en: 'Architectural Heritage', ar: 'التراث المعماري' },
+    { id: 'geography', icon: Map, en: 'Geography & Regions', ar: 'الجغرافيا والمدن' },
+    { id: 'chronicles', icon: Swords, en: 'Chronicles of Valor', ar: 'عصور البسالة' },
+    { id: 'biographies', icon: Users, en: 'Historical Figures', ar: 'شخصيات تاريخية' },
+    { id: 'tourism', icon: Compass, en: 'Elite Tourism', ar: 'رحلات النخبة' }
 ];
 
 export default function ExploreBlogPage() {
@@ -30,50 +29,47 @@ export default function ExploreBlogPage() {
     const [selectedCity, setSelectedCity] = useState<string | undefined>(undefined);
     const [activeLocation, setActiveLocation] = useState<HeritageItem | null>(null);
 
-    // Unified 5-Pillar Data Fetching Hook
+    // Unified 5-Pillar Data Fetching Hook (Dashboard API)
     const { posts, isLoading } = useEncyclopedia(activePillar, selectedCity);
 
-    const handleLocationSelect = async (loc: Post | string) => {
+    const handleLocationSelect = (loc: Post | string) => {
         if (typeof loc === 'string') {
             setSelectedCity(loc === selectedCity ? undefined : loc);
         } else {
-            // Fetch fresh full record by slug/id to ensure we have model_url and full content
-            const fullPost = await SocialService.getPostBySlug(loc.slug || loc.id);
-            const target = fullPost || loc;
-
-            // Map Post to HeritageItem with slug support for Deep Linking
+            // Map Post (from Dashboard API) directly to HeritageItem — no Supabase needed
             const item: HeritageItem = {
-                id: target.id,
-                name: { ar: target.location_name || '', en: target.location_name || '' },
-                city: { ar: target.location_name || '', en: target.location_name || '' },
-                history: target.content || '',
-                summary: target.summary || '',
-                imageUrl: target.image_url || undefined,
-                model_url: target.model_url || undefined,
-                video_url: target.video_url || undefined,
-                gallery: target.gallery || undefined,
-                type: target.location_type || 'post',
-                slug: target.slug,
+                id: loc.id,
+                name: { ar: loc.location_name || '', en: loc.location_name || '' },
+                city: { ar: loc.city || '', en: loc.city || '' },
+                history: loc.content || '',
+                summary: loc.summary || '',
+                imageUrl: loc.image_url || undefined,
+                model_url: loc.model_url || undefined,
+                video_url: loc.video_url || undefined,
+                gallery: loc.gallery || undefined,
+                type: loc.location_type || 'post',
+                slug: loc.slug,
                 stats: {
-                    year: target.year,
-                    era: target.era,
-                    combatants: target.combatants ? { ar: target.combatants, en: target.combatants } : undefined,
-                    leaders: target.leaders ? { ar: target.leaders, en: target.leaders } : undefined,
-                    outcome: target.outcome ? { ar: target.outcome, en: target.outcome } : undefined,
-                    tactics: target.tactics ? { ar: target.tactics, en: target.tactics } : undefined,
-                    impact: target.impact ? { ar: target.impact, en: target.impact } : undefined
+                    year: loc.year,
+                    era: loc.era,
+                    combatants: loc.combatants ? { ar: loc.combatants, en: loc.combatants } : undefined,
+                    leaders: loc.leaders ? { ar: loc.leaders, en: loc.leaders } : undefined,
+                    outcome: loc.outcome ? { ar: loc.outcome, en: loc.outcome } : undefined,
+                    tactics: loc.tactics ? { ar: loc.tactics, en: loc.tactics } : undefined,
+                    impact: loc.impact ? { ar: loc.impact, en: loc.impact } : undefined
                 }
             };
             setActiveLocation(item);
             
-            // Auto-Pan logic is handled via Global Events in ExploreMap
-            if (target.lat && target.lng) {
+            // Auto-Pan map to location if coordinates exist
+            if (loc.lat && loc.lng) {
                 window.dispatchEvent(new CustomEvent('map-fly-to-target', { 
-                    detail: { target: [target.lat, target.lng], zoom: 15 } 
+                    detail: { target: [loc.lat, loc.lng], zoom: 15 } 
                 }));
             }
         }
     };
+
 
     return (
         <div className="min-h-screen bg-[#050505] text-white p-6 md:p-12 space-y-12">
