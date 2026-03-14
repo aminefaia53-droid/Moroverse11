@@ -172,12 +172,13 @@
         "ar": "معلمة في Marrakech بانتظار التوثيق.",
         "en": "Landmark in Marrakech awaiting documentation."
       },
-      "imageUrl": null,
+      "imageUrl": "/images/uploads/1773505355302-44e1df294ce8380f9aa7d268a1cd1d89.jpg",
       "city": {
         "ar": "Marrakech",
         "en": "Marrakech"
       },
-      "isPending": true
+      "isPending": false,
+      "seo": {}
     },
     {
       "id": "marrakech-bahia-palace",
