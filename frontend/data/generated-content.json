@@ -624,12 +624,13 @@
         "ar": "مدينة مغربية عريقة.",
         "en": "A historic Moroccan city."
       },
-      "imageUrl": null,
+      "imageUrl": "/images/uploads/1773508136417-ab024490d6f080530c0da81877240166.jpg",
       "regionName": {
         "ar": "المغرب",
         "en": "Morocco"
       },
-      "isPending": true
+      "isPending": false,
+      "seo": {}
     },
     {
       "id": "meknes",
