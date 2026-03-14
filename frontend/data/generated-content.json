@@ -208,12 +208,13 @@
         "ar": "معلمة في Marrakech بانتظار التوثيق.",
         "en": "Landmark in Marrakech awaiting documentation."
       },
-      "imageUrl": null,
+      "imageUrl": "/images/uploads/1773506747943-0bf1aa7459c164aea786fee3b59ccf27.jpg",
       "city": {
         "ar": "Marrakech",
         "en": "Marrakech"
       },
-      "isPending": true
+      "isPending": false,
+      "seo": {}
     },
     {
       "id": "marrakech-saadian-tombs",
