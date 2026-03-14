@@ -93,9 +93,40 @@ export default function DynamicEncyclopediaDisplay({ category, lang, emptyMessag
         return () => { isMounted = false; };
     }, [category]);
 
+    const filteredItems = useMemo(() => {
+        if (!items) return [];
+        let result = items.filter(item => {
+            if (!item) return false;
+            if (!searchQuery) return true;
+            const q = searchQuery.toLowerCase();
+            const getName = (n: any, l: string) => {
+                if (!n) return '';
+                if (typeof n === 'string') return n;
+                const target = l as 'ar' | 'en';
+                return n?.[target] || n?.ar || n?.en || '';
+            };
+            const nameAr = getName(item.name, 'ar');
+            const nameEn = getName(item.name, 'en').toLowerCase();
+            return nameAr.includes(q) || nameEn.includes(q);
+        });
+
+        if (category === 'monument' && heritageFilter !== 'all') {
+            result = result.filter(item => {
+                if (!item) return false;
+                if (heritageFilter === 'unesco') return item.status === 'unesco';
+                if (heritageFilter === 'marginalized') return item.status !== 'unesco' && item.status !== 'national';
+                return true;
+            });
+        }
+        return result;
+    }, [items, searchQuery, category, heritageFilter]);
+
     const handleCardClick = (item: any, triggerTab?: 'video' | '3d') => {
+        if (!item) return;
+        
         // Defensive mapping for the FactSheet to prevent crashes on legacy data
         const getName = (n: any, l: string) => {
+            if (!n) return '';
             if (typeof n === 'string') return n;
             const target = l as 'ar' | 'en';
             return n?.[target] || n?.ar || n?.en || '';
@@ -183,31 +214,6 @@ export default function DynamicEncyclopediaDisplay({ category, lang, emptyMessag
     }
 
     const show3D = true; // Enabled for Sovereign Build
-    // Early return removed to restore functionality
-
-    const filteredItems = useMemo(() => {
-        let result = items.filter(item => {
-            if (!searchQuery) return true;
-            const q = searchQuery.toLowerCase();
-            const getName = (n: any, l: string) => {
-                if (typeof n === 'string') return n;
-                const target = l as 'ar' | 'en';
-                return n?.[target] || n?.ar || n?.en || '';
-            };
-            const nameAr = getName(item.name, 'ar');
-            const nameEn = getName(item.name, 'en').toLowerCase();
-            return nameAr.includes(q) || nameEn.includes(q);
-        });
-
-        if (category === 'monument' && heritageFilter !== 'all') {
-            result = result.filter(item => {
-                if (heritageFilter === 'unesco') return item.status === 'unesco';
-                if (heritageFilter === 'marginalized') return item.status !== 'unesco' && item.status !== 'national';
-                return true;
-            });
-        }
-        return result;
-    }, [items, searchQuery, category, heritageFilter]);
 
     return (
         <div className="w-full">
@@ -253,9 +259,10 @@ export default function DynamicEncyclopediaDisplay({ category, lang, emptyMessag
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                 <AnimatePresence mode="popLayout">
                     {filteredItems.map((item, idx) => {
-                        if (!item || !item.id) return null; // Defensive check for empty entries
+                        if (!item || (!item.id && !item.name)) return null; // Defensive check for empty entries
 
                         const getName = (n: any, l: string) => {
+                            if (!n) return '';
                             if (typeof n === 'string') return n;
                             const target = l as 'ar' | 'en';
                             return n?.[target] || n?.ar || n?.en || '';
@@ -270,7 +277,7 @@ export default function DynamicEncyclopediaDisplay({ category, lang, emptyMessag
 
                         return (
                             <motion.div
-                                key={item.id}
+                                key={item.id || `card-${idx}`}
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 exit={{ opacity: 0, scale: 0.9 }}
@@ -301,7 +308,7 @@ export default function DynamicEncyclopediaDisplay({ category, lang, emptyMessag
                                 </div>
 
                                 {/* Subtle Glow Overlays - Lightened significantly for transparency */}
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent z-[1]" />
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent z-[3]" />
 
                                 {/* Content Layer */}
                                 <div className="absolute inset-0 p-5 flex flex-col justify-between z-10">
@@ -310,7 +317,7 @@ export default function DynamicEncyclopediaDisplay({ category, lang, emptyMessag
                                         <div className="flex flex-col gap-1.5">
                                             {/* City UNESCO Badge */}
                                             {category === 'city' && ['rabat', 'fez', 'marrakech', 'meknes', 'tetouan', 'essaouira', 'el-jadida', 'ouarzazate'].some(c => String(item.id || '').toLowerCase().includes(c)) && (
-                                                <span className="px-2.5 py-1 bg-yellow-500/20 backdrop-blur-md border border-yellow-500/50 text-yellow-500 text-[10px] font-black uppercase tracking-[0.2em] rounded-full w-max shadow-[0_0_10px_rgba(234,179,8,0.2)] flex items-center gap-1.5">
+                                                <span className="px-2.5 py-1 bg-yellow-500/40 backdrop-blur-md border border-yellow-500/50 text-yellow-400 text-[10px] font-black uppercase tracking-[0.2em] rounded-full w-max shadow-[0_0_15px_rgba(234,179,8,0.3)] flex items-center gap-1.5">
                                                     <span className="w-1.5 h-1.5 rounded-full bg-yellow-400 animate-pulse"></span>
                                                     {isRTL ? 'تراث عالمي (يونسكو)' : 'UNESCO World Heritage'}
                                                 </span>
@@ -320,10 +327,10 @@ export default function DynamicEncyclopediaDisplay({ category, lang, emptyMessag
                                             {category === 'monument' && item.status && (
                                                 <span className={`px-2.5 py-1 backdrop-blur-md border text-[7px] font-black uppercase tracking-[0.2em] rounded-full w-max ${
                                                     item.status === 'unesco' 
-                                                        ? 'bg-yellow-500/20 border-yellow-500/50 text-yellow-500 shadow-[0_0_10px_rgba(234,179,8,0.2)]' 
+                                                        ? 'bg-yellow-500/40 border-yellow-500/50 text-yellow-400 shadow-[0_0_15px_rgba(234,179,8,0.3)]' 
                                                         : item.status === 'national'
-                                                        ? 'bg-blue-500/20 border-blue-500/50 text-blue-400'
-                                                        : 'bg-white/10 border-white/20 text-white/40' // Marginalized/Forgotten (Silver)
+                                                        ? 'bg-blue-500/40 border-blue-500/50 text-blue-300'
+                                                        : 'bg-white/20 border-white/30 text-white/80' // Marginalized/Forgotten (Silver)
                                                 }`}>
                                                     {item.status === 'unesco' ? (isRTL ? 'تراث عالمي (يونسكو)' : 'UNESCO World Heritage') : 
                                                      item.status === 'national' ? (isRTL ? 'تراث وطني' : 'National Heritage') : 
@@ -332,13 +339,13 @@ export default function DynamicEncyclopediaDisplay({ category, lang, emptyMessag
                                             )}
                                             {/* Location Label (Duar / Province) */}
                                             {item.location && (
-                                                <span className="px-2.5 py-1 bg-black/40 backdrop-blur-md border border-white/10 text-white/70 text-[7px] font-black uppercase tracking-[0.15em] rounded-full w-max">
+                                                <span className="px-2.5 py-1 bg-black/60 backdrop-blur-md border border-white/20 text-white text-[7px] font-black uppercase tracking-[0.15em] rounded-full w-max">
                                                     {item.location}
                                                 </span>
                                             )}
                                             {/* Sub-Category Classification Label */}
                                             {subLabel && (subLabel.ar || subLabel.en) && (
-                                                <span className="px-2.5 py-1 bg-black/70 backdrop-blur-md border border-primary/40 text-primary text-[8px] font-black uppercase tracking-[0.25em] rounded-full w-max">
+                                                <span className="px-2.5 py-1 bg-black/80 backdrop-blur-md border border-primary/60 text-primary text-[8px] font-black uppercase tracking-[0.25em] rounded-full w-max shadow-lg">
                                                     {isRTL ? subLabel.ar : subLabel.en}
                                                 </span>
                                             )}
@@ -351,21 +358,21 @@ export default function DynamicEncyclopediaDisplay({ category, lang, emptyMessag
                                     {/* Bottom Info */}
                                     <div className="space-y-3">
                                         <div className="space-y-1.5">
-                                            <h3 className="text-xl font-black text-[#c5a059] leading-tight font-arabic drop-shadow-lg transform group-hover:translate-x-1 transition-transform duration-500">
+                                            <h3 className="text-xl font-black text-[#c5a059] leading-tight font-arabic drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] transform group-hover:translate-x-1 transition-transform duration-500">
                                                 {title}
                                             </h3>
-                                            {(cityName || item.year || item.foundation?.en) && (
-                                                <div className="flex items-center gap-2 text-white/60">
+                                            {(cityName || item.year || (item.foundation && (item.foundation.en || item.foundation.ar))) && (
+                                                <div className="flex items-center gap-2 text-white/90 drop-shadow-md">
                                                     {cityName && (
                                                         <div className="flex items-center gap-1">
                                                             <MapPin className="w-3 h-3" />
                                                             <span className="text-[8px] uppercase font-black tracking-widest">{cityName}</span>
                                                         </div>
                                                     )}
-                                                    {cityName && (item.year || item.foundation?.en) && <span className="w-1 h-1 rounded-full bg-white/20" />}
-                                                    {(item.year || item.foundation?.en) && (
-                                                        <span className="text-[8px] uppercase font-black tracking-widest text-primary">
-                                                            {item.year || item.foundation?.en}
+                                                    {cityName && (item.year || (item.foundation && (item.foundation.en || item.foundation.ar))) && <span className="w-1 h-1 rounded-full bg-white/40" />}
+                                                    {(item.year || (item.foundation && (item.foundation.en || item.foundation.ar))) && (
+                                                        <span className="text-[8px] uppercase font-black tracking-widest text-[#c5a059]">
+                                                            {item.year || (item.foundation?.[lang] || item.foundation?.en || item.foundation?.ar)}
                                                         </span>
                                                     )}
                                                 </div>
@@ -373,13 +380,13 @@ export default function DynamicEncyclopediaDisplay({ category, lang, emptyMessag
                                         </div>
 
                                         {/* Description excerpt */}
-                                        <p className="text-xs text-white/70 line-clamp-2 italic font-arabic opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-2 group-hover:translate-y-0">
+                                        <p className="text-xs text-white/90 line-clamp-2 italic font-arabic opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-2 group-hover:translate-y-0 drop-shadow-md">
                                             {typeof desc === 'string' ? desc : ''}
                                         </p>
 
                                         {/* ──── SOVEREIGN ACTION BUTTONS ──── */}
                                         <div
-                                            className="flex items-center gap-2 pt-3 border-t border-white/10"
+                                            className="flex items-center gap-2 pt-3 border-t border-white/20"
                                             onClick={e => e.stopPropagation()}
                                         >
                                             {/* Watch Video — ALWAYS visible on ALL cards */}
@@ -387,7 +394,7 @@ export default function DynamicEncyclopediaDisplay({ category, lang, emptyMessag
                                                 onClick={() => handleCardClick(item, 'video')}
                                                 className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[8px] font-black uppercase tracking-[0.15em] transition-all duration-300 border ${
                                                     hasVideo
-                                                        ? 'bg-red-900/60 border-red-500/50 text-red-400 hover:bg-red-600 hover:text-white hover:border-red-400 shadow-[0_0_10px_rgba(239,68,68,0.3)]'
+                                                        ? 'bg-red-600/40 border-red-400/50 text-white hover:bg-red-600 hover:text-white hover:border-red-400 shadow-[0_0_15px_rgba(239,68,68,0.4)]'
                                                         : 'bg-white/5 border-white/10 text-white/30 cursor-default opacity-60'
                                                 }`}
                                                 title={hasVideo ? (isRTL ? 'مشاهدة الفيلم الوثائقي' : 'Watch Documentary') : (isRTL ? 'لا يوجد فيديو بعد' : 'No video yet')}
@@ -402,7 +409,7 @@ export default function DynamicEncyclopediaDisplay({ category, lang, emptyMessag
                                                     onClick={() => handleCardClick(item, '3d')}
                                                     className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[8px] font-black uppercase tracking-[0.15em] transition-all duration-300 border ${
                                                         has3DModel
-                                                            ? 'bg-[#c5a059]/20 border-[#c5a059]/50 text-[#c5a059] hover:bg-[#c5a059] hover:text-black shadow-[0_0_10px_rgba(197,160,89,0.3)]'
+                                                            ? 'bg-[#c5a059]/40 border-[#c5a059]/50 text-white hover:bg-[#c5a059] hover:text-black shadow-[0_0_15px_rgba(197,160,89,0.4)]'
                                                             : 'bg-white/5 border-white/10 text-white/30 cursor-default opacity-60'
                                                     }`}
                                                     title={has3DModel ? (isRTL ? 'العرض الثلاثي الأبعاد' : 'Elite 3D Viewer') : (isRTL ? 'لا يوجد نموذج ثلاثي الأبعاد بعد' : 'No 3D model yet')}
@@ -414,7 +421,7 @@ export default function DynamicEncyclopediaDisplay({ category, lang, emptyMessag
 
                                             {/* Activity label for tourism */}
                                             {category === 'tourism' && item.best_time && (
-                                                <span className="text-[7px] text-white/30 uppercase tracking-widest font-black ml-auto">
+                                                <span className="text-[7px] text-white/60 uppercase tracking-widest font-black ml-auto">
                                                     {item.best_time}
                                                 </span>
                                             )}
