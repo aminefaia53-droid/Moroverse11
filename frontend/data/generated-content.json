@@ -262,12 +262,13 @@
         "ar": "معلمة في Meknes بانتظار التوثيق.",
         "en": "Landmark in Meknes awaiting documentation."
       },
-      "imageUrl": null,
+      "imageUrl": "/images/uploads/1773507676352-0b75818ff970089b324464653ac7a28f.jpg",
       "city": {
         "ar": "Meknes",
         "en": "Meknes"
       },
-      "isPending": true
+      "isPending": false,
+      "seo": {}
     },
     {
       "id": "meknes-volubilis",
