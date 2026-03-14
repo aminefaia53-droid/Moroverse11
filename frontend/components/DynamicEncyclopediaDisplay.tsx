@@ -70,6 +70,7 @@ export default function DynamicEncyclopediaDisplay({ category, lang, emptyMessag
                 const db = json.data;
 
                 if (isMounted) {
+                    console.log(`[MOROVERSE DEBUG] Fetched content for ${category}. Landmarks found: ${db?.landmarks?.length || 0}`);
                     if (category === 'city') setItems(db.cities || []);
                     else if (category === 'monument') setItems(db.landmarks || []);
                     else if (category === 'battle') setItems(db.battles || []);
@@ -203,14 +204,14 @@ export default function DynamicEncyclopediaDisplay({ category, lang, emptyMessag
                                 exit={{ opacity: 0, scale: 0.9 }}
                                 transition={{ delay: idx * 0.04 }}
                                 onClick={() => handleCardClick(item)}
-                                className="group relative aspect-[4/5] rounded-2xl overflow-hidden bg-[#0A0A0A] border border-white/10 hover:border-[#c5a059]/50 transition-all duration-500 cursor-pointer shadow-xl hover:shadow-[0_10px_40px_rgba(197,160,89,0.2)]"
+                                className="group relative aspect-[4/5] rounded-2xl overflow-hidden bg-white/[0.03] backdrop-blur-xl border border-white/10 hover:border-[#c5a059]/50 transition-all duration-500 cursor-pointer shadow-2xl hover:shadow-[0_20px_60px_rgba(197,160,89,0.15)]"
                             >
                                 {/* Card Image Background */}
                                 {item.imageUrl ? (
                                     <img
                                         src={item.imageUrl}
                                         alt={title}
-                                        className="absolute inset-0 w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700"
+                                        className="absolute inset-0 w-full h-full object-cover opacity-100 group-hover:scale-105 transition-all duration-700 z-[2]"
                                         onError={(e) => {
                                             e.currentTarget.style.display = 'none';
                                             const parent = e.currentTarget.parentElement;
@@ -222,13 +223,13 @@ export default function DynamicEncyclopediaDisplay({ category, lang, emptyMessag
                                     />
                                 ) : null}
 
-                                {/* Fallback/Loading State */}
-                                <div className={`image-fallback absolute inset-0 bg-gradient-to-br from-[#1A1A1A] to-[#0A0A0A] flex items-center justify-center ${item.imageUrl ? 'hidden' : ''}`}>
+                                {/* Fallback/Loading State - Using light gold gradient for visibility */}
+                                <div className={`image-fallback absolute inset-0 bg-gradient-to-br from-[#c5a059]/20 to-transparent flex items-center justify-center z-[2] ${item.imageUrl ? 'hidden' : ''}`}>
                                     <CategoryIcon category={category} />
                                 </div>
 
-                                {/* Subtle Glow Overlays */}
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
+                                {/* Subtle Glow Overlays - Lightened and lowered z-index */}
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent z-[1]" />
 
                                 {/* Content Layer */}
                                 <div className="absolute inset-0 p-5 flex flex-col justify-between z-10">

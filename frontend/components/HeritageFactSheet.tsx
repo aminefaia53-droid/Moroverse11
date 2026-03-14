@@ -136,15 +136,15 @@ export default function HeritageFactSheet({ item, isOpen, onClose, lang }: Herit
                     >
                         {/* ── Header Image ─────────────────────────────────────── */}
                         <div className="h-[480px] bg-black flex flex-col items-center justify-start relative overflow-hidden">
-                            <div className="absolute inset-0 z-0">
+                            <div className="absolute inset-0 z-0 bg-[#111]">
                                 <img
                                     src={item.imageUrl || FALLBACK_IMG}
                                     alt={nameText}
-                                    className="w-full h-full object-cover object-center opacity-70"
-                                    style={{ filter: 'sepia(0.2) contrast(1.1) brightness(0.7) saturate(1.2)' }}
+                                    className="w-full h-full object-cover object-center opacity-100 transition-opacity duration-1000 z-10"
+                                    style={{ filter: 'contrast(1.05) brightness(1.0)' }}
                                     onError={e => { e.currentTarget.onerror = null; e.currentTarget.src = FALLBACK_IMG; }}
                                 />
-                                <div className="absolute inset-0 bg-gradient-to-t from-[#080808] via-[#080808]/50 to-transparent z-10" />
+                                <div className="absolute inset-0 bg-gradient-to-t from-[#080808]/60 via-transparent to-transparent z-20" />
                             </div>
 
                             {/* Top Controls */}
