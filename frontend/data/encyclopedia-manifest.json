@@ -2,94 +2,273 @@
     "cities": [
         {
             "name": {
-                "ar": "الرباط",
+                "ar": "Rabat",
                 "en": "Rabat"
             },
-            "landmarks": []
+            "landmarks": [
+                {
+                    "ar": "صومعة حسان",
+                    "en": "Hassan Tower",
+                    "status": "unesco",
+                    "location": "Rabat"
+                },
+                {
+                    "ar": "قصبة الأوداية",
+                    "en": "Kasbah of the Udayas",
+                    "status": "unesco",
+                    "location": "Rabat"
+                },
+                {
+                    "ar": "شالة",
+                    "en": "Chellah",
+                    "status": "unesco",
+                    "location": "Rabat"
+                },
+                {
+                    "ar": "ضريح محمد الخامس",
+                    "en": "Mausoleum of Mohammed V",
+                    "status": "national",
+                    "location": "Rabat"
+                }
+            ]
         },
         {
             "name": {
-                "ar": "الدار البيضاء",
-                "en": "Casablanca"
+                "ar": "Fez",
+                "en": "Fez"
             },
-            "landmarks": []
+            "landmarks": [
+                {
+                    "ar": "جامع القرويين",
+                    "en": "Al-Quaraouiyine",
+                    "status": "unesco",
+                    "location": "Fez Medina"
+                },
+                {
+                    "ar": "المدرسة البوعنانية",
+                    "en": "Bou Inania Madrasa",
+                    "status": "unesco",
+                    "location": "Fez Medina"
+                },
+                {
+                    "ar": "مدرسة العطارين",
+                    "en": "Attarine Madrasa",
+                    "status": "unesco",
+                    "location": "Fez Medina"
+                },
+                {
+                    "ar": "باب بوجلود",
+                    "en": "Bab Boujloud",
+                    "status": "unesco",
+                    "location": "Fez Medina"
+                },
+                {
+                    "ar": "دار الدبغ شوارة",
+                    "en": "Chouara Tannery",
+                    "status": "unesco",
+                    "location": "Fez Medina"
+                }
+            ]
         },
         {
             "name": {
-                "ar": "مراكش",
+                "ar": "Marrakech",
                 "en": "Marrakech"
             },
-            "landmarks": []
+            "landmarks": [
+                {
+                    "ar": "صومعة الكتبية",
+                    "en": "Koutoubia Mosque",
+                    "status": "unesco",
+                    "location": "Marrakech Medina"
+                },
+                {
+                    "ar": "قصر الباهية",
+                    "en": "Bahia Palace",
+                    "status": "unesco",
+                    "location": "Marrakech Medina"
+                },
+                {
+                    "ar": "قصر البديع",
+                    "en": "Badi Palace",
+                    "status": "unesco",
+                    "location": "Marrakech Medina"
+                },
+                {
+                    "ar": "قبور السعديين",
+                    "en": "Saadian Tombs",
+                    "status": "unesco",
+                    "location": "Marrakech Medina"
+                },
+                {
+                    "ar": "مدرسة بن يوسف",
+                    "en": "Ben Youssef Madrasa",
+                    "status": "unesco",
+                    "location": "Marrakech Medina"
+                }
+            ]
         },
         {
             "name": {
-                "ar": "فاس",
-                "en": "Fes"
-            },
-            "landmarks": []
-        },
-        {
-            "name": {
-                "ar": "طنجة",
-                "en": "Tangier"
-            },
-            "landmarks": []
-        },
-        {
-            "name": {
-                "ar": "مكناس",
+                "ar": "Meknes",
                 "en": "Meknes"
             },
-            "landmarks": []
+            "landmarks": [
+                {
+                    "ar": "باب منصور لعلج",
+                    "en": "Bab Mansour",
+                    "status": "unesco",
+                    "location": "Meknes"
+                },
+                {
+                    "ar": "وليلي",
+                    "en": "Volubilis",
+                    "status": "unesco",
+                    "location": "Zerhoune Region"
+                },
+                {
+                    "ar": "هري السواني",
+                    "en": "Heri es-Souani",
+                    "status": "unesco",
+                    "location": "Meknes"
+                }
+            ]
         },
         {
             "name": {
-                "ar": "أكادير",
-                "en": "Agadir"
+                "ar": "UNESCO Sites",
+                "en": "UNESCO Sites"
             },
-            "landmarks": []
+            "landmarks": [
+                {
+                    "ar": "قصبة آيت بن حدو",
+                    "en": "Ait Benhaddou Ksar",
+                    "status": "unesco",
+                    "location": "Ouarzazate Province"
+                },
+                {
+                    "ar": "مدينة الصويرة",
+                    "en": "Essaouira Medina & Skala",
+                    "status": "unesco",
+                    "location": "Essaouira"
+                },
+                {
+                    "ar": "مدينة مازاغان البرتغالية",
+                    "en": "Portuguese Cistern",
+                    "status": "unesco",
+                    "location": "El Jadida"
+                },
+                {
+                    "ar": "مدينة تطوان",
+                    "en": "Tetouan Medina",
+                    "status": "unesco",
+                    "location": "Tetouan"
+                }
+            ]
         },
         {
             "name": {
-                "ar": "شفشاون",
-                "en": "Chefchaouen"
+                "ar": "Souss-Massa",
+                "en": "Souss-Massa"
             },
-            "landmarks": []
+            "landmarks": [
+                {
+                    "ar": "أكادير إينومار",
+                    "en": "Agadir Inoumar",
+                    "status": "forgotten",
+                    "location": "Province of Chtouka Ait Baha"
+                },
+                {
+                    "ar": "أكادير تاسغينت",
+                    "en": "Agadir Tasghint",
+                    "status": "forgotten",
+                    "location": "Province of Taroudant"
+                },
+                {
+                    "ar": "أكادير إيكونكا",
+                    "en": "Agadir Ikounka",
+                    "status": "forgotten",
+                    "location": "Province of Chtouka Ait Baha"
+                }
+            ]
         },
         {
             "name": {
-                "ar": "تطوان",
-                "en": "Tetouan"
+                "ar": "Draa-Tafilalet",
+                "en": "Draa-Tafilalet"
             },
-            "landmarks": []
+            "landmarks": [
+                {
+                    "ar": "قصبة تامنغالت",
+                    "en": "Kasbah Tamnougalt",
+                    "status": "national",
+                    "location": "Agdz, Draa Valley"
+                },
+                {
+                    "ar": "زاوية تامكروت",
+                    "en": "Tamegroute Library",
+                    "status": "national",
+                    "location": "Zagora Province"
+                },
+                {
+                    "ar": "قصبة تلوات",
+                    "en": "Kasbah Telouet",
+                    "status": "forgotten",
+                    "location": "High Atlas"
+                },
+                {
+                    "ar": "قصر الخربات",
+                    "en": "Ksar El Khorbat",
+                    "status": "national",
+                    "location": "Tinejdad, Errachidia"
+                }
+            ]
         },
         {
             "name": {
-                "ar": "الصويرة",
-                "en": "Essaouira"
+                "ar": "Eastern Region",
+                "en": "Eastern Region"
             },
-            "landmarks": []
+            "landmarks": [
+                {
+                    "ar": "قصور فكيك السبعة",
+                    "en": "The 7 Ksours of Figuig",
+                    "status": "national",
+                    "location": "Figuig Province"
+                },
+                {
+                    "ar": "معمار واحات فكيك",
+                    "en": "Eastern Oasis Architecture",
+                    "status": "forgotten",
+                    "location": "Figuig"
+                }
+            ]
         },
         {
             "name": {
-                "ar": "ورزازات",
-                "en": "Ouarzazate"
+                "ar": "Northern Rif",
+                "en": "Northern Rif"
             },
-            "landmarks": []
-        },
-        {
-            "name": {
-                "ar": "العيون والداخلة",
-                "en": "Sahara"
-            },
-            "landmarks": []
-        },
-        {
-            "name": {
-                "ar": "آسفي",
-                "en": "Safi"
-            },
-            "landmarks": []
+            "landmarks": [
+                {
+                    "ar": "ليكسوس",
+                    "en": "Lixus Ruins",
+                    "status": "national",
+                    "location": "Larache"
+                },
+                {
+                    "ar": "الحي الإسباني",
+                    "en": "Spanish Quarter",
+                    "status": "forgotten",
+                    "location": "Sidi Ifni"
+                },
+                {
+                    "ar": "أبراج أجدير",
+                    "en": "Defensive Towers of Ajdir",
+                    "status": "forgotten",
+                    "location": "Al Hoceima"
+                }
+            ]
         }
     ],
     "battles": [

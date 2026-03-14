@@ -176,8 +176,8 @@ export default function DynamicEncyclopediaDisplay({ category, lang, emptyMessag
         );
     }
 
-    const show3D = false; // Always false as monument category returns null above
-    if (category === ('monument' as any)) return null;
+    const show3D = true; // Enabled for Sovereign Build
+    // Early return removed to restore functionality
 
     return (
         <div className="w-full">
@@ -205,7 +205,7 @@ export default function DynamicEncyclopediaDisplay({ category, lang, emptyMessag
                                 exit={{ opacity: 0, scale: 0.9 }}
                                 transition={{ delay: idx * 0.04 }}
                                 onClick={() => handleCardClick(item)}
-                                className="group relative aspect-[4/5] rounded-2xl overflow-hidden bg-white/[0.03] backdrop-blur-xl border border-white/10 hover:border-[#c5a059]/50 transition-all duration-500 cursor-pointer shadow-2xl hover:shadow-[0_20px_60px_rgba(197,160,89,0.15)]"
+                                className="group relative aspect-[4/5] rounded-2xl overflow-hidden bg-white/[0.03] backdrop-blur-xl border border-white/10 hover:border-primary/50 transition-all duration-500 cursor-pointer shadow-2xl hover:shadow-[0_20px_60px_rgba(197,160,89,0.15)]"
                             >
                                 {/* Card Image Background */}
                                 {item.imageUrl ? (
@@ -229,24 +229,38 @@ export default function DynamicEncyclopediaDisplay({ category, lang, emptyMessag
                                     <CategoryIcon category={category} />
                                 </div>
 
-                                {/* Subtle Glow Overlays - Lightened and lowered z-index */}
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent z-[1]" />
+                                {/* Subtle Glow Overlays - Lightened significantly for transparency */}
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent z-[1]" />
 
                                 {/* Content Layer */}
                                 <div className="absolute inset-0 p-5 flex flex-col justify-between z-10">
                                     {/* Header: sub-category tag + share */}
                                     <div className="flex items-start justify-between">
                                         <div className="flex flex-col gap-1.5">
-                                            {/* Sub-Category Classification Label */}
-                                            {subLabel && (subLabel.ar || subLabel.en) && (
-                                                <span className="px-2.5 py-1 bg-black/70 backdrop-blur-md border border-[#c5a059]/40 text-[#c5a059] text-[8px] font-black uppercase tracking-[0.25em] rounded-full w-max">
-                                                    {isRTL ? subLabel.ar : subLabel.en}
+                                            {/* Status Badge: UNESCO / National / Forgotten */}
+                                            {category === 'monument' && item.status && (
+                                                <span className={`px-2.5 py-1 backdrop-blur-md border text-[7px] font-black uppercase tracking-[0.2em] rounded-full w-max ${
+                                                    item.status === 'unesco' 
+                                                        ? 'bg-yellow-500/20 border-yellow-500/50 text-yellow-500 shadow-[0_0_10px_rgba(234,179,8,0.2)]' 
+                                                        : item.status === 'national'
+                                                        ? 'bg-blue-500/20 border-blue-500/50 text-blue-400'
+                                                        : 'bg-white/10 border-white/20 text-white/40' // Marginalized/Forgotten (Silver)
+                                                }`}>
+                                                    {item.status === 'unesco' ? (isRTL ? 'تراث عالمي (يونسكو)' : 'UNESCO World Heritage') : 
+                                                     item.status === 'national' ? (isRTL ? 'تراث وطني' : 'National Heritage') : 
+                                                     (isRTL ? 'تراث منسي' : 'Marginalized Heritage')}
                                                 </span>
                                             )}
-                                            {/* Era or Field badge */}
-                                            {item.era && category !== 'city' && (
-                                                <span className="px-2.5 py-1 bg-black/60 backdrop-blur-md border border-white/10 text-white/50 text-[8px] font-black uppercase tracking-[0.2em] rounded-full w-max">
-                                                    {item.era}
+                                            {/* Location Label (Duar / Province) */}
+                                            {item.location && (
+                                                <span className="px-2.5 py-1 bg-black/40 backdrop-blur-md border border-white/10 text-white/70 text-[7px] font-black uppercase tracking-[0.15em] rounded-full w-max">
+                                                    {item.location}
+                                                </span>
+                                            )}
+                                            {/* Sub-Category Classification Label */}
+                                            {subLabel && (subLabel.ar || subLabel.en) && (
+                                                <span className="px-2.5 py-1 bg-black/70 backdrop-blur-md border border-primary/40 text-primary text-[8px] font-black uppercase tracking-[0.25em] rounded-full w-max">
+                                                    {isRTL ? subLabel.ar : subLabel.en}
                                                 </span>
                                             )}
                                         </div>

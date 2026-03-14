@@ -1,10 +1,572 @@
 {
-  "landmarks": [],
+  "landmarks": [
+    {
+      "id": "rabat-hassan-tower",
+      "name": {
+        "ar": "صومعة حسان: شموخ التاريخ في قلب الرباط",
+        "en": "Hassan Tower"
+      },
+      "desc": {
+        "ar": "",
+        "en": ""
+      },
+      "imageUrl": "https://images.unsplash.com/photo-1674227638969-56d64fba03e1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4ODUyMjR8MHwxfHNlYXJjaHwxfHwlRDglQjUlRDklODglRDklODUlRDglQjklRDglQTklMjAlRDglQUQlRDglQjMlRDglQTclRDklODYlMjBNb3JvY2NvfGVufDB8fHx8MTc3MjM3MDc0OHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "city": {
+        "ar": "Rabat",
+        "en": "Rabat"
+      },
+      "isPending": false
+    },
+    {
+      "id": "rabat-kasbah-of-the-udayas",
+      "name": {
+        "ar": "قصبة الأوداية",
+        "en": "Kasbah of the Udayas"
+      },
+      "desc": {
+        "ar": "معلمة في Rabat بانتظار التوثيق.",
+        "en": "Landmark in Rabat awaiting documentation."
+      },
+      "imageUrl": null,
+      "city": {
+        "ar": "Rabat",
+        "en": "Rabat"
+      },
+      "isPending": true
+    },
+    {
+      "id": "rabat-chellah",
+      "name": {
+        "ar": "شالة",
+        "en": "Chellah"
+      },
+      "desc": {
+        "ar": "معلمة في Rabat بانتظار التوثيق.",
+        "en": "Landmark in Rabat awaiting documentation."
+      },
+      "imageUrl": null,
+      "city": {
+        "ar": "Rabat",
+        "en": "Rabat"
+      },
+      "isPending": true
+    },
+    {
+      "id": "rabat-mausoleum-of-mohammed-v",
+      "name": {
+        "ar": "ضريح محمد الخامس",
+        "en": "Mausoleum of Mohammed V"
+      },
+      "desc": {
+        "ar": "معلمة في Rabat بانتظار التوثيق.",
+        "en": "Landmark in Rabat awaiting documentation."
+      },
+      "imageUrl": null,
+      "city": {
+        "ar": "Rabat",
+        "en": "Rabat"
+      },
+      "isPending": true
+    },
+    {
+      "id": "fez-al-quaraouiyine",
+      "name": {
+        "ar": "جامع القرويين",
+        "en": "Al-Quaraouiyine"
+      },
+      "desc": {
+        "ar": "معلمة في Fez بانتظار التوثيق.",
+        "en": "Landmark in Fez awaiting documentation."
+      },
+      "imageUrl": null,
+      "city": {
+        "ar": "Fez",
+        "en": "Fez"
+      },
+      "isPending": true
+    },
+    {
+      "id": "fez-bou-inania-madrasa",
+      "name": {
+        "ar": "المدرسة البوعنانية",
+        "en": "Bou Inania Madrasa"
+      },
+      "desc": {
+        "ar": "معلمة في Fez بانتظار التوثيق.",
+        "en": "Landmark in Fez awaiting documentation."
+      },
+      "imageUrl": null,
+      "city": {
+        "ar": "Fez",
+        "en": "Fez"
+      },
+      "isPending": true
+    },
+    {
+      "id": "fez-attarine-madrasa",
+      "name": {
+        "ar": "مدرسة العطارين",
+        "en": "Attarine Madrasa"
+      },
+      "desc": {
+        "ar": "معلمة في Fez بانتظار التوثيق.",
+        "en": "Landmark in Fez awaiting documentation."
+      },
+      "imageUrl": null,
+      "city": {
+        "ar": "Fez",
+        "en": "Fez"
+      },
+      "isPending": true
+    },
+    {
+      "id": "fez-bab-boujloud",
+      "name": {
+        "ar": "باب بوجلود",
+        "en": "Bab Boujloud"
+      },
+      "desc": {
+        "ar": "معلمة في Fez بانتظار التوثيق.",
+        "en": "Landmark in Fez awaiting documentation."
+      },
+      "imageUrl": null,
+      "city": {
+        "ar": "Fez",
+        "en": "Fez"
+      },
+      "isPending": true
+    },
+    {
+      "id": "fez-chouara-tannery",
+      "name": {
+        "ar": "دار الدبغ شوارة",
+        "en": "Chouara Tannery"
+      },
+      "desc": {
+        "ar": "معلمة في Fez بانتظار التوثيق.",
+        "en": "Landmark in Fez awaiting documentation."
+      },
+      "imageUrl": null,
+      "city": {
+        "ar": "Fez",
+        "en": "Fez"
+      },
+      "isPending": true
+    },
+    {
+      "id": "marrakech-koutoubia-mosque",
+      "name": {
+        "ar": "صومعة الكتبية",
+        "en": "Koutoubia Mosque"
+      },
+      "desc": {
+        "ar": "معلمة في Marrakech بانتظار التوثيق.",
+        "en": "Landmark in Marrakech awaiting documentation."
+      },
+      "imageUrl": null,
+      "city": {
+        "ar": "Marrakech",
+        "en": "Marrakech"
+      },
+      "isPending": true
+    },
+    {
+      "id": "marrakech-bahia-palace",
+      "name": {
+        "ar": "قصر الباهية",
+        "en": "Bahia Palace"
+      },
+      "desc": {
+        "ar": "معلمة في Marrakech بانتظار التوثيق.",
+        "en": "Landmark in Marrakech awaiting documentation."
+      },
+      "imageUrl": null,
+      "city": {
+        "ar": "Marrakech",
+        "en": "Marrakech"
+      },
+      "isPending": true
+    },
+    {
+      "id": "marrakech-badi-palace",
+      "name": {
+        "ar": "قصر البديع",
+        "en": "Badi Palace"
+      },
+      "desc": {
+        "ar": "معلمة في Marrakech بانتظار التوثيق.",
+        "en": "Landmark in Marrakech awaiting documentation."
+      },
+      "imageUrl": null,
+      "city": {
+        "ar": "Marrakech",
+        "en": "Marrakech"
+      },
+      "isPending": true
+    },
+    {
+      "id": "marrakech-saadian-tombs",
+      "name": {
+        "ar": "قبور السعديين",
+        "en": "Saadian Tombs"
+      },
+      "desc": {
+        "ar": "معلمة في Marrakech بانتظار التوثيق.",
+        "en": "Landmark in Marrakech awaiting documentation."
+      },
+      "imageUrl": null,
+      "city": {
+        "ar": "Marrakech",
+        "en": "Marrakech"
+      },
+      "isPending": true
+    },
+    {
+      "id": "marrakech-ben-youssef-madrasa",
+      "name": {
+        "ar": "مدرسة بن يوسف",
+        "en": "Ben Youssef Madrasa"
+      },
+      "desc": {
+        "ar": "معلمة في Marrakech بانتظار التوثيق.",
+        "en": "Landmark in Marrakech awaiting documentation."
+      },
+      "imageUrl": null,
+      "city": {
+        "ar": "Marrakech",
+        "en": "Marrakech"
+      },
+      "isPending": true
+    },
+    {
+      "id": "meknes-bab-mansour",
+      "name": {
+        "ar": "باب منصور لعلج",
+        "en": "Bab Mansour"
+      },
+      "desc": {
+        "ar": "معلمة في Meknes بانتظار التوثيق.",
+        "en": "Landmark in Meknes awaiting documentation."
+      },
+      "imageUrl": null,
+      "city": {
+        "ar": "Meknes",
+        "en": "Meknes"
+      },
+      "isPending": true
+    },
+    {
+      "id": "meknes-volubilis",
+      "name": {
+        "ar": "وليلي",
+        "en": "Volubilis"
+      },
+      "desc": {
+        "ar": "معلمة في Meknes بانتظار التوثيق.",
+        "en": "Landmark in Meknes awaiting documentation."
+      },
+      "imageUrl": null,
+      "city": {
+        "ar": "Meknes",
+        "en": "Meknes"
+      },
+      "isPending": true
+    },
+    {
+      "id": "meknes-heri-es-souani",
+      "name": {
+        "ar": "هري السواني",
+        "en": "Heri es-Souani"
+      },
+      "desc": {
+        "ar": "معلمة في Meknes بانتظار التوثيق.",
+        "en": "Landmark in Meknes awaiting documentation."
+      },
+      "imageUrl": null,
+      "city": {
+        "ar": "Meknes",
+        "en": "Meknes"
+      },
+      "isPending": true
+    },
+    {
+      "id": "unesco-sites-ait-benhaddou-ksar",
+      "name": {
+        "ar": "قصبة آيت بن حدو",
+        "en": "Ait Benhaddou Ksar"
+      },
+      "desc": {
+        "ar": "معلمة في UNESCO Sites بانتظار التوثيق.",
+        "en": "Landmark in UNESCO Sites awaiting documentation."
+      },
+      "imageUrl": null,
+      "city": {
+        "ar": "UNESCO Sites",
+        "en": "UNESCO Sites"
+      },
+      "isPending": true
+    },
+    {
+      "id": "unesco-sites-essaouira-medina-skala",
+      "name": {
+        "ar": "مدينة الصويرة",
+        "en": "Essaouira Medina & Skala"
+      },
+      "desc": {
+        "ar": "معلمة في UNESCO Sites بانتظار التوثيق.",
+        "en": "Landmark in UNESCO Sites awaiting documentation."
+      },
+      "imageUrl": null,
+      "city": {
+        "ar": "UNESCO Sites",
+        "en": "UNESCO Sites"
+      },
+      "isPending": true
+    },
+    {
+      "id": "unesco-sites-portuguese-cistern",
+      "name": {
+        "ar": "مدينة مازاغان البرتغالية",
+        "en": "Portuguese Cistern"
+      },
+      "desc": {
+        "ar": "معلمة في UNESCO Sites بانتظار التوثيق.",
+        "en": "Landmark in UNESCO Sites awaiting documentation."
+      },
+      "imageUrl": null,
+      "city": {
+        "ar": "UNESCO Sites",
+        "en": "UNESCO Sites"
+      },
+      "isPending": true
+    },
+    {
+      "id": "unesco-sites-tetouan-medina",
+      "name": {
+        "ar": "مدينة تطوان",
+        "en": "Tetouan Medina"
+      },
+      "desc": {
+        "ar": "معلمة في UNESCO Sites بانتظار التوثيق.",
+        "en": "Landmark in UNESCO Sites awaiting documentation."
+      },
+      "imageUrl": null,
+      "city": {
+        "ar": "UNESCO Sites",
+        "en": "UNESCO Sites"
+      },
+      "isPending": true
+    },
+    {
+      "id": "souss-massa-agadir-inoumar",
+      "name": {
+        "ar": "أكادير إينومار",
+        "en": "Agadir Inoumar"
+      },
+      "desc": {
+        "ar": "معلمة في Souss-Massa بانتظار التوثيق.",
+        "en": "Landmark in Souss-Massa awaiting documentation."
+      },
+      "imageUrl": null,
+      "city": {
+        "ar": "Souss-Massa",
+        "en": "Souss-Massa"
+      },
+      "isPending": true
+    },
+    {
+      "id": "souss-massa-agadir-tasghint",
+      "name": {
+        "ar": "أكادير تاسغينت",
+        "en": "Agadir Tasghint"
+      },
+      "desc": {
+        "ar": "معلمة في Souss-Massa بانتظار التوثيق.",
+        "en": "Landmark in Souss-Massa awaiting documentation."
+      },
+      "imageUrl": null,
+      "city": {
+        "ar": "Souss-Massa",
+        "en": "Souss-Massa"
+      },
+      "isPending": true
+    },
+    {
+      "id": "souss-massa-agadir-ikounka",
+      "name": {
+        "ar": "أكادير إيكونكا",
+        "en": "Agadir Ikounka"
+      },
+      "desc": {
+        "ar": "معلمة في Souss-Massa بانتظار التوثيق.",
+        "en": "Landmark in Souss-Massa awaiting documentation."
+      },
+      "imageUrl": null,
+      "city": {
+        "ar": "Souss-Massa",
+        "en": "Souss-Massa"
+      },
+      "isPending": true
+    },
+    {
+      "id": "draa-tafilalet-kasbah-tamnougalt",
+      "name": {
+        "ar": "قصبة تامنغالت",
+        "en": "Kasbah Tamnougalt"
+      },
+      "desc": {
+        "ar": "معلمة في Draa-Tafilalet بانتظار التوثيق.",
+        "en": "Landmark in Draa-Tafilalet awaiting documentation."
+      },
+      "imageUrl": null,
+      "city": {
+        "ar": "Draa-Tafilalet",
+        "en": "Draa-Tafilalet"
+      },
+      "isPending": true
+    },
+    {
+      "id": "draa-tafilalet-tamegroute-library",
+      "name": {
+        "ar": "زاوية تامكروت",
+        "en": "Tamegroute Library"
+      },
+      "desc": {
+        "ar": "معلمة في Draa-Tafilalet بانتظار التوثيق.",
+        "en": "Landmark in Draa-Tafilalet awaiting documentation."
+      },
+      "imageUrl": null,
+      "city": {
+        "ar": "Draa-Tafilalet",
+        "en": "Draa-Tafilalet"
+      },
+      "isPending": true
+    },
+    {
+      "id": "draa-tafilalet-kasbah-telouet",
+      "name": {
+        "ar": "قصبة تلوات",
+        "en": "Kasbah Telouet"
+      },
+      "desc": {
+        "ar": "معلمة في Draa-Tafilalet بانتظار التوثيق.",
+        "en": "Landmark in Draa-Tafilalet awaiting documentation."
+      },
+      "imageUrl": null,
+      "city": {
+        "ar": "Draa-Tafilalet",
+        "en": "Draa-Tafilalet"
+      },
+      "isPending": true
+    },
+    {
+      "id": "draa-tafilalet-ksar-el-khorbat",
+      "name": {
+        "ar": "قصر الخربات",
+        "en": "Ksar El Khorbat"
+      },
+      "desc": {
+        "ar": "معلمة في Draa-Tafilalet بانتظار التوثيق.",
+        "en": "Landmark in Draa-Tafilalet awaiting documentation."
+      },
+      "imageUrl": null,
+      "city": {
+        "ar": "Draa-Tafilalet",
+        "en": "Draa-Tafilalet"
+      },
+      "isPending": true
+    },
+    {
+      "id": "eastern-region-the-7-ksours-of-figuig",
+      "name": {
+        "ar": "قصور فكيك السبعة",
+        "en": "The 7 Ksours of Figuig"
+      },
+      "desc": {
+        "ar": "معلمة في Eastern Region بانتظار التوثيق.",
+        "en": "Landmark in Eastern Region awaiting documentation."
+      },
+      "imageUrl": null,
+      "city": {
+        "ar": "Eastern Region",
+        "en": "Eastern Region"
+      },
+      "isPending": true
+    },
+    {
+      "id": "eastern-region-eastern-oasis-architecture",
+      "name": {
+        "ar": "معمار واحات فكيك",
+        "en": "Eastern Oasis Architecture"
+      },
+      "desc": {
+        "ar": "معلمة في Eastern Region بانتظار التوثيق.",
+        "en": "Landmark in Eastern Region awaiting documentation."
+      },
+      "imageUrl": null,
+      "city": {
+        "ar": "Eastern Region",
+        "en": "Eastern Region"
+      },
+      "isPending": true
+    },
+    {
+      "id": "northern-rif-lixus-ruins",
+      "name": {
+        "ar": "ليكسوس",
+        "en": "Lixus Ruins"
+      },
+      "desc": {
+        "ar": "معلمة في Northern Rif بانتظار التوثيق.",
+        "en": "Landmark in Northern Rif awaiting documentation."
+      },
+      "imageUrl": null,
+      "city": {
+        "ar": "Northern Rif",
+        "en": "Northern Rif"
+      },
+      "isPending": true
+    },
+    {
+      "id": "northern-rif-spanish-quarter",
+      "name": {
+        "ar": "الحي الإسباني",
+        "en": "Spanish Quarter"
+      },
+      "desc": {
+        "ar": "معلمة في Northern Rif بانتظار التوثيق.",
+        "en": "Landmark in Northern Rif awaiting documentation."
+      },
+      "imageUrl": null,
+      "city": {
+        "ar": "Northern Rif",
+        "en": "Northern Rif"
+      },
+      "isPending": true
+    },
+    {
+      "id": "northern-rif-defensive-towers-of-ajdir",
+      "name": {
+        "ar": "أبراج أجدير",
+        "en": "Defensive Towers of Ajdir"
+      },
+      "desc": {
+        "ar": "معلمة في Northern Rif بانتظار التوثيق.",
+        "en": "Landmark in Northern Rif awaiting documentation."
+      },
+      "imageUrl": null,
+      "city": {
+        "ar": "Northern Rif",
+        "en": "Northern Rif"
+      },
+      "isPending": true
+    }
+  ],
   "cities": [
     {
       "id": "rabat",
       "name": {
-        "ar": "الرباط",
+        "ar": "Rabat",
         "en": "Rabat"
       },
       "desc": {
@@ -19,10 +581,10 @@
       "isPending": true
     },
     {
-      "id": "casablanca",
+      "id": "fez",
       "name": {
-        "ar": "الدار البيضاء",
-        "en": "Casablanca"
+        "ar": "Fez",
+        "en": "Fez"
       },
       "desc": {
         "ar": "مدينة مغربية عريقة.",
@@ -38,42 +600,8 @@
     {
       "id": "marrakech",
       "name": {
-        "ar": "مراكش",
+        "ar": "Marrakech",
         "en": "Marrakech"
-      },
-      "desc": {
-        "ar": "مدينة مغربية عريقة.",
-        "en": "A historic Moroccan city."
-      },
-      "imageUrl": null,
-      "regionName": {
-        "ar": "المغرب",
-        "en": "Morocco"
-      },
-      "isPending": true
-    },
-    {
-      "id": "fes",
-      "name": {
-        "ar": "فاس",
-        "en": "Fes"
-      },
-      "desc": {
-        "ar": "مدينة مغربية عريقة.",
-        "en": "A historic Moroccan city."
-      },
-      "imageUrl": null,
-      "regionName": {
-        "ar": "المغرب",
-        "en": "Morocco"
-      },
-      "isPending": true
-    },
-    {
-      "id": "tangier",
-      "name": {
-        "ar": "طنجة",
-        "en": "Tangier"
       },
       "desc": {
         "ar": "مدينة مغربية عريقة.",
@@ -89,7 +617,7 @@
     {
       "id": "meknes",
       "name": {
-        "ar": "مكناس",
+        "ar": "Meknes",
         "en": "Meknes"
       },
       "desc": {
@@ -104,10 +632,10 @@
       "isPending": true
     },
     {
-      "id": "agadir",
+      "id": "unesco-sites",
       "name": {
-        "ar": "أكادير",
-        "en": "Agadir"
+        "ar": "UNESCO Sites",
+        "en": "UNESCO Sites"
       },
       "desc": {
         "ar": "مدينة مغربية عريقة.",
@@ -121,10 +649,10 @@
       "isPending": true
     },
     {
-      "id": "chefchaouen",
+      "id": "souss-massa",
       "name": {
-        "ar": "شفشاون",
-        "en": "Chefchaouen"
+        "ar": "Souss-Massa",
+        "en": "Souss-Massa"
       },
       "desc": {
         "ar": "مدينة مغربية عريقة.",
@@ -138,10 +666,10 @@
       "isPending": true
     },
     {
-      "id": "tetouan",
+      "id": "draa-tafilalet",
       "name": {
-        "ar": "تطوان",
-        "en": "Tetouan"
+        "ar": "Draa-Tafilalet",
+        "en": "Draa-Tafilalet"
       },
       "desc": {
         "ar": "مدينة مغربية عريقة.",
@@ -155,10 +683,10 @@
       "isPending": true
     },
     {
-      "id": "essaouira",
+      "id": "eastern-region",
       "name": {
-        "ar": "الصويرة",
-        "en": "Essaouira"
+        "ar": "Eastern Region",
+        "en": "Eastern Region"
       },
       "desc": {
         "ar": "مدينة مغربية عريقة.",
@@ -172,44 +700,10 @@
       "isPending": true
     },
     {
-      "id": "ouarzazate",
+      "id": "northern-rif",
       "name": {
-        "ar": "ورزازات",
-        "en": "Ouarzazate"
-      },
-      "desc": {
-        "ar": "مدينة مغربية عريقة.",
-        "en": "A historic Moroccan city."
-      },
-      "imageUrl": null,
-      "regionName": {
-        "ar": "المغرب",
-        "en": "Morocco"
-      },
-      "isPending": true
-    },
-    {
-      "id": "sahara",
-      "name": {
-        "ar": "العيون والداخلة",
-        "en": "Sahara"
-      },
-      "desc": {
-        "ar": "مدينة مغربية عريقة.",
-        "en": "A historic Moroccan city."
-      },
-      "imageUrl": null,
-      "regionName": {
-        "ar": "المغرب",
-        "en": "Morocco"
-      },
-      "isPending": true
-    },
-    {
-      "id": "safi",
-      "name": {
-        "ar": "آسفي",
-        "en": "Safi"
+        "ar": "Northern Rif",
+        "en": "Northern Rif"
       },
       "desc": {
         "ar": "مدينة مغربية عريقة.",
