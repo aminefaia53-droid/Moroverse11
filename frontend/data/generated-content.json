@@ -46,12 +46,13 @@
         "ar": "معلمة في Rabat بانتظار التوثيق.",
         "en": "Landmark in Rabat awaiting documentation."
       },
-      "imageUrl": null,
+      "imageUrl": "/images/uploads/1773504610706-6146c01aaea973eb05f0348cbf7fb649-(1).jpg",
       "city": {
         "ar": "Rabat",
         "en": "Rabat"
       },
-      "isPending": true
+      "isPending": false,
+      "seo": {}
     },
     {
       "id": "rabat-mausoleum-of-mohammed-v",
