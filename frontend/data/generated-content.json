@@ -118,12 +118,13 @@
         "ar": "معلمة في Fez بانتظار التوثيق.",
         "en": "Landmark in Fez awaiting documentation."
       },
-      "imageUrl": null,
+      "imageUrl": "/images/uploads/1773505102570-06bf968b7b94a2c105fd510797aa94e0.jpg",
       "city": {
         "ar": "Fez",
         "en": "Fez"
       },
-      "isPending": true
+      "isPending": false,
+      "seo": {}
     },
     {
       "id": "fez-bab-boujloud",
