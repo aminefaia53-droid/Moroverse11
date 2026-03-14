@@ -154,12 +154,13 @@
         "ar": "معلمة في Fez بانتظار التوثيق.",
         "en": "Landmark in Fez awaiting documentation."
       },
-      "imageUrl": null,
+      "imageUrl": "/images/uploads/1773505306008-c14c24db9cba46da8ff042d06c32e312.jpg",
       "city": {
         "ar": "Fez",
         "en": "Fez"
       },
-      "isPending": true
+      "isPending": false,
+      "seo": {}
     },
     {
       "id": "marrakech-koutoubia-mosque",
