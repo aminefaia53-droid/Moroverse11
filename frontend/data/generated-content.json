@@ -226,12 +226,13 @@
         "ar": "معلمة في Marrakech بانتظار التوثيق.",
         "en": "Landmark in Marrakech awaiting documentation."
       },
-      "imageUrl": null,
+      "imageUrl": "/images/uploads/1773507565906-43a00058f32972dda4231a51637f4294.jpg",
       "city": {
         "ar": "Marrakech",
         "en": "Marrakech"
       },
-      "isPending": true
+      "isPending": false,
+      "seo": {}
     },
     {
       "id": "marrakech-ben-youssef-madrasa",
