@@ -253,6 +253,8 @@ export default function DynamicEncyclopediaDisplay({ category, lang, emptyMessag
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                 <AnimatePresence mode="popLayout">
                     {filteredItems.map((item, idx) => {
+                        if (!item || !item.id) return null; // Defensive check for empty entries
+
                         const getName = (n: any, l: string) => {
                             if (typeof n === 'string') return n;
                             const target = l as 'ar' | 'en';
