@@ -82,12 +82,13 @@
         "ar": "معلمة في Fez بانتظار التوثيق.",
         "en": "Landmark in Fez awaiting documentation."
       },
-      "imageUrl": null,
+      "imageUrl": "/images/uploads/1773504987466-b157d74198828deb6b26a6d320d39e28.jpg",
       "city": {
         "ar": "Fez",
         "en": "Fez"
       },
-      "isPending": true
+      "isPending": false,
+      "seo": {}
     },
     {
       "id": "fez-bou-inania-madrasa",
