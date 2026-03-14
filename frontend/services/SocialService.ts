@@ -121,6 +121,35 @@ export class SocialService {
     }
 
     /**
+     * Fetch a single post by its slug (Deep Archive linking)
+     */
+    static async getPostBySlug(slug: string): Promise<Post | null> {
+        try {
+            const { data, error } = await supabase
+                .from('community_posts')
+                .select('*, profiles(full_name, avatar_url, username, trust_score)')
+                .eq('slug', slug)
+                .single();
+            
+            if (error) {
+                // Fallback to ID if slug not found
+                const { data: idData, error: idError } = await supabase
+                    .from('community_posts')
+                    .select('*, profiles(full_name, avatar_url, username, trust_score)')
+                    .eq('id', slug)
+                    .single();
+                
+                if (idError) throw idError;
+                return idData as Post;
+            }
+            return data as Post;
+        } catch (err) {
+            console.error('FETCH_POST_BY_SLUG_FAILED:', err);
+            return null;
+        }
+    }
+
+    /**
      * Create a new community post with sanitized content, location tagging, and type.
      */
     static async createPost(userId: string, content: string, cityName: string | null, lat: number | null, lng: number | null, imageUrl: string | null, locationType: string = 'city', modelUrl?: string | null): Promise<void> {

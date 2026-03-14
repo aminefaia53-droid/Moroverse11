@@ -39,25 +39,30 @@ export default function ExploreBlogPage() {
         }
     };
 
-    const handleLocationSelect = (loc: Post | string) => {
+    const handleLocationSelect = async (loc: Post | string) => {
         if (typeof loc === 'string') {
             setSelectedCity(loc);
         } else {
+            // Fetch fresh full record by slug/id to ensure we have model_url and full content
+            const fullPost = await SocialService.getPostBySlug(loc.id);
+            const target = fullPost || loc;
+
             // Map Post to HeritageItem with slug support for Deep Linking
             const item: HeritageItem = {
-                id: loc.id,
-                name: { ar: loc.location_name || '', en: loc.location_name || '' },
-                city: { ar: loc.location_name || '', en: loc.location_name || '' },
-                history: loc.content || '',
-                imageUrl: loc.image_url || '',
+                id: target.id,
+                name: { ar: target.location_name || '', en: target.location_name || '' },
+                city: { ar: target.location_name || '', en: target.location_name || '' },
+                history: target.content || '',
+                imageUrl: target.image_url || '',
+                model_url: target.model_url || undefined,
                 type: 'post',
-                slug: (loc as any).slug // community_posts has slug but Post interface might miss it
+                slug: (target as any).slug
             };
             setActiveLocation(item);
             
             // Auto-Pan logic is handled via Global Events in ExploreMap
             window.dispatchEvent(new CustomEvent('map-fly-to-target', { 
-                detail: { target: [loc.lat, loc.lng], zoom: 15 } 
+                detail: { target: [target.lat, target.lng], zoom: 15 } 
             }));
         }
     };
