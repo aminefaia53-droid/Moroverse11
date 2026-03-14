@@ -6,6 +6,7 @@ import {
     ImageOff, Loader2, CheckCircle, X, ChevronDown, ChevronUp,
     Film, MapPin, Calendar, BookOpen, Hash, Swords, Building2, Landmark, Users, Box
 } from 'lucide-react';
+import { createClient as createBrowserClient } from '@/utils/supabase/client';
 
 // ── Types ──────────────────────────────────────────────────────
 type CategoryType = 'cities' | 'landmarks' | 'battles' | 'figures';
@@ -69,12 +70,49 @@ async function uploadImageFile(file: File): Promise<string | null> {
 }
 
 // ── 3D Asset Upload Helper (GLB) ──────────────────────────────────
-async function uploadAssetFile(file: File): Promise<string | null> {
-    const formData = new FormData();
-    formData.append('file', file, file.name);
-    const res = await fetch('/api/admin/assets/upload', { method: 'POST', body: formData });
-    const data = await res.json();
-    return data.success ? data.url : null;
+// ── 3D Asset Upload Helper (GLB) ── DIRECT CLIENT-SIDE UPLOAD
+async function uploadAssetFileClientSide(file: File): Promise<{ success: boolean; url?: string; message?: string }> {
+    try {
+        const supabase = createBrowserClient();
+        
+        // 1. Get current session to verify auth
+        const { data: { session } } = await supabase.auth.getSession();
+        if (!session) {
+            return { success: false, message: 'Authentication required / يلزم تسجيل الدخول للرفع' };
+        }
+
+        const timestamp = Date.now();
+        const sanitizedName = file.name.replace(/\s+/g, '-').toLowerCase();
+        const fileName = `${timestamp}-${sanitizedName}`;
+        const filePath = `monuments/${fileName}`;
+
+        // 2. Direct Upload to Supabase Storage Bucket '3d_assets'
+        const { data, error } = await supabase.storage
+            .from('3d_assets')
+            .upload(filePath, file, {
+                cacheControl: '3600',
+                upsert: false
+            });
+
+        if (error) {
+            console.error('[CLIENT-SIDE 3D UPLOAD] ERROR:', error);
+            // Hint for common bucket issues
+            if (error.message.includes('not found')) {
+                return { success: false, message: 'Bucket "3d_assets" not found in Supabase Storage.' };
+            }
+            return { success: false, message: `Supabase Error: ${error.message}` };
+        }
+
+        // 3. Get Public URL
+        const { data: { publicUrl } } = supabase.storage
+            .from('3d_assets')
+            .getPublicUrl(filePath);
+
+        return { success: true, url: publicUrl };
+    } catch (err: any) {
+        console.error('[CLIENT-SIDE 3D UPLOAD] CRITICAL:', err);
+        return { success: false, message: `Critical Failure: ${err.message}` };
+    }
 }
 
 // ── Individual Entity Editor ─────────────────────────────
@@ -106,14 +144,35 @@ function EntityEditor({ entity, category, onSaved }: { entity: EntityEntry; cate
     const handleAssetUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];
         if (!file) return;
+
+        // Validation for .glb
+        if (!file.name.toLowerCase().endsWith('.glb')) {
+            alert('Invalid file type. Only .glb assets are supported / يدعم فقط صيغة .glb');
+            return;
+        }
+
         setUploadingAsset(true);
+        setStatus('saving');
+        setServerMessage('Uploading to Supabase Storage...');
+        
         try {
-            const url = await uploadAssetFile(file);
-            if (url) {
-                set('modelUrl', url);
+            // Using direct client-side upload to bypass Vercel payload limits (4.5MB)
+            const result = await uploadAssetFileClientSide(file);
+            
+            if (result.success && result.url) {
+                set('modelUrl', result.url);
                 set('location_type', 'monument'); // Auto-tag as monument for 3D activation
+                setStatus('success');
+                setServerMessage('3D Asset uploaded and synced to Supabase ✓');
+            } else {
+                throw new Error(result.message || 'Unknown error');
             }
-        } catch { alert('3D asset upload failed / فشل رفع العنصر ثلاثي الأبعاد'); }
+        } catch (err: any) { 
+            console.error('3D Upload Error:', err);
+            setStatus('error');
+            setServerMessage(`3D upload failed: ${err.message}`);
+            alert(`3D asset upload failed: ${err.message}`); 
+        }
         finally { setUploadingAsset(false); }
     };
 
