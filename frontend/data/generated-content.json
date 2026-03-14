@@ -606,12 +606,13 @@
         "ar": "مدينة مغربية عريقة.",
         "en": "A historic Moroccan city."
       },
-      "imageUrl": null,
+      "imageUrl": "/images/uploads/1773507992660-c14c24db9cba46da8ff042d06c32e312.jpg",
       "regionName": {
         "ar": "المغرب",
         "en": "Morocco"
       },
-      "isPending": true
+      "isPending": false,
+      "seo": {}
     },
     {
       "id": "marrakech",
