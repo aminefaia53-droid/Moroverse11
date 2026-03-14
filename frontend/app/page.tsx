@@ -227,10 +227,12 @@ export default function Home() {
             </p>
           </div>
 
-          <button className="px-12 md:px-16 py-4 md:py-5 bg-gradient-to-r from-[var(--secondary)] to-[var(--background)] text-[var(--foreground)] font-bold text-[10px] md:text-xs tracking-[0.4em] uppercase transition-all duration-500 rounded-full shadow-2xl hover:shadow-[0_0_40px_var(--glow-color)] border border-[var(--primary)]/20 flex items-center gap-3 group">
-            <Compass className="w-4 h-4 text-[var(--primary)] group-hover:text-[var(--foreground)] transition-colors" />
-            {t.cta}
-          </button>
+          <Link href="/explore">
+            <button className="px-12 md:px-16 py-4 md:py-5 bg-gradient-to-r from-[var(--secondary)] to-[var(--background)] text-[var(--foreground)] font-bold text-[10px] md:text-xs tracking-[0.4em] uppercase transition-all duration-500 rounded-full shadow-2xl hover:shadow-[0_0_40px_var(--glow-color)] border border-[var(--primary)]/20 flex items-center gap-3 group">
+              <Compass className="w-4 h-4 text-[var(--primary)] group-hover:text-[var(--foreground)] transition-colors" />
+              {t.cta}
+            </button>
+          </Link>
         </motion.div>
       </section>
 
