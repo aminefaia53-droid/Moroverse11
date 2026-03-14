@@ -5,7 +5,6 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Compass, Tent, Palmtree, Film, History, ChevronRight } from 'lucide-react';
 import { LangCode } from '../types/language';
 import { TourismType } from '../utils/wp-api';
-import TourismModal from './TourismModal';
 import ShareButton from './ShareButton';
 
 interface TourismCardProps {
@@ -158,17 +157,7 @@ export default function TourismGrid({ lang }: { lang: LangCode }) {
                 </AnimatePresence>
             </div>
 
-            {selectedType && (
-                <TourismModal
-                    isOpen={!!selectedType}
-                    onClose={() => setSelectedType(null)}
-                    lang={lang}
-                    type={selectedType.type}
-                    icon={selectedType.icon}
-                    title={selectedType.title}
-                    definition={selectedType.definition}
-                />
-            )}
+            {/* Modal removed in favor of unified Discovery system */}
         </section>
     );
 }

@@ -34,7 +34,7 @@ export class SocialService {
     }
     
     private static cache: Record<string, { data: Post[], timestamp: number }> = {};
-    private static CACHE_TTL = 30000; // 30 seconds
+    private static CACHE_TTL = 0; // Forced Cache Busting for Real-Time Heritage Accuracy
 
     /**
      * Fetch community posts with SWR (Stale-While-Revalidate) pattern.
