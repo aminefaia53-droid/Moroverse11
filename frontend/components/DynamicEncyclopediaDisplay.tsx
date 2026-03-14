@@ -197,7 +197,7 @@ export default function DynamicEncyclopediaDisplay({ category, lang, emptyMessag
                                     <img
                                         src={item.imageUrl}
                                         alt={title}
-                                        className="absolute inset-0 w-full h-full object-cover opacity-40 group-hover:opacity-70 group-hover:scale-110 transition-all duration-700"
+                                        className="absolute inset-0 w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700"
                                     />
                                 ) : (
                                     <div className="absolute inset-0 bg-gradient-to-br from-[#1A1A1A] to-[#0A0A0A] flex items-center justify-center">
@@ -205,9 +205,8 @@ export default function DynamicEncyclopediaDisplay({ category, lang, emptyMessag
                                     </div>
                                 )}
 
-                                {/* Gradient Overlays */}
-                                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent" />
-                                <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-transparent opacity-60" />
+                                {/* Subtle Glow Overlays */}
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
 
                                 {/* Content Layer */}
                                 <div className="absolute inset-0 p-5 flex flex-col justify-between z-10">

@@ -520,5 +520,33 @@
                 }
             ]
         }
+    ],
+    "battles": [
+        { "ar": "معركة وادي لكة", "en": "Battle of Guadalete" },
+        { "ar": "معركة الأشراف", "en": "Battle of the Nobles" },
+        { "ar": "معركة الزلاقة", "en": "Battle of Sagrajas" },
+        { "ar": "معركة الأرك", "en": "Battle of Alarcos" },
+        { "ar": "معركة العقاب", "en": "Battle of Las Navas de Tolosa" },
+        { "ar": "معركة وادي المخازن", "en": "Battle of Alcácer Quibir" },
+        { "ar": "معركة إيسلي", "en": "Battle of Isly" },
+        { "ar": "معركة تطوان", "en": "Battle of Tetouan" },
+        { "ar": "معركة أنوال", "en": "Battle of Annual" },
+        { "ar": "معركة لهري", "en": "Battle of El Herri" },
+        { "ar": "معركة الدشيرة", "en": "Battle of Edchera" }
+    ],
+    "figures": [
+        { "ar": "طارق بن زياد", "en": "Tariq ibn Ziyad" },
+        { "ar": "يوسف بن تاشفين", "en": "Yusuf ibn Tashfin" },
+        { "ar": "يعقوب المنصور الموحدي", "en": "Yaqub al-Mansur" },
+        { "ar": "أحمد المنصور السعدي", "en": "Ahmad al-Mansur" },
+        { "ar": "مولاي إسماعيل", "en": "Moulay Ismail" },
+        { "ar": "عبد الكريم الخطابي", "en": "Abd el-Krim el-Khattabi" },
+        { "ar": "محمد الخامس", "en": "Mohammed V" },
+        { "ar": "الحسن الثاني", "en": "Hassan II" }
+    ],
+    "tourism": [
+        { "ar": "الجيو-سياحة بالمغرب", "en": "Moroccan Geotourism" },
+        { "ar": "السياحة المظلمة بالمغرب", "en": "Dark Tourism in Morocco" },
+        { "ar": "استدامة الواحات المدرسية", "en": "Sustainable Oasis Tourism" }
     ]
 }

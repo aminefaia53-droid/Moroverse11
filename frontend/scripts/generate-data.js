@@ -123,7 +123,7 @@ function generateData() {
         if (parsed) fileMap[file.replace('.md', '')] = { ...parsed, id: file.replace('.md', '') };
     });
 
-    const generatedData = { landmarks: [], cities: [], battles: [], figures: [], articles: {} };
+    const generatedData = { landmarks: [], cities: [], battles: [], figures: [], tourism: [], articles: {} };
     let preStagedCount = 0;
 
     // 1. Process Cities & Landmarks
@@ -181,9 +181,13 @@ function generateData() {
         });
     });
 
-    // 2. Process Figures & Battles
-    ['figures', 'battles'].forEach(cat => {
-        const existingMap = cat === 'battles' ? existingBattles : existingFigures;
+    // 2. Process Figures, Battles & Tourism
+    ['figures', 'battles', 'tourism'].forEach(cat => {
+        const existingMap = {};
+        if (cat === 'battles') (existingData.battles || []).forEach(b => { existingMap[b.id] = b; });
+        else if (cat === 'figures') (existingData.figures || []).forEach(f => { existingMap[f.id] = f; });
+        else if (cat === 'tourism') (existingData.tourism || []).forEach(t => { existingMap[t.id] = t; });
+
         (manifest[cat] || []).forEach(node => {
             const nameAr = node.ar;
             const nameEn = node.en;
@@ -193,7 +197,7 @@ function generateData() {
             if (fileData) {
                 const { meta, body, id: fileId } = fileData;
                 const { intro, sections, conclusion } = bodyToArticle(body, meta.description);
-                generatedData.articles[fileId] = { id: fileId, title: { ar: meta.title, en: meta.titleEn || nameEn }, category: cat.slice(0, -1), isPending: false, intro, sections, conclusion };
+                generatedData.articles[fileId] = { id: fileId, title: { ar: meta.title, en: meta.titleEn || nameEn }, category: cat === 'tourism' ? 'tourism' : cat.slice(0, -1), isPending: false, intro, sections, conclusion };
                 const newEntry = { id: fileId, name: { ar: meta.title, en: meta.titleEn || nameEn }, desc: { ar: meta.description, en: '' }, imageUrl: meta.image || null, isPending: false };
                 generatedData[cat].push(mergeEntry(newEntry, existingMap[fileId]));
                 delete fileMap[fileId];

@@ -2837,8 +2837,298 @@
       "isPending": true
     }
   ],
-  "battles": [],
-  "figures": [],
+  "battles": [
+    {
+      "id": "battle-of-guadalete",
+      "name": {
+        "ar": "معركة وادي لكة",
+        "en": "Battle of Guadalete"
+      },
+      "desc": {
+        "ar": "بانتظار السجلات الملكية.",
+        "en": "Awaiting Royal Chronicles."
+      },
+      "imageUrl": null,
+      "isPending": true
+    },
+    {
+      "id": "battle-of-the-nobles",
+      "name": {
+        "ar": "معركة الأشراف",
+        "en": "Battle of the Nobles"
+      },
+      "desc": {
+        "ar": "بانتظار السجلات الملكية.",
+        "en": "Awaiting Royal Chronicles."
+      },
+      "imageUrl": null,
+      "isPending": true
+    },
+    {
+      "id": "battle-of-sagrajas",
+      "name": {
+        "ar": "معركة الزلاقة",
+        "en": "Battle of Sagrajas"
+      },
+      "desc": {
+        "ar": "بانتظار السجلات الملكية.",
+        "en": "Awaiting Royal Chronicles."
+      },
+      "imageUrl": null,
+      "isPending": true
+    },
+    {
+      "id": "battle-of-alarcos",
+      "name": {
+        "ar": "معركة الأرك",
+        "en": "Battle of Alarcos"
+      },
+      "desc": {
+        "ar": "بانتظار السجلات الملكية.",
+        "en": "Awaiting Royal Chronicles."
+      },
+      "imageUrl": null,
+      "isPending": true
+    },
+    {
+      "id": "battle-of-las-navas-de-tolosa",
+      "name": {
+        "ar": "معركة العقاب",
+        "en": "Battle of Las Navas de Tolosa"
+      },
+      "desc": {
+        "ar": "بانتظار السجلات الملكية.",
+        "en": "Awaiting Royal Chronicles."
+      },
+      "imageUrl": null,
+      "isPending": true
+    },
+    {
+      "id": "battle-of-alccer-quibir",
+      "name": {
+        "ar": "معركة وادي المخازن",
+        "en": "Battle of Alcácer Quibir"
+      },
+      "desc": {
+        "ar": "بانتظار السجلات الملكية.",
+        "en": "Awaiting Royal Chronicles."
+      },
+      "imageUrl": null,
+      "isPending": true
+    },
+    {
+      "id": "battle-of-isly",
+      "name": {
+        "ar": "معركة إيسلي",
+        "en": "Battle of Isly"
+      },
+      "desc": {
+        "ar": "بانتظار السجلات الملكية.",
+        "en": "Awaiting Royal Chronicles."
+      },
+      "imageUrl": null,
+      "isPending": true
+    },
+    {
+      "id": "battle-of-tetouan",
+      "name": {
+        "ar": "معركة تطوان",
+        "en": "Battle of Tetouan"
+      },
+      "desc": {
+        "ar": "بانتظار السجلات الملكية.",
+        "en": "Awaiting Royal Chronicles."
+      },
+      "imageUrl": null,
+      "isPending": true
+    },
+    {
+      "id": "battle-of-annual",
+      "name": {
+        "ar": "معركة أنوال",
+        "en": "Battle of Annual"
+      },
+      "desc": {
+        "ar": "بانتظار السجلات الملكية.",
+        "en": "Awaiting Royal Chronicles."
+      },
+      "imageUrl": null,
+      "isPending": true
+    },
+    {
+      "id": "battle-of-el-herri",
+      "name": {
+        "ar": "معركة لهري",
+        "en": "Battle of El Herri"
+      },
+      "desc": {
+        "ar": "بانتظار السجلات الملكية.",
+        "en": "Awaiting Royal Chronicles."
+      },
+      "imageUrl": null,
+      "isPending": true
+    },
+    {
+      "id": "battle-of-edchera",
+      "name": {
+        "ar": "معركة الدشيرة",
+        "en": "Battle of Edchera"
+      },
+      "desc": {
+        "ar": "بانتظار السجلات الملكية.",
+        "en": "Awaiting Royal Chronicles."
+      },
+      "imageUrl": null,
+      "isPending": true
+    }
+  ],
+  "figures": [
+    {
+      "id": "tariq-ibn-ziyad",
+      "name": {
+        "ar": "طارق بن زياد",
+        "en": "Tariq ibn Ziyad"
+      },
+      "desc": {
+        "ar": "بانتظار السجلات الملكية.",
+        "en": "Awaiting Royal Chronicles."
+      },
+      "imageUrl": null,
+      "isPending": true
+    },
+    {
+      "id": "yusuf-ibn-tashfin",
+      "name": {
+        "ar": "يوسف بن تاشفين",
+        "en": "Yusuf ibn Tashfin"
+      },
+      "desc": {
+        "ar": "بانتظار السجلات الملكية.",
+        "en": "Awaiting Royal Chronicles."
+      },
+      "imageUrl": null,
+      "isPending": true
+    },
+    {
+      "id": "yaqub-al-mansur",
+      "name": {
+        "ar": "يعقوب المنصور الموحدي",
+        "en": "Yaqub al-Mansur"
+      },
+      "desc": {
+        "ar": "بانتظار السجلات الملكية.",
+        "en": "Awaiting Royal Chronicles."
+      },
+      "imageUrl": null,
+      "isPending": true
+    },
+    {
+      "id": "ahmad-al-mansur",
+      "name": {
+        "ar": "أحمد المنصور السعدي",
+        "en": "Ahmad al-Mansur"
+      },
+      "desc": {
+        "ar": "بانتظار السجلات الملكية.",
+        "en": "Awaiting Royal Chronicles."
+      },
+      "imageUrl": null,
+      "isPending": true
+    },
+    {
+      "id": "moulay-ismail",
+      "name": {
+        "ar": "مولاي إسماعيل",
+        "en": "Moulay Ismail"
+      },
+      "desc": {
+        "ar": "بانتظار السجلات الملكية.",
+        "en": "Awaiting Royal Chronicles."
+      },
+      "imageUrl": null,
+      "isPending": true
+    },
+    {
+      "id": "abd-el-krim-el-khattabi",
+      "name": {
+        "ar": "عبد الكريم الخطابي",
+        "en": "Abd el-Krim el-Khattabi"
+      },
+      "desc": {
+        "ar": "بانتظار السجلات الملكية.",
+        "en": "Awaiting Royal Chronicles."
+      },
+      "imageUrl": null,
+      "isPending": true
+    },
+    {
+      "id": "mohammed-v",
+      "name": {
+        "ar": "محمد الخامس",
+        "en": "Mohammed V"
+      },
+      "desc": {
+        "ar": "بانتظار السجلات الملكية.",
+        "en": "Awaiting Royal Chronicles."
+      },
+      "imageUrl": null,
+      "isPending": true
+    },
+    {
+      "id": "hassan-ii",
+      "name": {
+        "ar": "الحسن الثاني",
+        "en": "Hassan II"
+      },
+      "desc": {
+        "ar": "بانتظار السجلات الملكية.",
+        "en": "Awaiting Royal Chronicles."
+      },
+      "imageUrl": null,
+      "isPending": true
+    }
+  ],
+  "tourism": [
+    {
+      "id": "moroccan-geotourism",
+      "name": {
+        "ar": "الجيو-سياحة بالمغرب",
+        "en": "Moroccan Geotourism"
+      },
+      "desc": {
+        "ar": "بانتظار السجلات الملكية.",
+        "en": "Awaiting Royal Chronicles."
+      },
+      "imageUrl": null,
+      "isPending": true
+    },
+    {
+      "id": "dark-tourism-in-morocco",
+      "name": {
+        "ar": "السياحة المظلمة بالمغرب",
+        "en": "Dark Tourism in Morocco"
+      },
+      "desc": {
+        "ar": "بانتظار السجلات الملكية.",
+        "en": "Awaiting Royal Chronicles."
+      },
+      "imageUrl": null,
+      "isPending": true
+    },
+    {
+      "id": "sustainable-oasis-tourism",
+      "name": {
+        "ar": "استدامة الواحات المدرسية",
+        "en": "Sustainable Oasis Tourism"
+      },
+      "desc": {
+        "ar": "بانتظار السجلات الملكية.",
+        "en": "Awaiting Royal Chronicles."
+      },
+      "imageUrl": null,
+      "isPending": true
+    }
+  ],
   "articles": {
     "rabat-hassan-tower": {
       "id": "rabat-hassan-tower",
