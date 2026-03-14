@@ -77,24 +77,33 @@ export default function HeritageFactSheet({ item, isOpen, onClose, lang }: Herit
 
     if (!item) return null;
 
+    const getT = (val: any, l: string) => {
+        if (!val) return '';
+        if (typeof val === 'string') return val;
+        const target = l as 'ar' | 'en';
+        return val[target] || val.ar || val.en || '';
+    };
+
+    const isRTL = lang === 'ar';
+    const nameText = getT(item.name, lang);
+    const cityText = getT(item.city, lang);
+
     const fullContentText = item.content || item.history;
     const summaryText = item.summary || fullContentText;
     
     // Choose which text to show based on toggle
     const rawText = isFullContent ? fullContentText : summaryText;
     
-    const historyText = typeof rawText === 'object'
-        ? rawText.ar
-        : (rawText || '');
+    const historyText = getT(rawText, 'ar'); // Defaulting to Arabic for history segment locally
+    const historyTextSelected = getT(rawText, lang);
 
     const slug = item.slug || item.id;
-    const isRTL = lang === 'ar';
 
     const triggerAIAnalysis = () => {
         window.dispatchEvent(new CustomEvent('moroverse-ai-context', {
             detail: {
                 itemData: {
-                    name: item.name,
+                    name: { ar: getT(item.name, 'ar'), en: getT(item.name, 'en') },
                     type: item.type,
                     content: historyText
                 }
@@ -130,7 +139,7 @@ export default function HeritageFactSheet({ item, isOpen, onClose, lang }: Herit
                             <div className="absolute inset-0 z-0">
                                 <img
                                     src={item.imageUrl || FALLBACK_IMG}
-                                    alt={item.name.en}
+                                    alt={nameText}
                                     className="w-full h-full object-cover object-center opacity-70"
                                     style={{ filter: 'sepia(0.2) contrast(1.1) brightness(0.7) saturate(1.2)' }}
                                     onError={e => { e.currentTarget.onerror = null; e.currentTarget.src = FALLBACK_IMG; }}
@@ -149,7 +158,7 @@ export default function HeritageFactSheet({ item, isOpen, onClose, lang }: Herit
                                 </button>
                                 <ShareButton
                                     id={item.id}
-                                    title={item.name.ar}
+                                    title={getT(item.name, 'ar')}
                                     description={historyText}
                                     imageUrl={item.imageUrl}
                                     slug={slug}
@@ -167,12 +176,12 @@ export default function HeritageFactSheet({ item, isOpen, onClose, lang }: Herit
                                     <SoulIcon soul={item.visualSoul} className="w-14 h-14 text-[#c5a059]" />
                                 </motion.div>
                                 <h2 className="text-5xl md:text-7xl font-black text-white mb-6 tracking-tighter drop-shadow-[0_10px_10px_rgba(0,0,0,0.8)] leading-[1.1]">
-                                    <TranslatedText arabicText={item.name.ar} />
+                                    {nameText}
                                 </h2>
                                 <div className="flex items-center justify-center gap-4 text-[#c5a059] bg-[#c5a059]/10 px-6 py-2 rounded-full border border-[#c5a059]/30 w-fit mx-auto backdrop-blur-md">
                                     <MapPin className="w-5 h-5" />
                                     <p className="text-sm md:text-base font-black uppercase tracking-[0.4em]">
-                                        <TranslatedText arabicText={item.city.ar} />
+                                        {cityText}
                                     </p>
                                 </div>
                             </div>
@@ -201,8 +210,8 @@ export default function HeritageFactSheet({ item, isOpen, onClose, lang }: Herit
                                                 </span>
                                                 <span className="text-2xl font-black text-white mt-1">
                                                     {item.type === 'battle'
-                                                        ? item.stats?.year
-                                                        : (lang === 'en' ? (item.foundation?.en || 'Ancient Era') : (item.foundation?.ar || 'عصور ضاربة'))}
+                                                        ? (item.stats?.year || 'Chronicle')
+                                                        : getT(item.foundation, lang) || (lang === 'en' ? 'Ancient Era' : 'عصور ضاربة')}
                                                 </span>
                                             </div>
                                             <div className="p-5 rounded-3xl bg-[#c5a059]/10 border border-[#c5a059]/20 shadow-[0_0_30px_rgba(197,160,89,0.1)] group-hover:scale-110 transition-transform">

@@ -72,7 +72,7 @@ export function useEncyclopedia(category: string, city?: string) {
                     ];
                 } else if (category === 'geography' || category === 'city') {
                     rawItems = (db.cities || []).map((i: any) => mapToPost(i, 'geography'));
-                } else if (category === 'heritage' || category === 'monument') {
+                } else if (category === 'heritage' || category === 'monument' || category === 'landmark') {
                     rawItems = (db.landmarks || []).map((i: any) => mapToPost(i, 'heritage'));
                 } else if (category === 'chronicles' || category === 'battle') {
                     rawItems = (db.battles || []).map((i: any) => mapToPost(i, 'chronicles'));

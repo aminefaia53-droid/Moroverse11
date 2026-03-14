@@ -87,20 +87,27 @@ export default function DynamicEncyclopediaDisplay({ category, lang, emptyMessag
     }, [category]);
 
     const handleCardClick = (item: any, triggerTab?: 'video' | '3d') => {
+        // Defensive mapping for the FactSheet to prevent crashes on legacy data
+        const getName = (n: any, l: string) => {
+            if (typeof n === 'string') return n;
+            const target = l as 'ar' | 'en';
+            return n?.[target] || n?.ar || n?.en || '';
+        };
+
         const heritageItem: HeritageItem = {
-            id: item.id,
+            id: item.id || Math.random().toString(),
             slug: item.id,
             name: {
-                en: item.name?.en || item.name || '',
-                ar: item.name?.ar || item.name || ''
+                en: getName(item.name, 'en'),
+                ar: getName(item.name, 'ar')
             },
             city: {
-                en: item.city?.en || item.city || item.regionName?.en || item.regionName || '',
-                ar: item.city?.ar || item.city || item.regionName?.ar || item.regionName || ''
+                en: getName(item.city || item.regionName, 'en'),
+                ar: getName(item.city || item.regionName, 'ar')
             },
             history: {
-                en: item.history?.en || item.desc?.en || '',
-                ar: item.history?.ar || item.desc?.ar || ''
+                en: item.history?.en || (typeof item.desc === 'string' ? item.desc : item.desc?.en) || '',
+                ar: item.history?.ar || (typeof item.desc === 'string' ? item.desc : item.desc?.ar) || ''
             },
             foundation: item.foundation,
             visualSoul: item.visualSoul,
@@ -108,7 +115,7 @@ export default function DynamicEncyclopediaDisplay({ category, lang, emptyMessag
             video_url: item.videoUrl || undefined,
             model_url: item.modelUrl || undefined,
             gallery: item.gallery || undefined,
-            summary: typeof item.desc === 'string' ? item.desc : (item.desc?.en || item.desc?.ar),
+            summary: typeof item.desc === 'string' ? item.desc : (item.desc?.ar || item.desc?.en || ''),
             type: category === 'monument' ? 'landmark' : category,
             stats: {
                 year: item.foundation?.en || item.year,
@@ -175,9 +182,15 @@ export default function DynamicEncyclopediaDisplay({ category, lang, emptyMessag
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                 <AnimatePresence mode="popLayout">
                     {items.map((item, idx) => {
-                        const title = item.name?.[lang] || item.name?.ar || item.name?.en || item.name || '';
-                        const desc = item.desc?.[lang] || item.desc?.ar || item.desc?.en || (typeof item.desc === 'string' ? item.desc : '');
-                        const cityName = item.city?.[lang] || item.city?.ar || item.city?.en || item.city || item.regionName?.[lang] || item.regionName?.ar || '';
+                        const getName = (n: any, l: string) => {
+                            if (typeof n === 'string') return n;
+                            const target = l as 'ar' | 'en';
+                            return n?.[target] || n?.ar || n?.en || '';
+                        };
+
+                        const title = getName(item.name, lang);
+                        const desc = typeof item.desc === 'string' ? item.desc : (item.desc?.[lang] || item.desc?.ar || item.desc?.en || '');
+                        const cityName = getName(item.city || item.regionName, lang);
                         const subLabel = getSubCategoryLabel(item, category);
                         const hasVideo = !!item.videoUrl;
                         const has3DModel = !!item.modelUrl;
@@ -198,12 +211,21 @@ export default function DynamicEncyclopediaDisplay({ category, lang, emptyMessag
                                         src={item.imageUrl}
                                         alt={title}
                                         className="absolute inset-0 w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700"
+                                        onError={(e) => {
+                                            e.currentTarget.style.display = 'none';
+                                            const parent = e.currentTarget.parentElement;
+                                            if (parent) {
+                                                const fallback = parent.querySelector('.image-fallback');
+                                                if (fallback) fallback.classList.remove('hidden');
+                                            }
+                                        }}
                                     />
-                                ) : (
-                                    <div className="absolute inset-0 bg-gradient-to-br from-[#1A1A1A] to-[#0A0A0A] flex items-center justify-center">
-                                        <CategoryIcon category={category} />
-                                    </div>
-                                )}
+                                ) : null}
+
+                                {/* Fallback/Loading State */}
+                                <div className={`image-fallback absolute inset-0 bg-gradient-to-br from-[#1A1A1A] to-[#0A0A0A] flex items-center justify-center ${item.imageUrl ? 'hidden' : ''}`}>
+                                    <CategoryIcon category={category} />
+                                </div>
 
                                 {/* Subtle Glow Overlays */}
                                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />

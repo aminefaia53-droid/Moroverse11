@@ -273,11 +273,7 @@ export default function Home() {
             className="mb-24 text-center space-y-8"
           >
             <h3 className="text-5xl md:text-7xl font-serif text-[var(--primary)] uppercase tracking-normal md:tracking-wider font-black drop-shadow-sm text-glow leading-tight transition-colors duration-1000">
-              {lang === 'ar' ? (
-                <span className="font-arabic text-[var(--primary)]/80">معالم مغربية</span>
-              ) : (
-                "Majestic Landmarks"
-              )}
+              {t.sections.landmarks}
             </h3>
             <p className="text-[var(--foreground)]/60 max-w-4xl mx-auto text-xl font-light tracking-wide leading-relaxed uppercase drop-shadow-md transition-colors duration-1000">
               {t.sections.landmarksDesc}
