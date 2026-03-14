@@ -588,12 +588,13 @@
         "ar": "مدينة مغربية عريقة.",
         "en": "A historic Moroccan city."
       },
-      "imageUrl": null,
+      "imageUrl": "/images/uploads/1773507924247-a3d73c3b9b426ae6ea26c9fde9dc9a38-(1).jpg",
       "regionName": {
         "ar": "المغرب",
         "en": "Morocco"
       },
-      "isPending": true
+      "isPending": false,
+      "seo": {}
     },
     {
       "id": "fez",
