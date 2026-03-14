@@ -64,12 +64,13 @@
         "ar": "معلمة في Rabat بانتظار التوثيق.",
         "en": "Landmark in Rabat awaiting documentation."
       },
-      "imageUrl": null,
+      "imageUrl": "/images/uploads/1773504936035-86d474594a0b50a673fa7400752d9496.jpg",
       "city": {
         "ar": "Rabat",
         "en": "Rabat"
       },
-      "isPending": true
+      "isPending": false,
+      "seo": {}
     },
     {
       "id": "fez-al-quaraouiyine",
