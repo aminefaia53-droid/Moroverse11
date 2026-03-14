@@ -81,53 +81,7 @@ export default function HeritageFactSheet({ item, isOpen, onClose, lang }: Herit
                         onClick={(e) => e.stopPropagation()}
                         className="relative w-full max-w-4xl bg-[#080808] rounded-2xl shadow-[0_30px_90px_-15px_rgba(0,0,0,1),0_0_50px_rgba(197,160,89,0.1)] border border-[#c5a059]/30 overflow-y-auto max-h-[90vh] archive-seal-container"
                     >
-                        {item.isPending ? (
-                            <div className="p-12 md:p-20 flex flex-col items-center justify-center text-center relative overflow-hidden min-h-[500px]">
-                                <div className="absolute inset-0 opacity-[0.03] pointer-events-none scale-150 rotate-12" style={{ backgroundImage: "url('https://www.transparenttextures.com/patterns/arabesque.png')" }} />
-                                <div className="absolute top-0 left-0 w-40 h-40 bg-primary/5 blur-[100px] rounded-full" />
-                                <div className="absolute bottom-0 right-0 w-64 h-64 bg-[#c5a059]/5 blur-[120px] rounded-full" />
-
-                                <div className="relative z-10 mb-10">
-                                    <div className="inline-block p-8 rounded-full bg-black shadow-[0_0_40px_rgba(197,160,89,0.2)] border border-[#c5a059]/40 mb-8 relative">
-                                        <div className="absolute inset-0 bg-[#c5a059]/20 animate-ping rounded-full opacity-20" />
-                                        <Shield className="w-16 h-16 text-[#c5a059]" />
-                                    </div>
-                                    <h2 className="text-4xl md:text-5xl font-black text-white font-arabic mb-4 tracking-tight">
-                                        <TranslatedText arabicText={item.name.ar} />
-                                    </h2>
-                                    <div className="flex items-center justify-center gap-3 text-primary text-xs font-black uppercase tracking-[0.4em] mb-8">
-                                        <ShieldCheck className="w-4 h-4" />
-                                        <span>{lang === 'ar' ? 'سجل سيادي محمي' : 'Sovereign Protected Record'}</span>
-                                    </div>
-                                </div>
-
-                                <div className="max-w-xl p-8 rounded-3xl bg-black/60 border border-[#c5a059]/20 backdrop-blur-sm relative z-10">
-                                    <p className="text-base md:text-lg text-white/70 leading-relaxed font-serif italic mb-8 text-center">
-                                        {lang === 'ar'
-                                            ? 'يخضع هذا السجل حالياً لعملية التوثيق الملكي لضمان أقصى درجات الدقة التاريخية والجغرافية. سيتم الكشف عن المحتوى الكامل بمجرد اكتمال التدقيق.'
-                                            : 'This record is currently undergoing documentation to ensure peak historical accuracy. Full content will be unveiled upon completion.'}
-                                    </p>
-                                    <div className="grid grid-cols-2 gap-4 text-left">
-                                        <div className="p-4 rounded-2xl bg-white/5 border border-white/5">
-                                            <div className="text-[10px] font-black text-[#c5a059] uppercase tracking-widest mb-1">{lang === 'ar' ? 'المدينة' : 'Location'}</div>
-                                            <div className="text-sm font-bold text-white"><TranslatedText arabicText={item.city.ar} /></div>
-                                        </div>
-                                        <div className="p-4 rounded-2xl bg-white/5 border border-white/5">
-                                            <div className="text-[10px] font-black text-[#c5a059] uppercase tracking-widest mb-1">{lang === 'ar' ? 'الحالة' : 'Status'}</div>
-                                            <div className="text-sm font-bold text-primary">{lang === 'ar' ? 'قيد التوثيق' : 'Validating'}</div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <button
-                                    onClick={onClose}
-                                    className="mt-12 px-12 py-4 rounded-full bg-[#c5a059]/10 border border-[#c5a059]/40 text-[#c5a059] hover:bg-[#c5a059] hover:text-black transition-all tracking-[0.3em] uppercase text-xs font-black relative z-10"
-                                >
-                                    {lang === 'ar' ? 'إغلاق الملف' : 'Close Document'}
-                                </button>
-                            </div>
-                        ) : (
-                            <>
+                        <>
                                 <div className="h-[450px] bg-black flex flex-col items-center justify-start relative overflow-hidden">
                                     <div className="absolute inset-0 z-0">
                                         <img
@@ -287,7 +241,6 @@ export default function HeritageFactSheet({ item, isOpen, onClose, lang }: Herit
                                     </div>
                                 </div>
                             </>
-                        )}
                     </motion.div>
                 </div>
             )}
