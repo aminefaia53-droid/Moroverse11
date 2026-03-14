@@ -136,12 +136,13 @@
         "ar": "معلمة في Fez بانتظار التوثيق.",
         "en": "Landmark in Fez awaiting documentation."
       },
-      "imageUrl": null,
+      "imageUrl": "/images/uploads/1773505263193-3ce456ecceccc08684b94fc611f2a7c3.jpg",
       "city": {
         "ar": "Fez",
         "en": "Fez"
       },
-      "isPending": true
+      "isPending": false,
+      "seo": {}
     },
     {
       "id": "fez-chouara-tannery",
