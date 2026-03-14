@@ -244,12 +244,13 @@
         "ar": "معلمة في Marrakech بانتظار التوثيق.",
         "en": "Landmark in Marrakech awaiting documentation."
       },
-      "imageUrl": null,
+      "imageUrl": "/images/uploads/1773507645601-9c1726318caa358cd0bdff02694bd895.jpg",
       "city": {
         "ar": "Marrakech",
         "en": "Marrakech"
       },
-      "isPending": true
+      "isPending": false,
+      "seo": {}
     },
     {
       "id": "meknes-bab-mansour",
