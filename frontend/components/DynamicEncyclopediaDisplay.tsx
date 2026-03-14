@@ -176,7 +176,8 @@ export default function DynamicEncyclopediaDisplay({ category, lang, emptyMessag
         );
     }
 
-    const show3D = should3DButtonShow(category);
+    const show3D = false; // Always false as monument category returns null above
+    if (category === ('monument' as any)) return null;
 
     return (
         <div className="w-full">

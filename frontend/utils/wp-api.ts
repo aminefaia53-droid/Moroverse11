@@ -18,28 +18,11 @@ export interface Destination {
 import generatedContent from '../data/generated-content.json';
 
 const TOURISM_MAPPING: Record<TourismType, string[]> = {
-    dark: [
-        'casablanca-merchich-region',
-        'meknes-habs-qara',
-        'agadir-agadir-oufella'
-    ],
-    cultural: [
-        'fes-al-qarawiyyin-mosque',
-        'marrakech-jemaa-el-fnaa',
-        'meknes-volubilis'
-    ],
-    cinematic: [
-        'ouarzazate-atlas-studios',
-        'ouarzazate-ait-benhaddou'
-    ],
-    adventure: [
-        'sahara-dakhla-bay',
-        'marrakech-palmeraie'
-    ],
-    beach: [
-        'agadir-agadir-marina',
-        'sahara-dakhla-bay'
-    ]
+    dark: [],
+    cultural: [],
+    cinematic: [],
+    adventure: [],
+    beach: []
 };
 
 export async function fetchTourismDestinations(type: TourismType): Promise<Destination[]> {
@@ -75,7 +58,7 @@ export async function fetchTourismDestinations(type: TourismType): Promise<Desti
 
     // Fallback: Read REAL data directly from generated-content.json based on mappings
     const targetIds = TOURISM_MAPPING[type] || [];
-    const allLandmarks = generatedContent.landmarks || [];
+    const allLandmarks = (generatedContent.landmarks as any[]) || [];
 
     const results: Destination[] = [];
 
