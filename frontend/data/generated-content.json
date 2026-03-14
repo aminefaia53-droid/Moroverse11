@@ -100,12 +100,13 @@
         "ar": "معلمة في Fez بانتظار التوثيق.",
         "en": "Landmark in Fez awaiting documentation."
       },
-      "imageUrl": null,
+      "imageUrl": "/images/uploads/1773505047901-e659eb8aca5b268963a3b07cce49123b.jpg",
       "city": {
         "ar": "Fez",
         "en": "Fez"
       },
-      "isPending": true
+      "isPending": false,
+      "seo": {}
     },
     {
       "id": "fez-attarine-madrasa",
