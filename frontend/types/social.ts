@@ -33,11 +33,16 @@ export interface Post {
     year?: string;
     era?: string;
     dynasty?: string;
+    city?: string; // Appears in biography and heritage
+    field?: string; // Appears in biographies
+    notable_works?: string;
     combatants?: string;
     leaders?: string;
     outcome?: string;
     tactics?: string;
     impact?: string;
+    activities?: string[]; // Appears in tourism
+    best_time?: string; // Appears in tourism
 }
 
 export interface ViewportBounds {

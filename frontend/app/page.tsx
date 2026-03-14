@@ -7,11 +7,7 @@ import { motion } from "framer-motion";
 import { Globe, Crown, Sparkles, MapPin, Building2, Camera, Music, Palmtree, Waves, Mountain, Tent, Sunset, Compass, MoveRight, Activity } from "lucide-react";
 
 // Components
-import BattleDashboard from "../components/BattleDashboard";
-import CityGrid from "../components/CityGrid";
-import LandmarkGrid from "../components/LandmarkGrid";
-import TourismGrid from "../components/TourismGrid";
-import HistoricalFiguresGrid from "../components/HistoricalFiguresGrid";
+import DynamicEncyclopediaDisplay from "../components/DynamicEncyclopediaDisplay";
 import SmartSidebar from "../components/SmartSidebar";
 import CommunityPulse from "../components/community/CommunityPulse";
 
@@ -249,7 +245,7 @@ export default function Home() {
             <div className="w-64 h-1 bg-[var(--primary)]/20 mx-auto transition-colors duration-1000" />
           </div>
 
-          <CityGrid lang={lang} />
+          <DynamicEncyclopediaDisplay category="city" lang={lang} emptyMessageConfig={{ en: "Geography & Cities Archive is currently empty. Awaken the cities from the Dashboard.", ar: "أرشيف المدن والجغرافيا فارغ حالياً. قم بإضافة المدن العريقة من لوحة التحكم لمنصة العالم الرقمي." }} />
         </div>
       </section>
 
@@ -262,7 +258,7 @@ export default function Home() {
             <div className="w-64 h-1 bg-[var(--primary)]/20 mx-auto transition-colors duration-1000" />
           </div>
 
-          <BattleDashboard lang={lang} />
+          <DynamicEncyclopediaDisplay category="battle" lang={lang} emptyMessageConfig={{ en: "Records of Imperial Battles are resting. Summon them from the Dashboard.", ar: "سجلات المعارك الإمبراطورية ترقد بسلام. يمكنك إحياء بطولاتها من خلال لوحة التحكم الخاصة بك." }} />
         </div>
       </section>
 
@@ -289,7 +285,7 @@ export default function Home() {
             <div className="w-64 h-1.5 bg-[var(--primary)]/20 mx-auto rounded-full transition-colors duration-1000" />
           </motion.div>
 
-          <LandmarkGrid lang={lang} />
+          <DynamicEncyclopediaDisplay category="monument" lang={lang} emptyMessageConfig={{ en: "The majestic monuments await discovery. Add them from the Dashboard.", ar: "المعالم الشامخة تنتظر الاكتشاف حتى تقوم بإضافتها من لوحة التحكم وإظهار سحرها للمستكشفين." }} />
         </div>
       </section>
 
@@ -317,7 +313,7 @@ export default function Home() {
           </motion.div>
 
           {/* Grid Render */}
-          <TourismGrid lang={lang} />
+          <DynamicEncyclopediaDisplay category="tourism" lang={lang} emptyMessageConfig={{ en: "Elite tourism experiences are yet to be chartered. Design them in the Dashboard.", ar: "لم يتم تصميم تجارب السياحة (السياحة المظلمة والجيو-سياحة...) بعد. يمكنك هندستها من لوحة التحكم." }} />
         </div>
       </section>
 
@@ -344,7 +340,7 @@ export default function Home() {
             <div className="w-64 h-1.5 bg-primary/20 mx-auto rounded-full" />
           </motion.div>
 
-          <HistoricalFiguresGrid lang={lang} />
+          <DynamicEncyclopediaDisplay category="figure" lang={lang} emptyMessageConfig={{ en: "The luminaries of history are silent. Resurrect their legacy from the Dashboard.", ar: "أعلام وشخصيات التاريخ العظيمة صامتة بانتظارك. قم بتوثيق بطولاتهم ومسارهم من عبر لوحة التحكم." }} />
         </div>
       </section>
 

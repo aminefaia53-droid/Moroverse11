@@ -34,12 +34,17 @@ export interface HeritageItem {
     stats?: {
         year?: string;
         era?: string;
+        dynasty?: string;
+        field?: string;
+        notable_works?: string;
         combatants?: { ar: string; en: string };
         leaders?: { ar: string; en: string };
         outcome?: { ar: string; en: string };
         tactics?: { ar: string; en: string };
         impact?: { ar: string; en: string };
         casualties?: { ar: string; en: string };
+        activities?: string[];
+        best_time?: string;
     };
 }
 
