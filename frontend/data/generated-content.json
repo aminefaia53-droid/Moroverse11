@@ -190,12 +190,13 @@
         "ar": "معلمة في Marrakech بانتظار التوثيق.",
         "en": "Landmark in Marrakech awaiting documentation."
       },
-      "imageUrl": null,
+      "imageUrl": "/images/uploads/1773505995418-88e812d0fbead5a7959dde2fadc8dd4d.jpg",
       "city": {
         "ar": "Marrakech",
         "en": "Marrakech"
       },
-      "isPending": true
+      "isPending": false,
+      "seo": {}
     },
     {
       "id": "marrakech-badi-palace",
