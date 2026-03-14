@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
     X, MapPin, Compass, Info, Sparkles, Building2, Crown,
-    History, Shield, Mountain, Waves, ShieldCheck, Box
+    History, Shield, Mountain, Waves, ShieldCheck, Box, Play, Image as ImageIcon
 } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import dynamic from 'next/dynamic';
@@ -25,9 +25,12 @@ export interface HeritageItem {
     visualSoul?: string;
     imageUrl?: string;
     model_url?: string; // New field from Supabase
+    video_url?: string;
+    gallery?: string[];
     isPending?: boolean;
-    type?: 'landmark' | 'battle' | 'figure' | 'post';
+    type?: 'landmark' | 'battle' | 'figure' | 'post' | string;
     content?: string;
+    summary?: string;
     stats?: {
         year?: string;
         era?: string;
@@ -65,15 +68,34 @@ const FALLBACK_IMG = 'https://images.unsplash.com/photo-1539020140153-e479b8c22e
 export default function HeritageFactSheet({ item, isOpen, onClose, lang }: HeritageFactSheetProps) {
     const router = useRouter();
     const [show3D, setShow3D] = useState(false);
+    const [isFullContent, setIsFullContent] = useState(false);
 
     if (!item) return null;
 
-    const historyText = typeof item.history === 'object'
-        ? item.history.ar
-        : (item.history || item.content || '');
+    const fullContentText = item.content || item.history;
+    const summaryText = item.summary || fullContentText;
+    
+    // Choose which text to show based on toggle
+    const rawText = isFullContent ? fullContentText : summaryText;
+    
+    const historyText = typeof rawText === 'object'
+        ? rawText.ar
+        : (rawText || '');
 
     const slug = item.slug || item.id;
     const isRTL = lang === 'ar';
+
+    const triggerAIAnalysis = () => {
+        window.dispatchEvent(new CustomEvent('moroverse-ai-context', {
+            detail: {
+                itemData: {
+                    name: item.name,
+                    type: item.type,
+                    content: historyText
+                }
+            }
+        }));
+    };
 
     return (
         <AnimatePresence>
@@ -210,12 +232,31 @@ export default function HeritageFactSheet({ item, isOpen, onClose, lang }: Herit
                                     </div>
                                 </div>
 
-                                {/* Narrative Text */}
+                                {/* Narrative Text & Toggles */}
                                 <div>
-                                    <h4 className={`flex items-center gap-3 text-[10px] font-black uppercase tracking-[0.4em] text-[#c5a059] mb-8 ${isRTL ? 'flex-row-reverse text-right' : ''}`}>
-                                        <Info className="w-4 h-4" />
-                                        {isRTL ? 'السردية التاريخية الملحمية' : 'EPIC HISTORICAL NARRATIVE'}
-                                    </h4>
+                                    <div className={`flex items-center justify-between mb-8 ${isRTL ? 'flex-row-reverse' : ''}`}>
+                                        <h4 className={`flex items-center gap-3 text-[10px] font-black uppercase tracking-[0.4em] text-[#c5a059] ${isRTL ? 'flex-row-reverse text-right' : ''}`}>
+                                            <Info className="w-4 h-4" />
+                                            {isRTL ? 'السردية التاريخية الملحمية' : 'EPIC HISTORICAL NARRATIVE'}
+                                        </h4>
+                                        
+                                        {/* Information Toggle */}
+                                        <div className="flex bg-black/40 rounded-full p-1 border border-[#c5a059]/30">
+                                            <button 
+                                                onClick={() => setIsFullContent(false)}
+                                                className={`px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest transition-all ${!isFullContent ? 'bg-[#c5a059] text-black' : 'text-white/40 hover:text-white'}`}
+                                            >
+                                                {isRTL ? 'ملخص' : 'Summary'}
+                                            </button>
+                                            <button 
+                                                onClick={() => setIsFullContent(true)}
+                                                className={`px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest transition-all ${isFullContent ? 'bg-[#c5a059] text-black' : 'text-white/40 hover:text-white'}`}
+                                            >
+                                                {isRTL ? 'المقال الكامل' : 'Full Article'}
+                                            </button>
+                                        </div>
+                                    </div>
+                                    
                                     <div className="space-y-8">
                                         <p className="text-2xl md:text-3xl text-white/95 leading-[1.6] font-arabic italic text-justify tracking-tight">
                                             <TranslatedText arabicText={historyText || (isRTL ? 'معلمة ترمز لشموخ المملكة وعراقتها عبر العصور.' : 'A monumental symbol of the Kingdom\'s grandeur.')} />
@@ -232,6 +273,46 @@ export default function HeritageFactSheet({ item, isOpen, onClose, lang }: Herit
                                         )}
                                     </div>
                                 </div>
+
+                                {/* Media Hub Section */}
+                                {(item.video_url || (item.gallery && item.gallery.length > 0)) && (
+                                    <div className="pt-8 border-t border-[#c5a059]/20">
+                                        <h4 className={`flex items-center gap-3 text-[10px] font-black uppercase tracking-[0.4em] text-[#c5a059] mb-6 ${isRTL ? 'flex-row-reverse text-right' : ''}`}>
+                                            <ImageIcon className="w-4 h-4" />
+                                            {isRTL ? 'سجلات الوسائط المتعددة' : 'MULTIMEDIA ARCHIVES'}
+                                        </h4>
+                                        <div className="space-y-6">
+                                            {/* Video Feature */}
+                                            {item.video_url && (
+                                                <a href={item.video_url} target="_blank" rel="noopener noreferrer" className="group relative block w-full h-48 rounded-3xl overflow-hidden border border-white/10 hover:border-[#c5a059] transition-all duration-500">
+                                                    <div className="absolute inset-0 bg-black/60 group-hover:bg-black/40 transition-colors z-10 flex flex-col items-center justify-center">
+                                                        <div className="w-16 h-16 rounded-full bg-[#c5a059] text-black flex items-center justify-center shadow-[0_0_30px_rgba(197,160,89,0.5)] group-hover:scale-110 transition-transform">
+                                                            <Play className="w-8 h-8 ml-1" />
+                                                        </div>
+                                                        <span className="text-white mt-4 font-black uppercase tracking-[0.2em] text-xs">
+                                                            {isRTL ? 'تشغيل المادة الوثائقية' : 'Play Documentary'}
+                                                        </span>
+                                                    </div>
+                                                    <img src={item.imageUrl || FALLBACK_IMG} alt="Video Thumbnail" className="absolute inset-0 w-full h-full object-cover opacity-50 grayscale group-hover:grayscale-0 transition-all duration-700" />
+                                                </a>
+                                            )}
+                                            
+                                            {/* Gallery Grid */}
+                                            {item.gallery && item.gallery.length > 0 && (
+                                                <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                                                    {item.gallery.map((img, idx) => (
+                                                        <div key={idx} className="aspect-square rounded-2xl overflow-hidden border border-white/10 relative group">
+                                                            <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity z-10 flex items-center justify-center">
+                                                                <ImageIcon className="w-6 h-6 text-[#c5a059]" />
+                                                            </div>
+                                                            <img src={img} alt={`Gallery ${idx}`} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+                                                        </div>
+                                                    ))}
+                                                </div>
+                                            )}
+                                        </div>
+                                    </div>
+                                )}
                             </div>
 
                             {/* Right Action/UI Column */}
@@ -276,6 +357,17 @@ export default function HeritageFactSheet({ item, isOpen, onClose, lang }: Herit
                                             </div>
                                         </button>
                                     )}
+
+                                    {/* AI Context Bridge */}
+                                    <button
+                                        onClick={triggerAIAnalysis}
+                                        className="w-full py-6 rounded-[30px] bg-blue-900/20 text-blue-400 border border-blue-500/30 hover:bg-blue-900/40 hover:border-blue-500 hover:shadow-[0_0_30px_rgba(59,130,246,0.3)] flex items-center justify-center gap-4 transition-all duration-500 group"
+                                    >
+                                        <Sparkles className="w-6 h-6 group-hover:scale-110 transition-transform duration-500" />
+                                        <span className="text-sm font-black uppercase tracking-[0.2em]">
+                                            {isRTL ? 'تحليل عبر الذكاء الاصطناعي' : 'Analyze with AI Assistant'}
+                                        </span>
+                                    </button>
 
                                     {/* Primary Archive Connection */}
                                     <button

@@ -14,16 +14,30 @@ export interface Profile {
 export interface Post {
     id: string;
     user_id: string;
-    content: string;
+    content: string; // Used for "Full Article"
+    summary?: string; // Used for "Quick Summary"
     image_url: string | null;
     model_url?: string | null;
+    video_url?: string | null;
+    gallery?: string[] | null;
     location_name: string | null;
-    location_type: 'monument' | 'city' | 'hidden_gem';
+    location_type: 'geography' | 'heritage' | 'chronicles' | 'biographies' | 'tourism' | 'monument' | 'city' | 'hidden_gem' | string;
     lat: number | null;
     lng: number | null;
     likes_count: number;
     created_at: string;
     profiles?: Profile;
+    
+    // Additional Dynamic Dashboard Fields
+    slug?: string;
+    year?: string;
+    era?: string;
+    dynasty?: string;
+    combatants?: string;
+    leaders?: string;
+    outcome?: string;
+    tactics?: string;
+    impact?: string;
 }
 
 export interface ViewportBounds {
