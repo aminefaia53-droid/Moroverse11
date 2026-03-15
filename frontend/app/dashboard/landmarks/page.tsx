@@ -56,6 +56,7 @@ async function uploadAssetToSupabase(
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ fileName: file.name }),
+            credentials: 'include', // Ensure session cookies are sent
         });
         const data = await res.json();
         if (!res.ok || !data.success || !data.signedUrl) {

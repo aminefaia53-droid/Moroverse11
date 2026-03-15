@@ -19,18 +19,32 @@ export async function POST(request: Request) {
 
         // Verify admin session
         const { data: { user }, error: authError } = await supabase.auth.getUser();
+        
         if (authError || !user) {
-            console.error('[3D SIGN URL] Auth error:', authError);
-            return NextResponse.json({ success: false, message: 'Authentication required' }, { status: 401 });
+            console.error('[3D SIGN URL] Auth check failed:', { 
+                error: authError?.message, 
+                errorCode: authError?.status,
+                hasUser: !!user 
+            });
+            return NextResponse.json({ 
+                success: false, 
+                message: 'Authentication required',
+                debugNotice: authError ? `Auth Error: ${authError.message}` : 'No session found'
+            }, { status: 401 });
         }
 
-        const { data: profile } = await supabase
+        const { data: profile, error: profileError } = await supabase
             .from('profiles')
             .select('is_admin')
             .eq('id', user.id)
             .single();
 
-        if (!profile?.is_admin) {
+        if (profileError || !profile?.is_admin) {
+            console.error('[3D SIGN URL] Admin check failed:', { 
+                userId: user.id, 
+                isAdmin: profile?.is_admin,
+                error: profileError?.message 
+            });
             return NextResponse.json({ success: false, message: 'Admin access required' }, { status: 403 });
         }
 
