@@ -78,7 +78,7 @@ export default function Monument3DViewer({ modelUrl, onClose, locationName, onLo
     }, []);
 
     return (
-        <div className="absolute inset-0 w-full h-full z-10 flex flex-col items-center justify-center bg-gradient-to-br from-[#050B14] via-[#0A1128] to-[#1F0935]">
+        <div className="fixed inset-0 w-full h-screen z-[999] flex flex-col items-center justify-center bg-gradient-to-br from-[#050B14] via-[#0A1128] to-[#1F0935]">
             {/* Header / Controls */}
             <div className="absolute top-0 inset-x-0 p-4 md:p-6 z-20 flex justify-between items-center bg-gradient-to-b from-black/90 to-transparent">
                 <div className="flex flex-col">

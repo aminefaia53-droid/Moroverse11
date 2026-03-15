@@ -74,9 +74,6 @@ const FALLBACK_IMG = 'https://images.unsplash.com/photo-1539020140153-e479b8c22e
 export default function HeritageFactSheet({ item, isOpen, onClose, lang }: HeritageFactSheetProps) {
     const router = useRouter();
     const [show3D, setShow3D] = useState(false);
-    const [mount3D, setMount3D] = useState(false);
-    const [is3DLoaded, setIs3DLoaded] = useState(false);
-    const [is3DStalled, setIs3DStalled] = useState(false);
     const [isFullContent, setIsFullContent] = useState(false);
     const scrollContainerRef = useRef<HTMLDivElement>(null);
 
@@ -84,9 +81,6 @@ export default function HeritageFactSheet({ item, isOpen, onClose, lang }: Herit
     useEffect(() => {
         if (!isOpen) {
             setShow3D(false);
-            setMount3D(false);
-            setIs3DLoaded(false);
-            setIs3DStalled(false);
         }
     }, [isOpen, item?.id]);
 
@@ -103,15 +97,7 @@ export default function HeritageFactSheet({ item, isOpen, onClose, lang }: Herit
         return () => { document.body.style.overflow = ''; };
     }, [isOpen]);
 
-    // Strict WebGL Lazy Loading Pipeline
-    useEffect(() => {
-        if (show3D) {
-            const timer = setTimeout(() => setMount3D(true), 500);
-            return () => clearTimeout(timer);
-        } else {
-            setMount3D(false);
-        }
-    }, [show3D]);
+
 
     if (!item) return null;
 
@@ -119,7 +105,8 @@ export default function HeritageFactSheet({ item, isOpen, onClose, lang }: Herit
         if (!val) return '';
         if (typeof val === 'string') return val;
         const target = l as 'ar' | 'en';
-        return val[target] || val.ar || val.en || '';
+        // safely extract avoiding undefined errors on nested objects
+        return val?.[target] || val?.ar || val?.en || '';
     };
 
     const isRTL = lang === 'ar';
@@ -175,7 +162,16 @@ export default function HeritageFactSheet({ item, isOpen, onClose, lang }: Herit
                 <div className="fixed inset-0 z-[100] overflow-y-auto bg-black/95 backdrop-blur-3xl" onClick={onClose}>
                     <div className="min-h-full py-8 md:py-16 px-4 md:px-8 flex items-center justify-center">
 
-                    {/* Modal */}
+                    {/* Strict 3D Viewer Isolation - Rendered completely outside the Fact Sheet Box */}
+                    {show3D && item.model_url && (
+                        <Monument3DViewer 
+                            modelUrl={item.model_url}
+                            locationName={isRTL ? getT(item.name, 'ar') || '' : getT(item.name, 'en') || ''}
+                            onClose={() => setShow3D(false)}
+                        />
+                    )}
+
+                    {/* Modal Box */}
                     <motion.div
                         ref={scrollContainerRef}
                         initial={{ opacity: 0, scale: 0.92, y: 40 }}
@@ -188,34 +184,7 @@ export default function HeritageFactSheet({ item, isOpen, onClose, lang }: Herit
                         {/* ── Header Image & Isolated 3D Canvas ─────────────────────────────────────── */}
                         <div className="min-h-[350px] md:h-[450px] bg-black flex flex-col items-center justify-center relative overflow-hidden shrink-0">
                             
-                            {/* Strict 3D Viewer Isolation with Progressive Enhancement */}
-                            {show3D && item.model_url && !is3DStalled && (
-                                <div className={`absolute inset-0 z-50 bg-[#050B14] flex flex-col items-center justify-center transition-opacity duration-1000 ${is3DLoaded ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
-                                    <Monument3DViewer 
-                                        modelUrl={item.model_url}
-                                        locationName={isRTL ? item.name.ar : item.name.en}
-                                        onClose={() => setShow3D(false)}
-                                        onLoaded={() => setIs3DLoaded(true)}
-                                        onStall={() => {
-                                            console.warn("3D Engine Stalled. Reverting to high-res archive imagery.");
-                                            setIs3DStalled(true);
-                                            setShow3D(false);
-                                        }}
-                                    />
-                                </div>
-                            )}
-
-                            {/* Global Spinner for 3D Initializing */}
-                            {show3D && !is3DLoaded && !is3DStalled && (
-                                <div className="absolute inset-0 z-[60] flex flex-col items-center justify-center bg-black/40 backdrop-blur-sm pointer-events-none">
-                                    <div className="flex flex-col items-center gap-4">
-                                        <div className="w-16 h-16 rounded-full border-t-2 border-l-2 border-[#C5A059] animate-spin shadow-[0_0_30px_rgba(197,160,89,0.8)]" />
-                                        <span className="text-[#C5A059] text-[10px] font-black uppercase tracking-[0.3em] animate-pulse">
-                                            {isRTL ? 'تحميل المحرك ثلاثي الأبعاد...' : 'Summoning 3D Relic...'}
-                                        </span>
-                                    </div>
-                                </div>
-                            )}
+                            {/* The 3D Renderer is no longer inline. Content remains stable and fast. */}
 
                             <div className="absolute inset-0 z-0 bg-[#111]">
                                 <img

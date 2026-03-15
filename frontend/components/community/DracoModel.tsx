@@ -81,11 +81,11 @@ export default function DracoModel({ url, wireframe = false }: DracoModelProps) 
                     }
                 });
                 
-                // Clear the GLTF from cache so it doesn't pile up
-                useGLTF.clear(url);
+                // Note: Deliberately removed useGLTF.clear(url) to prevent race condition crashes
+                // when unmounting and quickly remounting the 3D component.
             }
         };
-    }, [normalizedScene, url]);
+    }, [normalizedScene]);
 
     return (
         <group ref={group} dispose={null}>
