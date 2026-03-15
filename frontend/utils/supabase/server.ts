@@ -2,12 +2,15 @@ import { createServerClient } from '@supabase/ssr'
 import { cookies } from 'next/headers'
 
 // Standard client for user-authenticated requests (uses ANON key)
+// ⚠️ MUST use the ANON key to correctly verify user session cookies.
 export async function createClient() {
     const cookieStore = await cookies()
 
-    const rawUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-    const rawKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+    // Server-side can check both prefixed and non-prefixed versions
+    const rawUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || process.env.SUPABASE_URL;
+    const rawKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || process.env.SUPABASE_ANON_KEY;
 
+    // Robust check: must be a string starting with http, and not the literal string "undefined"
     const isValidUrl = rawUrl && typeof rawUrl === 'string' && rawUrl.startsWith('http') && rawUrl !== 'undefined';
     const isValidKey = rawKey && typeof rawKey === 'string' && rawKey.length > 10 && rawKey !== 'undefined';
 
@@ -18,7 +21,8 @@ export async function createClient() {
         console.error("❌ SUPABASE SERVER AUTH ERROR:\n" +
             "Public environment variables (NEXT_PUBLIC_SUPABASE_URL/ANON_KEY) are missing on the server.\n" +
             "This will cause 401 errors during the authentication handshake for 3D uploads.\n" +
-            "Please ensure these are set in your Vercel Project Settings.");
+            "Current URL: " + (rawUrl ? "Found (masked)" : "MISSING") + "\n" +
+            "Current Key: " + (rawKey ? "Found (masked)" : "MISSING"));
     }
 
     return createServerClient(
@@ -46,6 +50,7 @@ export async function createClient() {
 // Higher-privilege client for server-side operations (uses SERVICE_ROLE key)
 // ⚠️ WARNING: Never use this client to verify user sessions or return to the browser.
 export async function createAdminClient() {
+    // Admin client prefers SUPABASE_URL and REQUIRES SERVICE_ROLE_KEY
     const rawUrl = process.env.SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL;
     const rawKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
 
