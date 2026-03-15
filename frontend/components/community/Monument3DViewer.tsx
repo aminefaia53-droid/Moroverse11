@@ -1,6 +1,6 @@
 "use client";
 
-import React, { Suspense } from 'react';
+import React, { Suspense, useEffect, useState } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls, Environment, PerspectiveCamera, Html, useProgress, Preload } from '@react-three/drei';
 import { useControls, Leva } from 'leva';
@@ -58,8 +58,17 @@ export default function Monument3DViewer({ modelUrl, onClose, locationName }: Mo
         autoRotateSpeed: { value: 0.8, min: 0, max: 5, step: 0.1 }
     });
 
+    const [isMobile, setIsMobile] = useState(false);
+
+    useEffect(() => {
+        const checkMobile = () => setIsMobile(window.innerWidth < 768);
+        checkMobile();
+        window.addEventListener('resize', checkMobile);
+        return () => window.removeEventListener('resize', checkMobile);
+    }, []);
+
     return (
-        <div className="fixed top-0 left-0 w-full h-[100dvh] z-[150] flex flex-col items-center justify-center bg-gradient-to-br from-[#050B14] via-[#0A1128] to-[#1F0935]">
+        <div className="fixed top-0 left-0 w-full h-[100dvh] z-[9999] flex flex-col items-center justify-center bg-gradient-to-br from-[#050B14] via-[#0A1128] to-[#1F0935]">
             {/* Zellij Pattern Overlay */}
             <div className="absolute inset-0 opacity-10 mix-blend-overlay pointer-events-none" style={{ backgroundImage: "url('https://www.transparenttextures.com/patterns/arabesque.png')" }} />
             
@@ -84,7 +93,7 @@ export default function Monument3DViewer({ modelUrl, onClose, locationName }: Mo
 
             {/* 3D Canvas */}
             <div className="w-full h-full relative z-10">
-                <Canvas shadows dpr={[1, 2]} gl={{ antialias: true }}>
+                <Canvas shadows={!isMobile} dpr={isMobile ? [1, 1.5] : [1, 2]} gl={{ antialias: true }}>
                     <Suspense fallback={<Loader />}>
                         <PerspectiveCamera makeDefault position={[0, cameraHeight, 28]} fov={cameraFov} />
 
@@ -98,9 +107,9 @@ export default function Monument3DViewer({ modelUrl, onClose, locationName }: Mo
                             position={lightPosition}
                             intensity={lightIntensity}
                             color={lightColor}
-                            castShadow
-                            shadow-mapSize-width={2048}
-                            shadow-mapSize-height={2048}
+                            castShadow={!isMobile}
+                            shadow-mapSize-width={isMobile ? 1024 : 2048}
+                            shadow-mapSize-height={isMobile ? 1024 : 2048}
                         />
                         <directionalLight
                             position={[-10, 5, -10]}

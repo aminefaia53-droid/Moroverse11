@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
     X, MapPin, Compass, Info, Sparkles, Building2, Crown,
@@ -74,6 +74,19 @@ export default function HeritageFactSheet({ item, isOpen, onClose, lang }: Herit
     const router = useRouter();
     const [show3D, setShow3D] = useState(false);
     const [isFullContent, setIsFullContent] = useState(false);
+    const scrollContainerRef = useRef<HTMLDivElement>(null);
+
+    // Scroll Fix: Ensure the modal opens at the very top
+    useEffect(() => {
+        if (isOpen) {
+            // Scroll the window
+            window.scrollTo({ top: 0, behavior: 'instant' });
+            // Scroll the container if attached
+            if (scrollContainerRef.current) {
+                scrollContainerRef.current.scrollTop = 0;
+            }
+        }
+    }, [isOpen]);
 
     if (!item) return null;
 
@@ -127,6 +140,7 @@ export default function HeritageFactSheet({ item, isOpen, onClose, lang }: Herit
 
                     {/* Modal */}
                     <motion.div
+                        ref={scrollContainerRef}
                         initial={{ opacity: 0, scale: 0.92, y: 40 }}
                         animate={{ opacity: 1, scale: 1, y: 0 }}
                         exit={{ opacity: 0, scale: 0.9, y: 40 }}

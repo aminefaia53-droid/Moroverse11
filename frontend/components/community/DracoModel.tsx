@@ -61,6 +61,32 @@ export default function DracoModel({ url, wireframe = false }: DracoModelProps) 
         }
     }, [normalizedScene, wireframe]);
 
+    // Memory Management: Clear GPU resources when model unmounts
+    useEffect(() => {
+        return () => {
+            if (normalizedScene) {
+                // Clear geometries and materials to avoid black screen crash on mobile
+                normalizedScene.traverse((child: any) => {
+                    if (child.isMesh) {
+                        if (child.geometry) {
+                            child.geometry.dispose();
+                        }
+                        if (child.material) {
+                            if (Array.isArray(child.material)) {
+                                child.material.forEach((mat: any) => mat.dispose());
+                            } else {
+                                child.material.dispose();
+                            }
+                        }
+                    }
+                });
+                
+                // Clear the GLTF from cache so it doesn't pile up
+                useGLTF.clear(url);
+            }
+        };
+    }, [normalizedScene, url]);
+
     return (
         <group ref={group} dispose={null}>
             <primitive object={normalizedScene} castShadow receiveShadow />
