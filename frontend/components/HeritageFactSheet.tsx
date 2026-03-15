@@ -127,7 +127,7 @@ export default function HeritageFactSheet({ item, isOpen, onClose, lang }: Herit
     return (
         <AnimatePresence>
             {isOpen && (
-                <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-8">
+                <div className="fixed inset-0 z-[100] flex items-start justify-center pt-8 md:pt-12 px-4 md:px-8 pb-4 overflow-y-auto">
 
                     {/* Backdrop */}
                     <motion.div
@@ -145,11 +145,11 @@ export default function HeritageFactSheet({ item, isOpen, onClose, lang }: Herit
                         animate={{ opacity: 1, scale: 1, y: 0 }}
                         exit={{ opacity: 0, scale: 0.9, y: 40 }}
                         onClick={e => e.stopPropagation()}
-                        className="relative w-full max-w-5xl bg-[#080808] rounded-3xl shadow-[0_30px_90px_-15px_rgba(0,0,0,1),0_0_50px_rgba(197,160,89,0.1)] border border-[#c5a059]/30 overflow-y-auto max-h-[92vh] archive-seal-container"
+                        className="relative w-full max-w-5xl bg-[#080808] rounded-3xl shadow-[0_30px_90px_-15px_rgba(0,0,0,1),0_0_50px_rgba(197,160,89,0.1)] border border-[#c5a059]/30 mb-auto archive-seal-container"
                         dir={isRTL ? 'rtl' : 'ltr'}
                     >
                         {/* ── Header Image ─────────────────────────────────────── */}
-                        <div className="h-[480px] bg-black flex flex-col items-center justify-start relative overflow-hidden">
+                        <div className="min-h-[350px] md:h-[450px] bg-black flex flex-col items-center justify-center relative overflow-hidden shrink-0">
                             <div className="absolute inset-0 z-0 bg-[#111]">
                                 <img
                                     src={item.imageUrl || FALLBACK_IMG}
@@ -181,15 +181,15 @@ export default function HeritageFactSheet({ item, isOpen, onClose, lang }: Herit
                             </div>
 
                             {/* Central Title/Hero */}
-                            <div className="relative z-20 text-center pt-28 px-8 max-w-4xl mx-auto">
+                            <div className="relative z-20 text-center px-4 md:px-8 max-w-4xl mx-auto flex flex-col items-center w-full">
                                 <motion.div
                                     initial={{ scale: 0.8, opacity: 0 }}
                                     animate={{ scale: 1, opacity: 1 }}
-                                    className="inline-block p-7 rounded-full bg-black/80 shadow-[0_0_50px_rgba(197,160,89,0.5)] border border-[#c5a059] mb-8"
+                                    className="inline-block p-5 md:p-7 rounded-full bg-black/80 shadow-[0_0_50px_rgba(197,160,89,0.5)] border border-[#c5a059] mb-6 md:mb-8"
                                 >
-                                    <SoulIcon soul={item.visualSoul} className="w-14 h-14 text-[#c5a059]" />
+                                    <SoulIcon soul={item.visualSoul} className="w-10 h-10 md:w-14 md:h-14 text-[#c5a059]" />
                                 </motion.div>
-                                <h2 className="text-5xl md:text-7xl font-black text-white mb-6 tracking-tighter drop-shadow-[0_10px_10px_rgba(0,0,0,0.8)] leading-[1.1]">
+                                <h2 className="text-4xl md:text-7xl font-black text-white mb-6 md:mb-8 tracking-tighter drop-shadow-[0_10px_10px_rgba(0,0,0,0.8)] leading-[1.1]">
                                     {nameText}
                                 </h2>
                                 <div className="flex items-center justify-center gap-4 text-[#c5a059] bg-[#c5a059]/10 px-6 py-2 rounded-full border border-[#c5a059]/30 w-fit mx-auto backdrop-blur-md">

@@ -59,12 +59,20 @@ export default function Monument3DViewer({ modelUrl, onClose, locationName }: Mo
     });
 
     const [isMobile, setIsMobile] = useState(false);
+    const [mounted, setMounted] = useState(false);
 
     useEffect(() => {
         const checkMobile = () => setIsMobile(window.innerWidth < 768);
         checkMobile();
         window.addEventListener('resize', checkMobile);
-        return () => window.removeEventListener('resize', checkMobile);
+        
+        // Defer 3D rendering heavily by 400ms to allow CSS transitions to finish un-blocked
+        const timer = setTimeout(() => setMounted(true), 400);
+        
+        return () => {
+            window.removeEventListener('resize', checkMobile);
+            clearTimeout(timer);
+        };
     }, []);
 
     return (
@@ -91,50 +99,63 @@ export default function Monument3DViewer({ modelUrl, onClose, locationName }: Mo
                 </button>
             </div>
 
-            {/* 3D Canvas */}
-            <div className="w-full h-full relative z-10">
-                <Canvas shadows={!isMobile} dpr={isMobile ? [1, 1.5] : [1, 2]} gl={{ antialias: true }}>
-                    <Suspense fallback={<Loader />}>
-                        <PerspectiveCamera makeDefault position={[0, cameraHeight, 28]} fov={cameraFov} />
+            {/* 3D Canvas Heavy Node */}
+            <div className="w-full h-full relative z-10 flex items-center justify-center">
+                {!mounted && (
+                    <div className="flex flex-col items-center gap-4">
+                        <div className="w-16 h-16 rounded-full border-t-2 border-l-2 border-[#C5A059] animate-spin shadow-[0_0_30px_rgba(197,160,89,0.8)]" />
+                        <span className="text-[#C5A059] text-[10px] font-black uppercase tracking-[0.3em] animate-pulse">Initializing Rendering Engine</span>
+                    </div>
+                )}
+                
+                {mounted && (
+                    <Canvas 
+                        shadows={!isMobile} 
+                        dpr={isMobile ? [1, 1.5] : [1, 2]} 
+                        gl={{ antialias: true, powerPreference: "high-performance" }}
+                    >
+                        <Suspense fallback={<Loader />}>
+                            <PerspectiveCamera makeDefault position={[0, cameraHeight, 28]} fov={cameraFov} />
 
-                        <ambientLight intensity={2.5} />
-                        <hemisphereLight
-                            color="#ffffff"
-                            groundColor="#c5a059"
-                            intensity={1.5}
-                        />
-                        <directionalLight
-                            position={lightPosition}
-                            intensity={lightIntensity}
-                            color={lightColor}
-                            castShadow={!isMobile}
-                            shadow-mapSize-width={isMobile ? 1024 : 2048}
-                            shadow-mapSize-height={isMobile ? 1024 : 2048}
-                        />
-                        <directionalLight
-                            position={[-10, 5, -10]}
-                            intensity={1.5}
-                            color="#c5a059"
-                        />
-                        <pointLight position={[0, 20, 0]} intensity={2} color="#ffffff" />
+                            <ambientLight intensity={2.5} />
+                            <hemisphereLight
+                                color="#ffffff"
+                                groundColor="#c5a059"
+                                intensity={1.5}
+                            />
+                            <directionalLight
+                                position={lightPosition}
+                                intensity={lightIntensity}
+                                color={lightColor}
+                                castShadow={!isMobile}
+                                shadow-mapSize-width={isMobile ? 1024 : 2048}
+                                shadow-mapSize-height={isMobile ? 1024 : 2048}
+                            />
+                            <directionalLight
+                                position={[-10, 5, -10]}
+                                intensity={1.5}
+                                color="#c5a059"
+                            />
+                            <pointLight position={[0, 20, 0]} intensity={2} color="#ffffff" />
 
-                        <Environment preset="warehouse" />
+                            <Environment preset="warehouse" />
 
-                        <DracoModel url={modelUrl} wireframe={wireframe} />
+                            <DracoModel url={modelUrl} wireframe={wireframe} />
 
-                        <OrbitControls
-                            makeDefault
-                            enablePan={true}
-                            enableZoom={true}
-                            enableRotate={true}
-                            minDistance={3}
-                            maxDistance={80}
-                            autoRotate
-                            autoRotateSpeed={autoRotateSpeed}
-                        />
-                        <Preload all />
-                    </Suspense>
-                </Canvas>
+                            <OrbitControls
+                                makeDefault
+                                enablePan={true}
+                                enableZoom={true}
+                                enableRotate={true}
+                                minDistance={3}
+                                maxDistance={80}
+                                autoRotate
+                                autoRotateSpeed={autoRotateSpeed}
+                            />
+                            <Preload all />
+                        </Suspense>
+                    </Canvas>
+                )}
             </div>
 
             {/* Overlay Hint */}
