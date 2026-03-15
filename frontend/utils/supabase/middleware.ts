@@ -10,8 +10,7 @@ export async function updateSession(request: NextRequest) {
     const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
     if (!supabaseUrl || !supabaseKey) {
-        // If Supabase environment variables are missing, do not attempt to create client
-        // This prevents the entire site from crashing with a 500 error if neglected
+        // Skip session update if variables are missing to prevent Edge Function crashes
         return supabaseResponse;
     }
 
