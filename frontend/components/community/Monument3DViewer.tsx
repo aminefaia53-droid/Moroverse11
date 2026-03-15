@@ -2,8 +2,7 @@
 
 import React, { Suspense, useEffect, useState } from 'react';
 import { Canvas } from '@react-three/fiber';
-import { OrbitControls, Environment, PerspectiveCamera, Html, useProgress, Preload } from '@react-three/drei';
-import { useControls, Leva } from 'leva';
+import { OrbitControls, PerspectiveCamera, Html, useProgress, Preload } from '@react-three/drei';
 import DracoModel from './DracoModel';
 
 interface Monument3DViewerProps {
@@ -40,51 +39,17 @@ function Loader() {
 }
 
 export default function Monument3DViewer({ modelUrl, onClose, locationName }: Monument3DViewerProps) {
-    const { 
-        lightIntensity, 
-        lightPosition, 
-        lightColor,
-        cameraHeight,
-        cameraFov,
-        wireframe,
-        autoRotateSpeed
-    } = useControls('3D Studio Settings', {
-        lightIntensity: { value: 3, min: 0, max: 10, step: 0.1 },
-        lightPosition: { value: [10, 15, 10], step: 1 },
-        lightColor: '#ffffff',
-        cameraHeight: { value: 8, min: 0, max: 50, step: 1 },
-        cameraFov: { value: 45, min: 10, max: 120, step: 1 },
-        wireframe: false,
-        autoRotateSpeed: { value: 0.8, min: 0, max: 5, step: 0.1 }
-    });
-
     const [isMobile, setIsMobile] = useState(false);
-    const [mounted, setMounted] = useState(false);
 
     useEffect(() => {
         const checkMobile = () => setIsMobile(window.innerWidth < 768);
         checkMobile();
         window.addEventListener('resize', checkMobile);
-        
-        // Defer 3D rendering heavily by 400ms to allow CSS transitions to finish un-blocked
-        const timer = setTimeout(() => setMounted(true), 400);
-        
-        return () => {
-            window.removeEventListener('resize', checkMobile);
-            clearTimeout(timer);
-        };
+        return () => window.removeEventListener('resize', checkMobile);
     }, []);
 
     return (
-        <div className="fixed top-0 left-0 w-full h-[100dvh] z-[9999] flex flex-col items-center justify-center bg-gradient-to-br from-[#050B14] via-[#0A1128] to-[#1F0935]">
-            {/* Zellij Pattern Overlay */}
-            <div className="absolute inset-0 opacity-10 mix-blend-overlay pointer-events-none" style={{ backgroundImage: "url('https://www.transparenttextures.com/patterns/arabesque.png')" }} />
-            
-            {/* Leva Panel container */}
-            <div className="absolute top-24 right-4 md:top-20 md:right-6 w-72 md:w-80 z-[200]">
-                <Leva fill />
-            </div>
-
+        <div className="absolute inset-0 w-full h-full z-10 flex flex-col items-center justify-center bg-gradient-to-br from-[#050B14] via-[#0A1128] to-[#1F0935]">
             {/* Header / Controls */}
             <div className="absolute top-0 inset-x-0 p-4 md:p-6 z-20 flex justify-between items-center bg-gradient-to-b from-black/90 to-transparent">
                 <div className="flex flex-col">
@@ -100,47 +65,33 @@ export default function Monument3DViewer({ modelUrl, onClose, locationName }: Mo
             </div>
 
             {/* 3D Canvas Heavy Node */}
-            <div className="w-full h-full relative z-10 flex items-center justify-center">
-                {!mounted && (
-                    <div className="flex flex-col items-center gap-4">
-                        <div className="w-16 h-16 rounded-full border-t-2 border-l-2 border-[#C5A059] animate-spin shadow-[0_0_30px_rgba(197,160,89,0.8)]" />
-                        <span className="text-[#C5A059] text-[10px] font-black uppercase tracking-[0.3em] animate-pulse">Initializing Rendering Engine</span>
-                    </div>
-                )}
-                
-                {mounted && (
+            <div className="w-full h-full relative z-10 flex items-center justify-center pointer-events-auto">                
                     <Canvas 
-                        shadows={!isMobile} 
-                        dpr={isMobile ? [1, 1.5] : [1, 2]} 
-                        gl={{ antialias: true, powerPreference: "high-performance" }}
+                        shadows={false} 
+                        dpr={1} 
+                        gl={{ antialias: !isMobile, powerPreference: "high-performance" }}
                     >
                         <Suspense fallback={<Loader />}>
-                            <PerspectiveCamera makeDefault position={[0, cameraHeight, 28]} fov={cameraFov} />
+                            <PerspectiveCamera makeDefault position={[0, 8, 28]} fov={45} />
 
-                            <ambientLight intensity={2.5} />
+                            <ambientLight intensity={1.5} />
                             <hemisphereLight
                                 color="#ffffff"
                                 groundColor="#c5a059"
-                                intensity={1.5}
+                                intensity={1.0}
                             />
                             <directionalLight
-                                position={lightPosition}
-                                intensity={lightIntensity}
-                                color={lightColor}
-                                castShadow={!isMobile}
-                                shadow-mapSize-width={isMobile ? 1024 : 2048}
-                                shadow-mapSize-height={isMobile ? 1024 : 2048}
+                                position={[10, 15, 10]}
+                                intensity={1.5}
+                                color="#ffffff"
                             />
                             <directionalLight
                                 position={[-10, 5, -10]}
-                                intensity={1.5}
+                                intensity={1.0}
                                 color="#c5a059"
                             />
-                            <pointLight position={[0, 20, 0]} intensity={2} color="#ffffff" />
 
-                            <Environment preset="warehouse" />
-
-                            <DracoModel url={modelUrl} wireframe={wireframe} />
+                            <DracoModel url={modelUrl} wireframe={false} />
 
                             <OrbitControls
                                 makeDefault
@@ -148,14 +99,13 @@ export default function Monument3DViewer({ modelUrl, onClose, locationName }: Mo
                                 enableZoom={true}
                                 enableRotate={true}
                                 minDistance={3}
-                                maxDistance={80}
+                                maxDistance={100}
                                 autoRotate
-                                autoRotateSpeed={autoRotateSpeed}
+                                autoRotateSpeed={0.8}
                             />
                             <Preload all />
                         </Suspense>
                     </Canvas>
-                )}
             </div>
 
             {/* Overlay Hint */}

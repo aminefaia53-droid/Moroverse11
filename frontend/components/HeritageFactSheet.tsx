@@ -73,20 +73,32 @@ const FALLBACK_IMG = 'https://images.unsplash.com/photo-1539020140153-e479b8c22e
 export default function HeritageFactSheet({ item, isOpen, onClose, lang }: HeritageFactSheetProps) {
     const router = useRouter();
     const [show3D, setShow3D] = useState(false);
+    const [mount3D, setMount3D] = useState(false);
     const [isFullContent, setIsFullContent] = useState(false);
     const scrollContainerRef = useRef<HTMLDivElement>(null);
 
-    // Scroll Fix: Ensure the modal opens at the very top
+    // Structural Scroll Fix: Lock Body, Prevent Main Page Jumps
     useEffect(() => {
         if (isOpen) {
-            // Scroll the window
-            window.scrollTo({ top: 0, behavior: 'instant' });
-            // Scroll the container if attached
+            document.body.style.overflow = 'hidden';
             if (scrollContainerRef.current) {
                 scrollContainerRef.current.scrollTop = 0;
             }
+        } else {
+            document.body.style.overflow = '';
         }
+        return () => { document.body.style.overflow = ''; };
     }, [isOpen]);
+
+    // Strict WebGL Lazy Loading Pipeline
+    useEffect(() => {
+        if (show3D) {
+            const timer = setTimeout(() => setMount3D(true), 500);
+            return () => clearTimeout(timer);
+        } else {
+            setMount3D(false);
+        }
+    }, [show3D]);
 
     if (!item) return null;
 
@@ -148,8 +160,29 @@ export default function HeritageFactSheet({ item, isOpen, onClose, lang }: Herit
                         className="relative w-full max-w-5xl bg-[#080808] rounded-3xl shadow-[0_30px_90px_-15px_rgba(0,0,0,1),0_0_50px_rgba(197,160,89,0.1)] border border-[#c5a059]/30 mb-auto archive-seal-container"
                         dir={isRTL ? 'rtl' : 'ltr'}
                     >
-                        {/* ── Header Image ─────────────────────────────────────── */}
+                        {/* ── Header Image & Isolated 3D Canvas ─────────────────────────────────────── */}
                         <div className="min-h-[350px] md:h-[450px] bg-black flex flex-col items-center justify-center relative overflow-hidden shrink-0">
+                            
+                            {/* Strict 3D Viewer Isolation */}
+                            {show3D && item.model_url && (
+                                <div className="absolute inset-0 z-50 bg-[#050B14] flex flex-col items-center justify-center">
+                                    {!mount3D ? (
+                                        <div className="flex flex-col items-center gap-4">
+                                            <div className="w-16 h-16 rounded-full border-t-2 border-l-2 border-[#C5A059] animate-spin shadow-[0_0_30px_rgba(197,160,89,0.8)]" />
+                                            <span className="text-[#C5A059] text-[10px] font-black uppercase tracking-[0.3em] animate-pulse">
+                                                {isRTL ? 'تهيئة العرض ثلاثي الأبعاد' : 'Initializing Rendering Engine...'}
+                                            </span>
+                                        </div>
+                                    ) : (
+                                        <Monument3DViewer 
+                                            modelUrl={item.model_url}
+                                            locationName={isRTL ? item.name.ar : item.name.en}
+                                            onClose={() => setShow3D(false)}
+                                        />
+                                    )}
+                                </div>
+                            )}
+
                             <div className="absolute inset-0 z-0 bg-[#111]">
                                 <img
                                     src={item.imageUrl || FALLBACK_IMG}
@@ -162,7 +195,7 @@ export default function HeritageFactSheet({ item, isOpen, onClose, lang }: Herit
                             </div>
 
                             {/* Top Controls */}
-                            <div className={`absolute top-8 ${isRTL ? 'right-8' : 'left-8'} z-30 flex items-center gap-3`}>
+                            <div className={`absolute top-8 ${isRTL ? 'right-8' : 'left-8'} z-30 flex items-center gap-3 ${show3D ? 'hidden' : ''}`}>
                                 <button
                                     onClick={onClose}
                                     className="p-4 rounded-2xl bg-black/80 border border-[#c5a059]/50 text-[#c5a059] hover:bg-[#c5a059] hover:text-black transition-all shadow-2xl flex items-center gap-3 text-[10px] font-black uppercase tracking-[0.2em]"
@@ -181,7 +214,7 @@ export default function HeritageFactSheet({ item, isOpen, onClose, lang }: Herit
                             </div>
 
                             {/* Central Title/Hero */}
-                            <div className="relative z-20 text-center px-4 md:px-8 max-w-4xl mx-auto flex flex-col items-center w-full">
+                            <div className={`relative z-20 text-center px-4 md:px-8 max-w-4xl mx-auto flex flex-col items-center w-full transition-opacity duration-500 ${show3D ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
                                 <motion.div
                                     initial={{ scale: 0.8, opacity: 0 }}
                                     animate={{ scale: 1, opacity: 1 }}
@@ -416,15 +449,6 @@ export default function HeritageFactSheet({ item, isOpen, onClose, lang }: Herit
                             </div>
                         </div>
                     </motion.div>
-
-                    {/* 3D Viewer Overlay Component */}
-                    {show3D && item.model_url && (
-                        <Monument3DViewer 
-                            modelUrl={item.model_url}
-                            locationName={isRTL ? item.name.ar : item.name.en}
-                            onClose={() => setShow3D(false)}
-                        />
-                    )}
                 </div>
             )}
         </AnimatePresence>
