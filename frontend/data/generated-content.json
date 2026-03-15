@@ -16,7 +16,9 @@
         "en": "Rabat"
       },
       "isPending": false,
-      "seo": {}
+      "seo": {},
+      "modelUrl": "https://prqbbzynmnkwhunusdbw.supabase.co/storage/v1/object/public/3d_assets/monuments/1773581538673-hassan_tower_rabat_-_morocco.glb",
+      "location_type": "monument"
     },
     {
       "id": "rabat-kasbah-of-the-udayas",
