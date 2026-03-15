@@ -4,8 +4,9 @@ import { useState, useEffect, useCallback, useRef } from 'react';
 import {
     Search, Save, Upload, Video, Globe, Tag, FileText,
     ImageOff, Loader2, CheckCircle, X, ChevronDown, ChevronUp,
-    Film, MapPin, Calendar, BookOpen, Hash, Building2, Box
+    Film, MapPin, Calendar, BookOpen, Hash, Building2, Box, AlertTriangle
 } from 'lucide-react';
+import { createClient } from '@/utils/supabase/client';
 
 // ── Types ──────────────────────────────────────────────────────
 interface LandmarkEntry {
@@ -38,13 +39,64 @@ async function uploadImageFile(file: File): Promise<string | null> {
     return data.success ? data.url : null;
 }
 
-// ── 3D Asset Upload Helper (GLB) ──────────────────────────────────
-async function uploadAssetFile(file: File): Promise<string | null> {
-    const formData = new FormData();
-    formData.append('file', file, file.name);
-    const res = await fetch('/api/admin/assets/upload', { method: 'POST', body: formData });
-    const data = await res.json();
-    return data.success ? data.url : null;
+// ── 3D Asset Upload Helper (GLB) ── DIRECT SUPABASE BROWSER UPLOAD ──
+// This bypasses Vercel's 4.5MB API route limit by uploading DIRECTLY
+// from the browser to Supabase Storage. No size limit applies here.
+async function uploadAssetToSupabase(
+    file: File,
+    onProgress?: (percent: number) => void
+): Promise<{ url: string | null; error: string | null }> {
+    const supabase = createClient();
+
+    const timestamp = Date.now();
+    const sanitizedName = file.name.replace(/\s+/g, '-').toLowerCase();
+    const fileName = `${timestamp}-${sanitizedName}`;
+    const filePath = `monuments/${fileName}`;
+
+    // Use XMLHttpRequest for upload progress tracking
+    return new Promise((resolve) => {
+        const xhr = new XMLHttpRequest();
+        const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+        const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+
+        if (!supabaseUrl || !supabaseKey) {
+            resolve({ url: null, error: 'Supabase URL or Key not configured in environment variables.' });
+            return;
+        }
+
+        xhr.upload.addEventListener('progress', (e) => {
+            if (e.lengthComputable && onProgress) {
+                const percent = Math.round((e.loaded / e.total) * 100);
+                onProgress(percent);
+            }
+        });
+
+        xhr.addEventListener('load', () => {
+            if (xhr.status === 200) {
+                // Build the public URL after successful upload
+                const publicUrl = `${supabaseUrl}/storage/v1/object/public/3d_assets/${filePath}`;
+                resolve({ url: publicUrl, error: null });
+            } else {
+                let errMsg = `Upload failed: HTTP ${xhr.status}`;
+                try {
+                    const resp = JSON.parse(xhr.responseText);
+                    errMsg = resp.message || resp.error || errMsg;
+                } catch {}
+                resolve({ url: null, error: errMsg });
+            }
+        });
+
+        xhr.addEventListener('error', () => {
+            resolve({ url: null, error: 'Network error during upload. Check your connection and try again.' });
+        });
+
+        const uploadUrl = `${supabaseUrl}/storage/v1/object/3d_assets/${filePath}`;
+        xhr.open('POST', uploadUrl);
+        xhr.setRequestHeader('Authorization', `Bearer ${supabaseKey}`);
+        xhr.setRequestHeader('Content-Type', file.type || 'model/gltf-binary');
+        xhr.setRequestHeader('x-upsert', 'false');
+        xhr.send(file);
+    });
 }
 
 // ── Individual Landmark Card Editor ─────────────────────────────
@@ -55,6 +107,8 @@ function LandmarkEditor({ landmark, onSaved }: { landmark: LandmarkEntry; onSave
     const [serverMessage, setServerMessage] = useState('');
     const [uploadingImg, setUploadingImg] = useState(false);
     const [uploadingAsset, setUploadingAsset] = useState(false);
+    const [assetUploadProgress, setAssetUploadProgress] = useState(0);
+    const [assetUploadError, setAssetUploadError] = useState<string | null>(null);
     const imgInputRef = useRef<HTMLInputElement>(null);
     const assetInputRef = useRef<HTMLInputElement>(null);
 
@@ -76,15 +130,31 @@ function LandmarkEditor({ landmark, onSaved }: { landmark: LandmarkEntry; onSave
     const handleAssetUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];
         if (!file) return;
+
+        if (!file.name.toLowerCase().endsWith('.glb')) {
+            setAssetUploadError('يدعم فقط صيغة .glb — Only .glb files are supported');
+            return;
+        }
+
         setUploadingAsset(true);
-        try {
-            const url = await uploadAssetFile(file);
-            if (url) {
-                set('modelUrl', url);
-                set('location_type', 'monument');
-            }
-        } catch { alert('فشل رفع العنصر ثلاثي الأبعاد'); }
-        finally { setUploadingAsset(false); }
+        setAssetUploadProgress(0);
+        setAssetUploadError(null);
+
+        const { url, error } = await uploadAssetToSupabase(file, (percent) => {
+            setAssetUploadProgress(percent);
+        });
+
+        if (url) {
+            set('modelUrl', url);
+            set('location_type', 'monument');
+            setAssetUploadProgress(100);
+        } else {
+            setAssetUploadError(error || 'فشل رفع العنصر ثلاثي الأبعاد');
+        }
+
+        setUploadingAsset(false);
+        // Reset file input so the same file can be re-uploaded if needed
+        if (assetInputRef.current) assetInputRef.current.value = '';
     };
 
     const handleSave = async () => {
@@ -208,21 +278,48 @@ function LandmarkEditor({ landmark, onSaved }: { landmark: LandmarkEntry; onSave
                                 />
                                 <button
                                     type="button"
-                                    onClick={() => assetInputRef.current?.click()}
+                                    onClick={() => { setAssetUploadError(null); assetInputRef.current?.click(); }}
                                     disabled={uploadingAsset}
-                                    className="px-4 py-2 rounded-lg bg-gold-royal text-black hover:bg-yellow-500 transition-colors flex items-center gap-2 text-xs font-black shrink-0 shadow-lg"
+                                    className="px-4 py-2 rounded-lg bg-gold-royal text-black hover:bg-yellow-500 transition-colors flex items-center gap-2 text-xs font-black shrink-0 shadow-lg disabled:opacity-60"
                                 >
                                     {uploadingAsset ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <Upload className="w-3.5 h-3.5" />}
-                                    {uploadingAsset ? 'جاري الرفع...' : 'رفع GLB'}
+                                    {uploadingAsset ? `${assetUploadProgress}%` : 'رفع GLB'}
                                 </button>
                                 <input ref={assetInputRef} type="file" accept=".glb" className="hidden" onChange={handleAssetUpload} />
                             </div>
-                            {draft.modelUrl && (
+
+                            {/* Upload Progress Bar */}
+                            {uploadingAsset && (
+                                <div className="mt-2">
+                                    <div className="flex items-center justify-between text-[10px] text-gray-400 mb-1">
+                                        <span>جاري الرفع إلى Supabase Storage...</span>
+                                        <span className="font-bold text-gold-royal">{assetUploadProgress}%</span>
+                                    </div>
+                                    <div className="w-full bg-[#112240] rounded-full h-1.5 overflow-hidden">
+                                        <div
+                                            className="h-full bg-gradient-to-r from-[#c5a059] to-yellow-300 transition-all duration-300 rounded-full"
+                                            style={{ width: `${assetUploadProgress}%` }}
+                                        />
+                                    </div>
+                                    <p className="text-[9px] text-gray-500 mt-1">⚡ يتم الرفع مباشرة — لا حد للحجم (Bypass Vercel Limit)</p>
+                                </div>
+                            )}
+
+                            {/* Upload Error */}
+                            {assetUploadError && (
+                                <div className="mt-2 p-2 rounded-lg bg-red-900/30 border border-red-500/30 flex items-start gap-2">
+                                    <AlertTriangle className="w-3 h-3 text-red-400 shrink-0 mt-0.5" />
+                                    <p className="text-[10px] text-red-300">{assetUploadError}</p>
+                                </div>
+                            )}
+
+                            {/* Linked Model URL */}
+                            {draft.modelUrl && !uploadingAsset && (
                                 <div className="mt-2 p-2 rounded-lg bg-gold-royal/5 border border-gold-royal/20 flex items-center justify-between">
                                     <div className="flex items-center gap-2 text-[10px] text-gold-royal truncate">
                                         <CheckCircle className="w-3 h-3" /> Asset Linked: {draft.modelUrl.split('/').pop()}
                                     </div>
-                                    <button onClick={() => { set('modelUrl', ''); set('location_type', 'city'); }} className="text-red-400 hover:text-red-300 p-1">
+                                    <button onClick={() => { set('modelUrl', ''); set('location_type', 'city'); setAssetUploadProgress(0); }} className="text-red-400 hover:text-red-300 p-1">
                                         <X className="w-3 h-3" />
                                     </button>
                                 </div>
