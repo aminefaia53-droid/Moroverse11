@@ -18,7 +18,7 @@ export async function createClient() {
     const supabaseKey = isValidKey ? rawKey : 'placeholder-key';
 
     if (!isValidUrl || !isValidKey) {
-        console.error("❌ SUPABASE SERVER AUTH ERROR:\n" +
+        console.error("❌ SUPABASE SERVER AUTH ERROR [VERSION: 2026-03-15-C]:\n" +
             "Public environment variables (NEXT_PUBLIC_SUPABASE_URL/ANON_KEY) are missing on the server.\n" +
             "This will cause 401 errors during the authentication handshake for 3D uploads.\n" +
             "Current URL: " + (rawUrl ? "Found (masked)" : "MISSING") + "\n" +

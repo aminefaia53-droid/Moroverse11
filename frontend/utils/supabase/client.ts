@@ -15,15 +15,16 @@ export function createClient() {
     const supabaseKey = isValidKey ? rawKey : 'placeholder-key';
 
     if (!isValidUrl || !isValidKey) {
-        console.error("❌ SUPABASE CONFIGURATION ERROR:\n" +
-            "Your Next.js browser bundle is missing the following public variables:\n" +
-            " - NEXT_PUBLIC_SUPABASE_URL\n" +
-            " - NEXT_PUBLIC_SUPABASE_ANON_KEY\n" +
+        console.error("❌ SUPABASE CONFIGURATION ERROR [VERSION: 2026-03-15-C]:\n" +
+            "Your Next.js browser bundle is missing the required public variables.\n" +
+            " - NEXT_PUBLIC_SUPABASE_URL: " + (rawUrl ? "Present but invalid" : "MISSING") + "\n" +
+            " - NEXT_PUBLIC_SUPABASE_ANON_KEY: " + (rawKey ? "Present but invalid" : "MISSING") + "\n" +
             "\n" +
-            "THE FIX:\n" +
-            "1. In Vercel, ensure these variables have the EXACT 'NEXT_PUBLIC_' prefix.\n" +
-            "2. Ensure they are assigned to 'Production' and 'Preview' environments.\n" +
-            "3. You MUST trigger a REDEPLOY for the browser to see these changes.");
+            "ACTION ITEMS:\n" +
+            "1. In Vercel Settings, ensure variables have the 'NEXT_PUBLIC_' prefix.\n" +
+            "2. Ensure they are assigned to ALL environments (Production & Preview).\n" +
+            "3. Try 'Ctrl + F5' to clear browser cache.\n" +
+            "4. Verify the Vercel deployment status shows the latest commit.");
     }
 
     return createBrowserClient(
