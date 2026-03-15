@@ -51,8 +51,8 @@ export default function Monument3DViewer({ modelUrl, onClose, locationName }: Mo
 
             {/* 3D Canvas */}
             <div className="w-full h-full relative">
-                <Suspense fallback={<Loader />}>
-                    <Canvas shadows dpr={[1, 2]} gl={{ antialias: true }}>
+                <Canvas shadows dpr={[1, 2]} gl={{ antialias: true }}>
+                    <Suspense fallback={<Loader />}>
                         {/* Camera: positioned higher and further back so any model is in frame */}
                         <PerspectiveCamera makeDefault position={[0, 8, 28]} fov={45} />
 
@@ -94,8 +94,8 @@ export default function Monument3DViewer({ modelUrl, onClose, locationName }: Mo
                             autoRotate
                             autoRotateSpeed={0.8}
                         />
-                    </Canvas>
-                </Suspense>
+                    </Suspense>
+                </Canvas>
             </div>
 
             {/* Overlay Hint */}
