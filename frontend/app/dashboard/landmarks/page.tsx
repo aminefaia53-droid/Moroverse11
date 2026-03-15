@@ -41,7 +41,7 @@ async function uploadImageFile(file: File): Promise<string | null> {
 
 // ── 3D Asset Upload Helper (GLB) ── DIRECT SUPABASE BROWSER UPLOAD ──
 // This bypasses Vercel's 4.5MB API route limit by uploading DIRECTLY
-// from the browser to Supabase Storage. No size limit applies here.
+// from the browser to Supabase Storage using the admin's session JWT.
 async function uploadAssetToSupabase(
     file: File,
     onProgress?: (percent: number) => void
@@ -53,16 +53,25 @@ async function uploadAssetToSupabase(
     const fileName = `${timestamp}-${sanitizedName}`;
     const filePath = `monuments/${fileName}`;
 
+    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+    const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+
+    if (!supabaseUrl || !supabaseAnonKey) {
+        return { url: null, error: 'Supabase URL or Anon Key not configured in environment variables.' };
+    }
+
+    // Use the admin's session JWT so the upload satisfies the RLS 'authenticated' policy.
+    // Falls back to the anon key if the session is somehow not available.
+    const { data: { session } } = await supabase.auth.getSession();
+    const authToken = session?.access_token || supabaseAnonKey;
+
+    if (!session?.access_token) {
+        console.warn('[3D UPLOAD] No session found — using anon key. Make sure you are logged into the dashboard.');
+    }
+
     // Use XMLHttpRequest for upload progress tracking
     return new Promise((resolve) => {
         const xhr = new XMLHttpRequest();
-        const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-        const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
-
-        if (!supabaseUrl || !supabaseKey) {
-            resolve({ url: null, error: 'Supabase URL or Key not configured in environment variables.' });
-            return;
-        }
 
         xhr.upload.addEventListener('progress', (e) => {
             if (e.lengthComputable && onProgress) {
@@ -73,7 +82,6 @@ async function uploadAssetToSupabase(
 
         xhr.addEventListener('load', () => {
             if (xhr.status === 200) {
-                // Build the public URL after successful upload
                 const publicUrl = `${supabaseUrl}/storage/v1/object/public/3d_assets/${filePath}`;
                 resolve({ url: publicUrl, error: null });
             } else {
@@ -92,7 +100,7 @@ async function uploadAssetToSupabase(
 
         const uploadUrl = `${supabaseUrl}/storage/v1/object/3d_assets/${filePath}`;
         xhr.open('POST', uploadUrl);
-        xhr.setRequestHeader('Authorization', `Bearer ${supabaseKey}`);
+        xhr.setRequestHeader('Authorization', `Bearer ${authToken}`);
         xhr.setRequestHeader('Content-Type', file.type || 'model/gltf-binary');
         xhr.setRequestHeader('x-upsert', 'false');
         xhr.send(file);
