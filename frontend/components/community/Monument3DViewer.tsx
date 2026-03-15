@@ -1,44 +1,73 @@
 "use client";
 
-import React, { Suspense, useEffect, useState } from 'react';
+import React, { Suspense, useEffect, useState, useCallback } from 'react';
 import { Canvas } from '@react-three/fiber';
-import { OrbitControls, PerspectiveCamera, Html, useProgress, Preload } from '@react-three/drei';
+import { OrbitControls, PerspectiveCamera, Html, useProgress, Preload, useGLTF } from '@react-three/drei';
 import DracoModel from './DracoModel';
+import ErrorBoundary from '../common/ErrorBoundary';
+
+// ──────────────────────────────────────────────────────────────────────────────
+// CRITICAL FIX: Set Draco decoder path at module level.
+// Without this, child hooks (useGLTF) may run BEFORE the effect configurations
+// → causing mobile browsers to fail finding the WASM binary (stalls at 33%).
+// ──────────────────────────────────────────────────────────────────────────────
+if (typeof window !== 'undefined') {
+    useGLTF.setDecoderPath('https://www.gstatic.com/draco/versioned/decoders/1.5.6/');
+}
 
 interface Monument3DViewerProps {
     modelUrl: string;
     onClose: () => void;
     locationName: string;
+    onLoaded?: () => void;
+    onStall?: () => void;
 }
 
-/** Professional CSS loading pulse shown while the 3D model downloads */
-function Loader() {
+/** Professional CSS loading pulse shown while the 3D model downloads with 12s fail-safe */
+function Loader({ onFallback }: { onFallback: () => void }) {
     const { progress } = useProgress();
+
+    // 10-second stall protection: If WASM hangs decoding the Draco buffer (33%) on mobile.
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            if (progress < 100) {
+                console.warn(`[Mobile Fail-Safe] DRACO loader stalled at ${progress}%. Triggering fallback.`);
+                onFallback();
+            }
+        }, 10000);
+        return () => clearTimeout(timer);
+    }, [progress, onFallback]);
+
     return (
         <Html center>
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '16px' }}>
-                <div style={{
-                    width: '60px', height: '60px', borderRadius: '50%',
-                    backgroundColor: 'rgba(197,160,89,0.3)',
-                    boxShadow: '0 0 20px rgba(197,160,89,0.8)',
-                    animation: 'pulse-glow 1.5s ease-out infinite',
-                }} />
+                <div className="relative">
+                    <div style={{
+                        width: '60px', height: '60px', borderRadius: '50%',
+                        backgroundColor: 'rgba(197,160,89,0.1)',
+                        border: '2px solid rgba(197,160,89,0.3)',
+                        boxShadow: '0 0 20px rgba(197,160,89,0.4)',
+                        animation: 'pulse-glow 1.5s ease-out infinite',
+                    }} />
+                    <div className="absolute inset-0 flex items-center justify-center">
+                        <span style={{ color: '#C5A059', fontSize: '10px', fontWeight: 900, letterSpacing: '0.1em' }}>
+                            {Math.round(progress)}%
+                        </span>
+                    </div>
+                </div>
                 <style>{`
                     @keyframes pulse-glow {
-                        0% { transform: scale(0.8); opacity: 0.5; box-shadow: 0 0 0 0 rgba(197,160,89, 0.7); }
-                        70% { transform: scale(1); opacity: 1; box-shadow: 0 0 0 20px rgba(197,160,89, 0); }
-                        100% { transform: scale(0.8); opacity: 0.5; box-shadow: 0 0 0 0 rgba(197,160,89, 0); }
+                        0% { transform: scale(0.95); opacity: 0.5; }
+                        50% { transform: scale(1.1); opacity: 1; }
+                        100% { transform: scale(0.95); opacity: 0.5; }
                     }
                 `}</style>
-                <span style={{ color: '#C5A059', fontSize: '11px', fontWeight: 900, textTransform: 'uppercase', letterSpacing: '0.3em' }}>
-                    {Math.round(progress)}%
-                </span>
             </div>
         </Html>
     );
 }
 
-export default function Monument3DViewer({ modelUrl, onClose, locationName }: Monument3DViewerProps) {
+export default function Monument3DViewer({ modelUrl, onClose, locationName, onLoaded, onStall }: Monument3DViewerProps) {
     const [isMobile, setIsMobile] = useState(false);
 
     useEffect(() => {
@@ -65,13 +94,14 @@ export default function Monument3DViewer({ modelUrl, onClose, locationName }: Mo
             </div>
 
             {/* 3D Canvas Heavy Node */}
-            <div className="w-full h-full relative z-10 flex items-center justify-center pointer-events-auto">                
+            <div className="w-full h-full relative z-10 flex items-center justify-center pointer-events-auto px-4 md:px-0">
+                <ErrorBoundary componentName="Elite 3D Engine">
                     <Canvas 
                         shadows={false} 
                         dpr={1} 
                         gl={{ antialias: !isMobile, powerPreference: "high-performance" }}
                     >
-                        <Suspense fallback={<Loader />}>
+                        <Suspense fallback={<Loader onFallback={() => onStall ? onStall() : onClose()} />}>
                             <PerspectiveCamera makeDefault position={[0, 8, 28]} fov={45} />
 
                             <ambientLight intensity={1.5} />
@@ -91,7 +121,13 @@ export default function Monument3DViewer({ modelUrl, onClose, locationName }: Mo
                                 color="#c5a059"
                             />
 
-                            <DracoModel url={modelUrl} wireframe={false} />
+                            <DracoModel 
+                                url={modelUrl} 
+                                wireframe={false} 
+                            />
+                            
+                            {/* Signal completion once the components below mount */}
+                            <SceneInitializer onReady={onLoaded} />
 
                             <OrbitControls
                                 makeDefault
@@ -106,6 +142,7 @@ export default function Monument3DViewer({ modelUrl, onClose, locationName }: Mo
                             <Preload all />
                         </Suspense>
                     </Canvas>
+                </ErrorBoundary>
             </div>
 
             {/* Overlay Hint */}
@@ -116,4 +153,12 @@ export default function Monument3DViewer({ modelUrl, onClose, locationName }: Mo
             </div>
         </div>
     );
+}
+
+/** Internal helper to signal that the Suspense boundary has resolved */
+function SceneInitializer({ onReady }: { onReady?: () => void }) {
+    useEffect(() => {
+        if (onReady) onReady();
+    }, [onReady]);
+    return null;
 }

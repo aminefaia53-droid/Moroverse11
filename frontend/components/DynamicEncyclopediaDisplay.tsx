@@ -70,13 +70,45 @@ export default function DynamicEncyclopediaDisplay({ category, lang, emptyMessag
         async function fetchDashboardContent() {
             try {
                 setIsLoading(true);
+                
+                // 1. Fetch from our local persistence API
                 const res = await fetch('/api/admin/content');
                 if (!res.ok) throw new Error('Failed to load dashboard data');
                 const json = await res.json();
-                const db = json.data;
+                let db = json.data;
+
+                // 2. CRITICAL FIX: Restoration of the WordPress Data Pipe
+                // If a real WP URL is provided, we try to fetch 'destinations' to supplement 'landmarks'
+                const wpUrl = process.env.NEXT_PUBLIC_WP_URL;
+                if (wpUrl && (category === 'monument' || category === 'tourism')) {
+                    try {
+                        console.log(`[WP SYNC] Attempting to bridge Headless WP at ${wpUrl}`);
+                        const wpRes = await fetch(`${wpUrl}/wp-json/wp/v2/destinations?per_page=100`);
+                        if (wpRes.ok) {
+                            const wpData = await wpRes.json();
+                            const mappedLandmarks = wpData.map((item: any) => ({
+                                id: `wp-${item.id}`,
+                                name: { en: item.acf?.title_en || item.title?.rendered, ar: item.acf?.title_ar || '' },
+                                desc: { en: item.acf?.description_en || '', ar: item.acf?.description_ar || '' },
+                                imageUrl: item.acf?.image_url || undefined,
+                                city: { en: item.acf?.city_en || 'Morocco', ar: item.acf?.city_ar || 'المغرب' },
+                                modelUrl: item.acf?.model_url || undefined,
+                                videoUrl: item.acf?.video_url || undefined,
+                                status: item.acf?.status || 'national',
+                                type: 'monument'
+                            }));
+                            
+                            // Merge: Prioritize WP content but keep existing unique items from DB
+                            db.landmarks = [...mappedLandmarks, ...(db.landmarks || []).filter((l: any) => !mappedLandmarks.some((wpL: any) => wpL.name.en === l.name.en))];
+                            console.log(`[WP SYNC] Successfully merged ${mappedLandmarks.length} items from Headless WP.`);
+                        }
+                    } catch (wpErr) {
+                        console.error('[WP SYNC ERROR] Could not bridge Headless WordPress:', wpErr);
+                    }
+                }
 
                 if (isMounted) {
-                    console.log(`[MOROVERSE DEBUG] Fetched content for ${category}. Landmarks found: ${db?.landmarks?.length || 0}`);
+                    console.log(`[MOROVERSE DEBUG] Fetched content for ${category}. Total items: ${db?.[category === 'monument' ? 'landmarks' : category]?.length || 0}`);
                     if (category === 'city') setItems(db.cities || []);
                     else if (category === 'monument') setItems(db.landmarks || []);
                     else if (category === 'battle') setItems(db.battles || []);

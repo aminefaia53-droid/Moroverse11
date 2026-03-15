@@ -29,6 +29,7 @@ export interface HeritageItem {
     gallery?: string[];
     isPending?: boolean;
     type?: 'landmark' | 'battle' | 'figure' | 'post' | string;
+    desc?: { en: string; ar: string } | string;
     content?: string;
     summary?: string;
     stats?: {
@@ -74,8 +75,20 @@ export default function HeritageFactSheet({ item, isOpen, onClose, lang }: Herit
     const router = useRouter();
     const [show3D, setShow3D] = useState(false);
     const [mount3D, setMount3D] = useState(false);
+    const [is3DLoaded, setIs3DLoaded] = useState(false);
+    const [is3DStalled, setIs3DStalled] = useState(false);
     const [isFullContent, setIsFullContent] = useState(false);
     const scrollContainerRef = useRef<HTMLDivElement>(null);
+
+    // Reset 3D states when item changes or modal closes
+    useEffect(() => {
+        if (!isOpen) {
+            setShow3D(false);
+            setMount3D(false);
+            setIs3DLoaded(false);
+            setIs3DStalled(false);
+        }
+    }, [isOpen, item?.id]);
 
     // Structural Scroll Fix: Lock Body, Prevent Main Page Jumps
     useEffect(() => {
@@ -113,13 +126,33 @@ export default function HeritageFactSheet({ item, isOpen, onClose, lang }: Herit
     const nameText = getT(item.name, lang);
     const cityText = getT(item.city, lang);
 
-    const fullContentText = item.content || item.history;
-    const summaryText = item.summary || fullContentText;
-    
-    // Choose which text to show based on toggle
+    // ── Content Resolution: Waterfall fallback ensures NOTHING is ever empty ──
+    // Priority: history > content > desc > summary > built-in default
+    const getContent = (l: 'ar' | 'en') => {
+        const candidates = [
+            getT(item.history, l),
+            getT(item.content, l),
+            getT(item.desc, l),
+            getT(item.summary, l),
+        ];
+        const found = candidates.find(c => c && c.trim() && !c.includes('بانتظار') && !c.includes('awaiting'));
+        if (found) return found;
+        // Rich fallback by lang so the card is never empty
+        return l === 'ar'
+            ? `${getT(item.name, 'ar')} معلمة تاريخية بارزة تقع في ${getT(item.city, 'ar') || 'المغرب'}، تجسّد عراقة الحضارة المغربية وأصالتها.`
+            : `${getT(item.name, 'en')} is a prominent historical landmark in ${getT(item.city, 'en') || 'Morocco'}, embodying the richness of Moroccan civilization.`;
+    };
+
+    const fullContentText = {
+        ar: getContent('ar'),
+        en: getContent('en'),
+    };
+    const summaryText = fullContentText;
+
+    // Choose which text to show based on toggle  
     const rawText = isFullContent ? fullContentText : summaryText;
-    
-    const historyText = getT(rawText, 'ar'); // Defaulting to Arabic for history segment locally
+
+    const historyText = getT(rawText, 'ar');
     const historyTextSelected = getT(rawText, lang);
 
     const slug = item.slug || item.id;
@@ -139,16 +172,8 @@ export default function HeritageFactSheet({ item, isOpen, onClose, lang }: Herit
     return (
         <AnimatePresence>
             {isOpen && (
-                <div className="fixed inset-0 z-[100] flex items-start justify-center pt-8 md:pt-12 px-4 md:px-8 pb-4 overflow-y-auto">
-
-                    {/* Backdrop */}
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        onClick={onClose}
-                        className="absolute inset-0 bg-black/90 backdrop-blur-2xl"
-                    />
+                <div className="fixed inset-0 z-[100] overflow-y-auto bg-black/95 backdrop-blur-3xl" onClick={onClose}>
+                    <div className="min-h-full py-8 md:py-16 px-4 md:px-8 flex items-center justify-center">
 
                     {/* Modal */}
                     <motion.div
@@ -157,29 +182,38 @@ export default function HeritageFactSheet({ item, isOpen, onClose, lang }: Herit
                         animate={{ opacity: 1, scale: 1, y: 0 }}
                         exit={{ opacity: 0, scale: 0.9, y: 40 }}
                         onClick={e => e.stopPropagation()}
-                        className="relative w-full max-w-5xl bg-[#080808] rounded-3xl shadow-[0_30px_90px_-15px_rgba(0,0,0,1),0_0_50px_rgba(197,160,89,0.1)] border border-[#c5a059]/30 mb-auto archive-seal-container"
+                        className="relative w-full max-w-5xl bg-[#080808] rounded-3xl shadow-[0_30px_90px_-15px_rgba(0,0,0,1),0_0_50px_rgba(197,160,89,0.1)] border border-[#c5a059]/30 shrink-0 archive-seal-container"
                         dir={isRTL ? 'rtl' : 'ltr'}
                     >
                         {/* ── Header Image & Isolated 3D Canvas ─────────────────────────────────────── */}
                         <div className="min-h-[350px] md:h-[450px] bg-black flex flex-col items-center justify-center relative overflow-hidden shrink-0">
                             
-                            {/* Strict 3D Viewer Isolation */}
-                            {show3D && item.model_url && (
-                                <div className="absolute inset-0 z-50 bg-[#050B14] flex flex-col items-center justify-center">
-                                    {!mount3D ? (
-                                        <div className="flex flex-col items-center gap-4">
-                                            <div className="w-16 h-16 rounded-full border-t-2 border-l-2 border-[#C5A059] animate-spin shadow-[0_0_30px_rgba(197,160,89,0.8)]" />
-                                            <span className="text-[#C5A059] text-[10px] font-black uppercase tracking-[0.3em] animate-pulse">
-                                                {isRTL ? 'تهيئة العرض ثلاثي الأبعاد' : 'Initializing Rendering Engine...'}
-                                            </span>
-                                        </div>
-                                    ) : (
-                                        <Monument3DViewer 
-                                            modelUrl={item.model_url}
-                                            locationName={isRTL ? item.name.ar : item.name.en}
-                                            onClose={() => setShow3D(false)}
-                                        />
-                                    )}
+                            {/* Strict 3D Viewer Isolation with Progressive Enhancement */}
+                            {show3D && item.model_url && !is3DStalled && (
+                                <div className={`absolute inset-0 z-50 bg-[#050B14] flex flex-col items-center justify-center transition-opacity duration-1000 ${is3DLoaded ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
+                                    <Monument3DViewer 
+                                        modelUrl={item.model_url}
+                                        locationName={isRTL ? item.name.ar : item.name.en}
+                                        onClose={() => setShow3D(false)}
+                                        onLoaded={() => setIs3DLoaded(true)}
+                                        onStall={() => {
+                                            console.warn("3D Engine Stalled. Reverting to high-res archive imagery.");
+                                            setIs3DStalled(true);
+                                            setShow3D(false);
+                                        }}
+                                    />
+                                </div>
+                            )}
+
+                            {/* Global Spinner for 3D Initializing */}
+                            {show3D && !is3DLoaded && !is3DStalled && (
+                                <div className="absolute inset-0 z-[60] flex flex-col items-center justify-center bg-black/40 backdrop-blur-sm pointer-events-none">
+                                    <div className="flex flex-col items-center gap-4">
+                                        <div className="w-16 h-16 rounded-full border-t-2 border-l-2 border-[#C5A059] animate-spin shadow-[0_0_30px_rgba(197,160,89,0.8)]" />
+                                        <span className="text-[#C5A059] text-[10px] font-black uppercase tracking-[0.3em] animate-pulse">
+                                            {isRTL ? 'تحميل المحرك ثلاثي الأبعاد...' : 'Summoning 3D Relic...'}
+                                        </span>
+                                    </div>
                                 </div>
                             )}
 
@@ -449,6 +483,7 @@ export default function HeritageFactSheet({ item, isOpen, onClose, lang }: Herit
                             </div>
                         </div>
                     </motion.div>
+                    </div>
                 </div>
             )}
         </AnimatePresence>
