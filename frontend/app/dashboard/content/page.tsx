@@ -69,50 +69,67 @@ async function uploadImageFile(file: File): Promise<string | null> {
     return data.success ? data.url : null;
 }
 
-// ── 3D Asset Upload Helper (GLB) ──────────────────────────────────
-// ── 3D Asset Upload Helper (GLB) ── DIRECT CLIENT-SIDE UPLOAD
-async function uploadAssetFileClientSide(file: File): Promise<{ success: boolean; url?: string; message?: string }> {
+// ── 3D Asset Upload Helper (GLB) ── SIGNED URL PATTERN ──────────────
+// STEP 1: Ask the server for a pre-signed Supabase upload URL (tiny, no file)
+// STEP 2: Browser uploads the GLB DIRECTLY to Supabase via XHR using that URL
+// This bypasses Vercel's 4.5MB limit AND all RLS authentication issues.
+async function uploadAssetToSupabase(
+    file: File,
+    onProgress?: (percent: number) => void
+): Promise<{ url: string | null; error: string | null }> {
+
+    // Step 1: Get a pre-signed upload URL from our server (admin-verified server-side)
+    let signedUrl: string;
+    let publicUrl: string;
     try {
-        const supabase = createBrowserClient();
-        
-        // 1. Get current session to verify auth
-        const { data: { session } } = await supabase.auth.getSession();
-        if (!session) {
-            return { success: false, message: 'Authentication required / يلزم تسجيل الدخول للرفع' };
+        const res = await fetch('/api/admin/assets/upload', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ fileName: file.name }),
+        });
+        const data = await res.json();
+        if (!res.ok || !data.success || !data.signedUrl) {
+            return { url: null, error: data.message || 'Failed to generate signed upload URL from server.' };
         }
-
-        const timestamp = Date.now();
-        const sanitizedName = file.name.replace(/\s+/g, '-').toLowerCase();
-        const fileName = `${timestamp}-${sanitizedName}`;
-        const filePath = `monuments/${fileName}`;
-
-        // 2. Direct Upload to Supabase Storage Bucket '3d_assets'
-        const { data, error } = await supabase.storage
-            .from('3d_assets')
-            .upload(filePath, file, {
-                cacheControl: '3600',
-                upsert: false
-            });
-
-        if (error) {
-            console.error('[CLIENT-SIDE 3D UPLOAD] ERROR:', error);
-            // Hint for common bucket issues
-            if (error.message.includes('not found')) {
-                return { success: false, message: 'Bucket "3d_assets" not found in Supabase Storage.' };
-            }
-            return { success: false, message: `Supabase Error: ${error.message}` };
-        }
-
-        // 3. Get Public URL
-        const { data: { publicUrl } } = supabase.storage
-            .from('3d_assets')
-            .getPublicUrl(filePath);
-
-        return { success: true, url: publicUrl };
-    } catch (err: any) {
-        console.error('[CLIENT-SIDE 3D UPLOAD] CRITICAL:', err);
-        return { success: false, message: `Critical Failure: ${err.message}` };
+        signedUrl = data.signedUrl;
+        publicUrl = data.publicUrl;
+    } catch (e: any) {
+        return { url: null, error: `Server error: ${e.message}` };
     }
+
+    // Step 2: Upload directly to Supabase using the signed URL (XHR for progress tracking)
+    return new Promise((resolve) => {
+        const xhr = new XMLHttpRequest();
+
+        xhr.upload.addEventListener('progress', (e) => {
+            if (e.lengthComputable && onProgress) {
+                const percent = Math.round((e.loaded / e.total) * 100);
+                onProgress(percent);
+            }
+        });
+
+        xhr.addEventListener('load', () => {
+            if (xhr.status === 200 || xhr.status === 201) {
+                resolve({ url: publicUrl, error: null });
+            } else {
+                let errMsg = `Upload failed: HTTP ${xhr.status}`;
+                try {
+                    const resp = JSON.parse(xhr.responseText);
+                    errMsg = resp.message || resp.error || errMsg;
+                } catch {}
+                resolve({ url: null, error: errMsg });
+            }
+        });
+
+        xhr.addEventListener('error', () => {
+            resolve({ url: null, error: 'Network error during upload. Check your connection and try again.' });
+        });
+
+        // PUT to the signed URL — no Authorization header needed, the signature is in the URL
+        xhr.open('PUT', signedUrl);
+        xhr.setRequestHeader('Content-Type', file.type || 'model/gltf-binary');
+        xhr.send(file);
+    });
 }
 
 // ── Individual Entity Editor ─────────────────────────────
@@ -141,6 +158,8 @@ function EntityEditor({ entity, category, onSaved }: { entity: EntityEntry; cate
         finally { setUploadingImg(false); }
     };
 
+    const [uploadProgress, setUploadProgress] = useState(0);
+
     const handleAssetUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];
         if (!file) return;
@@ -152,20 +171,24 @@ function EntityEditor({ entity, category, onSaved }: { entity: EntityEntry; cate
         }
 
         setUploadingAsset(true);
+        setUploadProgress(0);
         setStatus('saving');
-        setServerMessage('Uploading to Supabase Storage...');
+        setServerMessage('Preparing signed upload URL...');
         
         try {
-            // Using direct client-side upload to bypass Vercel payload limits (4.5MB)
-            const result = await uploadAssetFileClientSide(file);
+            // Using Signed URL pattern to bypass Vercel limits and fix auth issues
+            const result = await uploadAssetToSupabase(file, (percent) => {
+                setUploadProgress(percent);
+                setServerMessage(`Uploading: ${percent}% ...`);
+            });
             
-            if (result.success && result.url) {
+            if (!result.error && result.url) {
                 set('modelUrl', result.url);
                 set('location_type', 'monument'); // Auto-tag as monument for 3D activation
                 setStatus('success');
                 setServerMessage('3D Asset uploaded and synced to Supabase ✓');
             } else {
-                throw new Error(result.message || 'Unknown error');
+                throw new Error(result.error || 'Unknown error');
             }
         } catch (err: any) { 
             console.error('3D Upload Error:', err);
@@ -173,7 +196,10 @@ function EntityEditor({ entity, category, onSaved }: { entity: EntityEntry; cate
             setServerMessage(`3D upload failed: ${err.message}`);
             alert(`3D asset upload failed: ${err.message}`); 
         }
-        finally { setUploadingAsset(false); }
+        finally { 
+            setUploadingAsset(false);
+            setUploadProgress(0);
+        }
     };
 
     const handleSave = async () => {
@@ -296,11 +322,10 @@ function EntityEditor({ entity, category, onSaved }: { entity: EntityEntry; cate
                                     <button
                                         type="button"
                                         onClick={() => assetInputRef.current?.click()}
-                                        disabled={uploadingAsset}
-                                        className="px-4 py-2 rounded-lg bg-gold-royal text-black hover:bg-yellow-500 transition-colors flex items-center gap-2 text-xs font-black shrink-0 shadow-lg"
+                                        className="px-4 py-2 rounded-lg bg-gold-royal text-black hover:bg-yellow-500 transition-colors flex items-center gap-2 text-xs font-black shrink-0 shadow-lg disabled:opacity-50"
                                     >
                                         {uploadingAsset ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <Upload className="w-3.5 h-3.5" />}
-                                        {uploadingAsset ? 'جاري الرفع...' : 'رفع GLB'}
+                                        {uploadingAsset ? `جاري الرفع ${uploadProgress}%...` : 'رفع GLB'}
                                     </button>
                                     <input ref={assetInputRef} type="file" accept=".glb" className="hidden" onChange={handleAssetUpload} />
                                 </div>
