@@ -1,4 +1,4 @@
-import { createClient } from '@/utils/supabase/server';
+import { createClient, createAdminClient } from '@/utils/supabase/server';
 import { NextResponse } from 'next/server';
 
 /**
@@ -14,11 +14,13 @@ import { NextResponse } from 'next/server';
  */
 export async function POST(request: Request) {
     try {
+        // 1. Create standard client to verify user auth
         const supabase = await createClient();
 
-        // 1. Verify admin session
+        // Verify admin session
         const { data: { user }, error: authError } = await supabase.auth.getUser();
         if (authError || !user) {
+            console.error('[3D SIGN URL] Auth error:', authError);
             return NextResponse.json({ success: false, message: 'Authentication required' }, { status: 401 });
         }
 
@@ -43,13 +45,15 @@ export async function POST(request: Request) {
         const filePath = `monuments/${timestamp}-${sanitized}`;
         const bucketName = '3d_assets';
 
-        // 3. Generate a signed upload URL (server-side with service_role via Supabase server client)
-        const { data, error: signError } = await supabase.storage
+        // 3. Generate a signed upload URL using the ADMIN client (service_role)
+        // This ensures signed URL generation succeeds even if the user client has limited privileges.
+        const supabaseAdmin = await createAdminClient();
+        const { data, error: signError } = await supabaseAdmin.storage
             .from(bucketName)
             .createSignedUploadUrl(filePath);
 
         if (signError || !data) {
-            console.error('[3D SIGN URL] Error:', signError);
+            console.error('[3D SIGN URL] Sign error:', signError);
             return NextResponse.json({
                 success: false,
                 message: `Failed to create signed URL: ${signError?.message || 'Unknown error'}`,
@@ -57,8 +61,8 @@ export async function POST(request: Request) {
             }, { status: 500 });
         }
 
-        // 4. Get the public URL using the SDK (safer than string concatenation)
-        const { data: { publicUrl } } = supabase.storage
+        // 4. Get the public URL using the admin client (safer than string concatenation)
+        const { data: { publicUrl } } = supabaseAdmin.storage
             .from(bucketName)
             .getPublicUrl(filePath);
 
