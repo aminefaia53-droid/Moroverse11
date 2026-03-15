@@ -15,7 +15,10 @@ export async function createClient() {
     const supabaseKey = isValidKey ? rawKey : 'placeholder-key';
 
     if (!isValidUrl || !isValidKey) {
-        console.error("Supabase public environment variables are missing! Server-side client will fail auth checks.");
+        console.error("❌ SUPABASE SERVER AUTH ERROR:\n" +
+            "Public environment variables (NEXT_PUBLIC_SUPABASE_URL/ANON_KEY) are missing on the server.\n" +
+            "This will cause 401 errors during the authentication handshake for 3D uploads.\n" +
+            "Please ensure these are set in your Vercel Project Settings.");
     }
 
     return createServerClient(

@@ -15,7 +15,17 @@ export function createClient() {
     const supabaseKey = isValidKey ? rawKey : 'placeholder-key';
 
     if (!isValidUrl || !isValidKey) {
-        console.error("Supabase public environment variables are missing! Client-side auth will fail.");
+        console.error("❌ SUPABASE CONFIGURATION ERROR:\n" +
+            "Your Next.js environment is missing the following public variables:\n" +
+            " - NEXT_PUBLIC_SUPABASE_URL\n" +
+            " - NEXT_PUBLIC_SUPABASE_ANON_KEY\n" +
+            "\n" +
+            "SETUP STEPS:\n" +
+            "1. Local: Add these to your .env.local file.\n" +
+            "2. Vercel: Go to Project Settings -> Environment Variables and add them there.\n" +
+            "3. Redeploy: Environment variables are baked into the build; you MUST trigger a new deployment for changes to take effect.\n" +
+            "\n" +
+            "Client-side authentication and 3D uploads will fail until this is resolved.");
     }
 
     return createBrowserClient(
