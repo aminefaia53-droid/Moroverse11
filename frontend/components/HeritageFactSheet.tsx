@@ -174,11 +174,11 @@ export default function HeritageFactSheet({ item, isOpen, onClose, lang }: Herit
                     {/* Modal Box */}
                     <motion.div
                         ref={scrollContainerRef}
-                        initial={{ opacity: 0, scale: 0.92, y: 40 }}
+                        initial={{ opacity: 0, scale: 0.95, y: 20 }}
                         animate={{ opacity: 1, scale: 1, y: 0 }}
-                        exit={{ opacity: 0, scale: 0.9, y: 40 }}
+                        exit={{ opacity: 0, scale: 0.95, y: 20 }}
                         onClick={e => e.stopPropagation()}
-                        className="relative w-full max-w-5xl bg-[#080808] rounded-3xl shadow-[0_30px_90px_-15px_rgba(0,0,0,1),0_0_50px_rgba(197,160,89,0.1)] border border-[#c5a059]/30 shrink-0 archive-seal-container"
+                        className="relative w-full max-w-5xl bg-[#080808] rounded-3xl shadow-[0_30px_90px_-15px_rgba(0,0,0,1),0_0_50px_rgba(197,160,89,0.1)] border border-[#c5a059]/30 overflow-hidden flex flex-col"
                         dir={isRTL ? 'rtl' : 'ltr'}
                     >
                         {/* ── Header Image & Isolated 3D Canvas ─────────────────────────────────────── */}
@@ -339,7 +339,7 @@ export default function HeritageFactSheet({ item, isOpen, onClose, lang }: Herit
                                 </div>
 
                                 {/* Media Hub Section */}
-                                {(item.video_url || (item.gallery && item.gallery.length > 0)) && (
+                                {(item.video_url || (Array.isArray(item.gallery) && item.gallery.length > 0)) && (
                                     <div className="pt-8 border-t border-[#c5a059]/20">
                                         <h4 className={`flex items-center gap-3 text-[10px] font-black uppercase tracking-[0.4em] text-[#c5a059] mb-6 ${isRTL ? 'flex-row-reverse text-right' : ''}`}>
                                             <ImageIcon className="w-4 h-4" />
@@ -362,7 +362,7 @@ export default function HeritageFactSheet({ item, isOpen, onClose, lang }: Herit
                                             )}
                                             
                                             {/* Gallery Grid */}
-                                            {item.gallery && item.gallery.length > 0 && (
+                                            {Array.isArray(item.gallery) && item.gallery.length > 0 && (
                                                 <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
                                                     {item.gallery.map((img, idx) => (
                                                         <div key={idx} className="aspect-square rounded-2xl overflow-hidden border border-white/10 relative group">

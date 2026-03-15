@@ -7,13 +7,9 @@ import DracoModel from './DracoModel';
 import ErrorBoundary from '../common/ErrorBoundary';
 
 // ──────────────────────────────────────────────────────────────────────────────
-// CRITICAL FIX: Set Draco decoder path at module level.
-// Without this, child hooks (useGLTF) may run BEFORE the effect configurations
-// → causing mobile browsers to fail finding the WASM binary (stalls at 33%).
+// CRITICAL FIX: Removed forced Draco decoder path to prevent 33% Network freeze.
+// Letting React Three Fiber default to its built-in gstatic v1.5.5 path.
 // ──────────────────────────────────────────────────────────────────────────────
-if (typeof window !== 'undefined') {
-    useGLTF.setDecoderPath('https://www.gstatic.com/draco/versioned/decoders/1.5.6/');
-}
 
 interface Monument3DViewerProps {
     modelUrl: string;
