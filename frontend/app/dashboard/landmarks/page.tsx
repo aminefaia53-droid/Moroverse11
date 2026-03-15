@@ -39,37 +39,35 @@ async function uploadImageFile(file: File): Promise<string | null> {
     return data.success ? data.url : null;
 }
 
-// ── 3D Asset Upload Helper (GLB) ── DIRECT SUPABASE BROWSER UPLOAD ──
-// This bypasses Vercel's 4.5MB API route limit by uploading DIRECTLY
-// from the browser to Supabase Storage using the admin's session JWT.
+// ── 3D Asset Upload Helper (GLB) ── SIGNED URL PATTERN ──────────────
+// STEP 1: Ask the server for a pre-signed Supabase upload URL (tiny, no file)
+// STEP 2: Browser uploads the GLB DIRECTLY to Supabase via XHR using that URL
+// This bypasses Vercel's 4.5MB limit AND all RLS authentication issues.
 async function uploadAssetToSupabase(
     file: File,
     onProgress?: (percent: number) => void
 ): Promise<{ url: string | null; error: string | null }> {
-    const supabase = createClient();
 
-    const timestamp = Date.now();
-    const sanitizedName = file.name.replace(/\s+/g, '-').toLowerCase();
-    const fileName = `${timestamp}-${sanitizedName}`;
-    const filePath = `monuments/${fileName}`;
-
-    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-    const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
-
-    if (!supabaseUrl || !supabaseAnonKey) {
-        return { url: null, error: 'Supabase URL or Anon Key not configured in environment variables.' };
+    // Step 1: Get a pre-signed upload URL from our server (admin-verified server-side)
+    let signedUrl: string;
+    let publicUrl: string;
+    try {
+        const res = await fetch('/api/admin/assets/upload', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ fileName: file.name }),
+        });
+        const data = await res.json();
+        if (!res.ok || !data.success || !data.signedUrl) {
+            return { url: null, error: data.message || 'Failed to generate signed upload URL from server.' };
+        }
+        signedUrl = data.signedUrl;
+        publicUrl = data.publicUrl;
+    } catch (e: any) {
+        return { url: null, error: `Server error: ${e.message}` };
     }
 
-    // Use the admin's session JWT so the upload satisfies the RLS 'authenticated' policy.
-    // Falls back to the anon key if the session is somehow not available.
-    const { data: { session } } = await supabase.auth.getSession();
-    const authToken = session?.access_token || supabaseAnonKey;
-
-    if (!session?.access_token) {
-        console.warn('[3D UPLOAD] No session found — using anon key. Make sure you are logged into the dashboard.');
-    }
-
-    // Use XMLHttpRequest for upload progress tracking
+    // Step 2: Upload directly to Supabase using the signed URL (XHR for progress tracking)
     return new Promise((resolve) => {
         const xhr = new XMLHttpRequest();
 
@@ -82,7 +80,6 @@ async function uploadAssetToSupabase(
 
         xhr.addEventListener('load', () => {
             if (xhr.status === 200) {
-                const publicUrl = `${supabaseUrl}/storage/v1/object/public/3d_assets/${filePath}`;
                 resolve({ url: publicUrl, error: null });
             } else {
                 let errMsg = `Upload failed: HTTP ${xhr.status}`;
@@ -98,11 +95,9 @@ async function uploadAssetToSupabase(
             resolve({ url: null, error: 'Network error during upload. Check your connection and try again.' });
         });
 
-        const uploadUrl = `${supabaseUrl}/storage/v1/object/3d_assets/${filePath}`;
-        xhr.open('POST', uploadUrl);
-        xhr.setRequestHeader('Authorization', `Bearer ${authToken}`);
+        // PUT to the signed URL — no Authorization header needed, the signature is in the URL
+        xhr.open('PUT', signedUrl);
         xhr.setRequestHeader('Content-Type', file.type || 'model/gltf-binary');
-        xhr.setRequestHeader('x-upsert', 'false');
         xhr.send(file);
     });
 }

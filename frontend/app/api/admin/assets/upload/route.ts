@@ -1,20 +1,76 @@
+import { createClient } from '@/utils/supabase/server';
 import { NextResponse } from 'next/server';
 
 /**
  * API Route: /api/admin/assets/upload
  *
- * ⚠️ DEPRECATED for large 3D files (> 4.5MB) ⚠️
+ * STRATEGY: Signed URL Generation
+ * - The file does NOT pass through this route (avoids Vercel 4.5MB limit)
+ * - This route ONLY generates a pre-signed upload URL using the service_role key
+ * - The browser then uploads directly to Supabase using that signed URL via XHR
+ * - This is the secure way to handle large file uploads without exposing secret keys
  *
- * Vercel enforces a 4.5MB body limit on all API routes.
- * Large .glb models now upload DIRECTLY from the browser to Supabase Storage
- * using XHR (XMLHttpRequest) in /app/dashboard/landmarks/page.tsx.
- *
- * See: uploadAssetToSupabase() in landmarks/page.tsx
+ * Flow: Browser -> GET signed URL (tiny, instant) -> XHR PUT to Supabase (direct, no size limit)
  */
-export async function POST() {
-    return NextResponse.json({
-        success: false,
-        message: '3D uploads now use direct browser-to-Supabase upload to bypass Vercel\'s 4.5MB limit.',
-        hint: 'Use the client-side uploadAssetToSupabase() function in landmarks/page.tsx instead.',
-    }, { status: 410 }); // 410 Gone — intentionally retired
+export async function POST(request: Request) {
+    try {
+        const supabase = await createClient();
+
+        // 1. Verify admin session
+        const { data: { user }, error: authError } = await supabase.auth.getUser();
+        if (authError || !user) {
+            return NextResponse.json({ success: false, message: 'Authentication required' }, { status: 401 });
+        }
+
+        const { data: profile } = await supabase
+            .from('profiles')
+            .select('is_admin')
+            .eq('id', user.id)
+            .single();
+
+        if (!profile?.is_admin) {
+            return NextResponse.json({ success: false, message: 'Admin access required' }, { status: 403 });
+        }
+
+        // 2. Parse filename from request body (NOT the file itself)
+        const { fileName } = await request.json();
+        if (!fileName || !fileName.toLowerCase().endsWith('.glb')) {
+            return NextResponse.json({ success: false, message: 'Invalid filename. Only .glb files are supported.' }, { status: 400 });
+        }
+
+        const timestamp = Date.now();
+        const sanitized = fileName.replace(/\s+/g, '-').toLowerCase();
+        const filePath = `monuments/${timestamp}-${sanitized}`;
+        const bucketName = '3d_assets';
+
+        // 3. Generate a signed upload URL (server-side with service_role via Supabase server client)
+        const { data, error: signError } = await supabase.storage
+            .from(bucketName)
+            .createSignedUploadUrl(filePath);
+
+        if (signError || !data) {
+            console.error('[3D SIGN URL] Error:', signError);
+            return NextResponse.json({
+                success: false,
+                message: `Failed to create signed URL: ${signError?.message || 'Unknown error'}`,
+                hint: 'Ensure the "3d_assets" bucket exists in Supabase Storage with public access enabled.'
+            }, { status: 500 });
+        }
+
+        // 4. Build the public URL that will be accessible after upload
+        const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+        const publicUrl = `${supabaseUrl}/storage/v1/object/public/${bucketName}/${filePath}`;
+
+        return NextResponse.json({
+            success: true,
+            signedUrl: data.signedUrl,  // Browser uploads to this URL via XHR PUT
+            token: data.token,
+            filePath,
+            publicUrl,                   // The final URL to store in modelUrl
+        });
+
+    } catch (error: any) {
+        console.error('[3D SIGN URL] Critical error:', error);
+        return NextResponse.json({ success: false, message: error.message }, { status: 500 });
+    }
 }
