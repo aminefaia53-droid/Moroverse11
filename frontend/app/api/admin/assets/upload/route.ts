@@ -57,9 +57,19 @@ export async function POST(request: Request) {
             }, { status: 500 });
         }
 
-        // 4. Build the public URL that will be accessible after upload
-        const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-        const publicUrl = `${supabaseUrl}/storage/v1/object/public/${bucketName}/${filePath}`;
+        // 4. Get the public URL using the SDK (safer than string concatenation)
+        const { data: { publicUrl } } = supabase.storage
+            .from(bucketName)
+            .getPublicUrl(filePath);
+
+        if (!publicUrl || publicUrl.includes('placeholder-project')) {
+            console.error('[3D SIGN URL] Invalid public URL generated:', publicUrl);
+            return NextResponse.json({
+                success: false,
+                message: 'Supabase configuration error: Public URL could not be generated correctly.',
+                hint: 'Check your NEXT_PUBLIC_SUPABASE_URL and SUPABASE_URL environment variables on Vercel.'
+            }, { status: 500 });
+        }
 
         return NextResponse.json({
             success: true,

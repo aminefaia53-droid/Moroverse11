@@ -4,19 +4,20 @@ import { cookies } from 'next/headers'
 export async function createClient() {
     const cookieStore = await cookies()
 
-    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-    const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+    // Priority: Secret Key > Public Key
+    // On the server, we should try to use the secret service role key if available
+    const rawUrl = process.env.SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL;
+    const rawKey = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
-    if (!supabaseUrl || !supabaseKey) {
-        console.warn("Supabase environment variables missing. Auth will fail.");
-        // Return a dummy/failing client or handle gracefully
-        // We'll pass dummy to satisfy types, but it won't work for db calls
-        return createServerClient("https://dummy.supabase.co", "dummy-key", {
-            cookies: {
-                getAll() { return [] },
-                setAll() { }
-            }
-        });
+    // Robust check: must be a string starting with http, and not the literal string "undefined"
+    const isValidUrl = rawUrl && typeof rawUrl === 'string' && rawUrl.startsWith('http') && rawUrl !== 'undefined';
+    const isValidKey = rawKey && typeof rawKey === 'string' && rawKey.length > 10 && rawKey !== 'undefined';
+
+    const supabaseUrl = isValidUrl ? rawUrl : 'https://placeholder-project.supabase.co';
+    const supabaseKey = isValidKey ? rawKey : 'placeholder-key';
+
+    if (!isValidUrl || !isValidKey) {
+        console.error("Supabase environment variables are missing or invalid! Server-side client will fail.");
     }
 
     return createServerClient(
@@ -33,9 +34,7 @@ export async function createClient() {
                             cookieStore.set(name, value, options)
                         })
                     } catch {
-                        // The `set` method was called from a Server Component.
-                        // This can be ignored if you have middleware refreshing
-                        // user sessions.
+                        // Handle server action / middleware cookie restriction
                     }
                 },
             },
