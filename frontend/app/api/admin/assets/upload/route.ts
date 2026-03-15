@@ -1,57 +1,46 @@
-import { createClient, createAdminClient } from '@/utils/supabase/server';
+import { createAdminClient } from '@/utils/supabase/server';
 import { NextResponse } from 'next/server';
+import { cookies } from 'next/headers';
 
 /**
  * API Route: /api/admin/assets/upload
  *
  * STRATEGY: Signed URL Generation
+ * - Auth is validated via the `admin_session` cookie (same as the dashboard middleware)
  * - The file does NOT pass through this route (avoids Vercel 4.5MB limit)
  * - This route ONLY generates a pre-signed upload URL using the service_role key
  * - The browser then uploads directly to Supabase using that signed URL via XHR
- * - This is the secure way to handle large file uploads without exposing secret keys
  *
- * Flow: Browser -> GET signed URL (tiny, instant) -> XHR PUT to Supabase (direct, no size limit)
+ * Flow: Browser -> POST /api/admin/assets/upload (tiny JSON, instant)
+ *              -> XHR PUT to Supabase signed URL (direct, no size limit)
+ *
+ * ROOT CAUSE FIX: Previously used supabase.auth.getUser() which always fails
+ * because the dashboard uses cookie-based auth (admin_session), NOT Supabase JWT sessions.
  */
 export async function POST(request: Request) {
     try {
-        // 1. Create standard client to verify user auth
-        const supabase = await createClient();
+        // 1. Validate admin access via the admin_session cookie
+        //    This mirrors the exact same check performed in middleware.ts
+        const cookieStore = await cookies();
+        const adminCookie = cookieStore.get('admin_session');
 
-        // Verify admin session
-        const { data: { user }, error: authError } = await supabase.auth.getUser();
-        
-        if (authError || !user) {
-            console.error('[3D SIGN URL] Auth check failed:', { 
-                error: authError?.message, 
-                errorCode: authError?.status,
-                hasUser: !!user 
-            });
-            return NextResponse.json({ 
-                success: false, 
+        if (!adminCookie || adminCookie.value !== 'authenticated') {
+            console.error('[3D SIGN URL] Auth failed: admin_session cookie missing or invalid.\n' +
+                'Cookie value:', adminCookie?.value ?? 'NOT SET');
+            return NextResponse.json({
+                success: false,
                 message: 'Authentication required',
-                debugNotice: authError ? `Auth Error: ${authError.message}` : 'No session found'
+                hint: 'The admin_session cookie is missing. Please log in again via /login.'
             }, { status: 401 });
-        }
-
-        const { data: profile, error: profileError } = await supabase
-            .from('profiles')
-            .select('is_admin')
-            .eq('id', user.id)
-            .single();
-
-        if (profileError || !profile?.is_admin) {
-            console.error('[3D SIGN URL] Admin check failed:', { 
-                userId: user.id, 
-                isAdmin: profile?.is_admin,
-                error: profileError?.message 
-            });
-            return NextResponse.json({ success: false, message: 'Admin access required' }, { status: 403 });
         }
 
         // 2. Parse filename from request body (NOT the file itself)
         const { fileName } = await request.json();
         if (!fileName || !fileName.toLowerCase().endsWith('.glb')) {
-            return NextResponse.json({ success: false, message: 'Invalid filename. Only .glb files are supported.' }, { status: 400 });
+            return NextResponse.json({
+                success: false,
+                message: 'Invalid filename. Only .glb files are supported.'
+            }, { status: 400 });
         }
 
         const timestamp = Date.now();
@@ -60,7 +49,7 @@ export async function POST(request: Request) {
         const bucketName = '3d_assets';
 
         // 3. Generate a signed upload URL using the ADMIN client (service_role)
-        // This ensures signed URL generation succeeds even if the user client has limited privileges.
+        //    This uses SUPABASE_SERVICE_ROLE_KEY and bypasses RLS entirely.
         const supabaseAdmin = await createAdminClient();
         const { data, error: signError } = await supabaseAdmin.storage
             .from(bucketName)
@@ -75,7 +64,7 @@ export async function POST(request: Request) {
             }, { status: 500 });
         }
 
-        // 4. Get the public URL using the admin client (safer than string concatenation)
+        // 4. Get the public URL using the admin client
         const { data: { publicUrl } } = supabaseAdmin.storage
             .from(bucketName)
             .getPublicUrl(filePath);
@@ -85,10 +74,11 @@ export async function POST(request: Request) {
             return NextResponse.json({
                 success: false,
                 message: 'Supabase configuration error: Public URL could not be generated correctly.',
-                hint: 'Check your NEXT_PUBLIC_SUPABASE_URL and SUPABASE_URL environment variables on Vercel.'
+                hint: 'Check your SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY environment variables on Vercel.'
             }, { status: 500 });
         }
 
+        console.log('[3D SIGN URL] ✅ Success: signed URL generated for', filePath);
         return NextResponse.json({
             success: true,
             signedUrl: data.signedUrl,  // Browser uploads to this URL via XHR PUT
