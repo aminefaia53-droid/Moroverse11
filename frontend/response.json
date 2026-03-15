@@ -1,0 +1,31 @@
+﻿
+
+StatusCode        : 200
+StatusDescription : OK
+Content           : {"success":true,"data":{"landmarks":[{"id":"r
+                    abat-hassan-tower","name":{"ar":"ØµÙÙØ¹Ø© Ø
+                    Ø³Ø§Ù: Ø´ÙÙØ® Ø§ÙØªØ§Ø±ÙØ® ÙÙ ÙÙØ¨ 
+                    Ø§ÙØ±Ø¨Ø§Ø·","en":"Hassan 
+                    Tower"},"desc":{"ar":"ØµÙÙØ¹Ø© ØØ³Ø...
+RawContent        : HTTP/1.1 200 OK
+                    vary: rsc, next-router-state-tree, 
+                    next-router-prefetch, 
+                    next-router-segment-prefetch
+                    Connection: keep-alive
+                    Keep-Alive: timeout=5
+                    Transfer-Encoding: chunked
+                    Content-Type: applica...
+Forms             : {}
+Headers           : {[vary, rsc, next-router-state-tree, 
+                    next-router-prefetch, 
+                    next-router-segment-prefetch], [Connection, 
+                    keep-alive], [Keep-Alive, timeout=5], 
+                    [Transfer-Encoding, chunked]...}
+Images            : {}
+InputFields       : {}
+Links             : {}
+ParsedHtml        : mshtml.HTMLDocumentClass
+RawContentLength  : 28870
+
+
+

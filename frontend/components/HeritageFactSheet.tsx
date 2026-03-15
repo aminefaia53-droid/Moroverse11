@@ -76,13 +76,36 @@ export default function HeritageFactSheet({ item, isOpen, onClose, lang }: Herit
     const [show3D, setShow3D] = useState(false);
     const [isFullContent, setIsFullContent] = useState(false);
     const scrollContainerRef = useRef<HTMLDivElement>(null);
+    const [imgSrc, setImgSrc] = useState<string>(item?.imageUrl || FALLBACK_IMG);
+    const [videoThumbSrc, setVideoThumbSrc] = useState<string>(item?.imageUrl || FALLBACK_IMG);
 
     // Reset 3D states when item changes or modal closes
     useEffect(() => {
         if (!isOpen) {
             setShow3D(false);
         }
-    }, [isOpen, item?.id]);
+        if (item) {
+            setImgSrc(item.imageUrl || FALLBACK_IMG);
+            setVideoThumbSrc(item.imageUrl || FALLBACK_IMG);
+        }
+    }, [isOpen, item]);
+
+    const handleMainImageError = () => {
+        if (imgSrc !== FALLBACK_IMG) {
+            setImgSrc(FALLBACK_IMG);
+        } else {
+            // If the Unsplash fallback also fails, break the infinite loop permanently with a transparent pixel
+            setImgSrc('data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7');
+        }
+    };
+
+    const handleVideoThumbError = () => {
+        if (videoThumbSrc !== FALLBACK_IMG) {
+            setVideoThumbSrc(FALLBACK_IMG);
+        } else {
+            setVideoThumbSrc('data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7');
+        }
+    };
 
     // Structural Scroll Fix: Lock Body, Prevent Main Page Jumps
     useEffect(() => {
@@ -188,11 +211,11 @@ export default function HeritageFactSheet({ item, isOpen, onClose, lang }: Herit
 
                             <div className="absolute inset-0 z-0 bg-[#111]">
                                 <img
-                                    src={item.imageUrl || FALLBACK_IMG}
+                                    src={imgSrc}
                                     alt={nameText}
                                     className="w-full h-full object-cover object-center opacity-100 transition-opacity duration-1000 z-10"
                                     style={{ filter: 'contrast(1.05) brightness(1.0)' }}
-                                    onError={e => { e.currentTarget.onerror = null; e.currentTarget.src = FALLBACK_IMG; }}
+                                    onError={handleMainImageError}
                                 />
                                 <div className="absolute inset-0 bg-gradient-to-t from-[#080808]/60 via-transparent to-transparent z-20" />
                             </div>
@@ -357,7 +380,7 @@ export default function HeritageFactSheet({ item, isOpen, onClose, lang }: Herit
                                                             {isRTL ? 'تشغيل المادة الوثائقية' : 'Play Documentary'}
                                                         </span>
                                                     </div>
-                                                    <img src={item.imageUrl || FALLBACK_IMG} alt="Video Thumbnail" className="absolute inset-0 w-full h-full object-cover opacity-50 grayscale group-hover:grayscale-0 transition-all duration-700" />
+                                                    <img src={videoThumbSrc} alt="Video Thumbnail" className="absolute inset-0 w-full h-full object-cover opacity-50 grayscale group-hover:grayscale-0 transition-all duration-700" onError={handleVideoThumbError} />
                                                 </a>
                                             )}
                                             
