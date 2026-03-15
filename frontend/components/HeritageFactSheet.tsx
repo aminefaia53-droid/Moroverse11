@@ -358,8 +358,8 @@ export default function HeritageFactSheet({ item, isOpen, onClose, lang }: Herit
 
                                 {/* Action Buttons Cluster */}
                                 <div className="space-y-6">
-                                    {/* Elite 3D Button - Only show if model_url exists */}
-                                    {item.model_url && (
+                                    {/* Elite 3D Button - Only show if model_url exists and item is a Landmark */}
+                                    {item.type !== 'battle' && item.type !== 'figure' && item.model_url && (
                                         <button
                                             onClick={() => setShow3D(true)}
                                             className="w-full py-8 rounded-[40px] bg-[#C5A059] text-black shadow-[0_20px_50px_rgba(197,160,89,0.3)] hover:scale-[1.03] hover:shadow-[0_0_70px_rgba(197,160,89,0.6)] flex items-center justify-center gap-5 transition-all duration-500 group border-4 border-white/10"

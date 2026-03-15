@@ -61,6 +61,15 @@ export default function SmartSidebar({ isHeaderTrigger = false }: { isHeaderTrig
         window.dispatchEvent(new CustomEvent('toggle-sidebar'));
     };
 
+    const handleThemeChange = (id: string) => {
+        setTheme(id);
+        let audioMode = 'default';
+        if (id === 'summer' || id === 'spring') audioMode = 'summer';
+        else if (id === 'winter') audioMode = 'rain';
+        else if (id === 'dark') audioMode = 'night';
+        window.dispatchEvent(new CustomEvent('moroverse-climate-change', { detail: { mode: audioMode } }));
+    };
+
     const scrollTo = (id: string) => {
         document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
         setIsOpen(false);
@@ -141,7 +150,7 @@ export default function SmartSidebar({ isHeaderTrigger = false }: { isHeaderTrig
                         {SEASONS.map(s => (
                             <button
                                 key={s.id}
-                                onClick={() => setTheme(s.id)}
+                                onClick={() => handleThemeChange(s.id)}
                                 title={lbl(s.ar, s.en)}
                                 className={`
                                     flex items-center gap-1 px-2 py-1 rounded-lg text-[11px] transition-all duration-200

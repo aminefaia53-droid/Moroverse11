@@ -7,9 +7,10 @@ import { Group, Box3, Vector3, Object3D } from 'three';
 
 interface DracoModelProps {
     url: string;
+    wireframe?: boolean;
 }
 
-export default function DracoModel({ url }: DracoModelProps) {
+export default function DracoModel({ url, wireframe = false }: DracoModelProps) {
     const group = useRef<Group>(null);
     const { scene } = useGLTF(url);
     const { camera } = useThree();
@@ -43,6 +44,22 @@ export default function DracoModel({ url }: DracoModelProps) {
             group.current.position.y = Math.sin(state.clock.elapsedTime * 0.5) * 0.15;
         }
     });
+
+    // Apply wireframe to all materials
+    useEffect(() => {
+        if (normalizedScene) {
+            normalizedScene.traverse((child: any) => {
+                if (child.isMesh && child.material) {
+                    // It can be a multi-material array
+                    if (Array.isArray(child.material)) {
+                        child.material.forEach((mat: any) => mat.wireframe = wireframe);
+                    } else {
+                        child.material.wireframe = wireframe;
+                    }
+                }
+            });
+        }
+    }, [normalizedScene, wireframe]);
 
     return (
         <group ref={group} dispose={null}>
