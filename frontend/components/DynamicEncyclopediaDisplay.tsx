@@ -213,7 +213,7 @@ export default function DynamicEncyclopediaDisplay({ category, lang, emptyMessag
         );
     }
 
-    const show3D = true; // Enabled for Sovereign Build
+    const show3D = should3DButtonShow(category);
 
     return (
         <div className="w-full">

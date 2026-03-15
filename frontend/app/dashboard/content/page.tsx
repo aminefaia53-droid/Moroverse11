@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback, useRef } from 'react';
 import {
-    Search, Save, Upload, Video, Globe, Tag, FileText,
+    Search, Save, Upload, Video, Globe, Tag, FileText, Play,
     ImageOff, Loader2, CheckCircle, X, ChevronDown, ChevronUp,
     Film, MapPin, Calendar, BookOpen, Hash, Swords, Building2, Landmark, Users, Box
 } from 'lucide-react';
@@ -301,8 +301,30 @@ function EntityEditor({ entity, category, onSaved }: { entity: EntityEntry; cate
                                 )}
                             </div>
 
+                            {/* Video URL */}
+                            <div>
+                                <label className="text-xs text-gray-400 font-bold uppercase tracking-widest mb-1.5 block flex items-center gap-1.5">
+                                    <Film className="w-3.5 h-3.5 text-red-400" /> فيديو وثائقي (Video URL)
+                                </label>
+                                <input
+                                    value={draft.videoUrl || ''}
+                                    onChange={e => set('videoUrl', e.target.value)}
+                                    placeholder="https://youtube.com/... أو https://vimeo.com/..."
+                                    className="w-full text-xs px-3 py-2 rounded-lg bg-[#112240] border border-[#c5a059]/20 text-white placeholder-gray-600 focus:ring-1 focus:ring-gold-royal outline-none"
+                                />
+                                {draft.videoUrl && (
+                                    <div className="mt-2 p-2 rounded-lg bg-red-900/10 border border-red-500/20 flex items-center justify-between">
+                                        <div className="flex items-center gap-2 text-[10px] text-red-400 truncate">
+                                            <Play className="w-3 h-3" /> Video Linked: {draft.videoUrl.substring(0, 50)}...
+                                        </div>
+                                        <button onClick={() => set('videoUrl', '')} className="text-red-400 hover:text-red-300 p-1">
+                                            <X className="w-3 h-3" />
+                                        </button>
+                                    </div>
+                                )}
                             </div>
                         </div>
+                    </div>
 
                         {/* ── 3D Asset Management (Elite View) ── */}
                         {(category === 'landmarks' || category === 'cities') && (

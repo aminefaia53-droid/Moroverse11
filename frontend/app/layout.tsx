@@ -85,6 +85,7 @@ export const viewport = {
 import { LanguageProvider } from "../context/LanguageContext";
 import { ThemeProvider } from "../components/ThemeProvider";
 import WeatherOverlay from "../components/WeatherOverlay";
+import AtmosphericAudio from "../components/AtmosphericAudio";
 
 export default function RootLayout({
   children,
@@ -101,6 +102,7 @@ export default function RootLayout({
             <WeatherOverlay />
             {children}
             <MoroVerseAssistant />
+            <AtmosphericAudio />
           </LanguageProvider>
         </ThemeProvider>
       </body>
