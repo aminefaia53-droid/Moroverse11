@@ -5,23 +5,27 @@ import { useGLTF } from '@react-three/drei';
 import { useFrame, useThree } from '@react-three/fiber';
 import { Group, Box3, Vector3 } from 'three';
 
-// ──────────────────────────────────────────────────────────────────────────────
-// CRITICAL FIX: Explicitly set the Draco decoder path to a highly available CDN 
-// to prevent the 33% network stall that causes the black screen on mobile.
-// ──────────────────────────────────────────────────────────────────────────────
+// ───────────── VITAL 3D PERFORMANCE FIX ─────────────
+// Hardcoded Draco decoder path to ensure it never fails on mobile/Vercel
+// Version 1.5.5 is currently the most stable for React Three Fiber
 const DRACO_DECODER_PATH = "https://www.gstatic.com/draco/versioned/decoders/1.5.5/";
 
 interface DracoModelProps {
     url: string;
     wireframe?: boolean;
+    onLoad?: () => void;
+    onError?: (error: Error) => void;
+    isIntersecting?: boolean; // New prop for Smart Hibernation
 }
 
-export default function DracoModel({ url, wireframe = false }: DracoModelProps) {
+export default function DracoModel({ url, wireframe = false, onLoad, onError, isIntersecting = true }: DracoModelProps) {
     const group = useRef<Group>(null);
     // Explicitly pass the decoder path to useGLTF to ensure it always loads
     const { scene } = useGLTF(url, DRACO_DECODER_PATH);
     const { camera } = useThree();
     const [floatOffset, setFloatOffset] = useState(0);
+    const [isLoaded, setIsLoaded] = useState(false); // Track if the model is fully loaded and processed
+    const isInteracting = useRef(false); // To prevent rotation during user interaction
 
     // Auto-center and normalize the model scale so ANY model renders visibly
     const { normalizedScene, center } = useMemo(() => {
@@ -45,10 +49,23 @@ export default function DracoModel({ url, wireframe = false }: DracoModelProps) 
         return { normalizedScene: cloned, center: scaledCenter };
     }, [scene]);
 
+    // Set isLoaded to true and call onLoad after the model is processed
+    useEffect(() => {
+        if (normalizedScene) {
+            setIsLoaded(true);
+            if (onLoad) {
+                onLoad();
+            }
+        }
+    }, [normalizedScene, onLoad]);
+
     // Subtle floating animation
-    useFrame((state) => {
-        if (group.current) {
-            group.current.position.y = Math.sin(state.clock.elapsedTime * 0.5) * 0.15;
+    useFrame((state, delta) => {
+        // SMART HIBERNATION: Kill physics/rotation if not visible
+        if (!isIntersecting) return;
+        
+        if (group.current && !isInteracting.current && isLoaded) {
+            group.current.rotation.y += delta * 0.1; // Slow, majestic rotation
         }
     });
 

@@ -3,8 +3,9 @@
 class AudioManager {
     private ambientSource: HTMLAudioElement | null = null;
     private weatherSource: HTMLAudioElement | null = null;
+    private marketSource: HTMLAudioElement | null = null;
     private isEnabled: boolean = false;
-    private currentWeather: string = 'clear'; // 'clear' | 'rain'
+    private currentWeather: string = 'clear'; // 'clear' | 'rain' | 'market'
 
     public static instance: AudioManager = new AudioManager();
 
@@ -20,11 +21,15 @@ class AudioManager {
         }
 
         if (!this.weatherSource) {
-             // Use a low, calm rain track
-             // Make sure to add this file to public/audio later, or use a reliable CDN
              this.weatherSource = new Audio("/audio/soft-rain-ambience.mp3");
              this.weatherSource.loop = true;
-             this.weatherSource.volume = 0.0; // Start at 0 volume
+             this.weatherSource.volume = 0.0;
+        }
+
+        if (!this.marketSource) {
+            this.marketSource = new Audio("/audio/moroccan-souk.mp3"); // Placeholder for bustling market
+            this.marketSource.loop = true;
+            this.marketSource.volume = 0.0;
         }
     }
 
@@ -40,39 +45,45 @@ class AudioManager {
         }
     }
 
-    public setWeatherState(weather: 'clear' | 'rain') {
+    public setWeatherState(weather: 'clear' | 'rain' | 'market') {
         if (typeof window === 'undefined') return;
         this.currentWeather = weather;
         
-        if (!this.isEnabled || !this.weatherSource) return;
+        if (!this.isEnabled) return;
+
+        const fadeAudio = (audioObj: HTMLAudioElement | null, targetVol: number) => {
+            if (!audioObj) return;
+            if (targetVol > 0) {
+                audioObj.volume = 0;
+                audioObj.play().catch(e => console.warn(e));
+            }
+            let vol = audioObj.volume;
+            const diff = targetVol - vol;
+            if (Math.abs(diff) < 0.01) return;
+            
+            const step = diff > 0 ? 0.05 : -0.05;
+            const fadeId = setInterval(() => {
+                vol += step;
+                if ((step > 0 && vol >= targetVol) || (step < 0 && vol <= targetVol)) {
+                    clearInterval(fadeId);
+                    audioObj.volume = targetVol;
+                    if (targetVol === 0) audioObj.pause();
+                } else {
+                    audioObj.volume = vol;
+                }
+            }, 200);
+        };
 
         if (weather === 'rain') {
-            this.weatherSource.volume = 0;
-            this.weatherSource.play().catch(e => console.warn(e));
-            // Fade in
-            let vol = 0;
-            const fadeId = setInterval(() => {
-                vol += 0.05;
-                if (vol >= 0.4) {
-                    clearInterval(fadeId);
-                    this.weatherSource!.volume = 0.4;
-                } else {
-                    this.weatherSource!.volume = vol;
-                }
-            }, 200);
+            fadeAudio(this.weatherSource, 0.4);
+            fadeAudio(this.marketSource, 0);
+        } else if (weather === 'market') {
+            fadeAudio(this.marketSource, 0.3);
+            fadeAudio(this.weatherSource, 0);
         } else {
-            // Fade out
-            let vol = this.weatherSource.volume;
-            const fadeId = setInterval(() => {
-                vol -= 0.05;
-                if (vol <= 0) {
-                    clearInterval(fadeId);
-                    this.weatherSource!.pause();
-                    this.weatherSource!.volume = 0;
-                } else {
-                    this.weatherSource!.volume = vol;
-                }
-            }, 200);
+            // clear
+            fadeAudio(this.weatherSource, 0);
+            fadeAudio(this.marketSource, 0);
         }
     }
 
@@ -110,6 +121,9 @@ class AudioManager {
         }
         if (this.weatherSource) {
             this.weatherSource.pause();
+        }
+        if (this.marketSource) {
+            this.marketSource.pause();
         }
     }
 }

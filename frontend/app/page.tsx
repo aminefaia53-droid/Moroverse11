@@ -19,6 +19,7 @@ import MoroVerseLogo from '@/components/MoroVerseLogo';
 import { useLanguage } from "../context/LanguageContext";
 import LanguageSwitcher from "../components/ui/LanguageSwitcher";
 import { Landmark, Map, Swords, Users } from "lucide-react";
+import WeatherToggle from "@/components/ui/WeatherToggle";
 
 export default function Home() {
   const { lang, setLang } = useLanguage();
@@ -308,6 +309,7 @@ export default function Home() {
 
       </div>
 
+      <WeatherToggle />
 
       <footer className="py-32 text-center border-t border-primary/20 relative z-20 bg-black/60 backdrop-blur-sm">
         <Crown className="w-14 h-14 text-primary mx-auto mb-10 opacity-60 drop-shadow-[0_0_15px_rgba(197,160,89,0.5)]" />
