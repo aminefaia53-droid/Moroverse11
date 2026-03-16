@@ -87,6 +87,10 @@ export default function HeritageFactSheet({ item, isOpen, onClose, lang }: Herit
         if (item) {
             setImgSrc(item.imageUrl || FALLBACK_IMG);
             setVideoThumbSrc(item.imageUrl || FALLBACK_IMG);
+            // Auto-open 3D viewer if triggered from the card's 3D button
+            if ((item as any)._autoOpen3D && item.model_url) {
+                setShow3D(true);
+            }
         }
     }, [isOpen, item]);
 
@@ -463,7 +467,7 @@ export default function HeritageFactSheet({ item, isOpen, onClose, lang }: Herit
                                     >
                                         <Compass className="w-7 h-7 group-hover:rotate-[360deg] transition-transform duration-1000 text-primary" />
                                         <span className="text-base font-black uppercase tracking-[0.2em]">
-                                            {isRTL ? `ولوج الأرشيف الكامل: ${item.name.ar}` : `Access Deep Archive: ${item.name.en}`}
+                                            {isRTL ? `ولوج الأرشيف الكامل: ${getT(item.name, 'ar')}` : `Access Deep Archive: ${getT(item.name, 'en')}`}
                                         </span>
                                         <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
                                     </button>

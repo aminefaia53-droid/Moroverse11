@@ -25,8 +25,8 @@
 
 :root,
 .summer {
-  --background: #002366 !important;
-  /* Royal Blue for emergency verification */
+  --background: #0a0404;
+  /* Deep Moroccan Dark */
   --foreground: #ffffff;
   --primary: #c5a059;
   /* Matte Gold */
@@ -503,14 +503,9 @@ body {
   color: black !important;
 }
 
-/* Titles and Gold accents */
-h1,
-h2,
-h3,
-.text-gold-royal,
-.text-\[\#c5a059\],
-.text-\[\#D4AF37\] {
-  color: #D4AF37 !important;
+/* Gold accent utility classes */
+.text-gold-royal {
+  color: #D4AF37;
 }
 
 /* Ensure images and SVGs aren't blacked out by background-color: black */

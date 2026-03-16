@@ -156,59 +156,71 @@ export default function DynamicEncyclopediaDisplay({ category, lang, emptyMessag
     const handleCardClick = (item: any, triggerTab?: 'video' | '3d') => {
         if (!item) return;
         
-        // Defensive mapping for the FactSheet to prevent crashes on legacy data
-        const getName = (n: any, l: string) => {
+        // ── SANITIZATION LAYER ──────────────────────────────────────────────────
+        // Defensive mapping: never pass null/undefined into HeritageFactSheet.
+        // This prevents map() crashes from malformed API payloads.
+        const getName = (n: any, l: string): string => {
             if (!n) return '';
             if (typeof n === 'string') return n;
             const target = l as 'ar' | 'en';
-            return n?.[target] || n?.ar || n?.en || '';
+            return (n?.[target] || n?.ar || n?.en || '') as string;
         };
 
+        const safeStr = (v: any): string => {
+            if (!v) return '';
+            if (typeof v === 'string') return v.trim();
+            return '';
+        };
+
+        // Sanitize galleries: only keep non-empty string URLs
+        const safeGallery = Array.isArray(item.gallery)
+            ? item.gallery.filter((img: any) => typeof img === 'string' && img.trim().length > 0)
+            : undefined;
+
+        // Always give items a stable unique ID
+        const safeId = safeStr(item.id) || safeStr(item.slug) || `item-${Date.now()}-${Math.random().toString(36).slice(2)}`;
+
         const heritageItem: HeritageItem = {
-            id: item.id || Math.random().toString(),
-            slug: item.id,
+            id: safeId,
+            slug: safeStr(item.id || item.slug) || safeId,
             name: {
-                en: getName(item.name, 'en'),
-                ar: getName(item.name, 'ar')
+                en: getName(item.name, 'en') || 'Unknown',
+                ar: getName(item.name, 'ar') || 'غير معروف'
             },
             city: {
-                en: getName(item.city || item.regionName, 'en'),
-                ar: getName(item.city || item.regionName, 'ar')
+                en: getName(item.city || item.regionName, 'en') || 'Morocco',
+                ar: getName(item.city || item.regionName, 'ar') || 'المغرب'
             },
             history: {
-                en: item.history?.en || (typeof item.desc === 'string' ? item.desc : item.desc?.en) || '',
-                ar: item.history?.ar || (typeof item.desc === 'string' ? item.desc : item.desc?.ar) || ''
+                en: safeStr(item.history?.en) || safeStr(typeof item.desc === 'string' ? item.desc : item.desc?.en),
+                ar: safeStr(item.history?.ar) || safeStr(typeof item.desc === 'string' ? item.desc : item.desc?.ar)
             },
             foundation: item.foundation,
             visualSoul: item.visualSoul,
-            imageUrl: item.imageUrl || undefined,
-            video_url: item.videoUrl || undefined,
-            model_url: item.modelUrl || undefined,
-            gallery: item.gallery || undefined,
-            summary: typeof item.desc === 'string' ? item.desc : (item.desc?.ar || item.desc?.en || ''),
+            imageUrl: typeof item.imageUrl === 'string' && item.imageUrl.trim() ? item.imageUrl.trim() : undefined,
+            video_url: typeof item.videoUrl === 'string' && item.videoUrl.trim() ? item.videoUrl.trim() : undefined,
+            model_url: typeof item.modelUrl === 'string' && item.modelUrl.trim() ? item.modelUrl.trim() : undefined,
+            gallery: safeGallery && safeGallery.length > 0 ? safeGallery : undefined,
+            summary: safeStr(typeof item.desc === 'string' ? item.desc : (item.desc?.ar || item.desc?.en)),
             type: category === 'monument' ? 'landmark' : category,
             stats: {
-                year: item.foundation?.en || item.year,
-                era: item.era,
-                dynasty: item.dynasty,
-                field: item.field,
-                notable_works: item.notable_works,
-                combatants: item.combatants,
-                leaders: item.leaders,
-                outcome: item.outcome,
-                tactics: item.tactics,
-                impact: item.impact,
-                activities: item.activities,
-                best_time: item.best_time
+                year: safeStr(item.foundation?.en || item.year),
+                era: safeStr(item.era),
+                dynasty: safeStr(item.dynasty),
+                field: safeStr(item.field),
+                notable_works: safeStr(item.notable_works),
+                combatants: item.combatants || undefined,
+                leaders: item.leaders || undefined,
+                outcome: item.outcome || undefined,
+                tactics: item.tactics || undefined,
+                impact: item.impact || undefined,
+                activities: Array.isArray(item.activities) ? item.activities.filter(Boolean) : undefined,
+                best_time: safeStr(item.best_time)
             }
         };
 
-        if (item.modelUrl) {
-            (heritageItem as any).modelInfo = { url: item.modelUrl };
-        }
-
-        // If triggered from 3D button, we'll auto-open 3D viewer on the factsheet
-        if (triggerTab === '3d') {
+        // If triggered from 3D button, signal HeritageFactSheet to auto-open 3D viewer
+        if (triggerTab === '3d' && heritageItem.model_url) {
             (heritageItem as any)._autoOpen3D = true;
         }
 
