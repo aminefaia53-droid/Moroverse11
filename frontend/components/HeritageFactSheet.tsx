@@ -4,7 +4,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
     X, MapPin, Compass, Info, Sparkles, Building2, Crown,
-    History, Shield, Mountain, Waves, ShieldCheck, Box, Play, Image as ImageIcon
+    History, Shield, Mountain, Waves, ShieldCheck, Box, Play, Image as ImageIcon, Video
 } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import dynamic from 'next/dynamic';
@@ -12,6 +12,7 @@ import TranslatedText from './TranslatedText';
 import ShareButton from './ShareButton';
 import { LangCode } from '../types/language';
 import ErrorBoundary from './common/ErrorBoundary';
+import AudioManager from '../utils/AudioManager';
 
 // Dynamic Import for 3D Viewer to save bundle size
 const Monument3DViewer = dynamic(() => import('./community/Monument3DViewer'), { ssr: false });
@@ -85,13 +86,22 @@ export default function HeritageFactSheet({ item, isOpen, onClose, lang }: Herit
         if (!isOpen) {
             setShow3D(false);
         }
-        if (item) {
+        if (item && isOpen) {
             setImgSrc(item.imageUrl || FALLBACK_IMG);
             setVideoThumbSrc(item.imageUrl || FALLBACK_IMG);
             // Auto-open 3D viewer if triggered from the card's 3D button
             if ((item as any)._autoOpen3D && item.model_url) {
                 setShow3D(true);
             }
+            // ── Audio Trigger: Play ambient sound based on location type ──
+            try {
+                const type = item.type || '';
+                if (type === 'heritage' || type === 'monument' || type.includes('heritage')) {
+                    AudioManager.instance.setWeatherState('clear'); // Oud / serene
+                } else if (type === 'geography' || type === 'city') {
+                    AudioManager.instance.setWeatherState('market'); // Souq bustle for cities
+                }
+            } catch (_) { /* AudioManager not ready yet */ }
         }
     }, [isOpen, item]);
 
@@ -196,6 +206,7 @@ export default function HeritageFactSheet({ item, isOpen, onClose, lang }: Herit
                         <Monument3DViewer 
                             modelUrl={item.model_url}
                             locationName={isRTL ? getT(item.name, 'ar') || '' : getT(item.name, 'en') || ''}
+                            previewImageUrl={item.imageUrl || undefined}
                             onClose={() => setShow3D(false)}
                         />
                     )}
@@ -450,6 +461,21 @@ export default function HeritageFactSheet({ item, isOpen, onClose, lang }: Herit
                                                 <span className="text-xl font-black uppercase tracking-tighter">{isRTL ? 'ولوج العرض الثلاثي الأبعاد' : 'Access Elite 3D Viewer'}</span>
                                             </div>
                                         </button>
+                                    )}
+
+                                    {/* Watch Video Button — always visible when video_url exists */}
+                                    {item.video_url && (
+                                        <a
+                                            href={item.video_url}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="w-full py-6 rounded-[30px] bg-[#8B0000]/20 text-red-300 border border-red-500/30 hover:bg-[#8B0000]/60 hover:border-red-400 hover:shadow-[0_0_30px_rgba(139,0,0,0.4)] flex items-center justify-center gap-4 transition-all duration-500 group no-underline"
+                                        >
+                                            <Video className="w-6 h-6 group-hover:scale-110 transition-transform duration-500" />
+                                            <span className="text-sm font-black uppercase tracking-[0.2em]">
+                                                {isRTL ? 'شاهد الفيديو الوثائقي' : 'Watch Documentary'}
+                                            </span>
+                                        </a>
                                     )}
 
                                     {/* AI Context Bridge */}

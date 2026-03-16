@@ -508,9 +508,9 @@ body {
   color: #D4AF37;
 }
 
-/* Ensure images and SVGs aren't blacked out by background-color: black */
+/* Ensure images and SVGs don't have background-color overrides */
 img,
-svg,
-canvas {
-  background-color: transparent !important;
+svg {
+  background-color: transparent;
 }
+/* NOTE: DO NOT add background-color rules to canvas — it overrides Three.js renderer */

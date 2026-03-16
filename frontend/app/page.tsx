@@ -263,8 +263,8 @@ export default function Home() {
         </motion.div>
       </section>
 
-      {/* Global AI Omni-Search Bar */}
-      <section className="relative z-30 py-10 px-4 mt-[-100px] md:mt-[-150px]">
+      {/* Global AI Omni-Search Bar - below fixed header */}
+      <section className="relative z-30 py-6 px-4 pt-[90px] md:pt-6 md:mt-[-80px]">
           <OmniSearchBar isRTL={isRTL} onSearchSubmit={handleGlobalSearch} />
       </section>
 
