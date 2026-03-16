@@ -26,15 +26,25 @@ export function useEncyclopedia(category: string, city?: string) {
 
                 // Helper to map Dashboard Item to Post
                 const mapToPost = (item: any, type: string): Post => {
-                    const title = item.name?.en || item.name?.ar || item.name || '';
-                    const desc = typeof item.desc === 'string' ? item.desc : (item.desc?.en || item.desc?.ar || '');
-                    const cityName = item.city?.en || item.city?.ar || item.city || item.regionName?.en || item.regionName?.ar || item.regionName || '';
+                    const getName = (n: any): string => {
+                        if (!n) return '';
+                        if (typeof n === 'string') return n;
+                        // If it's an object, try to extract en/ar, but recursively ensure we get a string
+                        const val = n.en || n.ar || '';
+                        return typeof val === 'string' ? val : (val.en || val.ar || '').toString();
+                    };
+
+                    const title = getName(item.name);
+                    const desc = typeof item.desc === 'string' ? item.desc : 
+                                 (typeof item.desc === 'object' && item.desc !== null ? (item.desc.en || item.desc.ar || '') : '');
+                    const cityName = getName(item.city || item.regionName);
 
                     return {
                         id: item.id || Math.random().toString(),
                         slug: item.id,
                         user_id: 'admin',
-                        content: typeof item.history === 'string' ? item.history : (item.history?.en || item.history?.ar || desc),
+                        content: typeof item.history === 'string' ? item.history : 
+                                 (typeof item.history === 'object' && item.history !== null ? (item.history.en || item.history.ar || desc) : desc),
                         summary: desc,
                         image_url: item.imageUrl || null,
                         video_url: item.videoUrl || null,

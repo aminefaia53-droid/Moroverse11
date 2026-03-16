@@ -11,6 +11,7 @@ import dynamic from 'next/dynamic';
 import TranslatedText from './TranslatedText';
 import ShareButton from './ShareButton';
 import { LangCode } from '../types/language';
+import ErrorBoundary from './common/ErrorBoundary';
 
 // Dynamic Import for 3D Viewer to save bundle size
 const Monument3DViewer = dynamic(() => import('./community/Monument3DViewer'), { ssr: false });
@@ -128,12 +129,13 @@ export default function HeritageFactSheet({ item, isOpen, onClose, lang }: Herit
 
     if (!item) return null;
 
-    const getT = (val: any, l: string) => {
+    const getT = (val: any, l: string): string => {
         if (!val) return '';
         if (typeof val === 'string') return val;
         const target = l as 'ar' | 'en';
         // safely extract avoiding undefined errors on nested objects
-        return val?.[target] || val?.ar || val?.en || '';
+        const extracted = val?.[target] || val?.ar || val?.en || '';
+        return typeof extracted === 'string' ? extracted : JSON.stringify(extracted);
     };
 
     const isRTL = lang === 'ar';
@@ -205,9 +207,10 @@ export default function HeritageFactSheet({ item, isOpen, onClose, lang }: Herit
                         animate={{ opacity: 1, scale: 1, y: 0 }}
                         exit={{ opacity: 0, scale: 0.95, y: 20 }}
                         onClick={e => e.stopPropagation()}
-                        className="relative w-full max-w-5xl bg-[#080808] rounded-3xl shadow-[0_30px_90px_-15px_rgba(0,0,0,1),0_0_50px_rgba(197,160,89,0.1)] border border-[#c5a059]/30 overflow-hidden flex flex-col"
+                        className="relative w-full max-w-5xl bg-[#080808] rounded-3xl shadow-[0_30px_90px_-15px_rgba(0,0,0,1),0_0_50px_rgba(197,160,89,0.1)] border border-[#c5a059]/30 overflow-hidden flex flex-col min-h-[500px]"
                         dir={isRTL ? 'rtl' : 'ltr'}
                     >
+                        <ErrorBoundary componentName="Heritage Fact Sheet Box">
                         {/* ── Header Image & Isolated 3D Canvas ─────────────────────────────────────── */}
                         <div className="min-h-[350px] md:h-[450px] bg-black flex flex-col items-center justify-center relative overflow-hidden shrink-0">
                             
@@ -477,9 +480,9 @@ export default function HeritageFactSheet({ item, isOpen, onClose, lang }: Herit
                                     </p>
                                 </div>
                             </div>
-                        </div>
+                            </div>
+                        </ErrorBoundary>
                     </motion.div>
-                    </div>
                 </div>
             )}
         </AnimatePresence>
