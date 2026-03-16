@@ -12,6 +12,7 @@ function ViewerContent() {
     const router = useRouter();
     const modelUrl = searchParams.get('model');
     const locationName = searchParams.get('name') || 'Monument';
+    const previewImageUrl = searchParams.get('img') ? decodeURIComponent(searchParams.get('img')!) : undefined;
 
     if (!modelUrl) {
         return (
@@ -23,15 +24,10 @@ function ViewerContent() {
 
     return (
         <div className="w-full h-screen bg-black relative">
-            <button 
-                onClick={() => router.back()}
-                className="absolute top-6 left-6 z-50 text-white hover:text-[#C5A059] bg-black/50 p-3 rounded-full backdrop-blur-md transition-colors border border-white/20"
-            >
-                <ArrowLeft size={24} />
-            </button>
             <Monument3DViewer 
                 modelUrl={modelUrl} 
-                locationName={locationName} 
+                locationName={locationName}
+                previewImageUrl={previewImageUrl}
                 onClose={() => router.back()}
             />
         </div>

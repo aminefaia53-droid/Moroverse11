@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
@@ -25,10 +25,31 @@ export default function Home() {
   const { lang, setLang } = useLanguage();
   const [isClient, setIsClient] = useState(false);
   const isRTL = lang === 'ar';
+  const [searchQuery, setSearchQuery] = useState('');
+  const searchResultsRef = useRef<HTMLDivElement>(null);
 
   const handleGlobalSearch = (query: string) => {
-      // Future: Navigate to a dedicated search page or filter sections
-      console.log("OmniSearch query:", query);
+      const q = query.trim();
+      setSearchQuery(q);
+
+      // Audio weather sync based on city context
+      if (q) {
+          const lowerQ = q.toLowerCase();
+          if (lowerQ.includes('fes') || lowerQ.includes('فاس') || lowerQ.includes('marrakech') || lowerQ.includes('مراكش')) {
+              AudioManager.instance.setWeatherState('market');
+          } else if (lowerQ.includes('chefchaouen') || lowerQ.includes('شفشاون') || lowerQ.includes('ifrane') || lowerQ.includes('ifran')) {
+              AudioManager.instance.setWeatherState('rain');
+          }
+      } else {
+          AudioManager.instance.setWeatherState('clear');
+      }
+
+      // Auto-scroll to results
+      if (q && searchResultsRef.current) {
+          setTimeout(() => {
+              searchResultsRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }, 100);
+      }
   };
 
   const t = ({
@@ -246,6 +267,27 @@ export default function Home() {
       <section className="relative z-30 py-10 px-4 mt-[-100px] md:mt-[-150px]">
           <OmniSearchBar isRTL={isRTL} onSearchSubmit={handleGlobalSearch} />
       </section>
+
+      {/* ─── LIVE SEARCH RESULTS ─── */}
+      {searchQuery && (
+          <section ref={searchResultsRef} className="relative z-30 py-8 px-4 md:px-10 border-y border-[#FFD700]/20 bg-[#0f3b57]/20 backdrop-blur-sm">
+              <div className="max-w-7xl mx-auto">
+                  <div className="flex items-center gap-3 mb-6">
+                      <span className="text-[#FFD700] text-xl">🔍</span>
+                      <h2 className="text-white font-bold text-lg">
+                          {isRTL ? `نتائج البحث: "${searchQuery}"` : `Search: "${searchQuery}"`}
+                      </h2>
+                      <button
+                          onClick={() => { setSearchQuery(''); AudioManager.instance.setWeatherState('clear'); }}
+                          className="ml-auto text-white/40 hover:text-white text-xs border border-white/20 px-3 py-1 rounded-full transition-colors"
+                      >
+                          {isRTL ? 'إلغاء' : 'Clear'}
+                      </button>
+                  </div>
+                  <LazyContentGrid category="all" lang={lang as 'en' | 'ar'} searchQuery={searchQuery} />
+              </div>
+          </section>
+      )}
 
       {/* Modern Vertical Architecture: Lazy Loaded Sections */}
       <div className="relative z-20 pb-24 space-y-12">

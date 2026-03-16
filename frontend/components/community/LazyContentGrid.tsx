@@ -9,11 +9,25 @@ import { Post } from "@/types/social";
 interface LazyContentGridProps {
     category: string;
     lang: 'en' | 'ar';
+    searchQuery?: string; // Live filter from OmniSearchBar
 }
 
-export default function LazyContentGrid({ category, lang }: LazyContentGridProps) {
+export default function LazyContentGrid({ category, lang, searchQuery }: LazyContentGridProps) {
     const { posts, isLoading } = useEncyclopedia(category, undefined);
     const [activeLocation, setActiveLocation] = useState<HeritageItem | null>(null);
+
+    // Live search filter: filter posts by searchQuery across name, city, content
+    const displayPosts = searchQuery
+        ? posts.filter(p => {
+            const q = searchQuery.toLowerCase();
+            return (
+                (p.location_name?.toLowerCase().includes(q)) ||
+                (p.city?.toLowerCase().includes(q)) ||
+                (p.content?.toLowerCase().includes(q)) ||
+                (p.summary?.toLowerCase().includes(q))
+            );
+        })
+        : posts;
 
     const handleCardClick = (loc: Post) => {
         const item: HeritageItem = {
@@ -44,10 +58,10 @@ export default function LazyContentGrid({ category, lang }: LazyContentGridProps
     return (
         <div className="w-full">
             <ContentDiscoveryGrid 
-                posts={posts} 
+                posts={displayPosts} 
                 isLoading={isLoading} 
                 onCardClick={handleCardClick} 
-                hideHeader={true} // Hide internal header since LazySection handles it
+                hideHeader={true}
             />
 
             <HeritageFactSheet 
