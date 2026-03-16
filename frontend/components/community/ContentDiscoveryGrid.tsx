@@ -45,12 +45,12 @@ export default function ContentDiscoveryGrid({ posts, isLoading, onCardClick }: 
                 <h2 className="text-lg font-bold uppercase tracking-wider">Discovery Results</h2>
                 <span className="text-xs bg-[#C5A059]/10 px-2 py-0.5 rounded-full">{data.length}</span>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="flex overflow-x-auto gap-4 md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-6 pb-6 snap-x snap-mandatory hide-scrollbar">
                 {data.map(post => (
                     <div 
                         key={post.id}
                         onClick={() => onCardClick(post)}
-                        className="group relative h-72 rounded-2xl overflow-hidden border border-white/10 bg-[#0A0A0A] cursor-pointer hover:border-[#C5A059]/40 transition-all duration-300 shadow-lg"
+                        className="group relative h-72 w-[85vw] md:w-auto shrink-0 snap-center rounded-2xl overflow-hidden border border-white/10 bg-[#0A0A0A] cursor-pointer hover:border-[#C5A059]/40 transition-all duration-300 shadow-lg"
                     >
                         {post.image_url ? (
                             <img src={post.image_url} alt="" className="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-80 transition-opacity" />

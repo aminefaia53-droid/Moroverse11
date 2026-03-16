@@ -40,6 +40,17 @@ export default function TranslatedText({ arabicText, className, as: Component = 
         return () => { isMounted = false; };
     }, [arabicText, lang, translateContent]);
 
+    // Safety check: Ensure we don't try to render an object as a string (React Crash)
+    const safeRender = (val: any) => {
+        if (!val) return '';
+        if (typeof val === 'string') return val;
+        try {
+            return JSON.stringify(val);
+        } catch {
+            return '[Invalid Data]';
+        }
+    };
+
     if (loading && !translated) {
         return (
             <span className="inline-flex items-center gap-2 opacity-50">
@@ -49,5 +60,5 @@ export default function TranslatedText({ arabicText, className, as: Component = 
         );
     }
 
-    return <Component className={className}>{translated || arabicText}</Component>;
+    return <Component className={className}>{safeRender(translated || arabicText)}</Component>;
 }

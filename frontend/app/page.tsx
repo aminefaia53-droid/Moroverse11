@@ -7,11 +7,27 @@ import { motion } from "framer-motion";
 import { Globe, Crown, Sparkles, MapPin, Building2, Camera, Music, Palmtree, Waves, Mountain, Tent, Sunset, Compass, MoveRight, Activity } from "lucide-react";
 
 // Components
-import DynamicEncyclopediaDisplay from "../components/DynamicEncyclopediaDisplay";
+import dynamic from "next/dynamic";
 import SmartSidebar from "../components/SmartSidebar";
 import CommunityPulse from "../components/community/CommunityPulse";
+import ContentDiscoveryGrid from "@/components/community/ContentDiscoveryGrid";
+import HeritageFactSheet, { HeritageItem } from "@/components/HeritageFactSheet";
 
 // Utils
+import { useEncyclopedia } from "@/hooks/useEncyclopedia";
+import { Post } from "@/types/social";
+import { LucideSearch, LucideMapPin, Map, Landmark, Swords, Users } from "lucide-react";
+
+const ExploreMap = dynamic(() => import("@/components/community/ExploreMap"), { ssr: false });
+
+const PILLARS = [
+    { id: 'heritage', icon: Landmark, en: 'Architectural Heritage', ar: 'التراث المعماري' },
+    { id: 'geography', icon: Map, en: 'Geography & Regions', ar: 'الجغرافيا والمدن' },
+    { id: 'chronicles', icon: Swords, en: 'Chronicles of Valor', ar: 'عصور البسالة' },
+    { id: 'biographies', icon: Users, en: 'Historical Figures', ar: 'شخصيات تاريخية' },
+    { id: 'tourism', icon: Compass, en: 'Elite Tourism', ar: 'رحلات النخبة' }
+];
+
 import AudioManager from "../utils/AudioManager";
 import MoroVerseLogo from '@/components/MoroVerseLogo';
 import { useLanguage } from "../context/LanguageContext";
@@ -20,6 +36,52 @@ import LanguageSwitcher from "../components/ui/LanguageSwitcher";
 export default function Home() {
   const { lang, setLang } = useLanguage();
   const [isClient, setIsClient] = useState(false);
+  const isRTL = lang === 'ar';
+
+  const [activePillar, setActivePillar] = useState<string>('heritage');
+  const [selectedCity, setSelectedCity] = useState<string | undefined>(undefined);
+  const [activeLocation, setActiveLocation] = useState<HeritageItem | null>(null);
+
+  // Unified 5-Pillar Data Fetching Hook (Dashboard API)
+  const { posts, isLoading } = useEncyclopedia(activePillar, selectedCity);
+
+  const handleLocationSelect = (loc: Post | string) => {
+      if (typeof loc === 'string') {
+          setSelectedCity(loc === selectedCity ? undefined : loc);
+      } else {
+          // Map Post (from Dashboard API) directly to HeritageItem
+          const item: HeritageItem = {
+              id: loc.id,
+              name: { ar: loc.location_name || '', en: loc.location_name || '' },
+              city: { ar: loc.city || '', en: loc.city || '' },
+              history: loc.content || '',
+              summary: loc.summary || '',
+              imageUrl: loc.image_url || undefined,
+              model_url: loc.model_url || undefined,
+              video_url: loc.video_url || undefined,
+              gallery: loc.gallery || undefined,
+              type: loc.location_type || 'post',
+              slug: loc.slug,
+              stats: {
+                  year: loc.year,
+                  era: loc.era,
+                  combatants: loc.combatants ? { ar: loc.combatants, en: loc.combatants } : undefined,
+                  leaders: loc.leaders ? { ar: loc.leaders, en: loc.leaders } : undefined,
+                  outcome: loc.outcome ? { ar: loc.outcome, en: loc.outcome } : undefined,
+                  tactics: loc.tactics ? { ar: loc.tactics, en: loc.tactics } : undefined,
+                  impact: loc.impact ? { ar: loc.impact, en: loc.impact } : undefined
+              }
+          };
+          setActiveLocation(item);
+          
+          // Auto-Pan map to location if coordinates exist
+          if (loc.lat && loc.lng) {
+              window.dispatchEvent(new CustomEvent('map-fly-to-target', { 
+                  detail: { target: [loc.lat, loc.lng], zoom: 15 } 
+              }));
+          }
+      }
+  };
 
   const t = ({
     en: {
@@ -232,113 +294,84 @@ export default function Home() {
         </motion.div>
       </section>
 
-      {/* City Encyclopedia */}
-      <section id="encyclopedia" className="py-48 px-10 relative z-20">
-        <div className="max-w-7xl mx-auto">
-          <div className="mb-24 text-center space-y-8">
-            <h3 className="text-4xl md:text-6xl font-serif text-[var(--primary)] uppercase tracking-normal md:tracking-[0.3em] font-black text-glow drop-shadow-[0_5px_15px_rgba(0,0,0,0.5)] leading-tight transition-colors duration-1000">
-              {t.sections.encyclopedia}
-            </h3>
-            <p className="text-[var(--foreground)]/60 max-w-4xl mx-auto text-xl font-light tracking-wide leading-relaxed uppercase drop-shadow-md transition-colors duration-1000">
-              {t.sections.encyclopediaDesc}
-            </p>
-            <div className="w-64 h-1 bg-[var(--primary)]/20 mx-auto transition-colors duration-1000" />
-          </div>
+      {/* Sovereign Archive Engine: Map & Interactive Cards */}
+      <section id="explore-engine" className="py-24 px-4 md:px-10 relative z-20 bg-[#050505]">
+        <div className="max-w-7xl mx-auto space-y-12">
+            
+            {/* 5 Pillars Navigation */}
+            <div className="overflow-x-auto pb-4 hide-scrollbar">
+                <div className={`flex items-center gap-4 ${isRTL ? 'flex-row-reverse' : ''} justify-start sm:justify-center`}>
+                    {PILLARS.map(pillar => {
+                        const Icon = pillar.icon;
+                        const isActive = activePillar === pillar.id;
+                        return (
+                            <button
+                                key={pillar.id}
+                                onClick={() => { setActivePillar(pillar.id); setSelectedCity(undefined); }}
+                                className={`flex items-center gap-3 px-6 py-4 rounded-3xl border whitespace-nowrap transition-all duration-300 ${isRTL ? 'flex-row-reverse font-arabic' : ''} ${
+                                    isActive 
+                                    ? 'bg-[#c5a059] text-black border-[#c5a059] shadow-[0_0_30px_rgba(197,160,89,0.3)] scale-105' 
+                                    : 'bg-black/40 text-white/50 border-white/10 hover:border-[#c5a059]/50 hover:text-white'
+                                }`}
+                            >
+                                <Icon size={20} className={isActive ? 'text-black' : 'text-[#c5a059]'} />
+                                <span className={`text-sm font-black uppercase tracking-widest ${isRTL ? 'font-arabic tracking-normal' : ''}`}>
+                                    {isRTL ? pillar.ar : pillar.en}
+                                </span>
+                            </button>
+                        );
+                    })}
+                </div>
+            </div>
 
-          <DynamicEncyclopediaDisplay category="city" lang={lang} emptyMessageConfig={{ en: "Geography & Cities Archive is currently empty. Awaken the cities from the Dashboard.", ar: "أرشيف المدن والجغرافيا فارغ حالياً. قم بإضافة المدن العريقة من لوحة التحكم لمنصة العالم الرقمي." }} />
+            {/* Discovery Engine: Map Section */}
+            <div className="space-y-6">
+                <div className={`flex items-center justify-between ${isRTL ? 'flex-row-reverse text-right' : ''}`}>
+                    <div className={`flex items-center gap-2 text-xs font-bold uppercase text-[#C5A059] bg-[#C5A059]/5 px-4 py-2 rounded-full border border-[#C5A059]/20 ${isRTL ? 'flex-row-reverse' : ''}`}>
+                        <LucideMapPin size={14} />
+                        <span className={isRTL ? 'font-arabic tracking-normal' : ''}>
+                            {isRTL 
+                                ? `ترشيح الأرشيف: ${PILLARS.find(p => p.id === activePillar)?.ar}` 
+                                : `Visual Filtering: ${PILLARS.find(p => p.id === activePillar)?.en} Active`}
+                        </span>
+                    </div>
+                    {selectedCity && (
+                        <div className={`flex items-center gap-2 text-xs font-bold uppercase text-white/60 ${isRTL ? 'flex-row-reverse' : ''}`}>
+                            <span>{isRTL ? 'المدينة النشطة:' : 'Active City:'}</span>
+                            <span className="text-white">{selectedCity}</span>
+                            <button onClick={() => setSelectedCity(undefined)} className="ml-2 hover:text-red-400 font-bold text-lg">✕</button>
+                        </div>
+                    )}
+                </div>
+                <div className="relative rounded-3xl overflow-hidden border border-white/10 shadow-[0_0_50px_rgba(0,0,0,0.8)]">
+                    <ExploreMap 
+                        onLocationSelect={handleLocationSelect} 
+                        activeCategory={activePillar} 
+                        selectedLocationId={activeLocation?.id}
+                    />
+                </div>
+            </div>
+
+            {/* Content Grid Section with horizontal mobile scroll */}
+            <div className="pt-8 border-t border-white/10">
+                <ContentDiscoveryGrid 
+                    posts={posts} 
+                    isLoading={isLoading} 
+                    onCardClick={handleLocationSelect} 
+                />
+            </div>
+            
         </div>
       </section>
 
-      {/* Chronicles */}
-      <section id="battles" className="py-48 px-10 relative z-20">
-        <div className="max-w-7xl mx-auto">
-          <div className="mb-24 text-center space-y-8">
-            <h3 className="text-4xl md:text-6xl font-serif text-[var(--primary)] uppercase tracking-normal md:tracking-[0.3em] font-black text-glow drop-shadow-[0_5px_15px_rgba(0,0,0,0.5)] leading-tight transition-colors duration-1000">{t.sections.battles}</h3>
-            <p className="text-[var(--foreground)]/60 max-w-4xl mx-auto text-xl font-light tracking-wide leading-relaxed uppercase drop-shadow-md transition-colors duration-1000">{t.sections.battlesDesc}</p>
-            <div className="w-64 h-1 bg-[var(--primary)]/20 mx-auto transition-colors duration-1000" />
-          </div>
+      {/* Smart Fact Sheet Modal (Integrated here directly) */}
+      <HeritageFactSheet 
+          item={activeLocation} 
+          isOpen={!!activeLocation} 
+          onClose={() => setActiveLocation(null)} 
+          lang={lang}
+      />
 
-          <DynamicEncyclopediaDisplay category="battle" lang={lang} emptyMessageConfig={{ en: "Records of Imperial Battles are resting. Summon them from the Dashboard.", ar: "سجلات المعارك الإمبراطورية ترقد بسلام. يمكنك إحياء بطولاتها من خلال لوحة التحكم الخاصة بك." }} />
-        </div>
-      </section>
-
-      {/* Majestic Landmarks */}
-      <section className="py-48 px-10 relative z-20 bg-[var(--background)]/20 backdrop-blur-md transition-colors duration-1000">
-        <div className="max-w-7xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, ease: "easeOut" }}
-            viewport={{ once: true }}
-            className="mb-24 text-center space-y-8"
-          >
-            <h3 className="text-5xl md:text-7xl font-serif text-[var(--primary)] uppercase tracking-normal md:tracking-wider font-black drop-shadow-sm text-glow leading-tight transition-colors duration-1000">
-              {t.sections.landmarks}
-            </h3>
-            <p className="text-[var(--foreground)]/60 max-w-4xl mx-auto text-xl font-light tracking-wide leading-relaxed uppercase drop-shadow-md transition-colors duration-1000">
-              {t.sections.landmarksDesc}
-            </p>
-            <div className="w-64 h-1.5 bg-[var(--primary)]/20 mx-auto rounded-full transition-colors duration-1000" />
-          </motion.div>
-
-          <DynamicEncyclopediaDisplay category="monument" lang={lang} emptyMessageConfig={{ en: "The majestic monuments await discovery. Add them from the Dashboard.", ar: "المعالم الشامخة تنتظر الاكتشاف حتى تقوم بإضافتها من لوحة التحكم وإظهار سحرها للمستكشفين." }} />
-        </div>
-      </section>
-
-      {/* Tourism Types */}
-      <section id="elite-tours" className="py-48 px-10 relative z-20">
-        <div className="max-w-7xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, ease: "easeOut" }}
-            viewport={{ once: true }}
-            className="mb-24 text-center space-y-8"
-          >
-            <h3 className="text-5xl md:text-7xl font-serif text-primary uppercase tracking-normal md:tracking-[0.4em] font-black drop-shadow-sm leading-tight">
-              {lang === 'ar' ? (
-                <span className="font-arabic text-primary/80">{t.sections.tourism}</span>
-              ) : (
-                t.sections.tourism
-              )}
-            </h3>
-            <p className="text-white/60 max-w-4xl mx-auto text-xl font-light tracking-wide leading-relaxed uppercase drop-shadow-md">
-              {t.sections.tourismDesc}
-            </p>
-            <div className="w-64 h-1.5 bg-primary/20 mx-auto rounded-full" />
-          </motion.div>
-
-          {/* Grid Render */}
-          <DynamicEncyclopediaDisplay category="tourism" lang={lang} emptyMessageConfig={{ en: "Elite tourism experiences are yet to be chartered. Design them in the Dashboard.", ar: "لم يتم تصميم تجارب السياحة (السياحة المظلمة والجيو-سياحة...) بعد. يمكنك هندستها من لوحة التحكم." }} />
-        </div>
-      </section>
-
-      {/* Historical Figures */}
-      <section className="py-48 px-10 relative z-20">
-        <div className="max-w-7xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, ease: "easeOut" }}
-            viewport={{ once: true }}
-            className="mb-24 text-center space-y-8"
-          >
-            <h3 className="text-5xl md:text-7xl font-serif text-primary uppercase tracking-normal md:tracking-[0.4em] font-black drop-shadow-sm leading-tight">
-              {lang === 'ar' ? (
-                <span className="font-arabic text-primary/80">{t.sections.figures}</span>
-              ) : (
-                t.sections.figures
-              )}
-            </h3>
-            <p className="text-white/60 max-w-4xl mx-auto text-xl font-light tracking-wide leading-relaxed uppercase drop-shadow-md">
-              {t.sections.figuresDesc}
-            </p>
-            <div className="w-64 h-1.5 bg-primary/20 mx-auto rounded-full" />
-          </motion.div>
-
-          <DynamicEncyclopediaDisplay category="figure" lang={lang} emptyMessageConfig={{ en: "The luminaries of history are silent. Resurrect their legacy from the Dashboard.", ar: "أعلام وشخصيات التاريخ العظيمة صامتة بانتظارك. قم بتوثيق بطولاتهم ومسارهم من عبر لوحة التحكم." }} />
-        </div>
-      </section>
 
       <footer className="py-32 text-center border-t border-primary/20 relative z-20 bg-black/60 backdrop-blur-sm">
         <Crown className="w-14 h-14 text-primary mx-auto mb-10 opacity-60 drop-shadow-[0_0_15px_rgba(197,160,89,0.5)]" />

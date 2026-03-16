@@ -158,18 +158,22 @@ export default function DynamicEncyclopediaDisplay({ category, lang, emptyMessag
         
         // ── SANITIZATION LAYER ──────────────────────────────────────────────────
         // Defensive mapping: never pass null/undefined into HeritageFactSheet.
-        // This prevents map() crashes from malformed API payloads.
+        const safeStr = (v: any): string => {
+            if (!v) return '';
+            if (typeof v === 'string') return v.trim();
+            // If it's an object (common from dashboard errors), stringify it or take a representative string
+            if (typeof v === 'object') {
+                return v.en || v.ar || JSON.stringify(v);
+            }
+            return String(v);
+        };
+
         const getName = (n: any, l: string): string => {
             if (!n) return '';
             if (typeof n === 'string') return n;
             const target = l as 'ar' | 'en';
-            return (n?.[target] || n?.ar || n?.en || '') as string;
-        };
-
-        const safeStr = (v: any): string => {
-            if (!v) return '';
-            if (typeof v === 'string') return v.trim();
-            return '';
+            const val = n?.[target] || n?.ar || n?.en;
+            return typeof val === 'string' ? val : safeStr(val);
         };
 
         // Sanitize galleries: only keep non-empty string URLs
@@ -196,7 +200,7 @@ export default function DynamicEncyclopediaDisplay({ category, lang, emptyMessag
                 ar: safeStr(item.history?.ar) || safeStr(typeof item.desc === 'string' ? item.desc : item.desc?.ar)
             },
             foundation: item.foundation,
-            visualSoul: item.visualSoul,
+            visualSoul: safeStr(item.visualSoul),
             imageUrl: typeof item.imageUrl === 'string' && item.imageUrl.trim() ? item.imageUrl.trim() : undefined,
             video_url: typeof item.videoUrl === 'string' && item.videoUrl.trim() ? item.videoUrl.trim() : undefined,
             model_url: typeof item.modelUrl === 'string' && item.modelUrl.trim() ? item.modelUrl.trim() : undefined,

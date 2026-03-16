@@ -1,9 +1,15 @@
 "use client";
 
 import React, { useRef, useMemo, useEffect, useState } from 'react';
-import { useGLTF, Html } from '@react-three/drei';
+import { useGLTF } from '@react-three/drei';
 import { useFrame, useThree } from '@react-three/fiber';
-import { Group, Box3, Vector3, Object3D } from 'three';
+import { Group, Box3, Vector3 } from 'three';
+
+// ──────────────────────────────────────────────────────────────────────────────
+// CRITICAL FIX: Explicitly set the Draco decoder path to a highly available CDN 
+// to prevent the 33% network stall that causes the black screen on mobile.
+// ──────────────────────────────────────────────────────────────────────────────
+const DRACO_DECODER_PATH = "https://www.gstatic.com/draco/versioned/decoders/1.5.5/";
 
 interface DracoModelProps {
     url: string;
@@ -12,7 +18,8 @@ interface DracoModelProps {
 
 export default function DracoModel({ url, wireframe = false }: DracoModelProps) {
     const group = useRef<Group>(null);
-    const { scene } = useGLTF(url);
+    // Explicitly pass the decoder path to useGLTF to ensure it always loads
+    const { scene } = useGLTF(url, DRACO_DECODER_PATH);
     const { camera } = useThree();
     const [floatOffset, setFloatOffset] = useState(0);
 

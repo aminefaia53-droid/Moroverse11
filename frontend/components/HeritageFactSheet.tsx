@@ -483,6 +483,7 @@ export default function HeritageFactSheet({ item, isOpen, onClose, lang }: Herit
                             </div>
                         </ErrorBoundary>
                     </motion.div>
+                    </div>
                 </div>
             )}
         </AnimatePresence>
