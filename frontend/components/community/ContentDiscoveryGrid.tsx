@@ -11,22 +11,20 @@ interface ContentDiscoveryGridProps {
     posts: Post[];
     isLoading: boolean;
     onCardClick: (post: Post) => void;
+    hideHeader?: boolean;
 }
 
-export default function ContentDiscoveryGrid({ posts, isLoading, onCardClick }: ContentDiscoveryGridProps) {
-    const [active3DModel, setActive3DModel] = React.useState<{ url: string, name: string } | null>(null);
-
+export default function ContentDiscoveryGrid({ posts, isLoading, onCardClick, hideHeader = false }: ContentDiscoveryGridProps) {
     const handleView3D = (e: React.MouseEvent, post: Post) => {
         e.stopPropagation();
         if (post.model_url) {
-            setActive3DModel({ url: post.model_url, name: post.location_name || 'Monument' });
-            
-            // Dispatch event for AI Concierge sync
-            window.dispatchEvent(new CustomEvent('moroverse-3d-view-active', {
-                detail: { locationName: post.location_name, modelUrl: post.model_url }
-            }));
+            // New 3D Independent Route Architecture
+            // Pass modelUrl via query params to a generic 3D viewer engine
+            const urlEncoded = encodeURIComponent(post.model_url);
+            window.open(`/3d/viewer?model=${urlEncoded}&name=${encodeURIComponent(post.location_name || 'Monument')}`, '_blank');
         }
     };
+
 
     if (isLoading) {
         return (
@@ -40,11 +38,13 @@ export default function ContentDiscoveryGrid({ posts, isLoading, onCardClick }: 
 
     const ResultGrid = ({ data }: { data: Post[] }) => (
         <div className="space-y-4">
-            <div className="flex items-center gap-2 text-[#C5A059]">
-                <LucideHistory size={20} />
-                <h2 className="text-lg font-bold uppercase tracking-wider">Discovery Results</h2>
-                <span className="text-xs bg-[#C5A059]/10 px-2 py-0.5 rounded-full">{data.length}</span>
-            </div>
+            {!hideHeader && (
+                <div className="flex items-center gap-2 text-[#C5A059]">
+                    <LucideHistory size={20} />
+                    <h2 className="text-lg font-bold uppercase tracking-wider">Discovery Results</h2>
+                    <span className="text-xs bg-[#C5A059]/10 px-2 py-0.5 rounded-full">{data.length}</span>
+                </div>
+            )}
             <div className="flex overflow-x-auto gap-4 md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-6 pb-6 snap-x snap-mandatory hide-scrollbar">
                 {data.map(post => (
                     <div 
@@ -68,16 +68,33 @@ export default function ContentDiscoveryGrid({ posts, isLoading, onCardClick }: 
                                 </div>
                             </div>
                             
-                            {/* Gatekeeper Logic: Only show 3D button if has a model_url */}
-                            {post.model_url && (
-                                <button
-                                    onClick={(e) => handleView3D(e, post)}
-                                    className="w-full mt-2 py-2 flex items-center justify-center gap-2 bg-[#C5A059]/20 hover:bg-[#C5A059] text-[#C5A059] hover:text-black border border-[#C5A059]/40 rounded-xl transition-all uppercase text-[10px] font-black tracking-widest backdrop-blur-sm shadow-[0_0_15px_rgba(197,160,89,0.2)]"
-                                >
-                                    <LucideBox size={14} className="animate-pulse" />
-                                    <span>View Elite 3D</span>
-                                </button>
-                            )}
+                            {/* Action Buttons restored and updated */}
+                            <div className="flex flex-col gap-1 mt-2">
+                                {/* Gatekeeper Logic: View 3D Button routes to independent page */}
+                                {post.model_url && (
+                                    <button
+                                        onClick={(e) => handleView3D(e, post)}
+                                        className="w-full py-2 flex items-center justify-center gap-2 bg-[#C5A059]/20 hover:bg-[#C5A059] text-[#C5A059] hover:text-black border border-[#C5A059]/40 rounded-xl transition-all uppercase text-[10px] font-black tracking-widest backdrop-blur-sm shadow-[0_0_15px_rgba(197,160,89,0.2)]"
+                                    >
+                                        <LucideBox size={14} className="animate-pulse" />
+                                        <span>View Elite 3D</span>
+                                    </button>
+                                )}
+                                {/* Restore Watch Video capability */}
+                                {post.video_url && (
+                                    <button
+                                        onClick={(e) => {
+                                             // Let card open modal to play video
+                                             // Event propagation will handle triggering the parent's click 
+                                             // or we can just let it fall through to the fact sheet.
+                                             // We leave normal event propagation to let the modal open the video
+                                        }}
+                                        className="w-full py-1.5 flex items-center justify-center gap-2 bg-white/5 hover:bg-white/10 text-white border border-white/10 rounded-xl transition-all uppercase text-[9px] font-bold tracking-widest backdrop-blur-sm"
+                                    >
+                                        <span>Watch Documentary</span>
+                                    </button>
+                                )}
+                            </div>
                         </div>
                     </div>
                 ))}
@@ -89,20 +106,8 @@ export default function ContentDiscoveryGrid({ posts, isLoading, onCardClick }: 
     );
 
     return (
-        <div className="space-y-12 pb-12">
+        <div className={`space-y-12 ${!hideHeader ? 'pb-12' : ''}`}>
             <ResultGrid data={posts} />
-            
-            {/* 3D Viewer Overlay */}
-            {active3DModel && (
-                <Monument3DViewer 
-                    modelUrl={active3DModel.url} 
-                    locationName={active3DModel.name}
-                    onClose={() => {
-                        setActive3DModel(null);
-                        window.dispatchEvent(new CustomEvent('moroverse-3d-view-closed'));
-                    }} 
-                />
-            )}
         </div>
     );
 }

@@ -10,77 +10,24 @@ import { Globe, Crown, Sparkles, MapPin, Building2, Camera, Music, Palmtree, Wav
 import dynamic from "next/dynamic";
 import SmartSidebar from "../components/SmartSidebar";
 import CommunityPulse from "../components/community/CommunityPulse";
-import ContentDiscoveryGrid from "@/components/community/ContentDiscoveryGrid";
-import HeritageFactSheet, { HeritageItem } from "@/components/HeritageFactSheet";
-
-// Utils
-import { useEncyclopedia } from "@/hooks/useEncyclopedia";
-import { Post } from "@/types/social";
-import { LucideSearch, LucideMapPin, Map, Landmark, Swords, Users } from "lucide-react";
-
-const ExploreMap = dynamic(() => import("@/components/community/ExploreMap"), { ssr: false });
-
-const PILLARS = [
-    { id: 'heritage', icon: Landmark, en: 'Architectural Heritage', ar: 'التراث المعماري' },
-    { id: 'geography', icon: Map, en: 'Geography & Regions', ar: 'الجغرافيا والمدن' },
-    { id: 'chronicles', icon: Swords, en: 'Chronicles of Valor', ar: 'عصور البسالة' },
-    { id: 'biographies', icon: Users, en: 'Historical Figures', ar: 'شخصيات تاريخية' },
-    { id: 'tourism', icon: Compass, en: 'Elite Tourism', ar: 'رحلات النخبة' }
-];
+import LazySection from "@/components/ui/LazySection";
+import LazyContentGrid from "@/components/community/LazyContentGrid";
+import OmniSearchBar from "@/components/ui/OmniSearchBar";
 
 import AudioManager from "../utils/AudioManager";
 import MoroVerseLogo from '@/components/MoroVerseLogo';
 import { useLanguage } from "../context/LanguageContext";
 import LanguageSwitcher from "../components/ui/LanguageSwitcher";
+import { Landmark, Map, Swords, Users } from "lucide-react";
 
 export default function Home() {
   const { lang, setLang } = useLanguage();
   const [isClient, setIsClient] = useState(false);
   const isRTL = lang === 'ar';
 
-  const [activePillar, setActivePillar] = useState<string>('heritage');
-  const [selectedCity, setSelectedCity] = useState<string | undefined>(undefined);
-  const [activeLocation, setActiveLocation] = useState<HeritageItem | null>(null);
-
-  // Unified 5-Pillar Data Fetching Hook (Dashboard API)
-  const { posts, isLoading } = useEncyclopedia(activePillar, selectedCity);
-
-  const handleLocationSelect = (loc: Post | string) => {
-      if (typeof loc === 'string') {
-          setSelectedCity(loc === selectedCity ? undefined : loc);
-      } else {
-          // Map Post (from Dashboard API) directly to HeritageItem
-          const item: HeritageItem = {
-              id: loc.id,
-              name: { ar: loc.location_name || '', en: loc.location_name || '' },
-              city: { ar: loc.city || '', en: loc.city || '' },
-              history: loc.content || '',
-              summary: loc.summary || '',
-              imageUrl: loc.image_url || undefined,
-              model_url: loc.model_url || undefined,
-              video_url: loc.video_url || undefined,
-              gallery: loc.gallery || undefined,
-              type: loc.location_type || 'post',
-              slug: loc.slug,
-              stats: {
-                  year: loc.year,
-                  era: loc.era,
-                  combatants: loc.combatants ? { ar: loc.combatants, en: loc.combatants } : undefined,
-                  leaders: loc.leaders ? { ar: loc.leaders, en: loc.leaders } : undefined,
-                  outcome: loc.outcome ? { ar: loc.outcome, en: loc.outcome } : undefined,
-                  tactics: loc.tactics ? { ar: loc.tactics, en: loc.tactics } : undefined,
-                  impact: loc.impact ? { ar: loc.impact, en: loc.impact } : undefined
-              }
-          };
-          setActiveLocation(item);
-          
-          // Auto-Pan map to location if coordinates exist
-          if (loc.lat && loc.lng) {
-              window.dispatchEvent(new CustomEvent('map-fly-to-target', { 
-                  detail: { target: [loc.lat, loc.lng], zoom: 15 } 
-              }));
-          }
-      }
+  const handleGlobalSearch = (query: string) => {
+      // Future: Navigate to a dedicated search page or filter sections
+      console.log("OmniSearch query:", query);
   };
 
   const t = ({
@@ -294,83 +241,72 @@ export default function Home() {
         </motion.div>
       </section>
 
-      {/* Sovereign Archive Engine: Map & Interactive Cards */}
-      <section id="explore-engine" className="py-24 px-4 md:px-10 relative z-20 bg-[#050505]">
-        <div className="max-w-7xl mx-auto space-y-12">
-            
-            {/* 5 Pillars Navigation */}
-            <div className="overflow-x-auto pb-4 hide-scrollbar">
-                <div className={`flex items-center gap-4 ${isRTL ? 'flex-row-reverse' : ''} justify-start sm:justify-center`}>
-                    {PILLARS.map(pillar => {
-                        const Icon = pillar.icon;
-                        const isActive = activePillar === pillar.id;
-                        return (
-                            <button
-                                key={pillar.id}
-                                onClick={() => { setActivePillar(pillar.id); setSelectedCity(undefined); }}
-                                className={`flex items-center gap-3 px-6 py-4 rounded-3xl border whitespace-nowrap transition-all duration-300 ${isRTL ? 'flex-row-reverse font-arabic' : ''} ${
-                                    isActive 
-                                    ? 'bg-[#c5a059] text-black border-[#c5a059] shadow-[0_0_30px_rgba(197,160,89,0.3)] scale-105' 
-                                    : 'bg-black/40 text-white/50 border-white/10 hover:border-[#c5a059]/50 hover:text-white'
-                                }`}
-                            >
-                                <Icon size={20} className={isActive ? 'text-black' : 'text-[#c5a059]'} />
-                                <span className={`text-sm font-black uppercase tracking-widest ${isRTL ? 'font-arabic tracking-normal' : ''}`}>
-                                    {isRTL ? pillar.ar : pillar.en}
-                                </span>
-                            </button>
-                        );
-                    })}
-                </div>
-            </div>
-
-            {/* Discovery Engine: Map Section */}
-            <div className="space-y-6">
-                <div className={`flex items-center justify-between ${isRTL ? 'flex-row-reverse text-right' : ''}`}>
-                    <div className={`flex items-center gap-2 text-xs font-bold uppercase text-[#C5A059] bg-[#C5A059]/5 px-4 py-2 rounded-full border border-[#C5A059]/20 ${isRTL ? 'flex-row-reverse' : ''}`}>
-                        <LucideMapPin size={14} />
-                        <span className={isRTL ? 'font-arabic tracking-normal' : ''}>
-                            {isRTL 
-                                ? `ترشيح الأرشيف: ${PILLARS.find(p => p.id === activePillar)?.ar}` 
-                                : `Visual Filtering: ${PILLARS.find(p => p.id === activePillar)?.en} Active`}
-                        </span>
-                    </div>
-                    {selectedCity && (
-                        <div className={`flex items-center gap-2 text-xs font-bold uppercase text-white/60 ${isRTL ? 'flex-row-reverse' : ''}`}>
-                            <span>{isRTL ? 'المدينة النشطة:' : 'Active City:'}</span>
-                            <span className="text-white">{selectedCity}</span>
-                            <button onClick={() => setSelectedCity(undefined)} className="ml-2 hover:text-red-400 font-bold text-lg">✕</button>
-                        </div>
-                    )}
-                </div>
-                <div className="relative rounded-3xl overflow-hidden border border-white/10 shadow-[0_0_50px_rgba(0,0,0,0.8)]">
-                    <ExploreMap 
-                        onLocationSelect={handleLocationSelect} 
-                        activeCategory={activePillar} 
-                        selectedLocationId={activeLocation?.id}
-                    />
-                </div>
-            </div>
-
-            {/* Content Grid Section with horizontal mobile scroll */}
-            <div className="pt-8 border-t border-white/10">
-                <ContentDiscoveryGrid 
-                    posts={posts} 
-                    isLoading={isLoading} 
-                    onCardClick={handleLocationSelect} 
-                />
-            </div>
-            
-        </div>
+      {/* Global AI Omni-Search Bar */}
+      <section className="relative z-30 py-10 px-4 mt-[-100px] md:mt-[-150px]">
+          <OmniSearchBar isRTL={isRTL} onSearchSubmit={handleGlobalSearch} />
       </section>
 
-      {/* Smart Fact Sheet Modal (Integrated here directly) */}
-      <HeritageFactSheet 
-          item={activeLocation} 
-          isOpen={!!activeLocation} 
-          onClose={() => setActiveLocation(null)} 
-          lang={lang}
-      />
+      {/* Modern Vertical Architecture: Lazy Loaded Sections */}
+      <div className="relative z-20 pb-24 space-y-12">
+          
+          <LazySection 
+              title={isRTL ? "المدن الخالدة" : "Eternal Cities"}
+              subtitle={isRTL ? "استكشف روح كل مدينة وتفاصيلها الجغرافية." : "Explore the soul of every city and its geography."}
+              icon={<Map size={32} className="text-[#c5a059]" />}
+              isRTL={isRTL}
+          >
+              <div className="px-4 md:px-10">
+                  <LazyContentGrid category="geography" lang={lang as 'en' | 'ar'} />
+              </div>
+          </LazySection>
+
+          <LazySection 
+              title={isRTL ? "المعالم التاريخية" : "Architectural Heritage"}
+              subtitle={isRTL ? "ذروة التراث المعماري والتاريخي للمملكة المغربية." : "The zenith of Moroccan architectural and historical heritage."}
+              icon={<Landmark size={32} className="text-[#c5a059]" />}
+              isRTL={isRTL}
+              className="bg-[#0a0a0a]/50 border-y border-white/5"
+          >
+              <div className="px-4 md:px-10">
+                  <LazyContentGrid category="heritage" lang={lang as 'en' | 'ar'} />
+              </div>
+          </LazySection>
+
+          <LazySection 
+              title={isRTL ? "عصور البسالة" : "Chronicles of Valor"}
+              subtitle={isRTL ? "سجلات المعارك الإمبراطورية." : "Records of Imperial Battles."}
+              icon={<Swords size={32} className="text-[#c5a059]" />}
+              isRTL={isRTL}
+          >
+              <div className="px-4 md:px-10">
+                  <LazyContentGrid category="chronicles" lang={lang as 'en' | 'ar'} />
+              </div>
+          </LazySection>
+
+          <LazySection 
+              title={isRTL ? "شخصيات تاريخية" : "Historical Figures"}
+              subtitle={isRTL ? "الأعلام الذين سطروا أمجاد المملكة." : "Luminaries who shaped the destiny of the Kingdom."}
+              icon={<Users size={32} className="text-[#c5a059]" />}
+              isRTL={isRTL}
+              className="bg-[#0a0a0a]/50 border-y border-white/5"
+          >
+              <div className="px-4 md:px-10">
+                  <LazyContentGrid category="biographies" lang={lang as 'en' | 'ar'} />
+              </div>
+          </LazySection>
+
+          <LazySection 
+              title={isRTL ? "رحلات النخبة" : "Elite Tourism"}
+              subtitle={isRTL ? "تجارب سياحية مصممة بعناية." : "Discover experiences tailored to captivate."}
+              icon={<Globe size={32} className="text-[#c5a059]" />}
+              isRTL={isRTL}
+          >
+              <div className="px-4 md:px-10">
+                  <LazyContentGrid category="tourism" lang={lang as 'en' | 'ar'} />
+              </div>
+          </LazySection>
+
+      </div>
 
 
       <footer className="py-32 text-center border-t border-primary/20 relative z-20 bg-black/60 backdrop-blur-sm">
