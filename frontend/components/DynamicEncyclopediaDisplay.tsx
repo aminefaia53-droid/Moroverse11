@@ -186,7 +186,7 @@ export default function DynamicEncyclopediaDisplay({ category, lang, emptyMessag
 
         const heritageItem: HeritageItem = {
             id: safeId,
-            slug: safeStr(item.id || item.slug) || safeId,
+            slug: safeStr(item.seo?.slug || item.slug || item.id) || safeId,
             name: {
                 en: getName(item.name, 'en') || 'Unknown',
                 ar: getName(item.name, 'ar') || 'غير معروف'
