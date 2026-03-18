@@ -176,50 +176,27 @@ ${section(
 }
 
 // ============================================================
-// ALL TOPICS — Every single card entity in the app
+// ALL TOPICS — Dynamically loaded from generated-content.json
 // ============================================================
-const ALL_TOPICS = [
-  // ======= BATTLES =======
-  { slug: 'tazenakht-forgotten-village', titleAr: 'تازناخت', type: 'قرية ومركز حضاري', subtitleAr: 'عاصمة الزربية المنسية في ظل الأطلس الصغير', metaDescription: 'اكتشف سر تازناخت، عاصمة الزربية المغربية الأصيلة المنسية في ظلال الأطلس الصغير، وتاريخها الحافل بالحرف والتراث.', keywords: 'تازناخت, زرابي مغربية, أطلس صغير, تراث مغربي, ورزازات, نسيج مغربي', category: 'city' },
-  { slug: 'agbalou-nkardous-resistence', titleAr: 'أغبالو نكردوس', type: 'قرية مقاومة تاريخية', subtitleAr: 'معقل الأبطال في أعالي الأطلس', metaDescription: 'قصة أغبالو نكردوس، معقل المقاومة المجيدة في جبال تادلة أزيلال، وملحمة الصمود في وجه الغزاة.', keywords: 'أغبالو نكردوس, مقاومة مغربية, أطلس, تادلة أزيلال, بني ملال', category: 'battle' },
-  { slug: 'sidi-bou-othmane-battle-1912', titleAr: 'معركة سيدي بوعثمان', type: 'معركة تاريخية', subtitleAr: 'ملحمة الجنوب المغربي في مواجهة الحماية الفرنسية', metaDescription: 'معركة سيدي بوعثمان 1912، الموقعة الحاسمة التي خلّدت صمود القبائل المغربية في مواجهة الجيش الفرنسي عند دخوله مراكش.', keywords: 'سيدي بوعثمان, معركة 1912, استعمار فرنسي, مراكش, قبائل مغربية', category: 'battle' },
-  { slug: 'el-hri-battle-1914', titleAr: 'معركة لهري', type: 'معركة تاريخية', subtitleAr: 'النصر الأسطوري لموحى أوحمو الزياني', metaDescription: 'معركة لهري 1914، كيف حوّل موحى أوحمو الزياني سهل لهري إلى مقبرة للجيش الفرنسي في واحدة من أعنف معارك المقاومة.', keywords: 'لهري, معركة 1914, موحى أوحمو الزياني, مقاومة مغربية, خنيفرة', category: 'battle' },
-  { slug: 'battle-of-zallaqa-1086', titleAr: 'معركة الزلاقة', type: 'معركة تاريخية', subtitleAr: 'انتصار المرابطين الذي أنقذ الأندلس', metaDescription: 'معركة الزلاقة 1086م: كيف أنقذ يوسف بن تاشفين الأندلس الإسلامية في المواجهة الكبرى مع الجيش القشتالي بقيادة ألفونسو السادس.', keywords: 'الزلاقة, 1086, يوسف بن تاشفين, المرابطون, الأندلس, بطليوس', category: 'battle' },
-  { slug: 'battle-of-wadi-al-makhazin-1578', titleAr: 'معركة وادي المخازن', type: 'معركة تاريخية', subtitleAr: 'معركة الملوك الثلاثة التي غيّرت وجه المتوسط', metaDescription: 'وادي المخازن 1578: الصدام الإمبراطوري الذي قتل فيه ثلاثة ملوك يوماً واحداً، وكيف حوّل المغرب انتصاره إلى قوة إقليمية كبرى.', keywords: 'وادي المخازن, 1578, معركة الملوك الثلاثة, السعديون, البرتغال, عبد الملك', category: 'battle' },
-  { slug: 'battle-of-isly-1844', titleAr: 'معركة إيسلي', type: 'معركة تاريخية', subtitleAr: 'الهزيمة الأولى وصحوة الإصلاح في القرن التاسع عشر', metaDescription: 'معركة إيسلي 1844: الدرس المرير الذي دفع المغرب نحو الإصلاح العسكري والاجتماعي عشية التدخل الاستعماري الأوروبي.', keywords: 'إيسلي, 1844, محمد الرابع, فرنسا, مغرب, عبد القادر الجزائري', category: 'battle' },
+const dbPath = path.join(__dirname, 'data', 'generated-content.json');
+const db = JSON.parse(fs.readFileSync(dbPath, 'utf8'));
 
-  // ======= LANDMARKS =======
-  { slug: 'hassan-ii-mosque', titleAr: 'مسجد الحسن الثاني', type: 'معلم معماري عالمي', subtitleAr: 'الصرح الأكبر في المغرب والثالث عالمياً', metaDescription: 'مسجد الحسن الثاني بالدار البيضاء: أحد أضخم المساجد في العالم، تحفة معمارية تجمع أصالة الفن الإسلامي المغربي والرهبة الأمامية للمحيط الأطلسي.', keywords: 'مسجد الحسن الثاني, الدار البيضاء, أكبر مساجد العالم, معمار إسلامي, المغرب', category: 'landmark' },
-  { slug: 'hassan-tower', titleAr: 'صومعة حسان', type: 'معلم تاريخي معماري', subtitleAr: 'المئذنة الناقصة والإرادة الموحدية الكبرى', metaDescription: 'صومعة حسان بالرباط: الشاهد الصامت على عظمة حكم يعقوب المنصور الموحدي وطموحه في بناء أكبر مسجد في التاريخ الإسلامي.', keywords: 'صومعة حسان, الرباط, الموحدون, يعقوب المنصور, معلم أثري مغربي', category: 'landmark' },
-  { slug: 'el-badi-palace', titleAr: 'قصر البديع', type: 'قصر تاريخي', subtitleAr: 'أطلال المجد السعدي ومجد السلطان أحمد المنصور', metaDescription: 'قصر البديع بمراكش: أطلال الإمبراطورية السعدية التي أبهرت سفراء أوروبا وكانت تُزيّن بالمرمر والذهب والأونيكس.', keywords: 'قصر البديع, مراكش, السعديون, أحمد المنصور الذهبي, تاريخ مغرب', category: 'landmark' },
-  { slug: 'volubilis-roman-ruins', titleAr: 'وليلي', type: 'موقع أثري', subtitleAr: 'مدينة الزيتون والفسيفساء الرومانية المندثرة', metaDescription: 'وليلي، أهم الموقع الأثري الروماني في المغرب ومدينة الأمازيغ العتيقة. مصنّفة من اليونيسكو وغنية بالفسيفساء الرومانية النادرة.', keywords: 'وليلي, مكناس, رومان, آثار مغرب, يونيسكو, فسيفساء', category: 'landmark' },
-  { slug: 'hercules-caves', titleAr: 'مغارة هرقل', type: 'موقع أثري طبيعي', subtitleAr: 'بوابة إفريقيا المنحوتة بأيدي الزمن والأسطورة', metaDescription: 'مغارة هرقل بطنجة: ملاذ الأسطورة الإغريقية ومعلم جيولوجي نادر يجمع تاريخ الإنسان والطبيعة عند بوابة العالمين.', keywords: 'مغارة هرقل, طنجة, أثار مغرب, أسطورة هرقل, سياحة مغرب', category: 'landmark' },
-  { slug: 'boujdour-lighthouse', titleAr: 'منارة بوجدور', type: 'معلم بحري تاريخي', subtitleAr: 'ضوء الصحراء على حدود المجهول', metaDescription: 'منارة بوجدور: علامة الملاحين على الساحل الصحراوي المغربي، التي كانت تفصل الملاحة الأوروبية المعروفة عن الجنوب المجهول.', keywords: 'منارة بوجدور, الصحراء المغربية, ملاحة, ساحل أطلسي, تاريخ مغرب', category: 'landmark' },
-  { slug: 'essaouira-fortress', titleAr: 'صقالة الميناء بالصويرة', type: 'حصن تاريخي', subtitleAr: 'البستيون الذي حرس جوهرة المحيط قروناً', metaDescription: 'صقالة ميناء الصويرة: الحصن التاريخي الأيقوني الذي يُتوّج قلعة المحيط المغربية، وشاهد على العلاقات البحرية الأوروبية-المغربية.', keywords: 'الصويرة, صقالة الميناء, حصن, موغادور, تاريخ بحري مغربي', category: 'landmark' },
-  { slug: 'ait-benhaddou-kasbah', titleAr: 'قصبة أيت بن حدو', type: 'قصبة عالمية التراث', subtitleAr: 'الطين الخالد والمصنّفة في قائمة يونيسكو', metaDescription: 'قصبة أيت بن حدو بورزازات: التحفة الطينية العالمية المصنّفة من اليونيسكو وخلفية كبريات أفلام هوليوود من غلاديتور إلى ألعاب العروش.', keywords: 'أيت بن حدو, ورزازات, يونيسكو, قصبة, سينما عالمية, أفلام', category: 'landmark' },
-  { slug: 'tinmel-mosque', titleAr: 'مسجد تينمل', type: 'موقع تاريخي', subtitleAr: 'منبع الموحدين ومعقلهم الأول في الأطلس', metaDescription: 'مسجد تينمل في قلب الأطلس الكبير: المقر الأول للدعوة الموحدية التي غيّرت وجه المغرب والأندلس وأسقطت الدولة المرابطية.', keywords: 'تينمل, مسجد, الموحدون, الأطلس الكبير, ابن تومرت, تاريخ مغرب', category: 'landmark' },
-
-  // ======= HISTORICAL FIGURES =======
-  { slug: 'fatima-al-fihriya', titleAr: 'فاطمة الفهرية', type: 'شخصية علمية تاريخية', subtitleAr: 'مؤسسة أقدم جامعة في العالم لا تزال تعمل', metaDescription: 'فاطمة الفهرية: المرأة المغربية التي أسّست جامعة القرويين بفاس في القرن التاسع الميلادي، المعترف بها رسمياً كأقدم جامعة في التاريخ.', keywords: 'فاطمة الفهرية, جامعة القرويين, فاس, التعليم المغربي, إدريسيون, المرأة في الإسلام', category: 'figure' },
-  { slug: 'sayyida-al-hurra', titleAr: 'السيدة الحرة', type: 'شخصية سياسية وعسكرية', subtitleAr: 'ملكة تطوان وسيدة المتوسط الغربي', metaDescription: 'السيدة الحرة: حاكمة تطوان التي سيطرت على غرب المتوسط بأسطولها في القرن السادس عشر وكانت رمزاً استثنائياً للقيادة النسائية.', keywords: 'السيدة الحرة, تطوان, المغرب, قرن سادس عشر, قرصنة, أندلسيون مغرب', category: 'figure' },
-  { slug: 'tariq-ibn-ziyad', titleAr: 'طارق بن زياد', type: 'قائد عسكري تاريخي', subtitleAr: 'فاتح الأندلس ومن حمل سيفه إلى إسبانيا', metaDescription: 'طارق بن زياد: القائد المغربي الأمازيغي الذي قاد فتح الأندلس عام 711م وخلّد اسمه في اسم جبل طارق للأبد.', keywords: 'طارق بن زياد, فتح الأندلس, جبل طارق, الأمازيغ, أمويون, 711', category: 'figure' },
-  { slug: 'ibn-battuta', titleAr: 'ابن بطوطة', type: 'رحالة وجغرافي', subtitleAr: 'ابن طنجة الذي طاف أصقاع الدنيا في القرن الرابع عشر', metaDescription: 'ابن بطوطة: الرحالة المغربي الكبير الذي قطع 117,000 كيلومتراً في 29 عاماً عبر 44 دولة وخلّد رحلته في كتاب "تحفة النظار".', keywords: 'ابن بطوطة, طنجة, رحلات, جغرافيا, سفر قرن رابع عشر, مغرب', category: 'figure' },
-  { slug: 'yusuf-ibn-tashfin', titleAr: 'يوسف بن تاشفين', type: 'حاكم ومؤسس إمبراطورية', subtitleAr: 'باني مراكش ومنقذ الأندلس من أصقاع موريتانيا', metaDescription: 'يوسف بن تاشفين: مؤسس مراكش والإمبراطورية المرابطية الكبرى التي امتدت من السنغال إلى زاراغوسا، ومنقذ الأندلس في معركة الزلاقة.', keywords: 'يوسف بن تاشفين, مراكش, المرابطون, الأندلس, الزلاقة, موريتانيا، إمبراطورية', category: 'figure' },
-
-  // ======= MAJOR CITIES =======
-  { slug: 'marrakech-city', titleAr: 'مراكش', type: 'مدينة إمبراطورية مغربية', subtitleAr: 'المدينة الحمراء ولؤلؤة سياحة المغرب', metaDescription: 'مراكش الحمراء: إحدى العواصم الإمبراطورية المغربية وأكثر مدنها استقطاباً للسياح العالميين. اكتشف تاريخها العميق وحاضرها الزاهر.', keywords: 'مراكش, المدينة الحمراء, جامع الفنا, يونيسكو, سياحة مغرب, الكوتوبية', category: 'city' },
-  { slug: 'fes-city', titleAr: 'فاس', type: 'مدينة إمبراطورية مغربية', subtitleAr: 'عاصمة الثقافة والعلم وأكبر مدينة عتيقة مستمرة في العالم', metaDescription: 'فاس العريقة: عاصمة الثقافة والعلم في المغرب ومدينة جامعة القرويين. مصنفة من يونيسكو وتحتضن أكبر مدينة عتيقة لا تزال مأهولة في العالم.', keywords: 'فاس, فاس البالي, يونيسكو, جامعة القرويين, حرف تقليدية, دباغة, إدريسيون', category: 'city' },
-  { slug: 'sahara-morocco-merzouga', titleAr: 'صحراء مرزوقة', type: 'منطقة طبيعية', subtitleAr: 'عروس الكثبان والذاكرة البدوية الحية', metaDescription: 'مرزوقة وكثبان إرق الشبي الذهبية: الوجهة السياحية الأسطورية في قلب الصحراء المغربية الكبرى. رمال، نجوم، وأسرار الصحراء.', keywords: 'مرزوقة, الصحراء المغربية, إرق شبي, نجوم, إبل, سياحة صحراوية', category: 'city' },
-
-  // ======= OTHER NOTABLE CITIES =======
-  { slug: 'tangier-city', titleAr: 'طنجة', type: 'مدينة إمبراطورية وبوابة دولية', subtitleAr: 'البوابة الأبدية بين الحضارتين والمحيطين', metaDescription: 'طنجة: مدينة الملتقى بين إفريقيا وأوروبا، والبحر المتوسط والمحيط الأطلسي. مدينة كتّاب العالم وسر الديبلوماسية الدولية.', keywords: 'طنجة, بوابة المغرب, كتّاب طنجة, مضيق جبل طارق, مغرب أوروبا', category: 'city' },
-  { slug: 'chefchaouen-city', titleAr: 'شفشاون', type: 'مدينة أندلسية جبلية', subtitleAr: 'المدينة الزرقاء سيمفونية الأندلسيين في جبال الريف', metaDescription: 'شفشاون: المدينة الزرقاء المعلّقة في قمم جبال الريف، التي أسّسها الأندلسيون المهجّرون وتُبهر زوارها بألوانها ورائحة الياسمين.', keywords: 'شفشاون, المدينة الزرقاء, جبال الريف, أندلسيون, مغرب, تراث', category: 'city' },
-  { slug: 'essaouira-city', titleAr: 'الصويرة', type: 'مدينة ساحلية تاريخية', subtitleAr: 'جوهرة المحيط الأطلسي وعاصمة تراث موسيقى كناوة', metaDescription: 'الصويرة (موغادور): مدينة الريح والفن التي تعانق المحيط الأطلسي، المصنّفة من يونيسكو ومهرجان كناوة الدولي.', keywords: 'الصويرة, موغادور, يونيسكو, كناوة, موسيقى, ساحل مغربي', category: 'city' },
-  { slug: 'agadir-city', titleAr: 'أكادير', type: 'مدينة ساحلية سياحية', subtitleAr: 'مدينة الشمس والرمال ونهضة سوس', metaDescription: 'أكادير: المدينة السياحية الكبرى على الساحل الأطلسي الجنوبي في المغرب. بُنيت من جديد بعد زلزال 1960 لتغدو منتجعاً بحرياً فاخراً.', keywords: 'أكادير, سواحل مغربية, زلزال 1960, سياحة أطلسية, سوس ماسة', category: 'city' },
-  { slug: 'rabat-city', titleAr: 'الرباط', type: 'عاصمة مغربية', subtitleAr: 'عاصمة المغرب المصنّفة تراثاً إنسانياً عالمياً', metaDescription: 'الرباط: العاصمة السياسية للمغرب والمصنّفة من يونيسكو. مدينة تجمع الحداثة والتراث في نسيج حضري أصيل.', keywords: 'الرباط, عاصمة المغرب, يونيسكو, برج حسان, قصبة الوداية', category: 'city' },
-  { slug: 'casablanca-city', titleAr: 'الدار البيضاء', type: 'عاصمة اقتصادية', subtitleAr: 'قلب المغرب النابض ومحرك اقتصاده الحديث', metaDescription: 'الدار البيضاء: القلب الاقتصادي للمغرب ومحور التنمية الصناعية والتجارة الدولية. مدينة مسجد الحسن الثاني والمشاريع الكبرى.', keywords: 'الدار البيضاء, كازابلانكا, اقتصاد مغرب, مسجد الحسن الثاني, صناعة', category: 'city' },
-  { slug: 'figuig-oasis', titleAr: 'فكيك', type: 'واحة صحراوية تاريخية', subtitleAr: 'واحة الحدود وجنّة النخيل في القصور الصفراء', metaDescription: 'فكيك: الواحة السحرية الحدودية في أقصى شرق المغرب، مدينة من القصور الأمازيغية العريقة يحيط بها النخيل والمياه المعدنية.', keywords: 'فكيك, واحة, صحراء شرقية, قصور أمازيغية, مغرب, خريبكة', category: 'city' },
-];
+const ALL_TOPICS = [];
+['landmarks', 'cities', 'battles', 'figures'].forEach(cat => {
+  if (db[cat]) {
+    db[cat].forEach(item => {
+      ALL_TOPICS.push({
+        slug: item.seo?.slug || item.id,
+        titleAr: item.name?.ar || item.id,
+        type: cat,
+        subtitleAr: item.desc?.ar ? item.desc.ar.substring(0, 50) + '...' : '',
+        metaDescription: item.seo?.metaDescription || '',
+        keywords: item.seo?.metaTitle || item.name?.ar || '',
+        category: cat
+      });
+    });
+  }
+});
 
 // ============================================================
 // GENERATE ALL ARTICLES
@@ -230,7 +207,13 @@ console.log(`📋 Generating ${ALL_TOPICS.length} full-length academic articles.
 const generated = [];
 for (const topic of ALL_TOPICS) {
   const filePath = path.join(contentDir, `${topic.slug}.html`);
-  const html = generateAcademicArticleHTML(topic);
+  // Inject internal/external links dynamically
+  const modifiedTopic = {
+    ...topic,
+    titleAr: `<a href="/explore?category=${topic.category}" style="text-decoration:none;color:inherit;">${topic.titleAr}</a>`,
+    keywords: `${topic.keywords}, <a href="https://whc.unesco.org/" target="_blank" rel="noopener noreferrer" style="color:#D4AF37;">UNESCO World Heritage</a>, <a href="https://www.minculture.gov.ma/" target="_blank" rel="noopener noreferrer" style="color:#D4AF37;">Moroccan Ministry of Culture</a>`
+  };
+  const html = generateAcademicArticleHTML(modifiedTopic);
   fs.writeFileSync(filePath, html, 'utf8');
   generated.push(topic.slug);
   console.log(`✅ ${topic.titleAr} → ${topic.slug}.html`);
@@ -240,7 +223,7 @@ for (const topic of ALL_TOPICS) {
 // GENERATE SITEMAP.XML
 // ============================================================
 const VERCEL_URL = 'https://moroverse.vercel.app';
-const staticPages = ['/', '/about', '/contact'];
+const staticPages = ['/', '/about', '/contact', '/explore', '/dashboard'];
 const today = new Date().toISOString().split('T')[0];
 
 const sitemapXML = `<?xml version="1.0" encoding="UTF-8"?>
@@ -249,7 +232,7 @@ ${staticPages.map((p, i) => `  <url>
     <loc>${VERCEL_URL}${p}</loc>
     <lastmod>${today}</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>${i === 0 ? '1.0' : '0.7'}</priority>
+    <priority>${i === 0 ? '1.0' : '0.8'}</priority>
   </url>`).join('\n')}
 ${generated.map(slug => `  <url>
     <loc>${VERCEL_URL}/posts/${slug}</loc>
@@ -261,4 +244,5 @@ ${generated.map(slug => `  <url>
 
 fs.writeFileSync(path.join(__dirname, 'public', 'sitemap.xml'), sitemapXML, 'utf8');
 console.log(`\n✅ sitemap.xml updated → ${generated.length + staticPages.length} URLs`);
-console.log(`🎉 Done! ${generated.length} articles generated with academic sources.`);
+console.log(`🎉 Done! ${generated.length} articles generated with academic sources and strict linking.`);
+

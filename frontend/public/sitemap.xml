@@ -2,271 +2,397 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://moroverse.vercel.app/</loc>
-    <lastmod>2026-02-25</lastmod>
+    <lastmod>2026-03-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://moroverse.vercel.app/about</loc>
-    <lastmod>2026-02-25</lastmod>
+    <lastmod>2026-03-18</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://moroverse.vercel.app/contact</loc>
-    <lastmod>2026-02-25</lastmod>
+    <lastmod>2026-03-18</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://moroverse.vercel.app/posts/agadir-city</loc>
-    <lastmod>2026-02-25</lastmod>
+    <loc>https://moroverse.vercel.app/explore</loc>
+    <lastmod>2026-03-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://moroverse.vercel.app/dashboard</loc>
+    <lastmod>2026-03-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://moroverse.vercel.app/posts/rabat-hassan-tower</loc>
+    <lastmod>2026-03-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://moroverse.vercel.app/posts/agbalou-nkardous-resistence</loc>
-    <lastmod>2026-02-25</lastmod>
+    <loc>https://moroverse.vercel.app/posts/rabat-kasbah-udayas</loc>
+    <lastmod>2026-03-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://moroverse.vercel.app/posts/ait-benhaddou-kasbah</loc>
-    <lastmod>2026-02-25</lastmod>
+    <loc>https://moroverse.vercel.app/posts/rabat-chellah-necropolis</loc>
+    <lastmod>2026-03-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://moroverse.vercel.app/posts/battle-of-al-ark-1195</loc>
-    <lastmod>2026-02-25</lastmod>
+    <loc>https://moroverse.vercel.app/posts/rabat-mausoleum-mohammed-v</loc>
+    <lastmod>2026-03-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://moroverse.vercel.app/posts/battle-of-annual-1921</loc>
-    <lastmod>2026-02-25</lastmod>
+    <loc>https://moroverse.vercel.app/posts/fez-al-quaraouiyine-oldest-university</loc>
+    <lastmod>2026-03-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://moroverse.vercel.app/posts/battle-of-bagdoura-741</loc>
-    <lastmod>2026-02-25</lastmod>
+    <loc>https://moroverse.vercel.app/posts/fez-bou-inania-madrasa</loc>
+    <lastmod>2026-03-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://moroverse.vercel.app/posts/battle-of-bougafer-1933</loc>
-    <lastmod>2026-02-25</lastmod>
+    <loc>https://moroverse.vercel.app/posts/fez-attarine-madrasa</loc>
+    <lastmod>2026-03-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://moroverse.vercel.app/posts/battle-of-dcheira-1958</loc>
-    <lastmod>2026-02-25</lastmod>
+    <loc>https://moroverse.vercel.app/posts/fez-bab-boujloud-blue-gate</loc>
+    <lastmod>2026-03-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://moroverse.vercel.app/posts/battle-of-dononiyah-1276</loc>
-    <lastmod>2026-02-25</lastmod>
+    <loc>https://moroverse.vercel.app/posts/fez-chouara-tannery</loc>
+    <lastmod>2026-03-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://moroverse.vercel.app/posts/battle-of-isly-1844</loc>
-    <lastmod>2026-02-25</lastmod>
+    <loc>https://moroverse.vercel.app/posts/marrakech-koutoubia-mosque</loc>
+    <lastmod>2026-03-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://moroverse.vercel.app/posts/marrakech-bahia-palace</loc>
+    <lastmod>2026-03-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://moroverse.vercel.app/posts/marrakech-badi-palace</loc>
+    <lastmod>2026-03-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://moroverse.vercel.app/posts/marrakech-saadian-tombs</loc>
+    <lastmod>2026-03-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://moroverse.vercel.app/posts/marrakech-ben-youssef-madrasa</loc>
+    <lastmod>2026-03-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://moroverse.vercel.app/posts/meknes-bab-mansour-gate</loc>
+    <lastmod>2026-03-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://moroverse.vercel.app/posts/meknes-volubilis-roman-ruins</loc>
+    <lastmod>2026-03-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://moroverse.vercel.app/posts/meknes-heri-es-souani</loc>
+    <lastmod>2026-03-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://moroverse.vercel.app/posts/unesco-ait-benhaddou-ksar</loc>
+    <lastmod>2026-03-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://moroverse.vercel.app/posts/unesco-essaouira-medina-skala</loc>
+    <lastmod>2026-03-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://moroverse.vercel.app/posts/unesco-portuguese-cistern-mazagan</loc>
+    <lastmod>2026-03-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://moroverse.vercel.app/posts/unesco-tetouan-medina-andalusian</loc>
+    <lastmod>2026-03-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://moroverse.vercel.app/posts/souss-massa-agadir-inoumar-granary</loc>
+    <lastmod>2026-03-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://moroverse.vercel.app/posts/souss-massa-agadir-tasghint</loc>
+    <lastmod>2026-03-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://moroverse.vercel.app/posts/souss-massa-agadir-ikounka-fort</loc>
+    <lastmod>2026-03-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://moroverse.vercel.app/posts/draa-tafilalet-kasbah-tamnougalt</loc>
+    <lastmod>2026-03-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://moroverse.vercel.app/posts/draa-tafilalet-tamegroute-library</loc>
+    <lastmod>2026-03-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://moroverse.vercel.app/posts/draa-tafilalet-kasbah-telouet</loc>
+    <lastmod>2026-03-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://moroverse.vercel.app/posts/draa-tafilalet-ksar-el-khorbat</loc>
+    <lastmod>2026-03-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://moroverse.vercel.app/posts/eastern-region-7-ksours-figuig</loc>
+    <lastmod>2026-03-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://moroverse.vercel.app/posts/eastern-region-oasis-architecture</loc>
+    <lastmod>2026-03-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://moroverse.vercel.app/posts/northern-rif-lixus-ruins</loc>
+    <lastmod>2026-03-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://moroverse.vercel.app/posts/northern-rif-spanish-quarter-ensanche</loc>
+    <lastmod>2026-03-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://moroverse.vercel.app/posts/northern-rif-defensive-towers-ajdir</loc>
+    <lastmod>2026-03-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://moroverse.vercel.app/posts/rabat-capital-morocco</loc>
+    <lastmod>2026-03-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://moroverse.vercel.app/posts/fez-ancient-imperial-city</loc>
+    <lastmod>2026-03-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://moroverse.vercel.app/posts/marrakech-red-city-morocco</loc>
+    <lastmod>2026-03-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://moroverse.vercel.app/posts/meknes-imperial-city</loc>
+    <lastmod>2026-03-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://moroverse.vercel.app/posts/morocco-unesco-world-heritage-sites</loc>
+    <lastmod>2026-03-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://moroverse.vercel.app/posts/souss-massa-agadir-region</loc>
+    <lastmod>2026-03-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://moroverse.vercel.app/posts/draa-tafilalet-sahara-region</loc>
+    <lastmod>2026-03-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://moroverse.vercel.app/posts/eastern-region-oujda-figuig</loc>
+    <lastmod>2026-03-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://moroverse.vercel.app/posts/northern-rif-tangier-chefchaouen</loc>
+    <lastmod>2026-03-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://moroverse.vercel.app/posts/battle-of-guadalete-711</loc>
+    <lastmod>2026-03-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://moroverse.vercel.app/posts/battle-of-nobles-idrisid-morocco</loc>
+    <lastmod>2026-03-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://moroverse.vercel.app/posts/battle-of-sagrajas-zallaqa-1086</loc>
+    <lastmod>2026-03-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://moroverse.vercel.app/posts/battle-of-alarcos-1195</loc>
+    <lastmod>2026-03-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://moroverse.vercel.app/posts/battle-of-las-navas-de-tolosa-1212</loc>
-    <lastmod>2026-02-25</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://moroverse.vercel.app/posts/battle-of-tetouan-1860</loc>
-    <lastmod>2026-02-25</lastmod>
+    <lastmod>2026-03-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://moroverse.vercel.app/posts/battle-of-wadi-al-makhazin-1578</loc>
-    <lastmod>2026-02-25</lastmod>
+    <lastmod>2026-03-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://moroverse.vercel.app/posts/battle-of-zallaqa-1086</loc>
-    <lastmod>2026-02-25</lastmod>
+    <loc>https://moroverse.vercel.app/posts/battle-of-isly-1844</loc>
+    <lastmod>2026-03-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://moroverse.vercel.app/posts/boujdour-lighthouse</loc>
-    <lastmod>2026-02-25</lastmod>
+    <loc>https://moroverse.vercel.app/posts/battle-of-tetouan-1860</loc>
+    <lastmod>2026-03-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://moroverse.vercel.app/posts/casablanca-city</loc>
-    <lastmod>2026-02-25</lastmod>
+    <loc>https://moroverse.vercel.app/posts/battle-of-annual-1921</loc>
+    <lastmod>2026-03-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://moroverse.vercel.app/posts/chefchaouen-city</loc>
-    <lastmod>2026-02-25</lastmod>
+    <loc>https://moroverse.vercel.app/posts/battle-of-el-herri-1914</loc>
+    <lastmod>2026-03-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://moroverse.vercel.app/posts/el-badi-palace</loc>
-    <lastmod>2026-02-25</lastmod>
+    <loc>https://moroverse.vercel.app/posts/battle-of-edchera-ifni-1958</loc>
+    <lastmod>2026-03-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://moroverse.vercel.app/posts/el-hri-1914</loc>
-    <lastmod>2026-02-25</lastmod>
+    <loc>https://moroverse.vercel.app/posts/tariq-ibn-ziyad-conqueror-andalus</loc>
+    <lastmod>2026-03-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://moroverse.vercel.app/posts/el-hri-battle-1914</loc>
-    <lastmod>2026-02-25</lastmod>
+    <loc>https://moroverse.vercel.app/posts/yusuf-ibn-tashfin-almoravid-sultan</loc>
+    <lastmod>2026-03-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://moroverse.vercel.app/posts/essaouira-city</loc>
-    <lastmod>2026-02-25</lastmod>
+    <loc>https://moroverse.vercel.app/posts/yaqub-al-mansur-almohad-caliph</loc>
+    <lastmod>2026-03-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://moroverse.vercel.app/posts/essaouira-fortress</loc>
-    <lastmod>2026-02-25</lastmod>
+    <loc>https://moroverse.vercel.app/posts/ahmad-al-mansur-saadian-sultan</loc>
+    <lastmod>2026-03-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://moroverse.vercel.app/posts/fatima-al-fihriya</loc>
-    <lastmod>2026-02-25</lastmod>
+    <loc>https://moroverse.vercel.app/posts/moulay-ismail-alawi-sultan-meknes</loc>
+    <lastmod>2026-03-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://moroverse.vercel.app/posts/fes-city</loc>
-    <lastmod>2026-02-25</lastmod>
+    <loc>https://moroverse.vercel.app/posts/abd-el-krim-el-khattabi-rif-republic</loc>
+    <lastmod>2026-03-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://moroverse.vercel.app/posts/figuig-oasis</loc>
-    <lastmod>2026-02-25</lastmod>
+    <loc>https://moroverse.vercel.app/posts/mohammed-v-king-independence-morocco</loc>
+    <lastmod>2026-03-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://moroverse.vercel.app/posts/hassan-ii-mosque</loc>
-    <lastmod>2026-02-25</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://moroverse.vercel.app/posts/hassan-tower</loc>
-    <lastmod>2026-02-25</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://moroverse.vercel.app/posts/hercules-caves</loc>
-    <lastmod>2026-02-25</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://moroverse.vercel.app/posts/ibn-battuta</loc>
-    <lastmod>2026-02-25</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://moroverse.vercel.app/posts/marrakech-city</loc>
-    <lastmod>2026-02-25</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://moroverse.vercel.app/posts/oued-sebou-maamora-1515</loc>
-    <lastmod>2026-02-25</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://moroverse.vercel.app/posts/rabat-city</loc>
-    <lastmod>2026-02-25</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://moroverse.vercel.app/posts/sahara-morocco-merzouga</loc>
-    <lastmod>2026-02-25</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://moroverse.vercel.app/posts/sayyida-al-hurra</loc>
-    <lastmod>2026-02-25</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://moroverse.vercel.app/posts/sidi-bou-othmane-1912</loc>
-    <lastmod>2026-02-25</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://moroverse.vercel.app/posts/sidi-bou-othmane-battle-1912</loc>
-    <lastmod>2026-02-25</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://moroverse.vercel.app/posts/tangier-city</loc>
-    <lastmod>2026-02-25</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://moroverse.vercel.app/posts/tariq-ibn-ziyad</loc>
-    <lastmod>2026-02-25</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://moroverse.vercel.app/posts/tazenakht-forgotten-village</loc>
-    <lastmod>2026-02-25</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://moroverse.vercel.app/posts/tinmel-mosque</loc>
-    <lastmod>2026-02-25</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://moroverse.vercel.app/posts/volubilis-roman-ruins</loc>
-    <lastmod>2026-02-25</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://moroverse.vercel.app/posts/yusuf-ibn-tashfin</loc>
-    <lastmod>2026-02-25</lastmod>
+    <loc>https://moroverse.vercel.app/posts/hassan-ii-king-morocco-green-march</loc>
+    <lastmod>2026-03-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
