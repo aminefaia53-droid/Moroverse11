@@ -12,6 +12,7 @@ interface EntityItem {
     name: { en: string; ar: string };
     city?: { en: string; ar: string };
     desc?: { en: string; ar: string };
+    description?: { en: string; ar: string };
     imageUrl?: string;
     isPending?: boolean;
 }
@@ -209,8 +210,9 @@ export default function EditorPage() {
         setSelectedEntityAr(item.name.ar);
         setCityEn(item.city?.en || '');
         setCityAr(item.city?.ar || '');
-        setDescEn(item.desc?.en || '');
-        setDescAr(item.desc?.ar || '');
+        const commonDesc = item.description || item.desc;
+        setDescEn(commonDesc?.en || '');
+        setDescAr(commonDesc?.ar || '');
         setImageUrl(item.imageUrl || '');
         setSearchQuery('');
     };

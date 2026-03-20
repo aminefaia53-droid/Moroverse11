@@ -31,7 +31,7 @@ export interface HeritageItem {
     gallery?: string[];
     isPending?: boolean;
     type?: 'landmark' | 'battle' | 'figure' | 'post' | string;
-    desc?: { en: string; ar: string } | string;
+    description?: { en: string; ar: string } | string;
     content?: string;
     summary?: string;
     stats?: {
@@ -158,7 +158,7 @@ export default function HeritageFactSheet({ item, isOpen, onClose, lang }: Herit
         const candidates = [
             getT(item.history, l),
             getT(item.content, l),
-            getT(item.desc, l),
+            getT(item.description, l),
             getT(item.summary, l),
         ];
         const found = candidates.find(c => c && c.trim() && !c.includes('بانتظار') && !c.includes('awaiting'));

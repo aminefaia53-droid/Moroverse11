@@ -35,8 +35,9 @@ export function useEncyclopedia(category: string, city?: string) {
                     };
 
                     const title = getName(item.name);
-                    const desc = typeof item.desc === 'string' ? item.desc : 
-                                 (typeof item.desc === 'object' && item.desc !== null ? (item.desc.en || item.desc.ar || '') : '');
+                    const descValue = item.description || item.desc;
+                    const desc = typeof descValue === 'string' ? descValue : 
+                                 (typeof descValue === 'object' && descValue !== null ? (descValue.en || descValue.ar || '') : '');
                     const cityName = getName(item.city || item.regionName);
 
                     return {

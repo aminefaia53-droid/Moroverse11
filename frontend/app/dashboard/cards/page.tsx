@@ -107,7 +107,7 @@ export default function CardsControlPage() {
                                                 {item.name.en}
                                                 <span className="text-sm font-arabic font-normal text-gray-500">{item.name.ar}</span>
                                             </h3>
-                                            <p className="text-sm text-gray-500 truncate mt-1 max-w-2xl">{item.desc?.en || 'No description provided.'}</p>
+                                             <p className="text-sm text-gray-500 truncate mt-1 max-w-2xl">{(item.description?.en || item.desc?.en) || 'No description provided.'}</p>
                                         </div>
                                     </div>
 

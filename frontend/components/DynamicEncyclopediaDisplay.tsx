@@ -196,8 +196,8 @@ export default function DynamicEncyclopediaDisplay({ category, lang, emptyMessag
                 ar: getName(item.city || item.regionName, 'ar') || 'المغرب'
             },
             history: {
-                en: safeStr(item.history?.en) || safeStr(typeof item.desc === 'string' ? item.desc : item.desc?.en),
-                ar: safeStr(item.history?.ar) || safeStr(typeof item.desc === 'string' ? item.desc : item.desc?.ar)
+                en: safeStr(item.history?.en) || safeStr(typeof (item.description || item.desc) === 'string' ? (item.description || item.desc) : (item.description || item.desc)?.en),
+                ar: safeStr(item.history?.ar) || safeStr(typeof (item.description || item.desc) === 'string' ? (item.description || item.desc) : (item.description || item.desc)?.ar)
             },
             foundation: item.foundation,
             visualSoul: safeStr(item.visualSoul),
@@ -205,7 +205,7 @@ export default function DynamicEncyclopediaDisplay({ category, lang, emptyMessag
             video_url: typeof item.videoUrl === 'string' && item.videoUrl.trim() ? item.videoUrl.trim() : undefined,
             model_url: typeof item.modelUrl === 'string' && item.modelUrl.trim() ? item.modelUrl.trim() : undefined,
             gallery: safeGallery && safeGallery.length > 0 ? safeGallery : undefined,
-            summary: safeStr(typeof item.desc === 'string' ? item.desc : (item.desc?.ar || item.desc?.en)),
+            summary: safeStr(typeof (item.description || item.desc) === 'string' ? (item.description || item.desc) : ((item.description || item.desc)?.ar || (item.description || item.desc)?.en)),
             type: category === 'monument' ? 'landmark' : category,
             stats: {
                 year: safeStr(item.foundation?.en || item.year),
@@ -317,7 +317,8 @@ export default function DynamicEncyclopediaDisplay({ category, lang, emptyMessag
                         };
 
                         const title = getName(item.name, lang);
-                        const desc = typeof item.desc === 'string' ? item.desc : (item.desc?.[lang] || item.desc?.ar || item.desc?.en || '');
+                        const commonDesc = item.description || item.desc;
+                        const desc = typeof commonDesc === 'string' ? commonDesc : (commonDesc?.[lang] || commonDesc?.ar || commonDesc?.en || '');
                         const cityName = getName(item.city || item.regionName, lang);
                         const subLabel = getSubCategoryLabel(item, category);
                         const hasVideo = !!item.videoUrl;
