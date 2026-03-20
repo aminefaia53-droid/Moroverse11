@@ -98,7 +98,7 @@ export default function MohamedAmine_Supreme_Cortex() {
     }, []);
 
     return (
-        <div style={{ position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh', overflow: 'hidden', backgroundColor: '#000', zIndex: 9999 }}>
+        <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', overflow: 'hidden', backgroundColor: '#000', zIndex: 9999, borderRadius: '1rem' }}>
             
             {/* Live Camera Feed (Background) */}
             <video 
@@ -115,20 +115,20 @@ export default function MohamedAmine_Supreme_Cortex() {
                 style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 1, pointerEvents: 'none', mixBlendMode: 'screen' }} 
             />
             
-            <div style={{ position: 'absolute', top: 20, left: 20, zIndex: 2, color: '#0FF', fontFamily: 'monospace', textShadow: '0 0 10px #0FF', background: 'rgba(0,0,0,0.5)', padding: '20px', borderRadius: '10px' }}>
-                <h1 style={{ fontSize: '1.5rem', letterSpacing: '2px', color: '#FFF' }}>MOHAMED AMINE SOVEREIGN INTELLIGENCE</h1>
-                <h2 style={{ fontSize: '1rem', marginTop: '10px' }}>[{status}]</h2>
-                <div style={{ marginTop: '15px', borderLeft: '4px solid #0FF', paddingLeft: '15px' }}>
-                    <p style={{ color: fps < 60 ? '#F90' : '#0F0' }}>GPU RENDER FPS: {fps} (TARGET: 60)</p>
-                    <p>CELESTIAL BODIES: 50,000 (PATH-TRACED)</p>
-                    <p>VISION INFERENCE LATENCY: {latency.toFixed(2)} ms</p>
-                    <p>WORKER POOL ALLOCATED: TRUE HYPERTHREADING</p>
+            <div style={{ position: 'absolute', top: 10, left: 10, zIndex: 2, color: '#0FF', fontFamily: 'monospace', textShadow: '0 0 5px #0FF', background: 'rgba(0,0,0,0.5)', padding: '10px', borderRadius: '5px', fontSize: '0.8rem' }}>
+                <h1 style={{ fontSize: '1rem', letterSpacing: '1px', color: '#FFF' }}>MOHAMED AMINE SOVEREIGN INTELLIGENCE</h1>
+                <h2 style={{ fontSize: '0.8rem', marginTop: '5px' }}>[{status}]</h2>
+                <div style={{ marginTop: '10px', borderLeft: '2px solid #0FF', paddingLeft: '10px' }}>
+                    <p style={{ color: fps < 60 ? '#F90' : '#0F0' }}>GPU: {fps} FPS (TG 60)</p>
+                    <p>BODIES: 50,000</p>
+                    <p>LATENCY: {latency.toFixed(2)} ms</p>
+                    <p>WASM THROTTLING: ACTIVE</p>
                 </div>
             </div>
             
-            <div style={{ position: 'absolute', bottom: 20, left: 20, right: 20, zIndex: 2, color: '#0F0', fontFamily: 'monospace', textShadow: '0 0 10px #0F0', background: 'rgba(0,0,0,0.7)', padding: '20px', borderRadius: '10px', border: '1px solid #0F0' }}>
-                <h3 style={{ fontSize: '1.2rem', marginBottom: '10px', animation: 'blink 2s infinite' }}>► LIVE HISTORICAL ANALYSIS:</h3>
-                <p style={{ fontSize: '1rem', lineHeight: '1.5' }}>{analysis}</p>
+            <div style={{ position: 'absolute', bottom: 10, left: 10, right: 10, zIndex: 2, color: '#0F0', fontFamily: 'monospace', textShadow: '0 0 5px #0F0', background: 'rgba(0,0,0,0.7)', padding: '10px', borderRadius: '5px', border: '1px solid #0F0' }}>
+                <h3 style={{ fontSize: '0.9rem', marginBottom: '5px', animation: 'blink 2s infinite' }}>► RAG ANALYSIS:</h3>
+                <p style={{ fontSize: '0.8rem', lineHeight: '1.2' }}>{analysis}</p>
             </div>
             
             <style dangerouslySetInnerHTML={{__html: `

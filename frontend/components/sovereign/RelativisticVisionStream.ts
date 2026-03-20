@@ -15,9 +15,9 @@ export class RelativisticVisionStream {
                     const payloadLength = e.data.payloadLength;
                     
                     // Simulate extreme Semantic Segmentation / Neural Inference
-                    // Burns CPU cycles mathematically proportional to payload length
+                    // Throttled to prevent >4000ms latency: 'WASM Throttling'
                     let sum = 0;
-                    const iters = payloadLength * 5; 
+                    const iters = payloadLength * 0.05; // Dropped factor 100x
                     for (let j = 0; j < iters; j++) {
                         sum += Math.sqrt(j * Math.random());
                     }

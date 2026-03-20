@@ -83,6 +83,7 @@ export const viewport = {
 };
 
 import { LanguageProvider } from "../context/LanguageContext";
+import SovereignChat from "../components/sovereign/SovereignChat";
 import { ThemeProvider } from "../components/ThemeProvider";
 import WeatherOverlay from "../components/WeatherOverlay";
 import AtmosphericAudio from "../components/AtmosphericAudio";
@@ -102,6 +103,7 @@ export default function RootLayout({
             <WeatherOverlay />
             {children}
             <MoroVerseAssistant />
+            <SovereignChat />
             <AtmosphericAudio />
           </LanguageProvider>
         </ThemeProvider>

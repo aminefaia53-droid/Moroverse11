@@ -20,7 +20,6 @@ import { useLanguage } from "../context/LanguageContext";
 import LanguageSwitcher from "../components/ui/LanguageSwitcher";
 import { Landmark, Map, Swords, Users } from "lucide-react";
 import WeatherToggle from "@/components/ui/WeatherToggle";
-const MohamedAmine_Supreme_Cortex = dynamic(() => import('../components/sovereign/MohamedAmine_Supreme_Cortex'), { ssr: false });
 
 export default function Home() {
   const { lang, setLang } = useLanguage();
@@ -125,9 +124,6 @@ export default function Home() {
 
   return (
     <div className={`min-h-screen relative overflow-x-hidden text-foreground selection:bg-primary/20 font-sans ${lang === 'ar' ? 'font-arabic' : ''}`} dir={lang === 'ar' ? 'rtl' : 'ltr'}>
-
-      {/* SOVEREIGN SINGULARITY INJECTION */}
-      <MohamedAmine_Supreme_Cortex />
 
       {/* Zellij Silk Overlay */}
       <div className="zellij-overlay fixed inset-0 pointer-events-none opacity-[0.07]"></div>
