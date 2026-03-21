@@ -16,7 +16,7 @@ export default function MohamedAmine_Flash_Guide({ onClose }: { onClose: () => v
     const [isThinking, setIsThinking] = useState<boolean>(false);
     
     const [devMode, setDevMode] = useState(false);
-    const [model, setModel] = useState<cocoSsd.ObjectDetection | null>(null);
+    const [model, setModel] = useState<any | null>(null);
 
     // Load Local TFJS Object Detection Model
     useEffect(() => {

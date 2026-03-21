@@ -3,7 +3,7 @@
     {
       "id": "rabat-hassan-tower",
       "name": {
-        "ar": "صومعة حسان",
+        "ar": "صومعة حسان: شموخ التاريخ في قلب الرباط",
         "en": "Hassan Tower"
       },
       "desc": {
@@ -12,10 +12,15 @@
       },
       "imageUrl": "/images/uploads/1773504552146-7de563df2360179104de7a8da3698f02.jpg",
       "city": {
-        "ar": "الرباط",
+        "ar": "Rabat",
         "en": "Rabat"
       },
       "isPending": false,
+      "videoUrl": "https://www.youtube.com/embed/g8vHhgh6oM0",
+      "foundation": {
+        "ar": "1195م (العهد الموحدي)",
+        "en": "1195 CE (Almohad Era)"
+      },
       "seo": {
         "metaTitle": "صومعة حسان — المعلم الموحدي الخالد | MoroVerse",
         "metaDescription": "تعرف على صومعة حسان في الرباط، المئذنة التاريخية غير المكتملة التي بناها يعقوب المنصور الموحدي لتكون أكبر مسجد في العالم الإسلامي.",
@@ -23,13 +28,7 @@
         "altText": "صومعة حسان التاريخية في الرباط مع الأعمدة المتبقية من المسجد الموحدي"
       },
       "modelUrl": "https://prqbbzynmnkwhunusdbw.supabase.co/storage/v1/object/public/3d_assets/monuments/1773581538673-hassan_tower_rabat_-_morocco.glb",
-      "location_type": "monument",
-      "foundation": {
-        "ar": "1195م (العهد الموحدي)",
-        "en": "1195 CE (Almohad Era)"
-      },
-      "audioUrl": "/audio/andalusi-city.mp3",
-      "videoUrl": "https://www.youtube.com/embed/g8vHhgh6oM0"
+      "location_type": "monument"
     },
     {
       "id": "rabat-kasbah-of-the-udayas",
@@ -43,23 +42,22 @@
       },
       "imageUrl": "/images/uploads/1773504737474-6146c01aaea973eb05f0348cbf7fb649-(1).jpg",
       "city": {
-        "ar": "الرباط",
+        "ar": "Rabat",
         "en": "Rabat"
       },
       "isPending": false,
+      "videoUrl": "https://www.youtube.com/embed/g8vHhgh6oM0",
+      "foundation": {
+        "ar": "القرن 12 (المرابطون والموحدون)",
+        "en": "12th Century (Almoravid & Almohad)"
+      },
       "seo": {
         "metaTitle": "قصبة الأوداية — جوهرة الرباط الأندلسية | MoroVerse",
         "metaDescription": "اكتشف قصبة الأوداية في الرباط بأسوارها الموحدية الشامخة، أزقتها الزرقاء، وحدائقها الأندلسية المطلة على مصب نهر أبي رقراق.",
         "slug": "rabat-kasbah-udayas",
         "altText": "الأسوار التاريخية والأزقة الزرقاء والبيضاء في قصبة الأوداية بالرباط"
       },
-      "foundation": {
-        "ar": "القرن 12 (المرابطون والموحدون)",
-        "en": "12th Century (Almoravid & Almohad)"
-      },
-      "modelUrl": "https://prqbbzynmnkwhunusdbw.supabase.co/storage/v1/object/public/3d_assets/monuments/1773581538673-hassan_tower_rabat_-_morocco.glb",
-      "audioUrl": "/audio/andalusi-city.mp3",
-      "videoUrl": "https://www.youtube.com/embed/g8vHhgh6oM0"
+      "modelUrl": "https://prqbbzynmnkwhunusdbw.supabase.co/storage/v1/object/public/3d_assets/monuments/1773581538673-hassan_tower_rabat_-_morocco.glb"
     },
     {
       "id": "rabat-chellah",
@@ -73,23 +71,22 @@
       },
       "imageUrl": "/images/uploads/1773504907313-6146c01aaea973eb05f0348cbf7fb649-(1).jpg",
       "city": {
-        "ar": "الرباط",
+        "ar": "Rabat",
         "en": "Rabat"
       },
       "isPending": false,
+      "videoUrl": "https://www.youtube.com/embed/g8vHhgh6oM0",
+      "foundation": {
+        "ar": "تاريخ روماني ومريني (القرن 14م)",
+        "en": "Roman origins & 14th-century Marinid"
+      },
       "seo": {
         "metaTitle": "موقع شالة الأثري — من روما إلى المرينيين | MoroVerse",
         "metaDescription": "تجوّل في موقع شالة الأثري بالرباط، حيث تمتزج الآثار الرومانية بالمقابر الملكية المرينية وسط طبيعة خلابة وسرب من طيور اللقلق.",
         "slug": "rabat-chellah-necropolis",
         "altText": "الآثار المرينية والرومانية في شالة مع طيور اللقلق التي تعشش على المآذن القديمة"
       },
-      "foundation": {
-        "ar": "تاريخ روماني ومريني (القرن 14م)",
-        "en": "Roman origins & 14th-century Marinid"
-      },
-      "modelUrl": "https://prqbbzynmnkwhunusdbw.supabase.co/storage/v1/object/public/3d_assets/monuments/1773581538673-hassan_tower_rabat_-_morocco.glb",
-      "audioUrl": "/audio/andalusi-city.mp3",
-      "videoUrl": "https://www.youtube.com/embed/g8vHhgh6oM0"
+      "modelUrl": "https://prqbbzynmnkwhunusdbw.supabase.co/storage/v1/object/public/3d_assets/monuments/1773581538673-hassan_tower_rabat_-_morocco.glb"
     },
     {
       "id": "rabat-mausoleum-of-mohammed-v",
@@ -103,10 +100,15 @@
       },
       "imageUrl": "/images/uploads/1773504936035-86d474594a0b50a673fa7400752d9496.jpg",
       "city": {
-        "ar": "الرباط",
+        "ar": "Rabat",
         "en": "Rabat"
       },
       "isPending": false,
+      "videoUrl": "https://www.youtube.com/embed/g8vHhgh6oM0",
+      "foundation": {
+        "ar": "1971م (العصر الحديث)",
+        "en": "1971 CE (Modern Era)"
+      },
       "seo": {
         "metaTitle": "ضريح محمد الخامس — تحفة العمارة المغربية | MoroVerse",
         "metaDescription": "استكشف ضريح محمد الخامس بالرباط، أحد أعظم إنجازات العمارة المغربية الحديثة التي تحتضن رفات ملوك المغرب ومزينة بأنقى أنواع الرخام والنحاس.",
@@ -114,13 +116,7 @@
         "altText": "قبة ضريح محمد الخامس في الرباط المزخرفة من الداخل والخارج"
       },
       "modelUrl": "https://prqbbzynmnkwhunusdbw.supabase.co/storage/v1/object/public/3d_assets/monuments/1773680773218-darih_mohamed_v.glb",
-      "location_type": "monument",
-      "foundation": {
-        "ar": "1971م (العصر الحديث)",
-        "en": "1971 CE (Modern Era)"
-      },
-      "audioUrl": "/audio/andalusi-city.mp3",
-      "videoUrl": "https://www.youtube.com/embed/g8vHhgh6oM0"
+      "location_type": "monument"
     },
     {
       "id": "fez-al-quaraouiyine",
@@ -134,23 +130,22 @@
       },
       "imageUrl": "/images/uploads/1773504987466-b157d74198828deb6b26a6d320d39e28.jpg",
       "city": {
-        "ar": "فاس",
+        "ar": "Fez",
         "en": "Fez"
       },
       "isPending": false,
+      "videoUrl": "https://www.youtube.com/embed/g8vHhgh6oM0",
+      "foundation": {
+        "ar": "859م (العهد الإدريسي)",
+        "en": "859 CE (Idrisid Era)"
+      },
       "seo": {
         "metaTitle": "جامع القرويين — أقدم جامعة في العالم بالمغرب | MoroVerse",
         "metaDescription": "اكتشف جامعة القرويين التاريخية في فاس التي أسستها فاطمة الفهرية عام 859م، وهي أقدم مؤسسة علمية تعمل باستمرار في العالم.",
         "slug": "fez-al-quaraouiyine-oldest-university",
         "altText": "الفناء الداخلي لجامع القرويين التاريخي في قلب المدينة القديمة بفاس"
       },
-      "foundation": {
-        "ar": "859م (العهد الإدريسي)",
-        "en": "859 CE (Idrisid Era)"
-      },
-      "modelUrl": "https://prqbbzynmnkwhunusdbw.supabase.co/storage/v1/object/public/3d_assets/monuments/1773581538673-hassan_tower_rabat_-_morocco.glb",
-      "audioUrl": "/audio/andalusi-city.mp3",
-      "videoUrl": "https://www.youtube.com/embed/g8vHhgh6oM0"
+      "modelUrl": "https://prqbbzynmnkwhunusdbw.supabase.co/storage/v1/object/public/3d_assets/monuments/1773581538673-hassan_tower_rabat_-_morocco.glb"
     },
     {
       "id": "fez-bou-inania-madrasa",
@@ -164,23 +159,22 @@
       },
       "imageUrl": "/images/uploads/1773505047901-e659eb8aca5b268963a3b07cce49123b.jpg",
       "city": {
-        "ar": "فاس",
+        "ar": "Fez",
         "en": "Fez"
       },
       "isPending": false,
+      "videoUrl": "https://www.youtube.com/embed/g8vHhgh6oM0",
+      "foundation": {
+        "ar": "1351-1356م (العهد المريني)",
+        "en": "1351-1356 CE (Marinid Era)"
+      },
       "seo": {
         "metaTitle": "المدرسة البوعنانية — رائعة العمارة المرينية | MoroVerse",
         "metaDescription": "زيارة إلى المدرسة البوعنانية بفاس، واحدة من أروع المدارس العتيقة في المغرب التي بناها السلطان أبو عنان فارس وتعتبر تحفة العمارة المرينية.",
         "slug": "fez-bou-inania-madrasa",
         "altText": "الفناء الداخلي للمدرسة البوعنانية بفاس الذي يبرز فن الفسيفساء والخشب المنقوش والجبس"
       },
-      "foundation": {
-        "ar": "1351-1356م (العهد المريني)",
-        "en": "1351-1356 CE (Marinid Era)"
-      },
-      "modelUrl": "https://prqbbzynmnkwhunusdbw.supabase.co/storage/v1/object/public/3d_assets/monuments/1773581538673-hassan_tower_rabat_-_morocco.glb",
-      "audioUrl": "/audio/andalusi-city.mp3",
-      "videoUrl": "https://www.youtube.com/embed/g8vHhgh6oM0"
+      "modelUrl": "https://prqbbzynmnkwhunusdbw.supabase.co/storage/v1/object/public/3d_assets/monuments/1773581538673-hassan_tower_rabat_-_morocco.glb"
     },
     {
       "id": "fez-attarine-madrasa",
@@ -194,23 +188,22 @@
       },
       "imageUrl": "/images/uploads/1773505215363-06bf968b7b94a2c105fd510797aa94e0.jpg",
       "city": {
-        "ar": "فاس",
+        "ar": "Fez",
         "en": "Fez"
       },
       "isPending": false,
+      "videoUrl": "https://www.youtube.com/embed/g8vHhgh6oM0",
+      "foundation": {
+        "ar": "1323م (العهد المريني)",
+        "en": "1323 CE (Marinid Era)"
+      },
       "seo": {
         "metaTitle": "مدرسة العطارين — الفن المعماري المريني الأصيل | MoroVerse",
         "metaDescription": "اكتشف مدرسة العطارين الساحرة، التي تعتبر من أجمل معالم فاس التاريخية، وتتميز بزخارف الزليج الدقيقة والخط العربي المريني.",
         "slug": "fez-attarine-madrasa",
         "altText": "روعة الزليج الزخرفي والجدران المنحوتة في مدرسة العطارين العريقة بفاس"
       },
-      "foundation": {
-        "ar": "1323م (العهد المريني)",
-        "en": "1323 CE (Marinid Era)"
-      },
-      "modelUrl": "https://prqbbzynmnkwhunusdbw.supabase.co/storage/v1/object/public/3d_assets/monuments/1773581538673-hassan_tower_rabat_-_morocco.glb",
-      "audioUrl": "/audio/andalusi-city.mp3",
-      "videoUrl": "https://www.youtube.com/embed/g8vHhgh6oM0"
+      "modelUrl": "https://prqbbzynmnkwhunusdbw.supabase.co/storage/v1/object/public/3d_assets/monuments/1773581538673-hassan_tower_rabat_-_morocco.glb"
     },
     {
       "id": "fez-bab-boujloud",
@@ -224,23 +217,22 @@
       },
       "imageUrl": "/images/uploads/1773505802591-3ce456ecceccc08684b94fc611f2a7c3.jpg",
       "city": {
-        "ar": "فاس",
+        "ar": "Fez",
         "en": "Fez"
       },
       "isPending": false,
+      "videoUrl": "https://www.youtube.com/embed/g8vHhgh6oM0",
+      "foundation": {
+        "ar": "1913م",
+        "en": "1913 CE"
+      },
       "seo": {
         "metaTitle": "باب بوجلود — البوابة الزرقاء الشامخة لمدينة فاس | MoroVerse",
         "metaDescription": "استكشف باب بوجلود التاريخي، البوابة الزرقاء المزخرفة التي تمثل المدخل الرئيسي للمدينة العتيقة في فاس وتأخذك عبر الزمن لتراث المدينة.",
         "slug": "fez-bab-boujloud-blue-gate",
         "altText": "باب بوجلود بالفسيفساء الزرقاء الملونة عند مدخل مدينة فاس العتيقة"
       },
-      "foundation": {
-        "ar": "1913م",
-        "en": "1913 CE"
-      },
-      "modelUrl": "https://prqbbzynmnkwhunusdbw.supabase.co/storage/v1/object/public/3d_assets/monuments/1773581538673-hassan_tower_rabat_-_morocco.glb",
-      "audioUrl": "/audio/andalusi-city.mp3",
-      "videoUrl": "https://www.youtube.com/embed/g8vHhgh6oM0"
+      "modelUrl": "https://prqbbzynmnkwhunusdbw.supabase.co/storage/v1/object/public/3d_assets/monuments/1773581538673-hassan_tower_rabat_-_morocco.glb"
     },
     {
       "id": "fez-chouara-tannery",
@@ -254,23 +246,22 @@
       },
       "imageUrl": "/images/uploads/1773505872901-c14c24db9cba46da8ff042d06c32e312.jpg",
       "city": {
-        "ar": "فاس",
+        "ar": "Fez",
         "en": "Fez"
       },
       "isPending": false,
+      "videoUrl": "https://www.youtube.com/embed/g8vHhgh6oM0",
+      "foundation": {
+        "ar": "القرن الحادي عشر",
+        "en": "11th Century"
+      },
       "seo": {
         "metaTitle": "دار الدبغ شوارة — الفن التقليدي في قلب فاس | MoroVerse",
         "metaDescription": "شاهد دار الدبغ شوارة، أقدم وأكبر مدابغ الجلد في العالم، التي تفوح منها روائح التاريخ وتعكس الحرف الأصيلة لمدينة فاس المغربية.",
         "slug": "fez-chouara-tannery",
         "altText": "الأحواض الدائرية الملونة لمدبغة شوارة التاريخية في فاس مملوءة بالأصباغ"
       },
-      "foundation": {
-        "ar": "القرن الحادي عشر",
-        "en": "11th Century"
-      },
-      "modelUrl": "https://prqbbzynmnkwhunusdbw.supabase.co/storage/v1/object/public/3d_assets/monuments/1773581538673-hassan_tower_rabat_-_morocco.glb",
-      "audioUrl": "/audio/andalusi-city.mp3",
-      "videoUrl": "https://www.youtube.com/embed/g8vHhgh6oM0"
+      "modelUrl": "https://prqbbzynmnkwhunusdbw.supabase.co/storage/v1/object/public/3d_assets/monuments/1773581538673-hassan_tower_rabat_-_morocco.glb"
     },
     {
       "id": "marrakech-koutoubia-mosque",
@@ -284,23 +275,22 @@
       },
       "imageUrl": "/images/uploads/1773505355302-44e1df294ce8380f9aa7d268a1cd1d89.jpg",
       "city": {
-        "ar": "مراكش",
+        "ar": "Marrakech",
         "en": "Marrakech"
       },
       "isPending": false,
+      "videoUrl": "https://www.youtube.com/embed/g8vHhgh6oM0",
+      "foundation": {
+        "ar": "القرن 12 (العهد الموحدي)",
+        "en": "12th Century (Almohad Era)"
+      },
       "seo": {
         "metaTitle": "صومعة الكتبية — مئذنة مراكش الشامخة | MoroVerse",
         "metaDescription": "زيارة لجامع وصومعة الكتبية، الرمز الخالد لمدينة مراكش الحمراء وتحفة العمارة الموحدية التي ألهمت المعمار في الأندلس.",
         "slug": "marrakech-koutoubia-mosque",
         "altText": "صومعة الكتبية المرتفعة تطل على ساحات مدينة مراكش الحمراء"
       },
-      "foundation": {
-        "ar": "القرن 12 (العهد الموحدي)",
-        "en": "12th Century (Almohad Era)"
-      },
-      "modelUrl": "https://prqbbzynmnkwhunusdbw.supabase.co/storage/v1/object/public/3d_assets/monuments/1773581538673-hassan_tower_rabat_-_morocco.glb",
-      "audioUrl": "/audio/andalusi-city.mp3",
-      "videoUrl": "https://www.youtube.com/embed/g8vHhgh6oM0"
+      "modelUrl": "https://prqbbzynmnkwhunusdbw.supabase.co/storage/v1/object/public/3d_assets/monuments/1773581538673-hassan_tower_rabat_-_morocco.glb"
     },
     {
       "id": "marrakech-bahia-palace",
@@ -314,23 +304,22 @@
       },
       "imageUrl": "/images/uploads/1773505995418-88e812d0fbead5a7959dde2fadc8dd4d.jpg",
       "city": {
-        "ar": "مراكش",
+        "ar": "Marrakech",
         "en": "Marrakech"
       },
       "isPending": false,
+      "videoUrl": "https://www.youtube.com/embed/g8vHhgh6oM0",
+      "foundation": {
+        "ar": "أواخر القرن 19",
+        "en": "Late 19th Century"
+      },
       "seo": {
         "metaTitle": "قصر الباهية — الفن الأندلسي في مراكش | MoroVerse",
         "metaDescription": "استكشف قصر الباهية، جوهرة المعمار المغربي الأندلسي من القرن التاسع عشر في قلب مراكش المليء بالحدائق الساحرة والنقوش الدقيقة.",
         "slug": "marrakech-bahia-palace",
         "altText": "الفناء الكبير في قصر الباهية المرصوف بالزليج والمحاط بأعمدة مزخرفة"
       },
-      "foundation": {
-        "ar": "أواخر القرن 19",
-        "en": "Late 19th Century"
-      },
-      "modelUrl": "https://prqbbzynmnkwhunusdbw.supabase.co/storage/v1/object/public/3d_assets/monuments/1773581538673-hassan_tower_rabat_-_morocco.glb",
-      "audioUrl": "/audio/andalusi-city.mp3",
-      "videoUrl": "https://www.youtube.com/embed/g8vHhgh6oM0"
+      "modelUrl": "https://prqbbzynmnkwhunusdbw.supabase.co/storage/v1/object/public/3d_assets/monuments/1773581538673-hassan_tower_rabat_-_morocco.glb"
     },
     {
       "id": "marrakech-badi-palace",
@@ -344,23 +333,22 @@
       },
       "imageUrl": "/images/uploads/1773506747943-0bf1aa7459c164aea786fee3b59ccf27.jpg",
       "city": {
-        "ar": "مراكش",
+        "ar": "Marrakech",
         "en": "Marrakech"
       },
       "isPending": false,
+      "videoUrl": "https://www.youtube.com/embed/g8vHhgh6oM0",
+      "foundation": {
+        "ar": "1578م (العهد السعدي)",
+        "en": "1578 CE (Saadian Era)"
+      },
       "seo": {
         "metaTitle": "قصر البديع — أطلال عظمة السعديين | MoroVerse",
         "metaDescription": "اكتشف قصر البديع المذهل بمراكش الذي بناه أحمد المنصور السعدي بأموال الذهب وكان يعد من أجمل وأكبر قصور العهد السعدي في المغرب.",
         "slug": "marrakech-badi-palace",
         "altText": "الأطلال المتبقية من قصر البديع الشاسع في مراكش مع أحواض المياه الفارغة"
       },
-      "foundation": {
-        "ar": "1578م (العهد السعدي)",
-        "en": "1578 CE (Saadian Era)"
-      },
-      "modelUrl": "https://prqbbzynmnkwhunusdbw.supabase.co/storage/v1/object/public/3d_assets/monuments/1773581538673-hassan_tower_rabat_-_morocco.glb",
-      "audioUrl": "/audio/andalusi-city.mp3",
-      "videoUrl": "https://www.youtube.com/embed/g8vHhgh6oM0"
+      "modelUrl": "https://prqbbzynmnkwhunusdbw.supabase.co/storage/v1/object/public/3d_assets/monuments/1773581538673-hassan_tower_rabat_-_morocco.glb"
     },
     {
       "id": "marrakech-saadian-tombs",
@@ -374,23 +362,22 @@
       },
       "imageUrl": "/images/uploads/1773507565906-43a00058f32972dda4231a51637f4294.jpg",
       "city": {
-        "ar": "مراكش",
+        "ar": "Marrakech",
         "en": "Marrakech"
       },
       "isPending": false,
+      "videoUrl": "https://www.youtube.com/embed/g8vHhgh6oM0",
+      "foundation": {
+        "ar": "أواخر القرن 16 (السعديون)",
+        "en": "Late 16th Century (Saadian)"
+      },
       "seo": {
         "metaTitle": "قبور السعديين — الدفن الملكي المزخرف | MoroVerse",
         "metaDescription": "تجوّل في ضريح السعديين الشهير في مراكش الذي يضم مقابر السلاطين والمزيّن برخام كرارا الإيطالي والنقوش المغربية الخالصة.",
         "slug": "marrakech-saadian-tombs",
         "altText": "قاعة الأعمدة الاثني عشر البديعة داخل قبور السعديين بمراكش"
       },
-      "foundation": {
-        "ar": "أواخر القرن 16 (السعديون)",
-        "en": "Late 16th Century (Saadian)"
-      },
-      "modelUrl": "https://prqbbzynmnkwhunusdbw.supabase.co/storage/v1/object/public/3d_assets/monuments/1773581538673-hassan_tower_rabat_-_morocco.glb",
-      "audioUrl": "/audio/andalusi-city.mp3",
-      "videoUrl": "https://www.youtube.com/embed/g8vHhgh6oM0"
+      "modelUrl": "https://prqbbzynmnkwhunusdbw.supabase.co/storage/v1/object/public/3d_assets/monuments/1773581538673-hassan_tower_rabat_-_morocco.glb"
     },
     {
       "id": "marrakech-ben-youssef-madrasa",
@@ -404,28 +391,27 @@
       },
       "imageUrl": "/images/uploads/1773507645601-9c1726318caa358cd0bdff02694bd895.jpg",
       "city": {
-        "ar": "مراكش",
+        "ar": "Marrakech",
         "en": "Marrakech"
       },
       "isPending": false,
+      "videoUrl": "https://www.youtube.com/embed/g8vHhgh6oM0",
+      "foundation": {
+        "ar": "القرن 14م (أعيد بناؤها في 1565م)",
+        "en": "14th Century (Rebuilt 1565)"
+      },
       "seo": {
         "metaTitle": "مدرسة بن يوسف — أعظم مدارس المغرب القديمة | MoroVerse",
         "metaDescription": "اكتشف مدرسة بن يوسف التاريخية، المعهد الإسلامي الأكبر في المغرب وتحفة العمارة السعدية بامتياز وسط شوارع مراكش الحمراء.",
         "slug": "marrakech-ben-youssef-madrasa",
         "altText": "حوض الماء في ساحة مدرسة بن يوسف المحاطة بنقوش معمارية مذهلة الدقة"
       },
-      "foundation": {
-        "ar": "القرن 14م (أعيد بناؤها في 1565م)",
-        "en": "14th Century (Rebuilt 1565)"
-      },
-      "modelUrl": "https://prqbbzynmnkwhunusdbw.supabase.co/storage/v1/object/public/3d_assets/monuments/1773581538673-hassan_tower_rabat_-_morocco.glb",
-      "audioUrl": "/audio/andalusi-city.mp3",
-      "videoUrl": "https://www.youtube.com/embed/g8vHhgh6oM0"
+      "modelUrl": "https://prqbbzynmnkwhunusdbw.supabase.co/storage/v1/object/public/3d_assets/monuments/1773581538673-hassan_tower_rabat_-_morocco.glb"
     },
     {
       "id": "meknes-bab-mansour",
       "name": {
-        "ar": "باب منصور",
+        "ar": "باب منصور لعلج",
         "en": "Bab Mansour"
       },
       "desc": {
@@ -434,29 +420,28 @@
       },
       "imageUrl": "/images/uploads/1773507676352-0b75818ff970089b324464653ac7a28f.jpg",
       "city": {
-        "ar": "مكناس",
+        "ar": "Meknes",
         "en": "Meknes"
       },
       "isPending": false,
+      "videoUrl": "https://www.youtube.com/embed/g8vHhgh6oM0",
+      "foundation": {
+        "ar": "1732م",
+        "en": "1732 CE"
+      },
       "seo": {
         "metaTitle": "باب منصور — أضخم البوابات الإمبراطورية في مكناس | MoroVerse",
         "metaDescription": "شاهد باب منصور لعلج في مكناس، البوابة التاريخية الهائلة التي أمر ببنائها مولاي إسماعيل والتي تحتل مركزاً فريداً بساحة الهديم.",
         "slug": "meknes-bab-mansour-gate",
         "altText": "الزخارف والنقوش البديعة في باب منصور، أضخم أبواب مدينة مكناس الإمبراطورية"
       },
-      "foundation": {
-        "ar": "1732م",
-        "en": "1732 CE"
-      },
-      "modelUrl": "https://prqbbzynmnkwhunusdbw.supabase.co/storage/v1/object/public/3d_assets/monuments/1773581538673-hassan_tower_rabat_-_morocco.glb",
-      "audioUrl": "/audio/andalusi-city.mp3",
-      "videoUrl": "https://www.youtube.com/embed/g8vHhgh6oM0"
+      "modelUrl": "https://prqbbzynmnkwhunusdbw.supabase.co/storage/v1/object/public/3d_assets/monuments/1773581538673-hassan_tower_rabat_-_morocco.glb"
     },
     {
       "id": "meknes-volubilis",
       "name": {
-        "ar": "وليلي الأثرية",
-        "en": "Volubilis Ruins"
+        "ar": "وليلي",
+        "en": "Volubilis"
       },
       "desc": {
         "ar": "مدينة وليلي هي موقع أثري روماني قريب من مكناس، يعود للقرن الثالث قبل الميلاد وتعد من أفضل المدن الرومانية حفظاً في شمال أفريقيا بفسيفسائها العجيبة.",
@@ -464,10 +449,11 @@
       },
       "imageUrl": null,
       "city": {
-        "ar": "وليلي (مكناس)",
-        "en": "Volubilis (near Meknes)"
+        "ar": "Meknes",
+        "en": "Meknes"
       },
       "isPending": false,
+      "videoUrl": "https://www.youtube.com/embed/g8vHhgh6oM0",
       "foundation": {
         "ar": "القرن 3 ق.م",
         "en": "3rd Century BC"
@@ -478,14 +464,12 @@
         "slug": "meknes-volubilis-roman-ruins",
         "altText": "الأعمدة الرومانية المتبقية في موقع وليلي الأثري وقوس النصر للامبراطور كركلا"
       },
-      "modelUrl": "https://prqbbzynmnkwhunusdbw.supabase.co/storage/v1/object/public/3d_assets/monuments/1773581538673-hassan_tower_rabat_-_morocco.glb",
-      "audioUrl": "/audio/andalusi-city.mp3",
-      "videoUrl": "https://www.youtube.com/embed/g8vHhgh6oM0"
+      "modelUrl": "https://prqbbzynmnkwhunusdbw.supabase.co/storage/v1/object/public/3d_assets/monuments/1773581538673-hassan_tower_rabat_-_morocco.glb"
     },
     {
       "id": "meknes-heri-es-souani",
       "name": {
-        "ar": "صهريج السواني",
+        "ar": "هري السواني",
         "en": "Heri es-Souani"
       },
       "desc": {
@@ -494,10 +478,11 @@
       },
       "imageUrl": null,
       "city": {
-        "ar": "مكناس",
+        "ar": "Meknes",
         "en": "Meknes"
       },
       "isPending": false,
+      "videoUrl": "https://www.youtube.com/embed/g8vHhgh6oM0",
       "foundation": {
         "ar": "القرن السابع عشر",
         "en": "17th Century"
@@ -508,15 +493,13 @@
         "slug": "meknes-heri-es-souani",
         "altText": "المعالم المعمارية لصهريج السواني مع أعمدتها الضخمة القادرة على خزن آلاف الأطنان من الحبوب"
       },
-      "modelUrl": "https://prqbbzynmnkwhunusdbw.supabase.co/storage/v1/object/public/3d_assets/monuments/1773581538673-hassan_tower_rabat_-_morocco.glb",
-      "audioUrl": "/audio/andalusi-city.mp3",
-      "videoUrl": "https://www.youtube.com/embed/g8vHhgh6oM0"
+      "modelUrl": "https://prqbbzynmnkwhunusdbw.supabase.co/storage/v1/object/public/3d_assets/monuments/1773581538673-hassan_tower_rabat_-_morocco.glb"
     },
     {
       "id": "unesco-sites-ait-benhaddou-ksar",
       "name": {
-        "ar": "قصر آيت بن حدو",
-        "en": "Aït Benhaddou Ksar"
+        "ar": "قصبة آيت بن حدو",
+        "en": "Ait Benhaddou Ksar"
       },
       "desc": {
         "ar": "قصر آيت بن حدو عبارة عن تجمع للمباني الترابية التقليدية (قصبات) في إقليم ورزازات. يعتبر مثالاً ممتازاً لهندسة المعمار في جنوب المغرب ومحطة رئيسية لقوافل الصحراء القديمة.",
@@ -524,10 +507,11 @@
       },
       "imageUrl": null,
       "city": {
-        "ar": "ورزازات",
-        "en": "Ouarzazate"
+        "ar": "UNESCO Sites",
+        "en": "UNESCO Sites"
       },
       "isPending": false,
+      "videoUrl": "https://www.youtube.com/embed/g8vHhgh6oM0",
       "foundation": {
         "ar": "القرن السابع عشر",
         "en": "17th Century"
@@ -538,14 +522,12 @@
         "slug": "unesco-ait-benhaddou-ksar",
         "altText": "المباني الطينية الحمراء الخلابة في قرية آيت بن حدو بجنوب المغرب"
       },
-      "modelUrl": "https://prqbbzynmnkwhunusdbw.supabase.co/storage/v1/object/public/3d_assets/monuments/1773581538673-hassan_tower_rabat_-_morocco.glb",
-      "audioUrl": "/audio/andalusi-city.mp3",
-      "videoUrl": "https://www.youtube.com/embed/g8vHhgh6oM0"
+      "modelUrl": "https://prqbbzynmnkwhunusdbw.supabase.co/storage/v1/object/public/3d_assets/monuments/1773581538673-hassan_tower_rabat_-_morocco.glb"
     },
     {
       "id": "unesco-sites-essaouira-medina-skala",
       "name": {
-        "ar": "المدينة العتيقة للصويرة وسقالة",
+        "ar": "مدينة الصويرة",
         "en": "Essaouira Medina & Skala"
       },
       "desc": {
@@ -554,10 +536,11 @@
       },
       "imageUrl": null,
       "city": {
-        "ar": "الصويرة",
-        "en": "Essaouira"
+        "ar": "UNESCO Sites",
+        "en": "UNESCO Sites"
       },
       "isPending": false,
+      "videoUrl": "https://www.youtube.com/embed/g8vHhgh6oM0",
       "foundation": {
         "ar": "1765م",
         "en": "1765 CE"
@@ -568,14 +551,12 @@
         "slug": "unesco-essaouira-medina-skala",
         "altText": "سقالة المدينة في الصويرة مع المدافع النحاسية القديمة المطلة على المحيط الأطلسي"
       },
-      "modelUrl": "https://prqbbzynmnkwhunusdbw.supabase.co/storage/v1/object/public/3d_assets/monuments/1773581538673-hassan_tower_rabat_-_morocco.glb",
-      "audioUrl": "/audio/andalusi-city.mp3",
-      "videoUrl": "https://www.youtube.com/embed/g8vHhgh6oM0"
+      "modelUrl": "https://prqbbzynmnkwhunusdbw.supabase.co/storage/v1/object/public/3d_assets/monuments/1773581538673-hassan_tower_rabat_-_morocco.glb"
     },
     {
       "id": "unesco-sites-portuguese-cistern",
       "name": {
-        "ar": "المسقية البرتغالية",
+        "ar": "مدينة مازاغان البرتغالية",
         "en": "Portuguese Cistern"
       },
       "desc": {
@@ -584,10 +565,11 @@
       },
       "imageUrl": null,
       "city": {
-        "ar": "الجديدة",
-        "en": "El Jadida"
+        "ar": "UNESCO Sites",
+        "en": "UNESCO Sites"
       },
       "isPending": false,
+      "videoUrl": "https://www.youtube.com/embed/g8vHhgh6oM0",
       "foundation": {
         "ar": "1514م",
         "en": "1514 CE"
@@ -598,14 +580,12 @@
         "slug": "unesco-portuguese-cistern-mazagan",
         "altText": "انعكاسات النور والماء الخلابة في أعمدة المسقية البرتغالية التاريخية في مدينة الجديدة"
       },
-      "modelUrl": "https://prqbbzynmnkwhunusdbw.supabase.co/storage/v1/object/public/3d_assets/monuments/1773581538673-hassan_tower_rabat_-_morocco.glb",
-      "audioUrl": "/audio/andalusi-city.mp3",
-      "videoUrl": "https://www.youtube.com/embed/g8vHhgh6oM0"
+      "modelUrl": "https://prqbbzynmnkwhunusdbw.supabase.co/storage/v1/object/public/3d_assets/monuments/1773581538673-hassan_tower_rabat_-_morocco.glb"
     },
     {
       "id": "unesco-sites-tetouan-medina",
       "name": {
-        "ar": "المدينة العتيقة لتطوان",
+        "ar": "مدينة تطوان",
         "en": "Tetouan Medina"
       },
       "desc": {
@@ -614,10 +594,11 @@
       },
       "imageUrl": null,
       "city": {
-        "ar": "تطوان",
-        "en": "Tetouan"
+        "ar": "UNESCO Sites",
+        "en": "UNESCO Sites"
       },
       "isPending": false,
+      "videoUrl": "https://www.youtube.com/embed/g8vHhgh6oM0",
       "foundation": {
         "ar": "القرن 15 (إعادة التأسيس)",
         "en": "15th Century (Re-founding)"
@@ -628,9 +609,7 @@
         "slug": "unesco-tetouan-medina-andalusian",
         "altText": "عمران وأحياء الحمامة البيضاء وسط أسوار المدينة العتيقة في تطوان"
       },
-      "modelUrl": "https://prqbbzynmnkwhunusdbw.supabase.co/storage/v1/object/public/3d_assets/monuments/1773581538673-hassan_tower_rabat_-_morocco.glb",
-      "audioUrl": "/audio/andalusi-city.mp3",
-      "videoUrl": "https://www.youtube.com/embed/g8vHhgh6oM0"
+      "modelUrl": "https://prqbbzynmnkwhunusdbw.supabase.co/storage/v1/object/public/3d_assets/monuments/1773581538673-hassan_tower_rabat_-_morocco.glb"
     },
     {
       "id": "souss-massa-agadir-inoumar",
@@ -644,10 +623,11 @@
       },
       "imageUrl": null,
       "city": {
-        "ar": "إقليم شتوكة آيت باها",
-        "en": "Chtouka Aït Baha Province"
+        "ar": "Souss-Massa",
+        "en": "Souss-Massa"
       },
       "isPending": false,
+      "videoUrl": "https://www.youtube.com/embed/g8vHhgh6oM0",
       "foundation": {
         "ar": "القرون الوسطى",
         "en": "Middle Ages"
@@ -658,14 +638,12 @@
         "slug": "souss-massa-agadir-inoumar-granary",
         "altText": "حجرات المخزن الجماعي إينومار المعلقة والمحصنة في قمم جبال سوس"
       },
-      "modelUrl": "https://prqbbzynmnkwhunusdbw.supabase.co/storage/v1/object/public/3d_assets/monuments/1773581538673-hassan_tower_rabat_-_morocco.glb",
-      "audioUrl": "/audio/andalusi-city.mp3",
-      "videoUrl": "https://www.youtube.com/embed/g8vHhgh6oM0"
+      "modelUrl": "https://prqbbzynmnkwhunusdbw.supabase.co/storage/v1/object/public/3d_assets/monuments/1773581538673-hassan_tower_rabat_-_morocco.glb"
     },
     {
       "id": "souss-massa-agadir-tasghint",
       "name": {
-        "ar": "أكادير تسغينت",
+        "ar": "أكادير تاسغينت",
         "en": "Agadir Tasghint"
       },
       "desc": {
@@ -674,10 +652,11 @@
       },
       "imageUrl": null,
       "city": {
-        "ar": "إقليم تارودانت",
-        "en": "Taroudant Province"
+        "ar": "Souss-Massa",
+        "en": "Souss-Massa"
       },
       "isPending": false,
+      "videoUrl": "https://www.youtube.com/embed/g8vHhgh6oM0",
       "foundation": {
         "ar": "القرون الوسطى",
         "en": "Middle Ages"
@@ -688,9 +667,7 @@
         "slug": "souss-massa-agadir-tasghint",
         "altText": "تفاصيل الواجهة الصخرية لـ أكادير تسغينت المخزن الجبلي القديم في منطقة سوس الأصيلة"
       },
-      "modelUrl": "https://prqbbzynmnkwhunusdbw.supabase.co/storage/v1/object/public/3d_assets/monuments/1773581538673-hassan_tower_rabat_-_morocco.glb",
-      "audioUrl": "/audio/andalusi-city.mp3",
-      "videoUrl": "https://www.youtube.com/embed/g8vHhgh6oM0"
+      "modelUrl": "https://prqbbzynmnkwhunusdbw.supabase.co/storage/v1/object/public/3d_assets/monuments/1773581538673-hassan_tower_rabat_-_morocco.glb"
     },
     {
       "id": "souss-massa-agadir-ikounka",
@@ -704,10 +681,11 @@
       },
       "imageUrl": null,
       "city": {
-        "ar": "إقليم شتوكة آيت باها",
-        "en": "Chtouka Aït Baha Province"
+        "ar": "Souss-Massa",
+        "en": "Souss-Massa"
       },
       "isPending": false,
+      "videoUrl": "https://www.youtube.com/embed/g8vHhgh6oM0",
       "foundation": {
         "ar": "تاريخ محلي غير محدد",
         "en": "Undated ancient"
@@ -718,14 +696,12 @@
         "slug": "souss-massa-agadir-ikounka-fort",
         "altText": "البوابات الخشبية القديمة والمقفلة بعناية داخل اكادير إيكونكا بجهة سوس ماسة"
       },
-      "modelUrl": "https://prqbbzynmnkwhunusdbw.supabase.co/storage/v1/object/public/3d_assets/monuments/1773581538673-hassan_tower_rabat_-_morocco.glb",
-      "audioUrl": "/audio/andalusi-city.mp3",
-      "videoUrl": "https://www.youtube.com/embed/g8vHhgh6oM0"
+      "modelUrl": "https://prqbbzynmnkwhunusdbw.supabase.co/storage/v1/object/public/3d_assets/monuments/1773581538673-hassan_tower_rabat_-_morocco.glb"
     },
     {
       "id": "draa-tafilalet-kasbah-tamnougalt",
       "name": {
-        "ar": "قصبة تمنوكالت",
+        "ar": "قصبة تامنغالت",
         "en": "Kasbah Tamnougalt"
       },
       "desc": {
@@ -734,10 +710,11 @@
       },
       "imageUrl": null,
       "city": {
-        "ar": "أكدز",
-        "en": "Agdz"
+        "ar": "Draa-Tafilalet",
+        "en": "Draa-Tafilalet"
       },
       "isPending": false,
+      "videoUrl": "https://www.youtube.com/embed/g8vHhgh6oM0",
       "foundation": {
         "ar": "القرن السادس عشر",
         "en": "16th Century"
@@ -748,14 +725,12 @@
         "slug": "draa-tafilalet-kasbah-tamnougalt",
         "altText": "النخيل الوافر يحيط بالقصبة الطينية القديمة تمنوكالت في وادي درعة الساحر"
       },
-      "modelUrl": "https://prqbbzynmnkwhunusdbw.supabase.co/storage/v1/object/public/3d_assets/monuments/1773581538673-hassan_tower_rabat_-_morocco.glb",
-      "audioUrl": "/audio/andalusi-city.mp3",
-      "videoUrl": "https://www.youtube.com/embed/g8vHhgh6oM0"
+      "modelUrl": "https://prqbbzynmnkwhunusdbw.supabase.co/storage/v1/object/public/3d_assets/monuments/1773581538673-hassan_tower_rabat_-_morocco.glb"
     },
     {
       "id": "draa-tafilalet-tamegroute-library",
       "name": {
-        "ar": "مكتبة ومدرسة تامكروت",
+        "ar": "زاوية تامكروت",
         "en": "Tamegroute Library"
       },
       "desc": {
@@ -764,10 +739,11 @@
       },
       "imageUrl": null,
       "city": {
-        "ar": "زاكورة",
-        "en": "Zagora"
+        "ar": "Draa-Tafilalet",
+        "en": "Draa-Tafilalet"
       },
       "isPending": false,
+      "videoUrl": "https://www.youtube.com/embed/g8vHhgh6oM0",
       "foundation": {
         "ar": "القرن السابع عشر",
         "en": "17th Century"
@@ -778,9 +754,7 @@
         "slug": "draa-tafilalet-tamegroute-library",
         "altText": "مخطوطات إسلامية مكتوبة بخط اليد من الخزانة الناصرية بتامكروت القديمة"
       },
-      "modelUrl": "https://prqbbzynmnkwhunusdbw.supabase.co/storage/v1/object/public/3d_assets/monuments/1773581538673-hassan_tower_rabat_-_morocco.glb",
-      "audioUrl": "/audio/andalusi-city.mp3",
-      "videoUrl": "https://www.youtube.com/embed/g8vHhgh6oM0"
+      "modelUrl": "https://prqbbzynmnkwhunusdbw.supabase.co/storage/v1/object/public/3d_assets/monuments/1773581538673-hassan_tower_rabat_-_morocco.glb"
     },
     {
       "id": "draa-tafilalet-kasbah-telouet",
@@ -794,10 +768,11 @@
       },
       "imageUrl": null,
       "city": {
-        "ar": "تلوات (الأطلس الكبير)",
-        "en": "Telouet (High Atlas)"
+        "ar": "Draa-Tafilalet",
+        "en": "Draa-Tafilalet"
       },
       "isPending": false,
+      "videoUrl": "https://www.youtube.com/embed/g8vHhgh6oM0",
       "foundation": {
         "ar": "أواخر القرن 19",
         "en": "Late 19th Century"
@@ -808,9 +783,7 @@
         "slug": "draa-tafilalet-kasbah-telouet",
         "altText": "الزخرفة الخشبية وجدران الفسيفساء المبهرة داخل القصر المهجور بتلوات"
       },
-      "modelUrl": "https://prqbbzynmnkwhunusdbw.supabase.co/storage/v1/object/public/3d_assets/monuments/1773581538673-hassan_tower_rabat_-_morocco.glb",
-      "audioUrl": "/audio/andalusi-city.mp3",
-      "videoUrl": "https://www.youtube.com/embed/g8vHhgh6oM0"
+      "modelUrl": "https://prqbbzynmnkwhunusdbw.supabase.co/storage/v1/object/public/3d_assets/monuments/1773581538673-hassan_tower_rabat_-_morocco.glb"
     },
     {
       "id": "draa-tafilalet-ksar-el-khorbat",
@@ -824,10 +797,11 @@
       },
       "imageUrl": null,
       "city": {
-        "ar": "تنجداد",
-        "en": "Tinejdad"
+        "ar": "Draa-Tafilalet",
+        "en": "Draa-Tafilalet"
       },
       "isPending": false,
+      "videoUrl": "https://www.youtube.com/embed/g8vHhgh6oM0",
       "foundation": {
         "ar": "القرن التاسع عشر",
         "en": "19th Century"
@@ -838,14 +812,12 @@
         "slug": "draa-tafilalet-ksar-el-khorbat",
         "altText": "الفناء الخارجي الطيني العريض والأزقة الداخلية المظللة المرممة بقصر الخربات"
       },
-      "modelUrl": "https://prqbbzynmnkwhunusdbw.supabase.co/storage/v1/object/public/3d_assets/monuments/1773581538673-hassan_tower_rabat_-_morocco.glb",
-      "audioUrl": "/audio/andalusi-city.mp3",
-      "videoUrl": "https://www.youtube.com/embed/g8vHhgh6oM0"
+      "modelUrl": "https://prqbbzynmnkwhunusdbw.supabase.co/storage/v1/object/public/3d_assets/monuments/1773581538673-hassan_tower_rabat_-_morocco.glb"
     },
     {
       "id": "eastern-region-the-7-ksours-of-figuig",
       "name": {
-        "ar": "القصور السبعة لفكيك",
+        "ar": "قصور فكيك السبعة",
         "en": "The 7 Ksours of Figuig"
       },
       "desc": {
@@ -854,10 +826,11 @@
       },
       "imageUrl": null,
       "city": {
-        "ar": "فكيك",
-        "en": "Figuig"
+        "ar": "Eastern Region",
+        "en": "Eastern Region"
       },
       "isPending": false,
+      "videoUrl": "https://www.youtube.com/embed/g8vHhgh6oM0",
       "foundation": {
         "ar": "عصور قديمة",
         "en": "Ancient Epochs"
@@ -868,14 +841,12 @@
         "slug": "eastern-region-7-ksours-figuig",
         "altText": "أشجار النخيل المورقة تحيط ببنايات القصور السبعة الأثرية بفكيك"
       },
-      "modelUrl": "https://prqbbzynmnkwhunusdbw.supabase.co/storage/v1/object/public/3d_assets/monuments/1773581538673-hassan_tower_rabat_-_morocco.glb",
-      "audioUrl": "/audio/andalusi-city.mp3",
-      "videoUrl": "https://www.youtube.com/embed/g8vHhgh6oM0"
+      "modelUrl": "https://prqbbzynmnkwhunusdbw.supabase.co/storage/v1/object/public/3d_assets/monuments/1773581538673-hassan_tower_rabat_-_morocco.glb"
     },
     {
       "id": "eastern-region-eastern-oasis-architecture",
       "name": {
-        "ar": "العمارة الواحية الشرقية",
+        "ar": "معمار واحات فكيك",
         "en": "Eastern Oasis Architecture"
       },
       "desc": {
@@ -884,10 +855,11 @@
       },
       "imageUrl": null,
       "city": {
-        "ar": "وجدة / بوعرفة",
-        "en": "Oujda / Bouarfa"
+        "ar": "Eastern Region",
+        "en": "Eastern Region"
       },
       "isPending": false,
+      "videoUrl": "https://www.youtube.com/embed/g8vHhgh6oM0",
       "foundation": {
         "ar": "تاريخ محلي غير محدد",
         "en": "Undated ancient"
@@ -898,15 +870,13 @@
         "slug": "eastern-region-oasis-architecture",
         "altText": "قرية صغيرة مبنية بالطين في شرق المغرب ضمن واحة توهجها الشمس القاحلة"
       },
-      "modelUrl": "https://prqbbzynmnkwhunusdbw.supabase.co/storage/v1/object/public/3d_assets/monuments/1773581538673-hassan_tower_rabat_-_morocco.glb",
-      "audioUrl": "/audio/andalusi-city.mp3",
-      "videoUrl": "https://www.youtube.com/embed/g8vHhgh6oM0"
+      "modelUrl": "https://prqbbzynmnkwhunusdbw.supabase.co/storage/v1/object/public/3d_assets/monuments/1773581538673-hassan_tower_rabat_-_morocco.glb"
     },
     {
       "id": "northern-rif-lixus-ruins",
       "name": {
-        "ar": "آثار ليكسوس التاريخية",
-        "en": "Lixus Historical Ruins"
+        "ar": "ليكسوس",
+        "en": "Lixus Ruins"
       },
       "desc": {
         "ar": "ليكسوس هي واحدة من أقدم حواضر غرب البحر المتوسط. أسسها الفينيقيون قرب العرائش في القرن الثاني عشر ق.م، ولعبت دوراً في التجارة البونية ثم الرومانية الموريتانية واشتهرت بمصانع التمليح.",
@@ -914,10 +884,11 @@
       },
       "imageUrl": null,
       "city": {
-        "ar": "العرائش",
-        "en": "Larache"
+        "ar": "Northern Rif",
+        "en": "Northern Rif"
       },
       "isPending": false,
+      "videoUrl": "https://www.youtube.com/embed/g8vHhgh6oM0",
       "foundation": {
         "ar": "تأسيس فينيقي",
         "en": "Phoenician Foundation"
@@ -928,15 +899,13 @@
         "slug": "northern-rif-lixus-ruins",
         "altText": "المسرح الروماني الأثري والإطلالة البحرية في موقع ليكسوس قرب العرائش"
       },
-      "modelUrl": "https://prqbbzynmnkwhunusdbw.supabase.co/storage/v1/object/public/3d_assets/monuments/1773581538673-hassan_tower_rabat_-_morocco.glb",
-      "audioUrl": "/audio/andalusi-city.mp3",
-      "videoUrl": "https://www.youtube.com/embed/g8vHhgh6oM0"
+      "modelUrl": "https://prqbbzynmnkwhunusdbw.supabase.co/storage/v1/object/public/3d_assets/monuments/1773581538673-hassan_tower_rabat_-_morocco.glb"
     },
     {
       "id": "northern-rif-spanish-quarter",
       "name": {
-        "ar": "الحي الإسباني (طنجة وتطوان)",
-        "en": "Ensanche (Spanish Quarter)"
+        "ar": "الحي الإسباني",
+        "en": "Spanish Quarter"
       },
       "desc": {
         "ar": "الإنسانش أو الحي الإسباني يجسد الامتداد الاستعماري الإسباني بمدن الشمال (تطوان خاصة). يتميز ببنايات بيضاء واسعة وشرفات حديدية وساحات دائرية متأثرة بفن الأندلس الحديث وأوروبا القرن الـ20.",
@@ -944,10 +913,11 @@
       },
       "imageUrl": null,
       "city": {
-        "ar": "تطوان",
-        "en": "Tetouan"
+        "ar": "Northern Rif",
+        "en": "Northern Rif"
       },
       "isPending": false,
+      "videoUrl": "https://www.youtube.com/embed/g8vHhgh6oM0",
       "foundation": {
         "ar": "بداية القرن 20 (الحماية الإسبانية)",
         "en": "Early 20th Cent. (Spanish Protectorate)"
@@ -958,14 +928,12 @@
         "slug": "northern-rif-spanish-quarter-ensanche",
         "altText": "البنايات البيضاء بزخارف وفنون آرت ديكو الأوروبية على امتداد الحي الإسباني بتطوان"
       },
-      "modelUrl": "https://prqbbzynmnkwhunusdbw.supabase.co/storage/v1/object/public/3d_assets/monuments/1773581538673-hassan_tower_rabat_-_morocco.glb",
-      "audioUrl": "/audio/andalusi-city.mp3",
-      "videoUrl": "https://www.youtube.com/embed/g8vHhgh6oM0"
+      "modelUrl": "https://prqbbzynmnkwhunusdbw.supabase.co/storage/v1/object/public/3d_assets/monuments/1773581538673-hassan_tower_rabat_-_morocco.glb"
     },
     {
       "id": "northern-rif-defensive-towers-of-ajdir",
       "name": {
-        "ar": "أبراج أجدير الدفاعية",
+        "ar": "أبراج أجدير",
         "en": "Defensive Towers of Ajdir"
       },
       "desc": {
@@ -974,10 +942,11 @@
       },
       "imageUrl": null,
       "city": {
-        "ar": "أجدير (الحسيمة)",
-        "en": "Ajdir (Al Hoceima)"
+        "ar": "Northern Rif",
+        "en": "Northern Rif"
       },
       "isPending": false,
+      "videoUrl": "https://www.youtube.com/embed/g8vHhgh6oM0",
       "foundation": {
         "ar": "أوائل القرن العشرين (الجمهورية الريفية)",
         "en": "Early 20th Century (Rif Republic)"
@@ -988,16 +957,14 @@
         "slug": "northern-rif-defensive-towers-ajdir",
         "altText": "آثار وبقايا أبراج الحراسة الدفاعية التي شيدتها المقاومة في أجدير بالريف"
       },
-      "modelUrl": "https://prqbbzynmnkwhunusdbw.supabase.co/storage/v1/object/public/3d_assets/monuments/1773581538673-hassan_tower_rabat_-_morocco.glb",
-      "audioUrl": "/audio/andalusi-city.mp3",
-      "videoUrl": "https://www.youtube.com/embed/g8vHhgh6oM0"
+      "modelUrl": "https://prqbbzynmnkwhunusdbw.supabase.co/storage/v1/object/public/3d_assets/monuments/1773581538673-hassan_tower_rabat_-_morocco.glb"
     }
   ],
   "cities": [
     {
       "id": "rabat",
       "name": {
-        "ar": "الرباط",
+        "ar": "Rabat",
         "en": "Rabat"
       },
       "desc": {
@@ -1006,29 +973,27 @@
       },
       "imageUrl": "/images/uploads/1773507924247-a3d73c3b9b426ae6ea26c9fde9dc9a38-(1).jpg",
       "regionName": {
-        "ar": "جهة الرباط-سلا-القنيطرة",
-        "en": "Rabat-Salé-Kénitra Region"
+        "ar": "المغرب",
+        "en": "Morocco"
       },
       "isPending": false,
+      "videoUrl": "https://www.youtube.com/embed/g8vHhgh6oM0",
+      "history": {
+        "ar": "أسّس الموحدون الرباط رباطاً للجهاد في القرن الثاني عشر الميلادي. ازدهرت في عهد يعقوب المنصور واحتضنت الجاليات الأندلسية بعد سقوط غرناطة. أصبحت عاصمة رسمية للمغرب في القرن العشرين في عهد الحماية الفرنسية.",
+        "en": "Founded by the Almohads as a ribat (fortified monastery) in the 12th century, Rabat flourished under Yaqub al-Mansur. It later sheltered Andalusian refugees after the fall of Granada, and became the formal capital during the French Protectorate in 1912."
+      },
       "seo": {
         "metaTitle": "الرباط — عاصمة المغرب | MoroVerse",
         "metaDescription": "اكتشف الرباط، عاصمة المملكة المغربية المصنّفة من اليونيسكو. تاريخ الموحدين، صومعة حسان، قصبة الأوداية، والمدينة العتيقة الأندلسية.",
         "slug": "rabat-capital-morocco",
         "altText": "منظر جوي لمدينة الرباط العاصمة المغربية مع صومعة حسان والمحيط الأطلسي"
       },
-      "history": {
-        "ar": "أسّس الموحدون الرباط رباطاً للجهاد في القرن الثاني عشر الميلادي. ازدهرت في عهد يعقوب المنصور واحتضنت الجاليات الأندلسية بعد سقوط غرناطة. أصبحت عاصمة رسمية للمغرب في القرن العشرين في عهد الحماية الفرنسية.",
-        "en": "Founded by the Almohads as a ribat (fortified monastery) in the 12th century, Rabat flourished under Yaqub al-Mansur. It later sheltered Andalusian refugees after the fall of Granada, and became the formal capital during the French Protectorate in 1912."
-      },
-      "type": "Imperial Capital",
-      "modelUrl": "https://prqbbzynmnkwhunusdbw.supabase.co/storage/v1/object/public/3d_assets/monuments/1773581538673-hassan_tower_rabat_-_morocco.glb",
-      "audioUrl": "/audio/andalusi-city.mp3",
-      "videoUrl": "https://www.youtube.com/embed/g8vHhgh6oM0"
+      "modelUrl": "https://prqbbzynmnkwhunusdbw.supabase.co/storage/v1/object/public/3d_assets/monuments/1773581538673-hassan_tower_rabat_-_morocco.glb"
     },
     {
       "id": "fez",
       "name": {
-        "ar": "فاس",
+        "ar": "Fez",
         "en": "Fez"
       },
       "desc": {
@@ -1037,29 +1002,27 @@
       },
       "imageUrl": "/images/uploads/1773507992660-c14c24db9cba46da8ff042d06c32e312.jpg",
       "regionName": {
-        "ar": "جهة فاس-مكناس",
-        "en": "Fès-Meknès Region"
+        "ar": "المغرب",
+        "en": "Morocco"
       },
       "isPending": false,
+      "videoUrl": "https://www.youtube.com/embed/g8vHhgh6oM0",
+      "history": {
+        "ar": "أسّسها إدريس الأول واكتمل تأسيسها على يد ابنه إدريس الثاني عام 808م. استقطبت المهاجرين الأندلسيين والقيروانيين الذين أغنوا حرفها وثقافتها. بلغت ذروتها في عهد المرينيين الذين شيّدوا مدارسها الشهيرة.",
+        "en": "Founded by Idris I and completed by his son Idris II in 808 CE, Fez attracted Andalusian and Tunisian refugees who enriched its crafts and culture. It reached its zenith under the Marinids, who built its famous madrasas and mosques."
+      },
       "seo": {
         "metaTitle": "فاس — مدينة العلم والحضارة المغربية | MoroVerse",
         "metaDescription": "اكتشف فاس، عاصمة الروح المغربية وبيت جامعة القرويين. تجوّل في فاس البالي، المدينة العتيقة الإسلامية الأكبر في العالم.",
         "slug": "fez-ancient-imperial-city",
         "altText": "منظر بانورامي لمدينة فاس البالي ومآذنها التاريخية من أعلى التلال"
       },
-      "history": {
-        "ar": "أسّسها إدريس الأول واكتمل تأسيسها على يد ابنه إدريس الثاني عام 808م. استقطبت المهاجرين الأندلسيين والقيروانيين الذين أغنوا حرفها وثقافتها. بلغت ذروتها في عهد المرينيين الذين شيّدوا مدارسها الشهيرة.",
-        "en": "Founded by Idris I and completed by his son Idris II in 808 CE, Fez attracted Andalusian and Tunisian refugees who enriched its crafts and culture. It reached its zenith under the Marinids, who built its famous madrasas and mosques."
-      },
-      "type": "Imperial City",
-      "modelUrl": "https://prqbbzynmnkwhunusdbw.supabase.co/storage/v1/object/public/3d_assets/monuments/1773581538673-hassan_tower_rabat_-_morocco.glb",
-      "audioUrl": "/audio/andalusi-city.mp3",
-      "videoUrl": "https://www.youtube.com/embed/g8vHhgh6oM0"
+      "modelUrl": "https://prqbbzynmnkwhunusdbw.supabase.co/storage/v1/object/public/3d_assets/monuments/1773581538673-hassan_tower_rabat_-_morocco.glb"
     },
     {
       "id": "marrakech",
       "name": {
-        "ar": "مراكش",
+        "ar": "Marrakech",
         "en": "Marrakech"
       },
       "desc": {
@@ -1068,29 +1031,27 @@
       },
       "imageUrl": "/images/uploads/1773508136417-ab024490d6f080530c0da81877240166.jpg",
       "regionName": {
-        "ar": "جهة مراكش-آسفي",
-        "en": "Marrakech-Safi Region"
+        "ar": "المغرب",
+        "en": "Morocco"
       },
       "isPending": false,
+      "videoUrl": "https://www.youtube.com/embed/g8vHhgh6oM0",
+      "history": {
+        "ar": "أسّسها يوسف بن تاشفين ليجعلها عاصمة للإمبراطورية المرابطية الشاسعة. ازدهرت تحت الموحدين والمرينيين والسعديين الذين خلّفوا فيها تحفاً معمارية خالدة كقصر البديع وقبور السعديين.",
+        "en": "Founded by Yusuf ibn Tashfin as capital of the vast Almoravid Empire, Marrakech flourished under the Almohads, Marinids, and Saadians, who left iconic monuments like the Badi Palace and the Saadian Tombs."
+      },
       "seo": {
         "metaTitle": "مراكش — المدينة الحمراء وجوهرة المغرب | MoroVerse",
         "metaDescription": "اكتشف مراكش الحمراء، العاصمة الإمبراطورية المغربية وجوهرة المغرب السياحية. صومعة الكتبية، ساحة جامع الفنا، والمدينة العتيقة المصنّفة يونيسكو.",
         "slug": "marrakech-red-city-morocco",
         "altText": "منظر بانورامي للمدينة الحمراء مراكش مع مئذنة الكتبية في الأفق"
       },
-      "history": {
-        "ar": "أسّسها يوسف بن تاشفين ليجعلها عاصمة للإمبراطورية المرابطية الشاسعة. ازدهرت تحت الموحدين والمرينيين والسعديين الذين خلّفوا فيها تحفاً معمارية خالدة كقصر البديع وقبور السعديين.",
-        "en": "Founded by Yusuf ibn Tashfin as capital of the vast Almoravid Empire, Marrakech flourished under the Almohads, Marinids, and Saadians, who left iconic monuments like the Badi Palace and the Saadian Tombs."
-      },
-      "type": "Imperial City",
-      "modelUrl": "https://prqbbzynmnkwhunusdbw.supabase.co/storage/v1/object/public/3d_assets/monuments/1773581538673-hassan_tower_rabat_-_morocco.glb",
-      "audioUrl": "/audio/andalusi-city.mp3",
-      "videoUrl": "https://www.youtube.com/embed/g8vHhgh6oM0"
+      "modelUrl": "https://prqbbzynmnkwhunusdbw.supabase.co/storage/v1/object/public/3d_assets/monuments/1773581538673-hassan_tower_rabat_-_morocco.glb"
     },
     {
       "id": "meknes",
       "name": {
-        "ar": "مكناس",
+        "ar": "Meknes",
         "en": "Meknes"
       },
       "desc": {
@@ -1099,10 +1060,11 @@
       },
       "imageUrl": null,
       "regionName": {
-        "ar": "جهة فاس-مكناس",
-        "en": "Fès-Meknès Region"
+        "ar": "المغرب",
+        "en": "Morocco"
       },
       "isPending": false,
+      "videoUrl": "https://www.youtube.com/embed/g8vHhgh6oM0",
       "history": {
         "ar": "اختار مولاي إسماعيل مكناس عاصمةً لمملكته عام 1672م وحوّلها إلى مدينة شاسعة تضمّ قصوراً وإسطبلات ومستودعات ضخمة، مستلهماً من نمط فرساي الفرنسي ومزاوجاً إياه بالعمارة الإسلامية المغربية.",
         "en": "Sultan Moulay Ismail chose Meknes as his capital in 1672, transforming it into a vast city of palaces, stables, and granaries, inspired by Versailles yet anchored in Moroccan Islamic architecture."
@@ -1113,16 +1075,13 @@
         "slug": "meknes-imperial-city",
         "altText": "باب منصور لعلج، البوابة المغربية الكبرى في مدينة مكناس الإمبراطورية"
       },
-      "type": "Imperial City",
-      "modelUrl": "https://prqbbzynmnkwhunusdbw.supabase.co/storage/v1/object/public/3d_assets/monuments/1773581538673-hassan_tower_rabat_-_morocco.glb",
-      "audioUrl": "/audio/andalusi-city.mp3",
-      "videoUrl": "https://www.youtube.com/embed/g8vHhgh6oM0"
+      "modelUrl": "https://prqbbzynmnkwhunusdbw.supabase.co/storage/v1/object/public/3d_assets/monuments/1773581538673-hassan_tower_rabat_-_morocco.glb"
     },
     {
       "id": "unesco-sites",
       "name": {
-        "ar": "المواقع المصنّفة يونيسكو",
-        "en": "UNESCO World Heritage Sites"
+        "ar": "UNESCO Sites",
+        "en": "UNESCO Sites"
       },
       "desc": {
         "ar": "يضمّ المغرب تسعة مواقع مصنّفة ضمن قائمة التراث العالمي لليونيسكو، من بينها مدن فاس ومراكش ومكناس والرباط، وآيت بن حدو، والصويرة، وتطوان.",
@@ -1134,6 +1093,7 @@
         "en": "Morocco"
       },
       "isPending": false,
+      "videoUrl": "https://www.youtube.com/embed/g8vHhgh6oM0",
       "history": {
         "ar": "انضمّ المغرب إلى اتفاقية التراث العالمي عام 1975م. وقد حرص على ترشيح مواقعه التاريخية والثقافية الفريدة للتصنيف الدولي ضمن إطار سياسة وطنية تهدف إلى صون التراث وتعزيز السياحة الثقافية.",
         "en": "Morocco ratified the World Heritage Convention in 1975 and has since nominated its most exceptional historic and cultural sites for international recognition, combining conservation policy with cultural tourism development."
@@ -1144,15 +1104,12 @@
         "slug": "morocco-unesco-world-heritage-sites",
         "altText": "لوحة تذكارية ليونيسكو أمام أحد مواقع التراث العالمي في المغرب"
       },
-      "type": "Heritage Category",
-      "modelUrl": "https://prqbbzynmnkwhunusdbw.supabase.co/storage/v1/object/public/3d_assets/monuments/1773581538673-hassan_tower_rabat_-_morocco.glb",
-      "audioUrl": "/audio/andalusi-city.mp3",
-      "videoUrl": "https://www.youtube.com/embed/g8vHhgh6oM0"
+      "modelUrl": "https://prqbbzynmnkwhunusdbw.supabase.co/storage/v1/object/public/3d_assets/monuments/1773581538673-hassan_tower_rabat_-_morocco.glb"
     },
     {
       "id": "souss-massa",
       "name": {
-        "ar": "سوس-ماسة",
+        "ar": "Souss-Massa",
         "en": "Souss-Massa"
       },
       "desc": {
@@ -1161,10 +1118,11 @@
       },
       "imageUrl": null,
       "regionName": {
-        "ar": "جهة سوس-ماسة",
-        "en": "Souss-Massa Region"
+        "ar": "المغرب",
+        "en": "Morocco"
       },
       "isPending": false,
+      "videoUrl": "https://www.youtube.com/embed/g8vHhgh6oM0",
       "history": {
         "ar": "كانت سوس من أوائل المراكز الأمازيغية في المغرب. أسّست المرابطية دولتها في هذه المنطقة. دُمّر أكادير بزلزال مدمر عام 1960م وأُعيد بناؤه من الصفر ليصبح منتجعاً سياحياً عالمياً.",
         "en": "Souss was an ancient Amazigh heartland and birthplace of the Almoravid dynasty. The modern city of Agadir was devastated by a 1960 earthquake and rebuilt from scratch as an international beach resort."
@@ -1175,15 +1133,12 @@
         "slug": "souss-massa-agadir-region",
         "altText": "ساحل أكادير الخلّاب مع الجبال في الخلفية في جهة سوس-ماسة المغربية"
       },
-      "type": "Atlantic Region",
-      "modelUrl": "https://prqbbzynmnkwhunusdbw.supabase.co/storage/v1/object/public/3d_assets/monuments/1773581538673-hassan_tower_rabat_-_morocco.glb",
-      "audioUrl": "/audio/andalusi-city.mp3",
-      "videoUrl": "https://www.youtube.com/embed/g8vHhgh6oM0"
+      "modelUrl": "https://prqbbzynmnkwhunusdbw.supabase.co/storage/v1/object/public/3d_assets/monuments/1773581538673-hassan_tower_rabat_-_morocco.glb"
     },
     {
       "id": "draa-tafilalet",
       "name": {
-        "ar": "درعة-تافيلالت",
+        "ar": "Draa-Tafilalet",
         "en": "Draa-Tafilalet"
       },
       "desc": {
@@ -1192,10 +1147,11 @@
       },
       "imageUrl": null,
       "regionName": {
-        "ar": "جهة درعة-تافيلالت",
-        "en": "Draa-Tafilalet Region"
+        "ar": "المغرب",
+        "en": "Morocco"
       },
       "isPending": false,
+      "videoUrl": "https://www.youtube.com/embed/g8vHhgh6oM0",
       "history": {
         "ar": "كانت تافيلالت موطن الأسرة العلوية الحاكمة التي تحكم المغرب منذ القرن السابع عشر. وازدهرت سجلماسة القديمة كمركز تجاري للقوافل الذهبية العابرة بين إفريقيا جنوب الصحراء وشمال أفريقيا.",
         "en": "Tafilalet is the ancestral homeland of Morocco's ruling Alawi dynasty since the 17th century. Ancient Sijilmasa flourished as a key trans-Saharan trade hub connecting sub-Saharan Africa with North Africa and Europe."
@@ -1206,15 +1162,12 @@
         "slug": "draa-tafilalet-sahara-region",
         "altText": "كثبان مرزوقة الذهبية عند غروب الشمس في الصحراء المغربية الكبرى"
       },
-      "type": "Saharan Region",
-      "modelUrl": "https://prqbbzynmnkwhunusdbw.supabase.co/storage/v1/object/public/3d_assets/monuments/1773581538673-hassan_tower_rabat_-_morocco.glb",
-      "audioUrl": "/audio/andalusi-city.mp3",
-      "videoUrl": "https://www.youtube.com/embed/g8vHhgh6oM0"
+      "modelUrl": "https://prqbbzynmnkwhunusdbw.supabase.co/storage/v1/object/public/3d_assets/monuments/1773581538673-hassan_tower_rabat_-_morocco.glb"
     },
     {
       "id": "eastern-region",
       "name": {
-        "ar": "الجهة الشرقية",
+        "ar": "Eastern Region",
         "en": "Eastern Region"
       },
       "desc": {
@@ -1223,10 +1176,11 @@
       },
       "imageUrl": null,
       "regionName": {
-        "ar": "الجهة الشرقية",
-        "en": "Oriental Region"
+        "ar": "المغرب",
+        "en": "Morocco"
       },
       "isPending": false,
+      "videoUrl": "https://www.youtube.com/embed/g8vHhgh6oM0",
       "history": {
         "ar": "شكّلت الجهة الشرقية ممراً تاريخياً بين المغرب والمشرق. شهدت معارك عديدة منها معركة إيسلي الشهيرة عام 1844م ضد الجيش الفرنسي. ولا تزال فكيك تحافظ على تراثها القصوري الأمازيغي الأصيل.",
         "en": "The Eastern Region served as Morocco's historic corridor to the east. It witnessed the decisive Battle of Isly (1844) and sheltered Amazigh communities in the oasis of Figuig, whose seven ancient ksours remain inhabited today."
@@ -1237,15 +1191,12 @@
         "slug": "eastern-region-oujda-figuig",
         "altText": "واحة فكيك الصحراوية مع نخيلها وقصورها الأمازيغية العريقة في الجهة الشرقية المغربية"
       },
-      "type": "Border Region",
-      "modelUrl": "https://prqbbzynmnkwhunusdbw.supabase.co/storage/v1/object/public/3d_assets/monuments/1773581538673-hassan_tower_rabat_-_morocco.glb",
-      "audioUrl": "/audio/andalusi-city.mp3",
-      "videoUrl": "https://www.youtube.com/embed/g8vHhgh6oM0"
+      "modelUrl": "https://prqbbzynmnkwhunusdbw.supabase.co/storage/v1/object/public/3d_assets/monuments/1773581538673-hassan_tower_rabat_-_morocco.glb"
     },
     {
       "id": "northern-rif",
       "name": {
-        "ar": "الريف الشمالي",
+        "ar": "Northern Rif",
         "en": "Northern Rif"
       },
       "desc": {
@@ -1254,10 +1205,11 @@
       },
       "imageUrl": null,
       "regionName": {
-        "ar": "جهة طنجة-تطوان-الحسيمة",
-        "en": "Tanger-Tetouan-Al Hoceïma Region"
+        "ar": "المغرب",
+        "en": "Morocco"
       },
       "isPending": false,
+      "videoUrl": "https://www.youtube.com/embed/g8vHhgh6oM0",
       "history": {
         "ar": "احتضن الريف الشمالي الجاليات الأندلسية المهجّرة بعد سقوط غرناطة 1492م. قاد عبد الكريم الخطابي ملحمة المقاومة الريفية الشهيرة ضد الاستعمار الإسباني في معركة أنوال الأسطورية عام 1921م.",
         "en": "The Northern Rif sheltered Andalusian refugees after the fall of Granada in 1492. It was the stage of Abd el-Krim al-Khattabi's legendary Rif Republic and his victory at the Battle of Annual (1921) against Spanish colonial forces."
@@ -1268,10 +1220,7 @@
         "slug": "northern-rif-tangier-chefchaouen",
         "altText": "مدينة شفشاون الزرقاء الساحرة في جبال الريف الشمالية المغربية"
       },
-      "type": "Mediterranean Region",
-      "modelUrl": "https://prqbbzynmnkwhunusdbw.supabase.co/storage/v1/object/public/3d_assets/monuments/1773581538673-hassan_tower_rabat_-_morocco.glb",
-      "audioUrl": "/audio/andalusi-city.mp3",
-      "videoUrl": "https://www.youtube.com/embed/g8vHhgh6oM0"
+      "modelUrl": "https://prqbbzynmnkwhunusdbw.supabase.co/storage/v1/object/public/3d_assets/monuments/1773581538673-hassan_tower_rabat_-_morocco.glb"
     }
   ],
   "battles": [
@@ -1287,29 +1236,14 @@
       },
       "imageUrl": null,
       "isPending": false,
-      "year": "711",
-      "era": "Umayyad",
-      "location": {
-        "ar": "شيريس بالأندلس (إسبانيا)",
-        "en": "Jerez de la Frontera, Andalusia (Spain)"
-      },
-      "combatants": {
-        "ar": "المسلمون الأمازيغ والعرب ضد مملكة القوط الغربيين",
-        "en": "Muslim Umayyad forces (Amazigh-Arab) vs. Visigoth Kingdom of Hispania"
-      },
-      "outcome": {
-        "ar": "انتصار مسلم حاسم وانهيار مملكة القوط وفتح الأندلس",
-        "en": "Decisive Muslim victory; fall of the Visigoth Kingdom; opening of Al-Andalus"
-      },
+      "videoUrl": "https://www.youtube.com/embed/g8vHhgh6oM0",
       "seo": {
         "metaTitle": "معركة وادي لكة 711م — فتح الأندلس | MoroVerse",
         "metaDescription": "تعرّف على معركة وادي لكة 711م: الموقعة التي غيّرت وجه أوروبا حين هزم طارق بن زياد ملك القوط رودريك وفتح الأندلس للحضارة الإسلامية.",
         "slug": "battle-of-guadalete-711",
         "altText": "لوحة تاريخية تصوّر معركة وادي لكة وفتح الأندلس عام 711 ميلادي"
       },
-      "modelUrl": "https://prqbbzynmnkwhunusdbw.supabase.co/storage/v1/object/public/3d_assets/monuments/1773581538673-hassan_tower_rabat_-_morocco.glb",
-      "audioUrl": "/audio/epic-war.mp3",
-      "videoUrl": "https://www.youtube.com/embed/g8vHhgh6oM0"
+      "modelUrl": "https://prqbbzynmnkwhunusdbw.supabase.co/storage/v1/object/public/3d_assets/monuments/1773581538673-hassan_tower_rabat_-_morocco.glb"
     },
     {
       "id": "battle-of-the-nobles",
@@ -1323,35 +1257,20 @@
       },
       "imageUrl": null,
       "isPending": false,
-      "year": "844",
-      "era": "Idrisid",
-      "location": {
-        "ar": "شمال المغرب",
-        "en": "Northern Morocco"
-      },
-      "combatants": {
-        "ar": "الأشراف الإدريسيون ضد الجيش الأموي الأندلسي",
-        "en": "Idrisid rulers of Morocco vs. Umayyad Emirate of Córdoba"
-      },
-      "outcome": {
-        "ar": "تأكيد استقلالية الدولة الإدريسية في المغرب",
-        "en": "Affirmation of Idrisid independence and Moroccan sovereignty"
-      },
+      "videoUrl": "https://www.youtube.com/embed/g8vHhgh6oM0",
       "seo": {
         "metaTitle": "معركة الأشراف — الإدريسيون وصراع الاستقلال | MoroVerse",
         "metaDescription": "اكتشف معركة الأشراف 844م وصراع الدولة الإدريسية المغربية من أجل الاستقلال في مواجهة نفوذ أمويي الأندلس.",
         "slug": "battle-of-nobles-idrisid-morocco",
         "altText": "إعادة رسم تاريخية لمعركة الأشراف بين الإدريسيين وأمويي الأندلس في المغرب القرن التاسع"
       },
-      "modelUrl": "https://prqbbzynmnkwhunusdbw.supabase.co/storage/v1/object/public/3d_assets/monuments/1773581538673-hassan_tower_rabat_-_morocco.glb",
-      "audioUrl": "/audio/epic-war.mp3",
-      "videoUrl": "https://www.youtube.com/embed/g8vHhgh6oM0"
+      "modelUrl": "https://prqbbzynmnkwhunusdbw.supabase.co/storage/v1/object/public/3d_assets/monuments/1773581538673-hassan_tower_rabat_-_morocco.glb"
     },
     {
       "id": "battle-of-sagrajas",
       "name": {
         "ar": "معركة الزلاقة",
-        "en": "Battle of Sagrajas (Zallaqa)"
+        "en": "Battle of Sagrajas"
       },
       "desc": {
         "ar": "معركة الزلاقة (1086م) انتصار استراتيجي كبير حقّقه يوسف بن تاشفين المرابطي ضد ألفونسو السادس القشتالي. أنقذت هذه الموقعة الأندلس من الهيمنة المسيحية وأسّست حضوراً مرابطياً دائماً في الأندلس.",
@@ -1359,29 +1278,14 @@
       },
       "imageUrl": null,
       "isPending": false,
-      "year": "1086",
-      "era": "Almoravid",
-      "location": {
-        "ar": "بطليوس، الأندلس (إسبانيا حالياً)",
-        "en": "Badajoz, al-Andalus (modern Spain)"
-      },
-      "combatants": {
-        "ar": "المرابطون بقيادة يوسف بن تاشفين ضد مملكة قشتالة بقيادة ألفونسو السادس",
-        "en": "Almoravid forces under Yusuf ibn Tashfin vs. Kingdom of Castile under Alfonso VI"
-      },
-      "outcome": {
-        "ar": "انتصار مرابطي ساحق وإنقاذ الأندلس وتوحيد المغرب والأندلس تحت الإمارة المرابطية",
-        "en": "Decisive Almoravid victory; rescue of al-Andalus; unification of Morocco and Iberia under Almoravid rule"
-      },
+      "videoUrl": "https://www.youtube.com/embed/g8vHhgh6oM0",
       "seo": {
         "metaTitle": "معركة الزلاقة 1086م — انتصار يوسف بن تاشفين | MoroVerse",
         "metaDescription": "تعرّف على معركة الزلاقة 1086م: انتصار يوسف بن تاشفين المرابطي على ألفونسو السادس والتي أنقذت الأندلس الإسلامية من السقوط.",
         "slug": "battle-of-sagrajas-zallaqa-1086",
         "altText": "لوحة تصوّر معركة الزلاقة 1086م بين المرابطين وجيش قشتالة في الأندلس"
       },
-      "modelUrl": "https://prqbbzynmnkwhunusdbw.supabase.co/storage/v1/object/public/3d_assets/monuments/1773581538673-hassan_tower_rabat_-_morocco.glb",
-      "audioUrl": "/audio/epic-war.mp3",
-      "videoUrl": "https://www.youtube.com/embed/g8vHhgh6oM0"
+      "modelUrl": "https://prqbbzynmnkwhunusdbw.supabase.co/storage/v1/object/public/3d_assets/monuments/1773581538673-hassan_tower_rabat_-_morocco.glb"
     },
     {
       "id": "battle-of-alarcos",
@@ -1395,29 +1299,14 @@
       },
       "imageUrl": null,
       "isPending": false,
-      "year": "1195",
-      "era": "Almohad",
-      "location": {
-        "ar": "الأرك، الأندلس (إسبانيا حالياً)",
-        "en": "Alarcos, Castile (modern Spain)"
-      },
-      "combatants": {
-        "ar": "الخلافة الموحدية بقيادة يعقوب المنصور ضد مملكة قشتالة",
-        "en": "Almohad Caliphate under Yaqub al-Mansur vs. Kingdom of Castile under Alfonso VIII"
-      },
-      "outcome": {
-        "ar": "انتصار موحدي ساحق وتعزيز الحضور الإسلامي في الأندلس",
-        "en": "Decisive Almohad victory, reinforcing Muslim presence in al-Andalus for decades"
-      },
+      "videoUrl": "https://www.youtube.com/embed/g8vHhgh6oM0",
       "seo": {
         "metaTitle": "معركة الأرك 1195م — يعقوب المنصور الموحدي | MoroVerse",
         "metaDescription": "اقرأ عن معركة الأرك 1195م وانتصار الخليفة الموحدي يعقوب المنصور الباهر على مملكة قشتالة التي خلّدت اسمه في التاريخ.",
         "slug": "battle-of-alarcos-1195",
         "altText": "صورة تاريخية تصوّر أحداث معركة الأرك 1195م بين الموحدين وجيش قشتالة"
       },
-      "modelUrl": "https://prqbbzynmnkwhunusdbw.supabase.co/storage/v1/object/public/3d_assets/monuments/1773581538673-hassan_tower_rabat_-_morocco.glb",
-      "audioUrl": "/audio/epic-war.mp3",
-      "videoUrl": "https://www.youtube.com/embed/g8vHhgh6oM0"
+      "modelUrl": "https://prqbbzynmnkwhunusdbw.supabase.co/storage/v1/object/public/3d_assets/monuments/1773581538673-hassan_tower_rabat_-_morocco.glb"
     },
     {
       "id": "battle-of-las-navas-de-tolosa",
@@ -1431,35 +1320,20 @@
       },
       "imageUrl": null,
       "isPending": false,
-      "year": "1212",
-      "era": "Almohad",
-      "location": {
-        "ar": "جيان، الأندلس (إسبانيا حالياً)",
-        "en": "Jaén, al-Andalus (modern Spain)"
-      },
-      "combatants": {
-        "ar": "الخلافة الموحدية ضد تحالف مملكتَي قشتالة وأراغون والبرتغال وقوات الصليبيين",
-        "en": "Almohad Caliphate vs. combined Christian kingdoms of Castile, Aragon, Navarre, and Portugal, with crusader contingents"
-      },
-      "outcome": {
-        "ar": "انهزام الموحدين وبداية تراجع الحضور الإسلامي في الأندلس",
-        "en": "Almohad defeat; beginning of the rapid decline of Muslim political control in Iberia"
-      },
+      "videoUrl": "https://www.youtube.com/embed/g8vHhgh6oM0",
       "seo": {
         "metaTitle": "معركة العقاب 1212م — نقطة التحول في الأندلس | MoroVerse",
         "metaDescription": "تعرّف على معركة العقاب 1212م، نقطة التحول التاريخية التي هزم فيها التحالف الإسباني الموحدين وأطلق مسيرة اضمحلال السلطة الإسلامية في الأندلس.",
         "slug": "battle-of-las-navas-de-tolosa-1212",
         "altText": "لوحة تصوّر معركة العقاب 1212م، نقطة التحول في تاريخ الأندلس والخلافة الموحدية"
       },
-      "modelUrl": "https://prqbbzynmnkwhunusdbw.supabase.co/storage/v1/object/public/3d_assets/monuments/1773581538673-hassan_tower_rabat_-_morocco.glb",
-      "audioUrl": "/audio/epic-war.mp3",
-      "videoUrl": "https://www.youtube.com/embed/g8vHhgh6oM0"
+      "modelUrl": "https://prqbbzynmnkwhunusdbw.supabase.co/storage/v1/object/public/3d_assets/monuments/1773581538673-hassan_tower_rabat_-_morocco.glb"
     },
     {
       "id": "battle-of-alccer-quibir",
       "name": {
         "ar": "معركة وادي المخازن",
-        "en": "Battle of Alcácer Quibir (Three Kings)"
+        "en": "Battle of Alcácer Quibir"
       },
       "desc": {
         "ar": "معركة وادي المخازن (1578م) أو معركة الملوك الثلاثة، من أبرز المعارك في تاريخ المغرب. سقط فيها ثلاثة ملوك في يوم واحد: السلطان السعدي عبد الملك والملك البرتغالي سيباستيان والمتنازع الأندلسي محمد المتوكل.",
@@ -1467,29 +1341,14 @@
       },
       "imageUrl": null,
       "isPending": false,
-      "year": "1578",
-      "era": "Saadian",
-      "location": {
-        "ar": "القصر الكبير، شمال المغرب",
-        "en": "Ksar el-Kebir, northern Morocco"
-      },
-      "combatants": {
-        "ar": "السلطنة السعدية المغربية ضد مملكة البرتغال وحليفها المتنازع محمد المتوكل",
-        "en": "Saadian Sultanate of Morocco vs. Kingdom of Portugal allied with claimant Muhammad al-Mutawakkil"
-      },
-      "outcome": {
-        "ar": "انتصار مغربي ساحق ونهاية الطموحات البرتغالية في أفريقيا وتحوّل المغرب قوةً إقليمية كبرى",
-        "en": "Decisive Moroccan victory; end of Portuguese imperial expansion in Africa; emergence of Morocco as a major regional power"
-      },
+      "videoUrl": "https://www.youtube.com/embed/g8vHhgh6oM0",
       "seo": {
         "metaTitle": "معركة وادي المخازن 1578م — معركة الملوك الثلاثة | MoroVerse",
         "metaDescription": "اقرأ عن معركة وادي المخازن 1578م، أعظم انتصارات المغرب التي غيّرت موازين القوى في المتوسط وأنهت الطموحات البرتغالية في إفريقيا.",
         "slug": "battle-of-wadi-al-makhazin-1578",
         "altText": "لوحة تاريخية تصوّر معركة وادي المخازن 1578م بين السعديين والبرتغاليين"
       },
-      "modelUrl": "https://prqbbzynmnkwhunusdbw.supabase.co/storage/v1/object/public/3d_assets/monuments/1773581538673-hassan_tower_rabat_-_morocco.glb",
-      "audioUrl": "/audio/epic-war.mp3",
-      "videoUrl": "https://www.youtube.com/embed/g8vHhgh6oM0"
+      "modelUrl": "https://prqbbzynmnkwhunusdbw.supabase.co/storage/v1/object/public/3d_assets/monuments/1773581538673-hassan_tower_rabat_-_morocco.glb"
     },
     {
       "id": "battle-of-isly",
@@ -1503,29 +1362,14 @@
       },
       "imageUrl": null,
       "isPending": false,
-      "year": "1844",
-      "era": "Alawi",
-      "location": {
-        "ar": "نهر إيسلي، قرب وجدة، شرق المغرب",
-        "en": "Isly River, near Oujda, eastern Morocco"
-      },
-      "combatants": {
-        "ar": "المغرب تحت السلطان عبد الرحمن ضد الجيش الفرنسي بقيادة مارشال بيجو",
-        "en": "Morocco under Sultan Abd al-Rahman vs. French Army of Africa under Marshal Thomas-Robert Bugeaud"
-      },
-      "outcome": {
-        "ar": "انتصار فرنسي ومعاهدة لالة مغنية التي رسمت الحدود المغربية الجزائرية",
-        "en": "French victory; signing of Treaty of Lalla Maghnia; redrawing of Moroccan-Algerian border"
-      },
+      "videoUrl": "https://www.youtube.com/embed/g8vHhgh6oM0",
       "seo": {
         "metaTitle": "معركة إيسلي 1844م — المغرب وفرنسا | MoroVerse",
         "metaDescription": "اكتشف معركة إيسلي 1844م وتأثيرها على مصير المغرب وعلاقته بفرنسا وتداعياتها على الحدود المغربية الجزائرية ومعاهدة لالة مغنية.",
         "slug": "battle-of-isly-1844",
         "altText": "رسم تاريخي لمعركة إيسلي 1844م بين الجيش المغربي والجيش الفرنسي قرب وجدة"
       },
-      "modelUrl": "https://prqbbzynmnkwhunusdbw.supabase.co/storage/v1/object/public/3d_assets/monuments/1773581538673-hassan_tower_rabat_-_morocco.glb",
-      "audioUrl": "/audio/epic-war.mp3",
-      "videoUrl": "https://www.youtube.com/embed/g8vHhgh6oM0"
+      "modelUrl": "https://prqbbzynmnkwhunusdbw.supabase.co/storage/v1/object/public/3d_assets/monuments/1773581538673-hassan_tower_rabat_-_morocco.glb"
     },
     {
       "id": "battle-of-tetouan",
@@ -1539,29 +1383,14 @@
       },
       "imageUrl": null,
       "isPending": false,
-      "year": "1860",
-      "era": "Alawi",
-      "location": {
-        "ar": "تطوان وضواحيها، شمال المغرب",
-        "en": "Tetouan and surroundings, northern Morocco"
-      },
-      "combatants": {
-        "ar": "المغرب تحت السلطان محمد الرابع ضد إسبانيا بقيادة الجنرال أودونيل",
-        "en": "Morocco under Sultan Muhammad IV vs. Spain under General Leopoldo O'Donnell"
-      },
-      "outcome": {
-        "ar": "استسلام مغربي ومعاهدة وادراس المُكلفة والاحتلال الإسباني المؤقت لتطوان",
-        "en": "Moroccan defeat; Treaty of Wad Ras; temporary Spanish occupation of Tetouan; expansion of Ceuta and Melilla"
-      },
+      "videoUrl": "https://www.youtube.com/embed/g8vHhgh6oM0",
       "seo": {
         "metaTitle": "معركة تطوان 1860م — الحرب الإسبانية المغربية | MoroVerse",
         "metaDescription": "اقرأ تاريخ معركة تطوان 1860م وحرب إسبانيا والمغرب، ومعاهدة وادراس التي رسمت مصير شمال المغرب في القرن التاسع عشر.",
         "slug": "battle-of-tetouan-1860",
         "altText": "صورة تاريخية للجنود الإسبان والمغاربة في أحداث حرب تطوان 1860م"
       },
-      "modelUrl": "https://prqbbzynmnkwhunusdbw.supabase.co/storage/v1/object/public/3d_assets/monuments/1773581538673-hassan_tower_rabat_-_morocco.glb",
-      "audioUrl": "/audio/epic-war.mp3",
-      "videoUrl": "https://www.youtube.com/embed/g8vHhgh6oM0"
+      "modelUrl": "https://prqbbzynmnkwhunusdbw.supabase.co/storage/v1/object/public/3d_assets/monuments/1773581538673-hassan_tower_rabat_-_morocco.glb"
     },
     {
       "id": "battle-of-annual",
@@ -1575,29 +1404,14 @@
       },
       "imageUrl": null,
       "isPending": false,
-      "year": "1921",
-      "era": "Rif War / Colonial Resistance",
-      "location": {
-        "ar": "أنوال، الريف المغربي",
-        "en": "Annual, Rif Mountains, northern Morocco"
-      },
-      "combatants": {
-        "ar": "جيش الجمهورية الريفية بقيادة عبد الكريم الخطابي ضد الجيش الإسباني",
-        "en": "Rif Republican forces under Abd el-Krim al-Khattabi vs. Spanish Army of Africa under General Fernández Silvestre"
-      },
-      "outcome": {
-        "ar": "انتصار ريفي مدوٍّ وتأسيس الجمهورية الريفية وإلهام حركات التحرر العالمية",
-        "en": "Decisive Rif victory; founding of the Rif Republic; inspiration for global anti-colonial movements"
-      },
+      "videoUrl": "https://www.youtube.com/embed/g8vHhgh6oM0",
       "seo": {
         "metaTitle": "معركة أنوال 1921م — ملحمة عبد الكريم الخطابي | MoroVerse",
         "metaDescription": "تعرّف على معركة أنوال 1921م وانتصار عبد الكريم الخطابي الأسطوري على الجيش الإسباني في الريف المغربي الذي أوجد الجمهورية الريفية.",
         "slug": "battle-of-annual-1921",
         "altText": "صورة تاريخية لمجاهدي الريف بقيادة عبد الكريم الخطابي في معركة أنوال 1921م"
       },
-      "modelUrl": "https://prqbbzynmnkwhunusdbw.supabase.co/storage/v1/object/public/3d_assets/monuments/1773581538673-hassan_tower_rabat_-_morocco.glb",
-      "audioUrl": "/audio/epic-war.mp3",
-      "videoUrl": "https://www.youtube.com/embed/g8vHhgh6oM0"
+      "modelUrl": "https://prqbbzynmnkwhunusdbw.supabase.co/storage/v1/object/public/3d_assets/monuments/1773581538673-hassan_tower_rabat_-_morocco.glb"
     },
     {
       "id": "battle-of-el-herri",
@@ -1611,29 +1425,14 @@
       },
       "imageUrl": null,
       "isPending": false,
-      "year": "1914",
-      "era": "French Protectorate Resistance",
-      "location": {
-        "ar": "سهل لهري قرب خنيفرة، الأطلس المتوسط",
-        "en": "El Herri plain near Khénifra, Middle Atlas, Morocco"
-      },
-      "combatants": {
-        "ar": "قبائل زيان بقيادة موحى أوحمو الزياني ضد القوات الفرنسية بقيادة الكولونيل لابكسير",
-        "en": "Zayane Confederation forces under Moha ou Hammou Zayani vs. French Protectorate Army under Colonel Laverdure"
-      },
-      "outcome": {
-        "ar": "انتصار زياني باهر ومقتل مئات الجنود الفرنسيين وتعزيز المقاومة في الأطلس",
-        "en": "Major Zayane victory; death of ~600 French troops; continued Berber resistance in the Middle Atlas for years"
-      },
+      "videoUrl": "https://www.youtube.com/embed/g8vHhgh6oM0",
       "seo": {
         "metaTitle": "معركة لهري 1914م — ملحمة موحى أوحمو الزياني | MoroVerse",
         "metaDescription": "اكتشف معركة لهري 1914م وانتصار موحى أوحمو الزياني الأسطوري ضد الجيش الفرنسي في سهول خنيفرة ورمزيتها في المقاومة الأمازيغية.",
         "slug": "battle-of-el-herri-1914",
         "altText": "تمثال موحى أوحمو الزياني في خنيفرة تكريماً لانتصار معركة لهري 1914م"
       },
-      "modelUrl": "https://prqbbzynmnkwhunusdbw.supabase.co/storage/v1/object/public/3d_assets/monuments/1773581538673-hassan_tower_rabat_-_morocco.glb",
-      "audioUrl": "/audio/epic-war.mp3",
-      "videoUrl": "https://www.youtube.com/embed/g8vHhgh6oM0"
+      "modelUrl": "https://prqbbzynmnkwhunusdbw.supabase.co/storage/v1/object/public/3d_assets/monuments/1773581538673-hassan_tower_rabat_-_morocco.glb"
     },
     {
       "id": "battle-of-edchera",
@@ -1647,29 +1446,14 @@
       },
       "imageUrl": null,
       "isPending": false,
-      "year": "1958",
-      "era": "Post-Independence",
-      "location": {
-        "ar": "إيفني، الجنوب المغربي",
-        "en": "Ifni territory, southern Morocco"
-      },
-      "combatants": {
-        "ar": "الجيش الملكي المغربي ضد القوات الإسبانية في إيفني",
-        "en": "Royal Moroccan Army vs. Spanish colonial forces in the Ifni territory"
-      },
-      "outcome": {
-        "ar": "استرداد مغربي جزئي لأراضي إيفني وتثبيت مبدأ الوحدة الترابية",
-        "en": "Partial Moroccan recovery of Ifni territories; eventual full Spanish withdrawal from Sidi Ifni by 1969"
-      },
+      "videoUrl": "https://www.youtube.com/embed/g8vHhgh6oM0",
       "seo": {
         "metaTitle": "معركة الدشيرة 1958م — حرب إيفني والوحدة الترابية | MoroVerse",
         "metaDescription": "تعرّف على معركة الدشيرة 1958م وحرب إيفني، أولى عمليات الجيش الملكي المغربي لاسترداد الأراضي الجنوبية من الاستعمار الإسباني.",
         "slug": "battle-of-edchera-ifni-1958",
         "altText": "جنود الجيش الملكي المغربي خلال حرب إيفني 1957-1958م لاسترداد أراضي الجنوب"
       },
-      "modelUrl": "https://prqbbzynmnkwhunusdbw.supabase.co/storage/v1/object/public/3d_assets/monuments/1773581538673-hassan_tower_rabat_-_morocco.glb",
-      "audioUrl": "/audio/epic-war.mp3",
-      "videoUrl": "https://www.youtube.com/embed/g8vHhgh6oM0"
+      "modelUrl": "https://prqbbzynmnkwhunusdbw.supabase.co/storage/v1/object/public/3d_assets/monuments/1773581538673-hassan_tower_rabat_-_morocco.glb"
     }
   ],
   "figures": [
@@ -1685,6 +1469,7 @@
       },
       "imageUrl": null,
       "isPending": false,
+      "videoUrl": "https://www.youtube.com/embed/g8vHhgh6oM0",
       "history": {
         "ar": "عيّنه موسى بن نصير والياً على طنجة. في ربيع 711م عبر بسبعة آلاف مقاتل من المغرب إلى إسبانيا وهزم ملك القوط رودريك في معركة وادي لكة. استكمل الفتح حتى الشمال ووصل إلى أراضي فرنسا الحالية.",
         "en": "Appointed governor of Tangier by Musa ibn Nusayr, Tariq crossed into Iberia in spring 711 with 7,000 troops, defeated Visigoth King Roderic at Guadalete, and swept north to nearly reach the Pyrenees, opening al-Andalus to eight centuries of Islamic civilization."
@@ -1695,9 +1480,7 @@
         "slug": "tariq-ibn-ziyad-conqueror-andalus",
         "altText": "تمثال طارق بن زياد في جبل طارق، القائد الأمازيغي الذي فتح الأندلس"
       },
-      "modelUrl": "https://prqbbzynmnkwhunusdbw.supabase.co/storage/v1/object/public/3d_assets/monuments/1773581538673-hassan_tower_rabat_-_morocco.glb",
-      "audioUrl": "/audio/mysterious-merchich.mp3",
-      "videoUrl": "https://www.youtube.com/embed/g8vHhgh6oM0"
+      "modelUrl": "https://prqbbzynmnkwhunusdbw.supabase.co/storage/v1/object/public/3d_assets/monuments/1773581538673-hassan_tower_rabat_-_morocco.glb"
     },
     {
       "id": "yusuf-ibn-tashfin",
@@ -1711,6 +1494,7 @@
       },
       "imageUrl": null,
       "isPending": false,
+      "videoUrl": "https://www.youtube.com/embed/g8vHhgh6oM0",
       "history": {
         "ar": "انطلق يوسف من موريتانيا على رأس قبائل صنهاجة وأسّس المرابطين. بنى مراكش عاصمةً للإمبراطورية عام 1070م. استدعاه أمراء الأندلس لمواجهة القشتاليين فجاء وهزمهم في الزلاقة. لاحقاً ضمّ دويلات الطوائف الأندلسية لإمبراطوريته.",
         "en": "Rising from the Sanhaja Berbers of Mauritania, Yusuf founded Marrakech in 1070 CE as his imperial capital. Called by Andalusian taifa princes to resist Castile, he crushed Alfonso VI at Sagrajas, then annexed the taifa states into a vast Almoravid realm."
@@ -1721,15 +1505,13 @@
         "slug": "yusuf-ibn-tashfin-almoravid-sultan",
         "altText": "تمثال يوسف بن تاشفين مؤسس مراكش والإمبراطورية المرابطية المغربية"
       },
-      "modelUrl": "https://prqbbzynmnkwhunusdbw.supabase.co/storage/v1/object/public/3d_assets/monuments/1773581538673-hassan_tower_rabat_-_morocco.glb",
-      "audioUrl": "/audio/mysterious-merchich.mp3",
-      "videoUrl": "https://www.youtube.com/embed/g8vHhgh6oM0"
+      "modelUrl": "https://prqbbzynmnkwhunusdbw.supabase.co/storage/v1/object/public/3d_assets/monuments/1773581538673-hassan_tower_rabat_-_morocco.glb"
     },
     {
       "id": "yaqub-al-mansur",
       "name": {
         "ar": "يعقوب المنصور الموحدي",
-        "en": "Yaqub al-Mansur (Almohad Caliph)"
+        "en": "Yaqub al-Mansur"
       },
       "desc": {
         "ar": "يعقوب المنصور (1184-1199م) ثالث خلفاء الموحدين وأعظمهم. هزم الملك القشتالي ألفونسو الثامن في معركة الأرك 1195م. بنى صومعة حسان وصومعة الكتبية ومراكش، وأشرف على عصر ذهبي موحدي.",
@@ -1737,6 +1519,7 @@
       },
       "imageUrl": null,
       "isPending": false,
+      "videoUrl": "https://www.youtube.com/embed/g8vHhgh6oM0",
       "history": {
         "ar": "تولّى الخلافة عام 1184م خلفاً لأبيه أبي يعقوب. حكم إمبراطورية تمتد من الأطلسي إلى ليبيا وإسبانيا. أمر ببناء مساجد ضخمة في الرباط ومراكش وإشبيلية. توفي عام 1199م قبل أن يكتمل مسجد حسان العملاق.",
         "en": "Succeeding his father Abu Yaqub in 1184, Yaqub al-Mansur ruled an empire from the Atlantic to Libya and Spain. He ordered the construction of grand mosques in Rabat, Marrakech, and Seville. He died in 1199 before his grand Hassan Mosque could be completed."
@@ -1747,15 +1530,13 @@
         "slug": "yaqub-al-mansur-almohad-caliph",
         "altText": "صومعة حسان في الرباط التي أمر ببنائها الخليفة الموحدي يعقوب المنصور"
       },
-      "modelUrl": "https://prqbbzynmnkwhunusdbw.supabase.co/storage/v1/object/public/3d_assets/monuments/1773581538673-hassan_tower_rabat_-_morocco.glb",
-      "audioUrl": "/audio/mysterious-merchich.mp3",
-      "videoUrl": "https://www.youtube.com/embed/g8vHhgh6oM0"
+      "modelUrl": "https://prqbbzynmnkwhunusdbw.supabase.co/storage/v1/object/public/3d_assets/monuments/1773581538673-hassan_tower_rabat_-_morocco.glb"
     },
     {
       "id": "ahmad-al-mansur",
       "name": {
         "ar": "أحمد المنصور السعدي",
-        "en": "Ahmad al-Mansur al-Dhahabi (Saadian Sultan)"
+        "en": "Ahmad al-Mansur"
       },
       "desc": {
         "ar": "أحمد المنصور السعدي (1578-1603م) الذهبي، أعظم سلاطين المغرب السعدي. انتصر في معركة وادي المخازن وأضحى قوة دولية كبرى. فتح السودان الغربي وجلب الذهب والثروات لمراكش، ليبني قصر البديع الأسطوري.",
@@ -1763,6 +1544,7 @@
       },
       "imageUrl": null,
       "isPending": false,
+      "videoUrl": "https://www.youtube.com/embed/g8vHhgh6oM0",
       "history": {
         "ar": "تولّى العرش إثر انتصار وادي المخازن عام 1578م وحمل لقب المنصور. عزّز علاقات المغرب مع إنجلترا وعثمانيون وإلى افريقيا. أرسل جيوشاً عبر الصحراء لفتح إمبراطورية سونغاي عام 1591م وجلب كنوزها لمراكش.",
         "en": "Ascending after Alcácer Quibir in 1578, Ahmad cultivated ties with England and the Ottomans. In 1591 he sent an army across the Sahara to seize the Songhai Empire, flooding Marrakech with gold and enabling the construction of the Badi Palace, once the world's most magnificent."
@@ -1773,15 +1555,13 @@
         "slug": "ahmad-al-mansur-saadian-sultan",
         "altText": "أطلال قصر البديع في مراكش الذي بناه السلطان السعدي أحمد المنصور الذهبي"
       },
-      "modelUrl": "https://prqbbzynmnkwhunusdbw.supabase.co/storage/v1/object/public/3d_assets/monuments/1773581538673-hassan_tower_rabat_-_morocco.glb",
-      "audioUrl": "/audio/mysterious-merchich.mp3",
-      "videoUrl": "https://www.youtube.com/embed/g8vHhgh6oM0"
+      "modelUrl": "https://prqbbzynmnkwhunusdbw.supabase.co/storage/v1/object/public/3d_assets/monuments/1773581538673-hassan_tower_rabat_-_morocco.glb"
     },
     {
       "id": "moulay-ismail",
       "name": {
-        "ar": "مولاي إسماعيل العلوي",
-        "en": "Moulay Ismail ibn Sharif (Alawi Sultan)"
+        "ar": "مولاي إسماعيل",
+        "en": "Moulay Ismail"
       },
       "desc": {
         "ar": "مولاي إسماعيل (1672-1727م) السلطان الأطول حكماً في التاريخ المغربي. وحّد المغرب بقوة وطرد الأسبان من مازاغان والإنجليز من طنجة. بنى مكناس عاصمةً إمبراطورية بأسوار وقصور وإسطبلات أسطورية.",
@@ -1789,6 +1569,7 @@
       },
       "imageUrl": null,
       "isPending": false,
+      "videoUrl": "https://www.youtube.com/embed/g8vHhgh6oM0",
       "history": {
         "ar": "خلف أخاه مولاي الرشيد وحكم المغرب 55 عاماً. كوّن جيش البخاري من العبيد السود وبه أخضع القبائل وطرد المستعمرين. حوّل مكناس إلى عاصمة بباب منصور الشامخ وإسطبلات تستوعب آلاف الخيول.",
         "en": "Succeeding his brother Moulay al-Rashid, Ismail ruled 55 years. He built the Black Guard army (Jaysh al-Bukhari) to subdue tribes and expel colonizers. He transformed Meknes with its soaring Bab Mansour gate and immense granaries and stables."
@@ -1799,9 +1580,7 @@
         "slug": "moulay-ismail-alawi-sultan-meknes",
         "altText": "باب منصور لعلج في مكناس، التحفة المعمارية التي بناها مولاي إسماعيل"
       },
-      "modelUrl": "https://prqbbzynmnkwhunusdbw.supabase.co/storage/v1/object/public/3d_assets/monuments/1773581538673-hassan_tower_rabat_-_morocco.glb",
-      "audioUrl": "/audio/mysterious-merchich.mp3",
-      "videoUrl": "https://www.youtube.com/embed/g8vHhgh6oM0"
+      "modelUrl": "https://prqbbzynmnkwhunusdbw.supabase.co/storage/v1/object/public/3d_assets/monuments/1773581538673-hassan_tower_rabat_-_morocco.glb"
     },
     {
       "id": "abd-el-krim-el-khattabi",
@@ -1815,6 +1594,7 @@
       },
       "imageUrl": null,
       "isPending": false,
+      "videoUrl": "https://www.youtube.com/embed/g8vHhgh6oM0",
       "history": {
         "ar": "ولد في أجدير بالريف وتعلّم في فاس ومليلية. انتصر في أنوال 1921م وأسّس الجمهورية الريفية. أُجبر على الاستسلام لفرنسا وإسبانيا عام 1926م ونُفي إلى جزيرة ريونيون. رفض العودة لإسبانيا وتوفي في القاهرة.",
         "en": "Born in Ajdir in the Rif, educated in Fez and Melilla, he organized rebellious Rif tribes into a disciplined army. After Annual, he established the Rif Republic. Defeated by a joint Franco-Spanish force in 1926, he was exiled to Réunion, then escaped to Cairo where he died in 1963."
@@ -1825,15 +1605,13 @@
         "slug": "abd-el-krim-el-khattabi-rif-republic",
         "altText": "صورة تاريخية لعبد الكريم الخطابي زعيم الجمهورية الريفية ورمز المقاومة المغربية"
       },
-      "modelUrl": "https://prqbbzynmnkwhunusdbw.supabase.co/storage/v1/object/public/3d_assets/monuments/1773581538673-hassan_tower_rabat_-_morocco.glb",
-      "audioUrl": "/audio/mysterious-merchich.mp3",
-      "videoUrl": "https://www.youtube.com/embed/g8vHhgh6oM0"
+      "modelUrl": "https://prqbbzynmnkwhunusdbw.supabase.co/storage/v1/object/public/3d_assets/monuments/1773581538673-hassan_tower_rabat_-_morocco.glb"
     },
     {
       "id": "mohammed-v",
       "name": {
         "ar": "محمد الخامس",
-        "en": "Mohammed V (King of Morocco)"
+        "en": "Mohammed V"
       },
       "desc": {
         "ar": "محمد الخامس (1909-1961م) رمز الاستقلال المغربي ومؤسس المملكة الحديثة. قاد النضال من أجل تحرير المغرب من الحماية الفرنسية وأشرف على استقلاله عام 1956م.",
@@ -1841,6 +1619,7 @@
       },
       "imageUrl": null,
       "isPending": false,
+      "videoUrl": "https://www.youtube.com/embed/g8vHhgh6oM0",
       "history": {
         "ar": "وُلد سيدي محمد بن يوسف ووُلّي العرش عام 1927م. رفض التوقيع على مراسيم تعاون مع فرنسا النازية ودعم الوطنيين المغاربة. نُفي إلى جزيرة مدغشقر عام 1953م مما أشعل ثورة الملك والشعب وعاد 1955م كملك للمغرب المستقل.",
         "en": "Crowned as a French protectorate sultan in 1927, he refused to endorse Vichy French policies and supported Moroccan nationalists. Exiled to Madagascar in 1953, his deportation ignited the Revolution of the King and the People. He returned in 1955 as king of an independent Morocco."
@@ -1851,15 +1630,13 @@
         "slug": "mohammed-v-king-independence-morocco",
         "altText": "ضريح الملك محمد الخامس في الرباط، رمز استقلال المغرب ومؤسس المملكة الحديثة"
       },
-      "modelUrl": "https://prqbbzynmnkwhunusdbw.supabase.co/storage/v1/object/public/3d_assets/monuments/1773581538673-hassan_tower_rabat_-_morocco.glb",
-      "audioUrl": "/audio/mysterious-merchich.mp3",
-      "videoUrl": "https://www.youtube.com/embed/g8vHhgh6oM0"
+      "modelUrl": "https://prqbbzynmnkwhunusdbw.supabase.co/storage/v1/object/public/3d_assets/monuments/1773581538673-hassan_tower_rabat_-_morocco.glb"
     },
     {
       "id": "hassan-ii",
       "name": {
         "ar": "الحسن الثاني",
-        "en": "Hassan II (King of Morocco)"
+        "en": "Hassan II"
       },
       "desc": {
         "ar": "الحسن الثاني (1929-1999م) ملك المغرب من 1961م حتى وفاته. قاد المسيرة الخضراء 1975م لاسترداد الصحراء الغربية وأشرف على تحديث المغرب. بنى مسجد الحسن الثاني، أحد أضخم المساجد في العالم.",
@@ -1867,6 +1644,7 @@
       },
       "imageUrl": null,
       "isPending": false,
+      "videoUrl": "https://www.youtube.com/embed/g8vHhgh6oM0",
       "history": {
         "ar": "تولّى العرش بعد وفاة والده محمد الخامس. أخمد محاولتَي انقلاب عام 1971 و1972م. نظّم المسيرة الخضراء لاسترداد الصحراء الجنوبية. في أواخر حكمه أطلق مسار الإصلاح الديمقراطي ومراجعة دستور 1996م.",
         "en": "Ascending after his father's death in 1961, Hassan II survived two coup attempts (1971, 1972). He launched the 350,000-person Green March in 1975 to claim Western Sahara. In his final years he initiated democratic reforms and the 1996 constitutional revision."
@@ -1877,9 +1655,7 @@
         "slug": "hassan-ii-king-morocco-green-march",
         "altText": "مسجد الحسن الثاني في الدار البيضاء، أعظم إنجازات الملك الحسن الثاني المعمارية"
       },
-      "modelUrl": "https://prqbbzynmnkwhunusdbw.supabase.co/storage/v1/object/public/3d_assets/monuments/1773581538673-hassan_tower_rabat_-_morocco.glb",
-      "audioUrl": "/audio/mysterious-merchich.mp3",
-      "videoUrl": "https://www.youtube.com/embed/g8vHhgh6oM0"
+      "modelUrl": "https://prqbbzynmnkwhunusdbw.supabase.co/storage/v1/object/public/3d_assets/monuments/1773581538673-hassan_tower_rabat_-_morocco.glb"
     }
   ],
   "tourism": [
