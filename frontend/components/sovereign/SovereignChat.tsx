@@ -5,7 +5,7 @@ import { createPortal } from 'react-dom';
 import { Sparkles, X } from 'lucide-react';
 import dynamic from 'next/dynamic';
 
-const MohamedAmine_Official_Guide = dynamic(() => import('./MohamedAmine_Official_Guide'), { ssr: false });
+const MohamedAmine_Flash_Guide = dynamic(() => import('./MohamedAmine_Flash_Guide'), { ssr: false });
 
 export default function SovereignChat() {
     const [isOpen, setIsOpen] = useState(false);
@@ -50,9 +50,9 @@ export default function SovereignChat() {
                             </button>
                         </div>
                         
-                        {/* Body - Evaluated Human-Centric Component */}
+                        {/* Body - Evaluated Flash Component */}
                         <div className="flex-1 relative bg-black">
-                            <MohamedAmine_Official_Guide onClose={() => setIsOpen(false)} />
+                            <MohamedAmine_Flash_Guide onClose={() => setIsOpen(false)} />
                         </div>
                     </div>
                 </div>,
