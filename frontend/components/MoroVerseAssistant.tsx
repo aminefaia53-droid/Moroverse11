@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { motion, useAnimation, useMotionValue, useTransform, AnimatePresence } from 'framer-motion';
 import { useLanguage } from '../context/LanguageContext';
-import { Mic, MicOff, Send, X, Loader2 } from 'lucide-react';
+import { Mic, MicOff, Send, X, Loader2, Camera, CameraOff } from 'lucide-react';
 
 type Emotion = 'neutral' | 'happy' | 'concerned' | 'impressed' | 'listening' | 'thinking';
 type HistoryEntry = { role: 'user' | 'model'; text: string };
@@ -44,6 +44,18 @@ export default function MoroVerseAssistant() {
     const pendingTranscriptRef = useRef<string>('');
     const submittedRef = useRef<boolean>(false); // Prevents double-submit
     const containerControls = useAnimation();
+
+    // ── Google Lens Camera Mode ──────────────────────────────────────────────
+    const [cameraMode, setCameraMode] = useState(false);
+    const [cameraStream, setCameraStream] = useState<MediaStream | null>(null);
+    const [isVisionAnalyzing, setIsVisionAnalyzing] = useState(false);
+    const videoRef = useRef<HTMLVideoElement>(null);
+    const canvasRef = useRef<HTMLCanvasElement>(null);
+    const lensIntervalRef = useRef<NodeJS.Timeout | null>(null);
+    const isVisionAnalyzingRef = useRef(false);
+    useEffect(() => { isVisionAnalyzingRef.current = isVisionAnalyzing; }, [isVisionAnalyzing]);
+    // Stable ref so lens interval always has latest submitWithVision
+    const submitWithVisionRef = useRef<(speech: string) => void>(() => {});
     const mouseX = useMotionValue(0);
     const mouseY = useMotionValue(0);
 
@@ -157,6 +169,126 @@ export default function MoroVerseAssistant() {
         window.addEventListener('mousemove', onMove);
         return () => window.removeEventListener('mousemove', onMove);
     }, [mouseX, mouseY]);
+
+    // =========================================================
+    // GOOGLE LENS: capture current frame as base64
+    // =========================================================
+    const captureFrame = useCallback((): string | null => {
+        if (!videoRef.current || !canvasRef.current) return null;
+        const video = videoRef.current;
+        const canvas = canvasRef.current;
+        canvas.width = video.videoWidth || 640;
+        canvas.height = video.videoHeight || 480;
+        const ctx = canvas.getContext('2d');
+        if (!ctx) return null;
+        ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+        return canvas.toDataURL('image/jpeg', 0.8);
+    }, []);
+
+    // =========================================================
+    // GOOGLE LENS: Submit voice + camera frame → /api/vision
+    // =========================================================
+    const submitWithVision = useCallback(async (userMessage: string) => {
+        const frame = captureFrame();
+        if (!frame) return; // No frame, skip
+        console.log('LENS_DEBUG: Submitting vision call, userMessage:', userMessage || '(proactive)');
+        setIsVisionAnalyzing(true);
+        setEmotion('thinking');
+        const userEntry: HistoryEntry = { role: 'user', text: userMessage || '🔍 [Visual Analysis]' };
+        const newHistory = [...history, userEntry];
+        if (userMessage) setHistory(newHistory);
+
+        try {
+            const res = await fetch('/api/vision', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    imageBase64: frame,
+                    language: lang === 'ar' ? 'Arabic (Moroccan Darija mixing MSA)' : lang === 'fr' ? 'French' : 'English',
+                    contextMemory: { hasSeenWorkspace: false, conversationCount: history.length, lastTopics: [] },
+                    previousNarrative: history.filter(h => h.role === 'model').slice(-1)[0]?.text || '',
+                    userSpeech: userMessage,
+                    isProactive: !userMessage
+                })
+            });
+            const data = await res.json();
+            if (!res.ok || !data.result) throw new Error(data.error || 'Vision API error');
+
+            const aiText: string = data.result;
+            if (userMessage) setHistory([...newHistory, { role: 'model', text: aiText }]);
+            setMessage(aiText);
+            setEmotion('impressed');
+            setShowBubble(true);
+            speakText(aiText, lang);
+            setTimeout(() => { if (!showChat) { setShowBubble(false); setEmotion('neutral'); } }, 15000);
+        } catch (err: any) {
+            console.error('LENS_ERROR:', err);
+            setMessage(lang === 'ar' ? 'ما قدرتش نشوف مزيان — جرب مرة أخرى.' : 'Could not analyze the image. Try again.');
+            setEmotion('concerned');
+            setShowBubble(true);
+        } finally {
+            setIsVisionAnalyzing(false);
+        }
+    }, [captureFrame, history, lang, showChat]);
+
+    // Keep stable ref
+    useEffect(() => { submitWithVisionRef.current = submitWithVision; }, [submitWithVision]);
+
+    // =========================================================
+    // GOOGLE LENS: Toggle camera on/off
+    // =========================================================
+    const toggleCamera = useCallback(async () => {
+        if (cameraMode) {
+            // Turn off
+            if (lensIntervalRef.current) clearInterval(lensIntervalRef.current);
+            if (cameraStream) cameraStream.getTracks().forEach(t => t.stop());
+            setCameraStream(null);
+            setCameraMode(false);
+            setMessage(lang === 'ar' ? 'أُغلقت الكاميرا.' : 'Camera closed.');
+            setShowBubble(true);
+            setTimeout(() => { setShowBubble(false); setEmotion('neutral'); }, 3000);
+        } else {
+            // Turn on
+            try {
+                const stream = await navigator.mediaDevices.getUserMedia({
+                    video: { facingMode: 'environment', width: { ideal: 1280 } }
+                });
+                setCameraStream(stream);
+                setCameraMode(true);
+                if (videoRef.current) videoRef.current.srcObject = stream;
+                setEmotion('impressed');
+                setMessage(lang === 'ar' ? '👁️ العين السيادية مفتوحة — كنشوف معك!' : '👁️ Sovereign eye is open!');
+                setShowBubble(true);
+
+                // Google Lens Proactive Loop: analyze every 12 seconds silently
+                if (lensIntervalRef.current) clearInterval(lensIntervalRef.current);
+                lensIntervalRef.current = setInterval(() => {
+                    if (!isVisionAnalyzingRef.current) {
+                        submitWithVisionRef.current(''); // Proactive, no speech
+                    }
+                }, 12000);
+            } catch (err) {
+                console.error('CAMERA_ERROR:', err);
+                setMessage(lang === 'ar' ? 'تم رفض إذن الكاميرا.' : 'Camera permission denied.');
+                setEmotion('concerned');
+                setShowBubble(true);
+            }
+        }
+    }, [cameraMode, cameraStream, lang]);
+
+    // Sync video element when stream changes
+    useEffect(() => {
+        if (cameraStream && videoRef.current) videoRef.current.srcObject = cameraStream;
+    }, [cameraStream]);
+
+    // Cleanup camera on unmount
+    useEffect(() => {
+        return () => {
+            if (lensIntervalRef.current) clearInterval(lensIntervalRef.current);
+            if (cameraStream) cameraStream.getTracks().forEach(t => t.stop());
+        };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     // =========================================================
     // AI CONCIERGE — Send message to /api/concierge
@@ -298,12 +430,17 @@ export default function MoroVerseAssistant() {
                     setInputText(transcript);
                 }
 
-                // Submit immediately on final result (same path as text input)
+                // Submit immediately on final result
+                // KEY: if camera is open → route to vision API (Google Lens mode)
                 if (result.isFinal && transcript && !submittedRef.current) {
                     submittedRef.current = true;
                     setIsSendingVoice(true);
-                    console.log('VOICE_DEBUG: Submitting final transcript:', JSON.stringify(transcript));
-                    sendToConciergeRef.current(transcript, true);
+                    console.log('VOICE_DEBUG: Submitting transcript:', JSON.stringify(transcript), 'cameraMode:', cameraMode);
+                    if (cameraMode) {
+                        submitWithVisionRef.current(transcript);
+                    } else {
+                        sendToConciergeRef.current(transcript, true);
+                    }
                     setTimeout(() => setIsSendingVoice(false), 3000);
                 }
             }
@@ -336,8 +473,7 @@ export default function MoroVerseAssistant() {
             setShowBubble(true);
         };
 
-        // onend safety net: on some mobile browsers onresult fires AFTER onend.
-        // If we have a transcript that wasn't submitted yet, submit it here.
+        // onend safety net (mirrored from MoroVerseAssistant proven pattern)
         recognition.onend = () => {
             setIsListening(false);
             console.log(`VOICE_DEBUG: onend fired. pending="${pendingTranscriptRef.current}" submitted=${submittedRef.current}`);
@@ -345,8 +481,12 @@ export default function MoroVerseAssistant() {
                 const transcript = pendingTranscriptRef.current;
                 submittedRef.current = true;
                 setIsSendingVoice(true);
-                console.log('VOICE_DEBUG: onend fallback submitting:', JSON.stringify(transcript));
-                sendToConciergeRef.current(transcript, true);
+                console.log('VOICE_DEBUG: onend fallback. cameraMode:', cameraMode, 'transcript:', JSON.stringify(transcript));
+                if (cameraMode) {
+                    submitWithVisionRef.current(transcript);
+                } else {
+                    sendToConciergeRef.current(transcript, true);
+                }
                 setTimeout(() => setIsSendingVoice(false), 3000);
             }
         };
@@ -453,16 +593,52 @@ export default function MoroVerseAssistant() {
                         exit={{ opacity: 0, scale: 0.85, y: 20 }}
                         className="bg-[#0a0a0a]/95 border border-[#C5A059]/30 rounded-3xl rounded-br-none p-4 w-[280px] md:w-[320px] mb-2 flex flex-col gap-3"
                     >
+                        {/* Hidden canvas for frame capture */}
+                        <canvas ref={canvasRef} style={{ display: 'none' }} />
+
                         {/* Header */}
                         <div className="flex items-center justify-between">
                             <div>
                                 <p className="text-[#C5A059] font-bold text-sm tracking-wide">محمد أمين — المستشار الملكي</p>
-                                <p className="text-white/40 text-[10px]">Imperial Concierge · Mohamed Amine</p>
+                                <p className="text-white/40 text-[10px]">
+                                    {cameraMode ? '👁️ وضع Google Lens · نشط' : 'Imperial Concierge · Mohamed Amine'}
+                                </p>
                             </div>
                             <button onClick={() => setShowChat(false)} className="text-white/30 hover:text-white transition-colors p-1">
                                 <X className="w-4 h-4" />
                             </button>
                         </div>
+
+                        {/* Google Lens Camera Preview */}
+                        {cameraMode && (
+                            <div className="relative w-full rounded-2xl overflow-hidden bg-black border border-[#C5A059]/40" style={{ aspectRatio: '16/9' }}>
+                                <video
+                                    ref={videoRef}
+                                    autoPlay
+                                    playsInline
+                                    muted
+                                    className="w-full h-full object-cover"
+                                />
+                                {isVisionAnalyzing && (
+                                    <div className="absolute inset-0 flex items-center justify-center bg-black/50 backdrop-blur-sm">
+                                        <div className="flex flex-col items-center gap-2">
+                                            <Loader2 className="w-8 h-8 text-[#C5A059] animate-spin" />
+                                            <span className="text-[#C5A059] text-xs font-bold">
+                                                {lang === 'ar' ? 'يحلل المشهد...' : 'Analyzing...'}
+                                            </span>
+                                        </div>
+                                    </div>
+                                )}
+                                {/* Scanning line animation */}
+                                {!isVisionAnalyzing && (
+                                    <div className="absolute inset-x-0 h-0.5 bg-gradient-to-r from-transparent via-[#C5A059] to-transparent animate-[scan_2s_ease-in-out_infinite] top-1/3 opacity-70" />
+                                )}
+                                <div className="absolute top-2 left-2 flex items-center gap-1.5">
+                                    <div className="w-2 h-2 rounded-full bg-red-500 animate-pulse" />
+                                    <span className="text-white text-[9px] font-bold uppercase tracking-wider">LIVE</span>
+                                </div>
+                            </div>
+                        )}
 
                         {/* Conversation History */}
                         {history.length > 0 && (
@@ -490,17 +666,34 @@ export default function MoroVerseAssistant() {
 
                         {/* Input Row */}
                         <div className="flex gap-2 items-center">
+                            {/* Mic Button */}
                             <button
                                 onClick={isListening ? stopListening : startListening}
-                                disabled={isSendingVoice}
-                                className={`p-2.5 rounded-full border transition-all flex-shrink-0 ${isSendingVoice
+                                disabled={isSendingVoice || isVisionAnalyzing}
+                                title={cameraMode ? (lang === 'ar' ? 'تكلم + الكاميرا تحلل' : 'Speak + Camera analyzes') : (lang === 'ar' ? 'تكلم' : 'Speak')}
+                                className={`p-2.5 rounded-full border transition-all flex-shrink-0 ${isSendingVoice || isVisionAnalyzing
                                     ? 'bg-[#C5A059]/40 border-[#C5A059] text-white animate-pulse cursor-wait'
                                     : isListening
                                         ? 'bg-red-600 border-red-500 text-white animate-pulse'
-                                        : 'bg-[#C5A059]/10 border-[#C5A059]/30 text-[#C5A059] hover:bg-[#C5A059]/20'
+                                        : cameraMode
+                                            ? 'bg-[#C5A059] border-[#C5A059] text-black shadow-[0_0_15px_rgba(197,160,89,0.5)]'
+                                            : 'bg-[#C5A059]/10 border-[#C5A059]/30 text-[#C5A059] hover:bg-[#C5A059]/20'
                                     }`}
                             >
-                                {isSendingVoice ? <Loader2 className="w-4 h-4 animate-spin" /> : isListening ? <MicOff className="w-4 h-4" /> : <Mic className="w-4 h-4" />}
+                                {isSendingVoice || isVisionAnalyzing ? <Loader2 className="w-4 h-4 animate-spin" /> : isListening ? <MicOff className="w-4 h-4" /> : <Mic className="w-4 h-4" />}
+                            </button>
+
+                            {/* Camera / Google Lens Button */}
+                            <button
+                                onClick={toggleCamera}
+                                title={cameraMode ? (lang === 'ar' ? 'أغلق الكاميرا' : 'Close camera') : (lang === 'ar' ? 'فتح الكاميرا (Google Lens)' : 'Open camera (Google Lens)')}
+                                className={`p-2.5 rounded-full border transition-all flex-shrink-0 ${
+                                    cameraMode
+                                        ? 'bg-red-600/80 border-red-500 text-white shadow-[0_0_15px_rgba(239,68,68,0.5)] animate-pulse'
+                                        : 'bg-white/5 border-white/20 text-white/60 hover:bg-white/10 hover:text-white'
+                                }`}
+                            >
+                                {cameraMode ? <CameraOff className="w-4 h-4" /> : <Camera className="w-4 h-4" />}
                             </button>
                             <input
                                 ref={inputRef}
