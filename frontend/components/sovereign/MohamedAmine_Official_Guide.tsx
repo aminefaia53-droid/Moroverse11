@@ -162,7 +162,7 @@ export default function MohamedAmine_Official_Guide({ onClose }: { onClose: () =
 
         recognition.onend = () => {
              // Restart strictly if IDLE (didn't go into ANALYZING or SPEAKING)
-             if (!micMutedRef.current && agentStateRef.current === "IDLE" && agentStateRef.current !== "LISTENING") {
+             if (!micMutedRef.current && agentStateRef.current === "IDLE") {
                  setTimeout(() => { try { recognition.start(); } catch(e){} }, 300);
              } else if (agentStateRef.current === "LISTENING") {
                  setAgentState("IDLE");
