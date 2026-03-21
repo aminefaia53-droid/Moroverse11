@@ -1,12 +1,10 @@
 "use client";
 
 import React, { useEffect, useRef, useState, useCallback } from 'react';
-import { SwitchCamera, PhoneOff, Mic, MicOff, Video, Sparkles, Globe2 } from 'lucide-react';
-import * as tf from '@tensorflow/tfjs';
-import '@tensorflow/tfjs-backend-wasm';
-import * as cocoSsd from '@tensorflow-models/coco-ssd';
+import { SwitchCamera, PhoneOff, Mic, MicOff, Globe2, Loader2, Sparkles, BrainCircuit } from 'lucide-react';
 
 type SupportedLanguage = "English" | "French" | "Arabic (Moroccan Darija mixing MSA)";
+type AgentState = "IDLE" | "LISTENING" | "ANALYZING_FRAME" | "SPEAKING";
 
 export default function MohamedAmine_Official_Guide({ onClose }: { onClose: () => void }) {
     const videoRef = useRef<HTMLVideoElement>(null);
@@ -14,118 +12,91 @@ export default function MohamedAmine_Official_Guide({ onClose }: { onClose: () =
     const [stream, setStream] = useState<MediaStream | null>(null);
     const [facingMode, setFacingMode] = useState<"environment" | "user">("environment");
     
-    // UI & Logic States
-    const [isThinking, setIsThinking] = useState(false);
-    const [isListening, setIsListening] = useState(false); // Indicates the Mic API is actively recording
-    const [isUserSpeaking, setIsUserSpeaking] = useState(false); // Indicates interim voice detection (Visual sync)
-    const [speechActive, setSpeechActive] = useState(false); // System is talking
+    // The Supreme 3-State Machine
+    const [agentState, setAgentState] = useState<AgentState>("IDLE");
+    
     const [micMuted, setMicMuted] = useState(false);
     const [language, setLanguage] = useState<SupportedLanguage>("English");
     const [memory, setMemory] = useState<{ hasSeenWorkspace: boolean }>({ hasSeenWorkspace: false });
 
-    // Refs for closures and loops
-    const modelRef = useRef<any>(null);
+    // Core Voice/Context Refs
     const recognitionRef = useRef<any>(null);
     const silenceTimer = useRef<NodeJS.Timeout | null>(null);
-    const frameBuffer = useRef<string[]>([]);
-    const lastSpoken = useRef<string>("");
     const previousNarrative = useRef<string>("");
 
-    // Refs to avoid stale closures in Speech API onend event
+    // Refs to prevent stale closures
     const micMutedRef = useRef(micMuted);
-    const speechActiveRef = useRef(speechActive);
-    const isThinkingRef = useRef(isThinking);
-
+    const agentStateRef = useRef(agentState);
+    
     useEffect(() => { micMutedRef.current = micMuted; }, [micMuted]);
-    useEffect(() => { speechActiveRef.current = speechActive; }, [speechActive]);
-    useEffect(() => { isThinkingRef.current = isThinking; }, [isThinking]);
+    useEffect(() => { agentStateRef.current = agentState; }, [agentState]);
 
-    // Load Memory
+    // Memory Initialization
     useEffect(() => {
         try {
             const stored = localStorage.getItem("moroVerseWorkspaceMemory");
             if (stored) setMemory(JSON.parse(stored));
-        } catch (e) { console.error("Memory access denied", e); }
+        } catch (e) {}
     }, []);
 
-    // TTS Engine
-    const speakText = useCallback((text: string, forceLang: SupportedLanguage) => {
-        if ('speechSynthesis' in window) {
-            window.speechSynthesis.cancel(); 
-            const utterance = new SpeechSynthesisUtterance(text);
+    // Sequenced Sentence Execution for better browser TTS naturality
+    const playSequencedAudio = useCallback((text: string, forceLang: SupportedLanguage) => {
+        if (!('speechSynthesis' in window)) return;
+        window.speechSynthesis.cancel(); 
+        
+        let bcp47 = 'en-US';
+        if (forceLang.includes("French")) bcp47 = 'fr-FR';
+        if (forceLang.includes("Arabic")) bcp47 = 'ar-SA';
+        
+        // Smart Splitting to insert natural pauses and reduce "robot rush"
+        // Splitting by typical sentence enders (, . ?)
+        const sentences = text.match(/[^.!?]+[.!?]*/g) || [text];
+        
+        let i = 0;
+        const playNext = () => {
+            if (i >= sentences.length) {
+                setAgentState("IDLE");
+                restartListening();
+                return;
+            }
             
-            let bcp47 = 'en-US';
-            if (forceLang.includes("French")) bcp47 = 'fr-FR';
-            if (forceLang.includes("Arabic")) bcp47 = 'ar-SA';
+            const chunk = sentences[i].trim();
+            if(!chunk) { i++; playNext(); return; }
             
+            const utterance = new SpeechSynthesisUtterance(chunk);
             utterance.lang = bcp47;
-            utterance.rate = 1.0;
+            utterance.rate = 0.95; // Slightly slower feels more poetic
+            utterance.pitch = 0.9;
             
             const voices = window.speechSynthesis.getVoices();
-            const voice = voices.find(v => v.lang.startsWith(bcp47.split('-')[0]) && (v.name.includes('Male') || v.name.includes('Google'))) || voices.find(v => v.lang.startsWith(bcp47.split('-')[0])) || voices[0];
+            const voice = voices.find(v => v.lang.startsWith(bcp47.split('-')[0]) && (v.name.includes('Male') || v.name.includes('Google') || v.name.includes('Tarik'))) 
+                       || voices.find(v => v.lang.startsWith(bcp47.split('-')[0])) || voices[0];
             if (voice) utterance.voice = voice;
             
-            setSpeechActive(true);
-            
-            // Critical fix: Pause mic while system is talking to prevent echoing itself
-            if (recognitionRef.current) {
-                try { recognitionRef.current.stop(); } catch(e) {}
-            }
-
-            utterance.onstart = () => setIsThinking(true);
             utterance.onend = () => {
-                setIsThinking(false);
-                setSpeechActive(false);
-                // Restart listening organically
-                if (!micMutedRef.current && recognitionRef.current) {
-                    setTimeout(() => { try{ recognitionRef.current.start(); }catch(e){} }, 500);
-                }
+                i++;
+                // Small explicit pause between sentences
+                setTimeout(playNext, 200);
             };
+            
+            utterance.onerror = () => {
+                i++;
+                playNext();
+            };
+            
             window.speechSynthesis.speak(utterance);
-        }
-    }, []);
-
-    // TFJS Initialization
-    useEffect(() => {
-        let isMounted = true;
-        async function loadModel() {
-            try {
-                await tf.setBackend('wasm');
-                await tf.ready();
-                const loadedModel = await cocoSsd.load();
-                if(isMounted) {
-                    modelRef.current = loadedModel;
-                    speakText("Supreme Architecture initialized. Zero-latency vision active.", "English");
-                }
-            } catch (err) { console.error("TFJS WASM Error:", err); }
-        }
-        loadModel();
-        return () => { 
-            isMounted = false; 
-            if('speechSynthesis' in window) window.speechSynthesis.cancel();
-            if(recognitionRef.current) { try{ recognitionRef.current.stop(); } catch(e){} }
         };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        
+        setAgentState("SPEAKING");
+        playNext();
     }, []);
 
-    // Environmental Lighting Calculus
-    const evaluateLighting = (ctx: CanvasRenderingContext2D, width: number, height: number) => {
-        const imageData = ctx.getImageData(0, 0, width, height).data;
-        let sum = 0;
-        for (let i = 0; i < imageData.length; i += 40) {
-            sum += (0.299 * imageData[i] + 0.587 * imageData[i + 1] + 0.114 * imageData[i + 2]); 
-        }
-        const avg = sum / (imageData.length / 40);
-        if (avg < 50) return "Dark/Low-Light";
-        if (avg > 200) return "Very Bright/Over-exposed";
-        return "Normal Daylight/Office Lighting";
-    };
-
-    // The Master Intelligence Pulse (Optimized for Non-Blocking execution)
-    const triggerIntelligencePulse = async (detectedObject: string | null, userSpeechText: string = "", isProactive: boolean = false) => {
-        if (!videoRef.current || !canvasRef.current || isThinkingRef.current || speechActiveRef.current) return;
+    // Deep Intelligence Vision Pulse
+    const triggerIntelligencePulse = async (userSpeechText: string = "", isProactive: boolean = false) => {
+        if (!videoRef.current || !canvasRef.current || agentStateRef.current === "ANALYZING_FRAME" || agentStateRef.current === "SPEAKING") return;
         
-        setIsThinking(true); // Engages visual pulse
+        setAgentState("ANALYZING_FRAME"); 
+        pauseListening(); // Shut off mic so AI doesn't hear itself
         
         try {
             const video = videoRef.current;
@@ -136,157 +107,127 @@ export default function MohamedAmine_Official_Guide({ onClose }: { onClose: () =
             if(!ctx) return;
             ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
             
-            const lighting = evaluateLighting(ctx, canvas.width, canvas.height);
-            const base64Image = canvas.toDataURL('image/jpeg', 0.8);
+            const base64Image = canvas.toDataURL('image/jpeg', 0.85); // High quality frame
             
-            // Pausing Mic explicitly before fetch to prevent stacked promises
-            if (recognitionRef.current) {
-                try { recognitionRef.current.stop(); } catch(e) {}
-            }
-
             const res = await fetch('/api/vision', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
                     imageBase64: base64Image,
-                    detectedObject,
                     language,
                     contextMemory: memory,
                     previousNarrative: previousNarrative.current,
                     userSpeech: userSpeechText,
-                    lightingCondition: lighting,
                     isProactive
                 })
             });
             
             const data = await res.json();
             if (res.ok) {
-                if (detectedObject) lastSpoken.current = detectedObject; 
                 previousNarrative.current = data.result; 
                 
-                if (detectedObject && (detectedObject.includes('laptop') || detectedObject.includes('tv') || detectedObject.includes('monitor') || detectedObject.includes('keyboard'))) {
+                // Super basic memory heuristic without TFJS
+                if (data.result.toLowerCase().includes('workspace') || data.result.toLowerCase().includes('command center')) {
                     const newMemory = { hasSeenWorkspace: true };
                     setMemory(newMemory);
                     localStorage.setItem("moroVerseWorkspaceMemory", JSON.stringify(newMemory));
                 }
                 
-                // Voice playback removes loading state internally
-                speakText(data.result, language);
+                playSequencedAudio(data.result, language);
             } else {
-                setIsThinking(false);
+                setAgentState("IDLE");
+                restartListening();
             }
         } catch (error) {
-            console.error("Gemini Vision Error:", error);
-            setIsThinking(false);
-            if (!micMutedRef.current && recognitionRef.current) try { recognitionRef.current.start(); } catch(e){}
+            console.error("Vision Overdrive Error:", error);
+            setAgentState("IDLE");
+            restartListening();
         } finally {
             resetSilenceTimer();
         }
     };
 
     // Robust Speech Recognition
-    useEffect(() => {
+    const setupSpeech = useCallback(() => {
         const SpeechRecognition = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
-        if (SpeechRecognition && !recognitionRef.current) {
-            const recognition = new SpeechRecognition();
-            recognition.continuous = true; // Stay active to prevent "Standby" lock
-            recognition.interimResults = true; // Instantly react to user voice
-            
-            recognition.onstart = () => {
-                setIsListening(true);
-            };
+        if (!SpeechRecognition) return;
 
-            recognition.onend = () => {
-                setIsListening(false);
-                setIsUserSpeaking(false);
-                // Auto-Restart logic if not muted and system is idle
-                if (!micMutedRef.current && !speechActiveRef.current && !isThinkingRef.current) {
-                    setTimeout(() => { try { recognition.start(); } catch(e) {} }, 300);
-                }
-            };
-            
-            recognition.onerror = (event: any) => {
-                console.warn("STT Error:", event.error);
-                setIsUserSpeaking(false);
-            };
-            
-            recognition.onresult = (event: any) => {
-                setIsUserSpeaking(true); // Provide Instant UI Feedback!
-                resetSilenceTimer();
-                
-                let finalTranscript = "";
-                for (let i = event.resultIndex; i < event.results.length; ++i) {
-                    if (event.results[i].isFinal) {
-                        finalTranscript += event.results[i][0].transcript;
-                    }
-                }
-                
-                if (finalTranscript.trim().length > 2) {
-                    setIsUserSpeaking(false);
-                    triggerIntelligencePulse(null, finalTranscript.trim(), false);
-                }
-            };
-            
-            recognitionRef.current = recognition;
-        }
+        const recognition = new SpeechRecognition();
+        recognition.continuous = true; 
+        recognition.interimResults = true; 
+        
+        recognition.onstart = () => {
+            if (agentStateRef.current === "IDLE") setAgentState("LISTENING");
+        };
 
+        recognition.onend = () => {
+             // Restart strictly if IDLE (didn't go into ANALYZING or SPEAKING)
+             if (!micMutedRef.current && agentStateRef.current === "IDLE" && agentStateRef.current !== "LISTENING") {
+                 setTimeout(() => { try { recognition.start(); } catch(e){} }, 300);
+             } else if (agentStateRef.current === "LISTENING") {
+                 setAgentState("IDLE");
+                 setTimeout(() => { try { recognition.start(); } catch(e){} }, 300);
+             }
+        };
+        
+        recognition.onresult = (event: any) => {
+            if (agentStateRef.current === "ANALYZING_FRAME" || agentStateRef.current === "SPEAKING") return;
+            
+            setAgentState("LISTENING");
+            resetSilenceTimer();
+            
+            let finalTranscript = "";
+            for (let i = event.resultIndex; i < event.results.length; ++i) {
+                if (event.results[i].isFinal) finalTranscript += event.results[i][0].transcript;
+            }
+            
+            if (finalTranscript.trim().length > 2) {
+                triggerIntelligencePulse(finalTranscript.trim(), false);
+            }
+        };
+        
+        recognitionRef.current = recognition;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [language, memory]);
+
+    useEffect(() => {
+        setupSpeech();
+    }, [setupSpeech]);
+
+    useEffect(() => {
         if (recognitionRef.current) {
             recognitionRef.current.lang = language.includes("Arabic") ? "ar-MA" : language.includes("French") ? "fr-FR" : "en-US";
-            // Kickstart if valid
-            if (!micMuted && !isListening && !speechActive && !isThinking) {
-                try { recognitionRef.current.start(); } catch(e) {}
-            }
+            restartListening();
         }
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [language, micMuted]);
 
-    // Proactive Silence Management
+    const pauseListening = () => {
+        if (recognitionRef.current) {
+            try { recognitionRef.current.stop(); } catch(e){}
+        }
+    };
+
+    const restartListening = () => {
+        if (!micMutedRef.current && recognitionRef.current && agentStateRef.current !== "ANALYZING_FRAME" && agentStateRef.current !== "SPEAKING") {
+            try { recognitionRef.current.start(); } catch(e) {}
+        }
+    };
+
+    // Proactive Silence Management (Deep Analysis, no rapid polling)
     const resetSilenceTimer = useCallback(() => {
         if (silenceTimer.current) clearTimeout(silenceTimer.current);
         silenceTimer.current = setTimeout(() => {
-            if (!isThinkingRef.current && !speechActiveRef.current && !isUserSpeaking) {
-                // User silent for 15s. Lead the conversation.
-                triggerIntelligencePulse(null, "", true);
+            if (agentStateRef.current === "IDLE" || agentStateRef.current === "LISTENING") {
+                triggerIntelligencePulse("", true);
             }
-        }, 15000);
+        }, 12000); // 12 quiet seconds triggers a deep philosophical hallucination 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [isUserSpeaking]);
+    }, []);
 
-    // Continuous Frame Analysis Loop (WASM Buffer)
-    useEffect(() => {
-        resetSilenceTimer();
-        let pollingInterval = setInterval(async () => {
-            if (speechActive || isThinking || isUserSpeaking || !modelRef.current) return; 
-            
-            const video = videoRef.current;
-            const canvas = canvasRef.current;
-            if (!video || !canvas || video.readyState !== 4) return;
+    useEffect(() => { resetSilenceTimer(); }, [resetSilenceTimer]);
 
-            const ctx = canvas.getContext('2d');
-            if(!ctx) return;
-            ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-            
-            const predictions = await modelRef.current.detect(video);
-            const currentObject = predictions.length > 0 ? predictions[0].class.toLowerCase() : "background";
-            
-            frameBuffer.current.push(currentObject);
-            if (frameBuffer.current.length > 3) frameBuffer.current.shift();
-
-            const isStabilized = frameBuffer.current.length === 3 && frameBuffer.current.every(val => val === frameBuffer.current[0]);
-
-            if (isStabilized && currentObject !== 'background' && currentObject !== lastSpoken.current) {
-                triggerIntelligencePulse(currentObject, "", false);
-            }
-        }, 800); 
-
-        return () => {
-            clearInterval(pollingInterval);
-            if (silenceTimer.current) clearTimeout(silenceTimer.current);
-        };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [speechActive, isThinking, isUserSpeaking, language, memory]);
-
-    // Camera Init
+    // Live Camera Sync
     const startCamera = useCallback(async (mode: "environment" | "user") => {
         try {
             if (stream) stream.getTracks().forEach(track => track.stop());
@@ -298,7 +239,16 @@ export default function MohamedAmine_Official_Guide({ onClose }: { onClose: () =
 
     useEffect(() => {
         startCamera(facingMode);
-        return () => { if (stream) stream.getTracks().forEach(track => track.stop()); };
+        
+        // Initial Startup Audio
+        playSequencedAudio("The sovereign eye is open. Unbound visual architecture loaded.", "English");
+        
+        return () => { 
+            if (stream) stream.getTracks().forEach(track => track.stop());
+            if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+            if (recognitionRef.current) { try{ recognitionRef.current.stop(); }catch(e){} }
+            if (silenceTimer.current) clearTimeout(silenceTimer.current);
+        };
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
@@ -328,56 +278,71 @@ export default function MohamedAmine_Official_Guide({ onClose }: { onClose: () =
         <div className="flex flex-col h-[100dvh] w-full bg-[#000] relative overflow-hidden font-sans">
             <canvas ref={canvasRef} style={{ display: 'none' }} />
             
-            {/* 1:1 Live Video Interface */}
+            {/* Live Visual Input (Clean, no filters blocking reality) */}
             <video 
                 ref={videoRef} 
                 autoPlay 
                 playsInline 
                 muted 
-                className="absolute inset-0 w-full h-full object-cover z-0"
+                className={`absolute inset-0 w-full h-full object-cover z-0 transition-opacity duration-1000 ${agentState === "ANALYZING_FRAME" ? "opacity-70 blur-sm grayscale-[0.3]" : "opacity-100"}`}
             />
-            <div className="absolute inset-0 bg-black/20 z-0 pointer-events-none"></div>
+            <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/80 z-0 pointer-events-none"></div>
 
             {/* Caller Identification */}
-            <div className="absolute top-6 left-6 z-10 flex flex-col gap-1 drop-shadow-2xl pointer-events-none">
-                <h1 className="text-white text-2xl md:text-3xl font-bold tracking-wide">Mohamed Amine</h1>
-                <p className="text-white/80 text-xs md:text-sm flex items-center gap-2 uppercase tracking-widest font-mono">
-                    {/* Visual Pulse for Audio Sync */}
-                    <span className={`w-2 h-2 rounded-full ${isUserSpeaking ? 'bg-yellow-400 animate-ping' : isListening ? 'bg-[#0FF] animate-pulse' : 'bg-red-500'}`}></span>
-                    {isUserSpeaking ? 'User Speaking...' : isListening ? 'Ambient Mic Active' : 'Mic Standby'}
+            <div className="absolute top-10 left-6 z-10 flex flex-col gap-1 drop-shadow-2xl pointer-events-none">
+                <h1 className="text-white text-3xl font-extrabold tracking-wide uppercase font-serif italic">Amine Core</h1>
+                <p className="text-[#0FF] text-xs font-bold tracking-[0.2em] uppercase font-mono shadow-black drop-shadow-md">
+                    Sovereign Machine
                 </p>
+                {memory.hasSeenWorkspace && (
+                    <div className="mt-2 text-yellow-400 text-[9px] uppercase tracking-widest font-bold bg-black/50 px-2 py-1 rounded inline-block backdrop-blur-md border border-yellow-400/30">
+                        Sacred Workspace Identified
+                    </div>
+                )}
+            </div>
+
+            {/* The Artificial 'Wijdan' Soul Orb (State Visualization) */}
+            <div className={`absolute top-10 right-6 w-20 h-20 md:w-28 md:h-28 rounded-full shadow-[0_0_50px_rgba(0,0,0,0.5)] border z-10 transition-all duration-700 pointer-events-none flex items-center justify-center overflow-hidden
+                ${agentState === "IDLE" ? 'border-white/20 bg-black/40 scale-100' : ''}
+                ${agentState === "LISTENING" ? 'border-[#FAFF00] shadow-[0_0_40px_#FAFF00] bg-black/60 scale-110' : ''}
+                ${agentState === "ANALYZING_FRAME" ? 'border-[#0FF] shadow-[0_0_80px_#0FF] bg-[#0FF]/20 scale-125 animate-pulse' : ''}
+                ${agentState === "SPEAKING" ? 'border-[#FF00AA] shadow-[0_0_60px_#FF00AA] bg-black/80 scale-100' : ''}
+            `}>
+                <div className="absolute inset-0 bg-gradient-to-tr from-transparent to-white/10 opacity-50"></div>
                 
-                {/* Visualizing Active Rules */}
-                <div className="flex flex-col gap-1 mt-2 items-start">
-                    <div className="text-[#0FF] text-[9px] uppercase tracking-widest font-bold bg-black/50 px-2 py-1 rounded inline-block backdrop-blur-md border border-[#0FF]/30">
-                        Zero-Latency Framework
-                    </div>
-                </div>
+                {agentState === "IDLE" && <BrainCircuit className="w-8 h-8 text-white/50 animate-pulse" />}
+                {agentState === "LISTENING" && <Mic className="w-8 h-8 text-[#FAFF00] animate-bounce" />}
+                {agentState === "ANALYZING_FRAME" && <Loader2 className="w-10 h-10 text-[#0FF] animate-spin" />}
+                {agentState === "SPEAKING" && <Sparkles className="w-10 h-10 text-[#FF00AA] animate-ping" />}
             </div>
 
-            {/* Picture in Picture (PIP): Artificial Avatar View */}
-            <div className={`absolute top-6 right-6 w-28 h-40 md:w-36 md:h-52 bg-[#050505] rounded-xl overflow-hidden shadow-2xl border ${isThinking ? 'border-[#0FF] shadow-[0_0_30px_#0FF]' : 'border-white/20'} z-10 transition-all duration-300 pointer-events-none`}>
-                <div className="absolute inset-0 bg-gradient-to-b from-[#111] to-black z-0"></div>
-                <div className="absolute inset-0 flex flex-col items-center justify-center z-10">
-                    <div className={`w-14 h-14 rounded-full border-2 flex items-center justify-center transition-all duration-300 ${isThinking ? 'border-[#0FF] bg-[#0FF]/10 scale-110 animate-pulse' : 'border-white/10 bg-white/5'}`}>
-                        <Sparkles className={`w-6 h-6 ${isThinking ? 'text-[#0FF]' : 'text-white/40'}`} />
-                    </div>
-                </div>
+            {/* State Announcement Tape */}
+            <div className="absolute top-[8.5rem] right-6 z-10 flex justify-end">
+                <span className={`text-[10px] uppercase font-mono font-bold tracking-widest px-3 py-1 rounded-full backdrop-blur-md border transition-colors
+                    ${agentState === "IDLE" ? 'text-white/50 border-white/10 bg-black/30' : ''}
+                    ${agentState === "LISTENING" ? 'text-yellow-400 border-yellow-400/30 bg-black/60' : ''}
+                    ${agentState === "ANALYZING_FRAME" ? 'text-[#0FF] border-[#0FF]/50 bg-[#0FF]/10' : ''}
+                    ${agentState === "SPEAKING" ? 'text-[#FF00AA] border-[#FF00AA]/50 bg-black/80' : ''}
+                `}>
+                    {agentState === "IDLE" ? "STANDING BY" : 
+                     agentState === "LISTENING" ? "HEARING VOCALS..." : 
+                     agentState === "ANALYZING_FRAME" ? "SENSORY OVERDRIVE" : "SOVEREIGN ENUNCIATION"}
+                </span>
             </div>
 
-            {/* AI Speech Active Form */}
-            {speechActive && (
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 flex items-end gap-1 h-8 pointer-events-none">
-                    <span className="w-2 bg-[#0FF] rounded-full animate-bounce" style={{ height: '30%', animationDelay: '0.1s' }}></span>
-                    <span className="w-2 bg-[#0FF] rounded-full animate-bounce" style={{ height: '80%', animationDelay: '0.2s' }}></span>
-                    <span className="w-2 bg-[#0FF] rounded-full animate-bounce" style={{ height: '50%', animationDelay: '0.3s' }}></span>
-                    <span className="w-2 bg-[#0FF] rounded-full animate-bounce" style={{ height: '100%', animationDelay: '0.4s' }}></span>
-                    <span className="w-2 bg-[#0FF] rounded-full animate-bounce" style={{ height: '40%', animationDelay: '0.5s' }}></span>
+            {/* WhatsApp-Style Floating Audio Waveform Indicator (only on speaking) */}
+            {agentState === "SPEAKING" && (
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 flex items-end gap-1.5 h-16 pointer-events-none">
+                    <span className="w-3 bg-[#FF00AA] rounded-full animate-bounce shadow-[0_0_20px_#FF00AA]" style={{ height: '30%', animationDelay: '0.1s' }}></span>
+                    <span className="w-3 bg-[#FF00AA] rounded-full animate-bounce shadow-[0_0_20px_#FF00AA]" style={{ height: '80%', animationDelay: '0.2s' }}></span>
+                    <span className="w-3 bg-[#FF00AA] rounded-full animate-bounce shadow-[0_0_20px_#FF00AA]" style={{ height: '60%', animationDelay: '0.3s' }}></span>
+                    <span className="w-3 bg-[#FF00AA] rounded-full animate-bounce shadow-[0_0_20px_#FF00AA]" style={{ height: '100%', animationDelay: '0.4s' }}></span>
+                    <span className="w-3 bg-[#FF00AA] rounded-full animate-bounce shadow-[0_0_20px_#FF00AA]" style={{ height: '40%', animationDelay: '0.5s' }}></span>
                 </div>
             )}
 
             {/* Bottom Call Controls Panel */}
-            <div className="absolute bottom-8 left-0 right-0 flex justify-center items-center gap-3 md:gap-8 z-20">
+            <div className="absolute bottom-8 left-0 right-0 flex justify-center items-center gap-4 md:gap-8 z-20">
                 
                 {/* Language Sphere */}
                 <button 
@@ -385,37 +350,35 @@ export default function MohamedAmine_Official_Guide({ onClose }: { onClose: () =
                     title="Change Language"
                     className="p-4 bg-black/60 hover:bg-black/80 rounded-full text-white backdrop-blur-md transition-all border border-white/20 flex flex-col items-center relative group"
                 >
-                    <Globe2 className="w-5 h-5 md:w-6 md:h-6 text-[#0FF]" />
-                    <span className="absolute -top-6 text-[9px] font-bold uppercase tracking-widest text-[#0FF] bg-black/80 px-2 py-0.5 rounded border border-white/10">
-                        {language.includes("Arabic") ? "AR" : language.includes("French") ? "FR" : "EN"}
+                    <Globe2 className="w-6 h-6 text-[#0FF]" />
+                    <span className="absolute -top-7 text-[10px] font-bold uppercase tracking-widest text-[#0FF] bg-black/90 px-3 py-1 rounded-full border border-white/10 shadow-lg">
+                        {language.includes("Arabic") ? "ARABIC" : language.includes("French") ? "FRENCH" : "ENGLISH"}
                     </span>
                 </button>
 
                 {/* Instant Feedback Microphone */}
                 <button 
                     onClick={() => setMicMuted(!micMuted)}
-                    className={`p-4 rounded-full backdrop-blur-md transition-all border border-white/10 relative ${micMuted ? 'bg-red-500/80 text-white' : 'bg-black/60 text-white hover:bg-black/80'} ${isUserSpeaking ? 'shadow-[0_0_30px_#FAFF00] scale-110 border-yellow-400' : ''}`}
+                    className={`p-5 rounded-full backdrop-blur-sm transition-all border relative 
+                        ${micMuted ? 'bg-red-500/80 border-red-500 text-white' : 'bg-black/60 border-white/20 text-white hover:bg-black/80'} 
+                        ${agentState === "LISTENING" && !micMuted ? 'shadow-[0_0_30px_#FAFF00] scale-110 border-yellow-400 text-yellow-400' : ''}
+                    `}
                 >
-                    {micMuted ? <MicOff className="w-5 h-5 md:w-6 md:h-6" /> : <Mic className={`w-5 h-5 md:w-6 md:h-6 ${isUserSpeaking ? 'text-yellow-400' : ''}`} />}
-                    {!micMuted && isListening && !isUserSpeaking && <span className="absolute top-0 right-0 w-3 h-3 bg-[#0FF] rounded-full animate-pulse border-2 border-black" />}
+                    {micMuted ? <MicOff className="w-7 h-7" /> : <Mic className="w-7 h-7" />}
                 </button>
 
                 <button 
                     onClick={handleEndCall}
-                    className="p-5 md:p-6 bg-red-600 hover:bg-red-500 rounded-full text-white shadow-[0_0_30px_rgba(220,38,38,0.5)] transition-all hover:scale-110"
+                    className="p-6 md:p-7 bg-red-600 hover:bg-red-500 rounded-full text-white shadow-[0_0_40px_rgba(220,38,38,0.7)] transition-all hover:scale-110"
                 >
-                    <PhoneOff className="w-7 h-7 md:w-9 md:h-9" />
-                </button>
-
-                <button className="p-4 bg-black/40 hover:bg-black/60 rounded-full text-white backdrop-blur-md transition-all border border-white/10 cursor-default">
-                    <Video className="w-5 h-5 md:w-6 md:h-6" />
+                    <PhoneOff className="w-8 h-8" />
                 </button>
 
                 <button 
                     onClick={handleSwitchCamera}
                     className="p-4 bg-black/40 hover:bg-black/60 rounded-full text-white backdrop-blur-md transition-all border border-white/10"
                 >
-                    <SwitchCamera className="w-5 h-5 md:w-6 md:h-6" />
+                    <SwitchCamera className="w-6 h-6" />
                 </button>
             </div>
         </div>
