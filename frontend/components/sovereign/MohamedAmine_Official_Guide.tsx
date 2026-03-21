@@ -16,7 +16,7 @@ export default function MohamedAmine_Official_Guide({ onClose }: { onClose: () =
     const [micMuted, setMicMuted] = useState(false);
     // FIX 1: Default language locked to Arabic/Darija from first render
     const [language, setLanguage] = useState<SupportedLanguage>("Arabic (Moroccan Darija mixing MSA)");
-    const [memory, setMemory] = useState<{ hasSeenWorkspace: boolean }>({ hasSeenWorkspace: false });
+    const [memory, setMemory] = useState<{ hasSeenWorkspace: boolean; conversationCount: number; lastTopics: string[] }>({ hasSeenWorkspace: false, conversationCount: 0, lastTopics: [] });
 
     // FIX 4: All refs so closures always access latest values
     const recognitionRef = useRef<any>(null);
@@ -36,7 +36,11 @@ export default function MohamedAmine_Official_Guide({ onClose }: { onClose: () =
     useEffect(() => {
         try {
             const stored = localStorage.getItem("moroVerseWorkspaceMemory");
-            if (stored) setMemory(JSON.parse(stored));
+            if (stored) {
+                const parsed = JSON.parse(stored);
+                // Merge with defaults to handle old memory format
+                setMemory({ hasSeenWorkspace: false, conversationCount: 0, lastTopics: [], ...parsed });
+            }
         } catch (e) {}
     }, []);
 
@@ -136,16 +140,29 @@ export default function MohamedAmine_Official_Guide({ onClose }: { onClose: () =
             if (res.ok && data.result) {
                 previousNarrative.current = data.result;
                 
-                // FIX 2: Check Arabic keywords too for workspace memory detection
+                // Progressive Memory: detect workspace, count conversations, track topics
                 const result = data.result.toLowerCase();
                 const isWorkspace = result.includes('workspace') || result.includes('command center') ||
                     result.includes('مكتب') || result.includes('غرفة العمليات') || result.includes('حاسوب') ||
                     result.includes('بيسي') || result.includes('لابتوب') || result.includes('مركز');
-                if (isWorkspace && !currentMemory.hasSeenWorkspace) {
-                    const newMem = { hasSeenWorkspace: true };
-                    setMemory(newMem);
-                    localStorage.setItem("moroVerseWorkspaceMemory", JSON.stringify(newMem));
-                }
+                
+                // Detect which Moroccan soul layer was activated
+                let activeTopic = '';
+                if (result.includes('أطلس') || result.includes('صحراء') || result.includes('طنجة')) activeTopic = 'جغرافيا الروح';
+                else if (result.includes('قرويين') || result.includes('موحد') || result.includes('مرينيين')) activeTopic = 'العمق التاريخي';
+                else if (result.includes('زليج') || result.includes('قفطان') || result.includes('طاجن')) activeTopic = 'الوجدان الثقافي';
+                else if (result.includes('موروڤيرس') || result.includes('2030') || result.includes('سيادة رقمية') || result.includes('نور')) activeTopic = 'MoroVerse 2030';
+                
+                const newMem = {
+                    ...currentMemory,
+                    hasSeenWorkspace: currentMemory.hasSeenWorkspace || isWorkspace,
+                    conversationCount: (currentMemory.conversationCount || 0) + 1,
+                    lastTopics: activeTopic 
+                        ? [activeTopic, ...(currentMemory.lastTopics || [])].slice(0, 3)
+                        : currentMemory.lastTopics || []
+                };
+                setMemory(newMem);
+                localStorage.setItem("moroVerseWorkspaceMemory", JSON.stringify(newMem));
                 
                 playSequencedAudio(data.result, currentLang);
             } else {
@@ -242,6 +259,9 @@ export default function MohamedAmine_Official_Guide({ onClose }: { onClose: () =
         }
     }, [micMuted]);
 
+    // ─── UI: Show last active soul layer ───────────────────────────
+    const lastTopic = memory.lastTopics?.[0] || null;
+
     // Live Camera Sync
     useEffect(() => {
         const startCamera = async () => {
@@ -314,8 +334,13 @@ export default function MohamedAmine_Official_Guide({ onClose }: { onClose: () =
                 <p className="text-[#0FF] text-xs font-bold tracking-[0.2em] uppercase font-mono">
                     المهندس السيادي · MoroVerse
                 </p>
+                {memory.conversationCount > 0 && (
+                    <div className="mt-1 text-white/50 text-[9px] font-mono">
+                        {memory.conversationCount} تحليل · {lastTopic || 'الوجدان نشط'}
+                    </div>
+                )}
                 {memory.hasSeenWorkspace && (
-                    <div className="mt-2 text-yellow-400 text-[9px] uppercase tracking-widest font-bold bg-black/50 px-2 py-1 rounded inline-block backdrop-blur-md border border-yellow-400/30">
+                    <div className="mt-1 text-yellow-400 text-[9px] uppercase tracking-widest font-bold bg-black/50 px-2 py-1 rounded inline-block backdrop-blur-md border border-yellow-400/30">
                         غرفة العمليات المقدسة · مُعرَّفة
                     </div>
                 )}
