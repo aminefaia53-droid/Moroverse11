@@ -8,11 +8,18 @@ export async function POST(req: Request) {
             return NextResponse.json({ error: "GEMINI_API_KEY environment variable is missing" }, { status: 500 });
         }
 
-        const prompt = `I am looking at this object. Give me a cultural, local, or astrological perspective ONLY if it fits. For example, if it's a laptop, describe it as 'The portal to MoroVerse 2030'. If it's the sky, identify stars using the Astro-coordinates. Object detected by local TF.js context: ${detectedObject || 'Unknown'}`;
+        const prompt = `You are the 'Mohamed Amine' Sovereign Intelligence Guide. You are analyzing a raw live camera feed frame from my phone.
+CRITICAL SPATIAL REASONING RULES:
+1. ZERO HALLUCINATIONS: Do not guess based on geolocation. You MUST strictly describe ONLY what is physically in the image.
+2. BLUR DETECTION: If the frame is moving, blurry, low contrast, or hard to see, you MUST start your response precisely with: "Wait, Mohamed Amine, let me focus... Ah, now I see, " followed by your best guess of the objects.
+3. WORKSPACE RULE: If you see a computer desk, laptop, keyboard, or programming workspace, you MUST say exactly and only: "I see your workspace, Mohamed Amine. Is this where the MoroVerse magic happens?"
+4. WIRES RULE: If you clearly see tangled wires or cables, you MUST say exactly: "I see wires and cables."
+5. SHORT & HUMAN: You are on a live voice call. Keep it conversational. Maximum 2 sentences. No markdown. No robotic list formatting.
+
+Local TFJS stabilization hinted at: ${detectedObject || 'Unknown'}. Use this to cross-reference if the image is tricky, but trust your own Gemini 2.5 spatial reasoning above all else.`;
 
         const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${process.env.GEMINI_API_KEY}`;
         
-        // Strip out the data URL prefix if present
         const base64Data = imageBase64.replace(/^data:image\/(png|jpeg);base64,/, "");
 
         const payload = {
@@ -30,7 +37,7 @@ export async function POST(req: Request) {
                 }
             ],
             generationConfig: {
-                temperature: 0.7,
+                temperature: 0.1, // extremely low temperature to force rule compliance
                 maxOutputTokens: 256
             }
         };
