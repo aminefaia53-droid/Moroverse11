@@ -5,7 +5,7 @@ import { createPortal } from 'react-dom';
 import { Sparkles, X } from 'lucide-react';
 import dynamic from 'next/dynamic';
 
-const MohamedAmine_Supreme_Cortex = dynamic(() => import('./MohamedAmine_Supreme_Cortex'), { ssr: false });
+const MohamedAmine_Official_Guide = dynamic(() => import('./MohamedAmine_Official_Guide'), { ssr: false });
 
 export default function SovereignChat() {
     const [isOpen, setIsOpen] = useState(false);
@@ -50,10 +50,9 @@ export default function SovereignChat() {
                             </button>
                         </div>
                         
-                        {/* Body - Encapsulated Heavy Compute View */}
+                        {/* Body - Evaluated Human-Centric Component */}
                         <div className="flex-1 relative bg-black">
-                            {/* This contains the heavy math and WebGL, rendered ONLY when open */}
-                            <MohamedAmine_Supreme_Cortex />
+                            <MohamedAmine_Official_Guide onClose={() => setIsOpen(false)} />
                         </div>
                     </div>
                 </div>,
