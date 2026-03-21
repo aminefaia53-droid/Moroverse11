@@ -21,6 +21,9 @@ export default function MohamedAmine_Official_Guide({ onClose }: { onClose: () =
     const frameBuffer = useRef<string[]>([]);
     const lastSpoken = useRef<string>("");
     
+    // Sustained Visual Reasoning Context
+    const previousNarrative = useRef<string>("");
+    
     const [micMuted, setMicMuted] = useState(false);
     const [speechActive, setSpeechActive] = useState(false);
 
@@ -174,7 +177,8 @@ export default function MohamedAmine_Official_Guide({ onClose }: { onClose: () =
                             imageBase64: base64Image,
                             detectedObject: currentObject,
                             language: language,
-                            contextMemory: memory
+                            contextMemory: memory,
+                            previousNarrative: previousNarrative.current
                         })
                     });
                     
@@ -182,6 +186,7 @@ export default function MohamedAmine_Official_Guide({ onClose }: { onClose: () =
                     if (res.ok) {
                         speakText(data.result, language);
                         lastSpoken.current = currentObject; 
+                        previousNarrative.current = data.result; // Save narrative for Sustained Visual Reasoning
                         
                         // If it recognized a workspace, flag it for the future in localStorage
                         if (currentObject.includes('laptop') || currentObject.includes('tv') || currentObject.includes('monitor') || currentObject.includes('keyboard')) {
