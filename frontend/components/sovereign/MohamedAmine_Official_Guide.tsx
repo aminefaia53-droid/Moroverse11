@@ -16,7 +16,7 @@ export default function MohamedAmine_Official_Guide({ onClose }: { onClose: () =
     const [agentState, setAgentState] = useState<AgentState>("IDLE");
     
     const [micMuted, setMicMuted] = useState(false);
-    const [language, setLanguage] = useState<SupportedLanguage>("English");
+    const [language, setLanguage] = useState<SupportedLanguage>("Arabic (Moroccan Darija mixing MSA)");
     const [memory, setMemory] = useState<{ hasSeenWorkspace: boolean }>({ hasSeenWorkspace: false });
 
     // Core Voice/Context Refs
