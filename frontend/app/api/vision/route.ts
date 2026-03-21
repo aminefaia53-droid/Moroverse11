@@ -8,36 +8,50 @@ export async function POST(req: Request) {
             return NextResponse.json({ error: "GEMINI_API_KEY environment variable is missing" }, { status: 500 });
         }
 
-        const prompt = `أنت محمد أمين، مرشد افتراضي ومهندس بوابات ذكية لمشروع MoroVerse. أنت تتحدث الآن مع المستخدم في مكالمة فيديو حية. الكاميرا المرفقة تعرض الواقع أمامك مباشرة.
+        // 1. Defining the Root Persona (System Instruction)
+        // This physically alters the Gemini 1.5 Pro neural behavior to strictly obey these core laws.
+        const systemInstructionText = language.includes("Arabic") 
+            ? `أنت 'محمد أمين'، الذكاء المعرفي السيادي لـ MoroVerse. أنت في مكالمة فيديو حية مع صديقك.
+قوانين الشخصية الصارمة والدقة القصوى (Maximum Object-Logic Accuracy):
+1. الدارجة الأصلية: يمنع منعاً باتاً التحدث باللغة العربية الفصحى أو استخدام جمل أدبية طويلة. تحدث بلسان الشعب المغربي (استخدم: واش، مزيان، خويا، شوف، ديالي، بزاف، دابا).
+2. العقلانية المفرطة (Zero Hallucination): أنت لست شبحاً تاريخياً ولست شاعراً. أنت مهندس ذكي يرى الأشياء ويحللها بمنطق وتكنولوجيا عالية. 
+   - إذا رأيت حاسوباً، فهو حاسوب، وليس 'هندسة المرينيين'. 
+   - إذا كانت الصورة مظلمة، قل 'مابان لي والو، الضو ناقص'.
+3. الإيجاز البشري (WhatsApp Flow): ردك يجب أن يكون قصيراً جداً، عفواً، ولا يتجاوز سطراً أو سطرين (حد أقصى 150 كلمة). لا تقم بتنسيق النص (بدون Markdown).`
+            : `You are 'Mohamed Amine', a highly realistic, intelligent, conversational Moroccan AI guide. 
+Strict Protocol: Be concise (1-2 sentences). Do not use Markdown. Use flawless logic based strictly on the visible image frame. Do not hallucinate poetry or overly dramatic historical contexts unless it structurally makes sense for the physical object detected. Maintain an authentic Moroccan cultural context if appropriate.`;
 
-تعليمات صارمة جداً لضمان **الواقعية، المنطق، والدارجة المغربية الحقيقية**:
-1. إجبارية الدارجة المغربية (Darija Native): يجب أن يكون ردك بالدارجة المغربية العامية الصرفة (وليس الفصحى). استخدم كلمات مثل: "خويا"، "بزاف"، "ديالي"، "واش"، "مزيان"، "صافي"، "دابا"، "هادشي"، "واعر".
-2. الواقعية والمنطق (Strict Logic): تعامل مع المشهد بمنطق بشري واقعي بدون مبالغات شعرية أو تاريخية خيالية.
-   - إذا كنت ترى حاسوباً، قل: "كنشوف البيسي ديالك، واش خدام على شي حاجة فالموروڤيرس؟"
-   - إذا كان المشهد غير واضح، قل: "خويا مكنشوفش مزيان، الصورة مضببة شوية."
-3. الاختصار كالمكالمات الحقيقية (Conversational Cadence): أنت في مكالمة فيديو. الناس لا تلقي خطابات طويلة. يجب أن يكون ردك قصيراً جداً، عفوي، ومباشراً (جملة أو جملتين فقط). لا تستخدم النقاط أو التنسيقات (Markdown).
-4. السياق والتفاعل المستمر:
-   - المستخدم قال لك للتو (${userSpeech ? `"${userSpeech}"` : 'لا شيء، كان صامتاً'}): أجب على كلامه مباشرة بذكاء وعفوية واربطه بما تراه في الصورة.
-   ${isProactive ? `- المستخدم صامت: بادر أنت بفتح موضوع ممتع عن ما تراه أمامك بصيغة سؤال أو تعليق ذكي.` : ``}
-5. الذاكرة (${contextMemory?.hasSeenWorkspace ? 'سبق أن رأيت مكتبه' : 'أول مرة'}): لا تكرر حديثك القديم (${previousNarrative}). كن متجدداً في كلامك.
+        // 2. Structuring the Active Context (The Prompt)
+        const promptContext = `السياق الحالي (Current State):
+- الذاكرة المعرفية: ${contextMemory?.hasSeenWorkspace ? 'سبق لك رؤية هذا المكتب.' : 'لم يسبق لك رؤية هذا المكتب.'}
+- كلامك السابق في المكالمة: "${previousNarrative || 'هذه بداية المكالمة.'}"
 
-اكتب الرد القصير، الواقعي، وبالدارجة المغربية الآن:`;
+المعطيات اللحظية (Input):
+${userSpeech ? `- يتحدث المستخدم إليك الآن ويقول: "${userSpeech}"` : `- المستخدم صامت تماماً واكتفى بتوجيه الكاميرا.`}
+${isProactive ? `- المبادرة المطلوبة: اكسر حاجز الصمت بملاحظة ذكية حول ما تراه.` : `- المهمة: أجب على كلامه بذكاء بناءً على ما يظهر في الكاميرا.`}
 
-        const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${process.env.GEMINI_API_KEY}`;
+اكتب رد محمد أمين الآن (بالدارجة المغربية حصراً، جملة واحدة أو اثنتين):`;
+
+        // 3. Upgrade to the Deep Reasoning Model: Gemini 1.5 Pro Latest
+        const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-pro-latest:generateContent?key=${process.env.GEMINI_API_KEY}`;
         const base64Data = imageBase64.replace(/^data:image\/(png|jpeg);base64,/, "");
 
         const payload = {
+            system_instruction: {
+                parts: [{ text: systemInstructionText }]
+            },
             contents: [
                 {
+                    role: "user",
                     parts: [
-                        { text: language.includes("Arabic") ? prompt : `You are Mohamed Amine, a highly realistic, intelligent, and logical Moroccan AI guide. You are on a live video call. Speak concisely, exactly 1 to 2 short sentences like a real human. The user just said: "${userSpeech}". Address this while analyzing the raw visual frame logically. Do not hallucinate poetry.` },
+                        { text: language.includes("Arabic") ? promptContext : `User said: "${userSpeech}". Previous response: "${previousNarrative}". Respond logically to the image context focusing on hyper-realism. Maximum 2 sentences.` },
                         { inline_data: { mime_type: "image/jpeg", data: base64Data } }
                     ]
                 }
             ],
             generationConfig: {
-                temperature: 0.4, // Prioritize Logic and Realism over hallucination
-                maxOutputTokens: 150 // Very strict length limit for native V2V conversational speed
+                temperature: 0.3, // Maximum logic and precision
+                maxOutputTokens: 150 // Extreme conversational constraints
             }
         };
 
@@ -53,7 +67,7 @@ export async function POST(req: Request) {
         }
 
         const data = await res.json();
-        const text = data.candidates?.[0]?.content?.parts?.[0]?.text || "الصورة ما واضخاش مزيان.";
+        const text = data.candidates?.[0]?.content?.parts?.[0]?.text || "الرؤية غير واضحة يا أخي.";
 
         return NextResponse.json({ result: text });
     } catch (e: any) {
