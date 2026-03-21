@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useRef, useState, useCallback } from 'react';
-import { SwitchCamera, PhoneOff, Mic, MicOff, Video, Sparkles, Globe2 } from 'lucide-react';
+import { SwitchCamera, PhoneOff, Mic, MicOff, Video, Sparkles, Globe2, Ear } from 'lucide-react';
 import * as tf from '@tensorflow/tfjs';
 import '@tensorflow/tfjs-backend-wasm';
 import * as cocoSsd from '@tensorflow-models/coco-ssd';
@@ -17,47 +17,74 @@ export default function MohamedAmine_Official_Guide({ onClose }: { onClose: () =
     const [isThinking, setIsThinking] = useState(false);
     const [model, setModel] = useState<any | null>(null);
     
-    // Core states for Smart Vision Frame Stabilization
+    // Core Vision States
     const frameBuffer = useRef<string[]>([]);
     const lastSpoken = useRef<string>("");
-    
-    // Sustained Visual Reasoning Context
     const previousNarrative = useRef<string>("");
     
+    // Audio & Interaction States
     const [micMuted, setMicMuted] = useState(false);
     const [speechActive, setSpeechActive] = useState(false);
-
-    // V2.0 Multilingual & Context Memory
+    const [isListening, setIsListening] = useState(false);
+    
+    // V2.0+ Ultimate Context
     const [language, setLanguage] = useState<SupportedLanguage>("English");
     const [memory, setMemory] = useState<{ hasSeenWorkspace: boolean }>({ hasSeenWorkspace: false });
+    const silenceTimer = useRef<NodeJS.Timeout | null>(null);
+    const recognitionRef = useRef<any>(null); // To hold SpeechRecognition instance
 
-    // Initialize Long-Term Memory (Context Memory)
+    // Initialize Long-Term Memory
     useEffect(() => {
         try {
             const stored = localStorage.getItem("moroVerseWorkspaceMemory");
-            if (stored) {
-                setMemory(JSON.parse(stored));
-            }
-        } catch (e) {
-            console.error("Memory access denied", e);
-        }
+            if (stored) setMemory(JSON.parse(stored));
+        } catch (e) { console.error("Memory access denied", e); }
     }, []);
 
-    // Cycle Languages
+    // Speech Recognition Setup
+    useEffect(() => {
+        const SpeechRecognition = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
+        if (SpeechRecognition) {
+            const recognition = new SpeechRecognition();
+            recognition.continuous = false;
+            recognition.interimResults = false;
+            
+            // Adjust lang based on current GUI but fallback to English to capture general sound
+            recognition.lang = language.includes("Arabic") ? "ar-MA" : language.includes("French") ? "fr-FR" : "en-US";
+
+            recognition.onstart = () => setIsListening(true);
+            recognition.onend = () => setIsListening(false);
+            
+            recognition.onresult = (event: any) => {
+                const transcript = event.results[0][0].transcript;
+                if (transcript.length > 2) {
+                    // Trigger proactive API call exactly when user speaks
+                    triggerIntelligencePulse(null, transcript, false);
+                }
+            };
+            
+            recognitionRef.current = recognition;
+        }
+    }, [language]);
+
+    // Handle Mic Toggle manually parsing speech
+    useEffect(() => {
+        if (!micMuted && recognitionRef.current && !isListening && !speechActive && !isThinking) {
+            try { recognitionRef.current.start(); } catch(e){}
+        } else if (micMuted && recognitionRef.current) {
+            try { recognitionRef.current.stop(); } catch(e){}
+        }
+    });
+
     const toggleLanguage = () => {
         setLanguage(prev => {
             if (prev === "English") return "French";
             if (prev === "French") return "Arabic (Moroccan Darija mixing MSA)";
             return "English";
         });
-        
-        // Interrupt current speech to confirm language switch
-        if ('speechSynthesis' in window) {
-            window.speechSynthesis.cancel();
-        }
+        if ('speechSynthesis' in window) window.speechSynthesis.cancel();
     };
 
-    // TTS Voice Engine (Voice-To-Voice only) tailored to Lang
     const speakText = (text: string, forceLang: SupportedLanguage) => {
         if ('speechSynthesis' in window) {
             window.speechSynthesis.cancel(); 
@@ -71,9 +98,7 @@ export default function MohamedAmine_Official_Guide({ onClose }: { onClose: () =
             utterance.rate = 1.0;
             
             const voices = window.speechSynthesis.getVoices();
-            // Try to match the language code, prioritizing Male voices if possible
             const voice = voices.find(v => v.lang.startsWith(bcp47.split('-')[0]) && (v.name.includes('Male') || v.name.includes('Google'))) || voices.find(v => v.lang.startsWith(bcp47.split('-')[0])) || voices[0];
-            
             if (voice) utterance.voice = voice;
             
             setSpeechActive(true);
@@ -81,12 +106,14 @@ export default function MohamedAmine_Official_Guide({ onClose }: { onClose: () =
             utterance.onend = () => {
                 setIsThinking(false);
                 setSpeechActive(false);
+                // Restart listening after speaking
+                if (!micMuted && recognitionRef.current) try{ recognitionRef.current.start(); }catch(e){}
             };
             window.speechSynthesis.speak(utterance);
         }
     };
 
-    // Load TFJS Backend & CocoSSD for Continuous Inference
+    // Load TFJS Backend
     useEffect(() => {
         let isMounted = true;
         async function loadModel() {
@@ -96,44 +123,118 @@ export default function MohamedAmine_Official_Guide({ onClose }: { onClose: () =
                 const loadedModel = await cocoSsd.load();
                 if(isMounted) {
                     setModel(loadedModel);
-                    speakText("Deep Analysis Engine activated. I am observing reality.", "English");
+                    speakText("Supreme Intelligence Online. My senses are fully liberated. Show me, speak to me, or let the silence teach us.", "English");
                 }
-            } catch (err) {
-                console.error("TFJS WASM Error:", err);
-            }
+            } catch (err) { console.error("TFJS WASM Error:", err); }
         }
         loadModel();
         return () => { 
             isMounted = false; 
             if('speechSynthesis' in window) window.speechSynthesis.cancel();
+            if(recognitionRef.current) { try{ recognitionRef.current.stop(); } catch(e){} }
         };
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    // Live Camera Sync
+    // Live Camera
     const startCamera = useCallback(async (mode: "environment" | "user") => {
         try {
             if (stream) stream.getTracks().forEach(track => track.stop());
             const newStream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: mode } });
             setStream(newStream);
             if (videoRef.current) videoRef.current.srcObject = newStream;
-        } catch (err) {
-            console.error("Camera error:", err);
-        }
+        } catch (err) { console.error("Camera error:", err); }
     }, [stream]);
 
     useEffect(() => {
         startCamera(facingMode);
-        return () => {
-            if (stream) stream.getTracks().forEach(track => track.stop());
-        };
+        return () => { if (stream) stream.getTracks().forEach(track => track.stop()); };
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    // Continuous Frame Analysis Loop (Smart-Vision)
-    useEffect(() => {
-        if (!model || !videoRef.current || !canvasRef.current) return;
+    // Environmental Lighting Calculus
+    const evaluateLighting = (ctx: CanvasRenderingContext2D, width: number, height: number) => {
+        const imageData = ctx.getImageData(0, 0, width, height).data;
+        let sum = 0;
+        // Sample every 10th pixel for speed
+        for (let i = 0; i < imageData.length; i += 40) {
+            sum += (0.299 * imageData[i] + 0.587 * imageData[i + 1] + 0.114 * imageData[i + 2]); // Perceived luminance
+        }
+        const avg = sum / (imageData.length / 40);
+        if (avg < 50) return "Dark/Low-Light";
+        if (avg > 200) return "Very Bright/Over-exposed";
+        return "Normal Daylight/Office Lighting";
+    };
+
+    // The Master Intelligence Pulse
+    const triggerIntelligencePulse = async (detectedObject: string | null, userSpeechText: string = "", isProactive: boolean = false) => {
+        if (!videoRef.current || !canvasRef.current || isThinking || speechActive) return;
         
+        setIsThinking(true);
+        try {
+            const video = videoRef.current;
+            const canvas = canvasRef.current;
+            canvas.width = video.videoWidth;
+            canvas.height = video.videoHeight;
+            const ctx = canvas.getContext('2d');
+            if(!ctx) return;
+            ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+            
+            const lighting = evaluateLighting(ctx, canvas.width, canvas.height);
+            const base64Image = canvas.toDataURL('image/jpeg', 0.8);
+            
+            const res = await fetch('/api/vision', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    imageBase64: base64Image,
+                    detectedObject,
+                    language,
+                    contextMemory: memory,
+                    previousNarrative: previousNarrative.current,
+                    userSpeech: userSpeechText,
+                    lightingCondition: lighting,
+                    isProactive
+                })
+            });
+            
+            const data = await res.json();
+            if (res.ok) {
+                speakText(data.result, language);
+                if (detectedObject) lastSpoken.current = detectedObject; 
+                previousNarrative.current = data.result; 
+                
+                if (detectedObject && (detectedObject.includes('laptop') || detectedObject.includes('tv') || detectedObject.includes('monitor') || detectedObject.includes('keyboard'))) {
+                    const newMemory = { hasSeenWorkspace: true };
+                    setMemory(newMemory);
+                    localStorage.setItem("moroVerseWorkspaceMemory", JSON.stringify(newMemory));
+                }
+            }
+        } catch (error) {
+            console.error("Gemini Vision Error:", error);
+        } finally {
+            if (!speechActive) setIsThinking(false);
+            resetSilenceTimer();
+        }
+    };
+
+    // Proactive Silence Management
+    const resetSilenceTimer = () => {
+        if (silenceTimer.current) clearTimeout(silenceTimer.current);
+        silenceTimer.current = setTimeout(() => {
+            if (!isThinking && !speechActive) {
+                // User has been completely quiet for 15 seconds. Lead the conversation!
+                triggerIntelligencePulse(null, "", true);
+            }
+        }, 15000); // 15 seconds of silence
+    };
+
+    // Continuous Frame Analysis Loop
+    useEffect(() => {
+        if (!model) return;
+        
+        resetSilenceTimer();
+
         let pollingInterval = setInterval(async () => {
             if (speechActive || isThinking) return; 
             
@@ -141,70 +242,30 @@ export default function MohamedAmine_Official_Guide({ onClose }: { onClose: () =
             const canvas = canvasRef.current;
             if (!video || !canvas || video.readyState !== 4) return;
 
-            // Extract Frame
-            canvas.width = video.videoWidth;
-            canvas.height = video.videoHeight;
             const ctx = canvas.getContext('2d');
             if(!ctx) return;
             ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
             
-            // Fast Local Inference to track movement/objects
             const predictions = await model.detect(video);
             const currentObject = predictions.length > 0 ? predictions[0].class.toLowerCase() : "background";
             
-            // Push to buffer
             frameBuffer.current.push(currentObject);
-            if (frameBuffer.current.length > 3) {
-                frameBuffer.current.shift(); // Keep only last 3 frames
-            }
+            if (frameBuffer.current.length > 3) frameBuffer.current.shift();
 
-            // Check if object is STABILIZED (3 consecutive equal frames)
-            const isStabilized = frameBuffer.current.length === 3 && 
-                                 frameBuffer.current.every(val => val === frameBuffer.current[0]);
+            const isStabilized = frameBuffer.current.length === 3 && frameBuffer.current.every(val => val === frameBuffer.current[0]);
 
             if (isStabilized && currentObject !== 'background' && currentObject !== lastSpoken.current) {
-                
-                setIsThinking(true);
-                // Object has locked. Trigger Gemini 2.5 Multi-Lingual Deep Analysis.
-                
-                try {
-                    const base64Image = canvas.toDataURL('image/jpeg', 0.8);
-                    
-                    const res = await fetch('/api/vision', {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({
-                            imageBase64: base64Image,
-                            detectedObject: currentObject,
-                            language: language,
-                            contextMemory: memory,
-                            previousNarrative: previousNarrative.current
-                        })
-                    });
-                    
-                    const data = await res.json();
-                    if (res.ok) {
-                        speakText(data.result, language);
-                        lastSpoken.current = currentObject; 
-                        previousNarrative.current = data.result; // Save narrative for Sustained Visual Reasoning
-                        
-                        // If it recognized a workspace, flag it for the future in localStorage
-                        if (currentObject.includes('laptop') || currentObject.includes('tv') || currentObject.includes('monitor') || currentObject.includes('keyboard')) {
-                            const newMemory = { hasSeenWorkspace: true };
-                            setMemory(newMemory);
-                            localStorage.setItem("moroVerseWorkspaceMemory", JSON.stringify(newMemory));
-                        }
-                    }
-                } catch (error) {
-                    console.error("Gemini Vision Error:", error);
-                } finally {
-                    if (!speechActive) setIsThinking(false);
-                }
+                // Object visually changed and stabilized. Stop silence timer, trigger intel.
+                triggerIntelligencePulse(currentObject, "", false);
             }
-        }, 800); // Poll fast (0.8s) -> requires ~2.4 seconds of STABILITY to trigger Gemini.
+        }, 800); 
 
-        return () => clearInterval(pollingInterval);
-    }, [model, isThinking, speechActive, language, memory]);
+        return () => {
+            clearInterval(pollingInterval);
+            if (silenceTimer.current) clearTimeout(silenceTimer.current);
+        };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [model, isThinking, speechActive, language, memory, micMuted]);
 
     const handleSwitchCamera = async () => {
         const newMode = facingMode === "environment" ? "user" : "environment";
@@ -215,6 +276,7 @@ export default function MohamedAmine_Official_Guide({ onClose }: { onClose: () =
     const handleEndCall = () => {
         if (stream) stream.getTracks().forEach(track => track.stop());
         if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+        if (recognitionRef.current) { try{ recognitionRef.current.stop(); }catch(e){} }
         onClose();
     };
 
@@ -237,13 +299,13 @@ export default function MohamedAmine_Official_Guide({ onClose }: { onClose: () =
                 <h1 className="text-white text-2xl md:text-3xl font-bold tracking-wide">Mohamed Amine</h1>
                 <p className="text-white/80 text-xs md:text-sm flex items-center gap-2 uppercase tracking-widest font-mono">
                     <span className="w-2 h-2 rounded-full bg-[#0FF] animate-pulse"></span>
-                    Sovereign Intel v2.0
+                    Unbound Sovereign Pulse
                 </p>
                 
-                {/* Visualizing Active Rules */}
+                {/* Visualizing Sensory Overdrive */}
                 <div className="flex flex-col gap-1 mt-2 items-start">
-                    <div className="text-[#0FF] text-[9px] uppercase tracking-widest font-bold bg-black/50 px-2 py-1 rounded inline-block backdrop-blur-md border border-[#0FF]/30">
-                        Deep Analysis Node Active
+                    <div className={`text-[#0FF] text-[9px] uppercase tracking-widest font-bold bg-black/50 px-2 py-1 rounded inline-block backdrop-blur-md border ${isListening ? 'border-[#0FF] shadow-[0_0_10px_#0FF]' : 'border-[#0FF]/30'}`}>
+                        {isListening ? 'Ambient Mic Active (Listening...)' : 'Mic Standby'}
                     </div>
                     {memory.hasSeenWorkspace && (
                         <div className="text-yellow-400 text-[9px] uppercase tracking-widest font-bold bg-black/50 px-2 py-1 rounded inline-block backdrop-blur-md border border-yellow-400/30 shadow-[0_0_10px_rgba(250,204,21,0.2)]">
@@ -291,9 +353,10 @@ export default function MohamedAmine_Official_Guide({ onClose }: { onClose: () =
 
                 <button 
                     onClick={() => setMicMuted(!micMuted)}
-                    className={`p-4 rounded-full backdrop-blur-md transition-all border border-white/10 ${micMuted ? 'bg-white text-black' : 'bg-black/40 text-white hover:bg-black/60'}`}
+                    className={`p-4 rounded-full backdrop-blur-md transition-all border border-white/10 ${micMuted ? 'bg-white text-black' : 'bg-black/40 text-white hover:bg-black/60'} relative`}
                 >
                     {micMuted ? <MicOff className="w-5 h-5 md:w-6 md:h-6" /> : <Mic className="w-5 h-5 md:w-6 md:h-6" />}
+                    {!micMuted && isListening && <span className="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full animate-pulse border-2 border-black" />}
                 </button>
 
                 <button 
