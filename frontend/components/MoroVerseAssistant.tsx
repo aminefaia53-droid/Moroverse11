@@ -573,201 +573,312 @@ export default function MoroVerseAssistant() {
         return <path d="M 45 65 L 55 65" stroke="#1e293b" strokeWidth="2" strokeLinecap="round" />;
     };
 
-    return (
-        <motion.div
-            ref={containerRef}
-            drag
-            dragMomentum={false}
-            initial={{ opacity: 0, y: 100 }}
-            animate={{ opacity: isHovered ? 0.3 : 1, scale: isHovered ? 0.5 : 1, y: 0 }}
-            transition={{ type: 'spring', stiffness: 300, damping: 25 }}
-            className={`fixed top-1.5 right-1 md:top-auto md:bottom-6 md:right-6 z-[9999] flex items-start md:items-end gap-2 md:gap-4 origin-top-right md:origin-bottom-right scale-50 md:scale-100 ${isHovered ? 'pointer-events-none' : 'pointer-events-auto cursor-grab active:cursor-grabbing'}`}
-        >
-            <AnimatePresence>
-                {/* ===== CHAT PANEL ===== */}
-                {showChat && !isHovered && (
-                    <motion.div
-                        key="chat-panel"
-                        initial={{ opacity: 0, scale: 0.85, y: 20 }}
-                        animate={{ opacity: 1, scale: 1, y: 0 }}
-                        exit={{ opacity: 0, scale: 0.85, y: 20 }}
-                        className="bg-[#0a0a0a]/95 border border-[#C5A059]/30 rounded-3xl rounded-br-none p-4 w-[280px] md:w-[320px] mb-2 flex flex-col gap-3"
-                    >
-                        {/* Hidden canvas for frame capture */}
-                        <canvas ref={canvasRef} style={{ display: 'none' }} />
 
-                        {/* Header */}
-                        <div className="flex items-center justify-between">
-                            <div>
-                                <p className="text-[#C5A059] font-bold text-sm tracking-wide">محمد أمين — المستشار الملكي</p>
-                                <p className="text-white/40 text-[10px]">
-                                    {cameraMode ? '👁️ وضع Google Lens · نشط' : 'Imperial Concierge · Mohamed Amine'}
-                                </p>
+    // 🔥 "FAN BURNER" HUD EFFECT LOOP
+    const overlayCanvasRef = useRef<HTMLCanvasElement>(null);
+    useEffect(() => {
+        if (!cameraMode || !overlayCanvasRef.current) return;
+        const canvas = overlayCanvasRef.current;
+        const ctx = canvas.getContext('2d');
+        if (!ctx) return;
+        
+        let frameId: number;
+        let t = 0;
+        
+        const draw = () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            // Random glitch boxes
+            ctx.strokeStyle = 'rgba(0, 255, 255, 0.4)';
+            ctx.lineWidth = 1;
+            
+            for(let i=0; i<5; i++) {
+                const x = (Math.sin(t * 0.01 + i) * 0.5 + 0.5) * canvas.width;
+                const y = (Math.cos(t * 0.02 + i) * 0.5 + 0.5) * canvas.height;
+                const w = 40 + Math.random() * 50;
+                const h = 40 + Math.random() * 50;
+                
+                ctx.strokeRect(x, y, w, h);
+                // Crosshairs
+                ctx.beginPath();
+                ctx.moveTo(x + w/2, y - 10);
+                ctx.lineTo(x + w/2, y + h + 10);
+                ctx.moveTo(x - 10, y + h/2);
+                ctx.lineTo(x + w + 10, y + h/2);
+                ctx.stroke();
+            }
+            
+            // Data text
+            ctx.fillStyle = 'rgba(0, 255, 255, 0.7)';
+            ctx.font = '10px monospace';
+            ctx.fillText(`SYS.LATENCY: ${(Math.random()*40).toFixed(1)}ms`, 20, 40);
+            ctx.fillText(`LENS.BAND: ${(1024 + Math.random()*500).toFixed(0)}kbps`, 20, 55);
+            ctx.fillText(`CORTEX.TEMP: ${(45 + Math.random()*2).toFixed(1)}°C`, 20, 70);
+            
+            // Tracking grid
+            ctx.beginPath();
+            ctx.moveTo(0, canvas.height/2 + Math.sin(t*0.05)*100);
+            ctx.lineTo(canvas.width, canvas.height/2 + Math.sin(t*0.05)*100);
+            ctx.strokeStyle = 'rgba(255, 0, 0, 0.3)';
+            ctx.stroke();
+            
+            t++;
+            frameId = requestAnimationFrame(draw);
+        };
+        
+        draw();
+        return () => cancelAnimationFrame(frameId);
+    }, [cameraMode]);
+
+    return (
+        <>
+            {/* ====== 🚀 FULLSCREEN SUPREME LENS MODE ====== */}
+            <AnimatePresence>
+                {cameraMode && (
+                    <motion.div
+                        initial={{ opacity: 0, scale: 0.95 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        exit={{ opacity: 0, scale: 0.95 }}
+                        className="fixed inset-0 z-[100000] bg-black text-white overflow-hidden flex flex-col font-sans"
+                    >
+                        <canvas ref={canvasRef} style={{ display: 'none' }} />
+                        <canvas ref={overlayCanvasRef} className="absolute inset-0 z-10 pointer-events-none" />
+
+                        {/* Video Layer */}
+                        <div className="absolute inset-0 z-0 bg-black">
+                            <video
+                                ref={videoRef}
+                                autoPlay
+                                playsInline
+                                muted
+                                className="w-full h-full object-cover opacity-90 sepia-[0.2] contrast-[1.1] saturate-[1.2]"
+                            />
+                            {isVisionAnalyzing && (
+                                <div className="absolute inset-0 flex items-center justify-center bg-black/50 backdrop-blur-md z-10 transition-all">
+                                    <div className="flex flex-col items-center gap-6">
+                                        <div className="relative">
+                                            <div className="w-24 h-24 border-4 border-t-[#0FF] border-r-transparent border-b-[#0FF] border-l-transparent rounded-full animate-spin"></div>
+                                            <div className="absolute inset-0 border-4 border-l-red-500 border-r-transparent border-t-transparent border-b-transparent rounded-full animate-[spin_2s_reverse_infinite]"></div>
+                                        </div>
+                                        <span className="text-[#0FF] text-xl font-mono tracking-[0.3em] animate-pulse font-bold bg-black/60 px-6 py-2 rounded-lg border border-[#0FF]/30 shadow-[0_0_20px_rgba(0,255,255,0.4)]">
+                                            {lang === 'ar' ? 'تحليل عميق للبيئة...' : 'FORENSIC ANALYSIS...'}
+                                        </span>
+                                    </div>
+                                </div>
+                            )}
+                            <div className="absolute inset-8 border-2 border-white/20 rounded-[40px] z-0 pointer-events-none shadow-[inset_0_0_50px_rgba(0,0,0,0.8)]">
+                                <div className="absolute top-0 left-0 w-16 h-16 border-t-4 border-l-4 border-[#0FF] shadow-[-10px_-10px_30px_rgba(0,255,255,0.4)] rounded-tl-[40px]"></div>
+                                <div className="absolute top-0 right-0 w-16 h-16 border-t-4 border-r-4 border-[#0FF] shadow-[10px_-10px_30px_rgba(0,255,255,0.4)] rounded-tr-[40px]"></div>
+                                <div className="absolute bottom-0 left-0 w-16 h-16 border-b-4 border-l-4 border-[#0FF] shadow-[-10px_10px_30px_rgba(0,255,255,0.4)] rounded-bl-[40px]"></div>
+                                <div className="absolute bottom-0 right-0 w-16 h-16 border-b-4 border-r-4 border-[#0FF] shadow-[10px_10px_30px_rgba(0,255,255,0.4)] rounded-br-[40px]"></div>
                             </div>
-                            <button onClick={() => setShowChat(false)} className="text-white/30 hover:text-white transition-colors p-1">
-                                <X className="w-4 h-4" />
+                        </div>
+
+                        {/* Top Navbar */}
+                        <div className="relative z-20 flex justify-between items-center p-6 bg-gradient-to-b from-black/90 via-black/40 to-transparent">
+                            <div className="flex items-center gap-4 px-6 py-3 bg-black/60 border border-white/20 rounded-full backdrop-blur-md shadow-lg">
+                                <div className="w-4 h-4 rounded-full bg-red-600 animate-pulse shadow-[0_0_15px_red]" />
+                                <span className="font-mono text-sm tracking-[0.2em] font-bold text-white uppercase">SUPREME CORTEX ONLINE</span>
+                            </div>
+                            <button onClick={toggleCamera} className="p-4 bg-white/10 hover:bg-red-600/80 rounded-full transition-all backdrop-blur-md border border-white/20 shadow-lg hover:rotate-90">
+                                <X className="w-8 h-8" />
                             </button>
                         </div>
 
-                        {/* Google Lens Camera Preview */}
-                        {cameraMode && (
-                            <div className="relative w-full rounded-2xl overflow-hidden bg-black border border-[#C5A059]/40" style={{ aspectRatio: '16/9' }}>
-                                <video
-                                    ref={videoRef}
-                                    autoPlay
-                                    playsInline
-                                    muted
-                                    className="w-full h-full object-cover"
-                                />
-                                {isVisionAnalyzing && (
-                                    <div className="absolute inset-0 flex items-center justify-center bg-black/50 backdrop-blur-sm">
-                                        <div className="flex flex-col items-center gap-2">
-                                            <Loader2 className="w-8 h-8 text-[#C5A059] animate-spin" />
-                                            <span className="text-[#C5A059] text-xs font-bold">
-                                                {lang === 'ar' ? 'يحلل المشهد...' : 'Analyzing...'}
-                                            </span>
-                                        </div>
+                        {/* Action Status Overlays */}
+                        {isThinking && !isVisionAnalyzing && (
+                            <div className="absolute top-32 left-1/2 -translate-x-1/2 z-30 bg-black/60 border border-[#0FF]/50 px-8 py-3 rounded-full backdrop-blur-xl text-[#0FF] text-sm animate-pulse flex items-center gap-3 font-mono shadow-[0_0_20px_rgba(0,255,255,0.2)]">
+                                <div className="w-3 h-3 bg-[#0FF] rounded-full animate-bounce" /> {lang === 'ar' ? 'العقل المدبر يحلل...' : 'CORTEX COMPUTING...'}
+                            </div>
+                        )}
+                        {isSendingVoice && !isVisionAnalyzing && (
+                            <div className="absolute top-32 left-1/2 -translate-x-1/2 z-30 bg-red-900/60 border border-red-500 px-8 py-3 rounded-full backdrop-blur-xl text-white text-sm animate-pulse flex items-center gap-3 font-mono shadow-[0_0_20px_rgba(255,0,0,0.4)]">
+                                <Loader2 className="w-5 h-5 animate-spin" /> {lang === 'ar' ? 'إرسال التردد الصوتي...' : 'UPLOADING AUDIO STREAM...'}
+                            </div>
+                        )}
+
+                        {/* Matrix Decoder Chat History overlay */}
+                        <div className="absolute bottom-40 left-0 right-0 z-20 px-4 md:px-12 flex flex-col gap-6 pointer-events-none pb-8">
+                            {history.length > 0 && history.slice(-2).map((h, i) => (
+                                <motion.div 
+                                    initial={{ opacity: 0, x: h.role === 'user' ? 50 : -50, scale: 0.9 }}
+                                    animate={{ opacity: 1, x: 0, scale: 1 }}
+                                    key={i} 
+                                    className={`flex ${h.role === 'user' ? 'justify-end' : 'justify-start'}`}
+                                >
+                                    <div className={`max-w-[90%] md:max-w-3xl px-8 py-5 rounded-3xl backdrop-blur-3xl shadow-2xl ${h.role === 'user' ? 'bg-white/10 text-white border border-white/30' : 'bg-[#000d0d]/90 text-[#0FF] border border-[#0FF]/60 ml-2 md:ml-12 shadow-[0_0_30px_rgba(0,255,255,0.15)]'}`} dir={lang === 'ar' ? 'rtl' : 'ltr'}>
+                                        <p className="text-[18px] md:text-[22px] font-bold leading-relaxed drop-shadow-lg tracking-wide font-arabic">
+                                            {h.role === 'model' ? <span className="animate-[pulse_0.1s_ease-in-out_2]">_ </span> : ''}
+                                            {h.text}
+                                        </p>
                                     </div>
-                                )}
-                                {/* Scanning line animation */}
-                                {!isVisionAnalyzing && (
-                                    <div className="absolute inset-x-0 h-0.5 bg-gradient-to-r from-transparent via-[#C5A059] to-transparent animate-[scan_2s_ease-in-out_infinite] top-1/3 opacity-70" />
-                                )}
-                                <div className="absolute top-2 left-2 flex items-center gap-1.5">
-                                    <div className="w-2 h-2 rounded-full bg-red-500 animate-pulse" />
-                                    <span className="text-white text-[9px] font-bold uppercase tracking-wider">LIVE</span>
-                                </div>
-                            </div>
-                        )}
+                                </motion.div>
+                            ))}
+                        </div>
 
-                        {/* Conversation History */}
-                        {history.length > 0 && (
-                            <div className="max-h-40 overflow-y-auto space-y-2 pr-1 scrollbar-thin">
-                                {history.slice(-6).map((h, i) => (
-                                    <div key={i} className={`text-xs leading-relaxed px-3 py-2 rounded-2xl ${h.role === 'user' ? 'bg-[#C5A059]/15 text-[#C5A059] text-right ml-4' : 'bg-white/5 text-white/80 mr-4'}`} dir={lang === 'ar' ? 'rtl' : 'ltr'}>
-                                        {h.text}
-                                    </div>
-                                ))}
-                            </div>
-                        )}
+                        {/* Futuristic Bottom Control Bar */}
+                        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-30 flex items-center gap-8 bg-[#050505]/90 backdrop-blur-3xl border border-[#0FF]/30 px-10 py-5 rounded-[50px] shadow-[0_10px_50px_rgba(0,0,0,0.8)] w-[95%] md:w-auto">
+                            <button
+                                onClick={() => submitWithVision('')}
+                                disabled={isVisionAnalyzing || isThinking || isSendingVoice}
+                                className="p-5 rounded-full bg-white/5 hover:bg-white/20 border border-white/20 transition-all cursor-pointer group flex-shrink-0"
+                                title="Analyze Scene Now"
+                            >
+                                <Camera className="w-8 h-8 text-white/80 group-hover:text-white group-hover:scale-110 transition-all" />
+                            </button>
 
-                        {/* Thinking / Sending Voice indicator */}
-                        {(isThinking || isSendingVoice) && (
-                            <div className="flex items-center gap-2 text-[#C5A059]/60 text-xs px-2">
-                                <Loader2 className="w-3 h-3 animate-spin" />
-                                <span>
-                                    {isSendingVoice && !isThinking
-                                        ? (lang === 'ar' ? '🎤 إرسال...' : lang === 'fr' ? '🎤 Envoi...' : '🎤 Sending...')
-                                        : (lang === 'ar' ? 'محمد أمين يفكر...' : 'Mohamed Amine is thinking...')
-                                    }
-                                </span>
-                            </div>
-                        )}
-
-                        {/* Input Row */}
-                        <div className="flex gap-2 items-center">
-                            {/* Mic Button */}
                             <button
                                 onClick={isListening ? stopListening : startListening}
                                 disabled={isSendingVoice || isVisionAnalyzing}
-                                title={cameraMode ? (lang === 'ar' ? 'تكلم + الكاميرا تحلل' : 'Speak + Camera analyzes') : (lang === 'ar' ? 'تكلم' : 'Speak')}
-                                className={`p-2.5 rounded-full border transition-all flex-shrink-0 ${isSendingVoice || isVisionAnalyzing
-                                    ? 'bg-[#C5A059]/40 border-[#C5A059] text-white animate-pulse cursor-wait'
-                                    : isListening
-                                        ? 'bg-red-600 border-red-500 text-white animate-pulse'
-                                        : cameraMode
-                                            ? 'bg-[#C5A059] border-[#C5A059] text-black shadow-[0_0_15px_rgba(197,160,89,0.5)]'
-                                            : 'bg-[#C5A059]/10 border-[#C5A059]/30 text-[#C5A059] hover:bg-[#C5A059]/20'
-                                    }`}
-                            >
-                                {isSendingVoice || isVisionAnalyzing ? <Loader2 className="w-4 h-4 animate-spin" /> : isListening ? <MicOff className="w-4 h-4" /> : <Mic className="w-4 h-4" />}
-                            </button>
-
-                            {/* Camera / Google Lens Button */}
-                            <button
-                                onClick={toggleCamera}
-                                title={cameraMode ? (lang === 'ar' ? 'أغلق الكاميرا' : 'Close camera') : (lang === 'ar' ? 'فتح الكاميرا (Google Lens)' : 'Open camera (Google Lens)')}
-                                className={`p-2.5 rounded-full border transition-all flex-shrink-0 ${
-                                    cameraMode
-                                        ? 'bg-red-600/80 border-red-500 text-white shadow-[0_0_15px_rgba(239,68,68,0.5)] animate-pulse'
-                                        : 'bg-white/5 border-white/20 text-white/60 hover:bg-white/10 hover:text-white'
+                                className={`p-8 rounded-full border-4 transition-all flex items-center justify-center transform active:scale-95 flex-shrink-0 ${
+                                    isListening 
+                                        ? 'bg-red-600 border-red-400 shadow-[0_0_60px_rgba(255,0,0,0.8)] animate-pulse' 
+                                        : 'bg-gradient-to-r from-[#0FF] to-[#009999] border-[#0FF] text-black shadow-[0_0_40px_rgba(0,255,255,0.6)] hover:scale-110 hover:shadow-[0_0_60px_rgba(0,255,255,1)]'
                                 }`}
                             >
-                                {cameraMode ? <CameraOff className="w-4 h-4" /> : <Camera className="w-4 h-4" />}
+                                {isSendingVoice ? <Loader2 className="w-10 h-10 animate-spin text-white" /> : isListening ? <MicOff className="w-10 h-10 text-white" /> : <Mic className="w-10 h-10 text-black" />}
                             </button>
-                            <input
-                                ref={inputRef}
-                                type="text"
-                                value={inputText}
-                                onChange={e => setInputText(e.target.value)}
-                                onKeyDown={e => { if (e.key === 'Enter' && inputText.trim()) sendToConcierge(inputText); }}
-                                placeholder={lang === 'ar' ? 'اسألني عن المغرب...' : lang === 'fr' ? 'Poseز votre question...' : 'Ask about Morocco...'}
-                                dir={lang === 'ar' ? 'rtl' : 'ltr'}
-                                className="flex-1 bg-white/5 border border-white/10 rounded-2xl px-3 py-2 text-xs text-white placeholder-white/30 outline-none focus:border-[#C5A059]/50 transition-colors"
-                                disabled={isThinking}
-                            />
-                            <button
-                                onClick={() => inputText.trim() && sendToConcierge(inputText)}
-                                disabled={!inputText.trim() || isThinking}
-                                className="p-2.5 rounded-full bg-[#C5A059] text-black disabled:opacity-30 hover:bg-[#D4AF37] transition-all flex-shrink-0"
-                            >
-                                <Send className="w-4 h-4" />
-                            </button>
-                        </div>
-                    </motion.div>
-                )}
 
-                {/* ===== SPEECH BUBBLE (passive mode) ===== */}
-                {showBubble && !showChat && !isHovered && (
-                    <motion.div
-                        key="speech-bubble"
-                        initial={{ opacity: 0, scale: 0.8, x: 20 }}
-                        animate={{ opacity: 1, scale: 1, x: 0 }}
-                        exit={{ opacity: 0, scale: 0.8, x: 20 }}
-                        className="assistant-bubble bg-white border-2 border-[#c5a059] p-5 rounded-3xl rounded-tr-none md:rounded-tr-3xl md:rounded-br-none max-w-[200px] md:max-w-xs mt-10 md:mt-0 md:mb-10 mr-[-10px] md:mr-[-20px]"
-                    >
-                        <p className={`text-sm font-bold text-black leading-relaxed ${lang === 'ar' ? 'font-arabic text-right' : 'text-left'}`} dir={lang === 'ar' ? 'rtl' : 'ltr'}>
-                            {message}
-                        </p>
+                            <div className="hidden md:flex flex-col ml-4 w-40 border-l border-[#0FF]/30 pl-8 flex-shrink-0 font-mono">
+                                <span className={`text-[11px] tracking-[0.2em] ${isListening ? 'text-red-400 animate-pulse font-bold' : 'text-white/50'}`}>{isListening ? 'AUDIO REC RECORDING' : 'AUDIO STANDBY'}</span>
+                                <span className="text-lg text-[#0FF] font-bold uppercase tracking-widest drop-shadow-[0_0_5px_rgba(0,255,255,0.8)]">{lang === 'ar' ? 'المستشار الذكي' : 'COMPANION'}</span>
+                            </div>
+                        </div>
                     </motion.div>
                 )}
             </AnimatePresence>
 
-            {/* ===== AVATAR — click to open/close chat ===== */}
-            <motion.div
-                onClick={handleRobotClick}
-                className="w-28 h-28 relative rounded-full bg-slate-900 border-2 border-transparent hover:border-white/10 overflow-hidden cursor-pointer select-none"
-                style={{ rotateX: headRotateX, rotateY: headRotateY, transformPerspective: 800 }}
-                whileTap={{ scale: 0.92 }}
-                title={lang === 'ar' ? 'انقر للتحدث مع محمد أمين' : 'Click to talk to Mohamed Amine'}
-            >
-                {/* Clean Indicator — No Halo */}
-                {isListening && (
-                    <div className="absolute top-2 right-2 w-3 h-3 rounded-full bg-green-500 animate-pulse z-20" />
-                )}
-                {isThinking && (
-                    <div className="absolute top-2 right-2 w-3 h-3 rounded-full bg-[#C5A059] animate-pulse z-20" />
-                )}
+            {/* ====== BUBBLE HUD (Only when cameraMode is FALSE) ====== */}
+            {!cameraMode && (
+                <motion.div
+                    ref={containerRef}
+                    drag
+                    dragMomentum={false}
+                    initial={{ opacity: 0, y: 100 }}
+                    animate={{ opacity: isHovered ? 0.3 : 1, scale: isHovered ? 0.5 : 1, y: 0 }}
+                    transition={{ type: 'spring', stiffness: 300, damping: 25 }}
+                    className={`fixed top-1.5 right-1 md:top-auto md:bottom-6 md:right-6 z-[9999] flex items-start md:items-end gap-2 md:gap-4 origin-top-right md:origin-bottom-right scale-50 md:scale-100 ${isHovered ? 'pointer-events-none' : 'pointer-events-auto cursor-grab active:cursor-grabbing'}`}
+                >
+                    <AnimatePresence>
+                        {showChat && !isHovered && (
+                            <motion.div
+                                key="chat-panel"
+                                initial={{ opacity: 0, scale: 0.85, y: 20 }}
+                                animate={{ opacity: 1, scale: 1, y: 0 }}
+                                exit={{ opacity: 0, scale: 0.85, y: 20 }}
+                                className="bg-[#0a0a0a]/95 border border-[#C5A059]/30 rounded-3xl rounded-br-none p-4 w-[280px] md:w-[320px] mb-2 flex flex-col gap-3"
+                            >
+                                <div className="flex items-center justify-between border-b border-white/5 pb-2">
+                                    <div>
+                                        <p className="text-[#C5A059] font-bold text-sm tracking-wide">محمد أمين — المستشار الملكي</p>
+                                        <p className="text-white/40 text-[10px]">Imperial Concierge</p>
+                                    </div>
+                                    <button onClick={() => setShowChat(false)} className="text-white/30 hover:text-white transition-colors p-1">
+                                        <X className="w-4 h-4" />
+                                    </button>
+                                </div>
 
-                <svg viewBox="0 0 100 100" className="w-full h-full transform scale-125 pt-4 drop-shadow-md">
-                    {/* Djellaba */}
-                    <path d="M 20 100 Q 50 65 80 100" fill="#6d4c41" />
-                    {/* Face */}
-                    <circle cx="50" cy="50" r="25" fill="#e0ac69" />
-                    {/* Tarbouche */}
-                    <path d="M 32 25 L 34 5 L 66 5 L 68 25 Z" fill="#c1272d" />
-                    <path d="M 50 5 Q 55 -2 65 12 L 67 15" fill="none" stroke="#111827" strokeWidth="1.5" />
-                    <circle cx="67" cy="15" r="2" fill="#111827" />
-                    {/* Ears */}
-                    <circle cx="28" cy="48" r="4" fill="#fbd38d" />
-                    <circle cx="72" cy="48" r="4" fill="#fbd38d" />
-                    {/* Mustache */}
-                    <path d="M 42 62 Q 50 68 58 62 Q 50 72 42 62" fill="#3e2723" />
-                    {/* Dynamic emotion eyes + mouth */}
-                    {renderEmotionEyes()}
-                    {renderMouth()}
-                </svg>
-            </motion.div>
-        </motion.div>
+                                {history.length > 0 && (
+                                    <div className="max-h-48 overflow-y-auto space-y-2 pr-1 scrollbar-thin">
+                                        {history.slice(-10).map((h, i) => (
+                                            <div key={i} className={`text-xs leading-relaxed px-3 py-2 rounded-2xl ${h.role === 'user' ? 'bg-[#C5A059]/15 text-[#C5A059] text-right ml-4' : 'bg-white/5 text-white/80 mr-4'}`} dir={lang === 'ar' ? 'rtl' : 'ltr'}>
+                                                {h.text}
+                                            </div>
+                                        ))}
+                                    </div>
+                                )}
+
+                                {(isThinking || isSendingVoice) && (
+                                    <div className="flex items-center gap-2 text-[#C5A059]/60 text-xs px-2">
+                                        <Loader2 className="w-3 h-3 animate-spin" />
+                                        <span>{isSendingVoice ? '🎤 ...' : '...'}</span>
+                                    </div>
+                                )}
+
+                                <div className="flex gap-2 items-center pt-2">
+                                    <button
+                                        onClick={isListening ? stopListening : startListening}
+                                        disabled={isSendingVoice}
+                                        className={`p-2.5 rounded-full border transition-all flex-shrink-0 ${isSendingVoice
+                                            ? 'bg-[#C5A059]/40 border-[#C5A059] text-white animate-pulse cursor-wait'
+                                            : isListening
+                                                ? 'bg-red-600 border-red-500 text-white animate-pulse'
+                                                : 'bg-[#C5A059]/10 border-[#C5A059]/30 text-[#C5A059] hover:bg-[#C5A059]/20'
+                                            }`}
+                                    >
+                                        {isSendingVoice ? <Loader2 className="w-4 h-4 animate-spin" /> : isListening ? <MicOff className="w-4 h-4" /> : <Mic className="w-4 h-4" />}
+                                    </button>
+
+                                    <button
+                                        onClick={toggleCamera}
+                                        title={lang === 'ar' ? 'تشغيل وضع الكاميرا' : 'Launch Lens Mode'}
+                                        className="p-2.5 rounded-full bg-white/5 border border-white/20 text-[#0FF] hover:bg-[#0FF]/20 hover:border-[#0FF] transition-all flex-shrink-0 animate-[pulse_3s_ease-in-out_infinite] shadow-[0_0_10px_rgba(0,255,255,0.1)]"
+                                    >
+                                        <Camera className="w-4 h-4" />
+                                    </button>
+                                    
+                                    <input
+                                        type="text"
+                                        value={inputText}
+                                        onChange={e => setInputText(e.target.value)}
+                                        onKeyDown={e => { if (e.key === 'Enter' && inputText.trim()) sendToConcierge(inputText); }}
+                                        placeholder={lang === 'ar' ? 'اسأل عشيرك...' : 'Ask your companion...'}
+                                        dir={lang === 'ar' ? 'rtl' : 'ltr'}
+                                        className="flex-1 bg-white/5 border border-white/10 rounded-2xl px-3 py-2 text-xs text-white placeholder-white/30 outline-none focus:border-[#C5A059]/50 transition-colors"
+                                        disabled={isThinking}
+                                    />
+                                    <button
+                                        onClick={() => inputText.trim() && sendToConcierge(inputText)}
+                                        disabled={!inputText.trim() || isThinking}
+                                        className="p-2.5 rounded-full bg-[#C5A059] text-black disabled:opacity-30 hover:bg-[#D4AF37] transition-all flex-shrink-0"
+                                    >
+                                        <Send className="w-4 h-4" />
+                                    </button>
+                                </div>
+                            </motion.div>
+                        )}
+
+                        {showBubble && !showChat && !isHovered && (
+                            <motion.div
+                                key="speech-bubble"
+                                initial={{ opacity: 0, scale: 0.8, x: 20 }}
+                                animate={{ opacity: 1, scale: 1, x: 0 }}
+                                exit={{ opacity: 0, scale: 0.8, x: 20 }}
+                                className="assistant-bubble bg-white border-2 border-[#c5a059] p-5 rounded-3xl rounded-tr-none md:rounded-tr-3xl md:rounded-br-none max-w-[200px] md:max-w-xs mt-10 md:mt-0 md:mb-10 mr-[-10px] md:mr-[-20px]"
+                            >
+                                <p className={`text-sm font-bold text-black leading-relaxed ${lang === 'ar' ? 'font-arabic text-right' : 'text-left'}`} dir={lang === 'ar' ? 'rtl' : 'ltr'}>
+                                    {message}
+                                </p>
+                            </motion.div>
+                        )}
+                    </AnimatePresence>
+
+                    <motion.div
+                        onClick={handleRobotClick}
+                        className="w-28 h-28 relative rounded-full bg-slate-900 border-2 border-transparent hover:border-white/10 overflow-hidden cursor-pointer select-none"
+                        style={{ rotateX: headRotateX, rotateY: headRotateY, transformPerspective: 800 }}
+                        whileTap={{ scale: 0.92 }}
+                    >
+                        {isListening && <div className="absolute top-2 right-2 w-3 h-3 rounded-full bg-green-500 animate-pulse z-20" />}
+                        {isThinking && <div className="absolute top-2 right-2 w-3 h-3 rounded-full bg-[#C5A059] animate-pulse z-20" />}
+                        <canvas ref={canvasRef} style={{ display: 'none' }} />
+                        <svg viewBox="0 0 100 100" className="w-full h-full transform scale-125 pt-4 drop-shadow-md">
+                            <path d="M 20 100 Q 50 65 80 100" fill="#6d4c41" />
+                            <circle cx="50" cy="50" r="25" fill="#e0ac69" />
+                            <path d="M 32 25 L 34 5 L 66 5 L 68 25 Z" fill="#c1272d" />
+                            <path d="M 50 5 Q 55 -2 65 12 L 67 15" fill="none" stroke="#111827" strokeWidth="1.5" />
+                            <circle cx="67" cy="15" r="2" fill="#111827" />
+                            <circle cx="28" cy="48" r="4" fill="#fbd38d" />
+                            <circle cx="72" cy="48" r="4" fill="#fbd38d" />
+                            <path d="M 42 62 Q 50 68 58 62 Q 50 72 42 62" fill="#3e2723" />
+                            {renderEmotionEyes()}
+                            {renderMouth()}
+                        </svg>
+                    </motion.div>
+                </motion.div>
+            )}
+        </>
     );
 }
