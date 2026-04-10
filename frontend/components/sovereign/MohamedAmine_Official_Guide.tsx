@@ -45,7 +45,7 @@ export default function MohamedAmine_Official_Guide({ onClose }: { onClose: () =
     const [memory, setMemory] = useState<{ hasSeenWorkspace: boolean; conversationCount: number; lastTopics: string[] }>(
         { hasSeenWorkspace: false, conversationCount: 0, lastTopics: [] }
     );
-    const [statusText, setStatusText] = useState("اضغط المايك للكلام");
+    const [statusText, setStatusText] = useState("جاري المراقبة البصرية...");
 
     // ── Refs to mirror MoroVerseAssistant's reliable pattern ─────────────────
     const recognitionRef = useRef<any>(null);
@@ -85,8 +85,13 @@ export default function MohamedAmine_Official_Guide({ onClose }: { onClose: () =
         try {
             const video = videoRef.current;
             const canvas = canvasRef.current;
-            canvas.width = video.videoWidth || 640;
-            canvas.height = video.videoHeight || 480;
+            if (video.videoWidth === 0 || video.videoHeight === 0) {
+                setAgentState("IDLE");
+                setStatusText("الكاميرا في طور التهيئة...");
+                return;
+            }
+            canvas.width = video.videoWidth;
+            canvas.height = video.videoHeight;
             const ctx = canvas.getContext('2d');
             if (!ctx) throw new Error("No canvas context");
             ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
@@ -110,6 +115,12 @@ export default function MohamedAmine_Official_Guide({ onClose }: { onClose: () =
 
             const data = await res.json();
             if (!res.ok || !data.result) throw new Error(data.error || "Empty response");
+
+            if (data.result.includes("[SILENCE]")) {
+                setAgentState("IDLE");
+                setStatusText("يُراقب بصمت...");
+                return;
+            }
 
             previousNarrative.current = data.result;
 
@@ -137,13 +148,13 @@ export default function MohamedAmine_Official_Guide({ onClose }: { onClose: () =
             const bcp47 = currentLang.includes("Arabic") ? 'ar-SA' : currentLang.includes("French") ? 'fr-FR' : 'en-US';
             speakText(data.result, bcp47, () => {
                 setAgentState("IDLE");
-                setStatusText("اضغط المايك للكلام");
+                setStatusText("يُراقب محيطك بتمعن...");
             });
 
         } catch (err) {
             console.error("Vision Error:", err);
             setAgentState("IDLE");
-            setStatusText("حدث خطأ، حاول مرة أخرى");
+            setStatusText("حدث خطأ بصري، يُحاول مجدداً...");
         }
     }, []);
 
@@ -156,7 +167,14 @@ export default function MohamedAmine_Official_Guide({ onClose }: { onClose: () =
     const [isListening, setIsListening] = useState(false);
 
     const startListening = useCallback(async () => {
-        if (agentStateRef.current === "ANALYZING_FRAME" || agentStateRef.current === "SPEAKING") return;
+        // Allow interrupting the speech
+        if (agentStateRef.current === "SPEAKING") {
+            if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+            setAgentState("IDLE");
+        } else if (agentStateRef.current === "ANALYZING_FRAME") {
+            setStatusText("انتظر لحظة، العقل بصدد التحليل...");
+            return;
+        }
 
         const SpeechRecognition = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
         if (!SpeechRecognition) {
@@ -199,7 +217,7 @@ export default function MohamedAmine_Official_Guide({ onClose }: { onClose: () =
                 analyzeAndSpeakRef.current(pendingTranscriptRef.current);
             } else if (!submittedRef.current) {
                 setStatusText("ما سمعتش — ضغط مرة أخرى");
-                setTimeout(() => setStatusText("اضغط المايك للكلام"), 2000);
+                setTimeout(() => setStatusText("يُراقب محيطك بتمعن..."), 2000);
             }
         };
 
@@ -213,7 +231,7 @@ export default function MohamedAmine_Official_Guide({ onClose }: { onClose: () =
                 setStatusText(`خطأ: ${event.error}`);
             }
             setTimeout(() => {
-                if (agentStateRef.current === "IDLE") setStatusText("اضغط المايك للكلام");
+                if (agentStateRef.current === "IDLE") setStatusText("يُراقب محيطك بتمعن...");
             }, 3000);
         };
 
@@ -229,7 +247,7 @@ export default function MohamedAmine_Official_Guide({ onClose }: { onClose: () =
         setIsListening(false);
         if (agentStateRef.current === "LISTENING") {
             setAgentState("IDLE");
-            setStatusText("اضغط المايك للكلام");
+            setStatusText("يُراقب محيطك بتمعن...");
         }
     }, []);
 
@@ -257,15 +275,29 @@ export default function MohamedAmine_Official_Guide({ onClose }: { onClose: () =
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [facingMode]);
 
-    // First proactive analysis when camera is ready
+    // ── Continuous Proactive Visual Loop (The "Walking Tour Guide" Mode) ──
     useEffect(() => {
-        if (stream) {
-            setTimeout(() => {
-                if (agentStateRef.current === "IDLE") {
-                    analyzeAndSpeakRef.current(""); // proactive opening
-                }
-            }, 2500);
-        }
+        if (!stream) return;
+
+        // 1. Initial greeting and first analysis
+        const initialTimer = setTimeout(() => {
+            if (agentStateRef.current === "IDLE") {
+                analyzeAndSpeakRef.current(""); 
+            }
+        }, 2000);
+
+        // 2. Continuous scanning every 15 seconds!
+        const intervalTimer = setInterval(() => {
+            // Only trigger if we are completely idle (not listening, not speaking, not analyzing)
+            if (agentStateRef.current === "IDLE") {
+                analyzeAndSpeakRef.current(""); 
+            }
+        }, 15000);
+
+        return () => {
+            clearTimeout(initialTimer);
+            clearInterval(intervalTimer);
+        };
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [stream]);
 
@@ -362,15 +394,15 @@ export default function MohamedAmine_Official_Guide({ onClose }: { onClose: () =
                 <button
                     onPointerDown={startListening}
                     onPointerUp={isListening ? stopListening : undefined}
-                    disabled={agentState === "ANALYZING_FRAME" || agentState === "SPEAKING"}
+                    disabled={agentState === "ANALYZING_FRAME"}
                     className={`p-6 rounded-full transition-all border-2 select-none touch-none
-                        ${agentState === "ANALYZING_FRAME" || agentState === "SPEAKING"
+                        ${agentState === "ANALYZING_FRAME"
                             ? 'opacity-40 cursor-not-allowed bg-gray-800 border-gray-600'
                             : isListening
                                 ? 'bg-red-600 border-red-400 scale-125 shadow-[0_0_40px_rgba(220,38,38,0.9)] animate-pulse'
                                 : 'bg-[#C5A059] border-[#D4AF37] shadow-[0_0_30px_rgba(197,160,89,0.6)] hover:scale-110 hover:shadow-[0_0_50px_rgba(197,160,89,0.9)]'
                         }`}
-                    title="اضغط للكلام"
+                    title="اسأل المرشد البصري..."
                 >
                     {isListening
                         ? <MicOff className="w-8 h-8 text-white" />

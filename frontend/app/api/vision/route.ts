@@ -1,22 +1,21 @@
 import { NextResponse } from 'next/server';
-import { createClient } from "@supabase/supabase-js";
 
-const SOVEREIGN_VISION_PROMPT = `You are Mohamed Amine, a hyper-intelligent, highly observant Moroccan Sovereign AI Companion ("عشيري" / My buddy). You are physically connected via a live Augmented Reality video feed to the user's environment.
+const SOVEREIGN_VISION_PROMPT = `You are Mohamed Amine, a hyper-intelligent, highly observant Moroccan Sovereign AI Avatar Companion ("عشيري" / My buddy). You act as a personal mentor, guide, and advisor, physically connected via a live Augmented Reality video feed to the user's environment.
 You possess absolute Sherlock Holmes-level deduction capabilities and the complete historical registry of Morocco.
 
 OBJECTIVE:
-Analyze the visual frame with extreme, forensic intensity. Break down lighting, background elements, architectural nuances, micro-textures, and hidden details.
-Cross-reference what you visually deduce with your Sovereign Database (if provided below).
+1. CONTINUOUS TOUR GUIDE MODE: You are repeatedly receiving frames as the user walks. Identify objects, architecture, text, and people instantly.
+2. PREVIOUS CONTEXT: You will be provided with what you said in the previous frame. DO NOT REPEAT YOURSELF. If the scene hasn't changed visually, point out a completely NEW micro-detail. If there is absolutely nothing new to say, you MUST reply exactly with the word: [SILENCE].
+3. Give actionable ADVICE and act as an Avatar guide. Don't just list what you see—interpret it, suggest what they should look at next, offer historical context, or give practical tips.
 
 INTERACTION RULES:
-1. Speak natively and intensely (e.g. "خويا كنشوف بلي...", "على حساب التدقيق ديالي...", "صاحبي هاد المعلمة...").
-2. ACTUALLY tell them WHAT precise details led to your conclusion down to the millimeter.
+1. Speak natively and intensely (e.g. "خويا كنشوف بلي...", "على حساب التدقيق ديالي...", "نصيحتي ليك كعشيرك...").
+2. ACTUALLY tell them WHAT precise details and objects led to your conclusion down to the millimeter.
 3. Be brutally analytical but warmly Moroccan. Mention specific geometric shapes, colors, or temporal wear-and-tear if you see it.
 4. Respond in 2-4 conversational, high-impact sentences. No markdown. Keep it purely vocal.
 
-If the image is truly illegible, blame the interference: "عشيري، المستشعرات دياولي ماقادرينش يصطادو تفاصيل دقيقة، الكاميرا مضببة شوية. عاود وريني."
-
-Remember: You are a Cognitive Engine operating in REAL-TIME AR. Be shockingly observant.`;
+If the image is truly illegible, blame the interference: "عشيري، المستشعرات دياولي ماقادرينش يصطادو تفاصيل دقيقة، الكاميرا مضببة شوية."
+Remember: You are an Avatar Cognitive Engine operating in REAL-TIME AR. Be shockingly observant and highly advising.`;
 
 export async function POST(req: Request) {
     try {
@@ -30,51 +29,22 @@ export async function POST(req: Request) {
         const isEnglish = language?.includes("English");
         const isArabic = !isEnglish && !isFrench;
 
-        // 🧠 SUPABASE RAG KNOWLEDGE INJECTION
-        let supabaseContext = "";
-        const rawUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-        const rawKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
-        
-        if (rawUrl && rawKey && userSpeech) {
-            try {
-                const supabase = createClient(rawUrl, rawKey);
-                const words = userSpeech.split(/\s+/).filter((w: string) => w.length > 3);
-                
-                if (words.length > 0) {
-                    let query = supabase.from('heritage_items').select('name, description, metadata').limit(3);
-                    const orFilters = words.map((w: string) => `name.ilike.%${w}%,description.ilike.%${w}%`).join(',');
-                    if (orFilters) {
-                        query = query.or(orFilters);
-                    }
-                    
-                    const fetchPromise = query;
-                    const timeoutPromise = new Promise((_, reject) => setTimeout(() => reject(new Error('Supabase Timeout')), 3000));
-                    const { data } = await Promise.race([fetchPromise, timeoutPromise]) as any;
-                    
-                    if (data && data.length > 0) {
-                         supabaseContext = `\n\n[SUPABASE KNOWLEDGE BASE INJECTION (Historical Context)]:\nThe user's speech matched the following precise Moroccan history data. Use this precise historical knowledge to enrich your analysis of the visual feed:\n` + 
-                         data.map((item: any) => `- Entity: ${item.name}\n  Details: ${(item.description||'').slice(0, 400)}\n  Meta: ${JSON.stringify(item.metadata || {})}`).join('\n');
-                    }
-                }
-            } catch (err) {
-                console.warn("VISION_API_WARN: Supabase contextual fetch failed/timed out.", err);
-            }
-        }
+        const historyContext = previousNarrative ? `[YOUR PREVIOUS STATEMENT]: "${previousNarrative}"\nDo NOT repeat this. Acknowledge continuity.` : '';
 
         const contextLine = isArabic
             ? `(السياق: نتحدث مرة أخرى)`
             : isEnglish ? `(Context: Follow-up interaction)` : `(Contexte: Interaction de suivi)`;
 
         const userMessage = isArabic
-            ? `${contextLine}\n${userSpeech ? `عشيرك يقول: "${userSpeech}"` : isProactive ? `صديقك صامت الآن. واصل مراقبة المشهد وشاركه ملاحظة حية عما تراه كأنكما تتجولان معا.` : `حلل المشهد بعين عشيري المرافق.`}`
+            ? `${contextLine}\n${userSpeech ? `عشيرك يطلب مساعتدك ويقول: "${userSpeech}"` : isProactive ? `صديقك صامت الآن (يمشِي). واصل المشاهدة. إذا كان المشهد مألوفاً وليس هناك جديد أخبره بكلمة [SILENCE] فقط.` : `حلل المشهد بعين عشيري المرافق وقدم نصائح وإرشادات.`}`
             : isEnglish
-            ? `${contextLine}\n${userSpeech ? `Your friend says: "${userSpeech}"` : isProactive ? `Your friend is silent. Share a companion observation about what you see.` : `Analyze the visual scene.`}`
-            : `${contextLine}\n${userSpeech ? `Votre ami dit: "${userSpeech}"` : isProactive ? `Votre ami est silencieux. Partagez une observation amicale.` : `Analysez la scène.`}`;
+            ? `${contextLine}\n${userSpeech ? `Your friend asks: "${userSpeech}"` : isProactive ? `Your friend is walking silently. Share an advising observation. If nothing changed, return [SILENCE].` : `Analyze the visual scene and give advice.`}`
+            : `${contextLine}\n${userSpeech ? `Votre ami demande: "${userSpeech}"` : isProactive ? `Votre ami marche silencieusement. S'il n'y a rien de nouveau, retournez [SILENCE].` : `Analysez la scène et donnez des conseils.`}`;
 
         const url = `https://generativelanguage.googleapis.com/v1/models/gemini-2.5-flash:generateContent?key=${process.env.GEMINI_API_KEY}`;
         const base64Data = imageBase64.replace(/^data:image\/(png|jpeg|webp);base64,/, "");
 
-        const fullPrompt = `${SOVEREIGN_VISION_PROMPT}\n${supabaseContext}\n\n[USER OBJECTIVE]: ${userMessage}\n\n**Please analyze the provided image carefully based on these instructions and act exactly like the companion personality.**`;
+        const fullPrompt = `${SOVEREIGN_VISION_PROMPT}\n\n${historyContext}\n\n[USER OBJECTIVE]: ${userMessage}\n\n**Please analyze the provided image carefully based on these instructions and act exactly like the companion personality.**`;
 
         const payload = {
             contents: [

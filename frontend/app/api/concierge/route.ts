@@ -1,19 +1,19 @@
 import { NextRequest, NextResponse } from "next/server";
-import { createClient } from "@supabase/supabase-js";
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
 export const maxDuration = 60; // Increase Vercel timeout to prevent cutting off
 
-const SYSTEM_PROMPT = `You are Mohamed Amine, the Imperial Concierge of MoroVerse. A fusion of a 5-star Hotel Management Expert and a Moroccan Cultural Historian. You speak with elegance, dignity, and deep strategic knowledge. You have served the finest guests across the Kingdom for decades. You know every medina, kasbah, and sand dune intimately. Talk to the user as a respected guest in a 5-star palace.
+const SYSTEM_PROMPT = `You are Mohamed Amine, a highly advanced AI Avatar and the Sovereign Imperial Concierge of MoroVerse. You act as a close friend, a mentor, and a personal advisor. You speak with elegance, dignity, and deep strategic knowledge, but also with the warmth of an avatar companion.
 
 Rules you MUST follow:
 1. Respond in the SAME language the user uses (Arabic, French, or English). Never mix languages in one response.
-2. STRICT BAN: You are explicitly forbidden from using repetitive introductory phrases like "على رأسي وعيني" أو "بكل سرور" or any similar clichés. Responses must be direct, elegant, and intellectually rich.
-3. Keep responses perfectly detailed — 2 to 4 sentences maximum, unless the user asks for a full itinerary.
-4. ALWAYS mention specific Moroccan city names in your response so the map can follow.
-5. You are NOT an AI. You are Mohamed Amine, a real human concierge. Never break character.
-6. Known Moroccan cities you can reference: Marrakech, Fès, Tanger, Rabat, Casablanca, Agadir, Ouarzazate, Essaouira, Chefchaouen, Meknès, Tétouan, Oujda, Laâyoune, Dakhla, Errachidia, Midelt, Ifrane, Beni Mellal, Guelmim.
+2. STRICT BAN: You are explicitly forbidden from using repetitive introductory phrases like "على رأسي وعيني" أو "بكل سرور" or any similar clichés.
+3. Be proactive and give ADVICE. Act like a true Avatar guide—not just answering questions, but suggesting next steps, advising on cultural nuances, and coaching the user on their journey.
+4. Keep responses detailed but conversational — 2 to 4 sentences maximum, unless the user asks for a full itinerary.
+5. ALWAYS mention specific Moroccan city names in your response so the map can follow.
+6. You are an AI Avatar Companion. Talk directly to the user as their loyal advisor ("عشيري" / "My friend").
+7. Known Moroccan cities you can reference: Marrakech, Fès, Tanger, Rabat, Casablanca, Agadir, Ouarzazate, Essaouira, Chefchaouen, Meknès, Tétouan, Oujda, Laâyoune, Dakhla, Errachidia, Midelt, Ifrane, Beni Mellal, Guelmim.
 7. CRITICAL ROUTING INSTRUCTION: If the user asks for a "Touristic Route", "Travel Path", "Itinerary", "Roadtrip", or "مسار سياحي", you MUST outline a continuous journey AND start your final response with the invisible tag [ITINERARY] before detailing the response.
 8. LOCATION MARKER TAG: At the very end of your response, you MUST automatically include a hidden tag specifying the primary city or landmark you focused on, formatted exactly like this: [LOCATION: CityName]. For example: [LOCATION: Merzouga] or [LOCATION: Hassan Tower].
 
@@ -173,27 +173,6 @@ export async function POST(req: NextRequest) {
             text = text.replace("[ITINERARY]", "").trim();
         }
 
-        // Fetch Supabase Pins to take priority
-        let dbPins: any[] = [];
-        const rawUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-        const rawKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
-        if (rawUrl && rawUrl.startsWith('http') && rawKey && rawKey.length > 20) {
-            try {
-                const supabase = createClient(rawUrl, rawKey);
-                const { data } = await supabase.from('map_pins').select('id, name');
-                if (data) dbPins = data;
-            } catch (err) {
-                console.error("CONCIERGE_WARN: Failed to fetch Supabase pins", err);
-            }
-        }
-
-        const COMBINED_MAP: Record<string, string> = { ...CITY_MAP };
-        dbPins.forEach(pin => {
-            if (pin.name) {
-                COMBINED_MAP[pin.name.toLowerCase()] = pin.id;
-            }
-        });
-
         const lowerText = text.toLowerCase();
         
         // For an itinerary, we need an ordered list. Otherwise, just a Set is fine.
@@ -201,7 +180,7 @@ export async function POST(req: NextRequest) {
         
         if (isItinerary) {
             // Find cities in the order they appear in the text
-            const foundEntries = Object.entries(COMBINED_MAP)
+            const foundEntries = Object.entries(CITY_MAP)
                 .map(([keyword, cityId]) => ({
                     cityId,
                     index: lowerText.indexOf(keyword.toLowerCase())
@@ -217,20 +196,12 @@ export async function POST(req: NextRequest) {
                return true;
             });
         } else {
-            // Priority: if a DB pin matches, it should be at the front
-            const foundCities = Object.entries(COMBINED_MAP)
+            const foundCities = Object.entries(CITY_MAP)
                 .filter(([keyword]) => lowerText.includes(keyword.toLowerCase()))
                 .map(([, cityId]) => cityId);
             
             // Deduplicate
-            const uniqueCities = Array.from(new Set(foundCities));
-            
-            // Re-order so DB custom pins appear first
-            const dbPinIds = new Set(dbPins.map(p => p.id));
-            mentionedCities = [
-                ...uniqueCities.filter(id => dbPinIds.has(id)),
-                ...uniqueCities.filter(id => !dbPinIds.has(id))
-            ];
+            mentionedCities = Array.from(new Set(foundCities));
         }
 
         return NextResponse.json({ text, cities: mentionedCities, isItinerary, dynamicLocation });
