@@ -797,6 +797,38 @@ export default function MoroVerseAssistant() {
                                     </div>
                                 )}
 
+                                {/* ✨ QUICK SUGGESTION TEMPLATES — shown only when chat is fresh */}
+                                {history.length === 0 && !isThinking && (
+                                    <div className="flex flex-wrap gap-1.5 pb-1">
+                                        {(lang === 'ar' ? [
+                                            { icon: '🗺️', label: 'مسار سياحي من الشمال للجنوب' },
+                                            { icon: '🏰', label: 'أجمل القصبات في المغرب' },
+                                            { icon: '🍲', label: 'أكلات مغربية لازم تجربها' },
+                                            { icon: '🌙', label: 'رمضان في فاس — كيف يكون؟' },
+                                        ] : lang === 'fr' ? [
+                                            { icon: '🗺️', label: 'Itinéraire Nord-Sud du Maroc' },
+                                            { icon: '🏰', label: 'Les plus belles kasbahs' },
+                                            { icon: '🍲', label: 'Incontournables culinaires' },
+                                            { icon: '🌙', label: 'Ramadan à Fès' },
+                                        ] : [
+                                            { icon: '🗺️', label: 'Plan me a North-to-South route' },
+                                            { icon: '🏰', label: 'Most stunning kasbahs' },
+                                            { icon: '🍲', label: 'Must-try Moroccan dishes' },
+                                            { icon: '🌙', label: 'Ramadan in Fès experience' },
+                                        ]).map((chip, i) => (
+                                            <button
+                                                key={i}
+                                                onClick={() => sendToConcierge(chip.label)}
+                                                disabled={isThinking}
+                                                className="flex items-center gap-1 px-2.5 py-1.5 rounded-full bg-white/5 border border-[#C5A059]/20 text-[10px] text-white/70 hover:bg-[#C5A059]/15 hover:border-[#C5A059]/50 hover:text-white transition-all cursor-pointer"
+                                            >
+                                                <span>{chip.icon}</span>
+                                                <span dir={lang === 'ar' ? 'rtl' : 'ltr'}>{chip.label}</span>
+                                            </button>
+                                        ))}
+                                    </div>
+                                )}
+
                                 <div className="flex gap-2 items-center pt-2">
                                     <button
                                         onClick={isListening ? stopListening : startListening}
