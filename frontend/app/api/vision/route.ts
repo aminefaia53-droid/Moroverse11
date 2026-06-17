@@ -41,7 +41,7 @@ export async function POST(req: Request) {
             ? `${contextLine}\n${userSpeech ? `Your friend asks: "${userSpeech}"` : isProactive ? `Your friend is walking silently. Share an advising observation. If nothing changed, return [SILENCE].` : `Analyze the visual scene and give advice.`}`
             : `${contextLine}\n${userSpeech ? `Votre ami demande: "${userSpeech}"` : isProactive ? `Votre ami marche silencieusement. S'il n'y a rien de nouveau, retournez [SILENCE].` : `Analysez la scène et donnez des conseils.`}`;
 
-        const url = `https://generativelanguage.googleapis.com/v1/models/gemini-2.5-flash:generateContent?key=${process.env.GEMINI_API_KEY}`;
+        const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${process.env.GEMINI_API_KEY}`;
         const base64Data = imageBase64.replace(/^data:image\/(png|jpeg|webp);base64,/, "");
 
         const fullPrompt = `${SOVEREIGN_VISION_PROMPT}\n\n${historyContext}\n\n[USER OBJECTIVE]: ${userMessage}\n\n**Please analyze the provided image carefully based on these instructions and act exactly like the companion personality.**`;

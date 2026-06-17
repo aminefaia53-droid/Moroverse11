@@ -852,6 +852,7 @@ export default function MoroVerseAssistant() {
                                     </button>
                                     
                                     <input
+                                        ref={inputRef}
                                         type="text"
                                         value={inputText}
                                         onChange={e => setInputText(e.target.value)}

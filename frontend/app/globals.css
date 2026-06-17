@@ -514,3 +514,14 @@ svg {
   background-color: transparent;
 }
 /* NOTE: DO NOT add background-color rules to canvas — it overrides Three.js renderer */
+
+/* Remove default focus outline/glow from Leaflet elements (like the invisible GeoJSON zones clicked on map) */
+.leaflet-container:focus,
+.leaflet-container :focus,
+.leaflet-interactive:focus,
+.leaflet-marker-icon:focus,
+.leaflet-popup:focus,
+path.leaflet-interactive:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}

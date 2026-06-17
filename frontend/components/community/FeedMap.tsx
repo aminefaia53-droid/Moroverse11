@@ -286,6 +286,15 @@ export default function FeedMap({ onCitySelect, selectedCityId }: FeedMapProps) 
             <style dangerouslySetInnerHTML={{
                 __html: `
                     .leaflet-container { background: #020202 !important; }
+                    .leaflet-container:focus,
+                    .leaflet-container :focus,
+                    .leaflet-interactive:focus,
+                    .leaflet-marker-icon:focus,
+                    .leaflet-popup:focus,
+                    path.leaflet-interactive:focus {
+                        outline: none !important;
+                        box-shadow: none !important;
+                    }
                     .custom-map-pin { transition: all 0.2s ease-out; }
                     .pin-popup .leaflet-popup-content-wrapper { 
                         background: rgba(10, 10, 10, 0.95);
